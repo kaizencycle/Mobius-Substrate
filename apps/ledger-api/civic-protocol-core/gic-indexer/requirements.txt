@@ -1,7 +1,0 @@
-fastapi
-uvicorn
-httpx
-pydantic
-sqlitedict
-python-dateutil
-pyyaml

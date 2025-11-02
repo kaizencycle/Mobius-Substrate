@@ -1,0 +1,5 @@
+policy:
+  require:
+    - status: "codex-ci (test)"
+    - status: "codex-ci (gi-gate)"
+  method: squash

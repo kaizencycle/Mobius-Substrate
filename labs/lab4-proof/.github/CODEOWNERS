@@ -1,6 +1,0 @@
-# Require founder review on sensitive areas
-/docs/*               @kaizencycle
-/diagrams/*           @kaizencycle
-/app/core/*           @kaizencycle
-/packages/*           @kaizencycle
-/.redaction/*         @kaizencycle
