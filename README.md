@@ -307,6 +307,41 @@ All services include integrity checks and health endpoints:
 - **Shield Policies** enforce rate limits and input validation
 - **Real-time monitoring** of service health and security posture
 
+## 🛡️ Guardrails
+
+Kaizen OS implements comprehensive guardrails to prevent destructive changes and ensure code safety:
+
+### Anti-Nuke Protection
+
+- **Deletion limits**: PRs are blocked if they delete more than 5 files or exceed 15% deletion ratio
+- **Protected paths**: Deletions in `apps/`, `packages/`, `sentinels/`, `labs/`, `infra/`, and `.github/` are blocked
+- **Automated checks**: `.github/workflows/anti-nuke.yml` runs on every PR
+
+### Codex Policy (Additive-Only Mode)
+
+- **Policy file**: `.github/codex-policy.yml` enforces additive-only commits
+- **Required PRs**: All changes must go through pull requests
+- **Diff preview**: AI-assisted commits must post diff summaries before opening PRs
+- **Force-push prevention**: Force pushes to `main` are blocked
+
+### Recovery Procedures
+
+If a bad change merges or files are accidentally deleted:
+
+- **Preferred**: Use `git revert` to create inverse commits (preserves history)
+- **Last resort**: Hard reset to a known good commit (see [Recovery Playbook](docs/RECOVERY_PLAYBOOK.md))
+
+📖 **Full recovery guide**: [docs/RECOVERY_PLAYBOOK.md](docs/RECOVERY_PLAYBOOK.md)
+
+### Why These Guardrails Exist
+
+These guardrails were implemented after a near-nuke incident where a process bug could have caused significant repository damage. They ensure:
+
+1. **Non-destructive changes**: Deletions are caught before merge
+2. **Recovery paths**: Clear procedures for undoing bad changes
+3. **AI safety**: Codex operates in additive-only mode with human oversight
+4. **Integrity**: GI gates and approval requirements maintain code quality
+
 ## 🤝 Contributing
 
 1. Fork the repository

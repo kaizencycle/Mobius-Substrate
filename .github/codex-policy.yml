@@ -1,0 +1,32 @@
+# Codex Policy Configuration
+# Purpose: Enforce additive-only mode for Codex/AI-assisted commits
+# Version: 1.0.0
+
+mode: additive_only
+require_base_tree: true         # commits must base on current main tree
+require_diff_preview: true      # bot must post a diff summary before push
+max_deletions: 5
+max_delete_ratio: 0.15
+protected_paths:
+  - apps/**
+  - packages/**
+  - sentinels/**
+  - labs/**
+  - infra/**
+  - .github/**
+deny_force_push: true
+require_pr: true
+
+# Workflow requirements
+workflow:
+  - anti-nuke must pass
+  - codex-ci/test must pass
+  - codex-ci/gi-gate must pass
+
+# GI baseline
+gi_baseline: 0.95
+
+# Attestation requirements
+attestation:
+  required: true
+  min_gi_score: 0.95

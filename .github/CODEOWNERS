@@ -24,3 +24,11 @@
 
 # Documentation open to contributions
 /docs/ @kaizencycle
+
+# Protected paths - require code owner approval
+/apps/** @kaizencycle
+/packages/** @kaizencycle
+/sentinels/** @kaizencycle
+/labs/** @kaizencycle
+/infra/** @kaizencycle
+/.github/** @kaizencycle
