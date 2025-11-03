@@ -3,12 +3,18 @@
   "version": 2,
   "installCommand": "cd ../.. && (npm ci --legacy-peer-deps || npm install --legacy-peer-deps)",
   "buildCommand": "cd ../.. && npx turbo run build --filter=./apps/api-gateway",
+  "framework": null,
   "rewrites": [
     {
       "source": "/(.*)",
       "destination": "/api"
     }
   ],
+  "build": {
+    "env": {
+      "NODE_VERSION": "20"
+    }
+  },
   "env": {
     "NODE_ENV": "production",
     "GI_MIN": "0.90",

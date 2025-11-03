@@ -1,4 +1,7 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "version": 2,
+  "installCommand": "bash ../../scripts/vercel-install.sh",
   "buildCommand": "cd ../.. && npm run build --workspace=apps/aurea-site",
   "devCommand": "npm run dev",
   "framework": "nextjs",
