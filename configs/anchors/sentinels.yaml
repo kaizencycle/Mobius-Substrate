@@ -1,0 +1,59 @@
+version: "1.1"
+meta_anchor: "ZEUS"
+labs_order:
+  - lab1
+  - lab2
+  - lab3
+  - lab4-proof
+  - lab5
+  - lab6-proof
+  - lab7-proof
+sentinels:
+  - id: zeus
+    name: ZEUS
+    role: "GI Meta-Anchor"
+    meta_anchor: true
+    anchor_for_lab: ~
+  - id: aurea
+    name: AUREA
+    role: "Systems intuition"
+    meta_anchor: false
+    anchor_for_lab: lab1
+  - id: jade
+    name: JADE
+    role: "Narrative & morale"
+    meta_anchor: false
+    anchor_for_lab: lab2
+  - id: eve
+    name: EVE
+    role: "Ethics & civility"
+    meta_anchor: false
+    anchor_for_lab: lab3
+  - id: hermes
+    name: HERMES
+    role: "Markets & pulse"
+    meta_anchor: false
+    anchor_for_lab: lab4-proof
+  - id: atlas
+    name: ATLAS
+    role: "Ops & reliability"
+    meta_anchor: false
+    anchor_for_lab: lab5
+  - id: uriel
+    name: URIEL
+    role: "Illumination & codex"
+    meta_anchor: false
+    anchor_for_lab: lab6-proof
+  - id: echo
+    name: ECHO
+    role: "Pulse & ledger sync"
+    meta_anchor: false
+    anchor_for_lab: lab7-proof
+echo:
+  witness_chain:
+    - ZEUS
+  gi_floor: 0.950
+  attestation_policy:
+    proof: "Proof of Integrity"
+    frequency: "per cycle"
+    witness: "ZEUS"
