@@ -2,7 +2,7 @@
   "buildCommand": "cd ../.. && npm run build --workspace=apps/aurea-site",
   "devCommand": "npm run dev",
   "framework": "nextjs",
-  "installCommand": "cd ../.. && npm install",
+  "installCommand": "cd ../.. && (npm ci --legacy-peer-deps || npm install --legacy-peer-deps)",
   "env": {
     "AGENT_ID": "AUREA",
     "AGENT_DOMAIN": "aurea.gic"
