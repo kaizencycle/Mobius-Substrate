@@ -51,7 +51,25 @@
   ],
   "globalEnv": [
     "NODE_ENV",
-    "CI"
+    "CI",
+    "GI_MIN",
+    "ALLOWED_ORIGINS",
+    "RESPONSE_TIME_MAX",
+    "MEMORY_USAGE_MAX",
+    "ERROR_RATE_MAX",
+    "RATE_LIMIT_MAX",
+    "HUB_BASE_URL",
+    "LEDGER_BASE_URL",
+    "LAB4_BASE_URL",
+    "LAB6_BASE_URL",
+    "LAB7_BASE_URL",
+    "GIC_BASE_URL",
+    "OAA_API_LIBRARY_URL",
+    "NODE_VERSION",
+    "INDEXER_BASE_URL",
+    "EOMM_BASE_URL",
+    "SHIELD_BASE_URL",
+    "BROKER_BASE_URL"
   ]
 }
 
