@@ -2,7 +2,7 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "version": 2,
   "buildCommand": "cd ../.. && npm run build --workspace=packages/integrity-core && npm run build --workspace=packages/shield-policies",
-  "installCommand": "cd ../.. && npm install",
+  "installCommand": "cd ../.. && npm ci --legacy-peer-deps",
   "framework": null,
   "rewrites": [
     {
