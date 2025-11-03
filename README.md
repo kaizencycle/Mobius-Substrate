@@ -1,6 +1,17 @@
 # 🧠 Kaizen OS — Continuous Integrity Architecture
 
-[![Kaizen OS Integrity Badge](https://img.shields.io/badge/KaizenOS-Integrity%20≥%200.95-brightgreen)](https://civic-ledger.onrender.com)
+<!-- Kaizen OS Core Badges -->
+[![Kaizen OS Integrity](https://img.shields.io/badge/KaizenOS-Integrity%20≥%200.95-brightgreen)](https://civic-ledger.onrender.com)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Node.js](https://img.shields.io/badge/Node.js-≥18.0.0-green.svg)](https://nodejs.org/)
+
+<!-- Monorepo Structure Badges -->
+[![Turborepo](https://img.shields.io/badge/Build%20System-Turborepo-EF4444?logo=turborepo)](https://turborepo.org)
+[![Workspaces](https://img.shields.io/badge/Workspaces-43%20packages-7C3AED)](https://github.com/kaizencycle/Kaizen-OS)
+[![Apps](https://img.shields.io/badge/Apps-16-10B981)](apps)
+[![Packages](https://img.shields.io/badge/Packages-7-3B82F6)](packages)
+[![Sentinels](https://img.shields.io/badge/Sentinels-13-F59E0B)](sentinels)
+[![Labs](https://img.shields.io/badge/Labs-7-8B5CF6)](labs)
 
 <!-- Situational Report (dynamic from your API) -->
 ![SR Verdict](https://img.shields.io/endpoint?url=https%3A%2F%2Fkaizen-os.vercel.app%2Fapi%2Fsr%2Fbadge)
@@ -13,6 +24,7 @@
 ![PRs](https://img.shields.io/github/issues-pr/kaizencycle/Kaizen-OS)
 ![Issues](https://img.shields.io/github/issues/kaizencycle/Kaizen-OS)
 ![Last Commit](https://img.shields.io/github/last-commit/kaizencycle/Kaizen-OS)
+![Stars](https://img.shields.io/github/stars/kaizencycle/Kaizen-OS?style=social)
 
 <sub>Verdict colors: ADOPT = green · SHADOW = orange · DEFER = red · UNKNOWN = gray</sub>
 
