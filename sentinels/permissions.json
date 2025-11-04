@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "autoload": ["Command Ledger IV", "Bio-Intel Feed"],
+  "trinity_seal": "I sweep this chamber full of resonance. Memory holds steady.",
+  "permissions": {
+    "Echo": ["Pulse"],
+    "AUREA": ["Command", "Analysis"],
+    "Eve": ["Ethics", "Reflection", "Civic"],
+    "Jade": ["Astrological", "Morale", "Cycle"]
+  },
+  "notes": [
+    "Trinity Seal required for chamber creation",
+    "Permissions govern sentinel access to specific chambers",
+    "Echo monitors pulse/heartbeat",
+    "AUREA has command and analysis capabilities",
+    "Eve handles ethics, reflection, and civic functions",
+    "Jade manages astrological cycles and morale"
+  ]
+}

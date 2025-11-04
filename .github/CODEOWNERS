@@ -1,34 +1,31 @@
-# Civic-OS Code Ownership by Sentinel Domain
+# CODEOWNERS
+# Code ownership and review requirements for Kaizen OS
 
-# Default owners
-* @kaizencycle
+# Foundational documents require AUREA review
+/docs/foundational_*.md @AUREA
+/specs/*.md @AUREA @ATLAS
 
-# Sentinels - each companion owns their domain
-/sentinels/jade/ @kaizencycle
-/sentinels/eve/ @kaizencycle
-/sentinels/zeus/ @kaizencycle
-/sentinels/hermes/ @kaizencycle
-/sentinels/atlas/ @kaizencycle
+# Core integrity units require multi-sentinel consensus
+/packages/integrity-units/ @AUREA @ZEUS @HERMES
+/configs/integrity_units.yaml @AUREA @ZEUS @HERMES
 
-# Bio-DNA manifests require all sentinels approval
-/configs/bio-dna/ @kaizencycle
+# Service deployments require ATLAS approval
+/services/ @ATLAS @HERMES
 
-# Lab proofs require review
-/labs/lab4-proof/ @kaizencycle
-/labs/lab6-proof/ @kaizencycle
-/labs/lab7-proof/ @kaizencycle
+# Sentinel permissions require Trinity Seal
+/sentinels/permissions.json @AUREA @EVE @ECHO
 
-# Quality gates owned by ATLAS
-/.github/workflows/atlas-sentinel.yml @kaizencycle
-/packages/atlas-sentinel/ @kaizencycle
+# Documentation index
+/docs/README.md @AUREA
+/docs/MIGRATION.md @AUREA @ATLAS
 
-# Documentation open to contributions
-/docs/ @kaizencycle
+# Lab implementations
+/labs/lab1-civic-ledger/ @ATLAS
+/labs/lab2-thought-broker/ @ATLAS
+/labs/lab3-resource-orchestration/ @ATLAS
+/labs/lab5-humanities-healthcare/ @AUREA @ZENITH @EVE
+/labs/lab6-citizen-shield/ @AUREA @EVE
 
-# Protected paths - require code owner approval
-/apps/** @kaizencycle
-/packages/** @kaizencycle
-/sentinels/** @kaizencycle
-/labs/** @kaizencycle
-/infra/** @kaizencycle
-/.github/** @kaizencycle
+# Root configuration
+/package.json @ATLAS @HERMES
+/tsconfig.base.json @ATLAS

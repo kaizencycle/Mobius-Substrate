@@ -6,6 +6,7 @@
   "workspaces": [
     "apps/*",
     "packages/*",
+    "services/*",
     "sentinels/*",
     "labs/*"
   ],
@@ -28,7 +29,8 @@
     "consensus:validate": "./scripts/gi-consensus-validate.sh",
     "gi:validate": "./scripts/gi-consensus-validate.sh",
     "console": "cd apps/console && python main.py",
-    "docs:generate": "echo \"Documentation generation coming soon\""
+    "docs:generate": "echo \"Documentation generation coming soon\"",
+    "dev:ledger": "npm run dev --workspace=@civic/ledger-service"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",

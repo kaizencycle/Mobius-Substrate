@@ -1,0 +1,51 @@
+# Integrity Units Configuration v1.0
+# This file contains the canonical constants for the integrity economy
+# Names are placeholders; mathematics is canonical
+
+version: 1
+
+symbols:
+  credit: "GIC"                 # Placeholder; safe to rename
+  shard: "SHD"
+  shard_symbol_unicode: "₷"
+
+units:
+  shards_per_credit: 1000000   # IMMUTABLE CONSTANT
+
+supply_caps:
+  credits: 21000000             # 21 million credits
+  shards: 21000000000000        # 21 trillion shards
+
+epochs:
+  length_days: 90
+  shard_decay_pct: 0.5          # 0.5% decay per epoch on idle shards
+  reabsorption_target: "integrity_pool"
+  
+  burn_job:
+    enabled: true
+    cron: "0 0 */90 * *"        # Every 90 days at midnight UTC
+    min_idle_days: 30           # Shards idle for 30+ days are eligible
+    notify:
+      - "ZEUS"                  # System coordinator
+      - "HERMES"                # Distributed systems
+      - "ECHO"                  # Pulse monitor
+    dry_run: false              # Set to true for testing
+
+governance:
+  gi_floor_warn: 0.950          # Warning threshold
+  gi_floor_halt: 0.900          # Halt minting if GI drops below
+  dual_attestation_required: true
+  
+  escalation:
+    threshold: 0.850            # Emergency escalation
+    notify:
+      - "ZEUS"
+      - "EVE"
+      - "ATLAS"
+    require_human_approval: true
+
+notes:
+  - "Names are placeholders; mathematics is canonical."
+  - "Epoch burn prevents integrity inflation via thermodynamic decay."
+  - "Conversion constant (1M shards/credit) is immutable."
+  - "GI affects mint cadence, NOT conversion rate."

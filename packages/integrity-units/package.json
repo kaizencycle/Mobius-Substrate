@@ -1,0 +1,20 @@
+{
+  "name": "@civic/integrity-units",
+  "version": "0.1.0",
+  "description": "Canonical integrity economy units and conversions",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "node --test dist/tests.js",
+    "clean": "rm -rf dist"
+  },
+  "keywords": ["integrity", "economy", "units", "conversion", "shards", "credits"],
+  "author": "Kaizen OS Core Team",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "typescript": "^5.3.0"
+  }
+}
