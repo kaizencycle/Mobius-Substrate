@@ -1,0 +1,498 @@
+# Kaizen Theorem Visual Design System
+# Establishes canonical visual language for philosophical diagrams
+
+version: "1.0.0"
+last_updated: "2025-11-04"
+maintained_by: "Kaizen OS Design Working Group"
+
+# ==============================================================================
+# PHILOSOPHICAL DIAGRAMS
+# ==============================================================================
+
+philosophical_diagrams:
+  purpose: "Visual representations of Kaizen Theorems and core philosophical concepts"
+  style: "minimalist, symbolic, culturally resonant"
+  approach: "Respect cultural origins, maintain accessibility, inspire contemplation"
+
+  file_specifications:
+    format: "PNG"
+    resolution:
+      web: "1024x1024px"
+      print: "2048x2048px"
+      minimum: "1024x1024px"
+    dpi:
+      web: 72
+      print: 300
+    color_mode:
+      screen: "RGB"
+      print: "CMYK"
+    compression: "lossless (PNG-8 or PNG-24)"
+
+  accessibility:
+    alt_text: "required for all images"
+    descriptions: "detailed descriptions in adjacent markdown"
+    contrast_ratio: "minimum 4.5:1 for text elements"
+    color_blindness: "test with Deuteranopia, Protanopia, Tritanopia simulators"
+
+# ==============================================================================
+# COLOR PALETTE
+# ==============================================================================
+
+color_palette:
+  backgrounds:
+    primary:
+      hex: "#2C4F5E"
+      name: "Deep Teal"
+      meaning: "Contemplation, depth, stability"
+      usage: "Primary background for philosophical diagrams"
+
+    secondary:
+      hex: "#1A2F3A"
+      name: "Darker Teal"
+      meaning: "Mystery, infinite depth"
+      usage: "Gradients, shadows, emphasis"
+
+    alternative:
+      hex: "#3D5A6B"
+      name: "Lighter Teal"
+      meaning: "Openness, clarity"
+      usage: "Highlights, lighter sections"
+
+  objects:
+    vessel:
+      hex: "#D4C5A9"
+      name: "Warm Beige"
+      meaning: "Earth, ceramic, tangibility"
+      usage: "Primary object color (vessels, structures)"
+
+    seams:
+      hex: "#FFD700"
+      name: "Pure Gold"
+      meaning: "Healing, value, illumination"
+      usage: "Kintsugi seams, connections, emphasis"
+
+    highlights:
+      hex: "#F5E6D3"
+      name: "Cream"
+      meaning: "Light, illumination, understanding"
+      usage: "Highlights, glows, illuminated areas"
+
+  text:
+    primary:
+      hex: "#F5E6D3"
+      name: "Cream"
+      meaning: "Readability, clarity"
+      usage: "Primary text, labels"
+
+    secondary:
+      hex: "#D4C5A9"
+      name: "Warm Beige"
+      meaning: "Subtlety, secondary information"
+      usage: "Annotations, captions"
+
+    accent:
+      hex: "#FFD700"
+      name: "Pure Gold"
+      meaning: "Emphasis, importance"
+      usage: "Key terms, highlights"
+
+  semantic:
+    success:
+      hex: "#95e1d3"
+      name: "Mint"
+      meaning: "Healing, growth, positive outcome"
+
+    warning:
+      hex: "#ffd93d"
+      name: "Amber"
+      meaning: "Attention, caution"
+
+    error:
+      hex: "#ff6b6b"
+      name: "Coral Red"
+      meaning: "Fracture, critical state"
+
+    neutral:
+      hex: "#666666"
+      name: "Gray"
+      meaning: "Deprecated, inactive"
+
+# ==============================================================================
+# TYPOGRAPHY
+# ==============================================================================
+
+typography:
+  theorem_titles:
+    family: "Serif"
+    weight: "bold"
+    case: "UPPERCASE"
+    purpose: "Convey philosophical gravitas and timelessness"
+    examples:
+      - "Georgia"
+      - "Merriweather"
+      - "Crimson Text"
+      - "EB Garamond"
+
+  diagram_labels:
+    family: "Sans-serif"
+    weight: "regular"
+    case: "UPPERCASE"
+    purpose: "Clear, legible labels that don't compete with imagery"
+    examples:
+      - "Inter"
+      - "Source Sans Pro"
+      - "Open Sans"
+      - "Lato"
+
+  body_text:
+    family: "Sans-serif"
+    weight: "regular"
+    case: "Mixed case"
+    purpose: "Maximum readability for documentation"
+    examples:
+      - "Inter"
+      - "Source Sans Pro"
+      - "Open Sans"
+
+  monospace:
+    family: "Monospace"
+    weight: "regular"
+    purpose: "Code, technical specifications"
+    examples:
+      - "JetBrains Mono"
+      - "Fira Code"
+      - "Source Code Pro"
+
+# ==============================================================================
+# COMPOSITION PRINCIPLES
+# ==============================================================================
+
+composition:
+  layout:
+    primary: "circular or radial"
+    meaning: "Completeness, cycles, wholeness"
+    usage: "Theorem diagrams, process flows"
+
+  symmetry:
+    approach: "intentional"
+    meaning: "Balance, harmony, stability"
+    note: "Asymmetry is acceptable when philosophically justified"
+
+  flow:
+    direction: "top-to-bottom or circular"
+    meaning: "Process, continuity, transformation"
+    variants:
+      - "top-to-bottom: linear processes"
+      - "circular: cycles and feedback loops"
+      - "radial: emanation from center"
+
+  negative_space:
+    approach: "generous"
+    meaning: "Contemplation, focus, breathing room"
+    guideline: "Minimum 20% of canvas should be empty space"
+
+  visual_hierarchy:
+    primary_focus: "Central object or concept"
+    secondary_elements: "Supporting details, labels"
+    tertiary_elements: "Annotations, references"
+
+# ==============================================================================
+# CULTURAL REFERENCES
+# ==============================================================================
+
+cultural_references:
+  kz_theta_3:
+    tradition: "Japanese Kintsugi (金継ぎ)"
+    concepts:
+      - "Mushin (無心) - No mind / accepting change"
+      - "Mottainai (もったいない) - Regret concerning waste"
+      - "Wabi-sabi (侘寂) - Beauty in imperfection"
+    visual_elements:
+      - "Golden seams on ceramic"
+      - "Circular vessel form"
+      - "Six-fold symmetry (hexagonal repair pattern)"
+
+  future_theorems:
+    kz_theta_4:
+      potential_sources:
+        - "Greek Symposium (dialogue, collective wisdom)"
+        - "African Ubuntu (interconnectedness)"
+        - "Indigenous Circle Practices (consensus)"
+      status: "TBD - awaiting philosophical development"
+
+    kz_theta_5:
+      potential_sources:
+        - "Buddhist Interdependence (systems thinking)"
+        - "Taoist Wu Wei (effortless action)"
+        - "Stoic Cosmopolitanism (universal community)"
+      status: "TBD - awaiting philosophical development"
+
+  guidelines:
+    research: "Deep understanding required before visual adaptation"
+    consultation: "Engage cultural experts and community members"
+    respect: "Maintain original philosophical intent"
+    attribution: "Explicit credit to cultural traditions"
+    sensitivity: "Avoid appropriation, especially of sacred imagery"
+
+# ==============================================================================
+# DESIGN PATTERNS
+# ==============================================================================
+
+design_patterns:
+  fracture_and_repair:
+    description: "Visual representation of system breakage and healing"
+    elements:
+      - "Intact form (baseline)"
+      - "Fracture lines (stress visualization)"
+      - "Repair seams (healing process)"
+      - "Enhanced integrity (post-repair state)"
+    color_mapping:
+      intact: "#D4C5A9"
+      fracture: "#ff6b6b"
+      repair: "#FFD700"
+      enhanced: "#95e1d3"
+
+  cycle_and_flow:
+    description: "Circular processes and feedback loops"
+    elements:
+      - "Starting point (initiation)"
+      - "Process stages (transformation)"
+      - "Feedback connections (iteration)"
+      - "Return to origin (completion)"
+    visual_treatment:
+      - "Arrows indicate direction"
+      - "Color shifts show progression"
+      - "Thickness shows emphasis"
+
+  witness_and_observe:
+    description: "Neutral observation creating stability"
+    elements:
+      - "Chaotic elements (entropy)"
+      - "Observation point (witness)"
+      - "Stabilization field (coherence)"
+      - "Shared reference frame (truth)"
+    visual_treatment:
+      - "Observer position clearly marked"
+      - "Field effects from observation"
+      - "Before/after stability contrast"
+
+# ==============================================================================
+# IMPLEMENTATION GUIDELINES
+# ==============================================================================
+
+implementation:
+  creation_process:
+    step_1:
+      name: "Research"
+      description: "Understand philosophical concept and cultural origins"
+      deliverable: "Research document with sources"
+
+    step_2:
+      name: "Conceptualization"
+      description: "Sketch ideas, explore visual metaphors"
+      deliverable: "Concept sketches (3-5 variations)"
+
+    step_3:
+      name: "Feedback"
+      description: "Share with community and cultural consultants"
+      deliverable: "Feedback summary and revisions"
+
+    step_4:
+      name: "Production"
+      description: "Create final artwork following specifications"
+      deliverable: "High-resolution files (PNG, SVG if possible)"
+
+    step_5:
+      name: "Documentation"
+      description: "Write descriptions, alt text, usage guidelines"
+      deliverable: "Complete documentation package"
+
+    step_6:
+      name: "Integration"
+      description: "Add to repository, update indices"
+      deliverable: "PR with all assets and documentation"
+
+  quality_checklist:
+    technical:
+      - "[ ] Meets resolution requirements (1024x1024px minimum)"
+      - "[ ] Correct color mode (RGB for screen)"
+      - "[ ] Lossless compression"
+      - "[ ] All text readable at intended size"
+      - "[ ] Files properly named and organized"
+
+    accessibility:
+      - "[ ] Alt text provided"
+      - "[ ] Detailed description in docs"
+      - "[ ] Sufficient contrast ratios"
+      - "[ ] Tested with colorblindness simulators"
+      - "[ ] Legible at 50% scale"
+
+    cultural:
+      - "[ ] Cultural research documented"
+      - "[ ] Expert consultation completed"
+      - "[ ] Proper attribution included"
+      - "[ ] No sacred or protected imagery misused"
+      - "[ ] Community feedback incorporated"
+
+    philosophical:
+      - "[ ] Accurately represents theorem concept"
+      - "[ ] Visual metaphor is clear"
+      - "[ ] Supports multiple levels of interpretation"
+      - "[ ] Inspires contemplation"
+      - "[ ] Aligns with Kaizen values"
+
+# ==============================================================================
+# LICENSING
+# ==============================================================================
+
+licensing:
+  primary_license:
+    name: "CC-BY-SA 4.0"
+    full_name: "Creative Commons Attribution-ShareAlike 4.0 International"
+    url: "https://creativecommons.org/licenses/by-sa/4.0/"
+
+  permissions:
+    share: "Copy and redistribute in any medium or format"
+    adapt: "Remix, transform, and build upon the material"
+
+  conditions:
+    attribution: "Credit Kaizen Cycle and specific creators"
+    share_alike: "Distribute derivatives under same license"
+    no_additional_restrictions: "No legal or technological restrictions beyond license"
+
+  cultural_addendum:
+    note: "When adapting cultural imagery, additional respect protocols apply"
+    requirements:
+      - "Maintain original philosophical intent"
+      - "Credit cultural traditions explicitly"
+      - "Avoid commercial appropriation"
+      - "Consult communities when possible"
+      - "Honor requests for removal or modification"
+
+# ==============================================================================
+# TOOLS AND RESOURCES
+# ==============================================================================
+
+tools:
+  vector_graphics:
+    - name: "Figma"
+      type: "Web-based"
+      license: "Freemium"
+      use_case: "Collaborative design, prototyping"
+
+    - name: "Adobe Illustrator"
+      type: "Desktop"
+      license: "Subscription"
+      use_case: "Professional vector illustration"
+
+    - name: "Inkscape"
+      type: "Desktop"
+      license: "Free/Open Source"
+      use_case: "SVG editing, open alternative"
+
+  raster_graphics:
+    - name: "Adobe Photoshop"
+      type: "Desktop"
+      license: "Subscription"
+      use_case: "Professional raster editing"
+
+    - name: "GIMP"
+      type: "Desktop"
+      license: "Free/Open Source"
+      use_case: "Open alternative to Photoshop"
+
+    - name: "Krita"
+      type: "Desktop"
+      license: "Free/Open Source"
+      use_case: "Digital painting, illustration"
+
+  3d_visualization:
+    - name: "Blender"
+      type: "Desktop"
+      license: "Free/Open Source"
+      use_case: "Complex 3D visualizations, renders"
+
+  animation:
+    - name: "After Effects"
+      type: "Desktop"
+      license: "Subscription"
+      use_case: "Motion graphics, animation"
+
+    - name: "Rive"
+      type: "Web/Desktop"
+      license: "Freemium"
+      use_case: "Interactive animations"
+
+resources:
+  learning:
+    - "Japanese aesthetics and philosophy"
+    - "Sacred geometry principles"
+    - "Cross-cultural symbolism"
+    - "Accessibility in visual design"
+    - "Color theory and psychology"
+
+  community:
+    channels:
+      design_feedback: "#design-feedback"
+      cultural_consultation: "#cultural-respect"
+      technical_help: "#dev-tools"
+      philosophy: "#kaizen-theorems"
+
+# ==============================================================================
+# VERSION HISTORY
+# ==============================================================================
+
+version_history:
+  v1_0_0:
+    date: "2025-11-04"
+    changes:
+      - "Initial visual design system"
+      - "KZ-Θ₃ (Kintsugi) visual specifications"
+      - "Color palette establishment"
+      - "Typography guidelines"
+      - "Cultural reference framework"
+    authors:
+      - "AUREA"
+      - "JADE"
+      - "Kaizen OS Design Working Group"
+
+# ==============================================================================
+# FUTURE ENHANCEMENTS
+# ==============================================================================
+
+future_enhancements:
+  interactive_diagrams:
+    description: "SVG-based interactive visualizations"
+    features:
+      - "Hover states showing additional information"
+      - "Click interactions for case studies"
+      - "Animated transitions between states"
+      - "Real-time data integration"
+    timeline: "Q2 2025"
+
+  diagram_generator:
+    description: "Automated generation of theorem diagrams"
+    features:
+      - "Template-based generation"
+      - "Consistent styling application"
+      - "Dynamic data visualization"
+      - "Export in multiple formats"
+    timeline: "Q3 2025"
+
+  cultural_expansion:
+    description: "Broader representation of global wisdom"
+    targets:
+      - "African philosophical traditions"
+      - "Indigenous knowledge systems"
+      - "South Asian wisdom traditions"
+      - "Latin American philosophies"
+    timeline: "Ongoing"
+
+  accessibility_tools:
+    description: "Enhanced accessibility features"
+    features:
+      - "Audio descriptions"
+      - "Tactile diagram versions"
+      - "Multiple contrast modes"
+      - "Simplified versions for cognitive accessibility"
+    timeline: "Q4 2025"
