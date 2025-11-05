@@ -9,6 +9,7 @@ import { listEpochAttestations } from "./routes/attest_list.js";
 import { startUbiRun, listUbiRuns, getUbiRun, settleUbiRun } from "./routes/ubi_run.js";
 import { listOutbox, enqueueRun, dispatchNow } from "./routes/settlement.js";
 import { getSystemHealth } from "./utils/health.js";
+import { ingestSentiment, getSentimentSummary } from "./routes/sentiment.js";
 
 const app = express();
 
@@ -67,6 +68,10 @@ app.get("/settlement/outbox", listOutbox);
 app.post("/settlement/enqueue", enqueueRun);
 app.post("/settlement/dispatch", dispatchNow);
 
+// Sentiment endpoints
+app.post("/ingest/sentiment", ingestSentiment);
+app.get("/sentiment/summary", getSentimentSummary);
+
 // 404 handler
 app.use("*", (req: Request, res: Response) => {
   res.status(404).json({
@@ -94,7 +99,9 @@ app.use("*", (req: Request, res: Response) => {
       "POST /ubi/run/:id/settle",
       "GET /settlement/outbox",
       "POST /settlement/enqueue",
-      "POST /settlement/dispatch"
+      "POST /settlement/dispatch",
+      "POST /ingest/sentiment",
+      "GET /sentiment/summary"
     ]
   });
 });

@@ -115,3 +115,16 @@ attestations:
       - "AUREA"
       - "ZEUS"
     scheme: "v1"
+
+integrations:
+  bettafish:
+    enabled: true
+    fields:
+      - avg_sentiment       # -1..+1
+      - polarization        # 0..1
+      - volume
+    mapping:
+      imi: "map(-1..+1 => 0..1)"
+
+governance:
+  sentiment_weight_in_gi: 0.05   # optional future hook into GI
