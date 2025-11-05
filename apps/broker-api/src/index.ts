@@ -1,16 +1,114 @@
 // Thought Broker API - Placeholder implementation
-import express from 'express';
+import express, { Request, Response } from 'express';
 import cors from 'cors';
+import { urielDeliberate, UrielQuery } from '../../sentinels/uriel/index';
+
+import urielRouter from './sentinels/uriel';
 
 const app = express();
 const PORT = process.env.PORT || 4005;
+
+// URIEL routing configuration
+const URIEL_ROUTING_CHANCE = 0.20; // 20% of eligible deliberations
+const URIEL_DOMAINS = ['physics', 'curiosity', 'entropy', 'cosmos', 'delib_proof'];
 
 // Middleware
 app.use(cors());
 app.use(express.json());
 
+// Sentinel routes
+app.use('/api/sentinels/uriel', urielRouter);
+
+/**
+ * Route deliberation based on topic and availability
+ */
+const ALLOWED_URIEL_TOPICS = ['physics', 'cosmos', 'curiosity', 'entropy', 'delib_proof'];
+const URIEL_WEIGHT = parseFloat(process.env.SENTINEL_URIEL_WEIGHT || '0.20');
+
+async function routeDeliberation(intent: string, context?: any) {
+  // Extract topics from intent (simple keyword matching)
+  const topics = extractTopics(intent);
+  const gi = context?.gi || 0.993;
+
+  // Check if any URIEL domains are present and GI gate passes
+  const hasUrielDomain = ALLOWED_URIEL_TOPICS.some(domain =>
+    topics.some(topic => topic.toLowerCase().includes(domain))
+  );
+
+  // Route to URIEL if eligible, GI >= 0.95, and randomly selected
+  if (hasUrielDomain && gi >= 0.95 && Math.random() < URIEL_WEIGHT) {
+    try {
+      const urielQuery: UrielQuery = {
+        intent,
+        gi,
+        context: context || {}
+      };
+
+      const response = await urielDeliberate(urielQuery);
+
+      return {
+        id: `deliberation_uriel_${Date.now()}`,
+        intent,
+        consensus: response.gi,
+        reasoning: [`🕯️🔥 URIEL illumination: ${response.illumination}`],
+        alternatives: ['Continue with standard deliberation', 'Route to other sentinels'],
+        decision: 'URIEL illumination applied',
+        confidence: response.gi,
+        timestamp: response.timestamp,
+        participants: ['uriel'],
+        sentinel: 'URIEL',
+        source: response.source
+      };
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      console.warn('URIEL deliberation failed, falling back to standard:', errorMessage);
+      // Fall through to standard deliberation
+    }
+  }
+
+  // Standard deliberation (existing logic)
+  return {
+    id: `deliberation_${Date.now()}`,
+    intent,
+    consensus: 0.95,
+    reasoning: ['Standard deliberation reasoning'],
+    alternatives: ['Alternative 1', 'Alternative 2'],
+    decision: 'Standard decision',
+    confidence: 0.9,
+    timestamp: new Date().toISOString(),
+    participants: ['broker-1']
+  };
+}
+
+/**
+ * Extract topics from intent text (simple implementation)
+ */
+function extractTopics(intent: string): string[] {
+  const text = intent.toLowerCase();
+  const topics: string[] = [];
+
+  // Simple keyword-based topic extraction
+  if (text.includes('physics') || text.includes('universe') || text.includes('quantum')) {
+    topics.push('physics');
+  }
+  if (text.includes('curiosity') || text.includes('curious') || text.includes('explore')) {
+    topics.push('curiosity');
+  }
+  if (text.includes('entropy') || text.includes('chaos') || text.includes('disorder')) {
+    topics.push('entropy');
+  }
+  if (text.includes('cosmos') || text.includes('cosmic') || text.includes('universal')) {
+    topics.push('cosmos');
+  }
+  if (text.includes('deliberation') || text.includes('consensus') || text.includes('proof')) {
+    topics.push('delib_proof');
+  }
+
+  return topics;
+}
+
 // Health check endpoint
-app.get('/v1/loop/health', (req, res) => {
+app.get('/v1/loop/health', (_req: Request, res: Response) => {
   res.json({
     status: 'healthy',
     service: 'broker-api',
@@ -20,7 +118,7 @@ app.get('/v1/loop/health', (req, res) => {
 });
 
 // Placeholder endpoints
-app.post('/intents', (req, res) => {
+app.post('/intents', (req: Request, res: Response) => {
   res.json({
     id: `intent_${Date.now()}`,
     ...req.body,
@@ -30,7 +128,7 @@ app.post('/intents', (req, res) => {
   });
 });
 
-app.get('/intents/:id', (req, res) => {
+app.get('/intents/:id', (req: Request, res: Response) => {
   res.json({
     id: req.params.id,
     description: 'Sample intent',
@@ -40,21 +138,27 @@ app.get('/intents/:id', (req, res) => {
   });
 });
 
-app.post('/intents/:id/process', (req, res) => {
-  res.json({
-    id: `deliberation_${Date.now()}`,
-    intent: req.params.id,
-    consensus: 0.95,
-    reasoning: ['Sample reasoning'],
-    alternatives: ['Alternative 1', 'Alternative 2'],
-    decision: 'Sample decision',
-    confidence: 0.9,
-    timestamp: new Date().toISOString(),
-    participants: ['broker-1']
-  });
+app.post('/intents/:id/process', async (req: Request, res: Response) => {
+  try {
+    const intentId = req.params.id;
+    const intentText = req.body.intent || `Intent ${intentId}`;
+    const context = req.body.context || {};
+
+    const deliberation = await routeDeliberation(intentText, context);
+    res.json(deliberation);
+  } catch (error) {
+    console.error('Deliberation routing failed:', error);
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    res.status(500).json({
+      error: 'Deliberation failed',
+      message: errorMessage,
+      id: `deliberation_error_${Date.now()}`,
+      timestamp: new Date().toISOString()
+    });
+  }
 });
 
-app.get('/deliberations/:id', (req, res) => {
+app.get('/deliberations/:id', (req: Request, res: Response) => {
   res.json({
     id: req.params.id,
     intent: 'sample-intent',
@@ -65,6 +169,106 @@ app.get('/deliberations/:id', (req, res) => {
     confidence: 0.9,
     timestamp: new Date().toISOString(),
     participants: ['broker-1']
+  });
+});
+
+// URIEL Sentinel Endpoint
+app.post('/api/sentinels/uriel/query', async (req: Request, res: Response) => {
+  try {
+    const query: UrielQuery = {
+      intent: req.body.intent,
+      gi: req.body.gi || 0.993,
+      context: req.body.context || {}
+    };
+
+    const response = await urielDeliberate(query);
+
+    res.json(response);
+  } catch (error) {
+    console.error('URIEL query failed:', error);
+    const errorMessage = error instanceof Error ? error.message : String(error);
+
+    // Check if it's a rate limit or GI threshold error
+    if (errorMessage.includes('Rate limit exceeded')) {
+      res.status(429).json({
+        error: 'Rate limit exceeded',
+        message: errorMessage,
+        sentinel: 'URIEL'
+      });
+    } else if (errorMessage.includes('GI below threshold')) {
+      res.status(409).json({
+        error: 'GI below threshold',
+        message: errorMessage,
+        fallback: 'eve',
+        sentinel: 'URIEL'
+      });
+    } else {
+      res.status(500).json({
+        error: 'Internal server error',
+        message: errorMessage,
+        sentinel: 'URIEL'
+      });
+    }
+  }
+});
+
+// Consensus endpoint
+app.post('/api/consensus/run', async (req: Request, res: Response) => {
+  try {
+    const { question, agents, rounds = 2, timeout_s = 20, weights = {} } = req.body;
+
+    if (!question || !agents || !Array.isArray(agents) || agents.length === 0) {
+      return res.status(400).json({
+        error: 'question and agents (array) are required'
+      });
+    }
+
+    // Run consensus through deliberation routing
+    const context = { agents, rounds, weights };
+    const deliberation = await routeDeliberation(question, context);
+
+    // Transform to consensus format
+    const votes = (agents as string[]).map(agent => ({
+      agent,
+      vote: deliberation.consensus >= 0.95 ? 'YES' : 'NO',
+      why: deliberation.reasoning.join('; ') || deliberation.decision
+    }));
+
+    res.json({
+      gi: deliberation.consensus,
+      final_answer: deliberation.decision,
+      votes,
+      reasoning: deliberation.reasoning,
+      timestamp: deliberation.timestamp
+    });
+  } catch (error) {
+    console.error('Consensus run failed:', error);
+    const errorMessage = error instanceof Error ? error.message : String(error);
+    res.status(500).json({
+      error: 'Consensus failed',
+      message: errorMessage
+    });
+  }
+});
+
+// Sync endpoints
+app.get('/sync/get_cycle_status', (_req: Request, res: Response) => {
+  // Return cycle status (mock for now, integrate with actual cycle tracking)
+  res.json({
+    cycle_id: 'C-122',
+    date_local: new Date().toISOString(),
+    gi_baseline: parseFloat(process.env.GI_MIN || '0.95'),
+    next_epoch_eta_sec: 86400 // 24 hours
+  });
+});
+
+app.get('/api/sentinels/aurea/status', (_req: Request, res: Response) => {
+  // Return AUREA snapshot (mock for now)
+  res.json({
+    gi: 0.999,
+    epoch: 'E-561',
+    last_attestation_id: 'att-latest',
+    ts: new Date().toISOString()
   });
 });
 

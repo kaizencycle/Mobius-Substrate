@@ -1,26 +1,44 @@
-# Civic-OS Code Ownership by Sentinel Domain
+# CODEOWNERS
+# Code ownership and review requirements for Kaizen OS
+#
+# NOTE: Replace @SENTINEL_NAME with actual GitHub teams (e.g., @kaizencycle/aurea)
+# OR replace with individual maintainer usernames (e.g., @username)
+# GitHub teams must be created in: Settings > Teams > New team
+#
+# Required teams:
+# - kaizencycle/aurea (AUREA - Economic Architect)
+# - kaizencycle/atlas (ATLAS - Monitoring Sentinel)
+# - kaizencycle/zeus (ZEUS - System Coordinator)
+# - kaizencycle/hermes (HERMES - Distributed Systems)
+# - kaizencycle/eve (EVE - Safety Sentinel)
+# - kaizencycle/echo (ECHO - Pulse Monitor)
+# - kaizencycle/zenith (ZENITH - Integration Sentinel)
 
-# Default owners
-* @kaizencycle
+# Foundational documents require AUREA review
+/docs/foundational_*.md @kaizencycle/aurea
+/specs/*.md @kaizencycle/aurea @kaizencycle/atlas
 
-# Sentinels - each companion owns their domain
-/sentinels/jade/ @kaizencycle
-/sentinels/eve/ @kaizencycle
-/sentinels/zeus/ @kaizencycle
-/sentinels/hermes/ @kaizencycle
-/sentinels/atlas/ @kaizencycle
+# Core integrity units require multi-sentinel consensus
+/packages/integrity-units/ @kaizencycle/aurea @kaizencycle/zeus @kaizencycle/hermes
+/configs/integrity_units.yaml @kaizencycle/aurea @kaizencycle/zeus @kaizencycle/hermes
 
-# Bio-DNA manifests require all sentinels approval
-/configs/bio-dna/ @kaizencycle
+# Service deployments require ATLAS approval
+/services/ @kaizencycle/atlas @kaizencycle/hermes
 
-# Lab proofs require review
-/labs/lab4-proof/ @kaizencycle
-/labs/lab6-proof/ @kaizencycle
-/labs/lab7-proof/ @kaizencycle
+# Sentinel permissions require Trinity Seal
+/sentinels/permissions.json @kaizencycle/aurea @kaizencycle/eve @kaizencycle/echo
 
-# Quality gates owned by ATLAS
-/.github/workflows/atlas-sentinel.yml @kaizencycle
-/packages/atlas-sentinel/ @kaizencycle
+# Documentation index
+/docs/README.md @kaizencycle/aurea
+/docs/MIGRATION.md @kaizencycle/aurea @kaizencycle/atlas
 
-# Documentation open to contributions
-/docs/ @kaizencycle
+# Lab implementations
+/labs/lab1-civic-ledger/ @kaizencycle/atlas
+/labs/lab2-thought-broker/ @kaizencycle/atlas
+/labs/lab3-resource-orchestration/ @kaizencycle/atlas
+/labs/lab5-humanities-healthcare/ @kaizencycle/aurea @kaizencycle/zenith @kaizencycle/eve
+/labs/lab6-citizen-shield/ @kaizencycle/aurea @kaizencycle/eve
+
+# Root configuration
+/package.json @kaizencycle/atlas @kaizencycle/hermes
+/tsconfig.base.json @kaizencycle/atlas

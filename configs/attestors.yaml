@@ -1,0 +1,20 @@
+version: 1
+
+policy:
+  # Require at least one valid HMAC signer AND one valid Ed25519 signer
+  require_hmac: true
+  require_ed25519: true
+  min_total_signers: 2
+
+hmac_signers:
+  - id: "AUREA"
+    env_secret: "ATTEST_HMAC_SECRET_AUREA"   # put secret in .env
+
+ed25519_signers:
+  - id: "ZEUS"
+    public_key_pem: |
+      -----BEGIN PUBLIC KEY-----
+      REPLACE_WITH_ZEUS_ED25519_PUBLIC_KEY_PEM
+      -----END PUBLIC KEY-----
+  # add more as needed
+

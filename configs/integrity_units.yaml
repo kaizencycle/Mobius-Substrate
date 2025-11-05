@@ -1,0 +1,117 @@
+# Integrity Units Configuration v1.0
+# This file contains the canonical constants for the integrity economy
+# Names are placeholders; mathematics is canonical
+
+version: 1
+
+symbols:
+  credit: "GIC"                 # Placeholder; safe to rename
+  shard: "SHD"
+  shard_symbol_unicode: "₷"
+
+units:
+  shards_per_credit: 1000000   # IMMUTABLE CONSTANT
+
+supply_caps:
+  credits: 21000000             # 21 million credits
+  shards: 21000000000000        # 21 trillion shards
+
+epochs:
+  length_days: 90
+  shard_decay_pct: 0.5          # 0.5% decay per epoch on idle shards
+  reabsorption_target: "integrity_pool"
+  
+  burn_job:
+    enabled: true
+    cron: "0 0 */90 * *"        # Every 90 days at midnight UTC
+    min_idle_days: 30           # Shards idle for 30+ days are eligible
+    notify:
+      - "ZEUS"                  # System coordinator
+      - "HERMES"                # Distributed systems
+      - "ECHO"                  # Pulse monitor
+    dry_run: false              # Set to true for testing
+
+governance:
+  gi_floor_warn: 0.950          # Warning threshold
+  gi_floor_halt: 0.900          # Halt minting if GI drops below
+  dual_attestation_required: true
+  
+  escalation:
+    threshold: 0.850            # Emergency escalation
+    notify:
+      - "ZEUS"
+      - "EVE"
+      - "ATLAS"
+    require_human_approval: true
+
+notes:
+  - "Names are placeholders; mathematics is canonical."
+  - "Epoch burn prevents integrity inflation via thermodynamic decay."
+  - "Conversion constant (1M shards/credit) is immutable."
+  - "GI affects mint cadence, NOT conversion rate."
+
+ubi:
+  unit: shards
+  cadence: monthly
+  epoch_length_days: 90
+
+  funding_weights:
+    alpha_issuance: 0.20   # α share of net issuance to UBI
+    beta_decay:    0.60    # β share of epoch reabsorption/decay to UBI
+
+  caps:
+    max_share_of_reserves: 0.10   # κ ≤10% of 12m reserves per epoch to UBI
+    max_share_of_circulating: 0.02 # σ ≤2% of circulating supply per epoch
+
+  gi_thresholds:
+    bonus:    { min: 0.990, g: 1.05 }
+    normal:   { min: 0.970, g: 1.00 }
+    throttle: { min: 0.950, g: 0.85 }
+    halt:     { min: 0.900, g: 0.00 }
+
+  # placeholder until metrics exist (kept for future)
+  price_stability:
+    enabled: false
+    min_multiplier: 1.00
+    max_multiplier: 1.00
+
+  # future hardening (do not enforce yet)
+  gi_calculation:
+    method: "time_weighted_average"
+    lookback_days: 30
+    min_samples: 100
+    outlier_rejection: true
+
+  eligibility:
+    kyc_required: true
+    active_wallet_days_min: 14
+    min_activity_threshold:
+      tx_count_30d: 3
+      min_total_shards_30d: 10000
+    residency_rules: "country_whitelist"
+    country_whitelist:
+      - US
+      - CA
+      - NZ
+      - IE
+      - DE
+    sybil:
+      max_wallets_per_identity: 1
+      device_fingerprint_required: false
+
+gi:
+  aggregator:
+    url: "http://localhost:3001"
+    twa_lookback_days: 30
+    min_samples: 100
+    outlier_rejection: true
+  thresholds:
+    warn: 0.950
+    halt: 0.900
+
+attestations:
+  epoch:
+    required_signers:
+      - "AUREA"
+      - "ZEUS"
+    scheme: "v1"

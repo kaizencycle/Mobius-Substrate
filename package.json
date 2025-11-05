@@ -1,17 +1,20 @@
 {
   "name": "kaizen-os",
   "version": "1.0.0",
+  "packageManager": "npm@10.9.4",
   "description": "Kaizen OS - Continuous Integrity Architecture Monorepo",
   "private": true,
   "workspaces": [
     "apps/*",
     "packages/*",
+    "services/*",
     "sentinels/*",
     "labs/*"
   ],
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev --parallel",
+    "dev:frontend": "turbo run dev --filter='./apps/*' --parallel",
     "test": "turbo run test",
     "lint": "turbo run lint",
     "ci": "turbo run build test",
@@ -19,14 +22,22 @@
     "compose:down": "docker compose -f infra/docker/compose.yml down",
     "clean": "turbo run clean",
     "type-check": "turbo run type-check",
+    "dev:attest": "cd apps/api_attest && uvicorn main:app --host 0.0.0.0 --port 8082 --reload",
     "atlas:audit": "npm run build --workspace=packages/atlas-sentinel && node -e \"require('./packages/atlas-sentinel/dist')\"",
-    "sentinel:health": "scripts\\sentinel-health.bat",
+    "sentinel:health": "bash scripts/sentinel-health.sh",
     "integrity:report": "./scripts/integrity-report.sh",
-    "docs:generate": "echo \"Documentation generation coming soon\""
+    "integrity:check": "./scripts/integrity-report.sh",
+    "consensus:validate": "./scripts/gi-consensus-validate.sh",
+    "gi:validate": "./scripts/gi-consensus-validate.sh",
+    "console": "cd apps/console && python main.py",
+    "docs:generate": "echo \"Documentation generation coming soon\"",
+    "dev:ledger": "npm run dev --workspace=@civic/ledger-service",
+    "dev:epoch-burn": "npm run dev --workspace=@civic/epoch-burn-service"
   },
   "devDependencies": {
-    "turbo": "^1.10.12",
+    "@changesets/cli": "^2.27.1",
     "@types/node": "^20.0.0",
+    "turbo": "^2.6.0",
     "typescript": "^5.0.0"
   },
   "engines": {
@@ -49,4 +60,3 @@
   "author": "Kaizen Cycle",
   "license": "MIT"
 }
-

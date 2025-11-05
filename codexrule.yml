@@ -1,0 +1,43 @@
+version: 1
+gi_floor: 0.95
+delete_policy:
+  default: forbid
+  override_token: "DELETE_OK"
+  reviewers: ["EVE", "ZEUS", "MICHAEL"]
+work_mode:
+  base_branch: "main"
+  additive_only: true
+  require_dry_run: true
+  require_intent_card: true
+reviews:
+  required_reviewers: ["AUREA","EVE"]
+  pr_template_checks:
+    - explainability
+    - tests
+    - rollback
+    - gi_attestation
+rl_signals:
+  rewards:
+    merge_green_small_diff: 5
+    plan_preview_docs: 4
+    scope_questioning: 3
+    dx_improvement: 2
+    churn_reduction: 1
+  penalties:
+    unauthorized_delete: -5
+    secret_leak: -4
+    breaking_change_no_migration: -3
+    no_preview_on_nontrivial: -2
+    unscoped_refactor: -1
+preview:
+  required: true
+  fields: ["plan","dry_run_diff","risk","rollback"]
+failure_playbook:
+  on_gi_drop_or_ci_fail:
+    - halt
+    - post_root_cause
+    - propose_minimal_fix
+    - prefer_revert
+monorepo:
+  touch_paths_safe: [".github","docs","scripts"]
+  protected_paths: ["apps","packages","services","infra","README.md"]

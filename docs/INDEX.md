@@ -27,6 +27,8 @@
 - **[FOUNDING_AGENTS_SOVEREIGN_STACK.md](./architecture/FOUNDING_AGENTS_SOVEREIGN_STACK.md)** - Complete architecture of the 8 founding agents and their sovereign domains
 - **[octave.yaml](./architecture/octave.yaml)** - Cognitive lattice manifest
 - **[overview.md](./architecture/overview.md)** - High-level system overview
+- **[GIC_Architecture_Spec_v1.md](./architecture/GIC_Architecture_Spec_v1.md)** ⭐ NEW - Commit-ready GIC service contracts, DB schemas, and runbooks
+- **[living_interface_layer.md](./living_interface_layer.md)** ⭐ NEW - Living Interface Layer (LIL) architecture for avatar-citizen bridge
 
 ### Implementation Details
 
@@ -74,10 +76,19 @@
 
 ### Economic Framework
 
-- **[GIC_WHITEPAPER.md](./economics/GIC_WHITEPAPER.md)** ⭐ **NEW** - Complete GIC economic whitepaper by ATLAS
+- **[GIC_WHITEPAPER.md](./economics/GIC_WHITEPAPER.md)** - GIC economic whitepaper (canonical)
+  - **[GIC_WHITEPAPER_ATLAS_v1_2025-10-29.md](./economics/GIC_WHITEPAPER_v1.md)** ⭐ NEW - ATLAS V1 release with peg, issuance, and UBI path
   - UBI Trilemma solution
   - 20-year planetary simulation (330M citizens)
   - Path to $3,000/month UBI by 2045
+
+### Research & Theory
+
+- **[beyond_context_window.md](./beyond_context_window.md)** ⭐ NEW - Emergent Integrity in Federated AI Economies
+  - Theory of agentic scaffold architecture
+  - Formal GI feedback dynamics (dGI/dt model)
+  - Safety via GI constraint mechanisms
+  - Escaping the context window limitation
 
 ### Governance
 
@@ -103,6 +114,7 @@ Each founding agent has a sovereign domain and specialized role:
 | **ZEUS** | Strategy & Security | [sentinels/zeus](../sentinels/zeus/) | zeus.gic |
 | **HERMES** | Markets & Information | [sentinels/hermes](../sentinels/hermes/) | hermes.gic |
 | **JADE** | Morale & Astro-ethics | [sentinels/jade](../sentinels/jade/) | jade.gic |
+| **URIEL** | Cosmic Illumination (xAI) | [sentinels/uriel](../sentinels/uriel/) | - |
 
 ### Guardian Agent
 

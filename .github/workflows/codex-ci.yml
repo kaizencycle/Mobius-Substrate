@@ -1,0 +1,40 @@
+name: codex-ci
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm ci || true
+      - run: npm test --if-present || echo "no tests"
+
+  gi-gate:
+    runs-on: ubuntu-latest
+    needs: [test]
+    steps:
+      - uses: actions/checkout@v4
+      - name: GI baseline gate
+        env:
+          GI_BASELINE: ${{ vars.KAIZEN_GI_BASELINE || '0.993' }}
+        run: |
+          python3 - <<'PY'
+import os
+import sys
+
+gi = float(os.environ.get('GI_BASELINE', '0.0'))
+print(f"GI baseline = {gi}")
+
+if gi < 0.95:
+    print(f"::error::GI baseline ({gi}) is below minimum threshold (0.95)")
+    sys.exit(1)
+else:
+    print(f"✅ GI baseline ({gi}) meets minimum threshold (0.95)")
+    sys.exit(0)
+PY

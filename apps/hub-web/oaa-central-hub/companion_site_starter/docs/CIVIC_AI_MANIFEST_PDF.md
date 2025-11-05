@@ -5,8 +5,8 @@
 
 <div style="text-align: center; margin: 2rem 0;">
 
-![Civic AI Native Stack](https://img.shields.io/badge/Civic_AI_Native-Stack-indigo?style=for-the-badge&logo=globe)  
-![Civic AI Verified](https://img.shields.io/badge/Civic_AI-Verified-green?style=for-the-badge&logo=check-circle)  
+![Kaizen OS Native Stack](https://img.shields.io/badge/Kaizen_OS_Native-Stack-indigo?style=for-the-badge&logo=globe)  
+![Kaizen OS Verified](https://img.shields.io/badge/Kaizen_OS-Verified-green?style=for-the-badge&logo=check-circle)  
 ![Proof of Integrity](https://img.shields.io/badge/Proof_of_Integrity-Enabled-blue?style=for-the-badge&logo=shield-check)  
 ![Human + Machine in Loop](https://img.shields.io/badge/Human_%2B_Machine-in_Loop-purple?style=for-the-badge&logo=users)
 

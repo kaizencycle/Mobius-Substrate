@@ -1,6 +1,34 @@
 # 🧠 Kaizen OS — Continuous Integrity Architecture
 
-[![Kaizen OS Integrity Badge](https://img.shields.io/badge/KaizenOS-Integrity%20≥%200.95-brightgreen)](https://civic-ledger.onrender.com)
+<!-- Kaizen OS Core Badges -->
+[![Kaizen OS Integrity](https://img.shields.io/badge/KaizenOS-Integrity%20≥%200.95-brightgreen)](https://civic-ledger.onrender.com)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Node.js](https://img.shields.io/badge/Node.js-≥18.0.0-green.svg)](https://nodejs.org/)
+
+<!-- Monorepo Structure Badges -->
+[![Turborepo](https://img.shields.io/badge/Build%20System-Turborepo-EF4444?logo=turborepo)](https://turborepo.org)
+[![Workspaces](https://img.shields.io/badge/Workspaces-43%20packages-7C3AED)](https://github.com/kaizencycle/Kaizen-OS)
+[![Apps](https://img.shields.io/badge/Apps-16-10B981)](apps)
+[![Packages](https://img.shields.io/badge/Packages-7-3B82F6)](packages)
+[![Sentinels](https://img.shields.io/badge/Sentinels-13-F59E0B)](sentinels)
+[![Labs](https://img.shields.io/badge/Labs-7-8B5CF6)](labs)
+
+<!-- Situational Report (dynamic from your API) -->
+![SR Verdict](https://img.shields.io/endpoint?url=https%3A%2F%2Fkaizen-os.vercel.app%2Fapi%2Fsr%2Fbadge)
+![SR Cycle](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fkaizen-os.vercel.app%2Fapi%2Fsr%2Flatest&label=SR%20•%20Cycle&query=%24.cycle&suffix=%20•%20GI%20%24.gi&color=blue)
+
+<!-- Repo status -->
+![Repo Digest](https://img.shields.io/endpoint?url=https%3A%2F%2Fkaizen-os.vercel.app%2Fapi%2Frepo%2Fbadge)
+
+<!-- Native GitHub shields -->
+![PRs](https://img.shields.io/github/issues-pr/kaizencycle/Kaizen-OS)
+![Issues](https://img.shields.io/github/issues/kaizencycle/Kaizen-OS)
+![Last Commit](https://img.shields.io/github/last-commit/kaizencycle/Kaizen-OS)
+![Stars](https://img.shields.io/github/stars/kaizencycle/Kaizen-OS?style=social)
+
+<sub>Verdict colors: ADOPT = green · SHADOW = orange · DEFER = red · UNKNOWN = gray</sub>
+
+---
 
 > **Kaizen OS** (formerly *Civic OS*) is a self-healing operating system for civilization: a framework that fuses DVA Kernel logic, Virtue Accords, and global integrity telemetry into a continuous improvement loop.
 
@@ -87,7 +115,7 @@
 
 ## 📜 Manifesto & Rituals
 
-### The Return to Balance (C-119)
+### The Return to Balance (C-121)
 
 Kaizen OS embodies a **Matrilineal Covenant** — restoring balance through architecture:
 
@@ -199,9 +227,20 @@ npm run clean
 
 ## 🔧 Services
 
-### Core Services
+### Frontend Applications
 
 - **website-creator** (Port 3000) - .gic Website Creator interface
+- **aurea-site** (Port 3001) - AUREA Founding Agent Site
+- **portal** (Port 3002) - Main Kaizen OS portal interface
+- **hub-web** (Port 3004) - OAA Central Hub interface
+- **hive-app** (Port 3005) - 8-bit Starter Game
+- **genesisdome-app** (Port 3006) - Genesis Dome PWA site
+- **citizen-shield-app** (Port 3007) - Citizen Shield security interface
+
+📖 **[Complete Frontend Development Guide](docs/FRONTEND_DEVELOPMENT.md)** - Detailed setup and port assignments
+
+### Core Services
+
 - **ledger-api** (Port 4001) - Kaizen Ledger Core
 - **indexer-api** (Port 4002) - GIC Indexer
 - **eomm-api** (Port 4003) - E.O.M.M. Reflections
@@ -280,6 +319,41 @@ All services include integrity checks and health endpoints:
 - **Shield Policies** enforce rate limits and input validation
 - **Real-time monitoring** of service health and security posture
 
+## 🛡️ Guardrails
+
+Kaizen OS implements comprehensive guardrails to prevent destructive changes and ensure code safety:
+
+### Anti-Nuke Protection
+
+- **Deletion limits**: PRs are blocked if they delete more than 5 files or exceed 15% deletion ratio
+- **Protected paths**: Deletions in `apps/`, `packages/`, `sentinels/`, `labs/`, `infra/`, and `.github/` are blocked
+- **Automated checks**: `.github/workflows/anti-nuke.yml` runs on every PR
+
+### Codex Policy (Additive-Only Mode)
+
+- **Policy file**: `.github/codex-policy.yml` enforces additive-only commits
+- **Required PRs**: All changes must go through pull requests
+- **Diff preview**: AI-assisted commits must post diff summaries before opening PRs
+- **Force-push prevention**: Force pushes to `main` are blocked
+
+### Recovery Procedures
+
+If a bad change merges or files are accidentally deleted:
+
+- **Preferred**: Use `git revert` to create inverse commits (preserves history)
+- **Last resort**: Hard reset to a known good commit (see [Recovery Playbook](docs/RECOVERY_PLAYBOOK.md))
+
+📖 **Full recovery guide**: [docs/RECOVERY_PLAYBOOK.md](docs/RECOVERY_PLAYBOOK.md)
+
+### Why These Guardrails Exist
+
+These guardrails were implemented after a near-nuke incident where a process bug could have caused significant repository damage. They ensure:
+
+1. **Non-destructive changes**: Deletions are caught before merge
+2. **Recovery paths**: Clear procedures for undoing bad changes
+3. **AI safety**: Codex operates in additive-only mode with human oversight
+4. **Integrity**: GI gates and approval requirements maintain code quality
+
 ## 🤝 Contributing
 
 1. Fork the repository
@@ -351,5 +425,5 @@ python3 kaizen_mount_client.py http://localhost:8000
 
 **Kaizen OS** - Where human intent meets digital reality through integrity, consensus, and continuous improvement.
 
-*Cycle C-109 | Chamber ID: KaizenOS-main-tree | Parent: Command Ledger III*
+*Cycle C-121 | Chamber ID: KaizenOS-main-tree | Parent: Command Ledger III*
 

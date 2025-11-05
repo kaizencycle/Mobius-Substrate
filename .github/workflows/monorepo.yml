@@ -37,10 +37,12 @@ jobs:
         run: npx turbo run test --filter=...[origin/main]
 
       - name: Security scan
-        run: npx turbo run security --filter=...[origin/main] || true
+        run: npx turbo run security --filter=...[origin/main]
+        continue-on-error: true  # Report but don't block (can be made blocking later)
 
       - name: Integrity gates
-        run: npx turbo run integrity --filter=...[origin/main] || true
+        run: npx turbo run integrity --filter=...[origin/main]
+        continue-on-error: true  # Report but don't block (can be made blocking later)
 
       - name: Services manifest validation
         run: |
