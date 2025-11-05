@@ -1,4 +1,4 @@
-import express from "express";
+import express, { type Request, type Response, type NextFunction } from "express";
 import { giStatus } from "./routes/gi.js";
 import { shardsToCreditsRoute, creditsToShardsRoute } from "./routes/convert.js";
 import { mintAttestRoute, burnAttestRoute } from "./routes/attest.js";
@@ -11,7 +11,7 @@ const app = express();
 app.use(express.json());
 
 // Health check
-app.get("/health", (_req, res) => {
+app.get("/health", (_req: Request, res: Response) => {
   res.json({
     status: "ok",
     service: "civic-ledger",
@@ -21,7 +21,7 @@ app.get("/health", (_req, res) => {
 });
 
 // System health (detailed)
-app.get("/system/health", async (_req, res) => {
+app.get("/system/health", async (_req: Request, res: Response) => {
   try {
     const health = await getSystemHealth();
     res.json(health);
@@ -46,7 +46,7 @@ app.get("/ubi/preview", ubiPreviewRoute);
 app.post("/ubi/preview", ubiPreviewRoute);
 
 // 404 handler
-app.use("*", (req, res) => {
+app.use("*", (req: Request, res: Response) => {
   res.status(404).json({
     error: "Not found",
     path: req.originalUrl,
@@ -65,7 +65,7 @@ app.use("*", (req, res) => {
 });
 
 // Error handler
-app.use((err: any, _req: any, res: any, _next: any) => {
+app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
   console.error("Error:", err);
   res.status(500).json({
     error: "Internal server error",
