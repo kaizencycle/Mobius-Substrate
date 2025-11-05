@@ -31,8 +31,11 @@ export type IntegrityConfig = {
 
 function loadYaml(file: string): any {
   // Resolve from service root (services/civic-ledger/) to repo root
+  // __dirname is: services/civic-ledger/src/dist (build) or services/civic-ledger/src (source)
+  // From src: ../.. -> services/civic-ledger
+  // From services/civic-ledger: .. -> repo root
   const serviceRoot = path.resolve(__dirname, '../../');
-  const repoRoot = path.resolve(serviceRoot, '../../');
+  const repoRoot = path.resolve(serviceRoot, '..');
   const configPath = path.join(repoRoot, file);
   
   if (!fs.existsSync(configPath)) {
