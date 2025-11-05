@@ -1,0 +1,39 @@
+{
+  "name": "@kaizen/integrity-pulse",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Real-time 3D visualization of Kaizen OS sentinel integrity metrics",
+  "scripts": {
+    "dev": "next dev -p 3010",
+    "build": "next build",
+    "start": "next start -p 3010",
+    "lint": "next lint",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "next": "^14.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "three": "^0.160.0",
+    "@react-three/fiber": "^8.15.0",
+    "@react-three/drei": "^9.92.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "@types/three": "^0.160.0",
+    "typescript": "^5.3.0",
+    "eslint": "^8.55.0",
+    "eslint-config-next": "^14.0.0"
+  },
+  "keywords": [
+    "kaizen-os",
+    "integrity",
+    "visualization",
+    "three.js",
+    "sentinels"
+  ],
+  "author": "Kaizen Cycle Foundation",
+  "license": "MIT"
+}
