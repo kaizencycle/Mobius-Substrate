@@ -1,0 +1,7 @@
+[project]
+name = "kaizen-bridge-projector"
+version = "0.1.0"
+dependencies = ["fastapi", "uvicorn", "pydantic", "numpy", "torch", "pyyaml"]
+
+[tool.uvicorn]
+reload = true

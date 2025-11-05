@@ -1,0 +1,13 @@
+projectors:
+  hermes_to_aurea_v1:
+    type: "mlp"
+    in_dim: 4096
+    out_dim: 4096
+    hidden: 2048
+    dtype: "float16"
+  eve_to_jade_v1:
+    type: "mlp"
+    in_dim: 3072
+    out_dim: 3072
+    hidden: 1536
+    dtype: "float16"
