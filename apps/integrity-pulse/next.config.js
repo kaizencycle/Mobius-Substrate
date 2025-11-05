@@ -16,12 +16,19 @@ const nextConfig = {
     domains: [],
   },
 
-  // WebSocket support
+  // WebSocket support + GLSL shader loader
   webpack: (config) => {
     config.externals.push({
       'utf-8-validate': 'commonjs utf-8-validate',
       'bufferutil': 'commonjs bufferutil',
     });
+    
+    // Handle GLSL shader files
+    config.module.rules.push({
+      test: /\.glsl$/,
+      type: 'asset/source',
+    });
+    
     return config;
   },
 }
