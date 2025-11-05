@@ -433,6 +433,28 @@ export default function SacredViz({ mockData = true }: SacredVizProps) {
       window.removeEventListener('resize', onResize);
       delete (window as any).__sacredVizUpdatePreset;
       delete (window as any).__sacredVizUpdateBloom;
+      
+      // Stop microphone stream
+      if (mediaStreamRef.current) {
+        mediaStreamRef.current.getTracks().forEach(track => track.stop());
+        mediaStreamRef.current = null;
+      }
+      
+      // Stop audio file playback
+      if (audioRef.current) {
+        audioRef.current.pause();
+        if (audioRef.current.src) {
+          URL.revokeObjectURL(audioRef.current.src);
+        }
+        audioRef.current = null;
+      }
+      
+      // Close AudioContext
+      if (audioContextRef.current) {
+        audioContextRef.current.ctx.close().catch(() => {});
+        audioContextRef.current = null;
+      }
+      
       renderer.dispose();
       if (mountRef.current?.contains(renderer.domElement)) {
         mountRef.current.removeChild(renderer.domElement);
