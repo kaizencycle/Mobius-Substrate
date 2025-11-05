@@ -76,12 +76,25 @@ app.use("*", (req: Request, res: Response) => {
       "GET /health",
       "GET /system/health",
       "GET /gi",
+      "GET /gi/twa",
+      "POST /gi/ingest",
       "POST /convert/shards-to-credits",
       "POST /convert/credits-to-shards",
       "POST /attest/mint",
       "POST /attest/burn",
+      "POST /attest/epoch",
+      "GET /attest/epoch/list",
       "GET /ubi/preview",
-      "POST /ubi/preview"
+      "POST /ubi/preview",
+      "GET /ubi/eligibility",
+      "POST /ubi/eligibility",
+      "POST /ubi/run",
+      "GET /ubi/runs",
+      "GET /ubi/run/:id",
+      "POST /ubi/run/:id/settle",
+      "GET /settlement/outbox",
+      "POST /settlement/enqueue",
+      "POST /settlement/dispatch"
     ]
   });
 });
