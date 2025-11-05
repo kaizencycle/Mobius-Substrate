@@ -1,0 +1,24 @@
+version: 1
+listen:
+  broker_port: 4010
+  projector_port: 4011
+security:
+  require_hmac: true
+  hmac_header: X-KAIZEN-SIG
+  key_env: KAIZEN_HMAC_KEY
+attestation:
+  enabled: true
+  service: "civic-ledger"
+  endpoint: "http://localhost:3000/attest/bridge"
+pairs:
+  - from: "HERMES"   # source agent
+    to:   "AUREA"    # target agent
+    projector: "hermes_to_aurea_v1"
+  - from: "EVE"
+    to:   "JADE"
+    projector: "eve_to_jade_v1"
+limits:
+  max_bytes: 262144        # 256 KB per message
+  max_rate_per_min: 60
+logging:
+  level: info

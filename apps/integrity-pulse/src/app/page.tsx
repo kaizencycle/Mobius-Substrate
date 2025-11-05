@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 import PulseToggle from '@/components/PulseToggle';
 import SentimentWave from '@/components/SentimentWave';
+import BridgeSignal from '@/components/BridgeSignal';
+import { BridgeToast } from '@/components/BridgeToast';
 import '@/styles/sentiment.css';
 
 // Dynamically import to avoid SSR issues with Three.js
@@ -22,6 +24,14 @@ export default function IntegrityPulsePage() {
   return (
     <main className="w-full h-screen overflow-hidden">
       <PulseToggle />
+      <div style={{
+        position: 'fixed',
+        top: 14,
+        left: 14,
+        zIndex: 15
+      }}>
+        <BridgeSignal />
+      </div>
       <div className="relative w-full h-screen">
         <MultiAgentGrid
           mockData={mockData}
@@ -29,6 +39,7 @@ export default function IntegrityPulsePage() {
         />
         <SentimentWave />
       </div>
+      <BridgeToast />
     </main>
   );
 }
