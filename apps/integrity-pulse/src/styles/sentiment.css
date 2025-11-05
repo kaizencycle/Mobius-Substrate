@@ -1,0 +1,31 @@
+.sentiment-wave {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  background:
+    radial-gradient(
+      circle at 50% 50%,
+      hsla(var(--imiHue, 160), 90%, 60%, var(--imiOpacity, 0.5)) 0%,
+      transparent 60%
+    ),
+    repeating-radial-gradient(
+      circle at 50% 50%,
+      hsla(var(--imiHue, 160), 90%, 60%, 0.10) 0 var(--imiAmp, 8px),
+      transparent var(--imiAmp, 8px) calc(var(--imiAmp, 8px) * 2)
+    );
+  filter: blur(18px) saturate(120%);
+  transition: 300ms ease;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}

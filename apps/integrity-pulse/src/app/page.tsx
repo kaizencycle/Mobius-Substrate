@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import dynamic from 'next/dynamic';
 import PulseToggle from '@/components/PulseToggle';
+import SentimentWave from '@/components/SentimentWave';
+import '@/styles/sentiment.css';
 
 // Dynamically import to avoid SSR issues with Three.js
 const MultiAgentGrid = dynamic(
@@ -20,10 +22,13 @@ export default function IntegrityPulsePage() {
   return (
     <main className="w-full h-screen overflow-hidden">
       <PulseToggle />
-      <MultiAgentGrid
-        mockData={mockData}
-        wsUrl={wsUrl}
-      />
+      <div className="relative w-full h-screen">
+        <MultiAgentGrid
+          mockData={mockData}
+          wsUrl={wsUrl}
+        />
+        <SentimentWave />
+      </div>
     </main>
   );
 }

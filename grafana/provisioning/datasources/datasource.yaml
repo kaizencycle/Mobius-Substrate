@@ -1,0 +1,11 @@
+apiVersion: 1
+datasources:
+  - name: Civic Ledger JSON
+    type: marcusolsson-json-datasource
+    access: proxy
+    isDefault: true
+    editable: true
+    jsonData:
+      url: ${LEDGER_PUBLIC_URL}
+      timeout: 3000
+      tlsSkipVerify: true
