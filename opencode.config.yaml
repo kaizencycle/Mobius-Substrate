@@ -1,0 +1,154 @@
+# opencode.config.yaml
+# Kaizen OS — OpenCode federation config
+
+project:
+  name: Kaizen-OS
+  repo: kaizencycle/Kaizen-OS
+  language_hint:
+    - typescript
+    - python
+    - yaml
+    - json
+    - md
+  index:
+    include:
+      - "apps/**"
+      - "services/**"
+      - "packages/**"
+      - "configs/**"
+      - "docs/**"
+      - "specs/**"
+      - "sentinels/**"
+    exclude:
+      - "**/node_modules/**"
+      - "**/dist/**"
+      - "**/.turbo/**"
+      - "**/.next/**"
+      - "**/build/**"
+    embeddings:
+      provider: "opencode"
+      chunk_size: 1800
+      overlap: 250
+
+security:
+  write_mode: "review"      # review | gated | allow
+  protected_paths:
+    - "services/civic-ledger/**"
+    - "packages/integrity-units/**"
+    - "configs/integrity_units.yaml"
+    - "sentinels/**"
+  reviewers:
+    - "AUREA"
+    - "ZEUS"
+    - "HERMES"
+
+providers:
+  # Map providers to ENV keys (set in your shell or CI)
+  openai:
+    api_key_env: OPENAI_API_KEY
+  anthropic:
+    api_key_env: ANTHROPIC_API_KEY
+  google:
+    api_key_env: GOOGLE_API_KEY
+  local:
+    # Example: an OpenAI-compatible local endpoint (vLLM/Ollama/TGI)
+    base_url_env: LOCAL_LLM_BASE_URL
+    api_key_env: LOCAL_LLM_API_KEY
+
+models:
+  gpt5:        { provider: openai,    name: "gpt-5" }
+  claude_opus: { provider: anthropic, name: "claude-3-opus-2024-xx-xx" }
+  gemini:      { provider: google,    name: "gemini-1.5-pro" }
+  local_mix:   { provider: local,     name: "openai-compatible" }
+
+agents:
+  AUREA:
+    model: gpt5
+    role: "Systems architect & integrity governor"
+    roots:
+      - "docs/**"
+      - "specs/**"
+      - "configs/**"
+      - "packages/integrity-units/**"
+    capabilities:
+      - design_review
+      - risk_analysis
+      - pr_comments
+    guardrails:
+      style: "assertive, concise, cite paths"
+      must_request_review_on:
+        - "configs/**"
+        - "sentinels/**"
+
+  HERMES:
+    model: claude_opus
+    role: "Markets & operations; CI guidance"
+    roots:
+      - "services/**"
+      - "apps/integrity-pulse/**"
+    capabilities:
+      - tests_suggestions
+      - perf_hints
+      - pipeline_fixes
+
+  EVE:
+    model: gemini
+    role: "Ethics, civic policy, docs polish"
+    roots:
+      - "docs/**"
+      - "sentinels/**"
+    capabilities:
+      - policy_checks
+      - copy_edit
+      - license_scan
+
+  JADE:
+    model: local_mix
+    role: "Morale & cycle mentor; local-first"
+    roots:
+      - "apps/**"
+      - "docs/**"
+    capabilities:
+      - explainers
+      - onboarding_tours
+
+workflows:
+  # What each agent is allowed to do automatically
+  pull_request:
+    on:
+      - opened
+      - synchronize
+      - reopened
+    steps:
+      - agent: AUREA
+        do: pr_review
+      - agent: HERMES
+        do: test_matrix
+      - agent: EVE
+        do: docs_lint
+
+  nightly_index:
+    schedule: "0 3 * * *"   # 3am UTC
+    steps:
+      - rebuild_index: true
+
+github:
+  sync:
+    pr_comments: true
+    status_check: "opencode/agents"
+    labels:
+      AUREA: "governance"
+      HERMES: "ops"
+      EVE: "ethics"
+      JADE: "ux"
+  permissions:
+    apply_labels: true
+    request_review: true
+    commit_suggestions: false  # set true only after trial
+
+devserver:
+  port: 4317
+  telemetry: minimal
+
+prompts:
+  load_from: ".opencode/agents/prompts.yaml"

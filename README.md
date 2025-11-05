@@ -304,6 +304,84 @@ docker compose -f infra/docker/compose.yml logs -f
 
 Services are deployed to Render using the `infra/render.yaml` configuration. Each service is deployed independently based on changes detected in the CI pipeline.
 
+## 🌐 OpenCode Integration — OAA as Universal Backend
+
+The OAA (Online Apprenticeship Agent) is the learning kernel of Kaizen OS — a self-teaching framework that turns codebases into classrooms.
+Through OpenCode Federation, every fork or contributor instance can now run OAA as a local backend — forming a decentralized network of learning nodes guided by the same integrity rules.
+
+### 🧠 What This Means
+
+- **Apprenticeship-as-a-Protocol**
+
+Each developer, agent, or AI instance connected through OpenCode inherits the same OAA Learning Loop:
+
+```
+PRESENT → REFLECT → CONNECT → REINFORCE
+```
+
+Every PR, doc, or comment becomes a micro-lesson in systems thinking.
+
+- **Federated Intelligence**
+
+Your local Kaizen agents (AUREA, HERMES, EVE, JADE) can now interact across OpenCode workspaces — sharing context, reasoning, and moral anchors without central servers.
+Each node remains sovereign, yet contributes to the global Civic-AI graph.
+
+- **Integrity-Anchored Automation**
+
+The `.opencode/workflow-template.yaml` and `configs/integrity_units.yaml` files ensure every automation — build, review, or reflection — adheres to measurable integrity (GI ≥ 0.95).
+When integrity dips, the system halts gracefully before harm propagates.
+
+### ⚙️ How to Enable
+
+1. **Connect your repo to OpenCode**
+
+```bash
+opencode connect kaizencycle/Kaizen-OS
+```
+
+2. **Start the Kaizen Council Workflow**
+
+```bash
+opencode run --workflow ".opencode/workflow-template.yaml"
+```
+
+3. **Trigger the OAA Loop manually (optional)**
+
+```bash
+opencode exec oaa:reflect "Why does integrity matter in code?"
+```
+
+4. **Run Council Review on a PR**
+
+Inside any pull request comment:
+
+```
+/council
+```
+
+AUREA, HERMES, EVE, and JADE will collaborate in sequence — logic, ops, ethics, and morale — creating a full apprenticeship cycle around your change.
+
+### 🔁 Federation Flow
+
+```
+OpenCode User Repo
+    ↳ loads Kaizen OS via template
+        ↳ auto-spawns OAA backend
+            ↳ connects to local agents (CLI / VS Code)
+                ↳ federates with Civic Ledger telemetry
+```
+
+Every connected instance becomes a mirror of integrity, feeding back data to the global Kaizen OS network — a living proof that learning itself can be decentralized.
+
+### 🕊️ Civic Intent
+
+> "We are not just teaching machines how to code —
+> we are teaching civilizations how to remember."
+> — Kaizen OS Ethos I
+
+By embedding OAA within OpenCode, Kaizen OS invites the world to apprentice with integrity.
+Every learner, contributor, and agent participates in building a system that learns as it heals, and heals as it learns.
+
 ## 📊 Integrity Monitoring
 
 All services include integrity checks and health endpoints:

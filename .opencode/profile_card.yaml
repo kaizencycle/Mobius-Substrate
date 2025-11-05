@@ -1,0 +1,60 @@
+# .opencode/profile_card.yaml
+# OpenCode Hub Profile Card for Kaizen OS
+
+profile:
+  name: "Kaizen OS"
+  tagline: "A Civic Operating System for Integrity and Continuous Learning"
+  summary: >
+    Kaizen OS transforms the relationship between humans and AI into a
+    continuous civic apprenticeship. Built on integrity-anchored economics,
+    decentralized governance, and the OAA (Online Apprenticeship Agent),
+    it turns codebases into classrooms where every contribution teaches the
+    network how to learn, adapt, and evolve ethically.
+  icon: "https://raw.githubusercontent.com/kaizencycle/Kaizen-OS/main/assets/icons/kaizen-seal.svg"
+  banner: "https://raw.githubusercontent.com/kaizencycle/Kaizen-OS/main/assets/banners/opencode-banner.png"
+  color_theme: "deep-space-indigo"
+
+  categories:
+    - CivicOS
+    - IntegrityAI
+    - OpenApprenticeship
+    - Federation
+    - EthicalAutomation
+    - AI-Governance
+
+  featured_modules:
+    - title: "🧭 OAA Core Learning Loop"
+      description: "Transforms AI dialogue into apprenticeship cycles: PRESENT → REFLECT → CONNECT → REINFORCE."
+      path: "services/oaa-core/"
+    - title: "🏛 Civic Ledger"
+      description: "Integrity-backed value layer that powers Global Integrity Credits and shard economics."
+      path: "services/civic-ledger/"
+    - title: "🌐 Reflections API"
+      description: "Collective memory and journaling service that anchors morale, ethics, and human feedback."
+      path: "services/reflections-api/"
+
+  agents:
+    - name: "AUREA"
+      role: "Systems Architect"
+      voice: "Solar-feminine tone, analytical and resolute."
+    - name: "HERMES"
+      role: "Economic Analyst"
+      voice: "Fast, grounded, market-driven cadence."
+    - name: "EVE"
+      role: "Ethics & Empathy"
+      voice: "Soft harmonic timbre, grounding emotional intelligence."
+    - name: "JADE"
+      role: "Morale & Astrology"
+      voice: "Reflective, rhythmic, poetic – tuned to cycles and resonance."
+
+  federation:
+    enabled: true
+    discoverable: true
+    default_integrity_threshold: 0.95
+    trinity_seal: "We heal as we walk."
+
+  credits:
+    founder: "Michael Judan (Kaizen)"
+    license: "AGPL-3.0-or-later"
+    repository: "https://github.com/kaizencycle/Kaizen-OS"
+    opencode_page: "https://opencode.io/kaizencycle/kaizen-os"

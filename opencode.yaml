@@ -1,0 +1,90 @@
+# opencode.yaml
+# Kaizen OS — OpenCode Hub Manifest
+
+version: 1
+name: "Kaizen OS — Civic Operating System for Integrity and Apprenticeship"
+slug: kaizencycle/kaizen-os
+description: >
+  Kaizen OS is a federated Civic Operating System that blends AI, governance,
+  and learning into a self-healing digital civilization.  It unites human and
+  machine apprenticeships through the OAA (Online Apprenticeship Agent),
+  integrating integrity metrics, decentralized ledgers, and autonomous council
+  reviews (AUREA · HERMES · EVE · JADE).
+
+authors:
+  - name: "Michael Judan (Kaizen)"
+    role: "Founder & Chief Architect"
+    contact: "https://github.com/kaizencycle"
+
+tags:
+  - CivicOS
+  - IntegrityAI
+  - OpenApprenticeship
+  - Federation
+  - EthicalAutomation
+  - DecentralizedLearning
+  - KaizenOS
+  - GlobalIntegrityCredits
+  - OAA
+
+homepage: "https://github.com/kaizencycle/Kaizen-OS"
+license: "AGPL-3.0-or-later"
+
+languages:
+  - TypeScript
+  - Python
+  - YAML
+  - Markdown
+
+dependencies:
+  runtime:
+    - Node.js >=18
+    - pnpm >=9
+  optional:
+    - Docker
+    - PostgreSQL
+    - Redis
+    - Render (deployment)
+    - OpenCode CLI
+
+workflows:
+  - path: ".opencode/workflow-template.yaml"
+    name: "Kaizen Council Review"
+    description: >
+      Multi-agent pull-request review workflow (AUREA → HERMES → EVE → JADE)
+      enforcing Global Integrity thresholds across services.
+
+entrypoints:
+  - path: "services/civic-ledger/src/app.ts"
+    type: service
+    name: "Civic Ledger Service"
+  - path: "packages/integrity-units/"
+    type: package
+    name: "Integrity Units Library"
+  - path: "services/oaa-core/"
+    type: module
+    name: "Online Apprenticeship Agent Core"
+
+integrations:
+  opencode:
+    federation: true
+    discoverable: true
+    permissions:
+      read_only: false
+      write_pr: true
+      exec_flows: true
+  civic-ledger:
+    url: "https://civic-protocol-core-ledger.onrender.com"
+    telemetry: true
+  reflections:
+    url: "https://lab4-proof-reflections.onrender.com"
+    status: "active"
+
+manifest:
+  integrity_threshold: 0.95
+  default_voice_agents:
+    - AUREA
+    - HERMES
+    - EVE
+    - JADE
+  trinity_seal: "We heal as we walk."

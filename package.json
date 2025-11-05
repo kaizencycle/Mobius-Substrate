@@ -32,7 +32,11 @@
     "console": "cd apps/console && python main.py",
     "docs:generate": "echo \"Documentation generation coming soon\"",
     "dev:ledger": "npm run dev --workspace=@civic/ledger-service",
-    "dev:epoch-burn": "npm run dev --workspace=@civic/epoch-burn-service"
+    "dev:epoch-burn": "npm run dev --workspace=@civic/epoch-burn-service",
+    "oc:login": "opencode login",
+    "oc:index": "opencode index",
+    "oc:dev": "opencode dev --port 4317",
+    "oc:review": "opencode review --config opencode.config.yaml"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.1",
