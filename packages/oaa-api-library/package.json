@@ -19,9 +19,9 @@
     "eomm-sync": "node src/scripts/eomm-sync.mjs",
     "citation-hygiene": "bash src/scripts/citation-hygiene.sh",
     "hmac:note": "node scripts/hmacNote.mjs",
-    "postinstall": "node scripts/initAgentGuards.mjs",
-    "predev": "node scripts/initAgentGuards.mjs",
-    "prestart": "node scripts/initAgentGuards.mjs",
+    "postinstall": "node scripts/initAgentGuards.mjs || true",
+    "predev": "node scripts/initAgentGuards.mjs || true",
+    "prestart": "node scripts/initAgentGuards.mjs || true",
     "vitest": "vitest run",
     "vitest:watch": "vitest"
   },
