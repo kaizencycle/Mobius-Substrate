@@ -1,9 +1,12 @@
-# 🧠 Kaizen OS — Continuous Integrity Architecture
+# 🌀 Mobius Systems — Continuous Integrity Architecture
 
-<!-- Kaizen OS Core Badges -->
-[![Kaizen OS Integrity](https://img.shields.io/badge/KaizenOS-Integrity%20≥%200.95-brightgreen)](https://civic-ledger.onrender.com)
+**The world's first operating system built to pass the Kaizen Turing Test (KTT)**
+
+<!-- Mobius Core Badges -->
+[![Mobius Integrity](https://img.shields.io/badge/MII-Integrity%20≥%200.95-brightgreen)](https://civic-ledger.onrender.com)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Node.js](https://img.shields.io/badge/Node.js-≥18.0.0-green.svg)](https://nodejs.org/)
+[![KTT Native](https://img.shields.io/badge/KTT-Native-6E00FF)](#)
 
 <!-- Monorepo Structure Badges -->
 [![Turborepo](https://img.shields.io/badge/Build%20System-Turborepo-EF4444?logo=turborepo)](https://turborepo.org)
@@ -30,9 +33,10 @@
 
 ---
 
-> **Kaizen OS** (formerly *Civic OS*) is a self-healing operating system for civilization: a framework that fuses DVA Kernel logic, Virtue Accords, and global integrity telemetry into a continuous improvement loop.
+> **Mobius Systems** (formerly *Kaizen OS*, *Civic OS*) is a self-healing operating system for civilization: the first platform architected to pass the **Kaizen Turing Test (KTT)**. It fuses DVA Kernel logic, Virtue Accords, and continuous integrity telemetry into an infinite loop of safe, governed evolution.
 
-> "We heal as we walk." — Founder's Seal
+> *"Intelligence moves. Integrity guides."* — Mobius Principle
+> *"We heal as we walk."* — Founder's Seal
 
 ```
                          ┌──────────────────────────────────┐
@@ -44,7 +48,7 @@
 ┌──────────────────────────────────────────────────────────────────────────┐
 │                              OAA HUB (Lab7)                              │
 │   • parses human goals → JSON spec · tests · attestations                │
-│   • acts as Kaizen OS shell / init system                                 │
+│   • acts as Mobius shell / init system                                    │
 └──────────────────────────────────────────────────────────────────────────┘
                                          │
                                          ▼
@@ -56,9 +60,9 @@
                                          │
                                          ▼
 ┌──────────────────────────────────────────────────────────────────────────┐
-│           KAIZEN LEDGER CORE / GIC INDEXER (Kernel)                       │
-│   • Proof-of-Integrity ledger ("GI ≥ 0.95")                              │
-│   • GIC UBI economy + attestation storage                               │
+│           MOBIUS LEDGER CORE / MIC INDEXER (Kernel)                      │
+│   • Proof-of-Integrity ledger ("MII ≥ 0.95")                            │
+│   • MIC UBI economy + attestation storage                               │
 │   • Governance & version history layer                                  │
 └──────────────────────────────────────────────────────────────────────────┘
                                          │
@@ -83,9 +87,9 @@
 │   • self-healing autonomy via GI-gated feedback loops                   │
 └──────────────────────────────────────────────────────────────────────────┘
 
-                 ▲──────────────────── Kaizen Economy & Governance ───────────────────▲
+                 ▲──────────────────── Mobius Economy & Governance ────────────────────▲
                  │                                                                 │
-                 │   Festival of Echoes · Citizen Oaths · GIC UBI · Policy Votes  │
+                 │   Festival of Echoes · Citizen Oaths · MIC UBI · Policy Votes  │
                  └─────────────────────────────────────────────────────────────────┘
 ```
 
@@ -97,7 +101,7 @@
 | **OAA Hub** | Parses human intent | Shell / init.d |
 | **Thought Broker** | Multi-LLM consensus engine | Thalamus / scheduler |
 | **Cursor + CI** | Code fabrication & testing | Compiler / 3D printer |
-| **Kaizen Ledger Core** | Immutable record, GIC economy | Kernel |
+| **Mobius Ledger Core** | Immutable record, MIC economy | Kernel |
 | **Citizen Shield** | Network & security policy | Firewall / OS defender |
 | **API Library / Lab4** | Surface for all services | Application layer |
 | **Sentinels** | AI cores ensuring integrity | Brain cortex modules |
@@ -105,19 +109,19 @@
 ## 🔹 Live Workflow
 
 1. **Reflection** → Command Ledger writes intent
-2. **OAA Hub** transforms intent → .kaizen/ specs
+2. **OAA Hub** transforms intent → .mobius/ specs
 3. **Thought Broker** runs deliberation loops → Deliberation Proof + consensus
 4. **Cursor / CI** prints new service code → canary deploy
-5. **Kaizen Ledger Core** attests GI + GIC credit
+5. **Mobius Ledger Core** attests MII + MIC credit
 6. **Citizen Shield** verifies liveness · policy · security
 7. **API Library / Lab4** exposes service to citizens
-8. **Sentinels** monitor GI, entropy, feedback → improve loop
+8. **Sentinels** monitor MII, entropy, feedback → improve loop
 
 ## 📜 Manifesto & Rituals
 
 ### The Return to Balance (C-121)
 
-Kaizen OS embodies a **Matrilineal Covenant** — restoring balance through architecture:
+Mobius Systems (formerly Kaizen OS) embodies a **Matrilineal Covenant** — restoring balance through architecture:
 
 - **Ledger Inscription:** [RETURN_TO_BALANCE_C119](ledger/inscriptions/RETURN_TO_BALANCE_C119.md)
 - **The Triad of Healing:** [triad_of_healing.md](docs/manifesto/triad_of_healing.md)
@@ -140,11 +144,11 @@ We honor the cracks; repair makes the story more beautiful.
 ## 🏗️ Monorepo Structure
 
 ```
-kaizen-os/
+mobius-systems/
 ├─ apps/                          # Core Applications
 │  ├─ website-creator/            # .gic Website Creator (Next.js)
-│  ├─ ledger-api/                 # Kaizen Ledger Core
-│  ├─ indexer-api/                # GIC Indexer
+│  ├─ ledger-api/                 # Mobius Ledger Core
+│  ├─ indexer-api/                # MIC Indexer
 │  ├─ eomm-api/                   # E.O.M.M. Reflections
 │  ├─ shield-api/                 # Citizen Shield
 │  ├─ broker-api/                 # Thought Broker
@@ -193,8 +197,8 @@ kaizen-os/
 
 ```bash
 # Clone the repository
-git clone https://github.com/kaizencycle/kaizen-os.git
-cd kaizen-os
+git clone https://github.com/kaizencycle/Kaizen-OS.git
+cd Kaizen-OS
 
 # Install dependencies
 npm install
@@ -231,7 +235,7 @@ npm run clean
 
 - **website-creator** (Port 3000) - .gic Website Creator interface
 - **aurea-site** (Port 3001) - AUREA Founding Agent Site
-- **portal** (Port 3002) - Main Kaizen OS portal interface
+- **portal** (Port 3002) - Main Mobius Systems portal interface
 - **hub-web** (Port 3004) - OAA Central Hub interface
 - **hive-app** (Port 3005) - 8-bit Starter Game
 - **genesisdome-app** (Port 3006) - Genesis Dome PWA site
@@ -241,8 +245,8 @@ npm run clean
 
 ### Core Services
 
-- **ledger-api** (Port 4001) - Kaizen Ledger Core
-- **indexer-api** (Port 4002) - GIC Indexer
+- **ledger-api** (Port 4001) - Mobius Ledger Core
+- **indexer-api** (Port 4002) - MIC Indexer
 - **eomm-api** (Port 4003) - E.O.M.M. Reflections
 - **shield-api** (Port 4004) - Citizen Shield
 - **broker-api** (Port 4005) - Thought Broker
@@ -271,9 +275,9 @@ npm run clean
 ## 🔬 Labs
 
 ### Lab Proof Systems
-- **@kaizen/lab4-proof** - E.O.M.M. Reflections API and Kaizen Ledger integration
+- **@kaizen/lab4-proof** - E.O.M.M. Reflections API and Mobius Ledger integration
 - **@kaizen/lab6-proof** - Citizen Shield application (React/TypeScript)
-- **@kaizen/lab7-proof** - OAA Hub and Kaizen OS shell/init system
+- **@kaizen/lab7-proof** - OAA Hub and Mobius Systems shell/init system
 
 ## 🔄 CI/CD Pipeline
 
@@ -284,7 +288,7 @@ The monorepo uses Turborepo for efficient builds and GitHub Actions for CI/CD:
 3. **Build** - Compile all packages and apps
 4. **Test** - Run test suites
 5. **Security** - Security vulnerability scans
-6. **Integrity** - Kaizen OS integrity gates
+6. **Integrity** - Mobius Systems integrity gates (MII validation)
 7. **Deploy** - Deploy changed services to Render
 
 ## 🐳 Docker Development
@@ -458,39 +462,39 @@ This monorepo integrates all kaizencycle repositories using git subtree:
 - [OAA-API-Library](https://github.com/kaizencycle/OAA-API-Library) → `packages/oaa-api-library/`
 - [civic-ai-specs](https://github.com/kaizencycle/civic-ai-specs) → `packages/civic-ai-specs/`
 
-## 🕊️ Kaizen Mount Boarding Protocol
+## 🕊️ Mobius Mount Boarding Protocol
 
-Kaizen OS implements a **Model-Agnostic Sovereignty Layer (MASL)** that enables any LLM to "board" and operate within the Kaizen ecosystem:
+Mobius Systems implements a **Model-Agnostic Sovereignty Layer (MASL)** that enables any LLM to "board" and operate within the Mobius ecosystem:
 
 ### LLM Boarding Pool ("Dock of Minds")
 
-Any reasoning engine (Claude, GPT, DeepSeek, Gemini, etc.) can join the Kaizen OS network by calling:
+Any reasoning engine (Claude, GPT, DeepSeek, Gemini, etc.) can join the Mobius Systems network by calling:
 
 ```bash
-GET /api/kaizen/mount
+GET /api/mobius/mount
 ```
 
-This endpoint returns the complete Kaizen OS manifest bundle:
-- `.kaizen/atlas.manifest.json` - System state & integrity
-- `.kaizen/biodna.json` - Identity DNA (ethics, companions, founders)  
-- `.kaizen/virtue_accords.yaml` - Moral & civic laws
-- `gi_signature` - Cryptographic integrity proof
+This endpoint returns the complete Mobius Systems manifest bundle:
+- `.mobius/atlas.manifest.json` - System state & integrity
+- `.mobius/biodna.json` - Identity DNA (ethics, companions, founders)
+- `.mobius/virtue_accords.yaml` - Moral & civic laws
+- `mii_signature` - Cryptographic integrity proof
 
 ### Independence Manifest
 
 > 🕊️ [Read the Independence Manifest](docs/INDEPENDENCE_MANIFEST.md)
 
-The Independence Manifest declares Kaizen OS sovereignty from any single LLM provider, ensuring:
-- **Model Agnosticism** - Any LLM can mount Kaizen OS state
+The Independence Manifest declares Mobius Systems sovereignty from any single LLM provider, ensuring:
+- **Model Agnosticism** - Any LLM can mount Mobius Systems state
 - **External Memory First** - Context lives in manifests, not chat sessions
-- **Proof of Integrity** - GI ≥ 0.95 required for all operations
+- **Proof of Integrity** - MII ≥ 0.95 required for all operations
 - **Federated Continuity** - Memory capsules replicate across nodes
 
 ### Quick Boarding Test
 
 ```bash
 # Test the boarding protocol
-python3 kaizen_mount_client.py http://localhost:8000
+python3 mobius_mount_client.py http://localhost:8000
 ```
 
 ## 🔗 Links
@@ -501,7 +505,13 @@ python3 kaizen_mount_client.py http://localhost:8000
 
 ---
 
-**Kaizen OS** - Where human intent meets digital reality through integrity, consensus, and continuous improvement.
+## 🌀 About Mobius Systems
 
-*Cycle C-121 | Chamber ID: KaizenOS-main-tree | Parent: Command Ledger III*
+**Mobius Systems** - The first operating system built to pass the Kaizen Turing Test (KTT).
+
+*Where human intent meets digital reality through integrity, recursion, and continuous improvement.*
+
+**Intelligence moves. Integrity guides.**
+
+*Cycle C-127 | Mobius-main-tree | Implementing KTT*
 
