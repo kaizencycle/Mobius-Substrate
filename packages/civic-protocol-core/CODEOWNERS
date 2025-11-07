@@ -1,0 +1,22 @@
+# Code Owners
+
+This file defines code ownership for review requirements.
+
+## Core Protocol
+@kaizencycle/civic-protocol-team
+
+## Ledger Implementation
+@kaizencycle/civic-protocol-team
+
+## Lab Integrations
+@kaizencycle/civic-protocol-team
+
+## Documentation
+@kaizencycle/civic-protocol-team
+
+## Security & Anchoring
+@kaizencycle/civic-protocol-team
+
+# Default owners for everything else
+* @kaizencycle/civic-protocol-team
+

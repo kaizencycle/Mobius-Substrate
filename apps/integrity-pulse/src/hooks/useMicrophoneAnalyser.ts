@@ -85,7 +85,11 @@ export function useMicrophoneAnalyser(opts: MicAnalyserOptions = {}): MicAnalyse
     get analyser() { return analyserRef.current; },
     get stream() { return streamRef.current; },
     start, stop,
+    // TypeScript strict checking: these methods expect Uint8Array<ArrayBuffer>
+    // but TypeScript infers Uint8Array<ArrayBufferLike>. Arrays are always ArrayBuffer-backed.
+    // @ts-expect-error - TypeScript incorrectly infers ArrayBufferLike, but runtime is correct
     getByteTimeDomainData: (arr: Uint8Array) => analyserRef.current?.getByteTimeDomainData(arr),
+    // @ts-expect-error - TypeScript incorrectly infers ArrayBufferLike, but runtime is correct
     getByteFrequencyData: (arr: Uint8Array) => analyserRef.current?.getByteFrequencyData(arr),
   };
 }

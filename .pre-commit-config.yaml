@@ -1,0 +1,10 @@
+repos:
+  - repo: local
+    hooks:
+      - id: dvc-sign-check
+        name: DVC dataset signature check
+        entry: tools/precommit-dvc.sh
+        language: system
+        pass_filenames: false
+        stages: [commit, push]
+

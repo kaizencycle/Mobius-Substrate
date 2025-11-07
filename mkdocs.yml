@@ -1,0 +1,242 @@
+site_name: Kaizen-OS Handbook
+site_url: https://kaizencycle.github.io/Kaizen-OS/
+site_description: "Continuous Integrity Architecture — We heal as we walk."
+site_author: Kaizen Cycle
+
+# Repository
+repo_name: kaizencycle/Kaizen-OS
+repo_url: https://github.com/kaizencycle/Kaizen-OS
+edit_uri: edit/main/docs/
+
+# Copyright
+copyright: Copyright &copy; 2025 Kaizen Cycle — CC-BY-SA 4.0
+
+# Theme: Material for MkDocs
+theme:
+  name: material
+  logo: assets/logo/kaizen-logo.svg
+  favicon: assets/logo/kaizen-favicon.svg
+  palette:
+    # Light mode
+    - scheme: default
+      primary: teal
+      accent: amber
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    # Dark mode (default for Kaizen)
+    - scheme: slate
+      primary: teal
+      accent: amber
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.indexes
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - navigation.tracking
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.code.annotate
+    - content.code.copy
+    - content.code.select
+    - content.tabs.link
+    - content.tooltips
+    - toc.integrate
+    - toc.follow
+  
+  icon:
+    repo: fontawesome/brands/github
+    edit: material/pencil
+    view: material/eye
+    download: material/download
+    home: material/home
+    menu: material/menu
+    previous: material/arrow-left
+    next: material/arrow-right
+    search: material/magnify
+    tag: material/tag
+    link: material/link
+    check: material/check
+    close: material/close
+    fork: fontawesome/brands/git-alt
+    star: material/star
+    bell: material/bell
+    bell-off: material/bell-off
+    heart: material/heart
+    filter: material/filter
+    tag: material/tag
+    lightbulb: material/lightbulb
+    warning: material/alert
+    info: material/information
+    note: material/note-text
+    tip: material/lightbulb-on
+    important: material/alert-circle
+    caution: material/alert-rhombus
+    danger: material/alert-octagon
+    quote: material/format-quote-close
+    bug: material/bug
+    example: material/book-open-variant
+    question: material/help-circle
+    success: material/check-circle
+    failure: material/close-circle
+    danger: material/alert
+    ban: material/cancel
+    flame: material/flame
+    thinking: material/lightbulb-on
+    arrow: material/arrow-right
+    plus: material/plus
+    minus: material/minus
+
+# Extensions
+markdown_extensions:
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.magiclink:
+      normalize_issue_symbols: true
+      repo_url_shorthand: true
+      user: kaizencycle
+      repo: Kaizen-OS
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+  - toc:
+      permalink: true
+      permalink_title: Anchor link to this section
+      baselevel: 2
+      toc_depth: 3
+
+# Plugins
+plugins:
+  - search:
+      lang: en
+  - git-revision-date-localized:
+      enable_creation_date: true
+      type: datetime
+      fallback_to_build_date: false
+  - minify:
+      minify_html: true
+
+# Extra CSS
+extra_css:
+  - assets/css/kaizen-theme.css
+
+# Extra JavaScript
+extra_javascript:
+  - assets/js/kaizen-enhancements.js
+
+# Navigation structure
+nav:
+  - Home: index.md
+  - Start Here: START_HERE.md
+  - Kaizen-OS Handbook:
+      - Handbook Index: handbook/index.md
+      - Part I: Foundations: handbook/part-i-foundations.md
+      - Part II: Technical Architecture: handbook/part-ii-technical-architecture.md
+      - Part III: Implementation: handbook/part-iii-implementation.md
+      - Part IV: Future Vision: handbook/part-iv-future-vision.md
+      - Appendices: handbook/appendices.md
+  - Handbook (Legacy):
+      - Overview: INDEX.md
+      - Architecture:
+          - System Overview: architecture/overview.md
+          - GIC Architecture: architecture/GIC_Architecture_Spec_v1.md
+          - Founding Agents Stack: architecture/FOUNDING_AGENTS_SOVEREIGN_STACK.md
+          - Lab Architecture: LABS_MASTER_ARCHITECTURE.md
+      - Governance:
+          - Kintsugi Protocol: governance/kintsugi_protocol.md
+          - HR Framework: governance/hr/Kaizen_OS_HR_Framework.md
+      - Economics:
+          - GIC Whitepaper: economics/GIC_WHITEPAPER_v1.md
+          - Foundation Up Addendum: GIC_Foundation_Up_Economics_Addendum.md
+      - Sentinels:
+          - Overview: sentinels/uriel.md
+          - Founding Agents: agents/FOUNDING_AGENTS.md
+          - Companions: companions/README.md
+      - Development:
+          - Frontend Development: FRONTEND_DEVELOPMENT.md
+          - Deployment Guide: DEPLOYMENT_GUIDE.md
+          - Vercel Deployment: deployment/VERCEL_DEPLOYMENT_RUNBOOK.md
+          - API Integration: API_INTEGRATION.md
+      - Labs:
+          - Lab 4 (E.O.M.M.): archive/completed/labs/lab4-proof/README-COMPLETE.md
+          - Lab 6 (Citizen Shield): ../labs/lab6-proof/README.md
+          - Lab 7 (OAA Hub): lab7/004-evolution-language.md
+      - Integrity:
+          - GI Formula: ledger/gi-formula.md
+          - AI Integrity Constitution: AI_INTEGRITY_CONSTITUTION.md
+          - Drift Control: drift/README.md
+      - Onboarding:
+          - Guide: onboarding/guide.md
+          - README: onboarding/README.md
+  - Whitepapers:
+      - GIC Whitepaper Final: GIC_Whitepaper_Final.md
+      - Foundational Blueprint: foundational_blueprint_integrity_economy_v2.md
+      - UBI Mechanism: whitepapers/UBI_Mechanism_v2.0.md
+      - Shard Economics: whitepapers/Shard_Economics_Addendum.md
+  - Philosophy:
+      - Kaizen Theorems: kaizen_theorems.md
+      - Triad of Healing: manifesto/triad_of_healing.md
+      - Opening Invocation: rituals/opening_invocation.md
+      - Manifesto: manifest_oaa.md
+  - Kaizen Turing Test (KTT):
+      - Overview: ktt/README.md
+      - Primer: ktt/00_primer.md
+      - Methods: ktt/02_methods.md
+      - Governance of Governors: ktt/03_governance_of_governors.md
+      - Related Work: ktt/05_related_work.md
+  - Reference:
+      - Repository Structure: REPOSITORY_STRUCTURE.md
+      - Document Registry: DOCUMENT_REGISTRY.md
+      - Contributing: ../CONTRIBUTING.md
+      - Security: ../SECURITY.md
+      - Recovery Playbook: RECOVERY_PLAYBOOK.md
+  - Archive:
+      - Archive Index: archive/README.md
+      - Completed Labs: archive/completed/LABS_IMPLEMENTATION_COMPLETE.md
+
+# Validation
+validation:
+  nav:
+    not_found: warn
+    omitted: warn
+    not_found_in_strict: warn
+    absolute_links: warn
+  links:
+    not_found: warn
+    not_found_in_strict: warn
+    absolute_links: warn
+

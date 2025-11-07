@@ -10,4 +10,5 @@ lint:
 	flake8 app || true
 
 build:
-	docker build -t lab7-proof:local .
+	docker build -t lab4-proof:local .
+
