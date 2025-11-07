@@ -115,8 +115,8 @@ Core philosophical principles and theorems.
 ## Getting Help
 
 - **Discord**: Join our community (link in main README)
-- **Issues**: [GitHub Issues](https://github.com/kaizencycle/Kaizen-OS/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/kaizencycle/Kaizen-OS/discussions)
+- **Issues**: [GitHub Issues](https://github.com/kaizencycle/Mobius-Systems/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/kaizencycle/Mobius-Systems/discussions)
 
 ---
 

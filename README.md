@@ -10,7 +10,7 @@
 
 <!-- Monorepo Structure Badges -->
 [![Turborepo](https://img.shields.io/badge/Build%20System-Turborepo-EF4444?logo=turborepo)](https://turborepo.org)
-[![Workspaces](https://img.shields.io/badge/Workspaces-43%20packages-7C3AED)](https://github.com/kaizencycle/Kaizen-OS)
+[![Workspaces](https://img.shields.io/badge/Workspaces-43%20packages-7C3AED)](https://github.com/kaizencycle/Mobius-Systems)
 [![Apps](https://img.shields.io/badge/Apps-16-10B981)](apps)
 [![Packages](https://img.shields.io/badge/Packages-7-3B82F6)](packages)
 [![Sentinels](https://img.shields.io/badge/Sentinels-13-F59E0B)](sentinels)
@@ -24,10 +24,10 @@
 ![Repo Digest](https://img.shields.io/endpoint?url=https%3A%2F%2Fkaizen-os.vercel.app%2Fapi%2Frepo%2Fbadge)
 
 <!-- Native GitHub shields -->
-![PRs](https://img.shields.io/github/issues-pr/kaizencycle/Kaizen-OS)
-![Issues](https://img.shields.io/github/issues/kaizencycle/Kaizen-OS)
-![Last Commit](https://img.shields.io/github/last-commit/kaizencycle/Kaizen-OS)
-![Stars](https://img.shields.io/github/stars/kaizencycle/Kaizen-OS?style=social)
+![PRs](https://img.shields.io/github/issues-pr/kaizencycle/Mobius-Systems)
+![Issues](https://img.shields.io/github/issues/kaizencycle/Mobius-Systems)
+![Last Commit](https://img.shields.io/github/last-commit/kaizencycle/Mobius-Systems)
+![Stars](https://img.shields.io/github/stars/kaizencycle/Mobius-Systems?style=social)
 
 <sub>Verdict colors: ADOPT = green · SHADOW = orange · DEFER = red · UNKNOWN = gray</sub>
 
@@ -197,7 +197,7 @@ mobius-systems/
 
 ```bash
 # Clone the repository
-git clone https://github.com/kaizencycle/Kaizen-OS.git
+git clone https://github.com/kaizencycle/Mobius-Systems.git
 cd Kaizen-OS
 
 # Install dependencies
@@ -340,7 +340,7 @@ When integrity dips, the system halts gracefully before harm propagates.
 1. **Connect your repo to OpenCode**
 
 ```bash
-opencode connect kaizencycle/Kaizen-OS
+opencode connect kaizencycle/Mobius-Systems
 ```
 
 2. **Start the Kaizen Council Workflow**

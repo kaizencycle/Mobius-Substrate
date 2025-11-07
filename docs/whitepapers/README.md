@@ -193,7 +193,7 @@ GET  /system/health
 ## 🆘 Support
 
 ### Documentation Issues
-- **GitHub**: Open issue in kaizencycle/Kaizen-OS
+- **GitHub**: Open issue in kaizencycle/Mobius-Systems
 - **Email**: docs@kaizen.cycle
 
 ### Technical Support
@@ -248,7 +248,7 @@ Under these terms:
   year={2025},
   month={November},
   institution={Kaizen Cycle Foundation},
-  url={https://github.com/kaizencycle/Kaizen-OS/docs/whitepapers/},
+  url={https://github.com/kaizencycle/Mobius-Systems/docs/whitepapers/},
   note={Cycle C-124}
 }
 ```

@@ -296,7 +296,7 @@ services:
 
 1. Log in to [Render.com](https://render.com)
 2. Click **New +** → **Web Service**
-3. Connect GitHub repository: `kaizencycle/Kaizen-OS`
+3. Connect GitHub repository: `kaizencycle/Mobius-Systems`
 4. Set **Root Directory**: `apps/integrity-pulse`
 5. Use **render.yaml** configuration
 
@@ -372,7 +372,7 @@ vercel --prod
 ### Alternative: GitHub Integration
 
 1. Visit [Vercel Dashboard](https://vercel.com/dashboard)
-2. **Import Project** → Select `kaizencycle/Kaizen-OS`
+2. **Import Project** → Select `kaizencycle/Mobius-Systems`
 3. **Root Directory**: `apps/integrity-pulse`
 4. **Framework Preset**: Next.js
 5. **Environment Variables**: Add via dashboard
@@ -853,7 +853,7 @@ interface SentinelMetrics {
 ## Support
 
 For deployment issues:
-- **GitHub Issues**: https://github.com/kaizencycle/Kaizen-OS/issues
+- **GitHub Issues**: https://github.com/kaizencycle/Mobius-Systems/issues
 - **Documentation**: `apps/integrity-pulse/README.md`
 - **Civic Ledger API**: `packages/civic-ledger/README.md`
 

@@ -374,7 +374,7 @@ Difficulty: Hard
 
 ## 📞 Support
 
-**Questions?** Open an issue in [Kaizen-OS repo](https://github.com/kaizencycle/Kaizen-OS)
+**Questions?** Open an issue in [Kaizen-OS repo](https://github.com/kaizencycle/Mobius-Systems)
 **Bugs?** Report in Lab2 (Thought Broker) tracker
 **Feature Requests?** Submit to Consensus Chamber working group
 

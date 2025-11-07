@@ -36,4 +36,4 @@ For the constitutional framework and technical specifications, see:
 
 - 📧 Email: onboarding@kaizen-os.civic.ai
 - 💬 Discord: #ai-onboarding channel
-- 🐙 GitHub: [Issues](https://github.com/kaizencycle/Kaizen-OS/issues)
+- 🐙 GitHub: [Issues](https://github.com/kaizencycle/Mobius-Systems/issues)

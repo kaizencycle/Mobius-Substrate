@@ -3,7 +3,7 @@
 
 project:
   name: Kaizen-OS
-  repo: kaizencycle/Kaizen-OS
+  repo: kaizencycle/Mobius-Systems
   language_hint:
     - typescript
     - python

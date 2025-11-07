@@ -20,7 +20,7 @@
   ],
   "active_services": 10,
   "sentinel_count": 7,
-  "repository": "kaizencycle/Kaizen-OS",
+  "repository": "kaizencycle/Mobius-Systems",
   "monorepo_structure": {
     "apps": 10,
     "packages": 9,

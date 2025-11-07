@@ -15,4 +15,4 @@ jobs:
           curl -sSf -X POST "$ATLAS_SYNC_URL/sync/post_repo_sync_ack" \
             -H "Authorization: Bearer $ATLAS_SYNC_TOKEN" \
             -H "Content-Type: application/json" \
-            -d "{\"repo\":\"kaizencycle/Kaizen-OS\",\"sha\":\"${{ github.sha }}\"}"
+            -d "{\"repo\":\"kaizencycle/Mobius-Systems\",\"sha\":\"${{ github.sha }}\"}"

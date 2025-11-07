@@ -30,7 +30,7 @@
   },
   "repository_sync": {
     "enabled": true,
-    "repo": "kaizencycle/Kaizen-OS",
+    "repo": "kaizencycle/Mobius-Systems",
     "check_interval_min": 60,
     "webhook_url": null
   },

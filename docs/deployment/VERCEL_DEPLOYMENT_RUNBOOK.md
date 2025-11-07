@@ -98,7 +98,7 @@ vercel --prod
 
 1. **Connect Repository to Vercel:**
    - Go to vercel.com/new
-   - Import from GitHub: `kaizencycle/Kaizen-OS`
+   - Import from GitHub: `kaizencycle/Mobius-Systems`
    - Framework Preset: Next.js
    - Root Directory: `apps/aurea-site` (or other app)
 

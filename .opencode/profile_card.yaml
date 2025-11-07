@@ -10,8 +10,8 @@ profile:
     decentralized governance, and the OAA (Online Apprenticeship Agent),
     it turns codebases into classrooms where every contribution teaches the
     network how to learn, adapt, and evolve ethically.
-  icon: "https://raw.githubusercontent.com/kaizencycle/Kaizen-OS/main/assets/icons/kaizen-seal.svg"
-  banner: "https://raw.githubusercontent.com/kaizencycle/Kaizen-OS/main/assets/banners/opencode-banner.png"
+  icon: "https://raw.githubusercontent.com/kaizencycle/Mobius-Systems/main/assets/icons/kaizen-seal.svg"
+  banner: "https://raw.githubusercontent.com/kaizencycle/Mobius-Systems/main/assets/banners/opencode-banner.png"
   color_theme: "deep-space-indigo"
 
   categories:
@@ -56,5 +56,5 @@ profile:
   credits:
     founder: "Michael Judan (Kaizen)"
     license: "AGPL-3.0-or-later"
-    repository: "https://github.com/kaizencycle/Kaizen-OS"
+    repository: "https://github.com/kaizencycle/Mobius-Systems"
     opencode_page: "https://opencode.io/kaizencycle/kaizen-os"

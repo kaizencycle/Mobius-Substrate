@@ -15,7 +15,7 @@
     "post_repo_sync_ack"
   ],
   "config": {
-    "repo": "kaizencycle/Kaizen-OS",
+    "repo": "kaizencycle/Mobius-Systems",
     "owner": "kaizencycle",
     "default_branch": "main",
     "org_wide": false,

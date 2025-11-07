@@ -326,7 +326,7 @@ const limiter = rateLimit({
 
 ## Support
 
-- **GitHub Issues:** [kaizencycle/Kaizen-OS/issues](https://github.com/kaizencycle/Kaizen-OS/issues)
+- **GitHub Issues:** [kaizencycle/Mobius-Systems/issues](https://github.com/kaizencycle/Mobius-Systems/issues)
 - **Discord:** Kaizen OS Community
 - **Docs:** [docs.kaizen.os](https://docs.kaizen.os)
 

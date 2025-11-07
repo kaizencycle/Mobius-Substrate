@@ -328,7 +328,7 @@ The MCP server can be used with other IDEs that support MCP:
 
 - 📧 Email: support@kaizen-os.civic.ai
 - 💬 Discord: #cursor-integration channel
-- 🐙 GitHub: [Issues](https://github.com/kaizencycle/Kaizen-OS/issues)
+- 🐙 GitHub: [Issues](https://github.com/kaizencycle/Mobius-Systems/issues)
 - 📚 Docs: [Full Documentation](https://docs.kaizen-os.civic.ai)
 
 ---

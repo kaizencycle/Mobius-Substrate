@@ -461,7 +461,7 @@ await validator.start();
 
 - **Protocol Spec**: https://spec.kaizen.os
 - **API Docs**: https://docs.kaizen.os/api
-- **GitHub**: https://github.com/kaizencycle/Kaizen-OS
+- **GitHub**: https://github.com/kaizencycle/Mobius-Systems
 - **Discord**: #federation channel
 - **Forum**: https://forum.kaizen.os/c/federation
 
