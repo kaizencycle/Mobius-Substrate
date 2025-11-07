@@ -162,7 +162,14 @@ extra_javascript:
 nav:
   - Home: index.md
   - Start Here: START_HERE.md
-  - Handbook:
+  - Kaizen-OS Handbook:
+      - Handbook Index: handbook/index.md
+      - Part I: Foundations: handbook/part-i-foundations.md
+      - Part II: Technical Architecture: handbook/part-ii-technical-architecture.md
+      - Part III: Implementation: handbook/part-iii-implementation.md
+      - Part IV: Future Vision: handbook/part-iv-future-vision.md
+      - Appendices: handbook/appendices.md
+  - Handbook (Legacy):
       - Overview: INDEX.md
       - Architecture:
           - System Overview: architecture/overview.md
@@ -186,7 +193,7 @@ nav:
           - API Integration: API_INTEGRATION.md
       - Labs:
           - Lab 4 (E.O.M.M.): archive/completed/labs/lab4-proof/README-COMPLETE.md
-          - Lab 6 (Citizen Shield): archive/completed/labs/lab6-proof/README-COMPLETE.md
+          - Lab 6 (Citizen Shield): ../labs/lab6-proof/README.md
           - Lab 7 (OAA Hub): lab7/004-evolution-language.md
       - Integrity:
           - GI Formula: ledger/gi-formula.md
@@ -213,7 +220,7 @@ nav:
       - Recovery Playbook: RECOVERY_PLAYBOOK.md
   - Archive:
       - Archive Index: archive/README.md
-      - Completed Labs: archive/completed/README.md
+      - Completed Labs: archive/completed/LABS_IMPLEMENTATION_COMPLETE.md
 
 # Validation
 validation:
