@@ -1,0 +1,91 @@
+apiVersion: 1
+groups:
+  - name: mobius-core
+    folder: Mobius Alerts
+    interval: 1m
+    rules:
+      - uid: mii_warn
+        title: "MII below 0.95 (warning)"
+        condition: C
+        data:
+          - refId: A
+            datasourceUid: prometheus
+            relativeTimeRange: {from: 300, to: 0}
+            model:
+              expr: "avg_over_time(mii_value{env=\"${env}\"}[5m])"
+              legendFormat: MII
+              interval: ""
+              instant: false
+              datasource: {type: prometheus, uid: prometheus}
+          - refId: C
+            datasourceUid: __expr__
+            model:
+              expression: "A < 0.95"
+              type: "math"
+        for: 2m
+        annotations:
+          severity: warning
+        labels:
+          team: mobius
+      - uid: mii_crit
+        title: "MII below 0.90 (critical)"
+        condition: C
+        data:
+          - refId: A
+            datasourceUid: prometheus
+            relativeTimeRange: {from: 300, to: 0}
+            model:
+              expr: "avg_over_time(mii_value{env=\"${env}\"}[5m])"
+              legendFormat: MII
+              datasource: {type: prometheus, uid: prometheus}
+          - refId: C
+            datasourceUid: __expr__
+            model:
+              expression: "A < 0.90"
+              type: "math"
+        for: 1m
+        annotations:
+          severity: critical
+        labels:
+          team: mobius
+      - uid: attestation_slow
+        title: "Attestation p95 > 2s"
+        condition: C
+        data:
+          - refId: A
+            datasourceUid: prometheus
+            relativeTimeRange: {from: 300, to: 0}
+            model:
+              expr: "histogram_quantile(0.95, sum by (le)(rate(attestation_latency_seconds_bucket{env=\"${env}\"}[5m])))"
+              legendFormat: p95
+              datasource: {type: prometheus, uid: prometheus}
+          - refId: C
+            datasourceUid: __expr__
+            model:
+              expression: "A > 2"
+              type: "math"
+        for: 2m
+        annotations:
+          severity: warning
+        labels:
+          team: mobius
+      - uid: api_5xx
+        title: "API 5xx rate > 0.5/s"
+        condition: C
+        data:
+          - refId: A
+            datasourceUid: prometheus
+            relativeTimeRange: {from: 300, to: 0}
+            model:
+              expr: "sum(rate(http_requests_total{route=~\"/api/mobius/.*\",status=~\"5..\",env=\"${env}\"}[5m]))"
+              datasource: {type: prometheus, uid: prometheus}
+          - refId: C
+            datasourceUid: __expr__
+            model:
+              expression: "A > 0.5"
+              type: "math"
+        for: 2m
+        annotations:
+          severity: warning
+        labels:
+          team: mobius

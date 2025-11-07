@@ -1,0 +1,70 @@
+{
+  "title": "Mobius — Agents Operations",
+  "tags": ["mobius", "agents", "operations"],
+  "timezone": "browser",
+  "schemaVersion": 38,
+  "version": 1,
+  "refresh": "30s",
+  "templating": {
+    "list": [
+      {
+        "name": "env",
+        "type": "query",
+        "label": "Environment",
+        "datasource": "Prometheus",
+        "query": "label_values(mii_value, env)",
+        "current": { "text": "prod", "value": "prod" }
+      }
+    ]
+  },
+  "panels": [
+    {
+      "type": "timeseries",
+      "title": "Agent Activity (req/s)",
+      "gridPos": {"x":0,"y":0,"w":12,"h":8},
+      "targets": [{"expr": "sum by(agent)(rate(mobius_agent_requests_total{env=\"$env\"}[5m]))", "datasource": "Prometheus"}]
+    },
+    {
+      "type": "bargauge",
+      "title": "MII Contribution by Agent",
+      "gridPos": {"x":12,"y":0,"w":12,"h":8},
+      "targets": [{"expr": "avg by(agent)(rate(mii_contribution{env=\"$env\"}[15m]))", "datasource": "Prometheus"}]
+    },
+    {
+      "type": "table",
+      "title": "Integrity Violations by Type",
+      "gridPos": {"x":0,"y":8,"w":12,"h":8},
+      "targets": [{"expr": "sum by(type)(rate(mobius_integrity_violations_total{env=\"$env\"}[5m]))", "datasource": "Prometheus"}]
+    },
+    {
+      "type": "stat",
+      "title": "Attestation Success Ratio",
+      "gridPos": {"x":12,"y":8,"w":6,"h":4},
+      "targets": [{"expr": "sum(rate(attest_ok_total{env=\"$env\"}[5m])) / sum(rate(attest_total{env=\"$env\"}[5m]))", "datasource": "Prometheus"}],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percentunit",
+          "decimals": 2
+        }
+      }
+    },
+    {
+      "type": "stat",
+      "title": "API P95 Latency",
+      "gridPos": {"x":18,"y":8,"w":6,"h":4},
+      "targets": [{"expr": "histogram_quantile(0.95, sum by (le)(rate(http_request_duration_seconds_bucket{route=~\"/api/mobius/.*\",env=\"$env\"}[5m])))", "datasource": "Prometheus"}],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "s",
+          "decimals": 3
+        }
+      }
+    },
+    {
+      "type": "logs",
+      "title": "API Error Logs",
+      "gridPos": {"x":0,"y":16,"w":24,"h":8},
+      "targets": [{"expr": "{env=\"$env\"} |= \"ERROR\" |= \"/api/mobius\"", "datasource": "Loki"}]
+    }
+  ]
+}

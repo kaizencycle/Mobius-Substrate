@@ -1,0 +1,27 @@
+groups:
+  - name: mobius-slo
+    interval: 1m
+    rules:
+      # Availability SLI: success ratio for /api/mobius
+      - record: mobius:http:success_ratio_5m
+        expr: |
+          sum(rate(http_requests_total{route=~"/api/mobius/.*",status=~"2.."}[5m]))
+          /
+          sum(rate(http_requests_total{route=~"/api/mobius/.*"}[5m]))
+
+      - record: mobius:http:success_ratio_1h
+        expr: |
+          sum(rate(http_requests_total{route=~"/api/mobius/.*",status=~"2.."}[1h]))
+          /
+          sum(rate(http_requests_total{route=~"/api/mobius/.*"}[1h]))
+
+      # Integrity SLI: MII trailing averages
+      - record: mobius:mii:ok_5m
+        expr: mobius:mii:avg_5m >= 0.95
+
+      - record: mobius:mii:crit_5m
+        expr: mobius:mii:avg_5m < 0.90
+
+      # Throughput SLI: MIC issue rate healthy if > 0 within env
+      - record: mobius:mic:healthy_5m
+        expr: mobius:mic:rate_5m > 0

@@ -1,0 +1,50 @@
+groups:
+  - name: mobius-recording
+    interval: 30s
+    rules:
+      # Core rollups
+      - record: mobius:mii:avg_5m
+        expr: avg_over_time(mii_value[5m])
+
+      - record: mobius:mii:avg_1h
+        expr: avg_over_time(mii_value[1h])
+
+      - record: mobius:mic:rate_5m
+        expr: sum(rate(mic_issued_total[5m]))
+
+      - record: mobius:violations:rate_5m
+        expr: sum(rate(mobius_integrity_violations_total[5m]))
+
+      # By environment
+      - record: mobius:mii:avg_5m:by_env
+        expr: avg by (env) (avg_over_time(mii_value[5m]))
+
+      - record: mobius:mic:rate_5m:by_env
+        expr: sum by (env) (rate(mic_issued_total[5m]))
+
+      - record: mobius:violations:rate_5m:by_env
+        expr: sum by (env,type) (rate(mobius_integrity_violations_total[5m]))
+
+      # Agent contributions
+      - record: mobius:mii_contrib:avg_15m:by_agent
+        expr: avg by (agent) (rate(mii_contribution[15m]))
+
+      # API health rollups
+      - record: mobius:http:rate_2xx_5m
+        expr: sum(rate(http_requests_total{status=~"2..",route=~"/api/mobius/.*"}[5m]))
+
+      - record: mobius:http:rate_5xx_5m
+        expr: sum(rate(http_requests_total{status=~"5..",route=~"/api/mobius/.*"}[5m]))
+
+      - record: mobius:http:latency_p95_5m
+        expr: histogram_quantile(
+                0.95,
+                sum by (le) (rate(http_request_duration_seconds_bucket{route=~"/api/mobius/.*"}[5m]))
+              )
+
+      # Attestation latency rollups
+      - record: mobius:attest:latency_p95_5m
+        expr: histogram_quantile(
+                0.95,
+                sum by (le) (rate(attestation_latency_seconds_bucket[5m]))
+              )

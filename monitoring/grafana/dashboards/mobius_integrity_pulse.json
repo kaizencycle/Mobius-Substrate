@@ -1,0 +1,90 @@
+{
+  "title": "Mobius — Integrity Pulse",
+  "tags": ["mobius", "integrity", "MII", "MIC"],
+  "timezone": "browser",
+  "schemaVersion": 38,
+  "version": 1,
+  "refresh": "10s",
+  "templating": {
+    "list": [
+      {
+        "name": "env",
+        "type": "query",
+        "label": "Environment",
+        "datasource": "Prometheus",
+        "query": "label_values(mii_value, env)",
+        "current": { "text": "prod", "value": "prod" }
+      }
+    ]
+  },
+  "panels": [
+    {
+      "type": "stat",
+      "title": "Mobius Integrity Index (MII)",
+      "gridPos": {"x":0,"y":0,"w":6,"h":4},
+      "targets": [{"expr": "avg_over_time(mii_value{env=\"$env\"}[5m])", "datasource": "Prometheus"}],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "none",
+          "decimals": 3,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {"color": "red", "value": 0},
+              {"color": "orange", "value": 0.90},
+              {"color": "green", "value": 0.95}
+            ]
+          }
+        }
+      }
+    },
+    {
+      "type": "timeseries",
+      "title": "MII — Trend (15m)",
+      "gridPos": {"x":6,"y":0,"w":18,"h":8},
+      "targets": [{"expr": "mii_value{env=\"$env\"}", "datasource": "Prometheus"}]
+    },
+    {
+      "type": "timeseries",
+      "title": "MIC Issued (rate/5m)",
+      "gridPos": {"x":0,"y":8,"w":12,"h":6},
+      "targets": [{"expr": "sum(rate(mic_issued_total{env=\"$env\"}[5m]))", "datasource": "Prometheus"}]
+    },
+    {
+      "type": "timeseries",
+      "title": "Integrity Violations (rate/5m)",
+      "gridPos": {"x":12,"y":8,"w":12,"h":6},
+      "targets": [{"expr": "sum(rate(mobius_integrity_violations_total{env=\"$env\"}[5m]))", "datasource": "Prometheus"}]
+    },
+    {
+      "type": "bargauge",
+      "title": "MII Contribution by Agent (15m)",
+      "gridPos": {"x":0,"y":14,"w":12,"h":6},
+      "targets": [{"expr": "topk(10, avg by(agent)(rate(mii_contribution{env=\"$env\"}[15m])))", "datasource": "Prometheus"}]
+    },
+    {
+      "type": "stat",
+      "title": "Attestation Latency p95",
+      "gridPos": {"x":12,"y":14,"w":6,"h":6},
+      "targets": [{"expr": "histogram_quantile(0.95, sum by (le)(rate(attestation_latency_seconds_bucket{env=\"$env\"}[5m])))", "datasource": "Prometheus"}],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "s",
+          "decimals": 2
+        }
+      }
+    },
+    {
+      "type": "timeseries",
+      "title": "API Health (/api/mobius) - Success Rate",
+      "gridPos": {"x":18,"y":14,"w":6,"h":6},
+      "targets": [{"expr": "sum(rate(http_requests_total{route=~\"/api/mobius/.*\",status=~\"2..\",env=\"$env\"}[5m]))", "datasource": "Prometheus"}]
+    },
+    {
+      "type": "timeseries",
+      "title": "API Errors (/api/mobius) - 5xx Rate",
+      "gridPos": {"x":0,"y":20,"w":12,"h":6},
+      "targets": [{"expr": "sum(rate(http_requests_total{route=~\"/api/mobius/.*\",status=~\"5..\",env=\"$env\"}[5m]))", "datasource": "Prometheus"}]
+    }
+  ]
+}

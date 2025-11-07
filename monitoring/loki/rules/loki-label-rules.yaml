@@ -1,0 +1,5 @@
+groups:
+  - name: mobius-loki-normalization
+    rules:
+      - record: mobius:api:error_lines
+        expr: sum by (service, route) (count_over_time({app="mobius-api"} |= "ERROR" [5m]))
