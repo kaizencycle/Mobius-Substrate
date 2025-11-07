@@ -499,7 +499,7 @@ python3 mobius_mount_client.py http://localhost:8000
 
 ## 🔗 Links
 
-- [Kaizen Ledger](https://civic-ledger.onrender.com)
+- [Mobius Ledger](https://civic-ledger.onrender.com) (canonical)
 - [Kaizen Cycle](https://github.com/kaizencycle)
 - [Command Ledger III](https://github.com/kaizencycle/command-ledger-iii)
 
@@ -512,6 +512,15 @@ python3 mobius_mount_client.py http://localhost:8000
 *Where human intent meets digital reality through integrity, recursion, and continuous improvement.*
 
 **Intelligence moves. Integrity guides.**
+
+### Mobius Integrity Credits (MIC)
+Token earned when actions measurably **increase the Mobius Integrity Index (MII)**.
+Used for unlocks, governance, and contribution rewards inside Mobius.
+
+### Mobius Fractal Shards (MFS)
+Your **proof-of-evolution**: collectible milestones for cycles, reflections, and concord events.
+
+---
 
 *Cycle C-127 | Mobius-main-tree | Implementing KTT*
 
