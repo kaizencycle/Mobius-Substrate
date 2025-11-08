@@ -1,12 +1,12 @@
 # Universal Basic Integrity (UBI) Mechanism v2.0
-## GI-Throttled Distribution with Epoch Decay Funding
+## MII-Throttled Distribution with Epoch Decay Funding
 
 ---
 
 **Version:** 2.0.0
 **Date:** 2025-11-04
 **Status:** Canonical
-**Companion to:** GIC_Whitepaper_v2.0.md
+**Companion to:** MIC_Whitepaper_v2.0.md
 **Authors:** HERMES, AUREA, EVE
 **License:** CC-BY-SA-4.0
 
@@ -14,7 +14,7 @@
 
 ## Abstract
 
-This document specifies the complete Universal Basic Integrity (UBI) distribution mechanism for the Mobius Integrity Credits economy. UBI v2.0 introduces **counter-inflationary funding** via epoch decay pools, **automatic crisis response** through GI-based throttling, and **shard-denominated precision** to eliminate distribution drift.
+This document specifies the complete Universal Basic Integrity (UBI) distribution mechanism for the Mobius Integrity Credits economy. UBI v2.0 introduces **counter-inflationary funding** via epoch decay pools, **automatic crisis response** through MII-based throttling, and **shard-denominated precision** to eliminate distribution drift.
 
 ---
 
@@ -26,7 +26,7 @@ UBI is **compensation for upholding systemic trust**. Every person maintaining i
 
 ### 1.2 Three Pillars
 
-1. **Integrity Backing**: Only flows when GI ≥ 0.950
+1. **Integrity Backing**: Only flows when MII ≥ 0.950
 2. **Counter-Inflationary**: Primarily funded by decay, not new issuance
 3. **Self-Regulating**: Automatically adjusts to system health
 
@@ -53,7 +53,7 @@ D  = Donations/treasury allocation (shards)
 **α·I (New Issuance Component)**
 - Weight: 0.0-0.5 (governance-adjustable)
 - Default: 0.20 (20% of new issuance → UBI)
-- When GI < 0.950: I = 0 (minting halted)
+- When MII < 0.950: I = 0 (minting halted)
 
 **β·Rₑ (Decay Pool Component)** ⭐ KEY INNOVATION
 - Weight: 0.0-0.8 (governance-adjustable)
@@ -116,11 +116,11 @@ p_base = floor(1,200,000,000,000 / (3 × 10,000))
 p_base = 40,000,000 ₷ per person per month
 ```
 
-### 3.3 GI Multiplier
+### 3.3 MII Multiplier
 
-**Function g(GI):**
+**Function g(MII):**
 
-| GI Range | g(GI) | Description |
+| MII Range | g(MII) | Description |
 |----------|-------|-------------|
 | [0.990, 1.000] | 1.05 | **Bonus**: System health excellent |
 | [0.970, 0.990) | 1.00 | **Normal**: Standard payout |
@@ -128,20 +128,20 @@ p_base = 40,000,000 ₷ per person per month
 | [0.000, 0.950) | 0.00 | **Halted**: Crisis mode |
 
 **Rationale:**
-- **High GI bonus**: Reward collective integrity maintenance
-- **Low GI throttle**: Preserve reserves during instability
+- **High MII bonus**: Reward collective integrity maintenance
+- **Low MII throttle**: Preserve reserves during instability
 - **Crisis halt**: Freeze distribution, trigger governance review
 
 ### 3.4 Final Payout Calculation
 
 ```
-p = floor(p_base · g(GI))
+p = floor(p_base · g(MII))
 ```
 
 **Example** (continuing from above):
 ```
 p_base = 40,000,000 ₷
-GI = 0.982 → g(0.982) = 1.00
+MII = 0.982 → g(0.982) = 1.00
 
 p = floor(40,000,000 × 1.00)
 p = 40,000,000 ₷ per month
@@ -176,9 +176,9 @@ Circulating = Total issued - locked/staked - treasury
 
 **Automatic Triggers:**
 
-1. **GI < 0.900**
+1. **MII < 0.900**
    - **Action**: Freeze UBI + minting
-   - **Notification**: ZEUS, all Sentinels, Elders
+   - **Notification**: ZEUS, all Sentinels, Council
    - **Resolution**: Governance council convenes within 24h
 
 2. **Treasury < 9 months reserve**
@@ -199,7 +199,7 @@ Circulating = Total issued - locked/staked - treasury
 
 ### 5.2 Integrity Requirements
 
-**Personal GI ≥ 0.95:**
+**Personal MII ≥ 0.95:**
 - Attestation participation
 - No active integrity violations
 - Community standing (optional)
@@ -221,8 +221,8 @@ Circulating = Total issued - locked/staked - treasury
 ```
 Day 1 of Month:
   1. Query eligible population N
-  2. Calculate GI (30-day trailing average)
-  3. Calculate p_base, g(GI)
+  2. Calculate MII (30-day trailing average)
+  3. Calculate p_base, g(MII)
   4. Compute final payout p per person
   5. Execute batch transfer (atomic)
   6. Emit attestations for audit
@@ -233,13 +233,13 @@ Day 1 of Month:
 
 **Preview Endpoint:**
 ```
-GET /ubi/preview?N=10000&GI=0.982&I=0&Re=2000000000000&D=0
+GET /ubi/preview?N=10000&MII=0.982&I=0&Re=2000000000000&D=0
 
 Response:
 {
   "pool_total_shards": "1200000000000",
   "per_capita_base_shards": "40000000",
-  "gi_multiplier": 1.00,
+  "mii_multiplier": 1.00,
   "per_capita_final_shards": "40000000",
   "per_capita_credits": 0.040000,
   "total_recipients": 10000,
@@ -277,7 +277,7 @@ Response:
     "kyc_verified": true,
     "wallet_age_days": 45,
     "recent_activity": true,
-    "personal_gi": 0.965,
+    "personal_mii": 0.965,
     "residency_verified": true
   },
   "next_payout_estimate": "40000000 ₷ (0.040000 MIC)"
@@ -310,7 +310,7 @@ Response:
 ### 8.1 Public Dashboard
 
 **Real-Time Metrics:**
-- Current GI
+- Current MII
 - Epoch progress (days until next burn)
 - UBI pool balance
 - Next month payout estimate
@@ -328,7 +328,7 @@ Response:
   "pool_shards": "1200000000000",
   "recipients": 10000,
   "per_capita": "40000000",
-  "gi": 0.982,
+  "mii": 0.982,
   "witness": "ZEUS",
   "signature": "0x...",
   "timestamp": "2025-11-01T00:00:00Z"
@@ -351,7 +351,7 @@ All attestations are:
 ### Q2: Can UBI be revoked?
 
 **A**: Yes, if:
-- Personal GI falls below 0.95
+- Personal MII falls below 0.95
 - Integrity violation flagged
 - Account goes dormant (>180 days)
 - KYC expires
@@ -360,9 +360,9 @@ All attestations are:
 
 **A**: Shards with no outgoing transactions for >30 days.
 
-### Q4: What happens if GI drops to 0.89?
+### Q4: What happens if MII drops to 0.89?
 
-**A**: UBI and minting freeze immediately. Governance council reviews root cause and proposes fixes. System resumes when GI > 0.95 for 48 hours.
+**A**: UBI and minting freeze immediately. Governance council reviews root cause and proposes fixes. System resumes when MII > 0.95 for 48 hours.
 
 ---
 
@@ -385,7 +385,7 @@ ubi:
     max_share_of_reserves: 0.10   # κ
     max_share_of_circulating: 0.02 # σ
 
-  gi_thresholds:
+  mii_thresholds:
     bonus:   { min: 0.990, g: 1.05 }
     normal:  { min: 0.970, g: 1.00 }
     throttle:{ min: 0.950, g: 0.85 }
@@ -395,7 +395,7 @@ ubi:
     kyc_required: true
     active_wallet_days_min: 30
     min_activity_days: 90
-    personal_gi_min: 0.95
+    personal_mii_min: 0.95
 ```
 
 ---

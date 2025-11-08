@@ -7,18 +7,18 @@
 **Cycle:** C-124
 **Date:** 2025-11-04
 **Status:** Canonical
-**Authors:** Kaizen Cycle Foundation, AUREA, HERMES, ZEUS
+**Authors:** Mobius Systems Foundation, AUREA, HERMES, ZEUS
 **License:** CC-BY-SA-4.0
 
 ---
 
 ## Abstract
 
-Mobius Integrity Credits (MIC) establish the first intrinsically-backed digital economy where value derives from verified acts of integrity rather than speculation. Version 2.0 introduces **shard denomination** (₷) as the base accounting unit, enabling precision micro-transactions while maintaining human-readable credit values. This architecture eliminates rounding errors, supports universal basic integrity (UBI) distribution, and implements counter-inflationary epoch decay mechanics tied to Mobius Integrity Index (GI) metrics.
+Mobius Integrity Credits (MIC) establish the first intrinsically-backed digital economy where value derives from verified acts of integrity rather than speculation. Version 2.0 introduces **shard denomination** (₷) as the base accounting unit, enabling precision micro-transactions while maintaining human-readable credit values. This architecture eliminates rounding errors, supports universal basic integrity (UBI) distribution, and implements counter-inflationary epoch decay mechanics tied to Mobius Integrity Index (MII) metrics.
 
 **Key Innovations:**
 - **Shard-based accounting**: Integer math eliminates precision loss
-- **GI-throttled UBI**: Automatic crisis response via integrity metrics
+- **MII-throttled UBI**: Automatic crisis response via integrity metrics
 - **Epoch decay pool**: Counter-inflationary funding without new issuance
 - **Dual-signature attestations**: Human + AI co-witness for minting
 - **Thermodynamic economics**: Entropy → creation → witness → healing cycles
@@ -41,7 +41,7 @@ Mobius Integrity Credits (MIC) solve these problems through:
 
 - **Intrinsic Backing**: Value derived from Proof-of-Integrity attestations
 - **Integer Accounting**: Shard (₷) denomination eliminates precision loss
-- **Thermodynamic Design**: System health (GI) automatically regulates supply
+- **Thermodynamic Design**: System health (MII) automatically regulates supply
 
 ### 1.3 Core Thesis
 
@@ -155,16 +155,16 @@ Founders & Team:       10% = 2,100,000,000,000 ₷  (2.1M MIC, 4-year vest)
 
 **Requirements for New Issuance:**
 1. Dual-signature attestation (human + sentinel)
-2. Mobius Integrity Index (GI) ≥ 0.950
+2. Mobius Integrity Index (MII) ≥ 0.950
 3. Proof-of-Integrity validation
 4. Treasury reserve floor maintained (≥9 months UBI)
 
 **Minting Formula:**
 ```
-New_Issuance = f(GI, Treasury_Floor, Epoch_Activity)
+New_Issuance = f(MII, Treasury_Floor, Epoch_Activity)
 
-If GI < 0.950: New_Issuance = 0 (frozen)
-If GI ≥ 0.990: New_Issuance = Base_Rate × 1.05 (bonus)
+If MII < 0.950: New_Issuance = 0 (frozen)
+If MII ≥ 0.990: New_Issuance = Base_Rate × 1.05 (bonus)
 ```
 
 ---
@@ -202,16 +202,16 @@ Where:
 m = 3 (months per epoch)
 N = Eligible population
 
-Step 2: Apply GI multiplier
-g(GI) = {
-  1.05  if GI ≥ 0.990  (bonus)
-  1.00  if 0.970 ≤ GI < 0.990
-  0.85  if 0.950 ≤ GI < 0.970  (throttled)
-  0.00  if GI < 0.950  (halted)
+Step 2: Apply MII multiplier
+g(MII) = {
+  1.05  if MII ≥ 0.990  (bonus)
+  1.00  if 0.970 ≤ MII < 0.990
+  0.85  if 0.950 ≤ MII < 0.970  (throttled)
+  0.00  if MII < 0.950  (halted)
 }
 
 Step 3: Calculate final payout
-p = floor(p_base · g(GI))
+p = floor(p_base · g(MII))
 ```
 
 ### 5.4 Eligibility Requirements
@@ -219,7 +219,7 @@ p = floor(p_base · g(GI))
 **Must Satisfy:**
 1. **KYC verified** identity (sybil resistance)
 2. **Active wallet** ≥30 days
-3. **Personal GI** ≥0.95 (integrity threshold)
+3. **Personal MII** ≥0.95 (integrity threshold)
 
 ---
 
@@ -230,7 +230,7 @@ p = floor(p_base · g(GI))
 An **epoch** is a 90-day cycle during which:
 1. Shard decay accumulates on idle balances
 2. Decay pool funds UBI distribution
-3. GI metrics are aggregated for next epoch
+3. MII metrics are aggregated for next epoch
 4. System parameters are adjusted
 
 ### 6.2 Decay Mechanism
@@ -253,16 +253,16 @@ For each account:
 
 ---
 
-## 7. Mobius Integrity Index (GI) System
+## 7. Mobius Integrity Index (MII) System
 
 ### 7.1 Definition
 
-**Mobius Integrity Index (GI)** is a real-time metric (0-1 scale) measuring systemic ethical health across the Kaizen OS network.
+**Mobius Integrity Index (MII)** is a real-time metric (0-1 scale) measuring systemic ethical health across the Mobius Systems network.
 
 ### 7.2 Calculation Formula
 
 ```
-GI = α·M + β·H + γ·I + δ·E
+MII = α·M + β·H + γ·I + δ·E
 
 Where:
 M = Memory integrity (context coherence)
@@ -273,9 +273,9 @@ E = Ecological alignment (sustainability metrics)
 α, β, γ, δ = Weighting factors (sum to 1.0)
 ```
 
-**Minimum Viable GI**: 0.95 (below this, system enters crisis mode)
+**Minimum Viable MII**: 0.95 (below this, system enters crisis mode)
 
-### 7.3 GI Thresholds
+### 7.3 MII Thresholds
 
 | Range | Status | System Response |
 |-------|--------|-----------------|
@@ -402,9 +402,9 @@ For high-risk actions:
   "timestamp": "2025-11-04T10:00:00Z",
   "type": "mint" | "burn" | "transfer" | "ubi_claim",
   "amount_shards": "1000000",
-  "actor_did": "did:gic:zQ3sh...",
+  "actor_did": "did:mic:zQ3sh...",
   "witness_sentinel": "ZEUS",
-  "gi_at_action": 0.982,
+  "mii_at_action": 0.982,
   "signatures": {
     "human": "0x...",
     "sentinel": "0x...",
@@ -419,7 +419,7 @@ For high-risk actions:
 1. **Sybil**: KYC + 30-day wallet age
 2. **Double-spend**: Atomic ledger transactions
 3. **Precision manipulation**: Integer-only arithmetic
-4. **UBI gaming**: GI throttle + eligibility checks
+4. **UBI gaming**: MII throttle + eligibility checks
 5. **Governance capture**: Sentinel consensus + human override
 
 ---
@@ -452,7 +452,7 @@ For high-risk actions:
 
 ## 13. Conclusion
 
-Mobius Integrity Credits v2.0 represent a paradigm shift from speculative to intrinsic value economics. By denominating the economy in shards (₷), we eliminate precision loss while maintaining human-readable credits. The GI-throttled UBI system creates automatic crisis response, and epoch decay mechanics fund distribution counter-inflationally.
+Mobius Integrity Credits v2.0 represent a paradigm shift from speculative to intrinsic value economics. By denominating the economy in shards (₷), we eliminate precision loss while maintaining human-readable credits. The MII-throttled UBI system creates automatic crisis response, and epoch decay mechanics fund distribution counter-inflationary.
 
 **Core Achievements:**
 1. **Mathematical Integrity**: Zero precision loss via integer arithmetic
@@ -469,8 +469,8 @@ This is not merely a cryptocurrency — it is **civilization-scale infrastructur
 ### Appendix A: Glossary
 
 - **Shard (₷)**: Base accounting unit, 1 MIC = 1,000,000 ₷
-- **MIC**: Mobius Integrity Index Credit, display unit
-- **GI**: Mobius Integrity Index, system health metric (0-1)
+- **MIC**: Mobius Integrity Credit, display unit
+- **MII**: Mobius Integrity Index, system health metric (0-1)
 - **Epoch**: 90-day cycle for decay and UBI distribution
 - **Proof-of-Integrity**: Dual-signature attestation for value creation
 - **DelibProof**: Multi-agent consensus mechanism
