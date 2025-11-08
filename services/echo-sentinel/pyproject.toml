@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "echo-sentinel"
+version = "0.1.0"
+description = "Echo Sentinel – fetch, cross-verify, integrity gate, and ledger anchoring service."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "fastapi>=0.103,<1.0",
+    "uvicorn[standard]>=0.24,<0.31",
+    "pydantic>=2.5,<3.0",
+    "pydantic-settings>=2.0,<3.0",
+    "requests>=2.31,<3.0",
+    "feedparser>=6.0,<7.0",
+    "python-dotenv>=1.0,<2.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4,<9.0",
+    "ruff>=0.5,<1.0",
+    "mypy>=1.6,<2.0",
+]
+
+[tool.pytest.ini_options]
+addopts = "-q"
+testpaths = ["tests"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["app*"]

@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "echo-scout"
+version = "0.1.0"
+description = "Echo Sentinel pipeline with OAA attestation and Civic Ledger anchoring."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "fastapi>=0.103,<1.0",
+    "pydantic>=2.5,<3.0",
+    "uvicorn[standard]>=0.24,<0.31",
+    "requests>=2.31,<3.0",
+    "pynacl>=1.5,<2.0",
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest>=7.4,<9.0",
+]
+
+[tool.setuptools]
+packages = ["echo_scout"]
+
+[tool.pytest.ini_options]
+addopts = "-q"
+testpaths = ["tests"]

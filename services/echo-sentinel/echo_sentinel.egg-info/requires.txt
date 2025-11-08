@@ -1,0 +1,12 @@
+fastapi<1.0,>=0.103
+uvicorn[standard]<0.31,>=0.24
+pydantic<3.0,>=2.5
+pydantic-settings<3.0,>=2.0
+requests<3.0,>=2.31
+feedparser<7.0,>=6.0
+python-dotenv<2.0,>=1.0
+
+[dev]
+pytest<9.0,>=7.4
+ruff<1.0,>=0.5
+mypy<2.0,>=1.6

@@ -1,0 +1,27 @@
+name: Echo Sentinel CI
+
+on:
+  push:
+    paths:
+      - "services/echo-sentinel/**"
+  pull_request:
+    paths:
+      - "services/echo-sentinel/**"
+
+jobs:
+  test-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install dependencies
+        run: |
+          pip install -e services/echo-sentinel/[dev]
+      - name: Run tests
+        run: |
+          pytest -q services/echo-sentinel/tests
+      - name: Lint
+        run: |
+          ruff check services/echo-sentinel
