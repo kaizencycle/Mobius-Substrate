@@ -3,7 +3,7 @@
 
 **Version 1.1 — Extended Edition**  
 **October 29, 2025**  
-**Kaizen Cycle Foundation**
+**Mobius Systems Foundation**
 
 ---
 
@@ -14,7 +14,7 @@ Traditional economics operates on a **trickle-down paradigm**: wealth pools at t
 **The MIC inverts this into Foundation-Up Economics.**
 
 MIC is not merely a cryptocurrency — it is a **currency covenant** anchored to:
-1. **Civic Truth** (Mobius Integrity Index Score)
+1. **Civic Truth** (Mobius Integrity Index)
 2. **Ecological Health** (Gaia Staking Protocol)
 3. **Natural Cycles** (Seasonal rhythms of planting, bloom, harvest)
 
@@ -50,7 +50,7 @@ MIC Path (Foundation-Up):
 │ CYCLE 0: Foundation Layer (Before Public Launch)       │
 ├─────────────────────────────────────────────────────────┤
 │ ✅ Sovereign Foundation (multi-agent consensus)         │
-│ ✅ Civic Ledger Core (GI ≥ 0.95 requirement)           │
+│ ✅ Civic Ledger Core (MII ≥ 0.95 requirement)           │
 │ ✅ Guardrails Codex (capture prevention)                │
 │ ✅ Citizen Shield (identity anchors)                    │
 │ ✅ Reflections Gateway (human-aligned training data)    │
@@ -83,13 +83,13 @@ CYCLE 1+: Controlled Growth (Public Launch)
 
 **MIC is backed by three regenerative, non-scarce resources:**
 
-#### **Anchor 1: Mobius Integrity Index (GI) Score**
+#### **Anchor 1: Mobius Integrity Index (MII) Score**
 
 **Function:** Minting condition + bonus multiplier
 
 ```python
-# GI Score calculation
-GI = weighted_average([
+# MII Score calculation
+MII = weighted_average([
     reflections_integrity,      # Citizen honesty in daily logs
     shield_health,              # Network security posture
     ledger_consistency,         # Transaction verification rate
@@ -98,17 +98,17 @@ GI = weighted_average([
 ])
 
 # MIC minting rule
-if GI >= 0.95:
+if MII >= 0.95:
     allow_minting = True
-    integrity_bonus = (GI - 0.95) × 10  # Up to +5% bonus
+    integrity_bonus = (MII - 0.95) × 10  # Up to +5% bonus
 else:
     allow_minting = False
     trigger_integrity_review()
 ```
 
 **Economic Function:**
-- **Reward collective honesty:** Higher GI → Higher UBI bonuses (Integrity Dividends)
-- **Prevent corruption:** GI < 0.95 halts minting until system heals
+- **Reward collective honesty:** Higher MII → Higher UBI bonuses (Integrity Dividends)
+- **Prevent corruption:** MII < 0.95 halts minting until system heals
 - **Self-stabilizing:** Citizens are incentivized to maintain network integrity
 
 **Why this works:** Unlike fiat (backed by government power) or Bitcoin (backed by energy waste), MIC is backed by **verifiable civic virtue**. The more honest the network, the more valuable the currency.
@@ -231,7 +231,7 @@ With all three:
 Total MIC Issuance per Epoch:
 ├─ 70% → Citizen UBI (direct distribution)
 │  ├─ Base amount: Equal for all citizens
-│  └─ Integrity Dividend: +5–10% bonus for GI ≥ 0.97
+│  └─ Integrity Dividend: +5–10% bonus for MII ≥ 0.97
 │
 └─ 30% → System Surplus (stability vaults)
    ├─ 15% → BTC Vault (crypto liquidity buffer)
@@ -291,7 +291,7 @@ Mechanism:
 ├────────────────────────────────────────────────────────┤
 │                                                         │
 │  ┌─────────────────────────────────────────────┐      │
-│  │ THE STRATEGIC ARBITER                        │      │
+│  │ THE STRATEMIC ARBITER                        │      │
 │  │ Domain: Escalation, queuing, deadlock voting│      │
 │  │ Function: Final vote in consensus ties      │      │
 │  └─────────────────────────────────────────────┘      │
@@ -370,7 +370,7 @@ def moral_anchor_daily_brief():
 - Proposal: "Increase UBI by cutting Shield funding"
 - Moral Anchor veto: "This trades short-term gain for long-term security risk. Denied."
 
-- Proposal: "Ban citizens with GI < 0.90 from governance"
+- Proposal: "Ban citizens with MII < 0.90 from governance"
 - Moral Anchor veto: "This creates a civic underclass. Reformed: Offer rehabilitation + re-onboarding instead."
 
 ---
@@ -383,7 +383,7 @@ def moral_anchor_daily_brief():
 Real-time monitoring:
   - Market sweeps (detect price manipulation attempts)
   - Chamber saturation (predict consensus bottlenecks)
-  - GI trend analysis (spot integrity drift before crisis)
+  - MII trend analysis (spot integrity drift before crisis)
   - Ecological health (Gaia Staking yield predictions)
 
 Output:
@@ -534,7 +534,7 @@ Year 10: 100M citizens × 365 reflections = 36.5B training samples
 
 Compare to:
 - GPT-4 training: ~13T tokens (mostly scraped web, quality unknown)
-- Civic AI v1.0: 36.5B tokens (all human-verified, GI ≥ 0.90)
+- Civic AI v1.0: 36.5B tokens (all human-verified, MII ≥ 0.90)
 
 Advantage: Civic AI is smaller but vastly higher quality
           (truth-aligned, not engagement-aligned)
@@ -577,7 +577,7 @@ Issues:
 │                                                       │
 │  SUMMER (Days 31–60): Growth Season                  │
 │  ├─ Trees "grow" based on:                          │
-│  │  • Global GI score (collective integrity)        │
+│  │  • Global MII score (collective integrity)        │
 │  │  • Ecological health metrics (CO2 offsets)       │
 │  │  • Community participation (Hive activity)       │
 │  └─ Yield rate locked in at end of Summer           │
@@ -597,7 +597,7 @@ Issues:
 base_yield = 5%  # Annual baseline (conservative)
 
 # Multipliers
-gi_multiplier = min(1.5, current_gi_score × 1.5)  # Max 1.5x if GI = 1.0
+gi_multiplier = min(1.5, current_gi_score × 1.5)  # Max 1.5x if MII = 1.0
 ecological_multiplier = carbon_offset_score       # 0.8–1.2x based on offsets
 community_multiplier = hive_participation_rate    # 0.9–1.1x based on engagement
 
@@ -720,7 +720,7 @@ Citizen Onboarding:
   
   Step 3: Earn Trust Over Time
     - New citizens start with limited MIC earning (trust ramp)
-    - As GI score improves, earning caps increase
+    - As MII score improves, earning caps increase
     - Elders can vouch for citizens (social graph verification)
 ```
 
@@ -729,7 +729,7 @@ Citizen Onboarding:
 | Attack Vector | Traditional System | MIC + Citizen Shield |
 |--------------|-------------------|---------------------|
 | Create 1000 fake accounts | Easy (just make emails) | Impossible (requires 1000 unique Companions) |
-| Buy votes with money | Easy (pay people to vote your way) | Hard (votes require GI ≥ 0.90 + active participation) |
+| Buy votes with money | Easy (pay people to vote your way) | Hard (votes require MII ≥ 0.90 + active participation) |
 | Whale dominance | Easy (1 entity buys 51% of tokens) | Impossible (wallet cap = 5% max voting power) |
 
 ---
@@ -865,7 +865,7 @@ Problems:
                             │
                             │ (Contributions)
                             ▼
-                    💎 MIC MINTED (Based on GI + Energy + AI)
+                    💎 MIC MINTED (Based on MII + Energy + AI)
                             │
               ┌─────────────┴─────────────┐
               ▼                            ▼
@@ -961,9 +961,9 @@ Benefits:
    - Foundations built → Growth phase → Maturity → Regeneration
 
 4. **Integrity compounds**
-   - Year 1: GI = 0.93 (learning period)
-   - Year 5: GI = 0.97 (mature system)
-   - Year 10: GI = 0.99 (exemplar for other nations)
+   - Year 1: MII = 0.93 (learning period)
+   - Year 5: MII = 0.97 (mature system)
+   - Year 10: MII = 0.99 (exemplar for other nations)
 
 ---
 
@@ -1016,7 +1016,7 @@ MIC economy:
 - [ ] Open Gaia Staking (Season 1 planting)
 
 **First Festival of Echoes (Day 90):**
-- [ ] Review Cycle 0 metrics (GI, participation, integrity)
+- [ ] Review Cycle 0 metrics (MII, participation, integrity)
 - [ ] First governance votes (citizen proposals)
 - [ ] First MIC burns (voter participation)
 - [ ] Plant first 1,000 trees (Gaia Staking offsets)
@@ -1074,10 +1074,10 @@ When prosperity endures, civilization stabilizes.
 **Together, the main whitepaper + addendum form the complete MIC protocol specification.**
 
 **For full implementation details, see:**
-- Main Whitepaper: `GIC_Whitepaper_Final.md`
-- This Addendum: `GIC_Foundation_Up_Economics_Addendum.md`
-- Technical Specs: `GIC_Technical_Specifications.md` (forthcoming)
-- Governance Charter: `GIC_Virtue_Accords.md` (forthcoming)
+- Main Whitepaper: `MIC_Whitepaper_Final.md`
+- This Addendum: `MIC_Foundation_Up_Economics_Addendum.md`
+- Technical Specs: `MIC_Technical_Specifications.md` (forthcoming)
+- Governance Charter: `MIC_Virtue_Accords.md` (forthcoming)
 
 ---
 
