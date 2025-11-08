@@ -8,6 +8,14 @@
 [![Node.js](https://img.shields.io/badge/Node.js-≥18.0.0-green.svg)](https://nodejs.org/)
 [![KTT Native](https://img.shields.io/badge/KTT-Native-6E00FF)](#)
 
+<!-- MII Live badge (auto-updates) -->
+[![MII Live](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/kaizencycle/Mobius-Systems/main/badges/mii.json)](./docs/synthesis/01_metrics.md)
+
+<!-- Agent CI badge (auto-updates) -->
+[![Agent CI](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/kaizencycle/Mobius-Systems/main/badges/agent-ci.json)](.github/workflows/agent-ci.yml)
+
+> **Tip:** These badges are repo-native (JSON via Shields endpoint). A scheduled workflow updates them automatically.
+
 <!-- Monorepo Structure Badges -->
 [![Turborepo](https://img.shields.io/badge/Build%20System-Turborepo-EF4444?logo=turborepo)](https://turborepo.org)
 [![Workspaces](https://img.shields.io/badge/Workspaces-43%20packages-7C3AED)](https://github.com/kaizencycle/Mobius-Systems)

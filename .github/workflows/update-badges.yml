@@ -1,0 +1,68 @@
+name: update-badges
+on:
+  schedule:
+    - cron: "*/15 * * * *"   # every 15 minutes
+  workflow_dispatch: {}
+permissions:
+  contents: write
+  actions: read
+  statuses: read
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Compute repo slug
+        id: slug
+        run: |
+          echo "slug=${GITHUB_REPOSITORY}" >> $GITHUB_OUTPUT
+
+      - name: Fetch MII (optional live hook)
+        id: mii
+        env:
+          MII_API_URL: ${{ secrets.MII_API_URL }} # e.g. https://obs.mobius.systems/api/mii/current?env=prod
+        run: |
+          set -e
+          MII_MSG="unknown"
+          COLOR="inactive"
+          if [ -n "$MII_API_URL" ]; then
+            # Expect JSON: {"mii":0.992}
+            RESP=$(curl -fsSL "$MII_API_URL" || true)
+            if [ -n "$RESP" ]; then
+              MII=$(echo "$RESP" | jq -r '.mii // empty')
+              if [ -n "$MII" ]; then
+                MII_MSG=$(printf "%.3f" "$MII")
+                # color map
+                if awk "BEGIN{exit !($MII >= 0.990)}"; then COLOR="brightgreen";
+                elif awk "BEGIN{exit !($MII >= 0.970)}"; then COLOR="green";
+                elif awk "BEGIN{exit !($MII >= 0.950)}"; then COLOR="yellowgreen";
+                else COLOR="orange"; fi
+              fi
+            fi
+          fi
+          echo "{\"schemaVersion\":1,\"label\":\"MII\",\"message\":\"$MII_MSG\",\"color\":\"$COLOR\"}" > badges/mii.json
+
+      - name: Determine Agent CI status
+        id: agenci
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Looks for last 10 runs of agent-ci workflow; set PASS if most recent concluded_successfully
+          STATUS="unknown"
+          COLOR="inactive"
+          RUNS=$(gh api repos/${GITHUB_REPOSITORY}/actions/workflows/agent-ci.yml/runs -q '.workflow_runs[:10]')
+          CONCLUSION=$(echo "$RUNS" | jq -r 'map(.conclusion) | map(select(.!=null)) | .[0] // empty')
+          if [ "$CONCLUSION" = "success" ]; then STATUS="PASS"; COLOR="brightgreen";
+          elif [ "$CONCLUSION" = "failure" ]; then STATUS="FAIL"; COLOR="red";
+          elif [ "$CONCLUSION" = "cancelled" ]; then STATUS="CANCEL"; COLOR="lightgrey";
+          elif [ "$CONCLUSION" = "timed_out" ]; then STATUS="TIMEOUT"; COLOR="orange";
+          fi
+          echo "{\"schemaVersion\":1,\"label\":\"Agent CI\",\"message\":\"$STATUS\",\"color\":\"$COLOR\"}" > badges/agent-ci.json
+
+      - name: Auto-commit badge updates
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore(badges): refresh MII + Agent CI badges"
+          file_pattern: badges/*.json README.md
