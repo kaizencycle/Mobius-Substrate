@@ -61,8 +61,34 @@ jobs:
           fi
           echo "{\"schemaVersion\":1,\"label\":\"Agent CI\",\"message\":\"$STATUS\",\"color\":\"$COLOR\"}" > badges/agent-ci.json
 
+      - name: Read state and update SR badges
+        id: state
+        run: |
+          CYCLE=$(cat STATE/CYCLE.txt 2>/dev/null || echo "C-000")
+          VERDICT=$(cat STATE/VERDICT.txt 2>/dev/null || echo "UNKNOWN")
+
+          # pick badge colors
+          case "$VERDICT" in
+            ADOPT) COLOR="brightgreen" ;;
+            SHADOW) COLOR="orange" ;;
+            DEFER) COLOR="red" ;;
+            *) COLOR="lightgray" ;;
+          esac
+
+          # write JSONs
+          cat > badges/sr_cycle.json <<EOF
+          { "schemaVersion": 1, "label": "SR • Cycle", "message": "${CYCLE}", "color": "blueviolet" }
+          EOF
+
+          cat > badges/verdict.json <<EOF
+          { "schemaVersion": 1, "label": "Verdict", "message": "${VERDICT}", "color": "${COLOR}" }
+          EOF
+
+          echo "cycle=${CYCLE}" >> $GITHUB_OUTPUT
+          echo "verdict=${VERDICT}" >> $GITHUB_OUTPUT
+
       - name: Auto-commit badge updates
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "chore(badges): refresh MII + Agent CI badges"
+          commit_message: "chore(badges): refresh MII + Agent CI + SR Cycle=${{ steps.state.outputs.cycle }}, Verdict=${{ steps.state.outputs.verdict }}"
           file_pattern: badges/*.json README.md

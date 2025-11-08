@@ -24,9 +24,12 @@
 [![Sentinels](https://img.shields.io/badge/Sentinels-13-F59E0B)](sentinels)
 [![Labs](https://img.shields.io/badge/Labs-7-8B5CF6)](labs)
 
-<!-- Situational Report (dynamic from your API) -->
-![SR Verdict](https://img.shields.io/endpoint?url=https%3A%2F%2Fkaizen-os.vercel.app%2Fapi%2Fsr%2Fbadge)
-![SR Cycle](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fkaizen-os.vercel.app%2Fapi%2Fsr%2Flatest&label=SR%20•%20Cycle&query=%24.cycle&suffix=%20•%20GI%20%24.gi&color=blue)
+<!-- Situational Report (repo-native badges) -->
+<!-- SR • Cycle -->
+![SR • Cycle](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/kaizencycle/Mobius-Systems/main/badges/sr_cycle.json)
+
+<!-- Verdict -->
+![Verdict](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/kaizencycle/Mobius-Systems/main/badges/verdict.json)
 
 <!-- Repo status -->
 ![Repo Digest](https://img.shields.io/endpoint?url=https%3A%2F%2Fkaizen-os.vercel.app%2Fapi%2Frepo%2Fbadge)
