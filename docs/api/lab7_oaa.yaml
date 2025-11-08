@@ -1,0 +1,13 @@
+openapi: 3.1.0
+info: { title: Lab7 OAA API, version: '0.1' }
+paths:
+  /oaa/quest/submit:
+    post:
+      summary: Submit completed quest
+      requestBody:
+        required: true
+        content: { application/json: { schema: { type: object, properties: { questId: {type: string}, url: {type: string} } } } }
+      responses: { '200': { description: OK } }
+  /oaa/progress:
+    get: { summary: Get progress summary, responses: { '200': { description: OK } } }
+

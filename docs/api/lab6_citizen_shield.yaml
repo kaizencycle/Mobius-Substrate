@@ -1,0 +1,15 @@
+openapi: 3.1.0
+info: { title: Lab6 Citizen Shield API, version: '0.1' }
+paths:
+  /shield/scan:
+    post: { summary: Start a security scan, responses: { '202': { description: Started } } }
+  /shield/check:
+    post:
+      summary: Check a domain or URL
+      requestBody:
+        required: true
+        content: { application/json: { schema: { type: object, properties: { target: {type: string} } } } }
+      responses: { '200': { description: OK } }
+  /shield/status:
+    get: { summary: Get latest scan status, responses: { '200': { description: OK } } }
+

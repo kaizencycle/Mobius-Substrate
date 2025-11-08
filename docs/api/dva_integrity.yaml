@@ -1,0 +1,8 @@
+openapi: 3.1.0
+info: { title: DVA Integrity API, version: '0.1' }
+paths:
+  /integrity/pulse:
+    get: { summary: Get integrity pulse feed, responses: { '200': { description: OK } } }
+  /integrity/events:
+    get: { summary: Get recent events, responses: { '200': { description: OK } } }
+

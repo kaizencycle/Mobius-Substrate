@@ -1,0 +1,27 @@
+openapi: 3.1.0
+info: { title: Lab4 Reflections API, version: '0.1' }
+paths:
+  /memory/write:
+    post:
+      summary: Write a reflection
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: { text: {type: string}, tags: {type: array, items: {type: string}} }
+      responses: { '200': { description: OK } }
+  /memory/read:
+    get:
+      summary: Get a reflection by id
+      parameters: [{ name: id, in: query, required: true, schema: {type: string}}]
+      responses: { '200': { description: OK } }
+  /memory/search:
+    post:
+      summary: Semantic search reflections
+      requestBody:
+        required: true
+        content: { application/json: { schema: { type: object, properties: { q: {type: string} } } } }
+      responses: { '200': { description: OK } }
+

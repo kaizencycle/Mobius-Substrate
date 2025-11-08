@@ -13,4 +13,10 @@ export { default as ServiceTable } from './components/ServiceTable';
 export { default as IntegrityMeter } from './components/IntegrityMeter';
 export { default as StatusIndicator } from './components/StatusIndicator';
 
+// Design System Components (Kaizen UI v0.1)
+export { default as AttestationSparkline } from './components/AttestationSparkline';
+export { default as EntropyWave } from './components/EntropyWave';
+export { default as GIMeter } from './components/GIMeter';
+export { default as KaizenButton } from './components/KaizenButton';
+
 
