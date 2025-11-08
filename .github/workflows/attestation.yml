@@ -1,0 +1,138 @@
+name: Sigstore Attestation
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Git tag to attest'
+        required: true
+
+permissions:
+  contents: read
+  packages: write
+  id-token: write  # Required for Sigstore keyless signing
+
+jobs:
+  attest-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.release.tag_name || github.event.inputs.tag }}
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build artifacts
+        run: npm run build
+
+      - name: Generate SBOM
+        uses: anchore/sbom-action@v0
+        with:
+          format: spdx-json
+          output-file: sbom.spdx.json
+
+      - name: Generate checksums
+        run: |
+          sha256sum dist/* > SHA256SUMS
+          sha256sum sbom.spdx.json >> SHA256SUMS
+
+      - name: Install Cosign
+        uses: sigstore/cosign-installer@v3
+
+      - name: Sign checksums with Sigstore
+        run: |
+          cosign sign-blob \
+            --bundle=signature.bundle \
+            --yes \
+            SHA256SUMS
+
+      - name: Sign SBOM with Sigstore
+        run: |
+          cosign sign-blob \
+            --bundle=sbom-signature.bundle \
+            --yes \
+            sbom.spdx.json
+
+      - name: Verify signatures
+        run: |
+          # Verify checksums signature
+          cosign verify-blob \
+            --bundle signature.bundle \
+            --certificate-identity=https://github.com/${{ github.repository }}/.github/workflows/attestation.yml@${{ github.ref }} \
+            --certificate-oidc-issuer=https://token.actions.githubusercontent.com \
+            SHA256SUMS
+
+          # Verify SBOM signature
+          cosign verify-blob \
+            --bundle sbom-signature.bundle \
+            --certificate-identity=https://github.com/${{ github.repository }}/.github/workflows/attestation.yml@${{ github.ref }} \
+            --certificate-oidc-issuer=https://token.actions.githubusercontent.com \
+            sbom.spdx.json
+
+      - name: Generate attestation metadata
+        run: |
+          cat > attestation-metadata.json <<EOF
+          {
+            "version": "${{ github.event.release.tag_name || github.event.inputs.tag }}",
+            "commit": "${{ github.sha }}",
+            "build_date": "$(date -u +%Y-%m-%dT%H:%M:%SZ)",
+            "workflow": "${{ github.workflow }}",
+            "run_id": "${{ github.run_id }}",
+            "repository": "${{ github.repository }}",
+            "sigstore_bundle": "signature.bundle",
+            "sbom_bundle": "sbom-signature.bundle"
+          }
+          EOF
+
+      - name: Upload attestation artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: attestation-artifacts
+          path: |
+            SHA256SUMS
+            signature.bundle
+            sbom.spdx.json
+            sbom-signature.bundle
+            attestation-metadata.json
+
+      - name: Attach to release
+        if: github.event_name == 'release'
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            SHA256SUMS
+            signature.bundle
+            sbom.spdx.json
+            sbom-signature.bundle
+            attestation-metadata.json
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create attestation record
+        run: |
+          mkdir -p attestations
+          cp attestation-metadata.json "attestations/${{ github.sha }}.json"
+          echo "Attestation record created for commit ${{ github.sha }}"
+
+      - name: Verify checksums
+        run: sha256sum -c SHA256SUMS
+
+      - name: Log MII baseline
+        if: github.event_name == 'release'
+        run: |
+          echo "Release: ${{ github.event.release.tag_name }}"
+          echo "Commit: ${{ github.sha }}"
+          echo "MII Baseline: [To be measured by release process]"
+          echo "Sigstore Bundle: signature.bundle"
+          echo "SBOM: sbom.spdx.json"

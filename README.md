@@ -4,9 +4,12 @@
 
 <!-- Mobius Core Badges -->
 [![Mobius Integrity](https://img.shields.io/badge/MII-Integrity%20≥%200.95-brightgreen)](https://civic-ledger.onrender.com)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![License: AGPL-3.0](https://img.shields.io/badge/License-AGPL%203.0-blue.svg)](FOUNDATION/LICENSES/LICENSE)
+[![Ethical License](https://img.shields.io/badge/Ethics-Addendum-purple)](FOUNDATION/LICENSES/LICENSE-Ethical-Addendum.md)
+[![Foundation](https://img.shields.io/badge/Mobius-Foundation-00ADD8)](FOUNDATION/CHARTER.md)
 [![Node.js](https://img.shields.io/badge/Node.js-≥18.0.0-green.svg)](https://nodejs.org/)
 [![KTT Native](https://img.shields.io/badge/KTT-Native-6E00FF)](#)
+[![Security Policy](https://img.shields.io/badge/Security-Policy-red)](.github/SECURITY.md)
 
 <!-- Monorepo Structure Badges -->
 [![Turborepo](https://img.shields.io/badge/Build%20System-Turborepo-EF4444?logo=turborepo)](https://turborepo.org)
