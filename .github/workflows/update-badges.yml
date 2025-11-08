@@ -54,18 +54,22 @@ jobs:
           COLOR="inactive"
           RUNS=$(gh api repos/${GITHUB_REPOSITORY}/actions/workflows/agent-ci.yml/runs -q '.workflow_runs[:10]')
           CONCLUSION=$(echo "$RUNS" | jq -r 'map(.conclusion) | map(select(.!=null)) | .[0] // empty')
-          if [ "$CONCLUSION" = "success" ]; then STATUS="PASS"; COLOR="brightgreen";
-          elif [ "$CONCLUSION" = "failure" ]; then STATUS="FAIL"; COLOR="red";
-          elif [ "$CONCLUSION" = "cancelled" ]; then STATUS="CANCEL"; COLOR="lightgrey";
-          elif [ "$CONCLUSION" = "timed_out" ]; then STATUS="TIMEOUT"; COLOR="orange";
+          if [ "$CONCLUSION" = "success" ]; then STATUS="passing"; COLOR="brightgreen";
+          elif [ "$CONCLUSION" = "failure" ]; then STATUS="failing"; COLOR="red";
+          elif [ "$CONCLUSION" = "cancelled" ]; then STATUS="cancelled"; COLOR="lightgrey";
+          elif [ "$CONCLUSION" = "timed_out" ]; then STATUS="timeout"; COLOR="orange";
           fi
-          echo "{\"schemaVersion\":1,\"label\":\"Agent CI\",\"message\":\"$STATUS\",\"color\":\"$COLOR\"}" > badges/agent-ci.json
+          echo "{\"schemaVersion\":1,\"label\":\"Agent CI\",\"message\":\"$STATUS\",\"color\":\"$COLOR\"}" > .badges/agent-ci.json
 
       - name: Read state and update SR badges
         id: state
         run: |
-          CYCLE=$(cat STATE/CYCLE.txt 2>/dev/null || echo "C-000")
-          VERDICT=$(cat STATE/VERDICT.txt 2>/dev/null || echo "UNKNOWN")
+          # Read cycle from secret or fallback to STATE file or default
+          CYCLE="${{ secrets.MOBIUS_CYCLE }}"
+          if [ -z "$CYCLE" ]; then
+            CYCLE=$(cat STATE/CYCLE.txt 2>/dev/null || echo "C-127")
+          fi
+          VERDICT=$(cat STATE/VERDICT.txt 2>/dev/null || echo "ADOPT")
 
           # pick badge colors
           case "$VERDICT" in
@@ -75,13 +79,13 @@ jobs:
             *) COLOR="lightgray" ;;
           esac
 
-          # write JSONs
-          cat > badges/sr_cycle.json <<EOF
-          { "schemaVersion": 1, "label": "SR • Cycle", "message": "${CYCLE}", "color": "blueviolet" }
+          # write JSONs to .badges/
+          cat > .badges/cycle.json <<EOF
+          { "schemaVersion": 1, "label": "SR • Cycle", "message": "${CYCLE}", "color": "blue", "labelColor": "black" }
           EOF
 
-          cat > badges/verdict.json <<EOF
-          { "schemaVersion": 1, "label": "Verdict", "message": "${VERDICT}", "color": "${COLOR}" }
+          cat > .badges/verdict.json <<EOF
+          { "schemaVersion": 1, "label": "verdict", "message": "${VERDICT}", "color": "${COLOR}" }
           EOF
 
           echo "cycle=${CYCLE}" >> $GITHUB_OUTPUT
@@ -91,4 +95,4 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "chore(badges): refresh MII + Agent CI + SR Cycle=${{ steps.state.outputs.cycle }}, Verdict=${{ steps.state.outputs.verdict }}"
-          file_pattern: badges/*.json README.md
+          file_pattern: badges/*.json .badges/*.json README.md

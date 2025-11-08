@@ -12,7 +12,7 @@
 [![MII Live](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/kaizencycle/Mobius-Systems/main/badges/mii.json)](./docs/synthesis/01_metrics.md)
 
 <!-- Agent CI badge (auto-updates) -->
-[![Agent CI](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/kaizencycle/Mobius-Systems/main/badges/agent-ci.json)](.github/workflows/agent-ci.yml)
+[![Agent CI](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/kaizencycle/Mobius-Systems/main/.badges/agent-ci.json)](.github/workflows/agent-ci.yml)
 
 > **Tip:** These badges are repo-native (JSON via Shields endpoint). A scheduled workflow updates them automatically.
 
@@ -26,10 +26,10 @@
 
 <!-- Situational Report (repo-native badges) -->
 <!-- SR • Cycle -->
-![SR • Cycle](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/kaizencycle/Mobius-Systems/main/badges/sr_cycle.json)
+![SR • Cycle](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/kaizencycle/Mobius-Systems/main/.badges/cycle.json)
 
 <!-- Verdict -->
-![Verdict](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/kaizencycle/Mobius-Systems/main/badges/verdict.json)
+![Verdict](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/kaizencycle/Mobius-Systems/main/.badges/verdict.json)
 
 <!-- Repo status -->
 ![Repo Digest](https://img.shields.io/endpoint?url=https%3A%2F%2Fkaizen-os.vercel.app%2Fapi%2Frepo%2Fbadge)
