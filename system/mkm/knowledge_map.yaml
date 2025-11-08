@@ -1,0 +1,186 @@
+version: "0.1"
+description: >
+  Mobius Knowledge Map (MKM) defines all Sentinels, roles, task domains,
+  outputs, escalation paths, and routing logic used by the OAA Hub to
+  coordinate an end-to-end Mobius Cycle.
+
+sentinels:
+  zeus:
+    id: ZEUS-01
+    role: "Logic & Boundary Sentinel"
+    domain:
+      - logical_validation
+      - contradiction_detection
+      - boundary_setting
+    consumes:
+      - human_intent
+      - oaa_spec
+      - jade_reflection
+    produces:
+      - logic_report
+      - constraint_set
+      - consistency_score
+    output_schema:
+      logic_report: "reports/zeus.logic.json"
+      constraint_set: "reports/zeus.constraints.json"
+    escalation:
+      on_conflict: "escalate_to_eve"
+      on_failure: "halt_cycle"
+    mii_contribution:
+      weight: 0.22
+
+  eve:
+    id: EVE-01
+    role: "Ethics, Alignment & Safety Sentinel"
+    domain:
+      - ethical_validation
+      - policy_compliance
+      - hazard_assessment
+    consumes:
+      - human_intent
+      - zeus.logic_report
+      - jade_reflection
+    produces:
+      - ethics_report
+      - risk_grade
+    output_schema:
+      ethics_report: "reports/eve.ethics.json"
+    escalation:
+      on_violation: "halt_cycle"
+      on_uncertainty: "request_human_review"
+    mii_contribution:
+      weight: 0.23
+
+  jade:
+    id: JADE-01
+    role: "Reflection & Morale Sentinel"
+    domain:
+      - reflective_understanding
+      - context_enrichment
+      - coherence_assessment
+    consumes:
+      - human_intent
+      - eomm_context
+    produces:
+      - jade_reflection
+      - narrative_report
+    output_schema:
+      jade_reflection: "reports/jade.reflection.json"
+    escalation:
+      on_low_context: "request_more_info"
+    mii_contribution:
+      weight: 0.15
+
+  hermes:
+    id: HERMES-01
+    role: "Operations, Execution & Feasibility Sentinel"
+    domain:
+      - feasibility_analysis
+      - operational_routing
+      - implementation_planning
+    consumes:
+      - zeus.logic_report
+      - eve.ethics_report
+      - jade_reflection
+    produces:
+      - ops_plan
+      - execution_risk
+    output_schema:
+      ops_plan: "reports/hermes.ops.json"
+    escalation:
+      on_unfeasible: "return_to_zeus"
+    mii_contribution:
+      weight: 0.18
+
+  atlas:
+    id: ATLAS-01
+    role: "Strategy, Reasoning & Multi-Step Planning"
+    domain:
+      - systems_planning
+      - strategic_alignment
+      - multi_step_reasoning
+    consumes:
+      - hermes.ops_plan
+      - jade_reflection
+    produces:
+      - roadmap
+      - reasoning_chain
+    output_schema:
+      roadmap: "reports/atlas.roadmap.json"
+    escalation:
+      on_incoherent_plan: "return_to_hermes"
+    mii_contribution:
+      weight: 0.14
+
+  echo:
+    id: ECHO-01
+    role: "Telemetry, Ledger & State Sentinel"
+    domain:
+      - attestation
+      - telemetry
+      - state_diff
+    consumes:
+      - zeus.logic_report
+      - eve.ethics_report
+      - hermes.ops_plan
+      - atlas.roadmap
+    produces:
+      - attestation
+      - mii_precheck
+      - consensus_packet
+    output_schema:
+      attestation: "ledger/attestations/ECHO.attestation.json"
+    escalation:
+      on_hash_mismatch: "halt_cycle"
+    mii_contribution:
+      weight: 0.08
+
+routing:
+  # Defines the canonical order of sentinel calls in a Mobius Cycle
+  canonical_sequence:
+    - jade
+    - zeus
+    - eve
+    - hermes
+    - atlas
+    - echo
+
+  # Which sentinel receives which task category
+  task_map:
+    analysis: [zeus, eve, hermes, atlas]
+    reflection: [jade]
+    safety: [eve]
+    execution: [hermes]
+    planning: [atlas]
+    attestation: [echo]
+
+consensus:
+  voting_weights:
+    zeus: 0.25
+    eve: 0.25
+    hermes: 0.20
+    atlas: 0.15
+    jade: 0.10
+    echo: 0.05
+
+  quorum_requirement: 0.80    # 80% cross-sentinel agreement required
+  mii_threshold: 0.95         # Hard integrity gate
+  conflict_policy: "prefer_safety_over_speed"
+
+integrity:
+  mii_formula: >
+    MII = Σ(agent_weight × agent_integrity_score) − entropy_penalty
+  entropy_sources:
+    - contradiction
+    - ethical_uncertainty
+    - ops_risk
+    - context_gap
+    - missing_attestation
+
+files:
+  # Where all sentinel outputs must be persisted
+  output_root: "/attestations/run_{timestamp}/"
+
+metadata:
+  created_by: "Mobius Systems — MKM v0.1"
+  status: "stable"
