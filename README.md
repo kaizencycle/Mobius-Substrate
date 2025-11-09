@@ -512,6 +512,28 @@ These guardrails were implemented after a near-nuke incident where a process bug
 
 MIT License - see [LICENSE](LICENSE) for details.
 
+## 📊 Peer Review & Research Status
+
+Mobius Systems has undergone comprehensive peer review (November 2025). We are systematically addressing all identified gaps.
+
+**Review Assessment**: B+/A- (Promising Research Platform with Implementation Gaps)
+
+**Status**: Actively addressing critical specifications and hardening for production readiness.
+
+📖 **Full Review Response**: [docs/peer-review-response.md](docs/peer-review-response.md)
+
+**Key Specifications** (in progress):
+- ✅ [Cryptographic Specification](docs/specs/cryptography/mii-signature-spec.md) - Ed25519 MII signatures
+- ✅ [Consensus Algorithm](docs/specs/consensus/thought-broker-consensus.md) - Multi-agent deliberation
+- ✅ [Threat Model](docs/security/threat-model.md) - Security architecture
+- ✅ [Architecture Decision Records](docs/adr/) - Design rationale
+
+**Research Contributions**:
+- Integrity-Driven Architecture (IDA) framework
+- Model-Agnostic Sovereignty Layer (MASL)
+- Deliberation Proof protocol
+- Kaizen Turing Test (KTT) evaluation framework
+
 ## 🔗 Integrated Repositories
 
 This monorepo integrates all kaizencycle repositories using git subtree:
