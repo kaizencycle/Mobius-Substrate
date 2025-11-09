@@ -13,8 +13,8 @@
   <rect width="8" height="60" rx="8 0 0 8" fill="url(#atlasGradient)"/>
 
   <!-- Agent icon circle -->
-  <circle cx="35" cy="30" r="15" fill="#ffff6a" opacity="0.2"/>
-  <circle cx="35" cy="30" r="12" fill="#ffff6a" opacity="0.4"/>
+  <circle cx="35" cy="30" r="15" fill="#ffff6a" opacity="0.3"/>
+  <circle cx="35" cy="30" r="12" fill="#ffff6a" opacity="0.8"/>
   <text x="35" y="36" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#0f172a" text-anchor="middle">A</text>
 
   <!-- Agent name and role -->
