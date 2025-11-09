@@ -7,11 +7,12 @@
     <radialGradient id="pulseEcho">
       <stop offset="0%" stop-color="#7EF1FF55"/>
       <stop offset="100%" stop-color="#7EF1FF00"/>
-      <animate attributeName="r" values="0;24;0" dur="1.4s" repeatCount="indefinite"/>
     </radialGradient>
   </defs>
 
-  <circle cx="15" cy="15" r="10" fill="url(#pulseEcho)"/>
+  <circle cx="15" cy="15" r="10" fill="url(#pulseEcho)">
+    <animate attributeName="r" values="8;16;8" dur="1.4s" repeatCount="indefinite"/>
+  </circle>
   <rect x="0" width="75" height="30" rx="4" fill="url(#echoGrad)" />
   <rect x="75" width="105" height="30" rx="4" fill="#111"/>
 

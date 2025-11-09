@@ -7,11 +7,12 @@
     <radialGradient id="pulseZeus">
       <stop offset="0%" stop-color="#00A4FF44"/>
       <stop offset="100%" stop-color="#00A4FF00"/>
-      <animate attributeName="r" values="0;24;0" dur="1.6s" repeatCount="indefinite"/>
     </radialGradient>
   </defs>
 
-  <circle cx="15" cy="15" r="10" fill="url(#pulseZeus)"/>
+  <circle cx="15" cy="15" r="10" fill="url(#pulseZeus)">
+    <animate attributeName="r" values="8;16;8" dur="1.6s" repeatCount="indefinite"/>
+  </circle>
   <rect x="0" width="80" height="30" rx="4" fill="url(#zeusGrad)" />
   <rect x="80" width="120" height="30" rx="4" fill="#111"/>
   

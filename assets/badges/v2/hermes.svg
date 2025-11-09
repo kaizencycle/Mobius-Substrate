@@ -7,11 +7,12 @@
     <radialGradient id="pulseHermes">
       <stop offset="0%" stop-color="#FFD44755"/>
       <stop offset="100%" stop-color="#FFD44700"/>
-      <animate attributeName="r" values="0;24;0" dur="1.9s" repeatCount="indefinite"/>
     </radialGradient>
   </defs>
 
-  <circle cx="15" cy="15" r="10" fill="url(#pulseHermes)"/>
+  <circle cx="15" cy="15" r="10" fill="url(#pulseHermes)">
+    <animate attributeName="r" values="8;16;8" dur="1.9s" repeatCount="indefinite"/>
+  </circle>
   <rect x="0" width="80" height="30" rx="4" fill="url(#hermesGrad)" />
   <rect x="80" width="110" height="30" rx="4" fill="#111"/>
 
