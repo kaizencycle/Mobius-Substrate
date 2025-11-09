@@ -48,6 +48,18 @@
 
 <sub>Verdict colors: ADOPT = green · SHADOW = orange · DEFER = red · UNKNOWN = gray</sub>
 
+<!-- Mobius Sentinel Badge Pack v2 -->
+<p align="left">
+  <img src="assets/badges/v2/jade.svg" height="28" alt="JADE - Pattern Oracle">
+  <img src="assets/badges/v2/aurea.svg" height="28" alt="AUREA - Integrity Sentinel">
+  <img src="assets/badges/v2/eve.svg" height="28" alt="EVE - Ethics Engine">
+  <img src="assets/badges/v2/zeus.svg" height="28" alt="ZEUS - Arbiter & Enforcement">
+  <img src="assets/badges/v2/hermes.svg" height="28" alt="HERMES - Market & Signals">
+  <img src="assets/badges/v2/echo.svg" height="28" alt="ECHO - Pulse & Telemetry">
+  <img src="assets/badges/v2/uriel.svg" height="28" alt="URIEL - Illumination & Genesis">
+  <img src="assets/badges/v2/mobius-core.svg" height="28" alt="MOBIUS CORE - Integrity Architecture">
+</p>
+
 ---
 
 > **Mobius Systems** (formerly *Kaizen OS*, *Civic OS*) is a self-healing operating system for civilization: the first platform architected to pass the **Kaizen Turing Test (KTT)**. It fuses DVA Kernel logic, Virtue Accords, and continuous integrity telemetry into an infinite loop of safe, governed evolution.

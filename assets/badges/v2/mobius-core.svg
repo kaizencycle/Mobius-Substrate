@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="220" height="30">
+  <defs>
+    <linearGradient id="mobiusGrad">
+      <stop offset="0%" stop-color="#4EF0C3"/>
+      <stop offset="50%" stop-color="#9D6BFF"/>
+      <stop offset="100%" stop-color="#00A4FF"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="0" width="220" height="30" rx="4" fill="#111"/>
+  <rect x="0" width="110" height="30" rx="4" fill="url(#mobiusGrad)" />
+
+  <text x="55" y="19" font-family="Arial" font-size="13" fill="#fff" text-anchor="middle">MOBIUS CORE</text>
+  <text x="165" y="19" font-family="Arial" font-size="12" fill="#4EF0C3" text-anchor="middle">Integrity Architecture</text>
+</svg>
+

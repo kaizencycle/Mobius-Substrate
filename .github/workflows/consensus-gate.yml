@@ -1,0 +1,114 @@
+name: mobius-consensus-gate
+
+on:
+  issue_comment:
+    types: [created, edited]
+  pull_request:
+    types: [opened, synchronize, reopened, labeled]
+
+permissions:
+  contents: read
+  pull-requests: write
+  statuses: write
+
+jobs:
+  gate:
+    if: ${{ github.event_name == 'issue_comment' || github.event_name == 'pull_request' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Load consensus config
+        id: cfg
+        run: |
+          echo "CFG=$(cat .github/consensus.yml | base64 -w0)" >> $GITHUB_OUTPUT
+      
+      - name: Load MII reading
+        id: mii
+        run: |
+          if [ -f attestations/mii.json ]; then
+            VAL=$(jq -r '.mii // .MII // 0' attestations/mii.json)
+          else
+            VAL=0
+          fi
+          echo "MII=$VAL" >> $GITHUB_OUTPUT
+
+      - name: Parse vote (if comment)
+        id: vote
+        if: ${{ github.event_name == 'issue_comment' }}
+        env:
+          BODY: ${{ github.event.comment.body }}
+          PRSHA: ${{ github.event.issue.pull_request.sha || '' }}
+          VOTE_KEY_AUREA: ${{ secrets.VOTE_KEY_AUREA }}
+          VOTE_KEY_ATLAS: ${{ secrets.VOTE_KEY_ATLAS }}
+          VOTE_KEY_ECHO:  ${{ secrets.VOTE_KEY_ECHO }}
+          VOTE_KEY_URIEL: ${{ secrets.VOTE_KEY_URIEL }}
+          VOTE_KEY_ZENITH:${{ secrets.VOTE_KEY_ZENITH }}
+        run: |
+          echo "$BODY" | grep -qi '^/vote' || exit 0
+          AGENT=$(echo "$BODY" | awk -F'agent:' 'NF>1{print $2}' | awk '{print $1}' | tr -d '\r')
+          DEC=$(echo "$BODY" | awk '/^\/vote/{print $2}' | tr -d '\r')
+          MII=$(echo "$BODY" | awk -F'mii:' 'NF>1{print $2}' | awk '{print $1}' | tr -d '\r')
+          SIG=$(echo "$BODY" | awk -F'sig:' 'NF>1{print $2}' | awk '{print $1}' | tr -d '\r')
+          KEYVAR="VOTE_KEY_${AGENT}"
+          KEY=${!KEYVAR}
+          if [ -z "$KEY" ]; then echo "Unknown agent $AGENT"; exit 1; fi
+          DATA="${AGENT}|${DEC}|${MII}|${PRSHA}"
+          CALC=$(printf "%s" "$DATA" | openssl dgst -sha256 -hmac "$KEY" -binary | xxd -p -c 256)
+          if [ "$CALC" != "$SIG" ]; then echo "Bad signature"; exit 1; fi
+
+          mkdir -p .mobius/votes
+          FN=".mobius/votes/${AGENT}.json"
+          jq -n --arg a "$AGENT" --arg d "$DEC" --arg m "$MII" --arg s "$SIG" \
+            '{agent:$a,decision:$d,mii:($m|tonumber),sig:$s}' > "$FN"
+          echo "VOTE_SAVED=$FN" >> $GITHUB_OUTPUT
+
+      - name: Install yq
+        run: |
+          sudo wget -qO /usr/local/bin/yq https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64
+          sudo chmod +x /usr/local/bin/yq
+
+      - name: Tally votes
+        id: tally
+        run: |
+          REQUIRED_VOTES=$(yq '.quorum.required_votes' .github/consensus.yml)
+          MIN_PROVIDERS=$(yq '.quorum.min_providers' .github/consensus.yml)
+          THRESH=$(yq '.mii_gate.threshold' .github/consensus.yml)
+          MII=${{ steps.mii.outputs.MII }}
+          echo "MII=$MII / THRESH=$THRESH"
+
+          if (( $(echo "$MII < $THRESH" | bc -l) )); then
+            echo "MII below threshold"; echo "status=failure" >> $GITHUB_OUTPUT; exit 0
+          fi
+
+          APPROVES=0
+          PROVIDERS=()
+          for f in .mobius/votes/*.json; do
+            [ -e "$f" ] || continue
+            DEC=$(jq -r '.decision' "$f")
+            AG=$(jq -r '.agent' "$f")
+            if [ "$DEC" = "approve" ]; then
+              APPROVES=$((APPROVES+1))
+              P=$(yq ".agents[] | select(.id == \"${AG}\") | .provider" .github/consensus.yml)
+              PROVIDERS+=("$P")
+            fi
+          done
+
+          UNIQUE_PROV=$(printf "%s\n" "${PROVIDERS[@]}" | sort -u | wc -l | tr -d ' ')
+          echo "approves=$APPROVES providers=$UNIQUE_PROV required=$REQUIRED_VOTES min_prov=$MIN_PROVIDERS"
+
+          if [ "$APPROVES" -ge "$REQUIRED_VOTES" ] && [ "$UNIQUE_PROV" -ge "$MIN_PROVIDERS" ]; then
+            echo "status=success" >> $GITHUB_OUTPUT
+          else
+            echo "status=pending" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Set PR status
+        if: ${{ github.event_name == 'pull_request' || github.event_name == 'issue_comment' }}
+        uses: Sibz/github-status-action@v1
+        with:
+          authToken: ${{ secrets.GITHUB_TOKEN }}
+          context: mobius/consensus-gate
+          state: ${{ steps.tally.outputs.status == '' && 'pending' || steps.tally.outputs.status }}
+          sha: ${{ github.event.pull_request.head.sha || github.sha }}
+

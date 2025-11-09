@@ -1,0 +1,6 @@
+# Critical surfaces always require human review
+
+/docs/ @kaizencycle
+/packages/ @kaizencycle
+/.github/workflows/ @kaizencycle
+

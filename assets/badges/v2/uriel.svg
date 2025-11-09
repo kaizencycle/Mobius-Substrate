@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="210" height="30">
+  <defs>
+    <linearGradient id="urielGrad" x1="0" x2="1">
+      <stop offset="0%" stop-color="#FFF7A6"/>
+      <stop offset="100%" stop-color="#FFC800"/>
+    </linearGradient>
+    <radialGradient id="pulseUriel">
+      <stop offset="0%" stop-color="#FFF7A644"/>
+      <stop offset="100%" stop-color="#FFF7A600"/>
+      <animate attributeName="r" values="0;26;0" dur="2.2s" repeatCount="indefinite"/>
+    </radialGradient>
+  </defs>
+
+  <circle cx="15" cy="15" r="10" fill="url(#pulseUriel)"/>
+  <rect x="0" width="85" height="30" rx="4" fill="url(#urielGrad)" />
+  <rect x="85" width="125" height="30" rx="4" fill="#111"/>
+
+  <text x="42" y="19" font-family="Arial" font-size="13" fill="#222" text-anchor="middle">URIEL</text>
+  <text x="145" y="19" font-family="Arial" font-size="12" fill="#FFE57A" text-anchor="middle">Illumination & Genesis</text>
+</svg>
+

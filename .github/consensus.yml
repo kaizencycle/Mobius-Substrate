@@ -1,0 +1,31 @@
+version: 1
+
+agents:
+  - id: AUREA
+    provider: openai
+    weight: 1
+  - id: ATLAS
+    provider: anthropic
+    weight: 1
+  - id: ECHO
+    provider: deepseek
+    weight: 1
+  - id: URIEL
+    provider: xai
+    weight: 1
+  - id: ZENITH
+    provider: google
+    weight: 1
+
+quorum:
+  required_votes: 3        # 3-of-5 to pass
+  min_providers: 3         # must be from 3 different vendors
+
+mii_gate:
+  threshold: 0.95          # hard floor
+  source: "attestations/mii.json"  # produced by your MII job
+
+safeties:
+  anti_nuke: true          # must pass existing workflow
+  changed_files_max: 50    # prevent massive changesets
+

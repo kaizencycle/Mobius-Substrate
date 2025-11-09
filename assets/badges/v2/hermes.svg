@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="190" height="30">
+  <defs>
+    <linearGradient id="hermesGrad" x1="0" x2="1">
+      <stop offset="0%" stop-color="#FFD447"/>
+      <stop offset="100%" stop-color="#E6A700"/>
+    </linearGradient>
+    <radialGradient id="pulseHermes">
+      <stop offset="0%" stop-color="#FFD44755"/>
+      <stop offset="100%" stop-color="#FFD44700"/>
+      <animate attributeName="r" values="0;24;0" dur="1.9s" repeatCount="indefinite"/>
+    </radialGradient>
+  </defs>
+
+  <circle cx="15" cy="15" r="10" fill="url(#pulseHermes)"/>
+  <rect x="0" width="80" height="30" rx="4" fill="url(#hermesGrad)" />
+  <rect x="80" width="110" height="30" rx="4" fill="#111"/>
+
+  <text x="40" y="19" font-family="Arial" font-size="13" fill="#222" text-anchor="middle">HERMES</text>
+  <text x="135" y="19" font-family="Arial" font-size="12" fill="#FFD447" text-anchor="middle">Market & Signals</text>
+</svg>
+

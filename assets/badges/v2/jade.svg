@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="170" height="30">
+  <defs>
+    <linearGradient id="jadeGrad" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#4EF0C3"/>
+      <stop offset="100%" stop-color="#2BA87C"/>
+    </linearGradient>
+    <radialGradient id="pulseJade">
+      <stop offset="0%" stop-color="#4EF0C333"/>
+      <stop offset="100%" stop-color="#4EF0C300"/>
+      <animate attributeName="r" values="0;20;0" dur="1.8s" repeatCount="indefinite"/>
+    </radialGradient>
+  </defs>
+
+  <circle cx="15" cy="15" r="10" fill="url(#pulseJade)"/>
+  <rect x="0" width="70" height="30" rx="4" fill="url(#jadeGrad)" />
+  <rect x="70" width="100" height="30" rx="4" fill="#111"/>
+  
+  <text x="35" y="19" font-family="Arial" font-size="13" fill="#fff" text-anchor="middle">JADE</text>
+  <text x="120" y="19" font-family="Arial" font-size="12" fill="#4EF0C3" text-anchor="middle">Pattern Oracle</text>
+</svg>
+
