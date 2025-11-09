@@ -15,6 +15,9 @@
 [![Schemas Valid](https://img.shields.io/badge/Schemas-Valid-brightgreen)](docs/schemas)
 [![OpenAPI Linted](https://img.shields.io/badge/OpenAPI-Linted-0AA5FF)](apps/ledger-api/openapi.yaml)
 
+<!-- Jade — Morale Anchor -->
+[<img src="assets/badges/jade-morale-anchor.svg" alt="Jade — Morale Anchor" height="20">](docs/codex/jade/_index.md)
+
 <!-- MII Live badge (auto-updates) -->
 [![MII Live](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/kaizencycle/Mobius-Systems/main/badges/mii.json)](./docs/synthesis/01_metrics.md)
 

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="170" height="20" role="img" aria-label="Jade: Morale Anchor">
+  <defs>
+    <linearGradient id="s" x2="0" y2="100%">
+      <stop offset="0" stop-color="#bbb" stop-opacity=".1"/>
+      <stop offset="1" stop-opacity=".1"/>
+    </linearGradient>
+    <mask id="m"><rect width="170" height="20" rx="3" fill="#fff"/></mask>
+  </defs>
+  <g mask="url(#m)">
+    <rect width="60" height="20" fill="#555"/>
+    <rect x="60" width="110" height="20" fill="#2ea44f"/>
+    <rect width="170" height="20" fill="url(#s)"/>
+  </g>
+  <g fill="#fff" text-anchor="middle" font-family="DejaVu Sans,Verdana,Geneva,sans-serif" font-size="11">
+    <text x="30" y="15">Jade</text>
+    <text x="115" y="15">Morale Anchor</text>
+  </g>
+  <title>Jade — Morale Anchor (Mobius)</title>
+</svg>
+
