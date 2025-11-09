@@ -217,6 +217,40 @@ mobius-systems/
 
 ## 🚀 Quick Start
 
+### Hello World (5 minutes)
+
+```bash
+git clone https://github.com/kaizencycle/Mobius-Systems.git
+cd Mobius-Systems
+npm install
+
+# Start the ledger
+cd apps/ledger-api && npm run dev
+```
+
+**Make your first attestation:**
+
+```javascript
+// hello-mobius.js
+const attestation = {
+  event: "hello_world",
+  agent: "developer",
+  data: { message: "Hello Mobius!" }
+};
+
+await fetch('http://localhost:3001/attest', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify(attestation)
+});
+```
+
+📖 **Full guide**: [docs/04-guides/quickstart/HELLO_WORLD.md](docs/04-guides/quickstart/HELLO_WORLD.md)
+
+---
+
+## 🚀 Full Stack Start
+
 ### Prerequisites
 
 - Node.js 18+ 
@@ -228,7 +262,7 @@ mobius-systems/
 ```bash
 # Clone the repository
 git clone https://github.com/kaizencycle/Mobius-Systems.git
-cd Kaizen-OS
+cd Mobius-Systems
 
 # Install dependencies
 npm install
@@ -340,7 +374,7 @@ Services are deployed to Render using the `infra/render.yaml` configuration. Eac
 
 ## 🌐 OpenCode Integration — OAA as Universal Backend
 
-The OAA (Online Apprenticeship Agent) is the learning kernel of Kaizen OS — a self-teaching framework that turns codebases into classrooms.
+The OAA (Online Apprenticeship Agent) is the learning kernel of Mobius Systems — a self-teaching framework that turns codebases into classrooms.
 Through OpenCode Federation, every fork or contributor instance can now run OAA as a local backend — forming a decentralized network of learning nodes guided by the same integrity rules.
 
 ### 🧠 What This Means
@@ -399,13 +433,13 @@ AUREA, HERMES, EVE, and JADE will collaborate in sequence — logic, ops, ethics
 
 ```
 OpenCode User Repo
-    ↳ loads Kaizen OS via template
+    ↳ loads Mobius Systems via template
         ↳ auto-spawns OAA backend
             ↳ connects to local agents (CLI / VS Code)
                 ↳ federates with Civic Ledger telemetry
 ```
 
-Every connected instance becomes a mirror of integrity, feeding back data to the global Kaizen OS network — a living proof that learning itself can be decentralized.
+Every connected instance becomes a mirror of integrity, feeding back data to the global Mobius Systems network — a living proof that learning itself can be decentralized.
 
 ### 🕊️ Civic Intent
 
@@ -413,7 +447,7 @@ Every connected instance becomes a mirror of integrity, feeding back data to the
 > we are teaching civilizations how to remember."
 > — Kaizen OS Ethos I
 
-By embedding OAA within OpenCode, Kaizen OS invites the world to apprentice with integrity.
+By embedding OAA within OpenCode, Mobius Systems invites the world to apprentice with integrity.
 Every learner, contributor, and agent participates in building a system that learns as it heals, and heals as it learns.
 
 ## 📊 Integrity Monitoring
@@ -421,7 +455,7 @@ Every learner, contributor, and agent participates in building a system that lea
 All services include integrity checks and health endpoints:
 
 - `/healthz` - Basic health check
-- `/api/integrity-check` - Kaizen OS integrity verification
+- `/api/integrity-check` - Mobius Systems integrity verification
 - `/v1/loop/health` - Thought Broker specific health
 
 ## 🔐 Security
@@ -433,7 +467,7 @@ All services include integrity checks and health endpoints:
 
 ## 🛡️ Guardrails
 
-Kaizen OS implements comprehensive guardrails to prevent destructive changes and ensure code safety:
+Mobius Systems implements comprehensive guardrails to prevent destructive changes and ensure code safety:
 
 ### Anti-Nuke Protection
 
