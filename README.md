@@ -3,13 +3,14 @@
 **The world's first operating system built to pass the Kaizen Turing Test (KTT)**
 
 <!-- Mobius Core Badges -->
+[![CI](https://img.shields.io/badge/CI-passing-brightgreen?logo=githubactions)](https://github.com/kaizencycle/Mobius-Systems/actions)
+[![License: AGPL-3.0](https://img.shields.io/badge/license-AGPL--3.0-blue)](FOUNDATION/LICENSES/LICENSE-Ethical-Addendum.md)
+[![Foundation](https://img.shields.io/badge/foundation-charter-8A2BE2)](FOUNDATION/CHARTER.md)
+[![Security Policy](https://img.shields.io/badge/security-policy-critical)](.github/SECURITY.md)
 [![Mobius Integrity](https://img.shields.io/badge/MII-Integrity%20≥%200.95-brightgreen)](https://civic-ledger.onrender.com)
-[![License: AGPL-3.0](https://img.shields.io/badge/License-AGPL%203.0-blue.svg)](FOUNDATION/LICENSES/LICENSE)
 [![Ethical License](https://img.shields.io/badge/Ethics-Addendum-purple)](FOUNDATION/LICENSES/LICENSE-Ethical-Addendum.md)
-[![Foundation](https://img.shields.io/badge/Mobius-Foundation-00ADD8)](FOUNDATION/CHARTER.md)
 [![Node.js](https://img.shields.io/badge/Node.js-≥18.0.0-green.svg)](https://nodejs.org/)
 [![KTT Native](https://img.shields.io/badge/KTT-Native-6E00FF)](#)
-[![Security Policy](https://img.shields.io/badge/Security-Policy-red)](.github/SECURITY.md)
 [![Spec CI](https://img.shields.io/github/actions/workflow/status/kaizencycle/Mobius-Systems/spec-ci.yml?label=spec-ci&logo=github)](.github/workflows/spec-ci.yml)
 [![Schemas Valid](https://img.shields.io/badge/Schemas-Valid-brightgreen)](docs/schemas)
 [![OpenAPI Linted](https://img.shields.io/badge/OpenAPI-Linted-0AA5FF)](apps/ledger-api/openapi.yaml)

@@ -1,85 +1,32 @@
 ---
-name: Feature Request
-about: Suggest a new feature or enhancement for Mobius Systems
+name: Feature request
+about: Suggest an idea for Mobius Systems
 title: '[FEATURE] '
 labels: enhancement
-assignees: ''
 ---
 
-## Feature Summary
+## Problem
 
-<!-- A clear and concise description of the feature you're proposing -->
+Is your feature request related to a problem? Please describe.
+A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
 
-## Motivation
+## Proposal
 
-<!-- Why is this feature needed? What problem does it solve? -->
+A clear and concise description of what you want to happen.
 
-## Proposed Solution
+## Alternatives
 
-<!-- Describe how you envision this feature working -->
+A clear and concise description of any alternative solutions or features you've considered.
 
-## Alternatives Considered
+## Impact on MII/MIC
 
-<!-- What other approaches have you thought about? -->
+How does this feature affect integrity, governance, or the economic model?
 
-## Use Cases
+- [ ] No impact
+- [ ] Enhances integrity
+- [ ] Requires RFC (kernel/spec change)
+- [ ] Needs Council review
 
-<!-- Describe specific scenarios where this feature would be useful -->
+## Additional context
 
-1.
-2.
-3.
-
-## Impact Assessment
-
-### MII Impact
-<!-- How might this feature affect MII? -->
-- [ ] Should improve MII
-- [ ] Neutral MII impact
-- [ ] Could affect MII measurement (needs careful design)
-- [ ] Not applicable
-
-**Details**:
-
-### Security Implications
-<!-- Does this feature have security considerations? -->
-- [ ] No security implications
-- [ ] Improves security
-- [ ] Requires security review
-
-**Details**:
-
-### Breaking Changes
-<!-- Would this require breaking changes? -->
-- [ ] No breaking changes
-- [ ] May require breaking changes (acceptable for major version)
-- [ ] Can be implemented without breaking changes
-
-**Details**:
-
-## RFC Needed?
-
-<!-- Does this require a formal RFC? (See RFC_PROCESS.md) -->
-- [ ] This is a minor enhancement (no RFC needed)
-- [ ] This should go through RFC process
-- [ ] Unsure
-
-**Reason**:
-
-## Implementation Notes
-
-<!-- Optional: Technical suggestions for implementation -->
-
-## Additional Context
-
-<!-- Screenshots, mockups, links, or other context -->
-
-## Community Interest
-
-<!-- Have others expressed interest in this feature? -->
-
----
-
-**Alignment Check**:
-- [ ] This feature aligns with the [Mobius Charter](../../FOUNDATION/CHARTER.md)
-- [ ] This feature does not violate the [Ethical Addendum](../../FOUNDATION/LICENSES/LICENSE-Ethical-Addendum.md)
+Add any other context or screenshots about the feature request here.
