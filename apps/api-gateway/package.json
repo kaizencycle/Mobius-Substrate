@@ -1,7 +1,7 @@
 {
   "name": "api-gateway",
   "version": "1.0.0",
-  "description": "Kaizen OS API Gateway - Unified routing and middleware",
+  "description": "Mobius Systems API Gateway - Unified routing and middleware",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",

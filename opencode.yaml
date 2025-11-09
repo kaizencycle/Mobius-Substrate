@@ -1,11 +1,11 @@
 # opencode.yaml
-# Kaizen OS — OpenCode Hub Manifest
+# Mobius Systems — OpenCode Hub Manifest
 
 version: 1
-name: "Kaizen OS — Civic Operating System for Integrity and Apprenticeship"
+name: "Mobius Systems — Civic Operating System for Integrity and Apprenticeship"
 slug: kaizencycle/kaizen-os
 description: >
-  Kaizen OS is a federated Civic Operating System that blends AI, governance,
+  Mobius Systems is a federated Civic Operating System that blends AI, governance,
   and learning into a self-healing digital civilization.  It unites human and
   machine apprenticeships through the OAA (Online Apprenticeship Agent),
   integrating integrity metrics, decentralized ledgers, and autonomous council

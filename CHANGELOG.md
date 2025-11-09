@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to the Kaizen OS monorepo will be documented in this file.
+All notable changes to the Mobius Systems monorepo will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
@@ -101,7 +101,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Wallet settlement configuration
   - UBI worker routes
   - Eligibility checks based on GI scores
-- **Kaizen OS Console**
+- **Mobius Systems Console**
   - One-window console interface
   - Consensus endpoint integration
   - System monitoring dashboard
@@ -110,7 +110,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Integrity middleware
   - Security middleware
   - Health check aggregation
-- **Kaizen OS System Ontology**
+- **Mobius Systems System Ontology**
   - System architecture diagram (C-122/C-123)
   - Visual representation of service relationships
 - **Lab Implementations**
@@ -151,8 +151,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Enhanced error handling in Broker API
   - Better TypeScript configurations
 - **Branding Updates**
-  - Badge components reflect Kaizen OS branding
-  - Documentation consistently uses Kaizen OS terminology
+  - Badge components reflect Mobius Systems branding
+  - Documentation consistently uses Mobius Systems terminology
 - **Civic Ledger Enhancements**
   - New attestation endpoints
   - Enhanced health checks
@@ -284,7 +284,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Security scanning in CI
 
 ### Changed
-- Rebranded from "Civic OS" to "Kaizen OS"
+- Rebranded from "Civic OS" to "Mobius Systems"
 - Consolidated multiple repositories into monorepo
 - Updated README with comprehensive documentation
 - Established workspace structure
@@ -310,7 +310,7 @@ Early development under "Civic OS" branding:
 
 ## Migration Notes
 
-### Civic OS → Kaizen OS (v1.0.0)
+### Civic OS → Mobius Systems (v1.0.0)
 
 **Backward Compatibility:**
 - Environment variables: `CIVIC_OS_*` still supported (deprecated in v2.0)
@@ -390,7 +390,7 @@ See [SECURITY.md](SECURITY.md) for security policy and vulnerability reporting.
 
 ---
 
-**Maintained by:** Kaizen OS Core Team  
+**Maintained by:** Mobius Systems Core Team  
 **Last Updated:** 2025-11-06 (Cycle C-126)  
 **Format:** [Keep a Changelog](https://keepachangelog.com/)  
 **Versioning:** [Semantic Versioning](https://semver.org/)

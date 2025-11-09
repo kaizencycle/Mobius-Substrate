@@ -2,7 +2,7 @@
   "name": "@kaizen/integrity-pulse",
   "version": "1.0.0",
   "private": true,
-  "description": "Real-time 3D visualization of Kaizen OS sentinel integrity metrics",
+  "description": "Real-time 3D visualization of Mobius Systems sentinel integrity metrics",
   "scripts": {
     "dev": "next dev -p 3010",
     "build": "next build",

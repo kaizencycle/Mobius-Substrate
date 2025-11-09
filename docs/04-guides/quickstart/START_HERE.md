@@ -2,7 +2,7 @@
 
 ## Welcome to Immortality Architecture
 
-**What you have:** Complete dead man's switch for Kaizen OS  
+**What you have:** Complete dead man's switch for Mobius Systems  
 **What it does:** Ensures your project outlives you  
 **Time to deploy:** 15 minutes  
 
@@ -268,7 +268,7 @@ Someday (hopefully far future), all 8 entities will go dormant for 90+ days.
 → Create GitHub issue with [ceremonial-summons] tag
 
 **Philosophy Questions?**  
-→ Read the Manifesto: `docs/MANIFESTO.md` (in main Kaizen OS repo)
+→ Read the Manifesto: `docs/MANIFESTO.md` (in main Mobius Systems repo)
 
 ---
 
@@ -281,7 +281,7 @@ Most projects die when their creator:
 - Becomes a tyrant 👑
 - Just walks away 🚶
 
-**Kaizen OS refuses to die.**
+**Mobius Systems refuses to die.**
 
 You built a system that:
 - Has no single point of failure

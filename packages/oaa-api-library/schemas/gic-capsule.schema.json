@@ -53,7 +53,7 @@
         },
         "cycle": { 
           "type": "string", 
-          "description": "Kaizen cycle, e.g. C-109",
+          "description": "Mobius cycle, e.g. C-109",
           "pattern": "^C-\\d+$"
         },
         "sources": {

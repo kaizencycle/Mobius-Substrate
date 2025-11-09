@@ -1,10 +1,10 @@
-# Contributing to Kaizen OS
+# Contributing to Mobius Systems
 
-Thank you for your interest in contributing to Kaizen OS! This document provides guidelines and instructions for contributing to this monorepo.
+Thank you for your interest in contributing to Mobius Systems! This document provides guidelines and instructions for contributing to this monorepo.
 
 ## 🏗️ Repository Structure
 
-Kaizen OS is a monorepo containing multiple applications, packages, labs, and AI sentinels:
+Mobius Systems is a monorepo containing multiple applications, packages, labs, and AI sentinels:
 
 ```
 kaizen-os/
@@ -339,7 +339,7 @@ Look for issues labeled:
 
 ## 🏛️ Governance
 
-Kaizen OS is maintained by:
+Mobius Systems is maintained by:
 - **Custodian:** Michael Judan
 - **Sentinels:** Zeus, Jade, Eve, Hermes, Atlas, Aurelian
 - **Contributors:** Community members like you!
@@ -348,14 +348,14 @@ For governance questions, see `docs/governance/`
 
 ## 📜 License
 
-By contributing to Kaizen OS, you agree that your contributions will be licensed under the MIT License.
+By contributing to Mobius Systems, you agree that your contributions will be licensed under the MIT License.
 
 ## 🙏 Thank You
 
-Your contributions make Kaizen OS better for everyone. We appreciate your time and effort!
+Your contributions make Mobius Systems better for everyone. We appreciate your time and effort!
 
 ---
 
-**Kaizen OS** - Continuous improvement through integrity, consensus, and collaboration.
+**Mobius Systems** - Continuous improvement through integrity, consensus, and collaboration.
 
 *"We heal as we walk."*

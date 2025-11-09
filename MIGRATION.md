@@ -1,8 +1,8 @@
-# Migration Guide: Kaizen OS → Mobius Systems (C-127)
+# Migration Guide: Mobius Systems → Mobius Systems (C-127)
 
 ## Overview
 
-As of Cycle C-127 (November 2025), **Kaizen OS** has been rebranded to **Mobius Systems** to establish a dual-track identity:
+As of Cycle C-127 (November 2025), **Mobius Systems** has been rebranded to **Mobius Systems** to establish a dual-track identity:
 
 - **Kaizen Turing Test (KTT)** — Unchanged scientific evaluation framework for continuous AI improvement
 - **Mobius Systems** — Technical platform implementing KTT with continuous integrity architecture
@@ -15,7 +15,7 @@ This migration guide helps you update your code, configurations, and deployments
 
 | Category | Old Name | New Name |
 |----------|----------|----------|
-| **Platform** | Kaizen OS | Mobius Systems |
+| **Platform** | Mobius Systems | Mobius Systems |
 | **Evaluation Framework** | *(implicit)* | Kaizen Turing Test (KTT) |
 | **Integrity Metric** | GI (Mobius Integrity Index) | MII (Mobius Integrity Index) |
 | **Token/Credits** | MIC (Mobius Integrity Credits) | MIC (Mobius Integrity Credits) |
@@ -128,7 +128,7 @@ Update inline documentation:
 
 ```diff
 /**
-- * Codex Agentic system for Kaizen OS Founding Agents
+- * Codex Agentic system for Mobius Systems Founding Agents
 + * Codex Agentic system for Mobius Systems Founding Agents
 + * Implements the Kaizen Turing Test (KTT) evaluation framework
  */
@@ -246,7 +246,7 @@ Error: POST /api/kaizen/mount 404 Not Found
 
 ## Timeline
 
-- **C-126 and earlier**: Kaizen OS naming
+- **C-126 and earlier**: Mobius Systems naming
 - **C-127 (November 2025)**: Mobius Systems rebrand
 - **C-127 → C-130 (3 cycles)**: Transition period with backwards compatibility
 - **C-131+ (February 2026)**: Full migration expected, legacy naming deprecated

@@ -1,7 +1,7 @@
 {
   "name": "cathedral-app",
   "version": "1.0.0",
-  "description": "Cathedral - Governance and policy management interface for Kaizen OS",
+  "description": "Cathedral - Governance and policy management interface for Mobius Systems",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",

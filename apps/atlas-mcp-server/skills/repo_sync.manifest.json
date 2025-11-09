@@ -2,7 +2,7 @@
   "skill": "atlas_repo_sync",
   "version": "1.0.0",
   "cycle": "C-125",
-  "description": "Keeps ATLAS aware of Kaizen-OS repository state and changes",
+  "description": "Keeps ATLAS aware of Mobius-Systems repository state and changes",
   "last_updated": "2025-11-05T21:45:00Z",
   "triggers": [
     "startup",

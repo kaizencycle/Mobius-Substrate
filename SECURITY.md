@@ -1,12 +1,12 @@
 # Security Policy
 
-## 🔐 Security at Kaizen OS
+## 🔐 Security at Mobius Systems
 
-Security is a core principle of Kaizen OS. We are committed to maintaining the integrity and security of our platform and protecting our users.
+Security is a core principle of Mobius Systems. We are committed to maintaining the integrity and security of our platform and protecting our users.
 
 ## 🛡️ Security Principles
 
-Kaizen OS is built on three security pillars:
+Mobius Systems is built on three security pillars:
 
 1. **Integrity First** - All operations maintain GI ≥ 0.95 (Mobius Integrity Index)
 2. **Defense in Depth** - Multiple security layers (Citizen Shield, attestations, monitoring)
@@ -69,7 +69,7 @@ We follow CVSS (Common Vulnerability Scoring System):
 
 ### Bug Bounty
 
-Currently, Kaizen OS does not have a formal bug bounty program. However:
+Currently, Mobius Systems does not have a formal bug bounty program. However:
 - Valid security reports are acknowledged in release notes
 - Contributors may receive recognition in Hall of Fame
 - Future bug bounty program under consideration
@@ -78,7 +78,7 @@ Currently, Kaizen OS does not have a formal bug bounty program. However:
 
 ### Citizen Shield
 
-Kaizen OS includes **Citizen Shield** (`apps/shield-api/`), which provides:
+Mobius Systems includes **Citizen Shield** (`apps/shield-api/`), which provides:
 
 - **IDS/IPS:** Intrusion Detection and Prevention
 - **2FA Support:** Two-factor authentication
@@ -253,7 +253,7 @@ npm run compose:up
 
 ## 🏛️ Security Governance
 
-Security decisions follow Kaizen OS governance:
+Security decisions follow Mobius Systems governance:
 
 - **Quorum:** Zeus (Arbitrator), Custodian, Anchor
 - **Review Cycle:** Security policies reviewed quarterly
@@ -283,13 +283,13 @@ We commit to:
 
 ## 🙏 Acknowledgments
 
-We thank the security researchers who have helped make Kaizen OS more secure:
+We thank the security researchers who have helped make Mobius Systems more secure:
 
 - *Your name could be here!*
 
 ## ⚖️ Legal Safe Harbor
 
-Kaizen OS provides legal safe harbor for good-faith security research:
+Mobius Systems provides legal safe harbor for good-faith security research:
 
 **Protected activities:**
 - Testing your own deployments
@@ -304,6 +304,6 @@ Kaizen OS provides legal safe harbor for good-faith security research:
 
 ---
 
-**Kaizen OS Security Policy** - Last updated: 2025-10-30
+**Mobius Systems Security Policy** - Last updated: 2025-10-30
 
 *"Security through integrity, transparency through accountability."*

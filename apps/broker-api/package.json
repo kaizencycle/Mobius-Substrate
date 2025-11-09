@@ -1,7 +1,7 @@
 {
   "name": "broker-api",
   "version": "1.0.0",
-  "description": "Thought Broker - Multi-LLM consensus engine for Kaizen OS",
+  "description": "Thought Broker - Multi-LLM consensus engine for Mobius Systems",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc",

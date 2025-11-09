@@ -39,7 +39,7 @@
     },
     "ledger_hash": {
       "type": ["string", "null"],
-      "description": "Attestation hash from Kaizen Ledger"
+      "description": "Attestation hash from Mobius Ledger"
     },
     "metadata": {
       "type": "object",

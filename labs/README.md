@@ -24,7 +24,7 @@ This directory contains the Lab proof systems that form the core components of M
 
 ## Development
 
-Each lab can be developed independently while maintaining integration with the broader Kaizen OS ecosystem. Use the monorepo scripts to manage development:
+Each lab can be developed independently while maintaining integration with the broader Mobius Systems ecosystem. Use the monorepo scripts to manage development:
 
 ```bash
 # Start all labs in development mode

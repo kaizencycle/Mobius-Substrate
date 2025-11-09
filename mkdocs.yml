@@ -1,5 +1,5 @@
-site_name: Kaizen-OS Handbook
-site_url: https://kaizencycle.github.io/Kaizen-OS/
+site_name: Mobius-Systems Handbook
+site_url: https://kaizencycle.github.io/Mobius-Systems/
 site_description: "Continuous Integrity Architecture — We heal as we walk."
 site_author: Kaizen Cycle
 
@@ -122,7 +122,7 @@ markdown_extensions:
       normalize_issue_symbols: true
       repo_url_shorthand: true
       user: kaizencycle
-      repo: Kaizen-OS
+      repo: Mobius-Systems
   - pymdownx.mark
   - pymdownx.smartsymbols
   - pymdownx.superfences:
@@ -162,7 +162,7 @@ extra_javascript:
 nav:
   - Home: index.md
   - Start Here: START_HERE.md
-  - Kaizen-OS Handbook:
+  - Mobius-Systems Handbook:
       - Handbook Index: handbook/index.md
       - Part I: Foundations: handbook/part-i-foundations.md
       - Part II: Technical Architecture: handbook/part-ii-technical-architecture.md

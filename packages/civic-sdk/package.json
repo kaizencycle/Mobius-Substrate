@@ -1,7 +1,7 @@
 {
   "name": "@civic/sdk",
   "version": "1.0.0",
-  "description": "Shared API clients and types for Kaizen OS services",
+  "description": "Shared API clients and types for Mobius Systems services",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {

@@ -1,7 +1,7 @@
 {
   "name": "@civic/shield-policies",
   "version": "1.0.0",
-  "description": "Security policies and request guards for Kaizen OS",
+  "description": "Security policies and request guards for Mobius Systems",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {

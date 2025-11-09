@@ -1,6 +1,6 @@
 {
   "name": "kaizen-os",
-  "description": "Kaizen OS MCP: ADR, PR, GI checks, ledger attestation, consensus views",
+  "description": "Mobius Systems MCP: ADR, PR, GI checks, ledger attestation, consensus views",
   "version": "1.0.0",
   "tools": [
     {
@@ -57,7 +57,7 @@
     },
     {
       "name": "ledger.attest",
-      "description": "Attest an event to the Kaizen OS ledger",
+      "description": "Attest an event to the Mobius Systems ledger",
       "input_schema": {
         "type": "object",
         "properties": {
@@ -110,7 +110,7 @@
   ],
   "auth": {
     "type": "bearer",
-    "description": "Kaizen OS API token"
+    "description": "Mobius Systems API token"
   },
   "server": {
     "command": "node",

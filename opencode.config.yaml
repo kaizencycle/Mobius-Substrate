@@ -2,7 +2,7 @@
 # Kaizen OS — OpenCode federation config
 
 project:
-  name: Kaizen-OS
+  name: Mobius-Systems
   repo: kaizencycle/Mobius-Systems
   language_hint:
     - typescript

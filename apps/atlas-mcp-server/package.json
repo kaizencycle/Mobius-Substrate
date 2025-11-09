@@ -1,7 +1,7 @@
 {
   "name": "@civic/atlas-mcp-server",
   "version": "1.0.0",
-  "description": "ATLAS Sentinel as MCP Agent for Kaizen OS",
+  "description": "ATLAS Sentinel as MCP Agent for Mobius Systems",
   "type": "module",
   "bin": {
     "atlas-mcp": "./dist/index.js"
