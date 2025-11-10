@@ -11,8 +11,8 @@
   </defs>
 
   <circle cx="15" cy="15" r="10" fill="url(#pulseZeus)"/>
-  <rect x="0" width="80" height="30" rx="4" fill="url(#zeusGrad)" />
-  <rect x="80" width="120" height="30" rx="4" fill="#111"/>
+  <rect x="0" y="0" width="80" height="30" rx="4" fill="url(#zeusGrad)" />
+  <rect x="80" y="0" width="120" height="30" rx="4" fill="#111"/>
   
   <text x="40" y="19" font-family="Arial" font-size="13" fill="#fff" text-anchor="middle">ZEUS</text>
   <text x="140" y="19" font-family="Arial" font-size="12" fill="#66CCFF" text-anchor="middle">Arbiter & Enforcement</text>
