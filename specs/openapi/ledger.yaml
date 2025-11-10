@@ -1,0 +1,59 @@
+openapi: 3.1.0
+info:
+  title: Mobius Ledger API
+  version: 0.1.0
+paths:
+  /healthz:
+    get:
+      summary: Health check
+      responses:
+        '200': { description: OK }
+  /integrity/attest:
+    post:
+      summary: Submit integrity attestation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Attestation'
+      responses:
+        '201': { description: Stored }
+  /integrity/attest/{id}:
+    get:
+      summary: Get attestation by id
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: OK }
+components:
+  schemas:
+    Attestation:
+      type: object
+      required: [ts, nonce, repo, commit, subscores, weights, mii_raw, mii_smooth, sig]
+      properties:
+        ts: { type: string, format: date-time }
+        nonce: { type: string }
+        repo: { type: string }
+        commit: { type: string }
+        subscores:
+          type: object
+          properties:
+            T: { type: number, minimum: 0, maximum: 1 }
+            M: { type: number, minimum: 0, maximum: 1 }
+            C: { type: number, minimum: 0, maximum: 1 }
+            S: { type: number, minimum: 0, maximum: 1 }
+        weights:
+          type: object
+          properties:
+            alpha: { type: number }
+            beta: { type: number }
+            gamma: { type: number }
+            delta: { type: number }
+            lambda: { type: number }
+        mii_raw: { type: number, minimum: 0, maximum: 1 }
+        mii_smooth: { type: number, minimum: 0, maximum: 1 }
+        sig: { type: string, description: "Ed25519 signature (base64)" }

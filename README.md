@@ -3,7 +3,9 @@
 **The world's first operating system built to pass the Kaizen Turing Test (KTT)**
 
 <!-- Mobius Core Badges -->
-[![CI](https://img.shields.io/badge/CI-passing-brightgreen?logo=githubactions)](https://github.com/kaizencycle/Mobius-Systems/actions)
+[![CI](https://github.com/kaizencycle/Mobius-Systems/actions/workflows/ci.yml/badge.svg)](https://github.com/kaizencycle/Mobius-Systems/actions/workflows/ci.yml)
+[![CodeQL](https://github.com/kaizencycle/Mobius-Systems/actions/workflows/codeql.yml/badge.svg)](https://github.com/kaizencycle/Mobius-Systems/actions/workflows/codeql.yml)
+[![OSSF Scorecard](https://img.shields.io/badge/OSSF-Scorecard-blue)](https://github.com/ossf/scorecard)
 [![License: AGPL-3.0](https://img.shields.io/badge/license-AGPL--3.0-blue)](FOUNDATION/LICENSES/LICENSE-Ethical-Addendum.md)
 [![Foundation](https://img.shields.io/badge/foundation-charter-8A2BE2)](FOUNDATION/CHARTER.md)
 [![Security Policy](https://img.shields.io/badge/security-policy-critical)](.github/SECURITY.md)
