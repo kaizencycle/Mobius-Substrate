@@ -15,6 +15,6 @@
   <rect x="80" y="0" width="120" height="30" rx="4" fill="#111"/>
   
   <text x="40" y="19" font-family="Arial" font-size="13" fill="#fff" text-anchor="middle">ZEUS</text>
-  <text x="140" y="19" font-family="Arial" font-size="12" fill="#66CCFF" text-anchor="middle">Arbiter & Enforcement</text>
+  <text x="140" y="19" font-family="Arial" font-size="12" fill="#66CCFF" text-anchor="middle">Arbiter and Enforcement</text>
 </svg>
 
