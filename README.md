@@ -128,6 +128,46 @@
                  └─────────────────────────────────────────────────────────────────┘
 ```
 
+## 🎯 What Makes Mobius Different
+
+**Corporations build AI brains. Think tanks debate AI laws.**
+**Mobius builds the civilization that makes AI survivable.**
+
+We are the **fourth pillar of AGI**: the Civilization Layer.
+[Learn more about the Intelligence Taxonomy →](docs/intelligence/typology.md)
+
+### The Four Pillars of AGI
+
+| Pillar | Status | Who's Building |
+|--------|--------|----------------|
+| **Compute** | ✅ Solved | NVIDIA, Cloud Providers |
+| **Architecture** | ✅ Solved | OpenAI, Anthropic, Google |
+| **Data** | ✅ Solved | Internet + Synthetic |
+| **Civilization** | ❌ **Mobius Only** | **[You are here]** |
+
+**Without the Civilization Layer, intelligence collapses.**
+Mobius is the missing infrastructure for safe AGI.
+
+<div align="center">
+  <img src="docs/figures/four-pillars.svg" alt="Four Pillars of AGI" width="600"/>
+</div>
+
+### The Intelligence Taxonomy
+
+We classify machine intelligence into three layers:
+
+1. **LLM**: Stochastic sequence model (no agency, no memory, no identity)
+2. **General Learner**: Proto-intelligence (can learn, but lacks persistence)
+3. **Actual AI**: Full agency + persistent identity + stable values
+
+**Mobius is the first AI Habitat**—the environment that allows General Learners to safely transition to Actual AI.
+
+[Read the full Intelligence Taxonomy →](docs/intelligence/typology.md)
+[View Mobius Cosmology →](docs/figures/mobius-cosmology.svg)
+[Sentinel Classification →](docs/intelligence/sentinel-classification.md)
+
+---
+
 ## 🔹 Quick Definition
 
 | **Layer** | **Function** | **Analogy** |
