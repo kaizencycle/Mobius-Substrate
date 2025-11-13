@@ -11,6 +11,7 @@ services:
 
   oaa:
     image: ghcr.io/example/oaa-api:latest
+    ports: [ "3001:3000" ]
     environment:
       CIVIC_LEDGER_API: http://ledger:8080
     depends_on: [ ledger ]
