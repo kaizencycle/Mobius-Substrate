@@ -119,7 +119,7 @@ router.get('/health', (req: Request, res: Response) => {
 });
 
 router.post('/query', async (req: Request, res: Response) => {
-  const { intent, mii: reportedGi, model, maxTokens }: UrielRequestBody = req.body || {};
+  const { intent, gi: reportedGi, model, maxTokens }: UrielRequestBody = req.body || {};
 
   if (!intent || typeof intent !== 'string' || intent.trim().length === 0) {
     return res.status(400).json({ error: 'intent is required' });
