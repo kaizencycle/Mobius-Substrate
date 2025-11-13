@@ -3,7 +3,7 @@
  * Generates cryptographic DeliberationProof artifacts
  */
 import { createHash } from 'crypto';
-import { DeliberationResponse, DeliberationProof } from '../types';
+import { DeliberationResponse, DeliberationProof, SentinelRole } from '../types';
 
 export class ProofGenerator {
   /**
@@ -22,7 +22,7 @@ export class ProofGenerator {
       deliberationId: session.id,
       proofType: 'DeliberationProof-v1',
       timestamp: new Date(),
-      participants: Array.from(new Set(allResponses.map(r => r.sentinel))),
+      participants: Array.from(new Set(allResponses.map(r => r.sentinel))) as SentinelRole[],
       rounds: session.rounds.length,
       consensus: {
         achieved: session.consensus.achieved,

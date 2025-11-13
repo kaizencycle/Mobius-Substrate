@@ -1,6 +1,41 @@
 import { Router, Request, Response } from 'express';
 import axios, { AxiosError } from 'axios';
-import { GICalculator, IntegrityChecks } from '@civic/integrity-core';
+
+// Local type definitions (until @civic/integrity-core is built)
+interface IntegrityChecks {
+  responseTime: number;
+  memoryUsage: number;
+  errorRate: number;
+  uptime: number;
+  throughput: number;
+  latency: number;
+  availability: number;
+}
+
+class GICalculator {
+  calculateGI(checks: IntegrityChecks): number {
+    // Simplified GI calculation
+    const responseTimeScore = Math.max(0, 1 - (checks.responseTime / 5000));
+    const memoryScore = Math.max(0, 1 - (checks.memoryUsage / 80));
+    const errorRateScore = Math.max(0, 1 - (checks.errorRate / 5));
+    const uptimeScore = Math.min(1, checks.uptime / 3600);
+    const throughputScore = Math.min(1, checks.throughput / 100);
+    const latencyScore = Math.max(0, 1 - (checks.latency / 5000));
+    const availabilityScore = checks.availability / 100;
+    
+    const gi = (
+      responseTimeScore * 0.15 +
+      memoryScore * 0.10 +
+      errorRateScore * 0.20 +
+      uptimeScore * 0.15 +
+      throughputScore * 0.10 +
+      latencyScore * 0.15 +
+      availabilityScore * 0.15
+    );
+    
+    return Math.max(0, Math.min(1, gi));
+  }
+}
 
 const router = Router();
 

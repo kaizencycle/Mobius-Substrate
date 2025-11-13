@@ -89,7 +89,7 @@ export class DeliberationEngine extends EventEmitter {
     const threshold = request.consensusThreshold || 0.75;
 
     // Determine active sentinels
-    const activeSentinels = request.requiredSentinels || [
+    const activeSentinels: SentinelRole[] = request.requiredSentinels || [
       SentinelRole.ATLAS,
       SentinelRole.AUREA
     ];

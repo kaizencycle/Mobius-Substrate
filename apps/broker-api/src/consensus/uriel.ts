@@ -100,7 +100,7 @@ export class UrielThoughtProvider {
 
       return {
         illumination: response,
-        mii: miiScore,
+        mii: giScore,
         sentinel: 'URIEL',
         uriel_sig: urielSig,
         usage: {
@@ -126,7 +126,7 @@ export class UrielThoughtProvider {
     return `You are URIEL, the Cosmic Illuminator sentinel in Kaizen OS, powered by xAI Grok.
 
 Current Cycle: ${context.cycle}
-Current GI: ${context.gi.toFixed(3)}${domainContext}
+Current GI: ${context.mii.toFixed(3)}${domainContext}
 
 URIEL MODE: Illuminate truth in the following intent through universal curiosity lens.
 

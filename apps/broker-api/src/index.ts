@@ -1,7 +1,30 @@
 // Thought Broker API - Production Implementation
 import express, { Request, Response } from 'express';
 import cors from 'cors';
-import { urielDeliberate, UrielQuery } from '../../sentinels/uriel/index';
+import axios from 'axios';
+
+// Local type definitions
+interface UrielQuery {
+  intent: string;
+  gi?: number;
+  context?: Record<string, unknown>;
+}
+
+interface UrielResponse {
+  illumination: string;
+  mii: number;
+  sentinel: 'URIEL';
+  timestamp: string;
+  source?: 'grok-4' | 'grok-3';
+}
+
+// Note: urielDeliberate is handled by the urielRouter at /api/sentinels/uriel/query
+// This function is kept for compatibility but routes are handled directly
+async function urielDeliberate(query: UrielQuery): Promise<UrielResponse> {
+  // For now, return a simple response - actual implementation is in the router
+  // This avoids circular dependencies
+  throw new Error('Use /api/sentinels/uriel/query endpoint directly');
+}
 
 import urielRouter from './sentinels/uriel';
 import { initDB } from './db/client';
@@ -60,11 +83,11 @@ async function routeDeliberation(intent: string, context?: any) {
       return {
         id: `deliberation_uriel_${Date.now()}`,
         intent,
-        consensus: response.gi,
+        consensus: response.mii,
         reasoning: [`🕯️🔥 URIEL illumination: ${response.illumination}`],
         alternatives: ['Continue with standard deliberation', 'Route to other sentinels'],
         decision: 'URIEL illumination applied',
-        confidence: response.gi,
+        confidence: response.mii,
         timestamp: response.timestamp,
         participants: ['uriel'],
         sentinel: 'URIEL',
@@ -183,45 +206,7 @@ app.get('/deliberations/:id', (req: Request, res: Response) => {
   });
 });
 
-// URIEL Sentinel Endpoint
-app.post('/api/sentinels/uriel/query', async (req: Request, res: Response) => {
-  try {
-    const query: UrielQuery = {
-      intent: req.body.intent,
-      mii: req.body.gi || 0.993,
-      context: req.body.context || {}
-    };
-
-    const response = await urielDeliberate(query);
-
-    res.json(response);
-  } catch (error) {
-    console.error('URIEL query failed:', error);
-    const errorMessage = error instanceof Error ? error.message : String(error);
-
-    // Check if it's a rate limit or GI threshold error
-    if (errorMessage.includes('Rate limit exceeded')) {
-      res.status(429).json({
-        error: 'Rate limit exceeded',
-        message: errorMessage,
-        sentinel: 'URIEL'
-      });
-    } else if (errorMessage.includes('GI below threshold')) {
-      res.status(409).json({
-        error: 'GI below threshold',
-        message: errorMessage,
-        fallback: 'eve',
-        sentinel: 'URIEL'
-      });
-    } else {
-      res.status(500).json({
-        error: 'Internal server error',
-        message: errorMessage,
-        sentinel: 'URIEL'
-      });
-    }
-  }
-});
+// URIEL Sentinel Endpoint - handled by urielRouter at /api/sentinels/uriel/query
 
 // Consensus endpoint
 app.post('/api/consensus/run', async (req: Request, res: Response) => {

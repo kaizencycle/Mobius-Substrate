@@ -15,8 +15,8 @@ import { DeliberationRequestSchema, APIResponse, WSEvent } from './types';
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 4005;
-const WS_PORT = process.env.WS_PORT || 4006;
+const PORT = Number(process.env.PORT ?? '4005');
+const WS_PORT = Number(process.env.WS_PORT ?? '4006');
 
 // Middleware
 app.use(helmet());
