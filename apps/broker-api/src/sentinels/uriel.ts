@@ -179,7 +179,7 @@ router.post('/query', async (req: Request, res: Response) => {
       // Log structured event
       console.log(JSON.stringify({
         event: 'sentinel_uriel',
-        mii: miiScore,
+        mii: giScore,
         latency_ms: durationMs,
         topic: 'unknown',
         ok: false,
@@ -203,7 +203,7 @@ router.post('/query', async (req: Request, res: Response) => {
     // Log structured event
     console.log(JSON.stringify({
       event: 'sentinel_uriel',
-      mii: miiScore,
+      mii: giScore,
       latency_ms: durationMs,
       topic,
       ok: true
@@ -212,7 +212,7 @@ router.post('/query', async (req: Request, res: Response) => {
     return res.json({
       sentinel: 'URIEL',
       illumination: content,
-      mii: miiScore,
+      mii: giScore,
       latencyMs: durationMs,
       model: completionModel
     });
