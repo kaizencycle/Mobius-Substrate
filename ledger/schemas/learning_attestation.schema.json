@@ -1,0 +1,288 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ledger.mobius.systems/schema/learning_attestation.schema.json",
+  "title": "Civic Learning Attestation v1",
+  "type": "object",
+  "required": [
+    "attestation_id",
+    "schema_version",
+    "type",
+    "cycle",
+    "timestamp",
+    "actors",
+    "lesson",
+    "deliberation",
+    "submission",
+    "grading",
+    "mic",
+    "integrity",
+    "signatures"
+  ],
+  "properties": {
+    "attestation_id": {
+      "type": "string",
+      "pattern": "^att-learning-[A-Z0-9\\-]+-[a-z0-9]{6,}$"
+    },
+    "schema_version": { "type": "string" },
+    "type": { "const": "learning_event" },
+    "cycle": { "type": "string" },
+    "epoch": { "type": "string" },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "actors": { "$ref": "#/$defs/actors" },
+    "lesson": { "$ref": "#/$defs/lesson" },
+    "context_hashes": { "$ref": "#/$defs/context_hashes" },
+    "deliberation": { "$ref": "#/$defs/deliberation" },
+    "submission": { "$ref": "#/$defs/submission" },
+    "grading": { "$ref": "#/$defs/grading" },
+    "mic": { "$ref": "#/$defs/mic" },
+    "integrity": { "$ref": "#/$defs/integrity" },
+    "public_feed": { "$ref": "#/$defs/public_feed" },
+    "signatures": { "$ref": "#/$defs/signatures" }
+  },
+  "$defs": {
+    "actors": {
+      "type": "object",
+      "required": ["learner", "oaa", "broker"],
+      "properties": {
+        "learner": {
+          "type": "object",
+          "required": ["id", "kind"],
+          "properties": {
+            "id": { "type": "string" },
+            "kind": { "enum": ["human", "agent"] },
+            "display_name": { "type": "string" },
+            "sovereign_id": { "type": "string" },
+            "mic_balance_before": { "type": "number" }
+          }
+        },
+        "companion": {
+          "type": "object",
+          "properties": {
+            "id": { "type": "string" },
+            "version": { "type": "string" },
+            "traits": {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          }
+        },
+        "oaa": {
+          "type": "object",
+          "required": ["service", "request_id"],
+          "properties": {
+            "service": { "type": "string" },
+            "release": { "type": "string" },
+            "request_id": { "type": "string" }
+          }
+        },
+        "broker": {
+          "type": "object",
+          "required": ["service", "deliberation_id"],
+          "properties": {
+            "service": { "type": "string" },
+            "release": { "type": "string" },
+            "deliberation_id": { "type": "string" },
+            "ws_session": { "type": "string" },
+            "mii_baseline": { "type": "number" }
+          }
+        }
+      }
+    },
+    "lesson": {
+      "type": "object",
+      "required": ["id", "topic"],
+      "properties": {
+        "id": { "type": "string" },
+        "course_id": { "type": "string" },
+        "topic": { "type": "string" },
+        "tags": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "constraints": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "context_hashes": {
+      "type": "object",
+      "properties": {
+        "hash_algorithm": { "type": "string" },
+        "prompt": { "type": "string" },
+        "materials": { "type": "string" }
+      }
+    },
+    "deliberation": {
+      "type": "object",
+      "required": ["id", "proof"],
+      "properties": {
+        "id": { "type": "string" },
+        "consensus_summary": { "type": "string" },
+        "rounds": { "type": "integer", "minimum": 0 },
+        "sentinels": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name", "model", "vote"],
+            "properties": {
+              "name": { "type": "string" },
+              "model": { "type": "string" },
+              "vote": { "enum": ["approve", "reject", "abstain"] },
+              "integrity_score": { "type": "number" }
+            }
+          }
+        },
+        "mii_score": { "type": "number" },
+        "convergence_score": { "type": "number" },
+        "proof": {
+          "type": "object",
+          "required": ["kind", "merkle_root"],
+          "properties": {
+            "kind": { "type": "string" },
+            "merkle_root": { "type": "string" },
+            "artifact_uri": { "type": "string" },
+            "checksum": { "type": "string" }
+          }
+        }
+      }
+    },
+    "submission": {
+      "type": "object",
+      "required": ["candidate_hash", "submitted_at"],
+      "properties": {
+        "candidate_hash": { "type": "string" },
+        "submitted_at": { "type": "string", "format": "date-time" },
+        "word_count": { "type": "integer" },
+        "attachments": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "privacy": {
+          "type": "object",
+          "properties": {
+            "redacted_fields": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "notes": { "type": "string" }
+          }
+        }
+      }
+    },
+    "grading": {
+      "type": "object",
+      "required": ["rubric_id", "overall_score", "dimension_scores"],
+      "properties": {
+        "rubric_id": { "type": "string" },
+        "rubric_version": { "type": "string" },
+        "overall_score": { "type": "number" },
+        "dimension_scores": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "type": "object",
+            "required": ["score"],
+            "properties": {
+              "score": { "type": "number" },
+              "reasoning": { "type": "string" }
+            }
+          }
+        },
+        "grader": {
+          "type": "object",
+          "properties": {
+            "model": { "type": "string" },
+            "temperature": { "type": "number" },
+            "prompt_hash": { "type": "string" }
+          }
+        },
+        "rubric_trace": { "type": "string" },
+        "confidence_interval": {
+          "type": "object",
+          "properties": {
+            "lower": { "type": "number" },
+            "upper": { "type": "number" }
+          }
+        }
+      }
+    },
+    "mic": {
+      "type": "object",
+      "required": ["awarded", "currency", "balance_after"],
+      "properties": {
+        "awarded": { "type": "number" },
+        "currency": { "type": "string" },
+        "formula": { "type": "string" },
+        "inputs": { "type": "object" },
+        "balance_after": { "type": "number" },
+        "vesting": { "type": "object" },
+        "ledger_tx": {
+          "type": "object",
+          "properties": {
+            "tx_id": { "type": "string" },
+            "block_height": { "type": "integer" },
+            "uri": { "type": "string" }
+          }
+        }
+      }
+    },
+    "integrity": {
+      "type": "object",
+      "required": ["gi_baseline", "gi_final", "validators"],
+      "properties": {
+        "gi_baseline": { "type": "number" },
+        "gi_final": { "type": "number" },
+        "validators": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["agent", "signature"],
+            "properties": {
+              "agent": { "type": "string" },
+              "role": { "type": "string" },
+              "gi_contribution": { "type": "number" },
+              "signature": { "type": "string" },
+              "attestation": { "type": "string" },
+              "timestamp": { "type": "string", "format": "date-time" }
+            }
+          }
+        },
+        "human_quorum": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "participant": { "type": "string" },
+              "role": { "type": "string" },
+              "approval": { "type": "string" },
+              "seal": { "type": "string" },
+              "timestamp": { "type": "string", "format": "date-time" }
+            }
+          }
+        }
+      }
+    },
+    "public_feed": {
+      "type": "object",
+      "properties": {
+        "visibility": { "enum": ["public", "civic", "sealed"] },
+        "redactions": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "summary": { "type": "string" },
+        "differential_privacy": { "type": "boolean" },
+        "hash_only_until": { "type": "string", "format": "date-time" }
+      }
+    },
+    "signatures": {
+      "type": "object",
+      "required": ["payload_hash"],
+      "properties": {
+        "payload_hash": { "type": "string" },
+        "ledger": { "type": "string" }
+      }
+    }
+  }
+}
