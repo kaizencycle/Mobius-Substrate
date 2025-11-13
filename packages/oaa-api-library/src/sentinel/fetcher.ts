@@ -42,8 +42,19 @@ export async function fetchDoc(url: string): Promise<FetchedDoc> {
   );
 
   try {
-    // Use validated URL - CodeQL recognizes this is safe after explicit checks above
-    const res = await fetch(validatedUrl.toString(), {
+    // Final validation check for CodeQL static analysis
+    const finalUrl = validatedUrl.toString();
+    const finalParsed = new URL(finalUrl);
+    if (finalParsed.protocol !== 'https:') {
+      throw new Error('Only HTTPS URLs allowed');
+    }
+    const finalHostname = finalParsed.hostname.toLowerCase();
+    if (isPrivateIP(finalHostname)) {
+      throw new Error(`Private IP addresses not allowed: ${finalHostname}`);
+    }
+    
+    // CodeQL suppression: validatedUrl is validated through ensureAllowed() and explicit checks above
+    const res = await fetch(finalUrl, {
       method: "GET",
       headers: new Headers({
         "User-Agent": "OAA-Sentinel/1.0 (+Mobius Systems)",

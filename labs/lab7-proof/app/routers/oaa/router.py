@@ -71,6 +71,15 @@ async def ingest_snapshot(req: IngestRequest, x_admin_token: Optional[str] = Hea
     elif req.url:
         # Validate URL to prevent SSRF
         validated_url = validate_url(str(req.url))
+        # Additional explicit validation for static analysis
+        parsed = urlparse(validated_url)
+        if parsed.scheme != 'https':
+            raise HTTPException(status_code=400, detail="Only HTTPS URLs allowed")
+        hostname = parsed.hostname.lower() if parsed.hostname else ''
+        private_patterns = [r'^localhost$', r'^127\.', r'^192\.168\.', r'^10\.', r'^172\.(1[6-9]|2[0-9]|3[0-1])\.', r'^169\.254\.', r'^0\.', r'^::1$']
+        for pattern in private_patterns:
+            if re.match(pattern, hostname):
+                raise HTTPException(status_code=400, detail=f"Private IP addresses not allowed: {hostname}")
         async with httpx.AsyncClient(timeout=30) as client:
             r = await client.get(validated_url)
             r.raise_for_status()

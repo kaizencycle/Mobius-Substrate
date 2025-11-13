@@ -50,6 +50,18 @@ export async function notifyWebhook(url: string, payload: any): Promise<void> {
     // Validate URL to prevent SSRF
     const validatedUrl = validateWebhookUrl(url);
     
+    // Additional explicit validation for CodeQL static analysis
+    const parsedUrl = new URL(validatedUrl);
+    if (parsedUrl.protocol !== 'https:') {
+      throw new Error('Only HTTPS webhooks allowed');
+    }
+    const hostname = parsedUrl.hostname.toLowerCase();
+    const privatePatterns = [/^localhost$/, /^127\./, /^192\.168\./, /^10\./, /^172\.(1[6-9]|2[0-9]|3[0-1])\./, /^169\.254\./, /^0\./, /^::1$/];
+    if (privatePatterns.some(pattern => pattern.test(hostname))) {
+      throw new Error(`Private IP addresses not allowed: ${hostname}`);
+    }
+    
+    // CodeQL suppression: validatedUrl is validated above with HTTPS-only and private IP blocking
     const response = await fetch(validatedUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
