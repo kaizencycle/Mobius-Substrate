@@ -1,12 +1,12 @@
 /**
  * ZENITH Thought Provider - Kaizen OS Integration
- * Cycle C-114: 4-companion consensus for Thought Broker
+ * Cycle C-132: 4-companion consensus for Thought Broker
  */
 
 interface ZenithContext {
   tier: 'critical' | 'high' | 'standard' | 'research';
   chamber: string; // Kaizen OS chamber context
-  cycle: string;   // Current cycle (e.g. C-114)
+  cycle: string;   // Current cycle (e.g. C-132)
 }
 
 interface ZenithDeliberationResult {
@@ -84,7 +84,7 @@ export class ZenithThoughtProvider {
    */
   private async loadChamberContext(chamber: string): Promise<string> {
     // In production, fetch from .civic/atlas.manifest.json
-    return `Chamber: ${chamber} | Integrity: Active | GI: 0.991 | Cycle: C-114`;
+    return `Chamber: ${chamber} | Integrity: Active | GI: 0.991 | Cycle: C-132`;
   }
 
   /**

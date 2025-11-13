@@ -5,7 +5,7 @@
 **Port**: 4005 (REST) | 4006 (WebSocket)
 
 > *"The Broker is not a service. The Broker is where the system thinks."*  
-> — ATLAS, C-131
+> — ATLAS, C-132
 
 ---
 

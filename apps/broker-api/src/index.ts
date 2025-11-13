@@ -251,7 +251,7 @@ app.post('/api/consensus/run', async (req: Request, res: Response) => {
 app.get('/sync/get_cycle_status', (_req: Request, res: Response) => {
   // Return cycle status (mock for now, integrate with actual cycle tracking)
   res.json({
-    cycle_id: 'C-122',
+    cycle_id: 'C-132',
     date_local: new Date().toISOString(),
     gi_baseline: parseFloat(process.env.GI_MIN || '0.95'),
     next_epoch_eta_sec: 86400 // 24 hours
