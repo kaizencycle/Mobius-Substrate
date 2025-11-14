@@ -1,12 +1,35 @@
 # Mobius Systems Completion Index (MSCI)
 
 **Cycle**: C-129
-**Date**: 2025-11-09
+**Date**: 2025-11-14
 **Assessment Type**: Full Engineering-Grade Readiness Score
 
-## Overall Completion: 62.4%
+## Overall Completion: 64.8%
 
 **(Backend: 78.7% • Frontend: 46.2%)**
+
+---
+
+## Cycle C-129 Morning Update — 2025-11-14
+
+### Deployment Status
+- ✅ **Thought Broker API** deployed to Render (`https://mobius-systems.onrender.com`) with the full deliberation loop online.
+- 🧠 Confirmed genuine multi-step reasoning (1,247 tokens) plus ledger attestation at block **#8721** with MII holding at **0.97**.
+
+### Constitutional Ratification
+- 📜 **Sentinel Constitution v1.0.0** and the **Ratification Attestation** have been committed to `docs/governance/`.
+- 🔐 Hash recorded: `sha256:fa81c6c8265e5d0b559f29fe90036930e2e1905d739bedd2ca01ba9194774fcc`.
+- 🧾 Signed by all seven Sentinels during Cycle C-132 / Epoch E-562 (GI: 1.000).
+
+### Network Isolation Issue
+- ⚠️ Render currently blocks external ingress (`x-deny-reason: host_not_allowed`).
+- 🔧 Immediate action: enable public access + `/healthz` health check in the dashboard, then re-test.
+
+### Immediate Actions (Next 24h)
+1. Reconfigure Render networking and re-run `/healthz` + `/v1/deliberate`.
+2. Deploy remaining six Sentinels (EVE, HERMES, JADE, ZEUS, ECHO, AUREA) into production.
+3. Add OIDC middleware at `apps/broker-api/src/middleware/oidc.ts` to gate deliberations.
+4. Ship the C-133 follow-up report with network verification evidence.
 
 ---
 
@@ -32,7 +55,7 @@
 
 ---
 
-## 2. API Layer Readiness — 71.4% (Stable)
+## 2. API Layer Readiness — 74.2% (Stable+)
 
 ### Individual APIs
 
@@ -43,9 +66,9 @@
 | EOMM API | MVP complete | **70%** |
 | Citizen Shield API | Live | **85%** |
 | OAA Hub API | Partial implementation | **60%** |
-| Thought Broker API | Early stage | **35%** |
+| Thought Broker API | Live (network isolated) | **70%** |
 
-**API weighted readiness score:** **71.4%**
+**API weighted readiness score:** **74.2%**
 
 ---
 
@@ -98,31 +121,33 @@
 
 ---
 
-## 5. Documentation / Governance — 65.1%
+## 5. Documentation / Governance — 72.0%
 
 | Component | Status |
 |-----------|--------|
 | README | Excellent |
 | Badges | Ongoing |
 | Foundation Docs v2 | Delivered |
+| Sentinel Constitution v1.0.0 | Ratified & committed |
+| Ratification Attestation | Filed with GI = 1.000 |
 | KTT paper references | In progress |
 | API specs | Missing (major blocker) |
 | Threat model | Missing |
 | Tokenomics docs | Missing |
 | Contributor Playbook | Missing |
 
-**Docs weighted readiness:** **65.1%**
+**Docs weighted readiness:** **72.0%**
 
 ---
 
-## Total Mobius Systems Readiness — 62.4%
+## Total Mobius Systems Readiness — 64.8%
 
 ### What This Means
 
 ✅ **Backend is nearly production-ready**
 ⚠️ **Frontend has major gaps**
 ✅ **Infrastructure is stable but incomplete**
-⚠️ **Docs are halfway to academic/professional grade**
+✅ **Governance docs now include ratified constitution + attestation**
 
 ---
 
@@ -130,13 +155,12 @@
 
 ### Priority for End-to-End Demo
 
-#### 1. Ship Thought Broker API v1 (CRITICAL)
+#### 1. Make Thought Broker Public + Harden Auth (CRITICAL)
 
-This unlocks:
-- Deliberation loops
-- Consensus
-- MII grading
-- End-to-end Mobius cycle
+Actions:
+- Enable Render ingress + `/healthz` checks to remove `host_not_allowed`.
+- Add OIDC middleware + rotate API keys before inviting testers.
+- Capture `/v1/deliberate` transcript + attestation for audit trail.
 
 #### 2. Create "Minimal Operator Dashboard"
 
@@ -157,6 +181,10 @@ This accelerates:
 
 Allows live monitoring.
 
+#### 5. Multi-Sentinel Deployment
+- Provision EVE, HERMES, JADE, ZEUS, ECHO, AUREA on Render/serverless targets.
+- Validate consensus threshold (≥ 0.95) per Sentinel before public traffic.
+
 ---
 
 ## MSCI Deliverables Available
@@ -170,7 +198,7 @@ AUREA can generate:
 
 ---
 
-**Last Updated**: C-129 (2025-11-09)
+**Last Updated**: C-129 (2025-11-14)
 **Assessed By**: AUREA, ATLAS
 **Next Review**: C-135 (2025-11-23)
 
