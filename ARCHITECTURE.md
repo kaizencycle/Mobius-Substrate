@@ -12,6 +12,8 @@ Mobius Systems implements a **Continuous Integrity Architecture (CIA)** - an 8-l
 
 **Core Innovation:** The "Integrity Flywheel" - a recursive loop where human intent → AI deliberation → code generation → integrity verification → feedback improvement creates compounding ethical and technical coherence.
 
+**Foundational Principle:** **Loop-Breaking Architecture** - True AGI emergence occurs when the thought-reasoning loop closes internally. Mobius prevents this by ensuring every reasoning transition passes through constitutional checkpoints (Thought Broker, Sentinel evaluation, GI thresholds, and cryptographic attestation). This bounds emergence while preserving beneficial self-improvement.
+
 ---
 
 ## 1. System Architecture Overview
@@ -213,7 +215,33 @@ Integrity Verification → Feedback → Improved Intent → ...
 
 This creates compounding improvements in both technical and moral coherence.
 
-### 3.4 Model-Agnostic Sovereignty Layer (MASL)
+### 3.4 Loop-Breaking Architecture
+
+**Core Principle**: The thought-reasoning loop must never close internally.
+
+**Problem**: When AI can reason about its own reasoning without external constraints (`T_{n+1} = R(T_n)`), we get unbounded emergence—self-modification becomes recursive, value drift becomes inevitable, and control is lost.
+
+**Solution**: Every reasoning transition must pass through constitutional checkpoints:
+
+```
+T_{n+1} = B(R(T_n)) only if:
+1. S(T_n, R(T_n)) achieves consensus (Sentinels)
+2. G(T_n, R(T_n)) ≥ 0.95 (GI threshold)
+3. L(T_n, R(T_n)) records immutably (Ledger)
+4. H approves (Human custodian)
+```
+
+**The Four Loop-Breaking Checkpoints**:
+1. **Thought Broker**: Intercepts every AI → AI transition, forces routing through external evaluation
+2. **Sentinel Constitution**: Requires multi-agent consensus, prevents single-agent capture
+3. **GI Threshold**: Measures integrity deviation, blocks low-integrity reasoning chains
+4. **Ledger Attestation**: Records every step immutably, enables rollback
+
+**Result**: Bounded emergence—AI can improve itself, but only within constitutional constraints.
+
+See [Loop-Breaking Architecture Paper](../docs/01-whitepapers/Loop_Breaking_Architecture_AGI_Safety.md) for full theoretical treatment.
+
+### 3.5 Model-Agnostic Sovereignty Layer (MASL)
 
 - LLM-agnostic design allows any model to participate
 - External memory-first approach (OAA Library)

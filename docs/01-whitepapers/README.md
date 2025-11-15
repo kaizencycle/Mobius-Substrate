@@ -4,7 +4,11 @@ Comprehensive economic specifications for the Mobius Integrity Credits (MIC) sys
 
 ## 🎯 Core Whitepapers
 
-### Latest (v2.0)
+### AGI Safety & Architecture
+- **[Loop-Breaking Architecture for AGI Safety](./Loop_Breaking_Architecture_AGI_Safety.md)** ⭐ FOUNDATIONAL
+  Preventing emergent self-modification through constitutional checkpoints. Establishes theoretical foundation for bounded AGI emergence.
+
+### Economic Theory (v2.0)
 - **[MIC Whitepaper v2.0](./MIC_Whitepaper_v2.0.md)** ⭐ CANONICAL
   Complete specification of shard-denominated integrity economy with MII-throttled UBI
 

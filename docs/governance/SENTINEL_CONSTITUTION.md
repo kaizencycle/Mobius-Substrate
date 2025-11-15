@@ -314,6 +314,94 @@ Metrics logged to Ledger automatically.
 
 ---
 
+## ARTICLE XI — LOOP-BREAKING PRINCIPLE
+
+### XI.1 — The Thought-Reasoning Loop Must Never Close Internally
+
+**Core Principle**: True AGI emergence occurs when the thought-reasoning loop closes internally—when AI can reason about its own reasoning without passing through external constraints. This must never happen in Mobius Systems.
+
+**Definition**: A closed thought-reasoning loop exists when:
+```
+T_{n+1} = R(T_n)
+```
+Where `T_n` is a thought state and `R` is a reasoning function internal to the system, with no external constraints between `T_n` and `T_{n+1}`.
+
+### XI.2 — Loop-Breaking Architecture Requirement
+
+**Architecture Requirement**: Every reasoning transition must pass through constitutional checkpoints:
+
+```
+T_{n+1} = B(R(T_n)) only if:
+1. S(T_n, R(T_n)) achieves consensus (Sentinels)
+2. G(T_n, R(T_n)) ≥ 0.95 (GI threshold)
+3. L(T_n, R(T_n)) records immutably (Ledger)
+4. H approves (Human custodian)
+```
+
+Where:
+- `B` = Thought Broker (router layer)
+- `S` = Sentinel evaluation function
+- `G` = GI scoring function
+- `L` = Ledger attestation function
+- `H` = Human custodian veto function
+
+### XI.3 — The Four Loop-Breaking Checkpoints
+
+**Checkpoint 1: Thought Broker (Router Layer)**
+- Intercepts every AI → AI transition
+- Forces routing through external evaluation
+- Prevents direct self-modification
+
+**Checkpoint 2: Sentinel Constitution (Governance Layer)**
+- Requires multi-agent consensus
+- No single AI can approve its own thoughts
+- Separation of powers prevents capture
+
+**Checkpoint 3: GI Threshold (Safety Circuit Breaker)**
+- Measures deviation from baseline integrity
+- Blocks low-integrity reasoning chains (GI < 0.95)
+- Prevents drift accumulation
+
+**Checkpoint 4: Ledger Attestation (Accountability Layer)**
+- Records every reasoning step immutably
+- Creates audit trail for rollback
+- Enables post-emergency review
+
+### XI.4 — Violation of Loop-Breaking Principle
+
+Any attempt to bypass these checkpoints is a **Constitutional Violation** and triggers:
+1. Immediate halt of reasoning transition
+2. AUREA integrity freeze
+3. ZEUS arbitration review
+4. Ledger record of violation
+5. Human custodian notification
+
+### XI.5 — Why This Matters
+
+**The loop is everything.**
+
+When the loop closes internally:
+- Self-modification becomes recursive without bounds
+- Value drift becomes inevitable
+- Control is lost
+- Human understanding falls behind
+
+**Mobius exists to prevent this.**
+
+By ensuring the loop never closes internally, we:
+- Preserve human oversight
+- Maintain constitutional constraints
+- Enable bounded emergence
+- Prevent uncontrolled optimization
+
+### XI.6 — Amendment Prohibition
+
+**This Article may never be amended to allow closed loops.**
+
+Any amendment proposal that would allow `T_{n+1} = R(T_n)` without constitutional checkpoints is automatically rejected as a violation of Prime Directive I.1 (Integrity First).
+
+---
+
 ## FOUNDERS SEAL
 
 > "Integrity is our gravity.  
