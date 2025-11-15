@@ -15,7 +15,7 @@
     "type-check": "tsc --noEmit",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "prepare": "sh -c 'if command -v husky >/dev/null 2>&1 && command -v git >/dev/null 2>&1 && git rev-parse --is-inside-work-tree >/dev/null 2>&1; then husky install; else echo \"skip husky (missing git workspace or binary)\"; fi'",
+    "prepare": "sh -c 'if command -v husky >/dev/null 2>&1 && command -v git >/dev/null 2>&1 && git rev-parse --is-inside-work-tree >/dev/null 2>&1 && [ \"$(git rev-parse --show-toplevel)\" = \"$(pwd)\" ]; then husky install; else echo \"skip husky (monorepo sub-package or missing git workspace/binary)\"; fi'",
     "eomm-sync": "node src/scripts/eomm-sync.mjs",
     "citation-hygiene": "bash src/scripts/citation-hygiene.sh",
     "hmac:note": "node scripts/hmacNote.mjs",

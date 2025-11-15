@@ -113,18 +113,27 @@ export async function notifyWebhook(url: string, payload: any): Promise<void> {
     return;
   }
 
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 5000);
+
   try {
     const response = await fetch(safeUrl.toString(), {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
-      timeout: 5000,
+      signal: controller.signal,
     });
 
     if (!response.ok) {
       console.error(`Webhook notification failed: ${response.status}`);
     }
   } catch (error) {
-    console.error('Webhook notification error:', error);
+    if (error instanceof Error && error.name === 'AbortError') {
+      console.error('Webhook notification timeout after 5 seconds');
+    } else {
+      console.error('Webhook notification error:', error);
+    }
+  } finally {
+    clearTimeout(timeout);
   }
 }
