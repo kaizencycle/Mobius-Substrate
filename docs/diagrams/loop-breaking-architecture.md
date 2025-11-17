@@ -316,7 +316,7 @@ Mobius ensures the loop never closes internally by:
 ## References
 
 - [Loop-Breaking Architecture Paper](../01-whitepapers/Loop_Breaking_Architecture_AGI_Safety.md)
-- [Sentinel Constitution](../governance/SENTINEL_CONSTITUTION.md) - Article XI
+- [Sentinel Constitution](../02-governance/SENTINEL_CONSTITUTION.md) - Article XI
 - [System Architecture](../../ARCHITECTURE.md) - Section 3.4
 
 ---

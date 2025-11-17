@@ -93,7 +93,7 @@ Each service exposes `/healthz`, `/readyz`, and `/integrity` endpoints with sign
 # 7. References
 
 - Cognitive Cycle Theory (`docs/theory/cognitive-cycle-theory.md`).  
-- MII Specification (`docs/specs/mii_spec_v0.1.md`).  
+- MII Specification (`docs/06-specifications/specs/mii_spec_v0.1.md`).  
 - Threat Model (`docs/security/threat_model_v0.1.md`).  
 - Testing Strategy (`TESTING.md`).  
 - Security Policy (`SECURITY.md`).

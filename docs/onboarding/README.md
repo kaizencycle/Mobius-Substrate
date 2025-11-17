@@ -23,7 +23,7 @@ For the constitutional framework and technical specifications, see:
 
 - **Constitutional Charter:** `../constitution/custos-charter.md`
 - **GI Formula:** `../ledger/gi-formula.md`
-- **Architecture:** `../architecture/octave.yaml`
+- **Architecture:** `../03-architecture/octave.yaml`
 
 ## Quick Start
 

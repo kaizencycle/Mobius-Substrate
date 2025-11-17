@@ -132,7 +132,7 @@ We will introduce **URIEL** as a sixth sentinel with xAI Grok integration:
 
 6. **Documentation**: 
    - `docs/companions/uriel.md` - Complete sentinel guide
-   - `docs/architecture/overview.md` - Updated sentinel list
+   - `docs/03-architecture/technical/overview.md` - Updated sentinel list
    - `docs/INDEX.md` - Added URIEL to agent profiles
 
 ### API Endpoints

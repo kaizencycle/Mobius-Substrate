@@ -243,7 +243,7 @@ When the system reaches this threshold:
 ## 📚 Related Documents
 
 - [Kaizen Manifest](../kaizen_manifest.yaml)
-- [Architecture Overview](../architecture/overview.md)
+- [Architecture Overview](../03-architecture/overview.md)
 - [Triad of Healing](../manifesto/triad_of_healing.md)
 - [GI Formula](../ledger/gi-formula.md)
 

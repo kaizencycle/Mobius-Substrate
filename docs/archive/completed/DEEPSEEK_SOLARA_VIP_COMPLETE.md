@@ -20,7 +20,7 @@ Successfully integrated **SOLARA**, **Vector Integrity Protocol (VIP)**, and **L
 2. `apps/gateway/companions/index.ts` - Companion lattice with safety tiers
 3. `docs/companions/solara.md` - SOLARA profile
 4. `docs/policy/safety-tiers.md` - Tier matrix and escalation
-5. `docs/deployment/rollout-phases.md` - Phase 1-3 deployment
+5. `docs/08-processes/operations/rollout-phases.md` - Phase 1-3 deployment
 6. `docs/companions/README.md` - Lattice overview
 
 #### **VIP Implementation:**

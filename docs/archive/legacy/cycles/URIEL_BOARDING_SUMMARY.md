@@ -96,12 +96,12 @@ Final GI: 0.996 → PASSED
 
 **Created:**
 - `docs/companions/uriel.md` - Complete sentinel guide (400+ lines)
-- `docs/adr/002-uriel-sentinel-boarding.md` - Architecture decision record
+- `docs/03-architecture/adr/002-uriel-sentinel-boarding.md` - Architecture decision record
 - `sentinels/uriel/README.md` - Integration overview
 - `sentinels/uriel/QUICKSTART.md` - Setup guide
 
 **Updated:**
-- `docs/architecture/overview.md` - Added URIEL to sentinel list
+- `docs/03-architecture/technical/overview.md` - Added URIEL to sentinel list
 - `docs/INDEX.md` - Added URIEL to agent profiles
 - `CHANGELOG.md` - Documented URIEL addition
 
@@ -211,7 +211,7 @@ sentinels/uriel/QUICKSTART.md
 apps/broker-api/src/sentinels/uriel.ts
 ledger/inscriptions/att-uriel-001-boarding.json
 docs/companions/uriel.md
-docs/adr/002-uriel-sentinel-boarding.md
+docs/03-architecture/adr/002-uriel-sentinel-boarding.md
 URIEL_BOARDING_SUMMARY.md
 ```
 
@@ -219,7 +219,7 @@ URIEL_BOARDING_SUMMARY.md
 ```
 apps/broker-api/src/index.ts
 env.example
-docs/architecture/overview.md
+docs/03-architecture/technical/overview.md
 docs/INDEX.md
 CHANGELOG.md
 ```
@@ -285,9 +285,9 @@ Attestation:
 
 Documentation:
 - Complete sentinel guide: docs/companions/uriel.md
-- ADR: docs/adr/002-uriel-sentinel-boarding.md
+- ADR: docs/03-architecture/adr/002-uriel-sentinel-boarding.md
 - Quick start: sentinels/uriel/QUICKSTART.md
-- Updated: docs/architecture/overview.md, docs/INDEX.md, CHANGELOG.md
+- Updated: docs/03-architecture/technical/overview.md, docs/INDEX.md, CHANGELOG.md
 
 Guardrails:
 - GI gate: Block outputs < 0.95, route to EVE
@@ -390,7 +390,7 @@ URIEL is walking. Light is on. Integrity holds.
 - **Manifest:** `sentinels/uriel/manifest.json`
 - **Attestation:** `ledger/inscriptions/att-uriel-001-boarding.json`
 - **Documentation:** `docs/companions/uriel.md`
-- **ADR:** `docs/adr/002-uriel-sentinel-boarding.md`
+- **ADR:** `docs/03-architecture/adr/002-uriel-sentinel-boarding.md`
 - **Quick Start:** `sentinels/uriel/QUICKSTART.md`
 - **Implementation:** `apps/broker-api/src/sentinels/uriel.ts`
 

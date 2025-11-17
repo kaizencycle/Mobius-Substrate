@@ -2,7 +2,7 @@
 
 Purpose: Security, privacy, DID identity, and network defense.
 
-Spec: See `docs/architecture/Kaizen_OS_Complete_Lab_Architecture.md` (Lab 6 section).
+Spec: See `docs/03-architecture/technical/Kaizen_OS_Complete_Lab_Architecture.md` (Lab 6 section).
 
 ## Components
 
@@ -28,7 +28,7 @@ Multi-agent consensus validation library for requiring sentinel approval on high
 See `shared/delibproof/README.md` for details.
 
 ### Incident Response
-**Location**: `docs/runbooks/incident_response_citizen_shield.md`
+**Location**: `docs/08-processes/runbooks/incident_response_citizen_shield.md`
 
 Comprehensive incident response playbook for model/browser injection attacks and security incidents.
 

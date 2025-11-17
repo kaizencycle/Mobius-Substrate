@@ -2,7 +2,7 @@
 
 **Purpose:** Multi-LLM orchestration with DelibProof consensus - orchestrates AI deliberation across multiple providers to ensure integrity, agreement, and wisdom through diversity.
 
-**Spec:** See `docs/architecture/Kaizen_OS_Complete_Lab_Architecture.md` (Lab 2 section)
+**Spec:** See `docs/03-architecture/technical/Kaizen_OS_Complete_Lab_Architecture.md` (Lab 2 section)
 
 ---
 
@@ -492,7 +492,7 @@ curl https://broker.kaizen.os/api/sr/latest
 - **Codex Agentic:** `packages/codex-agentic/README.md`
 - **Broker API:** `apps/broker-api/README.md`
 - **Uriel Sentinel:** `docs/companions/uriel.md`
-- **Complete Architecture:** `docs/architecture/Kaizen_OS_Complete_Lab_Architecture.md`
+- **Complete Architecture:** `docs/03-architecture/technical/Kaizen_OS_Complete_Lab_Architecture.md`
 
 ---
 

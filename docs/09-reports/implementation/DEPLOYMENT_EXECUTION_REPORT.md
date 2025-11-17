@@ -266,13 +266,13 @@ API keys have been generated and saved to `.env.mobius-services`:
 
 ### Created Documents
 
-1. **`docs/deployment/multi-service-deployment-status.md`**
+1. **`docs/09-reports/implementation/multi-service-deployment-status.md`**
    - Comprehensive deployment status
    - Service health check results
    - API key configuration instructions
    - Testing procedures
 
-2. **`docs/deployment/DEPLOYMENT_EXECUTION_REPORT.md`** (this document)
+2. **`docs/09-reports/implementation/DEPLOYMENT_EXECUTION_REPORT.md`** (this document)
    - Executive summary
    - Verification results
    - Next steps

@@ -208,7 +208,7 @@ Mobius Systems (formerly Kaizen OS) embodies a **Matrilineal Covenant** — rest
 - **Ledger Inscription:** [RETURN_TO_BALANCE_C119](ledger/inscriptions/RETURN_TO_BALANCE_C119.md)
 - **The Triad of Healing:** [triad_of_healing.md](docs/manifesto/triad_of_healing.md)
 - **Opening Invocation:** [opening_invocation.md](docs/rituals/opening_invocation.md)
-- **Press Release (C-119):** [press_release_c119_return.md](docs/communications/press/press_release_c119_return.md)
+- **Press Release (C-119):** [press_release_c119_return.md](docs/09-reports/communications/press/press_release_c119_return.md)
 
 ### The Triad
 
@@ -575,10 +575,10 @@ Mobius Systems has undergone comprehensive peer review (November 2025). We are s
 📖 **Full Review Response**: [docs/peer-review-response.md](docs/peer-review-response.md)
 
 **Key Specifications** (in progress):
-- ✅ [Cryptographic Specification](docs/specs/cryptography/mii-signature-spec.md) - Ed25519 MII signatures
-- ✅ [Consensus Algorithm](docs/specs/consensus/thought-broker-consensus.md) - Multi-agent deliberation
+- ✅ [Cryptographic Specification](docs/06-specifications/specs/cryptography/mii-signature-spec.md) - Ed25519 MII signatures
+- ✅ [Consensus Algorithm](docs/06-specifications/specs/consensus/thought-broker-consensus.md) - Multi-agent deliberation
 - ✅ [Threat Model](docs/security/threat-model.md) - Security architecture
-- ✅ [Architecture Decision Records](docs/adr/) - Design rationale
+- ✅ [Architecture Decision Records](docs/03-architecture/adr/) - Design rationale
 
 **Research Contributions**:
 - Integrity-Driven Architecture (IDA) framework

@@ -480,7 +480,7 @@ See **VALIDATION_PLAN.md** for complete validation roadmap including:
 ## References
 
 ### Documentation
-- `/docs/whitepaper/02-civilization-layer.md` - Theoretical foundation
+- `/docs/01-whitepapers/archive/02-civilization-layer.md` - Theoretical foundation
 - `/docs/intelligence/typology.md` - Intelligence taxonomy
 - `/sentinels/daedalus/CODEX.md` - Meta-optimization principles
 - `/FORMAL_VERIFICATION.md` - MII specification

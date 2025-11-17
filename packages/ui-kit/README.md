@@ -43,11 +43,11 @@ function MyComponent() {
 
 - Sacred Geometry SVGs: `assets/sg/` (fibonacci_spiral.svg, flower_of_life.svg, torus_field.svg)
 - Figma Prompts: `docs/design/figma_prompts/`
-- OpenAPI Specs: `docs/api/`
+- OpenAPI Specs: `docs/06-specifications/apis/`
 
 ### Related Documentation
 
 - Design tokens: See `tokens.json`
 - Figma prompts: See `docs/design/figma_prompts/`
-- OpenAPI specs: See `docs/api/`
+- OpenAPI specs: See `docs/06-specifications/apis/`
 

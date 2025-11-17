@@ -74,7 +74,7 @@ adr.create({
 ```
 
 **Output:**
-- ADR file created in `/docs/adr/`
+- ADR file created in `/docs/03-architecture/adr/`
 - Constitutional compliance check
 - Suggested reviewers from AI companions
 

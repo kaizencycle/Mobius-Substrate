@@ -11,7 +11,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ../../docs/schemas/data-models/command-ledger-entry.schema.json
+              $ref: ../../docs/06-specifications/schemas/data-models/command-ledger-entry.schema.json
       responses:
         "202":
           description: Entry accepted for processing
@@ -30,7 +30,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ../../docs/schemas/data-models/command-ledger-entry.schema.json
+                $ref: ../../docs/06-specifications/schemas/data-models/command-ledger-entry.schema.json
   /mfs/{mic_id}:
     get:
       summary: Retrieve Mobius Financial Statement snapshot
@@ -46,4 +46,4 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ../../docs/schemas/data-models/mfs.schema.json
+                $ref: ../../docs/06-specifications/schemas/data-models/mfs.schema.json

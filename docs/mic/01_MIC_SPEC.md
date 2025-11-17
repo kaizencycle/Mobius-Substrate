@@ -178,7 +178,7 @@ This creates economic pressure to restore integrity during degradation.
 
 MIC issuance is grounded in the **Intention Compiler formalization**, which defines a mathematical mapping from human intent to integrity artifacts and token rewards.
 
-**Full formalization**: See [`docs/whitepaper/intention-compiler-formalization.md`](../whitepaper/intention-compiler-formalization.md)
+**Full formalization**: See [`docs/01-whitepapers/archive/intention-compiler-formalization.md`](../whitepaper/intention-compiler-formalization.md)
 
 #### Core Result: MIC Issuance Formula
 

@@ -275,7 +275,7 @@ If success criteria met:
 
 See full documentation:
 - **Sentinel Guide:** `docs/companions/uriel.md`
-- **ADR:** `docs/adr/002-uriel-sentinel-boarding.md`
+- **ADR:** `docs/03-architecture/adr/002-uriel-sentinel-boarding.md`
 - **Manifest:** `sentinels/uriel/manifest.json`
 
 ## Support

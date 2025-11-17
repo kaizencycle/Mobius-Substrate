@@ -319,7 +319,7 @@ const limiter = rateLimit({
 
 ## Related Documentation
 
-- [Founding Agents Sovereign Stack](../../docs/architecture/FOUNDING_AGENTS_SOVEREIGN_STACK.md)
+- [Founding Agents Sovereign Stack](../../docs/03-architecture/technical/FOUNDING_AGENTS_SOVEREIGN_STACK.md)
 - [Codex-Agentic Package](../../packages/codex-agentic/README.md)
 - [MIC Smart Contracts](../../packages/gic-registry-contracts/)
 - [API Endpoint Examples](../../examples/api-endpoints/README.md)

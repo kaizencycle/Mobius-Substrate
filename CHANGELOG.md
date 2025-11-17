@@ -206,7 +206,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - GI-gated deliberation with fallback to EVE on integrity violations
   - Rate limiting (0.1 QPS default), timeout protection (20s), and privacy controls
   - Quorum attestation record: `ledger/inscriptions/att-uriel-001-boarding.json` (GI: 0.996)
-  - Comprehensive documentation: `docs/companions/uriel.md`, `docs/adr/002-uriel-sentinel-boarding.md`
+  - Comprehensive documentation: `docs/companions/uriel.md`, `docs/03-architecture/adr/002-uriel-sentinel-boarding.md`
   - Environment configuration for `XAI_API_KEY` and `SENTINEL_URIEL_QPS`
   - 24-hour pilot phase with 20% deliberation routing in physics/curiosity/entropy domains
 - **Code Safety Guardrails**
@@ -223,7 +223,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - Updated documentation to reflect monorepo structure
-- Updated `docs/architecture/overview.md` to include URIEL sentinel
+- Updated `docs/03-architecture/technical/overview.md` to include URIEL sentinel
 - Updated `docs/INDEX.md` to include URIEL in agent profiles
 - Enhanced broker-api health check to report sentinel status
 

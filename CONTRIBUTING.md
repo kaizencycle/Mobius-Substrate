@@ -271,7 +271,7 @@ When creating a PR, ensure:
 - [ ] **Breaking changes** clearly documented
 - [ ] **Screenshots** included for UI changes
 - [ ] **Links** to related issues/PRs
-- [ ] **spec-ci** status is green when touching `docs/schemas/**` or `apps/**/openapi.yaml`
+- [ ] **spec-ci** status is green when touching `docs/06-specifications/schemas/**` or `apps/**/openapi.yaml`
 
 ### Review Process
 
@@ -353,7 +353,7 @@ Mobius Systems is maintained by:
 - **Sentinels:** Zeus, Jade, Eve, Hermes, Atlas, Aurelian
 - **Contributors:** Community members like you!
 
-For governance questions, see `docs/governance/`
+For governance questions, see `docs/02-governance/`
 
 ## 📜 License
 

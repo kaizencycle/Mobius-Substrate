@@ -243,7 +243,7 @@ ATLAS configuration is defined in `configs/bio-dna/companions/atlas.json`:
 ### Getting Help
 
 - Check the [ATLAS documentation](docs/companions/atlas.md)
-- Review [ADR-001](docs/adr/001-atlas-integration.md)
+- Review [ADR-001](docs/03-architecture/adr/001-atlas-integration.md)
 - Contact @kaizencycle for support
 
 ## Success Metrics

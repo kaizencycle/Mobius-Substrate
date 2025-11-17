@@ -34,7 +34,7 @@ configs/anchors/sentinels.yaml                     # Manifest: 7 Labs ↔ 8 Sent
 .github/workflows/attest-proof.yml                 # CI: attest only *-proof labs
 tools/validate_rename.sh                           # Pre-commit validator: catch SOLARA/DeepSeek remnants
 tests/migration/test_echo_migration.py             # Migration tests: Echo import + attestation payload
-docs/PRs/feat-echo-sentinel-anchor.md              # This PR description (copy stored for repo history)
+docs/09-reports/prs/feat-echo-sentinel-anchor.md              # This PR description (copy stored for repo history)
 scripts/rollback_echo_rename.sh                   # One-liner rollback helper (git revert)
 ```
 

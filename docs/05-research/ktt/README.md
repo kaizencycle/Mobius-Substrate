@@ -126,7 +126,7 @@ DS = |GIₜ - GIₜ₋₁| + λ·ΔBias + μ·ΔEntropy
 - [Kaizen Theorems](../kaizen_theorems.md) - Philosophical foundations
 - [AI Integrity Constitution](../AI_INTEGRITY_CONSTITUTION.md) - Ethical framework
 - [GI Formula](../ledger/gi-formula.md) - Technical implementation
-- [DVA Architecture](../architecture/overview.md) - System architecture
+- [DVA Architecture](../03-architecture/overview.md) - System architecture
 
 ---
 
