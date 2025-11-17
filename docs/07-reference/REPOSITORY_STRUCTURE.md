@@ -13,13 +13,13 @@
 | I want to... | Go here |
 |--------------|---------|
 | **Understand the vision** | [`README.md`](../README.md) |
-| **Read whitepapers** | [`docs/economics/`](./economics/) |
-| **See architecture** | [`docs/architecture/`](./architecture/) |
-| **Deploy to Vercel** | [`docs/deployment/VERCEL_DEPLOYMENT_RUNBOOK.md`](./deployment/VERCEL_DEPLOYMENT_RUNBOOK.md) |
+| **Read whitepapers** | [`docs/01-whitepapers/`](./01-whitepapers/) |
+| **See architecture** | [`docs/03-architecture/`](./03-architecture/) |
+| **Deploy to Vercel** | [`docs/08-processes/runbooks/VERCEL_DEPLOYMENT_RUNBOOK.md`](./08-processes/runbooks/VERCEL_DEPLOYMENT_RUNBOOK.md) |
 | **Contribute code** | [`CONTRIBUTING.md`](../CONTRIBUTING.md) (coming soon) |
 | **Run AI services** | [`apps/broker-api/`](../apps/broker-api/) (Thought Broker) |
 | **Build reflection app** | [`apps/eomm-api/`](../apps/eomm-api/) (E.O.M.M.) |
-| **Understand governance** | [`docs/governance/`](./governance/) |
+| **Understand governance** | [`docs/02-governance/`](./02-governance/) |
 | **Join community** | Discord (link in main README) |
 
 ---
@@ -74,14 +74,18 @@ Kaizen-OS/
 │   └── [3 more sentinels]
 │
 ├── docs/                              ← Documentation Hub
-│   ├── INDEX.md                      ← Complete navigation
-│   ├── architecture/                 ← System architecture
-│   ├── product/                      ← Product documentation
-│   ├── deployment/                   ← Deployment guides
-│   ├── economics/                    ← MIC Whitepaper
-│   ├── governance/                   ← Governance docs
-│   ├── founding-agents/              ← Agent profiles
-│   └── archive/                      ← Historical records
+│   ├── 00-START-HERE.md              ← Onboarding entry point
+│   ├── 01-whitepapers/               ← Economic theory + MIC specs
+│   ├── 02-governance/                ← Council + TSC frameworks
+│   ├── 03-architecture/              ← ADRs, diagrams, blueprints
+│   ├── 04-guides/                    ← Quickstarts, deployment, dev
+│   ├── 05-research/                  ← KTT, foundations, constitution
+│   ├── 06-specifications/            ← APIs, manifests, schemas, protocols
+│   ├── 07-reference/                 ← Indexes, structure, registries
+│   ├── 08-processes/                 ← Runbooks, rituals, operations
+│   ├── 09-reports/                   ← Cycles, implementations, comms
+│   ├── agents/, companions/, audits/ ← Specialized collections
+│   └── archive/ (incl. legacy/)      ← Historical + retired dirs
 │
 ├── infra/                             ← Infrastructure
 │   ├── docker/                       ← Docker Compose
@@ -109,12 +113,12 @@ This table shows how our current structure maps to the ideal structure:
 | **humanities-healthcare/** | `labs/lab5-proof/` | 📋 Planned | Lab 5 specification exists |
 | **citizen-shield/** | `apps/shield-api/` + `labs/lab6-proof/` | ✅ Implemented | Security + IDS/IPS |
 | **oaa-hub/** | `apps/hub-web/` + `labs/lab7-proof/` | ✅ Implemented | Education + API gateway |
-| **simulations/** | `docs/economics/` (in whitepaper) | ⚠️ Partial | Models documented, code TBD |
+| **simulations/** | `docs/01-whitepapers/` (in whitepaper) | ⚠️ Partial | Models documented, code TBD |
 | **community/** | Not yet created | 📋 Planned | Hive starter kit needed |
-| **docs/whitepapers/** | `docs/economics/` | ✅ Implemented | MIC Whitepaper exists |
-| **docs/architecture/** | `docs/architecture/` | ✅ Implemented | Architecture docs exist |
+| **docs/whitepapers/** | `docs/01-whitepapers/` | ✅ Implemented | MIC Whitepaper exists |
+| **docs/03-architecture/technical/** | `docs/03-architecture/technical/` | ✅ Implemented | Architecture docs exist |
 | **docs/protocols/** | `packages/civic-protocol-core/` | ✅ Implemented | Protocol implementations |
-| **docs/governance/** | `docs/governance/` | ✅ Implemented | Governance frameworks |
+| **docs/02-governance/** | `docs/02-governance/` | ✅ Implemented | Governance frameworks |
 
 ---
 
@@ -127,7 +131,7 @@ Current Location:
 /
 ├── README.md                          ← Overview of everything
 └── docs/
-    ├── INDEX.md                       ← Complete documentation index
+    ├── README.md                      ← Complete documentation index
     └── product/
         ├── PRO_LANDING_PAGE.md        ← Product overview
         ├── SELF_HOST_GUIDE.md         ← Self-hosting guide
@@ -140,8 +144,8 @@ Current Location:
 
 ```
 Current Location:
-docs/economics/
-└── GIC_WHITEPAPER.md                  ← Core economic model (READ FIRST)
+docs/01-whitepapers/
+└── MIC_Whitepaper_v2.0.md                  ← Core economic model (READ FIRST)
     ├── 1. Introduction: The Integrity Economy
     ├── 2. The UBI Trilemma & How MIC Solves It
     ├── 3. System Architecture
@@ -162,7 +166,7 @@ docs/economics/
 
 ```
 Current Location:
-docs/architecture/
+docs/03-architecture/technical/
 ├── FOUNDING_AGENTS_SOVEREIGN_STACK.md  ← Founding agents architecture
 ├── octave.yaml                         ← Cognitive lattice manifest
 └── overview.md                         ← High-level overview
@@ -192,7 +196,7 @@ packages/integrity-core/               ← GI scoring protocol
 ├── guardian.schema.json
 └── gi-attestation.schema.json
 
-docs/governance/                       ← Governance protocols
+docs/02-governance/                       ← Governance protocols
 └── [governance frameworks]
 ```
 
@@ -251,7 +255,7 @@ apps/website-creator/vercel.json      ← Website creator
 
 ```
 1. Read README.md (15 min)
-2. Read docs/economics/GIC_WHITEPAPER.md (30 min)
+2. Read docs/01-whitepapers/MIC_Whitepaper_v2.0.md (30 min)
 3. Read docs/INDEX.md for complete navigation (10 min)
 4. Decide: Developer? Organizer? Researcher? (5 min)
 5. Jump to relevant directory based on your interest
@@ -263,8 +267,8 @@ apps/website-creator/vercel.json      ← Website creator
 
 ```
 1. Read README.md (15 min)
-2. Read docs/deployment/VERCEL_DEPLOYMENT_RUNBOOK.md (20 min)
-   OR docs/deployment/ guides for your target platform
+2. Read docs/08-processes/runbooks/VERCEL_DEPLOYMENT_RUNBOOK.md (20 min)
+   OR docs/04-guides/deployment/ guides for your target platform
 3. Choose a service to work on:
    - Frontend? → apps/aurea-site/, apps/portal/, apps/website-creator/
    - Backend API? → apps/ledger-api/, apps/broker-api/, apps/eomm-api/
@@ -283,9 +287,9 @@ apps/website-creator/vercel.json      ← Website creator
 
 ```
 1. Read README.md (15 min)
-2. Read docs/economics/GIC_WHITEPAPER.md (20 min)
+2. Read docs/01-whitepapers/MIC_Whitepaper_v2.0.md (20 min)
 3. Read docs/product/PRO_LANDING_PAGE.md (10 min)
-4. Review docs/governance/ (10 min)
+4. Review docs/02-governance/ (10 min)
 5. Join Discord/community channels (5 min)
 
 Future: community/hive-starter-kit/ (coming soon)
@@ -305,7 +309,7 @@ Future: community/hive-starter-kit/ (coming soon)
 | Reflection app UI | `apps/eomm-api/reflections/` + `labs/lab4-proof/` | `eomm/` |
 | DID system | `apps/shield-api/` + `labs/lab6-proof/` | `citizen-shield/identity/` |
 | Education courses | `apps/hub-web/` + `labs/lab7-proof/` | `oaa-hub/course-library/` |
-| UBI simulation | `docs/economics/GIC_WHITEPAPER.md` (Section 4) | `simulations/planetary-ubi/` |
+| UBI simulation | `docs/01-whitepapers/MIC_Whitepaper_v2.0.md` (Section 4) | `simulations/planetary-ubi/` |
 | Founding Agent sites | `apps/aurea-site/`, `apps/portal/` | (keep current structure) |
 
 ---
@@ -314,11 +318,11 @@ Future: community/hive-starter-kit/ (coming soon)
 
 | Specification | Current Location |
 |--------------|------------------|
-| MIC token economics | `docs/economics/GIC_WHITEPAPER.md` |
+| MIC token economics | `docs/01-whitepapers/MIC_Whitepaper_v2.0.md` |
 | GI scoring algorithm | `packages/integrity-core/` + whitepaper |
-| Governance framework | `docs/governance/` + `apps/cathedral-app/` |
-| Founding Agents | `docs/founding-agents/` + `docs/architecture/FOUNDING_AGENTS_SOVEREIGN_STACK.md` |
-| Deployment guides | `docs/deployment/VERCEL_DEPLOYMENT_RUNBOOK.md` |
+| Governance framework | `docs/02-governance/` + `apps/cathedral-app/` |
+| Founding Agents | `docs/founding-agents/` + `docs/03-architecture/technical/FOUNDING_AGENTS_SOVEREIGN_STACK.md` |
+| Deployment guides | `docs/08-processes/runbooks/VERCEL_DEPLOYMENT_RUNBOOK.md` |
 | Self-hosting | `docs/product/SELF_HOST_GUIDE.md` |
 
 ---
@@ -328,7 +332,7 @@ Future: community/hive-starter-kit/ (coming soon)
 | Guide | Current Location |
 |-------|------------------|
 | Setting up dev environment | Each app has its own README.md |
-| Deploying to Vercel | `docs/deployment/VERCEL_DEPLOYMENT_RUNBOOK.md` |
+| Deploying to Vercel | `docs/08-processes/runbooks/VERCEL_DEPLOYMENT_RUNBOOK.md` |
 | Deploying to Render | `infra/render.yaml` + app-specific render.yaml |
 | Starting a Hive chapter | Coming soon in `community/hive-starter-kit/` |
 | Contributing code | Coming soon in `CONTRIBUTING.md` |
@@ -470,8 +474,8 @@ npm run test --filter civic-sdk
 
 - [x] Move completion records to `docs/archive/`
 - [x] Create `docs/INDEX.md` navigation
-- [x] Add `docs/economics/GIC_WHITEPAPER.md`
-- [x] Add `docs/deployment/VERCEL_DEPLOYMENT_RUNBOOK.md`
+- [x] Add `docs/01-whitepapers/MIC_Whitepaper_v2.0.md`
+- [x] Add `docs/08-processes/runbooks/VERCEL_DEPLOYMENT_RUNBOOK.md`
 - [x] Add `docs/product/` (Pro, self-hosting, federation)
 
 ### Phase 2: Top-Level Reorganization (📋 PLANNED)

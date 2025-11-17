@@ -98,7 +98,7 @@ app.post('/tools/adr.create', async (req, res) => {
       ok: true,
       data: {
         adr_id: result.adr_id || 'ADR-001',
-        path: `/docs/adr/ADR-${result.adr_id || '001'}-${title.toLowerCase().replace(/\s+/g, '-')}.md`,
+        path: `/docs/03-architecture/adr/ADR-${result.adr_id || '001'}-${title.toLowerCase().replace(/\s+/g, '-')}.md`,
         content: result.content || 'ADR content generated',
         message: `ADR created: ${title}`
       }

@@ -253,7 +253,7 @@ Ensure all required environment variables are set in your deployment platform.
 
 ## Related Documentation
 
-- [Founding Agents Sovereign Stack](../../docs/architecture/FOUNDING_AGENTS_SOVEREIGN_STACK.md)
+- [Founding Agents Sovereign Stack](../../docs/03-architecture/technical/FOUNDING_AGENTS_SOVEREIGN_STACK.md)
 - [Codex-Agentic Package](../../packages/codex-agentic/README.md)
 - [MIC Contracts](../../packages/gic-registry-contracts/)
 

@@ -525,6 +525,6 @@ make dev
 
 ---
 
-This spec is designed to live in `docs/architecture/` and mirror across code folders so each team (ledger, oracle, peg, earn, contracts, ops) can start shipping without blocking on additional design meetings.
+This spec is designed to live in `docs/03-architecture/technical/` and mirror across code folders so each team (ledger, oracle, peg, earn, contracts, ops) can start shipping without blocking on additional design meetings.
 
 

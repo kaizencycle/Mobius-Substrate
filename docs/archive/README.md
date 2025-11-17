@@ -38,6 +38,12 @@ Root-level strategic documents:
 
 ---
 
+## Legacy Directories
+
+The [`legacy/`](./legacy/README.md) subtree holds the pre-numbered documentation folders (e.g., `architecture/`, `governance/`, `deployment/`). Each entry includes a pointer back to the active location under `01–09`.
+
+---
+
 ## Purpose
 
 These documents are archived to:

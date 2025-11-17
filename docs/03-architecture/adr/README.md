@@ -33,7 +33,7 @@ Each ADR follows this structure:
 
 When proposing a new ADR:
 
-1. Create `docs/adr/XXX-title.md` (XXX is next number)
+1. Create `docs/03-architecture/adr/XXX-title.md` (XXX is next number)
 2. Use the template below
 3. Submit PR for TSC review
 4. Update this index when accepted

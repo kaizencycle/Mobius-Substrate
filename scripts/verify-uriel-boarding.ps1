@@ -148,7 +148,7 @@ if (Test-Path "docs/companions/uriel.md") {
     $FAILED++
 }
 
-if (Test-Path "docs/adr/002-uriel-sentinel-boarding.md") {
+if (Test-Path "docs/03-architecture/adr/002-uriel-sentinel-boarding.md") {
     Write-Host "✓ ADR-002 exists" -ForegroundColor Green
     $PASSED++
 } else {
@@ -156,7 +156,7 @@ if (Test-Path "docs/adr/002-uriel-sentinel-boarding.md") {
     $FAILED++
 }
 
-$overviewContent = Get-Content "docs/architecture/overview.md" -Raw
+$overviewContent = Get-Content "docs/03-architecture/technical/overview.md" -Raw
 if ($overviewContent -match "URIEL") {
     Write-Host "✓ URIEL in architecture overview" -ForegroundColor Green
     $PASSED++

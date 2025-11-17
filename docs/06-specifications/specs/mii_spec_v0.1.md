@@ -158,7 +158,7 @@ Properties:
 
 - **Custodian:** Michael Judan.  
 - **Sentinel Arbiter:** Zeus.  
-- **Change Process:** RFC via `docs/specs/` + quorum of Zeus, Eve, Jade, Hermes.  
+- **Change Process:** RFC via `docs/06-specifications/specs/` + quorum of Zeus, Eve, Jade, Hermes.  
 - **Versioning:** Semantic; v0.x indicates active research; v1.x marks production-frozen protocol.
 
 ---

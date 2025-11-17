@@ -8,7 +8,7 @@ See `FOUNDATION/PROCESS/RFC_PROCESS.md` for the complete RFC submission and revi
 
 ## RFC Status
 
-Track all RFCs in `docs/governance/rfc_index.md`.
+Track all RFCs in `docs/02-governance/rfc_index.md`.
 
 ## RFC Template
 

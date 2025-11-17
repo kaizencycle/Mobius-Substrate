@@ -93,5 +93,5 @@ All branding assets are licensed under [CC-BY-SA 4.0](https://creativecommons.or
 
 - [Kaizen Visual Design System](../design/theorem_visual_system.yaml)
 - [Kaizen Theorems](../kaizen_theorems.md)
-- [Kintsugi Protocol](../governance/kintsugi_protocol.md)
+- [Kintsugi Protocol](../02-governance/kintsugi_protocol.md)
 

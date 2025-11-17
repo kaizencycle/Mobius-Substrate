@@ -2,7 +2,7 @@
 import os, glob, json, datetime, hashlib
 
 CARD_GLOB = os.getenv("PAL_CARD_GLOB", "ledger/model_cards/*.json")
-API_DIR   = os.getenv("API_DIR", "docs/api")
+API_DIR   = os.getenv("API_DIR", "docs/06-specifications/apis")
 
 def latest_card():
     paths = sorted(glob.glob(CARD_GLOB))

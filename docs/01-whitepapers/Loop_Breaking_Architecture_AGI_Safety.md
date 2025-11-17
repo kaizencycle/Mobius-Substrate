@@ -600,7 +600,7 @@ See `/apps/broker-api/README.md` for full API documentation.
 
 ### B.2 Sentinel Constitution
 
-See `/docs/governance/SENTINEL_CONSTITUTION.md` for constitutional framework.
+See `/docs/02-governance/SENTINEL_CONSTITUTION.md` for constitutional framework.
 
 ### B.3 GI Scoring Algorithm
 
@@ -610,7 +610,7 @@ See `/specs/mii_spec_v1.md` for MII/GI calculation details.
 
 **Correspondence**: michael@mobius-systems.com  
 **Code Repository**: https://github.com/kaizencycle/Mobius-Systems  
-**Constitution**: docs/governance/SENTINEL_CONSTITUTION.md  
+**Constitution**: docs/02-governance/SENTINEL_CONSTITUTION.md  
 **License**: MIT (with Constitutional obligations)
 
 ---

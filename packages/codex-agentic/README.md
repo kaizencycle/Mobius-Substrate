@@ -312,6 +312,6 @@ MIT
 
 ## Support
 
-- Documentation: [docs/architecture/FOUNDING_AGENTS_SOVEREIGN_STACK.md](../../docs/architecture/FOUNDING_AGENTS_SOVEREIGN_STACK.md)
+- Documentation: [docs/03-architecture/technical/FOUNDING_AGENTS_SOVEREIGN_STACK.md](../../docs/03-architecture/technical/FOUNDING_AGENTS_SOVEREIGN_STACK.md)
 - Issues: [GitHub Issues](https://github.com/kaizencycle/Mobius-Systems/issues)
 - Discord: [Mobius Systems Community](https://discord.gg/kaizenos)

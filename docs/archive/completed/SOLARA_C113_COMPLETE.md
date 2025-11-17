@@ -23,7 +23,7 @@
 #### **Documentation**
 3. `docs/companions/solara.md` - SOLARA companion profile
 4. `docs/policy/safety-tiers.md` - Tier matrix and escalation rules
-5. `docs/deployment/rollout-phases.md` - Phase 1-3 deployment plan
+5. `docs/08-processes/operations/rollout-phases.md` - Phase 1-3 deployment plan
 6. `docs/companions/README.md` - Companion lattice overview
 
 ### 🤖 **Companion Lattice (Now 3-Deep)**

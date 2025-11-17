@@ -262,7 +262,7 @@ Every action includes:
 
 ## References
 
-- [Founding Agents Sovereign Stack](../../docs/architecture/FOUNDING_AGENTS_SOVEREIGN_STACK.md)
+- [Founding Agents Sovereign Stack](../../docs/03-architecture/technical/FOUNDING_AGENTS_SOVEREIGN_STACK.md)
 - [Virtue Accords v1.0](../../accords/virtue-accords.md)
 - [Civic Ledger Protocol](../../packages/civic-protocol-core/)
 - [MIC Smart Contracts](../../packages/gic-registry-contracts/)

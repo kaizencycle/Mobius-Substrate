@@ -38,7 +38,7 @@ The uploaded Kintsugi visualization should be saved as:
 
 This will allow the markdown references in:
 - `docs/kaizen_theorems.md`
-- `docs/governance/kintsugi_protocol.md`
+- `docs/02-governance/kintsugi_protocol.md`
 
 to properly display the diagram.
 

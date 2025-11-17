@@ -91,7 +91,7 @@ This guarantees full **auditability and traceability** across the lattice.
 - [Custos Charter (`docs/security/constitutional.md`)](../security/constitutional.md)  
 - [Safety Tiers Policy (`../policy/safety-tiers.md`)](../policy/safety-tiers.md)  
 - [Provider Isolation Framework (`../security/provider-isolation.md`)](../security/provider-isolation.md)  
-- [Rollout Phases (`../deployment/rollout-phases.md`)](../deployment/rollout-phases.md)
+- [Rollout Phases (`../08-processes/operations/rollout-phases.md`)](../08-processes/operations/rollout-phases.md)
 
 ---
 

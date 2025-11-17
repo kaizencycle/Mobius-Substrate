@@ -24,7 +24,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: ../../docs/schemas/attestation.schema.json
+                  $ref: ../../docs/06-specifications/schemas/attestation.schema.json
   /attestations/{id}:
     get:
       summary: Fetch a single attestation
@@ -40,7 +40,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ../../docs/schemas/attestation.schema.json
+                $ref: ../../docs/06-specifications/schemas/attestation.schema.json
   /mic/{mic_id}:
     get:
       summary: Retrieve Mobius Integrity Capsule
@@ -56,4 +56,4 @@ paths:
           content:
             application/json:
               schema:
-                $ref: ../../docs/schemas/data-models/mic.schema.json
+                $ref: ../../docs/06-specifications/schemas/data-models/mic.schema.json

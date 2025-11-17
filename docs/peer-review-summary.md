@@ -36,14 +36,14 @@
 
 ### ✅ Completed (This Week)
 
-1. **Cryptographic Specification** (`docs/specs/cryptography/mii-signature-spec.md`)
+1. **Cryptographic Specification** (`docs/06-specifications/specs/cryptography/mii-signature-spec.md`)
    - Ed25519 signature scheme (as recommended)
    - Deterministic MII calculation
    - Replay prevention
    - Key rotation policy
    - Revocation protocol
 
-2. **Consensus Algorithm** (`docs/specs/consensus/thought-broker-consensus.md`)
+2. **Consensus Algorithm** (`docs/06-specifications/specs/consensus/thought-broker-consensus.md`)
    - 3-of-4 threshold voting
    - Conflict resolution rules
    - Failure mode handling
@@ -57,7 +57,7 @@
    - Control effectiveness metrics
    - Defense-in-depth architecture
 
-4. **Architecture Decision Records** (`docs/adr/`)
+4. **Architecture Decision Records** (`docs/03-architecture/adr/`)
    - ADR-001: Integrity-First Architecture
    - ADR template and process
    - ADR index

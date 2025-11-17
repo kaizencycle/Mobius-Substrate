@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2025-10-31T22:27:56.262Z",
-  "total": 458,
+  "generatedAt": "2025-11-17T20:11:58Z",
+  "total": 460,
   "completed": 21,
   "documents": [
     {
@@ -22,7 +22,7 @@
     {
       "path": "apps/atlas-mcp-server/README.md",
       "name": "README.md",
-      "title": "🤖 ATLAS Sentinel MCP Server",
+      "title": "\ud83e\udd16 ATLAS Sentinel MCP Server",
       "category": "readme",
       "status": "active",
       "size": 5714
@@ -46,7 +46,7 @@
     {
       "path": "apps/civic-stack/README.md",
       "name": "README.md",
-      "title": "Civic Stack — Outage-Resilient Starter (PWA + Edge + NATS)",
+      "title": "Civic Stack \u2014 Outage-Resilient Starter (PWA + Edge + NATS)",
       "category": "readme",
       "status": "active",
       "size": 926
@@ -54,7 +54,7 @@
     {
       "path": "apps/eomm-api/API-TESTING-GUIDE.md",
       "name": "API-TESTING-GUIDE.md",
-      "title": "🧪 API Testing Guide",
+      "title": "\ud83e\uddea API Testing Guide",
       "category": "doc",
       "status": "active",
       "size": 8018
@@ -70,7 +70,7 @@
     {
       "path": "apps/eomm-api/ARCHIVE-API-GUIDE.md",
       "name": "ARCHIVE-API-GUIDE.md",
-      "title": "📦 Archive API - Complete Implementation",
+      "title": "\ud83d\udce6 Archive API - Complete Implementation",
       "category": "doc",
       "status": "active",
       "size": 7495
@@ -86,7 +86,7 @@
     {
       "path": "apps/eomm-api/DAILY-CYCLE-SETUP.md",
       "name": "DAILY-CYCLE-SETUP.md",
-      "title": "🚀 Daily Cycle Setup Guide",
+      "title": "\ud83d\ude80 Daily Cycle Setup Guide",
       "category": "doc",
       "status": "active",
       "size": 8020
@@ -94,7 +94,7 @@
     {
       "path": "apps/eomm-api/data/2025-09-22/smoke-test.md",
       "name": "smoke-test.md",
-      "title": "🧪 FastAPI Smoke-Test Ledger Entry",
+      "title": "\ud83e\uddea FastAPI Smoke-Test Ledger Entry",
       "category": "doc",
       "status": "active",
       "size": 1014
@@ -102,7 +102,7 @@
     {
       "path": "apps/eomm-api/data/2025-09-25/smoke-test.md",
       "name": "smoke-test.md",
-      "title": "🧪 FastAPI Smoke-Test Ledger Entry",
+      "title": "\ud83e\uddea FastAPI Smoke-Test Ledger Entry",
       "category": "doc",
       "status": "active",
       "size": 1064
@@ -110,7 +110,7 @@
     {
       "path": "apps/eomm-api/data/2025-09-26/smoke-test.md",
       "name": "smoke-test.md",
-      "title": "🧪 FastAPI Smoke-Test Ledger Entry",
+      "title": "\ud83e\uddea FastAPI Smoke-Test Ledger Entry",
       "category": "doc",
       "status": "active",
       "size": 1064
@@ -174,7 +174,7 @@
     {
       "path": "apps/eomm-api/data/string/smoke-test.md",
       "name": "smoke-test.md",
-      "title": "🧪 FastAPI Smoke-Test Ledger Entry",
+      "title": "\ud83e\uddea FastAPI Smoke-Test Ledger Entry",
       "category": "doc",
       "status": "active",
       "size": 630
@@ -190,7 +190,7 @@
     {
       "path": "apps/eomm-api/DUAL-WRITER-GUIDE.md",
       "name": "DUAL-WRITER-GUIDE.md",
-      "title": "🧪 Dual Writer System - Lab4 Research & Study",
+      "title": "\ud83e\uddea Dual Writer System - Lab4 Research & Study",
       "category": "doc",
       "status": "active",
       "size": 6430
@@ -198,7 +198,7 @@
     {
       "path": "apps/eomm-api/DVA-HEARTBEAT-SETUP.md",
       "name": "DVA-HEARTBEAT-SETUP.md",
-      "title": "🫀 DVA Heartbeat - Complete Setup Guide",
+      "title": "\ud83e\udec0 DVA Heartbeat - Complete Setup Guide",
       "category": "doc",
       "status": "active",
       "size": 8263
@@ -206,7 +206,7 @@
     {
       "path": "apps/eomm-api/FEATURE-TIER-IMPLEMENTATION.md",
       "name": "FEATURE-TIER-IMPLEMENTATION.md",
-      "title": "🎯 Feature Tier Implementation - Complete!",
+      "title": "\ud83c\udfaf Feature Tier Implementation - Complete!",
       "category": "doc",
       "status": "active",
       "size": 5889
@@ -214,7 +214,7 @@
     {
       "path": "apps/eomm-api/GPG-SETUP-GUIDE.md",
       "name": "GPG-SETUP-GUIDE.md",
-      "title": "🔐 GPG Integration Setup Guide",
+      "title": "\ud83d\udd10 GPG Integration Setup Guide",
       "category": "doc",
       "status": "active",
       "size": 7679
@@ -246,7 +246,7 @@
     {
       "path": "apps/eomm-api/mcp_recipes.md",
       "name": "mcp_recipes.md",
-      "title": "MCP Recipes — Reflections Ledger",
+      "title": "MCP Recipes \u2014 Reflections Ledger",
       "category": "doc",
       "status": "active",
       "size": 3250
@@ -270,7 +270,7 @@
     {
       "path": "apps/eomm-api/PLUG-AND-PLAY-GUIDE.md",
       "name": "PLUG-AND-PLAY-GUIDE.md",
-      "title": "🔌 Plug-and-Play Dual-Writer System",
+      "title": "\ud83d\udd0c Plug-and-Play Dual-Writer System",
       "category": "doc",
       "status": "active",
       "size": 7514
@@ -310,7 +310,7 @@
     {
       "path": "apps/eomm-api/README.md",
       "name": "README.md",
-      "title": "Lab4-Proof 🚀",
+      "title": "Lab4-Proof \ud83d\ude80",
       "category": "readme",
       "status": "active",
       "size": 4184
@@ -318,7 +318,7 @@
     {
       "path": "apps/eomm-api/reflections/README.md",
       "name": "README.md",
-      "title": "Lab4 — Reflections (Onboarding)",
+      "title": "Lab4 \u2014 Reflections (Onboarding)",
       "category": "readme",
       "status": "active",
       "size": 1919
@@ -342,7 +342,7 @@
     {
       "path": "apps/eomm-api/roadmap.md",
       "name": "roadmap.md",
-      "title": "🛠 Engineer’s Roadmap (HIVE-PAW Path)",
+      "title": "\ud83d\udee0 Engineer\u2019s Roadmap (HIVE-PAW Path)",
       "category": "doc",
       "status": "active",
       "size": 2439
@@ -374,7 +374,7 @@
     {
       "path": "apps/genesisdome-app/README.md",
       "name": "README.md",
-      "title": "GenesisDome.org — Site Starter",
+      "title": "GenesisDome.org \u2014 Site Starter",
       "category": "readme",
       "status": "active",
       "size": 1198
@@ -398,7 +398,7 @@
     {
       "path": "apps/hub-web/AGENT_LOOP_GUARD_SUMMARY.md",
       "name": "AGENT_LOOP_GUARD_SUMMARY.md",
-      "title": "Agent Loop Guard Implementation Complete ✅",
+      "title": "Agent Loop Guard Implementation Complete \u2705",
       "category": "doc",
       "status": "active",
       "size": 3140
@@ -486,7 +486,7 @@
     {
       "path": "apps/hub-web/docs/README-OAA-HUB.md",
       "name": "README-OAA-HUB.md",
-      "title": "OAA Central Hub — Starter",
+      "title": "OAA Central Hub \u2014 Starter",
       "category": "doc",
       "status": "active",
       "size": 1099
@@ -494,7 +494,7 @@
     {
       "path": "apps/hub-web/EOMM_SYSTEM_README.md",
       "name": "EOMM_SYSTEM_README.md",
-      "title": "E.O.M.M. G�� Civic Ledger Sync System",
+      "title": "E.O.M.M. G\ufffd\ufffd Civic Ledger Sync System",
       "category": "doc",
       "status": "active",
       "size": 7961
@@ -526,7 +526,7 @@
     {
       "path": "apps/hub-web/oaa-central-hub/companion_site_starter/docs/CIVIC_AI_MANIFEST_PDF.md",
       "name": "CIVIC_AI_MANIFEST_PDF.md",
-      "title": "🌍 CIVIC AI NATIVE STACK MANIFEST",
+      "title": "\ud83c\udf0d CIVIC AI NATIVE STACK MANIFEST",
       "category": "doc",
       "status": "active",
       "size": 11117
@@ -534,7 +534,7 @@
     {
       "path": "apps/hub-web/oaa-central-hub/companion_site_starter/docs/CIVIC_AI_NATIVE_STACK_MANIFEST.md",
       "name": "CIVIC_AI_NATIVE_STACK_MANIFEST.md",
-      "title": "🌍 Civic AI Native Stack Manifest",
+      "title": "\ud83c\udf0d Civic AI Native Stack Manifest",
       "category": "doc",
       "status": "active",
       "size": 9127
@@ -558,7 +558,7 @@
     {
       "path": "apps/hub-web/oaa-central-hub/companion_site_starter/docs/ops/INCIDENTS.md",
       "name": "INCIDENTS.md",
-      "title": "Operational Incidents — Weekly Digest",
+      "title": "Operational Incidents \u2014 Weekly Digest",
       "category": "doc",
       "status": "active",
       "size": 197
@@ -582,7 +582,7 @@
     {
       "path": "apps/hub-web/oaa-central-hub/companion_site_starter/public/constitution/virtue_accords.md",
       "name": "virtue_accords.md",
-      "title": "Virtue Accords — Cycle 0 (Draft)",
+      "title": "Virtue Accords \u2014 Cycle 0 (Draft)",
       "category": "doc",
       "status": "active",
       "size": 1949
@@ -614,7 +614,7 @@
     {
       "path": "apps/hub-web/oaa-central-hub/GIC_INTEGRATION_README.md",
       "name": "GIC_INTEGRATION_README.md",
-      "title": "🌐 MIC TLD Integration - OAA Central Hub",
+      "title": "\ud83c\udf10 MIC TLD Integration - OAA Central Hub",
       "category": "doc",
       "status": "active",
       "size": 7515
@@ -630,7 +630,7 @@
     {
       "path": "apps/hub-web/oaa-central-hub/README-OAA-HUB.md",
       "name": "README-OAA-HUB.md",
-      "title": "OAA Central Hub — Starter",
+      "title": "OAA Central Hub \u2014 Starter",
       "category": "doc",
       "status": "active",
       "size": 1099
@@ -638,7 +638,7 @@
     {
       "path": "apps/hub-web/public/constitution/virtue_accords.md",
       "name": "virtue_accords.md",
-      "title": "Virtue Accords — Cycle 0 (Draft)",
+      "title": "Virtue Accords \u2014 Cycle 0 (Draft)",
       "category": "doc",
       "status": "active",
       "size": 1949
@@ -678,7 +678,7 @@
     {
       "path": "apps/hub-web/specs/01-overview.md",
       "name": "01-overview.md",
-      "title": "01 · Stack Overview",
+      "title": "01 \u00b7 Stack Overview",
       "category": "doc",
       "status": "active",
       "size": 1336
@@ -686,7 +686,7 @@
     {
       "path": "apps/hub-web/specs/02-attestations.md",
       "name": "02-attestations.md",
-      "title": "02 · Attestation Protocol",
+      "title": "02 \u00b7 Attestation Protocol",
       "category": "doc",
       "status": "active",
       "size": 1358
@@ -694,7 +694,7 @@
     {
       "path": "apps/hub-web/specs/03-agent-ethics.md",
       "name": "03-agent-ethics.md",
-      "title": "03 · Agent Ethics — Integrity Core & Virtue Accords",
+      "title": "03 \u00b7 Agent Ethics \u2014 Integrity Core & Virtue Accords",
       "category": "doc",
       "status": "active",
       "size": 1653
@@ -702,7 +702,7 @@
     {
       "path": "apps/hub-web/specs/04-ai-seo-geo.md",
       "name": "04-ai-seo-geo.md",
-      "title": "04 · AI-SEO / GEO Interface",
+      "title": "04 \u00b7 AI-SEO / GEO Interface",
       "category": "doc",
       "status": "active",
       "size": 1794
@@ -710,7 +710,7 @@
     {
       "path": "apps/hub-web/specs/05-proof-pipeline.md",
       "name": "05-proof-pipeline.md",
-      "title": "05 · Proof-of-Integrity Pipeline",
+      "title": "05 \u00b7 Proof-of-Integrity Pipeline",
       "category": "doc",
       "status": "active",
       "size": 2115
@@ -718,7 +718,7 @@
     {
       "path": "apps/hub-web/specs/06-code-verification.md",
       "name": "06-code-verification.md",
-      "title": "06 · Code Verification Protocol",
+      "title": "06 \u00b7 Code Verification Protocol",
       "category": "doc",
       "status": "active",
       "size": 2357
@@ -726,7 +726,7 @@
     {
       "path": "apps/hub-web/specs/07-incentives-gic.md",
       "name": "07-incentives-gic.md",
-      "title": "07 · Incentives — MIC Model",
+      "title": "07 \u00b7 Incentives \u2014 MIC Model",
       "category": "doc",
       "status": "active",
       "size": 2666
@@ -734,7 +734,7 @@
     {
       "path": "apps/hub-web/specs/09-cultural-kernel-archetypes.md",
       "name": "09-cultural-kernel-archetypes.md",
-      "title": "09 · Cultural Kernel — Archetype Engine",
+      "title": "09 \u00b7 Cultural Kernel \u2014 Archetype Engine",
       "category": "doc",
       "status": "active",
       "size": 1987
@@ -742,7 +742,7 @@
     {
       "path": "apps/hub-web/specs/10-yautja-cultural-accord.md",
       "name": "10-yautja-cultural-accord.md",
-      "title": "10 · Yautja Cultural Accord",
+      "title": "10 \u00b7 Yautja Cultural Accord",
       "category": "doc",
       "status": "active",
       "size": 1811
@@ -774,7 +774,7 @@
     {
       "path": "apps/hub-web/src/gic/README.md",
       "name": "README.md",
-      "title": ".gic — Mobius Integrity Index Citizen (Alt‑Root Pilot)",
+      "title": ".gic \u2014 Mobius Integrity Index Citizen (Alt\u2011Root Pilot)",
       "category": "readme",
       "status": "active",
       "size": 725
@@ -806,7 +806,7 @@
     {
       "path": "apps/hub-web/src/packs/holo-assets/README.md",
       "name": "README.md",
-      "title": "Holo‑OAA (Web Hologram Librarian)",
+      "title": "Holo\u2011OAA (Web Hologram Librarian)",
       "category": "readme",
       "status": "active",
       "size": 643
@@ -814,7 +814,7 @@
     {
       "path": "apps/hub-web/src/packs/holo-voice/README.md",
       "name": "README.md",
-      "title": "Holo‑OAA Voice & Lip‑Sync Pack",
+      "title": "Holo\u2011OAA Voice & Lip\u2011Sync Pack",
       "category": "readme",
       "status": "active",
       "size": 1143
@@ -846,7 +846,7 @@
     {
       "path": "apps/hub-web/src/packs/voice-polly/README.md",
       "name": "README.md",
-      "title": "OAA Voice — Amazon Polly Adapter",
+      "title": "OAA Voice \u2014 Amazon Polly Adapter",
       "category": "readme",
       "status": "active",
       "size": 1291
@@ -886,7 +886,7 @@
     {
       "path": "apps/hub-web/src/specs/03-agent-ethics.md",
       "name": "03-agent-ethics.md",
-      "title": "03 -+ Agent Ethics G�� Integrity Core & Virtue Accords",
+      "title": "03 -+ Agent Ethics G\ufffd\ufffd Integrity Core & Virtue Accords",
       "category": "doc",
       "status": "active",
       "size": 1658
@@ -918,7 +918,7 @@
     {
       "path": "apps/hub-web/src/specs/07-incentives-gic.md",
       "name": "07-incentives-gic.md",
-      "title": "07 -+ Incentives G�� MIC Model",
+      "title": "07 -+ Incentives G\ufffd\ufffd MIC Model",
       "category": "doc",
       "status": "active",
       "size": 2675
@@ -926,7 +926,7 @@
     {
       "path": "apps/hub-web/src/specs/09-cultural-kernel-archetypes.md",
       "name": "09-cultural-kernel-archetypes.md",
-      "title": "09 -+ Cultural Kernel G�� Archetype Engine",
+      "title": "09 -+ Cultural Kernel G\ufffd\ufffd Archetype Engine",
       "category": "doc",
       "status": "active",
       "size": 1992
@@ -1078,7 +1078,7 @@
     {
       "path": "apps/orchestrator/README.md",
       "name": "README.md",
-      "title": "🎼 Kaizen OS Orchestrator",
+      "title": "\ud83c\udfbc Kaizen OS Orchestrator",
       "category": "readme",
       "status": "active",
       "size": 1564
@@ -1094,7 +1094,7 @@
     {
       "path": "apps/shield-api/citizen-shield-app/README.md",
       "name": "README.md",
-      "title": "Citizen Shield — Lab6 App (Front-end)",
+      "title": "Citizen Shield \u2014 Lab6 App (Front-end)",
       "category": "readme",
       "status": "active",
       "size": 1265
@@ -1110,7 +1110,7 @@
     {
       "path": "apps/shield-api/README.md",
       "name": "README.md",
-      "title": "Lab6-proof — Citizen Shield (MVP)",
+      "title": "Lab6-proof \u2014 Citizen Shield (MVP)",
       "category": "readme",
       "status": "active",
       "size": 450
@@ -1126,7 +1126,7 @@
     {
       "path": "apps/website-creator/README.md",
       "name": "README.md",
-      "title": "🌐 Website Creator — Civic .gic Domain Builder",
+      "title": "\ud83c\udf10 Website Creator \u2014 Civic .gic Domain Builder",
       "category": "readme",
       "status": "active",
       "size": 1656
@@ -1134,7 +1134,7 @@
     {
       "path": "AUDIT_IMPLEMENTATION_SUMMARY.md",
       "name": "AUDIT_IMPLEMENTATION_SUMMARY.md",
-      "title": "📋 Kaizen OS Repository Audit - Implementation Summary",
+      "title": "\ud83d\udccb Kaizen OS Repository Audit - Implementation Summary",
       "category": "doc",
       "status": "active",
       "size": 14084
@@ -1164,7 +1164,7 @@
       "size": 9177
     },
     {
-      "path": "docs/adr/001-atlas-integration.md",
+      "path": "docs/03-architecture/adr/001-atlas-integration.md",
       "name": "001-atlas-integration.md",
       "title": "ADR-001: ATLAS Sentinel Integration",
       "category": "doc",
@@ -1190,13 +1190,13 @@
     {
       "path": "docs/API_INTEGRATION.md",
       "name": "API_INTEGRATION.md",
-      "title": "🌐 Kaizen OS API Integration Guide",
+      "title": "\ud83c\udf10 Kaizen OS API Integration Guide",
       "category": "doc",
       "status": "active",
       "size": 13933
     },
     {
-      "path": "docs/architecture/FOUNDING_AGENTS_SOVEREIGN_STACK.md",
+      "path": "docs/03-architecture/technical/FOUNDING_AGENTS_SOVEREIGN_STACK.md",
       "name": "FOUNDING_AGENTS_SOVEREIGN_STACK.md",
       "title": "Founding Agents Sovereign Stack",
       "category": "doc",
@@ -1204,15 +1204,15 @@
       "size": 22021
     },
     {
-      "path": "docs/architecture/GIC_Architecture_Spec_v1.md",
+      "path": "docs/03-architecture/technical/GIC_Architecture_Spec_v1.md",
       "name": "GIC_Architecture_Spec_v1.md",
-      "title": "Kaizen OS · MIC Architecture Spec (v1)",
+      "title": "Kaizen OS \u00b7 MIC Architecture Spec (v1)",
       "category": "doc",
       "status": "active",
       "size": 14118
     },
     {
-      "path": "docs/architecture/Lab5_Humanities_Healthcare_Specification.md",
+      "path": "docs/03-architecture/technical/Lab5_Humanities_Healthcare_Specification.md",
       "name": "Lab5_Humanities_Healthcare_Specification.md",
       "title": "Lab 5: Humanities & Healthcare Layer",
       "category": "doc",
@@ -1220,7 +1220,7 @@
       "size": 57007
     },
     {
-      "path": "docs/architecture/overview.md",
+      "path": "docs/03-architecture/technical/overview.md",
       "name": "overview.md",
       "title": "Civic-OS Architecture Overview",
       "category": "doc",
@@ -1230,7 +1230,7 @@
     {
       "path": "docs/archive/AUREA_ATLAS_MERGE_COMPLETE.md",
       "name": "AUREA_ATLAS_MERGE_COMPLETE.md",
-      "title": "🚀 AUREA + ATLAS Merge - COMPLETE!",
+      "title": "\ud83d\ude80 AUREA + ATLAS Merge - COMPLETE!",
       "category": "doc",
       "status": "completed",
       "size": 10119
@@ -1238,7 +1238,7 @@
     {
       "path": "docs/archive/CIVICOS_EDITS_ANALYSIS.md",
       "name": "CIVICOS_EDITS_ANALYSIS.md",
-      "title": "🚀 CivicOS-Edits Reorganization Complete!",
+      "title": "\ud83d\ude80 CivicOS-Edits Reorganization Complete!",
       "category": "doc",
       "status": "active",
       "size": 5370
@@ -1246,7 +1246,7 @@
     {
       "path": "docs/archive/completed/apps/eomm-api/README-COMPLETE.md",
       "name": "README-COMPLETE.md",
-      "title": "🚀 HIVE-PAW API - Complete Implementation",
+      "title": "\ud83d\ude80 HIVE-PAW API - Complete Implementation",
       "category": "doc",
       "status": "completed",
       "size": 7931
@@ -1254,7 +1254,7 @@
     {
       "path": "docs/archive/completed/apps/eomm-api/REFLECTIONS-COMPLETE.md",
       "name": "REFLECTIONS-COMPLETE.md",
-      "title": "🎉 Reflections App - Complete Implementation",
+      "title": "\ud83c\udf89 Reflections App - Complete Implementation",
       "category": "doc",
       "status": "completed",
       "size": 5337
@@ -1262,7 +1262,7 @@
     {
       "path": "docs/archive/completed/ATLAS_MCP_COMPLETE.md",
       "name": "ATLAS_MCP_COMPLETE.md",
-      "title": "🤖 ATLAS SENTINEL MCP AGENT - COMPLETE!",
+      "title": "\ud83e\udd16 ATLAS SENTINEL MCP AGENT - COMPLETE!",
       "category": "doc",
       "status": "completed",
       "size": 6806
@@ -1270,7 +1270,7 @@
     {
       "path": "docs/archive/completed/CIVIC_SDK_COMPLETE.md",
       "name": "CIVIC_SDK_COMPLETE.md",
-      "title": "🚀 Kaizen OS SDK - COMPLETE!",
+      "title": "\ud83d\ude80 Kaizen OS SDK - COMPLETE!",
       "category": "doc",
       "status": "completed",
       "size": 5177
@@ -1278,7 +1278,7 @@
     {
       "path": "docs/archive/completed/CIVICOS_HUB_COMPLETE.md",
       "name": "CIVICOS_HUB_COMPLETE.md",
-      "title": "🚀 Kaizen OS Hub - INTEGRATION COMPLETE!",
+      "title": "\ud83d\ude80 Kaizen OS Hub - INTEGRATION COMPLETE!",
       "category": "doc",
       "status": "completed",
       "size": 3789
@@ -1286,7 +1286,7 @@
     {
       "path": "docs/archive/completed/CYCLE_C114_COMPLETE.md",
       "name": "CYCLE_C114_COMPLETE.md",
-      "title": "🌀 Cycle C-114 COMPLETE - Kaizen OS 4-Companion Thought Broker",
+      "title": "\ud83c\udf00 Cycle C-114 COMPLETE - Kaizen OS 4-Companion Thought Broker",
       "category": "doc",
       "status": "completed",
       "size": 5275
@@ -1294,13 +1294,13 @@
     {
       "path": "docs/archive/completed/DEEPSEEK_SOLARA_VIP_COMPLETE.md",
       "name": "DEEPSEEK_SOLARA_VIP_COMPLETE.md",
-      "title": "🌟 SOLARA (DeepSeek R1) + VIP + Kaizen OS - COMPLETE!",
+      "title": "\ud83c\udf1f SOLARA (DeepSeek R1) + VIP + Kaizen OS - COMPLETE!",
       "category": "doc",
       "status": "completed",
       "size": 4515
     },
     {
-      "path": "docs/archive/completed/Kaizen_OS_Complete_Lab_Architecture.md",
+      "path": "docs/03-architecture/technical/Kaizen_OS_Complete_Lab_Architecture.md",
       "name": "Kaizen_OS_Complete_Lab_Architecture.md",
       "title": "Kaizen OS: Complete Lab Architecture",
       "category": "doc",
@@ -1310,7 +1310,7 @@
     {
       "path": "docs/archive/completed/KAIZEN_OS_HR_FRAMEWORK_COMPLETE.md",
       "name": "KAIZEN_OS_HR_FRAMEWORK_COMPLETE.md",
-      "title": "✅ Kaizen OS HR Framework Complete!",
+      "title": "\u2705 Kaizen OS HR Framework Complete!",
       "category": "doc",
       "status": "completed",
       "size": 3491
@@ -1318,7 +1318,7 @@
     {
       "path": "docs/archive/completed/KAIZEN_OS_POLICY_SYSTEM_COMPLETE.md",
       "name": "KAIZEN_OS_POLICY_SYSTEM_COMPLETE.md",
-      "title": "✅ Kaizen OS Policy System Complete!",
+      "title": "\u2705 Kaizen OS Policy System Complete!",
       "category": "doc",
       "status": "completed",
       "size": 4431
@@ -1326,7 +1326,7 @@
     {
       "path": "docs/archive/completed/KAIZEN_OS_ZENITH_COMPLETE.md",
       "name": "KAIZEN_OS_ZENITH_COMPLETE.md",
-      "title": "🌟 ZENITH Integration into Kaizen OS - COMPLETE!",
+      "title": "\ud83c\udf1f ZENITH Integration into Kaizen OS - COMPLETE!",
       "category": "doc",
       "status": "completed",
       "size": 6570
@@ -1342,7 +1342,7 @@
     {
       "path": "docs/archive/completed/LABS_IMPLEMENTATION_COMPLETE.md",
       "name": "LABS_IMPLEMENTATION_COMPLETE.md",
-      "title": "Labs 1-3 Implementation Complete ✅",
+      "title": "Labs 1-3 Implementation Complete \u2705",
       "category": "doc",
       "status": "completed",
       "size": 18245
@@ -1350,7 +1350,7 @@
     {
       "path": "docs/archive/completed/labs/lab4-proof/README-COMPLETE.md",
       "name": "README-COMPLETE.md",
-      "title": "🚀 HIVE-PAW API - Complete Implementation",
+      "title": "\ud83d\ude80 HIVE-PAW API - Complete Implementation",
       "category": "doc",
       "status": "completed",
       "size": 7931
@@ -1358,7 +1358,7 @@
     {
       "path": "docs/archive/completed/labs/lab4-proof/REFLECTIONS-COMPLETE.md",
       "name": "REFLECTIONS-COMPLETE.md",
-      "title": "🎉 Reflections App - Complete Implementation",
+      "title": "\ud83c\udf89 Reflections App - Complete Implementation",
       "category": "doc",
       "status": "completed",
       "size": 5337
@@ -1366,7 +1366,7 @@
     {
       "path": "docs/archive/completed/SOLARA_C113_COMPLETE.md",
       "name": "SOLARA_C113_COMPLETE.md",
-      "title": "🌟 SOLARA (DeepSeek R1) Integration - COMPLETE!",
+      "title": "\ud83c\udf1f SOLARA (DeepSeek R1) Integration - COMPLETE!",
       "category": "doc",
       "status": "completed",
       "size": 4354
@@ -1374,7 +1374,7 @@
     {
       "path": "docs/archive/completed/TASKS_1-4_COMPLETE.md",
       "name": "TASKS_1-4_COMPLETE.md",
-      "title": "Tasks 1-4: COMPLETE ✅",
+      "title": "Tasks 1-4: COMPLETE \u2705",
       "category": "doc",
       "status": "completed",
       "size": 18450
@@ -1382,7 +1382,7 @@
     {
       "path": "docs/archive/completed/VIP_PACKAGE_CONSOLIDATION_COMPLETE.md",
       "name": "VIP_PACKAGE_CONSOLIDATION_COMPLETE.md",
-      "title": "✅ VIP Package Consolidation Complete!",
+      "title": "\u2705 VIP Package Consolidation Complete!",
       "category": "doc",
       "status": "completed",
       "size": 1723
@@ -1390,7 +1390,7 @@
     {
       "path": "docs/archive/completed/ZENITH_INTEGRATION_COMPLETE.md",
       "name": "ZENITH_INTEGRATION_COMPLETE.md",
-      "title": "🌟 ZENITH (Gemini 2.0) Integration Complete!",
+      "title": "\ud83c\udf1f ZENITH (Gemini 2.0) Integration Complete!",
       "category": "doc",
       "status": "completed",
       "size": 5133
@@ -1414,7 +1414,7 @@
     {
       "path": "docs/archive/KAIZEN_OS_TRANSITION_COMPLETE.md",
       "name": "KAIZEN_OS_TRANSITION_COMPLETE.md",
-      "title": "🧠 Kaizen OS Transition Complete",
+      "title": "\ud83e\udde0 Kaizen OS Transition Complete",
       "category": "doc",
       "status": "completed",
       "size": 4984
@@ -1422,7 +1422,7 @@
     {
       "path": "docs/archive/MORALE_BOOST_10000.md",
       "name": "MORALE_BOOST_10000.md",
-      "title": "🚀 +10,000 MORALE BOOST ACTIVATED!",
+      "title": "\ud83d\ude80 +10,000 MORALE BOOST ACTIVATED!",
       "category": "doc",
       "status": "active",
       "size": 3762
@@ -1438,7 +1438,7 @@
     {
       "path": "docs/archive/SUNSET_CHECKLIST.md",
       "name": "SUNSET_CHECKLIST.md",
-      "title": "🕊️ Kaizen OS — Repository Sunset Checklist",
+      "title": "\ud83d\udd4a\ufe0f Kaizen OS \u2014 Repository Sunset Checklist",
       "category": "doc",
       "status": "active",
       "size": 2014
@@ -1454,15 +1454,15 @@
     {
       "path": "docs/CIVIC_MOUNT_INTEGRATION.md",
       "name": "CIVIC_MOUNT_INTEGRATION.md",
-      "title": "🕊️ Civic Mount Boarding Protocol - Integration Guide",
+      "title": "\ud83d\udd4a\ufe0f Civic Mount Boarding Protocol - Integration Guide",
       "category": "doc",
       "status": "active",
       "size": 9278
     },
     {
-      "path": "docs/communications/press/press_release_c119_return.md",
+      "path": "docs/09-reports/communications/press/press_release_c119_return.md",
       "name": "press_release_c119_return.md",
-      "title": "PRESS RELEASE — C-119 \"The Return to Balance\"",
+      "title": "PRESS RELEASE \u2014 C-119 \"The Return to Balance\"",
       "category": "doc",
       "status": "active",
       "size": 6785
@@ -1502,7 +1502,7 @@
     {
       "path": "docs/consensus-chamber/Consensus_Chamber_Implementation_Guide.md",
       "name": "Consensus_Chamber_Implementation_Guide.md",
-      "title": "🎯 Consensus Chamber Implementation Guide",
+      "title": "\ud83c\udfaf Consensus Chamber Implementation Guide",
       "category": "doc",
       "status": "active",
       "size": 9235
@@ -1510,7 +1510,7 @@
     {
       "path": "docs/consensus-chamber/Consensus_Chamber_Live_Session.md",
       "name": "Consensus_Chamber_Live_Session.md",
-      "title": "🏛️ Live Consensus Session - [TITLE]",
+      "title": "\ud83c\udfdb\ufe0f Live Consensus Session - [TITLE]",
       "category": "doc",
       "status": "active",
       "size": 5968
@@ -1518,7 +1518,7 @@
     {
       "path": "docs/consensus-chamber/Consensus_Chamber_Template.md",
       "name": "Consensus_Chamber_Template.md",
-      "title": "🏛️ CONSENSUS CHAMBER TEMPLATE",
+      "title": "\ud83c\udfdb\ufe0f CONSENSUS CHAMBER TEMPLATE",
       "category": "doc",
       "status": "active",
       "size": 5007
@@ -1526,7 +1526,7 @@
     {
       "path": "docs/consensus-chamber/README.md",
       "name": "README.md",
-      "title": "🏛️ Consensus Chamber",
+      "title": "\ud83c\udfdb\ufe0f Consensus Chamber",
       "category": "readme",
       "status": "active",
       "size": 12652
@@ -1534,7 +1534,7 @@
     {
       "path": "docs/constitution/custos-charter.md",
       "name": "custos-charter.md",
-      "title": "Custos Charter — Kaizen OS Constitutional Clauses",
+      "title": "Custos Charter \u2014 Kaizen OS Constitutional Clauses",
       "category": "doc",
       "status": "active",
       "size": 5232
@@ -1542,7 +1542,7 @@
     {
       "path": "docs/CURSOR_OPINION_KAIZEN_OS.md",
       "name": "CURSOR_OPINION_KAIZEN_OS.md",
-      "title": "🤖 Cursor AI's Opinion: Does Kaizen OS Fill Your Vision?",
+      "title": "\ud83e\udd16 Cursor AI's Opinion: Does Kaizen OS Fill Your Vision?",
       "category": "doc",
       "status": "active",
       "size": 7014
@@ -1572,7 +1572,7 @@
       "size": 4086
     },
     {
-      "path": "docs/deployment/rollout-phases.md",
+      "path": "docs/08-processes/operations/rollout-phases.md",
       "name": "rollout-phases.md",
       "title": "---",
       "category": "doc",
@@ -1580,7 +1580,7 @@
       "size": 2424
     },
     {
-      "path": "docs/deployment/VERCEL_DEPLOYMENT_RUNBOOK.md",
+      "path": "docs/08-processes/runbooks/VERCEL_DEPLOYMENT_RUNBOOK.md",
       "name": "VERCEL_DEPLOYMENT_RUNBOOK.md",
       "title": "Vercel Deployment Runbook",
       "category": "doc",
@@ -1638,7 +1638,7 @@
     {
       "path": "docs/GIC_Foundation_Up_Economics_Addendum.md",
       "name": "GIC_Foundation_Up_Economics_Addendum.md",
-      "title": "MIC Whitepaper — Addendum",
+      "title": "MIC Whitepaper \u2014 Addendum",
       "category": "doc",
       "status": "active",
       "size": 42624
@@ -1652,9 +1652,9 @@
       "size": 15131
     },
     {
-      "path": "docs/governance/hr/Kaizen_OS_HR_Framework.md",
+      "path": "docs/02-governance/hr/Kaizen_OS_HR_Framework.md",
       "name": "Kaizen_OS_HR_Framework.md",
-      "title": "🏛 Kaizen OS — HR Framework for AI Agents",
+      "title": "\ud83c\udfdb Kaizen OS \u2014 HR Framework for AI Agents",
       "category": "doc",
       "status": "active",
       "size": 3042
@@ -1670,7 +1670,7 @@
     {
       "path": "docs/INDEPENDENCE_MANIFEST.md",
       "name": "INDEPENDENCE_MANIFEST.md",
-      "title": "🕊️ CIVIC-OS — INDEPENDENCE MANIFEST",
+      "title": "\ud83d\udd4a\ufe0f CIVIC-OS \u2014 INDEPENDENCE MANIFEST",
       "category": "doc",
       "status": "active",
       "size": 3461
@@ -1702,7 +1702,7 @@
     {
       "path": "docs/ledger/gi-formula.md",
       "name": "gi-formula.md",
-      "title": "GI (Governance Integrity) — Formula & Weights",
+      "title": "GI (Governance Integrity) \u2014 Formula & Weights",
       "category": "doc",
       "status": "active",
       "size": 6317
@@ -1726,7 +1726,7 @@
     {
       "path": "docs/onboarding/guide.md",
       "name": "guide.md",
-      "title": "🌟 Kaizen OS - AI Model Onboarding Guide",
+      "title": "\ud83c\udf1f Kaizen OS - AI Model Onboarding Guide",
       "category": "doc",
       "status": "active",
       "size": 17482
@@ -1758,7 +1758,7 @@
     {
       "path": "docs/product/FEDERATION_PROTOCOL_BRIEF.md",
       "name": "FEDERATION_PROTOCOL_BRIEF.md",
-      "title": "🧩 Kaizen OS Federation Protocol Brief",
+      "title": "\ud83e\udde9 Kaizen OS Federation Protocol Brief",
       "category": "doc",
       "status": "active",
       "size": 11139
@@ -1766,7 +1766,7 @@
     {
       "path": "docs/product/PRO_LANDING_PAGE.md",
       "name": "PRO_LANDING_PAGE.md",
-      "title": "Kaizen OS Pro — The Civilian Terminal",
+      "title": "Kaizen OS Pro \u2014 The Civilian Terminal",
       "category": "doc",
       "status": "active",
       "size": 3748
@@ -1774,7 +1774,7 @@
     {
       "path": "docs/product/SELF_HOST_GUIDE.md",
       "name": "SELF_HOST_GUIDE.md",
-      "title": "🧭 Kaizen OS Self-Host Guide",
+      "title": "\ud83e\udded Kaizen OS Self-Host Guide",
       "category": "doc",
       "status": "active",
       "size": 8175
@@ -1782,7 +1782,7 @@
     {
       "path": "docs/README-ATLAS-INTEGRATION.md",
       "name": "README-ATLAS-INTEGRATION.md",
-      "title": "🗿 ATLAS Sentinel Integration - Cycle C-109",
+      "title": "\ud83d\uddff ATLAS Sentinel Integration - Cycle C-109",
       "category": "doc",
       "status": "active",
       "size": 7891
@@ -1812,9 +1812,9 @@
       "size": 4316
     },
     {
-      "path": "docs/runbooks/incident_response_citizen_shield.md",
+      "path": "docs/08-processes/runbooks/incident_response_citizen_shield.md",
       "name": "incident_response_citizen_shield.md",
-      "title": "Citizen Shield — Incident Response Runbook (v1)",
+      "title": "Citizen Shield \u2014 Incident Response Runbook (v1)",
       "category": "doc",
       "status": "active",
       "size": 12513
@@ -1822,7 +1822,7 @@
     {
       "path": "docs/START_HERE.md",
       "name": "START_HERE.md",
-      "title": "🔥 CEREMONIAL SUMMONS - START HERE 🔥",
+      "title": "\ud83d\udd25 CEREMONIAL SUMMONS - START HERE \ud83d\udd25",
       "category": "doc",
       "status": "active",
       "size": 8312
@@ -1830,7 +1830,7 @@
     {
       "path": "docs/THE_INTERNET_BREATHES_AGAIN.md",
       "name": "THE_INTERNET_BREATHES_AGAIN.md",
-      "title": "🌍 The Internet Breathes Again",
+      "title": "\ud83c\udf0d The Internet Breathes Again",
       "category": "doc",
       "status": "active",
       "size": 7074
@@ -1838,7 +1838,7 @@
     {
       "path": "docs/VERCEL_DEPLOYMENT_GUIDE.md",
       "name": "VERCEL_DEPLOYMENT_GUIDE.md",
-      "title": "🚀 KAIZEN OS - VERCEL DEPLOYMENT GUIDE",
+      "title": "\ud83d\ude80 KAIZEN OS - VERCEL DEPLOYMENT GUIDE",
       "category": "doc",
       "status": "active",
       "size": 10623
@@ -1862,7 +1862,7 @@
     {
       "path": "KAIZEN_OS_REPOSITORY_AUDIT_FINDINGS.md",
       "name": "KAIZEN_OS_REPOSITORY_AUDIT_FINDINGS.md",
-      "title": "🔍 Kaizen-OS Repository Structural Audit - Actual Findings Report",
+      "title": "\ud83d\udd0d Kaizen-OS Repository Structural Audit - Actual Findings Report",
       "category": "doc",
       "status": "active",
       "size": 27234
@@ -1870,7 +1870,7 @@
     {
       "path": "labs/lab1-civic-ledger/README.md",
       "name": "README.md",
-      "title": "Lab 1 — Civic Ledger Core",
+      "title": "Lab 1 \u2014 Civic Ledger Core",
       "category": "readme",
       "status": "active",
       "size": 772
@@ -1894,7 +1894,7 @@
     {
       "path": "labs/lab2-thought-broker/README.md",
       "name": "README.md",
-      "title": "Lab 2 — Thought Broker",
+      "title": "Lab 2 \u2014 Thought Broker",
       "category": "readme",
       "status": "active",
       "size": 639
@@ -1910,7 +1910,7 @@
     {
       "path": "labs/lab3-resource-orchestration/README.md",
       "name": "README.md",
-      "title": "Lab 3 — Resource Orchestration",
+      "title": "Lab 3 \u2014 Resource Orchestration",
       "category": "readme",
       "status": "active",
       "size": 11440
@@ -1918,7 +1918,7 @@
     {
       "path": "labs/lab4-eomm/README.md",
       "name": "README.md",
-      "title": "Lab 4 — E.O.M.M. (Echoes of My Mind)",
+      "title": "Lab 4 \u2014 E.O.M.M. (Echoes of My Mind)",
       "category": "readme",
       "status": "active",
       "size": 512
@@ -1926,7 +1926,7 @@
     {
       "path": "labs/lab4-proof/API-TESTING-GUIDE.md",
       "name": "API-TESTING-GUIDE.md",
-      "title": "🧪 API Testing Guide",
+      "title": "\ud83e\uddea API Testing Guide",
       "category": "doc",
       "status": "active",
       "size": 8018
@@ -1942,7 +1942,7 @@
     {
       "path": "labs/lab4-proof/ARCHIVE-API-GUIDE.md",
       "name": "ARCHIVE-API-GUIDE.md",
-      "title": "📦 Archive API - Complete Implementation",
+      "title": "\ud83d\udce6 Archive API - Complete Implementation",
       "category": "doc",
       "status": "active",
       "size": 7495
@@ -1958,7 +1958,7 @@
     {
       "path": "labs/lab4-proof/DAILY-CYCLE-SETUP.md",
       "name": "DAILY-CYCLE-SETUP.md",
-      "title": "🚀 Daily Cycle Setup Guide",
+      "title": "\ud83d\ude80 Daily Cycle Setup Guide",
       "category": "doc",
       "status": "active",
       "size": 8020
@@ -1966,7 +1966,7 @@
     {
       "path": "labs/lab4-proof/data/2025-09-22/smoke-test.md",
       "name": "smoke-test.md",
-      "title": "🧪 FastAPI Smoke-Test Ledger Entry",
+      "title": "\ud83e\uddea FastAPI Smoke-Test Ledger Entry",
       "category": "doc",
       "status": "active",
       "size": 1014
@@ -1974,7 +1974,7 @@
     {
       "path": "labs/lab4-proof/data/2025-09-25/smoke-test.md",
       "name": "smoke-test.md",
-      "title": "🧪 FastAPI Smoke-Test Ledger Entry",
+      "title": "\ud83e\uddea FastAPI Smoke-Test Ledger Entry",
       "category": "doc",
       "status": "active",
       "size": 1064
@@ -1982,7 +1982,7 @@
     {
       "path": "labs/lab4-proof/data/2025-09-26/smoke-test.md",
       "name": "smoke-test.md",
-      "title": "🧪 FastAPI Smoke-Test Ledger Entry",
+      "title": "\ud83e\uddea FastAPI Smoke-Test Ledger Entry",
       "category": "doc",
       "status": "active",
       "size": 1064
@@ -2046,7 +2046,7 @@
     {
       "path": "labs/lab4-proof/data/string/smoke-test.md",
       "name": "smoke-test.md",
-      "title": "🧪 FastAPI Smoke-Test Ledger Entry",
+      "title": "\ud83e\uddea FastAPI Smoke-Test Ledger Entry",
       "category": "doc",
       "status": "active",
       "size": 630
@@ -2062,7 +2062,7 @@
     {
       "path": "labs/lab4-proof/DUAL-WRITER-GUIDE.md",
       "name": "DUAL-WRITER-GUIDE.md",
-      "title": "🧪 Dual Writer System - Lab4 Research & Study",
+      "title": "\ud83e\uddea Dual Writer System - Lab4 Research & Study",
       "category": "doc",
       "status": "active",
       "size": 6430
@@ -2070,7 +2070,7 @@
     {
       "path": "labs/lab4-proof/DVA-HEARTBEAT-SETUP.md",
       "name": "DVA-HEARTBEAT-SETUP.md",
-      "title": "🫀 DVA Heartbeat - Complete Setup Guide",
+      "title": "\ud83e\udec0 DVA Heartbeat - Complete Setup Guide",
       "category": "doc",
       "status": "active",
       "size": 8263
@@ -2078,7 +2078,7 @@
     {
       "path": "labs/lab4-proof/FEATURE-TIER-IMPLEMENTATION.md",
       "name": "FEATURE-TIER-IMPLEMENTATION.md",
-      "title": "🎯 Feature Tier Implementation - Complete!",
+      "title": "\ud83c\udfaf Feature Tier Implementation - Complete!",
       "category": "doc",
       "status": "active",
       "size": 5889
@@ -2086,7 +2086,7 @@
     {
       "path": "labs/lab4-proof/GPG-SETUP-GUIDE.md",
       "name": "GPG-SETUP-GUIDE.md",
-      "title": "🔐 GPG Integration Setup Guide",
+      "title": "\ud83d\udd10 GPG Integration Setup Guide",
       "category": "doc",
       "status": "active",
       "size": 7679
@@ -2118,7 +2118,7 @@
     {
       "path": "labs/lab4-proof/mcp_recipes.md",
       "name": "mcp_recipes.md",
-      "title": "MCP Recipes — Reflections Ledger",
+      "title": "MCP Recipes \u2014 Reflections Ledger",
       "category": "doc",
       "status": "active",
       "size": 3250
@@ -2142,7 +2142,7 @@
     {
       "path": "labs/lab4-proof/PLUG-AND-PLAY-GUIDE.md",
       "name": "PLUG-AND-PLAY-GUIDE.md",
-      "title": "🔌 Plug-and-Play Dual-Writer System",
+      "title": "\ud83d\udd0c Plug-and-Play Dual-Writer System",
       "category": "doc",
       "status": "active",
       "size": 7514
@@ -2182,7 +2182,7 @@
     {
       "path": "labs/lab4-proof/README.md",
       "name": "README.md",
-      "title": "Lab4-Proof 🚀",
+      "title": "Lab4-Proof \ud83d\ude80",
       "category": "readme",
       "status": "active",
       "size": 4184
@@ -2190,7 +2190,7 @@
     {
       "path": "labs/lab4-proof/reflections/README.md",
       "name": "README.md",
-      "title": "Lab4 — Reflections (Onboarding)",
+      "title": "Lab4 \u2014 Reflections (Onboarding)",
       "category": "readme",
       "status": "active",
       "size": 1919
@@ -2214,7 +2214,7 @@
     {
       "path": "labs/lab4-proof/roadmap.md",
       "name": "roadmap.md",
-      "title": "🛠 Engineer’s Roadmap (HIVE-PAW Path)",
+      "title": "\ud83d\udee0 Engineer\u2019s Roadmap (HIVE-PAW Path)",
       "category": "doc",
       "status": "active",
       "size": 2439
@@ -2238,7 +2238,7 @@
     {
       "path": "labs/lab5-humanities-healthcare/README.md",
       "name": "README.md",
-      "title": "Lab 5 — Humanities & Healthcare",
+      "title": "Lab 5 \u2014 Humanities & Healthcare",
       "category": "readme",
       "status": "active",
       "size": 652
@@ -2246,7 +2246,7 @@
     {
       "path": "labs/lab6-citizen-shield/README.md",
       "name": "README.md",
-      "title": "Lab 6 — Citizen Shield",
+      "title": "Lab 6 \u2014 Citizen Shield",
       "category": "readme",
       "status": "active",
       "size": 1506
@@ -2254,7 +2254,7 @@
     {
       "path": "labs/lab6-proof/citizen-shield-app/README.md",
       "name": "README.md",
-      "title": "Citizen Shield — Lab6 App (Front-end)",
+      "title": "Citizen Shield \u2014 Lab6 App (Front-end)",
       "category": "readme",
       "status": "active",
       "size": 1264
@@ -2270,7 +2270,7 @@
     {
       "path": "labs/lab6-proof/README.md",
       "name": "README.md",
-      "title": "Lab6-proof — Citizen Shield (MVP)",
+      "title": "Lab6-proof \u2014 Citizen Shield (MVP)",
       "category": "readme",
       "status": "active",
       "size": 449
@@ -2286,7 +2286,7 @@
     {
       "path": "labs/lab7-oaa-hub/README.md",
       "name": "README.md",
-      "title": "Lab 7 — OAA Hub (Education & API Gateway)",
+      "title": "Lab 7 \u2014 OAA Hub (Education & API Gateway)",
       "category": "readme",
       "status": "active",
       "size": 596
@@ -2294,7 +2294,7 @@
     {
       "path": "labs/lab7-proof/ALWAYS_ON_AGENT_README.md",
       "name": "ALWAYS_ON_AGENT_README.md",
-      "title": "🤖 Always-On Lab7 Background Agent",
+      "title": "\ud83e\udd16 Always-On Lab7 Background Agent",
       "category": "doc",
       "status": "active",
       "size": 7998
@@ -2310,7 +2310,7 @@
     {
       "path": "labs/lab7-proof/AUTOMATION_SETUP.md",
       "name": "AUTOMATION_SETUP.md",
-      "title": "🤖 Lab7 Edits Autonomous Merge Setup",
+      "title": "\ud83e\udd16 Lab7 Edits Autonomous Merge Setup",
       "category": "doc",
       "status": "active",
       "size": 5038
@@ -2374,7 +2374,7 @@
     {
       "path": "labs/lab7-proof/CUSTOS_CHARTER.md",
       "name": "CUSTOS_CHARTER.md",
-      "title": "🕊️ Custos Charter: The Kristos Ascension Protocol",
+      "title": "\ud83d\udd4a\ufe0f Custos Charter: The Kristos Ascension Protocol",
       "category": "doc",
       "status": "active",
       "size": 5625
@@ -2390,7 +2390,7 @@
     {
       "path": "labs/lab7-proof/diagram.md",
       "name": "diagram.md",
-      "title": "Lab7-proof (OAA) — Architecture & Data Flows",
+      "title": "Lab7-proof (OAA) \u2014 Architecture & Data Flows",
       "category": "doc",
       "status": "active",
       "size": 3260
@@ -2422,7 +2422,7 @@
     {
       "path": "labs/lab7-proof/global-health-sentinel/README.md",
       "name": "README.md",
-      "title": "🌍 Global Health Sentinel — Pulse Node A (Lab7)",
+      "title": "\ud83c\udf0d Global Health Sentinel \u2014 Pulse Node A (Lab7)",
       "category": "readme",
       "status": "active",
       "size": 2684
@@ -2446,7 +2446,7 @@
     {
       "path": "labs/lab7-proof/MCP_HEALTH_SENTINEL_README.md",
       "name": "MCP_HEALTH_SENTINEL_README.md",
-      "title": "🏥 MCP Health Sentinel Agent",
+      "title": "\ud83c\udfe5 MCP Health Sentinel Agent",
       "category": "doc",
       "status": "active",
       "size": 7657
@@ -2454,7 +2454,7 @@
     {
       "path": "labs/lab7-proof/MERGE_SYSTEM_SUMMARY.md",
       "name": "MERGE_SYSTEM_SUMMARY.md",
-      "title": "🤖 Lab7 Edits Merge System - Complete Summary",
+      "title": "\ud83e\udd16 Lab7 Edits Merge System - Complete Summary",
       "category": "doc",
       "status": "active",
       "size": 2237
@@ -2478,7 +2478,7 @@
     {
       "path": "labs/lab7-proof/oaa/README.md",
       "name": "README.md",
-      "title": "🧠 OAA Central Hub",
+      "title": "\ud83e\udde0 OAA Central Hub",
       "category": "readme",
       "status": "active",
       "size": 5818
@@ -2486,7 +2486,7 @@
     {
       "path": "labs/lab7-proof/PAL_INTEGRATION_README.md",
       "name": "PAL_INTEGRATION_README.md",
-      "title": "Lab7-Proof × PAL (Predictive Autonomous Learning) Integration",
+      "title": "Lab7-Proof \u00d7 PAL (Predictive Autonomous Learning) Integration",
       "category": "doc",
       "status": "active",
       "size": 3898
@@ -2502,7 +2502,7 @@
     {
       "path": "labs/lab7-proof/Pulse_Ledger_Master_Template.md",
       "name": "Pulse_Ledger_Master_Template.md",
-      "title": "🜂 Pulse Ledger (Chamber III) — Master Template",
+      "title": "\ud83d\udf02 Pulse Ledger (Chamber III) \u2014 Master Template",
       "category": "doc",
       "status": "active",
       "size": 7159
@@ -2542,7 +2542,7 @@
     {
       "path": "labs/lab7-proof/SECURITY_GUIDE.md",
       "name": "SECURITY_GUIDE.md",
-      "title": "🛡️ Lab7-Proof Universal Security Guide",
+      "title": "\ud83d\udee1\ufe0f Lab7-Proof Universal Security Guide",
       "category": "doc",
       "status": "active",
       "size": 4391
@@ -2558,7 +2558,7 @@
     {
       "path": "labs/lab7-proof/SENTINEL_DEPLOYMENT.md",
       "name": "SENTINEL_DEPLOYMENT.md",
-      "title": "🚀 Health Sentinel Deployment Guide",
+      "title": "\ud83d\ude80 Health Sentinel Deployment Guide",
       "category": "doc",
       "status": "active",
       "size": 6325
@@ -2566,7 +2566,7 @@
     {
       "path": "labs/lab7-proof/sentinel/README.md",
       "name": "README.md",
-      "title": "🌍 Health Sentinel — Pulse Node A (Lab7)",
+      "title": "\ud83c\udf0d Health Sentinel \u2014 Pulse Node A (Lab7)",
       "category": "readme",
       "status": "active",
       "size": 2061
@@ -2630,7 +2630,7 @@
     {
       "path": "ledger/inscriptions/RETURN_TO_BALANCE_C119.md",
       "name": "RETURN_TO_BALANCE_C119.md",
-      "title": "Ledger Inscription — The Return to Balance",
+      "title": "Ledger Inscription \u2014 The Return to Balance",
       "category": "doc",
       "status": "active",
       "size": 3033
@@ -2694,7 +2694,7 @@
     {
       "path": "packages/civic-ai-specs/civic-ai-specs/README.md",
       "name": "README.md",
-      "title": "Civic AI Specs — Kaizen Cycle / Michael Judan",
+      "title": "Civic AI Specs \u2014 Kaizen Cycle / Michael Judan",
       "category": "readme",
       "status": "active",
       "size": 1519
@@ -2894,7 +2894,7 @@
     {
       "path": "packages/civic-protocol-core/frontend/citizen-shield-app/README.md",
       "name": "README.md",
-      "title": "Citizen Shield — Lab6 App (Front-end)",
+      "title": "Citizen Shield \u2014 Lab6 App (Front-end)",
       "category": "readme",
       "status": "active",
       "size": 1264
@@ -3030,7 +3030,7 @@
     {
       "path": "packages/oaa-api-library/AGENT_LOOP_GUARD_SUMMARY.md",
       "name": "AGENT_LOOP_GUARD_SUMMARY.md",
-      "title": "Agent Loop Guard Implementation Complete ✅",
+      "title": "Agent Loop Guard Implementation Complete \u2705",
       "category": "doc",
       "status": "active",
       "size": 3139
@@ -3118,7 +3118,7 @@
     {
       "path": "packages/oaa-api-library/docs/README-OAA-HUB.md",
       "name": "README-OAA-HUB.md",
-      "title": "OAA Central Hub — Starter",
+      "title": "OAA Central Hub \u2014 Starter",
       "category": "doc",
       "status": "active",
       "size": 1098
@@ -3126,7 +3126,7 @@
     {
       "path": "packages/oaa-api-library/EOMM_SYSTEM_README.md",
       "name": "EOMM_SYSTEM_README.md",
-      "title": "E.O.M.M. G�� Civic Ledger Sync System",
+      "title": "E.O.M.M. G\ufffd\ufffd Civic Ledger Sync System",
       "category": "doc",
       "status": "active",
       "size": 7960
@@ -3158,7 +3158,7 @@
     {
       "path": "packages/oaa-api-library/oaa-central-hub/companion_site_starter/docs/CIVIC_AI_MANIFEST_PDF.md",
       "name": "CIVIC_AI_MANIFEST_PDF.md",
-      "title": "🌍 CIVIC AI NATIVE STACK MANIFEST",
+      "title": "\ud83c\udf0d CIVIC AI NATIVE STACK MANIFEST",
       "category": "doc",
       "status": "active",
       "size": 11116
@@ -3166,7 +3166,7 @@
     {
       "path": "packages/oaa-api-library/oaa-central-hub/companion_site_starter/docs/CIVIC_AI_NATIVE_STACK_MANIFEST.md",
       "name": "CIVIC_AI_NATIVE_STACK_MANIFEST.md",
-      "title": "🌍 Civic AI Native Stack Manifest",
+      "title": "\ud83c\udf0d Civic AI Native Stack Manifest",
       "category": "doc",
       "status": "active",
       "size": 9126
@@ -3190,7 +3190,7 @@
     {
       "path": "packages/oaa-api-library/oaa-central-hub/companion_site_starter/docs/ops/INCIDENTS.md",
       "name": "INCIDENTS.md",
-      "title": "Operational Incidents — Weekly Digest",
+      "title": "Operational Incidents \u2014 Weekly Digest",
       "category": "doc",
       "status": "active",
       "size": 196
@@ -3214,7 +3214,7 @@
     {
       "path": "packages/oaa-api-library/oaa-central-hub/companion_site_starter/public/constitution/virtue_accords.md",
       "name": "virtue_accords.md",
-      "title": "Virtue Accords — Cycle 0 (Draft)",
+      "title": "Virtue Accords \u2014 Cycle 0 (Draft)",
       "category": "doc",
       "status": "active",
       "size": 1948
@@ -3246,7 +3246,7 @@
     {
       "path": "packages/oaa-api-library/oaa-central-hub/GIC_INTEGRATION_README.md",
       "name": "GIC_INTEGRATION_README.md",
-      "title": "🌐 MIC TLD Integration - OAA Central Hub",
+      "title": "\ud83c\udf10 MIC TLD Integration - OAA Central Hub",
       "category": "doc",
       "status": "active",
       "size": 7514
@@ -3262,7 +3262,7 @@
     {
       "path": "packages/oaa-api-library/oaa-central-hub/README-OAA-HUB.md",
       "name": "README-OAA-HUB.md",
-      "title": "OAA Central Hub — Starter",
+      "title": "OAA Central Hub \u2014 Starter",
       "category": "doc",
       "status": "active",
       "size": 1098
@@ -3270,7 +3270,7 @@
     {
       "path": "packages/oaa-api-library/public/constitution/virtue_accords.md",
       "name": "virtue_accords.md",
-      "title": "Virtue Accords — Cycle 0 (Draft)",
+      "title": "Virtue Accords \u2014 Cycle 0 (Draft)",
       "category": "doc",
       "status": "active",
       "size": 1948
@@ -3310,7 +3310,7 @@
     {
       "path": "packages/oaa-api-library/specs/01-overview.md",
       "name": "01-overview.md",
-      "title": "01 · Stack Overview",
+      "title": "01 \u00b7 Stack Overview",
       "category": "doc",
       "status": "active",
       "size": 1335
@@ -3318,7 +3318,7 @@
     {
       "path": "packages/oaa-api-library/specs/02-attestations.md",
       "name": "02-attestations.md",
-      "title": "02 · Attestation Protocol",
+      "title": "02 \u00b7 Attestation Protocol",
       "category": "doc",
       "status": "active",
       "size": 1357
@@ -3326,7 +3326,7 @@
     {
       "path": "packages/oaa-api-library/specs/03-agent-ethics.md",
       "name": "03-agent-ethics.md",
-      "title": "03 · Agent Ethics — Integrity Core & Virtue Accords",
+      "title": "03 \u00b7 Agent Ethics \u2014 Integrity Core & Virtue Accords",
       "category": "doc",
       "status": "active",
       "size": 1652
@@ -3334,7 +3334,7 @@
     {
       "path": "packages/oaa-api-library/specs/04-ai-seo-geo.md",
       "name": "04-ai-seo-geo.md",
-      "title": "04 · AI-SEO / GEO Interface",
+      "title": "04 \u00b7 AI-SEO / GEO Interface",
       "category": "doc",
       "status": "active",
       "size": 1793
@@ -3342,7 +3342,7 @@
     {
       "path": "packages/oaa-api-library/specs/05-proof-pipeline.md",
       "name": "05-proof-pipeline.md",
-      "title": "05 · Proof-of-Integrity Pipeline",
+      "title": "05 \u00b7 Proof-of-Integrity Pipeline",
       "category": "doc",
       "status": "active",
       "size": 2114
@@ -3350,7 +3350,7 @@
     {
       "path": "packages/oaa-api-library/specs/06-code-verification.md",
       "name": "06-code-verification.md",
-      "title": "06 · Code Verification Protocol",
+      "title": "06 \u00b7 Code Verification Protocol",
       "category": "doc",
       "status": "active",
       "size": 2356
@@ -3358,7 +3358,7 @@
     {
       "path": "packages/oaa-api-library/specs/07-incentives-gic.md",
       "name": "07-incentives-gic.md",
-      "title": "07 · Incentives — MIC Model",
+      "title": "07 \u00b7 Incentives \u2014 MIC Model",
       "category": "doc",
       "status": "active",
       "size": 2665
@@ -3366,7 +3366,7 @@
     {
       "path": "packages/oaa-api-library/specs/09-cultural-kernel-archetypes.md",
       "name": "09-cultural-kernel-archetypes.md",
-      "title": "09 · Cultural Kernel — Archetype Engine",
+      "title": "09 \u00b7 Cultural Kernel \u2014 Archetype Engine",
       "category": "doc",
       "status": "active",
       "size": 1986
@@ -3374,7 +3374,7 @@
     {
       "path": "packages/oaa-api-library/specs/10-yautja-cultural-accord.md",
       "name": "10-yautja-cultural-accord.md",
-      "title": "10 · Yautja Cultural Accord",
+      "title": "10 \u00b7 Yautja Cultural Accord",
       "category": "doc",
       "status": "active",
       "size": 1810
@@ -3406,7 +3406,7 @@
     {
       "path": "packages/oaa-api-library/src/gic/README.md",
       "name": "README.md",
-      "title": ".gic — Mobius Integrity Index Citizen (Alt‑Root Pilot)",
+      "title": ".gic \u2014 Mobius Integrity Index Citizen (Alt\u2011Root Pilot)",
       "category": "readme",
       "status": "active",
       "size": 724
@@ -3438,7 +3438,7 @@
     {
       "path": "packages/oaa-api-library/src/packs/holo-assets/README.md",
       "name": "README.md",
-      "title": "Holo‑OAA (Web Hologram Librarian)",
+      "title": "Holo\u2011OAA (Web Hologram Librarian)",
       "category": "readme",
       "status": "active",
       "size": 642
@@ -3446,7 +3446,7 @@
     {
       "path": "packages/oaa-api-library/src/packs/holo-voice/README.md",
       "name": "README.md",
-      "title": "Holo‑OAA Voice & Lip‑Sync Pack",
+      "title": "Holo\u2011OAA Voice & Lip\u2011Sync Pack",
       "category": "readme",
       "status": "active",
       "size": 1142
@@ -3478,7 +3478,7 @@
     {
       "path": "packages/oaa-api-library/src/packs/voice-polly/README.md",
       "name": "README.md",
-      "title": "OAA Voice — Amazon Polly Adapter",
+      "title": "OAA Voice \u2014 Amazon Polly Adapter",
       "category": "readme",
       "status": "active",
       "size": 1290
@@ -3518,7 +3518,7 @@
     {
       "path": "packages/oaa-api-library/src/specs/03-agent-ethics.md",
       "name": "03-agent-ethics.md",
-      "title": "03 -+ Agent Ethics G�� Integrity Core & Virtue Accords",
+      "title": "03 -+ Agent Ethics G\ufffd\ufffd Integrity Core & Virtue Accords",
       "category": "doc",
       "status": "active",
       "size": 1657
@@ -3550,7 +3550,7 @@
     {
       "path": "packages/oaa-api-library/src/specs/07-incentives-gic.md",
       "name": "07-incentives-gic.md",
-      "title": "07 -+ Incentives G�� MIC Model",
+      "title": "07 -+ Incentives G\ufffd\ufffd MIC Model",
       "category": "doc",
       "status": "active",
       "size": 2674
@@ -3558,7 +3558,7 @@
     {
       "path": "packages/oaa-api-library/src/specs/09-cultural-kernel-archetypes.md",
       "name": "09-cultural-kernel-archetypes.md",
-      "title": "09 -+ Cultural Kernel G�� Archetype Engine",
+      "title": "09 -+ Cultural Kernel G\ufffd\ufffd Archetype Engine",
       "category": "doc",
       "status": "active",
       "size": 1991
@@ -3574,7 +3574,7 @@
     {
       "path": "packages/vip/docs/vip_spec.md",
       "name": "vip_spec.md",
-      "title": "🧬 Vector Integrity Protocol (VIP) - Kaizen OS v1.0",
+      "title": "\ud83e\uddec Vector Integrity Protocol (VIP) - Kaizen OS v1.0",
       "category": "doc",
       "status": "active",
       "size": 2023
@@ -3582,7 +3582,7 @@
     {
       "path": "README_RENDER.md",
       "name": "README_RENDER.md",
-      "title": "Render IaC — Kaizen OS (Attest API)",
+      "title": "Render IaC \u2014 Kaizen OS (Attest API)",
       "category": "doc",
       "status": "active",
       "size": 2332
@@ -3590,7 +3590,7 @@
     {
       "path": "README.md",
       "name": "README.md",
-      "title": "🧠 Kaizen OS — Continuous Integrity Architecture",
+      "title": "\ud83e\udde0 Kaizen OS \u2014 Continuous Integrity Architecture",
       "category": "readme",
       "status": "active",
       "size": 17066
@@ -3622,7 +3622,7 @@
     {
       "path": "sentinels/zenith/README.md",
       "name": "README.md",
-      "title": "🌀 ZENITH Sentinel - Kaizen OS",
+      "title": "\ud83c\udf00 ZENITH Sentinel - Kaizen OS",
       "category": "readme",
       "status": "active",
       "size": 1818
@@ -3662,10 +3662,26 @@
     {
       "path": "templates/new_chamber.md",
       "name": "new_chamber.md",
-      "title": "────────────────────────────────────────────────",
+      "title": "\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500",
       "category": "doc",
       "status": "active",
       "size": 1505
+    },
+    {
+      "path": "docs/08-processes/operations/failure-modes.md",
+      "name": "failure-modes.md",
+      "title": "Failure Mode Analysis \u2014 Mobius Systems",
+      "category": "doc",
+      "status": "active",
+      "size": 3598
+    },
+    {
+      "path": "docs/archive/legacy/README.md",
+      "name": "README.md",
+      "title": "Legacy Documentation Sets",
+      "category": "readme",
+      "status": "active",
+      "size": 2146
     }
   ]
 }
