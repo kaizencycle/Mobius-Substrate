@@ -1,11 +1,16 @@
 import fs from "fs";
 import path from "path";
+import { fileURLToPath } from "node:url";
 
 export type SentinelName = "AUREA" | "ATLAS" | "JADE";
 
+// Get the directory of this module (not the current working directory)
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 const DEFAULT_LEDGER_PATH =
   process.env.MOBIUS_LEDGER_PATH ||
-  path.join(process.cwd(), "data", "ledger.json");
+  path.join(__dirname, "..", "..", "data", "ledger.json");
 
 export interface LedgerEntry {
   timestamp: string;
