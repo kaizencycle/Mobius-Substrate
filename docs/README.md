@@ -51,6 +51,7 @@
 - [Technical Docs](./03-architecture/technical/) — Bridge architecture, interface layer
 - [Diagrams](./03-architecture/diagrams/) — Visual architecture representations
 - [ADRs](./03-architecture/adr/) — Architecture Decision Records
+- [Mobius Local Node](./nodes/MOBIUS_LOCAL_NODE.md) — Offline Sentinel stack using local LLMs
 
 **For**: Architects, senior developers, system designers
 

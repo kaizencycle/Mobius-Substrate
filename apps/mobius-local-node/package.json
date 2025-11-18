@@ -1,0 +1,25 @@
+{
+  "name": "mobius-local-node",
+  "version": "0.2.0",
+  "private": true,
+  "main": "dist/index.js",
+  "type": "module",
+  "description": "Mobius Local Node - Offline Sentinel console using local LLM",
+  "scripts": {
+    "dev": "ts-node src/index.ts",
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/index.js",
+    "install:llm": "bash scripts/install-local-llm.sh",
+    "type-check": "tsc --noEmit",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "node-fetch": "^3.3.2"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.3",
+    "@types/node": "^22.0.0"
+  }
+}
+
