@@ -1,7 +1,7 @@
 import crypto from "crypto";
 import fetch, { Headers } from "node-fetch";
 import { CFG } from "../config";
-import { ensureAllowed, isPrivateIP } from "./allowlist";
+import { ALLOWLIST, isPrivateIP } from "./allowlist";
 
 export type FetchedDoc = {
   url: string;
@@ -12,29 +12,60 @@ export type FetchedDoc = {
   fetchedAt: string;
 };
 
-export async function fetchDoc(url: string): Promise<FetchedDoc> {
-  // Validate and sanitize URL to prevent SSRF attacks
-  // ensureAllowed validates: allowlist, HTTPS-only, no private IPs, no path traversal
-  const target = ensureAllowed(url);
-  
-  // Additional explicit validation for CodeQL static analysis
-  // Parse URL again to ensure it's a valid HTTPS URL from allowlist
-  let validatedUrl: URL;
-  try {
-    validatedUrl = new URL(target);
-    // Ensure protocol is HTTPS (enforced by ensureAllowed, but explicit for CodeQL)
-    if (validatedUrl.protocol !== 'https:') {
-      throw new Error(`Invalid protocol: ${validatedUrl.protocol}. Only HTTPS allowed.`);
+const DEFAULT_ALLOWED_PORTS = new Set(["", "443"]);
+
+function hostMatchesAllowlist(hostname: string): boolean {
+  const lowerHost = hostname.toLowerCase();
+  for (const allowed of ALLOWLIST) {
+    const normalized = allowed.toLowerCase();
+    if (lowerHost === normalized || lowerHost.endsWith(`.${normalized}`)) {
+      return true;
     }
-    // Ensure hostname is not private/internal (enforced by ensureAllowed, but explicit for CodeQL)
-    const hostname = validatedUrl.hostname.toLowerCase();
-    if (isPrivateIP(hostname)) {
-      throw new Error(`Private IP addresses not allowed: ${hostname}`);
-    }
-  } catch (error) {
-    throw new Error(`Invalid URL after validation: ${error instanceof Error ? error.message : 'unknown error'}`);
   }
-  
+  return false;
+}
+
+function buildSafeAllowlistedUrl(candidate: string): URL {
+  const trimmed = candidate.trim();
+  if (!trimmed) {
+    throw new Error("URL is required");
+  }
+
+  let parsed: URL;
+  try {
+    parsed = new URL(trimmed);
+  } catch (error) {
+    throw new Error(
+      `Invalid URL: ${error instanceof Error ? error.message : "unknown error"}`,
+    );
+  }
+
+  const hostname = parsed.hostname.toLowerCase();
+
+  if (!hostMatchesAllowlist(hostname)) {
+    throw new Error(`Domain not in allowlist: ${hostname}`);
+  }
+  if (isPrivateIP(hostname)) {
+    throw new Error(`Private IP addresses not allowed: ${hostname}`);
+  }
+  if (parsed.protocol !== "https:") {
+    throw new Error("Only HTTPS URLs are allowed");
+  }
+  if (!DEFAULT_ALLOWED_PORTS.has(parsed.port)) {
+    throw new Error("Custom ports are not allowed for sentinel fetches");
+  }
+  if (parsed.pathname.includes("..")) {
+    throw new Error("Path traversal sequences are not allowed");
+  }
+
+  parsed.username = "";
+  parsed.password = "";
+  return parsed;
+}
+
+export async function fetchDoc(url: string): Promise<FetchedDoc> {
+  const safeUrl = buildSafeAllowlistedUrl(url);
+
   const controller = new AbortController();
   const timeout = setTimeout(
     () => controller.abort(),
@@ -42,19 +73,7 @@ export async function fetchDoc(url: string): Promise<FetchedDoc> {
   );
 
   try {
-    // Final validation check for CodeQL static analysis
-    const finalUrl = validatedUrl.toString();
-    const finalParsed = new URL(finalUrl);
-    if (finalParsed.protocol !== 'https:') {
-      throw new Error('Only HTTPS URLs allowed');
-    }
-    const finalHostname = finalParsed.hostname.toLowerCase();
-    if (isPrivateIP(finalHostname)) {
-      throw new Error(`Private IP addresses not allowed: ${finalHostname}`);
-    }
-    
-    // CodeQL suppression: validatedUrl is validated through ensureAllowed() and explicit checks above
-    const res = await fetch(finalUrl, {
+    const res = await fetch(safeUrl.toString(), {
       method: "GET",
       headers: new Headers({
         "User-Agent": "OAA-Sentinel/1.0 (+Mobius Systems)",
@@ -68,7 +87,7 @@ export async function fetchDoc(url: string): Promise<FetchedDoc> {
     const sha256 = crypto.createHash("sha256").update(text).digest("hex");
 
     return {
-      url: validatedUrl.toString(),
+      url: safeUrl.toString(),
       status: res.status,
       contentType: res.headers.get("content-type") ?? undefined,
       text,

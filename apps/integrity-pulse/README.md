@@ -441,7 +441,7 @@ apps/integrity-pulse/
 - **MIC Whitepaper v2.0**: `docs/whitepapers/GIC_Whitepaper_v2.0.md`
 - **Shard Economics**: `docs/whitepapers/Shard_Economics_Addendum.md`
 - **UBI Mechanism**: `docs/whitepapers/UBI_Mechanism_v2.0.md`
-- **Sentinel Architecture**: `docs/architecture/sentinel-system.md`
+- **Sentinel Architecture**: `docs/03-architecture/technical/sentinel-system.md`
 - **Civic Ledger API**: `packages/civic-ledger/README.md`
 
 ---

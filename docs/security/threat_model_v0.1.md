@@ -105,7 +105,7 @@ The threat model spans on-premises contributors, cloud workloads, CI/CD, and Sen
 - Security Policy (`SECURITY.md`).  
 - Testing Strategy (`TESTING.md`).  
 - Anti-Nuke workflow (`.github/workflows/anti-nuke.yml`).  
-- MII Specification (`docs/specs/mii_spec_v0.1.md`).
+- MII Specification (`docs/06-specifications/specs/mii_spec_v0.1.md`).
 
 ---
 

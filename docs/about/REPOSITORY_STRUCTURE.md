@@ -479,7 +479,7 @@ docs/whitepapers/
 ### Technical Architecture
 
 ```
-docs/architecture/
+docs/03-architecture/technical/
 ├── Kaizen_OS_Complete_Lab_Architecture.md  ← ALL 7 LABS OVERVIEW
 ├── Lab1_Civic_Ledger_Spec.md
 ├── Lab2_Thought_Broker_Spec.md
@@ -542,7 +542,7 @@ oaa-hub/                ← Education + API gateway
 ```
 1. Read README.md (15 min)
 2. Read docs/whitepapers/GIC_Whitepaper_Final.md (30 min)
-3. Skim docs/architecture/Kaizen_OS_Complete_Lab_Architecture.md (10 min)
+3. Skim docs/03-architecture/technical/Kaizen_OS_Complete_Lab_Architecture.md (10 min)
 4. Decide: Developer? Organizer? Researcher? (5 min)
 5. Jump to relevant directory based on your interest
 ```
@@ -613,8 +613,8 @@ oaa-hub/                ← Education + API gateway
 | Gaia Staking rules | `docs/protocols/gaia_staking_protocol.md` |
 | GI scoring algorithm | `docs/protocols/gi_scoring_protocol.md` |
 | DelibProof consensus | `docs/protocols/delib_proof_protocol.md` |
-| Virtue Accords (constitution) | `docs/governance/virtue_accords.md` |
-| Guardrails Codex | `docs/governance/guardrails_codex.md` |
+| Virtue Accords (constitution) | `docs/02-governance/virtue_accords.md` |
+| Guardrails Codex | `docs/02-governance/guardrails_codex.md` |
 | Festival rituals | `community/festival-guides/` |
 
 ---

@@ -92,13 +92,43 @@ export async function POST(request: NextRequest) {
     }
 
     // Validate fields schema
-    const schema: ScoutSchema = fields.map((field: any) => ({
-      name: field.name,
-      selector: field.selector,
-      required: field.required || false,
-      type: field.type || 'string',
-      transform: field.transform ? (new Function('value', `return ${field.transform}`) as (value: any) => any) : undefined,
-    }));
+    // Security: Do not use Function() constructor - it allows code injection
+    // Instead, use a whitelist of safe transformation functions
+    const schema: ScoutSchema = fields.map((field: any) => {
+      let transformFn: ((value: any) => any) | undefined = undefined;
+      
+      if (field.transform) {
+        // Whitelist of allowed transformation operations
+        const transformStr = String(field.transform).trim();
+        
+        // Only allow simple, safe transformations
+        // Match patterns like: value.trim(), value.toLowerCase(), value.toUpperCase(), etc.
+        const safeTransforms: Record<string, (value: any) => any> = {
+          'value.trim()': (v: any) => String(v).trim(),
+          'value.toLowerCase()': (v: any) => String(v).toLowerCase(),
+          'value.toUpperCase()': (v: any) => String(v).toUpperCase(),
+          'value.toString()': (v: any) => String(v),
+          'Number(value)': (v: any) => Number(v),
+          'parseInt(value)': (v: any) => parseInt(String(v), 10),
+          'parseFloat(value)': (v: any) => parseFloat(String(v)),
+        };
+        
+        if (safeTransforms[transformStr]) {
+          transformFn = safeTransforms[transformStr];
+        } else {
+          // Reject unsafe transformations
+          throw new Error(`Unsafe transformation: ${transformStr}. Only whitelisted transformations are allowed.`);
+        }
+      }
+      
+      return {
+        name: field.name,
+        selector: field.selector,
+        required: field.required || false,
+        type: field.type || 'string',
+        transform: transformFn,
+      };
+    });
 
     const result = await extract(url, schema, config || {});
     
@@ -141,15 +171,43 @@ export async function PUT(request: NextRequest) {
     }
 
     // Validate and transform requests
+    // Security: Do not use Function() constructor - it allows code injection
     const validatedRequests = requests.map((req: any) => ({
       url: req.url,
-      fields: req.fields.map((field: any) => ({
-        name: field.name,
-        selector: field.selector,
-        required: field.required || false,
-        type: field.type || 'string',
-        transform: field.transform ? new Function('value', `return ${field.transform}`) : undefined,
-      })),
+      fields: req.fields.map((field: any) => {
+        let transformFn: ((value: any) => any) | undefined = undefined;
+        
+        if (field.transform) {
+          // Whitelist of allowed transformation operations
+          const transformStr = String(field.transform).trim();
+          
+          // Only allow simple, safe transformations
+          const safeTransforms: Record<string, (value: any) => any> = {
+            'value.trim()': (v: any) => String(v).trim(),
+            'value.toLowerCase()': (v: any) => String(v).toLowerCase(),
+            'value.toUpperCase()': (v: any) => String(v).toUpperCase(),
+            'value.toString()': (v: any) => String(v),
+            'Number(value)': (v: any) => Number(v),
+            'parseInt(value)': (v: any) => parseInt(String(v), 10),
+            'parseFloat(value)': (v: any) => parseFloat(String(v)),
+          };
+          
+          if (safeTransforms[transformStr]) {
+            transformFn = safeTransforms[transformStr];
+          } else {
+            // Reject unsafe transformations
+            throw new Error(`Unsafe transformation: ${transformStr}. Only whitelisted transformations are allowed.`);
+          }
+        }
+        
+        return {
+          name: field.name,
+          selector: field.selector,
+          required: field.required || false,
+          type: field.type || 'string',
+          transform: transformFn,
+        };
+      }),
       config: req.config || {}
     }));
 

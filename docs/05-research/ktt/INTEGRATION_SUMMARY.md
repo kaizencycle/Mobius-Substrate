@@ -5,7 +5,7 @@
 
 ## Overview
 
-Successfully integrated all Kaizen Turing Test (KTT) documentation from `OS-EDIT/v1/ktt/` into the main repository under `docs/ktt/`.
+Successfully integrated all Kaizen Turing Test (KTT) documentation from `OS-EDIT/v1/ktt/` into the main repository under `docs/05-research/ktt/`.
 
 ## Files Integrated
 
@@ -16,16 +16,16 @@ Successfully integrated all Kaizen Turing Test (KTT) documentation from `OS-EDIT
 - `OS-EDIT/v1/ktt/05_related_work.md`
 
 ### Destination
-- `docs/ktt/00_primer.md` ✅
-- `docs/ktt/02_methods.md` ✅
-- `docs/ktt/03_governance_of_governors.md` ✅
-- `docs/ktt/05_related_work.md` ✅
-- `docs/ktt/README.md` ✅ (Created index)
+- `docs/05-research/ktt/00_primer.md` ✅
+- `docs/05-research/ktt/02_methods.md` ✅
+- `docs/05-research/ktt/03_governance_of_governors.md` ✅
+- `docs/05-research/ktt/05_related_work.md` ✅
+- `docs/05-research/ktt/README.md` ✅ (Created index)
 
 ## Documentation Structure
 
 ```
-docs/ktt/
+docs/05-research/ktt/
 ├── README.md                          # Overview and navigation
 ├── 00_primer.md                       # Core concepts & definitions (~650 words)
 ├── 02_methods.md                      # Experimental methods (~2,800 words)
@@ -99,7 +99,7 @@ Added KTT section to `mkdocs.yml` navigation:
 
 ## Next Steps
 
-1. ✅ Files integrated into `docs/ktt/`
+1. ✅ Files integrated into `docs/05-research/ktt/`
 2. ✅ Navigation added to `mkdocs.yml`
 3. ✅ Index/README created
 4. ⏭️ Consider creating additional sections:
@@ -113,7 +113,7 @@ Added KTT section to `mkdocs.yml` navigation:
 - [Kaizen Theorems](../kaizen_theorems.md)
 - [AI Integrity Constitution](../AI_INTEGRITY_CONSTITUTION.md)
 - [GI Formula](../ledger/gi-formula.md)
-- [DVA Architecture](../architecture/overview.md)
+- [DVA Architecture](../03-architecture/overview.md)
 
 ---
 

@@ -110,7 +110,7 @@ Successfully implemented three critical security components for Citizen Shield (
 
 ## 3. Incident Response Runbook ✅
 
-**Location**: `docs/runbooks/incident_response_citizen_shield.md`
+**Location**: `docs/08-processes/runbooks/incident_response_citizen_shield.md`
 
 ### Sections
 
@@ -170,7 +170,7 @@ shared/delibproof/
 │   └── test_delibproof.py
 └── README.md
 
-docs/runbooks/
+docs/08-processes/runbooks/
 └── incident_response_citizen_shield.md
 ```
 
@@ -299,4 +299,4 @@ All three components are **complete and ready for deployment**:
 For questions or issues, refer to:
 - `services/gatekeeper/README.md`
 - `services/gatekeeper/INTEGRATION.md`
-- `docs/runbooks/incident_response_citizen_shield.md`
+- `docs/08-processes/runbooks/incident_response_citizen_shield.md`

@@ -11,7 +11,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: ../../docs/schemas/attestation.schema.json
+              $ref: ../../docs/06-specifications/schemas/attestation.schema.json
       responses:
         "202":
           description: Accepted

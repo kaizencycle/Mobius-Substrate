@@ -14,7 +14,7 @@ services:
       - key: PAL_CARD_GLOB
         value: "ledger/model_cards/*.json"
       - key: API_DIR
-        value: "docs/api"
+        value: "docs/06-specifications/apis"
       - key: README_PATH
         value: "README.md"
 

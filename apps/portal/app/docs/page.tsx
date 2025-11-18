@@ -26,10 +26,10 @@ export default function DocsPage() {
       title: 'API Reference',
       description: 'Technical documentation for developers',
       links: [
-        { title: 'REST API', href: '/docs/api/rest' },
-        { title: 'Authentication', href: '/docs/api/authentication' },
-        { title: 'Webhooks', href: '/docs/api/webhooks' },
-        { title: 'Rate Limits', href: '/docs/api/rate-limits' },
+        { title: 'REST API', href: '/docs/06-specifications/apis/rest' },
+        { title: 'Authentication', href: '/docs/06-specifications/apis/authentication' },
+        { title: 'Webhooks', href: '/docs/06-specifications/apis/webhooks' },
+        { title: 'Rate Limits', href: '/docs/06-specifications/apis/rate-limits' },
       ]
     },
     {
@@ -47,9 +47,9 @@ export default function DocsPage() {
       description: 'How the ecosystem is governed and how to participate',
       links: [
         { title: 'Custos Charter', href: '/charter' },
-        { title: 'Voting Process', href: '/docs/governance/voting' },
-        { title: 'Proposal Guidelines', href: '/docs/governance/proposals' },
-        { title: 'Dispute Resolution', href: '/docs/governance/disputes' },
+        { title: 'Voting Process', href: '/docs/02-governance/voting' },
+        { title: 'Proposal Guidelines', href: '/docs/02-governance/proposals' },
+        { title: 'Dispute Resolution', href: '/docs/02-governance/disputes' },
       ]
     },
     {

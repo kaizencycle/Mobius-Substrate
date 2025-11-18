@@ -2,7 +2,7 @@
 
 **Purpose:** Allocate compute, energy, supply chains, financial flows, labor markets, and maintenance resources across the Kaizen OS federation.
 
-**Spec:** See `docs/architecture/Lab3_Resource_Orchestration_Specification.md` and `docs/architecture/Kaizen_OS_Complete_Lab_Architecture.md`
+**Spec:** See `docs/03-architecture/technical/Lab3_Resource_Orchestration_Specification.md` and `docs/03-architecture/technical/Kaizen_OS_Complete_Lab_Architecture.md`
 
 ---
 
@@ -414,9 +414,9 @@ Integration with **Lab 2 Thought Broker** complete. Backend API ready for **apps
 
 ## References
 
-- **Spec:** `docs/architecture/Lab3_Resource_Orchestration_Specification.md`
+- **Spec:** `docs/03-architecture/technical/Lab3_Resource_Orchestration_Specification.md`
 - **MIC Whitepaper:** `docs/economics/GIC_WHITEPAPER.md`
-- **Complete Lab Architecture:** `docs/architecture/Kaizen_OS_Complete_Lab_Architecture.md`
+- **Complete Lab Architecture:** `docs/03-architecture/technical/Kaizen_OS_Complete_Lab_Architecture.md`
 - **Self-Host Guide:** `docs/product/SELF_HOST_GUIDE.md`
 
 ---

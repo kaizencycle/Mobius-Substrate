@@ -17,7 +17,7 @@ Successfully implemented the **Human Resources framework for AI agents** in Kaiz
 - Fail-closed behavior
 
 ### **2. HR Framework Documentation**
-✅ `docs/governance/hr/Kaizen_OS_HR_Framework.md` - Complete HR documentation:
+✅ `docs/02-governance/hr/Kaizen_OS_HR_Framework.md` - Complete HR documentation:
 - Organizational hierarchy
 - HR functions (recruitment, onboarding, performance review)
 - Charter & performance system (GI scoring)
@@ -92,7 +92,7 @@ To complete the HR framework:
 ## 📚 **Documentation Created**
 
 1. ✅ `packages/policy/consensus_config.yaml` - Policy config
-2. ✅ `docs/governance/hr/Kaizen_OS_HR_Framework.md` - HR framework
+2. ✅ `docs/02-governance/hr/Kaizen_OS_HR_Framework.md` - HR framework
 3. ✅ `KAIZEN_OS_HR_FRAMEWORK_COMPLETE.md` - This summary
 
 ---

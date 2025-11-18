@@ -35,7 +35,7 @@ We acknowledge the peer review findings and are systematically addressing all id
 **Status**: In Progress  
 **Target**: Complete by 2025-11-20
 
-**Specification**: `docs/specs/cryptography/mii-signature-spec.md`
+**Specification**: `docs/06-specifications/specs/cryptography/mii-signature-spec.md`
 
 **Requirements**:
 - Signature scheme: Ed25519 (recommended by reviewer)
@@ -55,9 +55,9 @@ We acknowledge the peer review findings and are systematically addressing all id
 **Target**: Complete by 2025-11-25
 
 **Specifications**:
-- `docs/specs/consensus/thought-broker-consensus.md` - Multi-agent consensus
-- `docs/specs/consensus/ledger-consensus.md` - Distributed ledger consensus
-- `docs/specs/consensus/deliberation-proof.md` - Deliberation Proof format
+- `docs/06-specifications/specs/consensus/thought-broker-consensus.md` - Multi-agent consensus
+- `docs/06-specifications/specs/consensus/ledger-consensus.md` - Distributed ledger consensus
+- `docs/06-specifications/specs/consensus/deliberation-proof.md` - Deliberation Proof format
 
 **Owner**: TSC  
 **Priority**: Critical
@@ -70,10 +70,10 @@ We acknowledge the peer review findings and are systematically addressing all id
 **Target**: Complete by 2025-12-01
 
 **Schemas**:
-- `docs/specs/data-models/mic-tokenomics.md` - MIC economy
-- `docs/specs/data-models/ledger-schema.md` - Ledger structure
-- `docs/specs/data-models/attestation-format.md` - Attestation format
-- `docs/specs/data-models/mfs-schema.md` - Mobius Fractal Shards
+- `docs/06-specifications/specs/data-models/mic-tokenomics.md` - MIC economy
+- `docs/06-specifications/specs/data-models/ledger-schema.md` - Ledger structure
+- `docs/06-specifications/specs/data-models/attestation-format.md` - Attestation format
+- `docs/06-specifications/specs/data-models/mfs-schema.md` - Mobius Fractal Shards
 
 **Owner**: TSC  
 **Priority**: High
@@ -85,7 +85,7 @@ We acknowledge the peer review findings and are systematically addressing all id
 **Status**: In Progress  
 **Target**: Complete by 2025-11-30
 
-**Location**: `docs/adr/`
+**Location**: `docs/03-architecture/adr/`
 
 **Required ADRs**:
 - ADR-001: Integrity-First Architecture
@@ -169,7 +169,7 @@ We acknowledge the peer review findings and are systematically addressing all id
 ### 11. Failure Mode Analysis
 
 **Status**: Planned  
-**Document**: `docs/operations/failure-modes.md`
+**Document**: `docs/08-processes/operations/failure-modes.md`
 
 ---
 

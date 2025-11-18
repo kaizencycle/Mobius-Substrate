@@ -2,7 +2,7 @@
 
 Purpose: Course library, service mesh/API gateway, and CLI.
 
-Spec: See `docs/architecture/Kaizen_OS_Complete_Lab_Architecture.md` (Lab 7 section).
+Spec: See `docs/03-architecture/technical/Kaizen_OS_Complete_Lab_Architecture.md` (Lab 7 section).
 
 Where to look in this repo:
 - apps/api-gateway — Gateway entrypoints

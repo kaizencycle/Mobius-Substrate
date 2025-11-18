@@ -2,7 +2,7 @@
 
 Purpose: Reflections, memory ledger, and human-aligned training data.
 
-Spec: See `docs/architecture/Kaizen_OS_Complete_Lab_Architecture.md` (Lab 4 section).
+Spec: See `docs/03-architecture/technical/Kaizen_OS_Complete_Lab_Architecture.md` (Lab 4 section).
 
 Where to look in this repo:
 - apps/eomm-api — Reflection backend, pipelines, and scripts

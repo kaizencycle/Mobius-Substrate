@@ -50,7 +50,7 @@ Successfully implemented the complete **Human Resources & Policy framework** for
   - Ledger sealing
 
 ### **7. Documentation** ✅
-- ✅ `docs/governance/hr/Kaizen_OS_HR_Framework.md` - HR docs
+- ✅ `docs/02-governance/hr/Kaizen_OS_HR_Framework.md` - HR docs
 - ✅ `KAIZEN_OS_HR_FRAMEWORK_COMPLETE.md` - Summary
 
 ---

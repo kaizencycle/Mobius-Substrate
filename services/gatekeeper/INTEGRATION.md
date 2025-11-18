@@ -191,6 +191,6 @@ curl "https://civic-protocol-core-ledger.onrender.com/ledger/attestations?type=g
 ## Support
 
 For questions or issues:
-- Check `docs/runbooks/incident_response_citizen_shield.md` for incident procedures
+- Check `docs/08-processes/runbooks/incident_response_citizen_shield.md` for incident procedures
 - Review `services/gatekeeper/README.md` for service details
 - See `shared/delibproof/README.md` for consensus logic

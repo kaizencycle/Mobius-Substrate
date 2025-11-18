@@ -2,7 +2,7 @@
 
 **Purpose:** Sovereign blockchain for civilization state - integrity proofs, MIC minting, DID registry, and public audit trail with Proof-of-Cycle (PoC) consensus.
 
-**Spec:** See `docs/architecture/Kaizen_OS_Complete_Lab_Architecture.md` (Lab 1 section)
+**Spec:** See `docs/03-architecture/technical/Kaizen_OS_Complete_Lab_Architecture.md` (Lab 1 section)
 
 ---
 
@@ -413,7 +413,7 @@ All ledger operations enforce **Virtue Accords** constraints:
 
 ### Incident Response
 
-See `docs/runbooks/incident_response_citizen_shield.md` for security protocols.
+See `docs/08-processes/runbooks/incident_response_citizen_shield.md` for security protocols.
 
 **Emergency Procedures:**
 1. **Circuit breaker:** Halt ledger writes if avg GI < 0.85
@@ -437,7 +437,7 @@ See `docs/runbooks/incident_response_citizen_shield.md` for security protocols.
 - **Economic Model:** `docs/GIC_Whitepaper_Final.md`
 - **Foundation-Up Economics:** `docs/GIC_Foundation_Up_Economics_Addendum.md`
 - **Governance Charter:** `docs/constitution/custos-charter.md`
-- **Complete Architecture:** `docs/architecture/Kaizen_OS_Complete_Lab_Architecture.md`
+- **Complete Architecture:** `docs/03-architecture/technical/Kaizen_OS_Complete_Lab_Architecture.md`
 - **API Documentation:** `apps/ledger-api/README.md`
 
 ---

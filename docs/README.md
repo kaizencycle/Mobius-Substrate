@@ -37,6 +37,8 @@
 - [TSC](./02-governance/tsc.md) — 5-seat technical leadership
 - [Elections](./02-governance/elections.md) — Ranked-choice voting, meritocratic selection
 - [Quorum & Voting](./02-governance/quorum.md) — Voting rules, deadlock resolution
+- [Sentinel Constitution](./02-governance/SENTINEL_CONSTITUTION.md) — Ratified Article I–X framework
+- [Ratification Attestation](./02-governance/RATIFICATION_ATTESTATION.json) — Multi-sentinel signature bundle
 
 **For**: Governance participants, community members
 
@@ -47,11 +49,12 @@
 
 **[📂 Browse Architecture](./03-architecture/)**
 
-- [Labs Master Architecture](./03-architecture/technical/LABS_MASTER_ARCHITECTURE.md) — Complete system architecture
+- [Architecture Overview](./03-architecture/ARCHITECTURE.md) — Layer map, flows, hooks ⭐
+- [Kaizen OS Complete Lab Architecture](./03-architecture/technical/Kaizen_OS_Complete_Lab_Architecture.md) — Lab-by-lab blueprint
+- [Labs Master Architecture](./03-architecture/technical/LABS_MASTER_ARCHITECTURE.md) — System-wide topology
 - [Technical Docs](./03-architecture/technical/) — Bridge architecture, interface layer
 - [Diagrams](./03-architecture/diagrams/) — Visual architecture representations
 - [ADRs](./03-architecture/adr/) — Architecture Decision Records
-- [Mobius Local Node](./nodes/MOBIUS_LOCAL_NODE.md) — Offline Sentinel stack using local LLMs
 
 **For**: Architects, senior developers, system designers
 
@@ -155,6 +158,69 @@
 - [Executive Presentation](./09-reports/EXECUTIVE_PRESENTATION.md) — Stakeholder summary
 
 **For**: Stakeholders, community members, contributors
+
+---
+
+### 🤖 Agents & Sentinels — Operational Personas
+> *Agent rosters, sentinel briefs, attestations, and partner companions.*
+
+- [Founding Agents](./agents/FOUNDING_AGENTS.md) — Core persona bios
+- [Sentinel Briefs](./sentinels/uriel.md) — Guardian-specific playbooks
+- [Companion Profiles](./companions/README.md) — SOLARA, ZENITH, URIEL, ATLAS
+- [Agent Attestations](./attestations/) — JSON attestations + boarding proofs
+- [Founding Agent Config](./founding-agents/founders-config.json) — Network seed data
+- [Founders DNS Guide](./founders-agents.gic.md) — `.gic` onboarding
+- [Letters from JADE](./jade/LETTERS_FROM_JADE.md) — Narrative alignment threads
+
+---
+
+### 🛡️ Assurance & Security — Audits + Drift
+> *Security reviews, drift analysis, remediation notes, and hardening logs.*
+
+- [Security Threat Models](./security/threat_model_v0.1.md)
+- [Audit Reports](./audits/) — Frontend, backend, remediation summaries
+- [Drift Control](./drift/DRIFT_CONTROL_CHARTER.md) — Drift gates + telemetry
+- [Fix Logs](./fixes/FIXES_SUMMARY.md) — Consolidated production fixes
+- [Optimization Records](./optimizations/2025-11-10-dependency-security-hardening.md) — Dependency posture
+- [Policy & Safety Tiers](./policy/safety-tiers.md) — Enforcement gradients
+- [Ledger Integrity Notes](./ledger/gi-formula.md) — GI math references
+
+---
+
+### 📣 Briefings & Product Narratives
+> *Executive briefs, manifestos, outreach letters, and onboarding narratives.*
+
+- [Handbook](./handbook/index.md) — End-to-end orientation
+- [Manifesto](./manifesto/triad_of_healing.md) — Foundational ethos
+- [Codex Rule](./codex/jade/_index.md) — Virtue-aligned authoring
+- [Outreach Briefs](./outreach/) — External communications + policy packets
+- [Consensus Chamber](./consensus-chamber/) — Templates & live sessions
+- [Genesis Manifest](./genesis/chapter-iv-one-window-console-manifest.md) — Product arc
+- [MIC Research Notes](./mic/01_MIC_SPEC.md) — Incentive design
+- [Onboarding Assets](./onboarding/) — Flowcharts + guides
+- [Product Briefs](./product/) — Fed/enterprise offerings
+- [Peer Review Responses](./peer-review-response.md) / [Summary](./peer-review-summary.md)
+- [THE INTERNET BREATHES AGAIN](./THE_INTERNET_BREATHES_AGAIN.md) — Restoration report
+
+---
+
+### 🧰 Supporting Resources
+- [Assets](./assets/) — Logos, CSS, JS, badges
+- [Figures & Diagrams](./figures/) — High-res exports
+- [Design Prompts](./design/figma_prompts/) — Visual systems
+- [Specifications](./06-specifications/README.md) — APIs, manifests, schemas, protocol specs
+- [Document Index](./document-index.json) — Machine-readable catalog (458 docs)
+
+---
+
+### 🗄️ Legacy Archive
+> *Historical directories preserved in [`./archive/legacy/`](./archive/legacy/).*
+
+- `architecture/` `governance/` `deployment/` `operations/` `ops/` `runbooks/`
+- `reports/` `communications/` `cycles/` `whitepaper/` `ktt/` `PRs/`
+- Every legacy directory keeps original structure; modern copies live in numbered folders.
+
+Use [archive/README.md](./archive/README.md) for navigation plus `archive/legacy/README.md` (auto-generated) for move logs.
 
 ---
 

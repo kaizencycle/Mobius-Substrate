@@ -144,13 +144,13 @@ else
     fail "Sentinel guide missing"
 fi
 
-if [ -f "docs/adr/002-uriel-sentinel-boarding.md" ]; then
+if [ -f "docs/03-architecture/adr/002-uriel-sentinel-boarding.md" ]; then
     pass "ADR-002 exists"
 else
     fail "ADR-002 missing"
 fi
 
-if grep -q "URIEL" "docs/architecture/overview.md"; then
+if grep -q "URIEL" "docs/03-architecture/technical/overview.md"; then
     pass "URIEL in architecture overview"
 else
     fail "URIEL not in architecture overview"

@@ -137,7 +137,7 @@ p = floor(p_base · g(GI))
 - [Integrity Units Config](../../configs/integrity_units.yaml)
 
 ### Governance
-- [Kintsugi Protocol](../governance/kintsugi_protocol.md)
+- [Kintsugi Protocol](../02-governance/kintsugi_protocol.md)
 - [Sentinel Permissions](../../sentinels/permissions.json)
 
 ---

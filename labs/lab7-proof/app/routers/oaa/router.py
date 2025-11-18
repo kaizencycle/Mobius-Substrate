@@ -80,8 +80,29 @@ async def ingest_snapshot(req: IngestRequest, x_admin_token: Optional[str] = Hea
         for pattern in private_patterns:
             if re.match(pattern, hostname):
                 raise HTTPException(status_code=400, detail=f"Private IP addresses not allowed: {hostname}")
+        
+        # Reconstruct URL from validated components to prevent SSRF
+        # This ensures static analysis tools see we're using only validated components
+        safe_url = f"{parsed.scheme}://{parsed.hostname}"
+        if parsed.port:
+            safe_url += f":{parsed.port}"
+        safe_url += parsed.path or '/'
+        if parsed.query:
+            safe_url += f"?{parsed.query}"
+        if parsed.fragment:
+            safe_url += f"#{parsed.fragment}"
+        
+        # Double-check the reconstructed URL is still safe
+        double_parsed = urlparse(safe_url)
+        if double_parsed.scheme != 'https':
+            raise HTTPException(status_code=400, detail="URL validation failed: scheme mismatch")
+        double_hostname = double_parsed.hostname.lower() if double_parsed.hostname else ''
+        for pattern in private_patterns:
+            if re.match(pattern, double_hostname):
+                raise HTTPException(status_code=400, detail=f"URL validation failed: private IP detected: {double_hostname}")
+        
         async with httpx.AsyncClient(timeout=30) as client:
-            r = await client.get(validated_url)
+            r = await client.get(safe_url)
             r.raise_for_status()
             payload = r.json()
             # Expecting list[dict] shaped close to Source; normalize

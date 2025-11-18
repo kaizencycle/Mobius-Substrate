@@ -6,6 +6,13 @@ Academic research, theoretical frameworks, and foundational principles of Mobius
 
 Core theoretical documents that establish the scientific basis of Mobius Systems:
 
+### AGI Safety & Loop-Breaking Architecture
+- **[Loop-Breaking Architecture for AGI Safety](../01-whitepapers/Loop_Breaking_Architecture_AGI_Safety.md)** ⭐ FOUNDATIONAL
+  Preventing emergent self-modification through constitutional checkpoints. Establishes theoretical foundation for bounded AGI emergence.
+
+- **[Loop-Breaking Architecture Diagram](../diagrams/loop-breaking-architecture.md)**
+  Visual representations of the thought-reasoning loop and loop-breaking mechanisms
+
 ### Economic & Theoretical Foundations
 - **[Foundational Blueprint: Integrity Economy v2.0](./foundations/foundational_blueprint_integrity_economy_v2.md)**
   Complete theoretical framework for integrity-backed economics

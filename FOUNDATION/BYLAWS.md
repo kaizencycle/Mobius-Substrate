@@ -19,4 +19,4 @@
 
 ## 4. Transparency
 
-- Minutes, RFCs, and release artifacts posted in `docs/governance` and releases page.
+- Minutes, RFCs, and release artifacts posted in `docs/02-governance` and releases page.
