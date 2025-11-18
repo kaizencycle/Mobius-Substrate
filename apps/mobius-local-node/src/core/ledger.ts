@@ -37,10 +37,17 @@ export function appendLedgerEntry(entry: LedgerEntry): void {
     try {
       const raw = fs.readFileSync(DEFAULT_LEDGER_PATH, "utf8");
       if (raw.trim()) {
-        entries = JSON.parse(raw) as LedgerEntry[];
+        const parsed = JSON.parse(raw);
+        // Validate that parsed JSON is actually an array
+        if (Array.isArray(parsed)) {
+          entries = parsed as LedgerEntry[];
+        } else {
+          // If valid JSON but not an array, reset to empty array
+          entries = [];
+        }
       }
     } catch {
-      // If corrupted, start a new file (better than crashing silently)
+      // If corrupted or invalid JSON, start a new file (better than crashing silently)
       entries = [];
     }
   }
