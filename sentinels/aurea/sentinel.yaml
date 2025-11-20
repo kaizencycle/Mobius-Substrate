@@ -1,0 +1,32 @@
+version: "0.1"
+name: aurea
+role:
+  primary: integrity
+  secondary: foresight
+owner:
+  team: mobius-core
+  codeowners: ["@kaizencycle"]
+integrations:
+  lab: "labs/lab4-proof"
+  api: "apps/broker-api"
+  app: "apps/portal"
+  domain: "https://aurea.mobius.systems"
+policies:
+  mii_threshold: 0.97
+  modes:
+    - name: veil
+      allowed_actions: ["docs", "tests:add", "lint", "fix", "issue:open", "pr:prepare", "attest"]
+      requires_human_approval: true
+    - name: foresight
+      allowed_actions: ["analysis", "ledger:attest", "alert"]
+      requires_human_approval: false
+attestation:
+  signing: "ed25519"
+  ledger_endpoint: "http://ledger-api:4001/attest"
+ci:
+  run:
+    - "pnpm -w lint"
+    - "pnpm -w type-check"
+    - "pnpm -w test -- --coverage"
+    - "pnpm -w integrity:report"
+

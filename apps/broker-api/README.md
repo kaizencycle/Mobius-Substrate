@@ -45,6 +45,13 @@ OPENAI_API_KEY=sk-...
 
 # MII Configuration
 MII_THRESHOLD=0.95
+
+# Webhook security (required in production)
+BROKER_WEBHOOK_ALLOWLIST=hooks.slack.com,discord.com
+BROKER_WEBHOOK_ALLOWED_PORTS=443
+# Optional toggles:
+# BROKER_WEBHOOK_ALLOW_DEFAULTS=true   # only for local dev/test
+# BROKER_WEBHOOK_HOT_RELOAD=true       # re-parse env without restart
 ```
 
 ---

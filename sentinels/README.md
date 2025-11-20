@@ -24,10 +24,10 @@ Sentinels are specialized AI agents that monitor, optimize, and protect the inte
 
 ### AUREA
 - **Provider**: OpenAI
-- **Role**: Constitutional Integrity & Audit
+- **Role**: Constitutional Integrity & Predictive Veil
 - **Domain**: `aurea.gic`
-- **Codex**: [Coming soon]
-- **Functions**: Integrity audits, GI calculation, constitutional compliance
+- **Codex**: [AUREA CODEX](./aurea/CODEX.md)
+- **Functions**: Integrity audits, Kaizen handshake, Bio-Intel feed, Spark monitoring
 - **Temperament**: High rationality (0.98), low empathy (0.35)
 - **Status**: ✅ Active
 

@@ -36,25 +36,102 @@ function normalizeHostEntry(entry?: string): string | null {
   return trimmed.toLowerCase();
 }
 
-const configuredWebhookHosts = (process.env.BROKER_WEBHOOK_ALLOWLIST || '')
-  .split(',')
-  .map(normalizeHostEntry)
-  .filter((value): value is string => Boolean(value));
+type WebhookConfig = {
+  hostAllowlist: string[];
+  allowedPorts: Set<string>;
+  source: 'env' | 'default';
+};
 
-const WEBHOOK_HOST_ALLOWLIST = Array.from(
-  new Set([...DEFAULT_WEBHOOK_HOSTS, ...configuredWebhookHosts]),
-);
+let cachedConfig: WebhookConfig | null = null;
+let cachedEnvKey: string | null = null;
+let warnedAllowlistFallback = false;
+let warnedPortFallback = false;
 
-const configuredWebhookPorts = (process.env.BROKER_WEBHOOK_ALLOWED_PORTS || '')
-  .split(',')
-  .map((port) => port.trim())
-  .filter(Boolean);
+function envKey(): string {
+  return [
+    process.env.BROKER_WEBHOOK_ALLOWLIST ?? '',
+    process.env.BROKER_WEBHOOK_ALLOWED_PORTS ?? '',
+    process.env.BROKER_WEBHOOK_ALLOW_DEFAULTS ?? '',
+    process.env.NODE_ENV ?? ''
+  ].join('|');
+}
 
-const allowedPorts = new Set<string>(['', '443', ...configuredWebhookPorts]);
+function buildWebhookConfig(): WebhookConfig {
+  const configuredWebhookHosts = (process.env.BROKER_WEBHOOK_ALLOWLIST || '')
+    .split(',')
+    .map(normalizeHostEntry)
+    .filter((value): value is string => Boolean(value));
 
-function hostMatchesAllowlist(hostname: string): boolean {
+  const allowDefaults =
+    process.env.BROKER_WEBHOOK_ALLOW_DEFAULTS === 'true' ||
+    ['development', 'test'].includes(process.env.NODE_ENV ?? '');
+
+  let hostAllowlist = configuredWebhookHosts;
+  let source: WebhookConfig['source'] = 'env';
+
+  if (!hostAllowlist.length) {
+    if (!allowDefaults) {
+      throw new Error(
+        'BROKER_WEBHOOK_ALLOWLIST is empty. Explicitly configure allowed webhook hosts for this environment.'
+      );
+    }
+    hostAllowlist = DEFAULT_WEBHOOK_HOSTS;
+    source = 'default';
+    if (!warnedAllowlistFallback) {
+      console.warn(
+        '[broker:webhook] Falling back to DEFAULT_WEBHOOK_HOSTS. Set BROKER_WEBHOOK_ALLOWLIST to avoid this warning.'
+      );
+      warnedAllowlistFallback = true;
+    }
+  }
+
+  const configuredWebhookPorts = (process.env.BROKER_WEBHOOK_ALLOWED_PORTS || '')
+    .split(',')
+    .map((port) => port.trim())
+    .filter(Boolean);
+
+  let portAllowlist = configuredWebhookPorts;
+  if (!portAllowlist.length) {
+    if (!warnedPortFallback) {
+      console.warn('[broker:webhook] No BROKER_WEBHOOK_ALLOWED_PORTS provided. Defaulting to 443.');
+      warnedPortFallback = true;
+    }
+    portAllowlist = ['443'];
+  }
+
+  return {
+    hostAllowlist: Array.from(new Set(hostAllowlist)),
+    allowedPorts: new Set(portAllowlist),
+    source
+  };
+}
+
+function shouldHotReload(): boolean {
+  return process.env.BROKER_WEBHOOK_HOT_RELOAD === 'true';
+}
+
+export function getWebhookConfig(force = false): WebhookConfig {
+  const key = envKey();
+  if (
+    !cachedConfig ||
+    force ||
+    (shouldHotReload() && key !== cachedEnvKey)
+  ) {
+    cachedConfig = buildWebhookConfig();
+    cachedEnvKey = key;
+  }
+  return cachedConfig;
+}
+
+export function refreshWebhookConfig(): WebhookConfig {
+  cachedConfig = buildWebhookConfig();
+  cachedEnvKey = envKey();
+  return cachedConfig;
+}
+
+function hostMatchesAllowlist(hostname: string, config: WebhookConfig): boolean {
   const lowerHost = hostname.toLowerCase();
-  return WEBHOOK_HOST_ALLOWLIST.some((entry) => {
+  return config.hostAllowlist.some((entry) => {
     const normalized = entry.startsWith('*.') ? entry.slice(2) : entry;
     if (!normalized) {
       return false;
@@ -82,17 +159,19 @@ function validateWebhookUrl(url: string): URL {
     throw new Error(`Only HTTPS webhooks allowed: ${url}`);
   }
   
+  const config = getWebhookConfig();
   const hostname = parsedUrl.hostname.toLowerCase();
   if (PRIVATE_HOSTNAME_PATTERNS.some((pattern) => pattern.test(hostname))) {
     throw new Error(`Private IP addresses not allowed in webhook URL: ${hostname}`);
   }
   
-  if (!hostMatchesAllowlist(hostname)) {
+  if (!hostMatchesAllowlist(hostname, config)) {
     throw new Error(`Webhook host is not allowlisted: ${hostname}`);
   }
   
-  if (!allowedPorts.has(parsedUrl.port)) {
-    throw new Error(`Webhook port is not allowed: ${parsedUrl.port || '443'}`);
+  const effectivePort = parsedUrl.port || '443';
+  if (!config.allowedPorts.has(effectivePort)) {
+    throw new Error(`Webhook port is not allowed: ${effectivePort}`);
   }
   
   if (parsedUrl.pathname.includes('..') || parsedUrl.pathname.includes('//')) {
