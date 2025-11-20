@@ -101,7 +101,7 @@ function buildWebhookConfig(): WebhookConfig {
 
   return {
     hostAllowlist: Array.from(new Set(hostAllowlist)),
-    allowedPorts: new Set(portAllowlist),
+    allowedPorts: new Set([...new Set(portAllowlist), '443']),
     source
   };
 }
