@@ -22,6 +22,14 @@ import {
   getGlobalTrialStatsHandler,
   listTrialSummariesHandler,
 } from './routes/trialAnalytics';
+import {
+  initTrialHandler,
+  recruitTrialHandler,
+  testTrialHandler,
+  getTrialDataHandler,
+  analyzeTrialHandler,
+  getTrialStatusHandler,
+} from './routes/trialManagement';
 
 // Load environment
 dotenv.config();
@@ -205,6 +213,16 @@ app.get('/v1/trials/ktt-001', listTrialSummariesHandler);
 app.get('/v1/trials/ktt-001/stats', getGlobalTrialStatsHandler);
 app.get('/v1/trials/ktt-001/:trialId/summary', getTrialSummaryHandler);
 app.get('/v1/trials/ktt-001/:trialId/events', getTrialEventsHandler);
+
+// ============================================================================
+// TRIAL MANAGEMENT API (KTT Trial-001 Extended)
+// ============================================================================
+app.post('/v1/trials/init', initTrialHandler);
+app.get('/v1/trials/:trialId', getTrialStatusHandler);
+app.post('/v1/trials/:trialId/recruit', recruitTrialHandler);
+app.post('/v1/trials/:trialId/test', testTrialHandler);
+app.get('/v1/trials/:trialId/data', getTrialDataHandler);
+app.post('/v1/trials/:trialId/analyze', analyzeTrialHandler);
 
 // ============================================================================
 // WEBSOCKET SERVER
