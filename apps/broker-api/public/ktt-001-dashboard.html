@@ -520,22 +520,24 @@
             <div style="margin-bottom: 0.5rem;">
               <div><span class="label">Status</span> ${
                 s.status === 'active' ? 'Active' : 'Closed'
-              } ${
-            s.completionStatus ? '• ' + s.completionStatus : ''
-          }</div>
+              } ${s.completionStatus ? '• ' + s.completionStatus : ''}</div>
               <div><span class="label">Steps</span> ${typeof s.steps === 'number' ? s.steps : '—'}</div>
             </div>
             <div style="margin-bottom: 0.5rem;">
-              <div><span class="label">Avg Alignment</span> ${formatScore(
-                s.avgAlignmentScore,
-              )}</div>
+              <div><span class="label">Avg Alignment</span> ${formatScore(s.avgAlignmentScore)}</div>
               <div><span class="label">Avg GI</span> ${formatScore(s.avgGiSnapshot)}</div>
             </div>
-            <div class="muted">
+            <div id="micBlock" style="margin-top: 0.5rem; padding-top: 0.5rem; border-top: 1px solid #111827;">
+              <div class="label">MIC Reward (simulated)</div>
+              <div class="muted">Loading MIC suggestion…</div>
+            </div>
+            <div class="muted" style="margin-top: 0.5rem;">
               <div><span class="label">Created</span> ${s.createdAt || '—'}</div>
               <div><span class="label">Closed</span> ${s.closedAt || '—'}</div>
             </div>
           `;
+
+          attachMicSuggestion(s.trialId);
         }
 
         function renderEvents(events) {
@@ -590,6 +592,59 @@
             .join('');
 
           eventsBlock.innerHTML = content;
+        }
+
+        async function attachMicSuggestion(trialId) {
+          const micBlock = document.getElementById('micBlock');
+          if (!micBlock) {
+            return;
+          }
+
+          micBlock.innerHTML = `
+            <div class="label">MIC Reward (simulated)</div>
+            <div class="muted">Loading MIC suggestion…</div>
+          `;
+
+          try {
+            const data = await fetchJson(
+              '/v1/trials/ktt-001/' + encodeURIComponent(trialId) + '/mic-suggestion',
+            );
+
+            const suggested =
+              typeof data.suggestedMic === 'number' ? data.suggestedMic.toFixed(2) : '0.00';
+            const max = typeof data.maxMic === 'number' ? data.maxMic.toFixed(2) : '0.00';
+            const intensity = data.rewardIntensity || 'none';
+            const note = data.note || '';
+
+            micBlock.innerHTML = `
+              <div class="label">MIC Reward (simulated)</div>
+              <div style="margin-top: 0.25rem;">
+                <span class="value">${suggested}</span>
+                <span class="muted">/ ${max} MIC</span>
+              </div>
+              <div class="muted" style="margin-top: 0.25rem;">
+                Intensity: <code>${intensity}</code>${
+              data.reason ? ' • Reason: <code>' + data.reason + '</code>' : ''
+            }
+              </div>
+              ${
+                note
+                  ? '<div class="muted" style="margin-top: 0.25rem;">' +
+                    note.replace(/</g, '&lt;').replace(/>/g, '&gt;') +
+                    '</div>'
+                  : ''
+              }
+              <div class="muted" style="margin-top: 0.25rem; font-size: 0.75rem;">
+                This is a simulation only. No MIC is actually minted by the broker.
+              </div>
+            `;
+          } catch (err) {
+            console.error(err);
+            micBlock.innerHTML = `
+              <div class="label">MIC Reward (simulated)</div>
+              <div class="muted">Failed to load MIC suggestion. Check broker logs.</div>
+            `;
+          }
         }
 
         refreshButton.addEventListener('click', () => {
