@@ -2,6 +2,7 @@
  * @fileoverview Thought Broker API Server
  * RESTful API for Mobius Systems deliberation and consensus
  */
+import path from 'path';
 import express, { Request, Response } from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
@@ -10,6 +11,17 @@ import http from 'http';
 import dotenv from 'dotenv';
 import { DeliberationEngine } from './deliberation/engine';
 import { DeliberationRequestSchema, APIResponse, WSEvent } from './types';
+import {
+  createTrialSessionHandler,
+  recordTrialEventHandler,
+  closeTrialSessionHandler,
+} from './routes/trials';
+import {
+  getTrialSummaryHandler,
+  getTrialEventsHandler,
+  getGlobalTrialStatsHandler,
+  listTrialSummariesHandler,
+} from './routes/trialAnalytics';
 
 // Load environment
 dotenv.config();
@@ -22,6 +34,16 @@ const WS_PORT = Number(process.env.WS_PORT ?? '4006');
 app.use(helmet());
 app.use(cors());
 app.use(express.json());
+
+app.use(
+  express.static(path.join(__dirname, '../public'), {
+    index: false,
+  }),
+);
+
+app.get('/dashboard/ktt-001', (_req, res) => {
+  res.sendFile(path.join(__dirname, '../public/ktt-001-dashboard.html'));
+});
 
 // Initialize Deliberation Engine
 const engine = new DeliberationEngine();
@@ -173,27 +195,43 @@ app.post('/v1/grade', async (req: Request, res: Response) => {
 });
 
 // ============================================================================
+// KTT TRIAL-001 API
+// ============================================================================
+app.post('/v1/trials/ktt-001/session', createTrialSessionHandler);
+app.post('/v1/trials/ktt-001/event', recordTrialEventHandler);
+app.post('/v1/trials/ktt-001/close', closeTrialSessionHandler);
+
+app.get('/v1/trials/ktt-001', listTrialSummariesHandler);
+app.get('/v1/trials/ktt-001/stats', getGlobalTrialStatsHandler);
+app.get('/v1/trials/ktt-001/:trialId/summary', getTrialSummaryHandler);
+app.get('/v1/trials/ktt-001/:trialId/events', getTrialEventsHandler);
+
+// ============================================================================
 // WEBSOCKET SERVER
 // ============================================================================
 
 const server = http.createServer(app);
-const wss = new WebSocketServer({ port: WS_PORT });
+let wss: WebSocketServer | null = null;
 
 // Track connected clients
 const clients = new Set<any>();
 
-wss.on('connection', (ws) => {
-  console.log('[WebSocket] Client connected');
-  clients.add(ws);
-  ws.on('close', () => {
-    console.log('[WebSocket] Client disconnected');
-    clients.delete(ws);
+function startWebSocketServer(): void {
+  wss = new WebSocketServer({ port: WS_PORT });
+
+  wss.on('connection', (ws) => {
+    console.log('[WebSocket] Client connected');
+    clients.add(ws);
+    ws.on('close', () => {
+      console.log('[WebSocket] Client disconnected');
+      clients.delete(ws);
+    });
+    ws.on('error', (error) => {
+      console.error('[WebSocket] Error:', error);
+      clients.delete(ws);
+    });
   });
-  ws.on('error', (error) => {
-    console.error('[WebSocket] Error:', error);
-    clients.delete(ws);
-  });
-});
+}
 
 // Forward engine events to WebSocket clients
 engine.on('event', (event: WSEvent) => {
@@ -210,8 +248,10 @@ engine.on('event', (event: WSEvent) => {
 // START SERVER
 // ============================================================================
 
-server.listen(PORT, () => {
-  console.log(`
+if (require.main === module) {
+  startWebSocketServer();
+  server.listen(PORT, () => {
+    console.log(`
 ╔═══════════════════════════════════════════════════════════╗
 ║       THOUGHT BROKER API — MOBIUS SYSTEMS v0.1            ║
 ╚═══════════════════════════════════════════════════════════╝
@@ -232,19 +272,25 @@ Endpoints:
 — ATLAS, C-132
 
 Ready for consensus...
-  `);
-});
+    `);
+  });
 
-// Graceful shutdown
-process.on('SIGTERM', () => {
-  console.log('[Shutdown] SIGTERM received, closing servers...');
-  server.close(() => {
-    wss.close(() => {
-      console.log('[Shutdown] Servers closed');
-      process.exit(0);
+  // Graceful shutdown
+  process.on('SIGTERM', () => {
+    console.log('[Shutdown] SIGTERM received, closing servers...');
+    server.close(() => {
+      if (wss) {
+        wss.close(() => {
+          console.log('[Shutdown] Servers closed');
+          process.exit(0);
+        });
+      } else {
+        console.log('[Shutdown] Server closed');
+        process.exit(0);
+      }
     });
   });
-});
+}
 
 export default app;
 
