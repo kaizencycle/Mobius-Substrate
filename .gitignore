@@ -84,6 +84,9 @@ dist
 .cache/
 public
 
+# Allow broker dashboard assets to be tracked
+!/apps/broker-api/public/
+
 # Vuepress build output
 .vuepress/dist
 
