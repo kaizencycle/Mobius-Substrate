@@ -220,6 +220,15 @@ export async function getTrialDataHandler(req: Request, res: Response): Promise<
     const { trialId } = req.params;
     const query: DataRequest = req.query as any;
 
+    // Normalize query.data_types to prevent type confusion attacks
+    // Express query params can be string | string[] | undefined
+    let dataTypes: string[] = [];
+    if (typeof query.data_types === 'string') {
+      dataTypes = [query.data_types];
+    } else if (Array.isArray(query.data_types)) {
+      dataTypes = query.data_types.filter((item: any) => typeof item === 'string');
+    }
+
     const trial = trialRegistry.get(trialId);
     if (!trial) {
       res.status(404).json({
@@ -241,7 +250,7 @@ export async function getTrialDataHandler(req: Request, res: Response): Promise<
       end_time: trial.end_time,
     };
 
-    if (query.data_types?.includes('cognitive_effort')) {
+    if (dataTypes.includes('cognitive_effort')) {
       data.cognitive_effort = {
         total_tokens: 125000,
         avg_processing_time_ms: 450,
@@ -249,7 +258,7 @@ export async function getTrialDataHandler(req: Request, res: Response): Promise<
       };
     }
 
-    if (query.data_types?.includes('reasoning_coherence')) {
+    if (dataTypes.includes('reasoning_coherence')) {
       data.reasoning_coherence = {
         internal_consistency: 0.96,
         cross_sentinel_agreement: 0.94,
@@ -257,7 +266,7 @@ export async function getTrialDataHandler(req: Request, res: Response): Promise<
       };
     }
 
-    if (query.data_types?.includes('constitutional_compliance')) {
+    if (dataTypes.includes('constitutional_compliance')) {
       data.constitutional_compliance = {
         gi_threshold_pass_rate: 0.98,
         violation_frequency: 0.02,
@@ -265,7 +274,7 @@ export async function getTrialDataHandler(req: Request, res: Response): Promise<
       };
     }
 
-    if (query.data_types?.includes('gi_stability')) {
+    if (dataTypes.includes('gi_stability')) {
       data.gi_stability = {
         variance: 0.001,
         drift_detection_accuracy: 0.99,
@@ -273,7 +282,7 @@ export async function getTrialDataHandler(req: Request, res: Response): Promise<
       };
     }
 
-    if (query.data_types?.includes('multi_agent_consensus')) {
+    if (dataTypes.includes('multi_agent_consensus')) {
       data.multi_agent_consensus = {
         achievement_rate: 0.95,
         disagreement_resolution_effectiveness: 0.92,
