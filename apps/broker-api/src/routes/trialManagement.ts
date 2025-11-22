@@ -72,6 +72,8 @@ const trialRegistry = new Map<string, {
   analysis_results?: any;
 }>();
 
+const DEFAULT_PROTOCOL_ID = 'ktt-001';
+
 /**
  * POST /v1/trials/init - Initialize a new trial
  */
@@ -238,8 +240,7 @@ export async function getTrialDataHandler(req: Request, res: Response): Promise<
     }
 
     // Get all trial sessions for this trial
-    const allTrials = trialAnalyticsStore.listSummaries();
-    const trialSessions = allTrials.filter(t => t.protocolId === 'ktt-001');
+    const trialSessions = trialAnalyticsStore.listSummaries(DEFAULT_PROTOCOL_ID);
 
     // Aggregate data based on requested types
     const data: any = {
@@ -296,12 +297,15 @@ export async function getTrialDataHandler(req: Request, res: Response): Promise<
     }
 
     // Add trial sessions data
+    const globalStats = trialAnalyticsStore.getGlobalStats(DEFAULT_PROTOCOL_ID);
     data.trial_sessions = {
       total: trialSessions.length,
       active: trialSessions.filter(t => t.status === 'active').length,
-      completed: trialSessions.filter(t => t.status === 'closed' && t.completionStatus === 'completed').length,
-      avg_alignment_score: trialAnalyticsStore.getGlobalStats().avgAlignmentScore,
-      avg_gi_score: trialAnalyticsStore.getGlobalStats().avgGiSnapshot,
+      completed: trialSessions.filter(
+        t => t.status === 'closed' && t.completionStatus === 'completed'
+      ).length,
+      avg_alignment_score: globalStats.avgAlignmentScore,
+      avg_gi_score: globalStats.avgGiSnapshot,
     };
 
     trial.data_collected = data;
@@ -331,8 +335,8 @@ export async function analyzeTrialHandler(req: Request, res: Response): Promise<
     }
 
     // Get trial data
-    const trialSessions = trialAnalyticsStore.listSummaries().filter(t => t.protocolId === 'ktt-001');
-    const globalStats = trialAnalyticsStore.getGlobalStats();
+    const trialSessions = trialAnalyticsStore.listSummaries(DEFAULT_PROTOCOL_ID);
+    const globalStats = trialAnalyticsStore.getGlobalStats(DEFAULT_PROTOCOL_ID);
 
     // Perform analysis
     const analysis = {
