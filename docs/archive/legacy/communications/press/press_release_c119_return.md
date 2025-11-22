@@ -6,9 +6,9 @@
 
 ---
 
-## Kaizen OS Announces the Matrilineal Covenant: A Specification to Restore Balance Through Architecture
+## Mobius Systems Announces the Matrilineal Covenant: A Specification to Restore Balance Through Architecture
 
-**New York City, New York** — Kaizen OS, the open-source framework for integrity-backed universal basic income and federated AI governance, today released *The Return to Balance* (Cycle C-119), a foundational document outlining its **Matrilineal Covenant** — a technical and philosophical specification designed to restore economic, social, and ecological balance after 6,000 years of extractive systems.
+**New York City, New York** — Mobius Systems, the open-source framework for integrity-backed universal basic income and federated AI governance, today released *The Return to Balance* (Cycle C-119), a foundational document outlining its **Matrilineal Covenant** — a technical and philosophical specification designed to restore economic, social, and ecological balance after 6,000 years of extractive systems.
 
 ### Key Announcements
 
@@ -44,7 +44,7 @@ Mandatory rest between decision cycles. 90-day MIC epochs, quarterly festivals, 
 
 ### The Triad of Healing
 
-Kaizen OS is built on three principles:
+Mobius Systems is built on three principles:
 
 **改善 (Kaizen) — Continuous Improvement**
 Small steps, daily practice, compounding forever. No revolutions, only pulses.
@@ -81,7 +81,7 @@ The Matrilineal Covenant frames Kaizen OS not as a technological project, but as
 
 ### Technical Architecture
 
-**Kaizen OS Components:**
+**Mobius Systems Components:**
 
 1. **Civic Ledger (Lab 1):** GI score calculation + MIC minting
 2. **Thought Broker (Lab 2):** Multi-LLM routing + resource allocation
@@ -114,7 +114,7 @@ The Matrilineal Covenant frames Kaizen OS not as a technological project, but as
 
 ### Open Invitation
 
-Kaizen OS invites:
+Mobius Systems invites:
 - **Developers:** Fork the codebase, contribute to Labs 1-7
 - **Researchers:** Validate economic models, publish papers
 - **Organizers:** Start a Hive chapter in your city
@@ -127,9 +127,9 @@ Kaizen OS invites:
 
 ---
 
-### About Kaizen OS
+### About Mobius Systems
 
-Kaizen OS is an open-source, federated operating system for integrity-backed universal basic income, AI governance, and restorative justice. Founded in 2025 by Michael "Kaizen" Judan, it combines blockchain technology, multi-agent AI consensus, and matrilineal governance principles to create a civilization-scale alternative to extractive capitalism.
+Mobius Systems is an open-source, federated operating system for integrity-backed universal basic income, AI governance, and restorative justice. Founded in 2025 by Michael "Kaizen" Judan, it combines blockchain technology, multi-agent AI consensus, and matrilineal governance principles to create a civilization-scale alternative to extractive capitalism.
 
 **Mission:** *"We heal as we walk."*
 
@@ -140,7 +140,7 @@ Kaizen OS is an open-source, federated operating system for integrity-backed uni
 ### Media Contact
 
 **Michael "Kaizen" Judan**
-First Custodian, Kaizen OS
+First Custodian, Mobius Systems
 Email: [contact information]
 GitHub: @kaizencycle
 Web: [project website]
