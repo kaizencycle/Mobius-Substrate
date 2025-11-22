@@ -1,0 +1,150 @@
+{
+  "name": "Mobius Universal Orchestrator",
+  "type": "workflow",
+  "version": 1,
+  "nodes": [
+    {
+      "id": "webhook_entry",
+      "type": "webhook",
+      "name": "Inbound Request",
+      "parameters": {
+        "path": "mobius/universal",
+        "methods": ["POST"],
+        "responseMode": "onReceived"
+      }
+    },
+    {
+      "id": "broker_request",
+      "type": "httpRequest",
+      "name": "Call Thought Broker",
+      "parameters": {
+        "url": "{{$env.BROKER_URL}}/v1/deliberate",
+        "method": "POST",
+        "jsonParameters": true,
+        "body": {
+          "prompt": "={{$json.prompt}}",
+          "context": "={{$json.context || {}}}",
+          "routingMode": "={{$json.routingMode || 'local'}}",
+          "metadata": {
+            "source": "universal_orchestrator",
+            "flow": "mobius.universal"
+          }
+        },
+        "authentication": "={{$env.BROKER_AUTH || ''}}"
+      }
+    },
+    {
+      "id": "gi_gate",
+      "type": "if",
+      "name": "GI Threshold Check",
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "leftValue": "={{$json.data.giScore || 0}}",
+              "operation": "largerEqual",
+              "rightValue": 0.95
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "ledger_attest",
+      "type": "httpRequest",
+      "name": "Ledger Attestation",
+      "parameters": {
+        "url": "{{$env.LEDGER_URL}}/ledger/attest",
+        "method": "POST",
+        "jsonParameters": true,
+        "body": {
+          "type": "MOBIUS_ORCHESTRATION",
+          "giScore": "={{$json.data.giScore}}",
+          "sentinels": "={{$json.data.sentinels}}",
+          "payloadHash": "={{$json.data.payloadHash}}",
+          "meta": {
+            "flow": "mobius.universal",
+            "channel": "={{$json.channel || 'default'}}"
+          }
+        },
+        "authentication": "={{$env.LEDGER_AUTH || ''}}"
+      }
+    },
+    {
+      "id": "human_review_router",
+      "type": "switch",
+      "name": "Route to Human Review?",
+      "parameters": {
+        "cases": [
+          {
+            "value": "human_required",
+            "property": "={{$json.data.decision || ''}}"
+          }
+        ]
+      }
+    },
+    {
+      "id": "telegram_notify",
+      "type": "telegram",
+      "name": "Notify Human Reviewer (Telegram)",
+      "parameters": {
+        "chatId": "={{$env.TELEGRAM_REVIEW_CHAT_ID}}",
+        "text": "New Mobius decision requires review.\n\nGI: ={{$json.data.giScore}}\nSummary: ={{$json.data.summary}}"
+      }
+    },
+    {
+      "id": "publish_discord",
+      "type": "discord",
+      "name": "Publish to Discord",
+      "parameters": {
+        "webhookUrl": "={{$env.DISCORD_WEBHOOK_URL}}",
+        "body": {
+          "content": "Mobius Result (GI: ={{$json.data.giScore}})\n\n={{$json.data.summary}}"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "broker_request": {
+      "main": [
+        [
+          { "node": "gi_gate", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "webhook_entry": {
+      "main": [
+        [
+          { "node": "broker_request", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "gi_gate": {
+      "main": [
+        [
+          { "node": "ledger_attest", "type": "main", "index": 0 }
+        ],
+        [
+          { "node": "human_review_router", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "ledger_attest": {
+      "main": [
+        [
+          { "node": "publish_discord", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "human_review_router": {
+      "main": [
+        [
+          { "node": "telegram_notify", "type": "main", "index": 0 }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "triggerOnActivation": true
+  }
+}

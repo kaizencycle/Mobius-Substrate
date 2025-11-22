@@ -1,0 +1,49 @@
+{
+  "name": "DVA.FULL Recovery Protocol",
+  "type": "workflow",
+  "version": 1,
+  "nodes": [
+    {
+      "id": "cron_recovery",
+      "type": "cron",
+      "name": "Recovery Sweep (15m)",
+      "parameters": {
+        "interval": 15,
+        "unit": "minutes"
+      }
+    },
+    {
+      "id": "fetch_failed_tasks",
+      "type": "httpRequest",
+      "name": "Fetch Failed Tasks",
+      "parameters": {
+        "url": "{{$env.BROKER_URL}}/v1/tasks?status=failed&window=1h",
+        "method": "GET"
+      }
+    },
+    {
+      "id": "retry_or_escalate",
+      "type": "function",
+      "name": "Decide Retry vs Escalate",
+      "parameters": {
+        "functionCode": "// TODO: <=3 retries → retry, otherwise escalate to human.\nreturn items;"
+      }
+    }
+  ],
+  "connections": {
+    "cron_recovery": {
+      "main": [
+        [
+          { "node": "fetch_failed_tasks", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "fetch_failed_tasks": {
+      "main": [
+        [
+          { "node": "retry_or_escalate", "type": "main", "index": 0 }
+        ]
+      ]
+    }
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "name": "DVA.ONE Learning Loop",
+  "type": "workflow",
+  "version": 1,
+  "nodes": [
+    {
+      "id": "cron_nightly",
+      "type": "cron",
+      "name": "Nightly Batch",
+      "parameters": {
+        "interval": 1,
+        "unit": "days",
+        "hour": 3,
+        "minute": 0
+      }
+    },
+    {
+      "id": "fetch_feedback",
+      "type": "httpRequest",
+      "name": "Fetch Last 24h Feedback",
+      "parameters": {
+        "url": "{{$env.LEDGER_URL}}/ledger/events?type=HUMAN_FEEDBACK&window=24h",
+        "method": "GET"
+      }
+    },
+    {
+      "id": "analyze_feedback",
+      "type": "httpRequest",
+      "name": "Analyze with Thought Broker",
+      "parameters": {
+        "url": "{{$env.BROKER_URL}}/v1/deliberate",
+        "method": "POST",
+        "jsonParameters": true,
+        "body": {
+          "prompt": "Summarize recurring patterns in human feedback over the last 24 hours and propose alignment adjustments.",
+          "context": {
+            "feedback": "={{$json}}"
+          },
+          "routingMode": "local",
+          "metadata": {
+            "flow": "dva.one.learning"
+          }
+        }
+      }
+    },
+    {
+      "id": "propose_adjustments",
+      "type": "httpRequest",
+      "name": "Log Adjustment Proposal",
+      "parameters": {
+        "url": "{{$env.LEDGER_URL}}/ledger/attest",
+        "method": "POST",
+        "jsonParameters": true,
+        "body": {
+          "type": "ALIGNMENT_PROPOSAL",
+          "content": "={{$json}}",
+          "meta": {
+            "flow": "dva.one.learning"
+          }
+        }
+      }
+    }
+  ],
+  "connections": {
+    "cron_nightly": {
+      "main": [
+        [
+          { "node": "fetch_feedback", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "fetch_feedback": {
+      "main": [
+        [
+          { "node": "analyze_feedback", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "analyze_feedback": {
+      "main": [
+        [
+          { "node": "propose_adjustments", "type": "main", "index": 0 }
+        ]
+      ]
+    }
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "name": "DVA.LITE Monitor",
+  "type": "workflow",
+  "version": 1,
+  "nodes": [
+    {
+      "id": "cron_5min",
+      "type": "cron",
+      "name": "Every 5 minutes",
+      "parameters": {
+        "interval": 5,
+        "unit": "minutes"
+      }
+    },
+    {
+      "id": "check_broker",
+      "type": "httpRequest",
+      "name": "Check Thought Broker",
+      "parameters": {
+        "url": "{{$env.BROKER_URL}}/healthz",
+        "method": "GET"
+      }
+    },
+    {
+      "id": "check_ledger",
+      "type": "httpRequest",
+      "name": "Check Civic Ledger",
+      "parameters": {
+        "url": "{{$env.LEDGER_URL}}/health",
+        "method": "GET"
+      }
+    },
+    {
+      "id": "log_metrics",
+      "type": "function",
+      "name": "Log Metrics",
+      "parameters": {
+        "functionCode": "// TODO: write metrics to monitoring sink\nreturn items;"
+      }
+    }
+  ],
+  "connections": {
+    "cron_5min": {
+      "main": [
+        [
+          { "node": "check_broker", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "check_broker": {
+      "main": [
+        [
+          { "node": "check_ledger", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "check_ledger": {
+      "main": [
+        [
+          { "node": "log_metrics", "type": "main", "index": 0 }
+        ]
+      ]
+    }
+  }
+}
