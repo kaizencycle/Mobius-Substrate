@@ -52,6 +52,11 @@ BROKER_WEBHOOK_ALLOWED_PORTS=443
 # Optional toggles:
 # BROKER_WEBHOOK_ALLOW_DEFAULTS=true   # only for local dev/test
 # BROKER_WEBHOOK_HOT_RELOAD=true       # re-parse env without restart
+
+# Antigravity Node
+ANTIGRAVITY_ENABLED=false
+ANTIGRAVITY_URL=http://localhost:12000
+ANTIGRAVITY_API_KEY=dev-antigravity-key
 ```
 
 ---
@@ -114,7 +119,10 @@ Content-Type: application/json
   "priority": "high",
   "requiredSentinels": ["ATLAS", "AUREA"],
   "maxRounds": 5,
-  "consensusThreshold": 0.75
+  "consensusThreshold": 0.75,
+  "routingMode": "antigravity-first",
+  "allowedTools": ["web-search", "code-exec"],
+  "safetyLevel": "high"
 }
 ```
 
@@ -129,6 +137,14 @@ Content-Type: application/json
   "timestamp": "2025-11-11T10:00:00.000Z"
 }
 ```
+
+#### Routing Modes
+
+- `local` *(default)* → skip Antigravity, go straight to Sentinels.
+- `antigravity-first` → call Antigravity Node, log tool traces, then run Sentinels with that evidence.
+- `antigravity-only` → treat Antigravity as the executor, still log traces for retroactive GI grading.
+
+All Antigravity calls are wrapped in Mobius task IDs and evaluated by Sentinels unless `antigravity-only` is explicitly requested.
 
 ---
 
