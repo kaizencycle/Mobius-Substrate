@@ -1,0 +1,60 @@
+{
+  "name": "DVA.HIVE Global Attestation",
+  "type": "workflow",
+  "version": 1,
+  "nodes": [
+    {
+      "id": "cron_daily",
+      "type": "cron",
+      "name": "Daily Global Summary",
+      "parameters": {
+        "interval": 1,
+        "unit": "days",
+        "hour": 4,
+        "minute": 0
+      }
+    },
+    {
+      "id": "fetch_cluster_gi",
+      "type": "httpRequest",
+      "name": "Fetch Cluster GI",
+      "parameters": {
+        "url": "{{$env.LEDGER_URL}}/ledger/stats/gi-cluster?window=24h",
+        "method": "GET"
+      }
+    },
+    {
+      "id": "attest_global_state",
+      "type": "httpRequest",
+      "name": "Attest Global State",
+      "parameters": {
+        "url": "{{$env.LEDGER_URL}}/ledger/attest",
+        "method": "POST",
+        "jsonParameters": true,
+        "body": {
+          "type": "GLOBAL_GI_SUMMARY",
+          "content": "={{$json}}",
+          "meta": {
+            "flow": "dva.hive.global"
+          }
+        }
+      }
+    }
+  ],
+  "connections": {
+    "cron_daily": {
+      "main": [
+        [
+          { "node": "fetch_cluster_gi", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "fetch_cluster_gi": {
+      "main": [
+        [
+          { "node": "attest_global_state", "type": "main", "index": 0 }
+        ]
+      ]
+    }
+  }
+}

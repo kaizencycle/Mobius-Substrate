@@ -1,0 +1,49 @@
+{
+  "name": "DVA.HIVE Consensus Topology",
+  "type": "workflow",
+  "version": 1,
+  "nodes": [
+    {
+      "id": "cron_hourly",
+      "type": "cron",
+      "name": "Hourly Consensus Sweep",
+      "parameters": {
+        "interval": 1,
+        "unit": "hours"
+      }
+    },
+    {
+      "id": "fetch_node_gi",
+      "type": "httpRequest",
+      "name": "Fetch Node GI Scores",
+      "parameters": {
+        "url": "{{$env.LEDGER_URL}}/ledger/stats/gi-by-node?window=1h",
+        "method": "GET"
+      }
+    },
+    {
+      "id": "compute_cluster_gi",
+      "type": "function",
+      "name": "Compute Cluster GI",
+      "parameters": {
+        "functionCode": "// TODO: aggregate per-node GI into cluster GI.\nreturn items;"
+      }
+    }
+  ],
+  "connections": {
+    "cron_hourly": {
+      "main": [
+        [
+          { "node": "fetch_node_gi", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "fetch_node_gi": {
+      "main": [
+        [
+          { "node": "compute_cluster_gi", "type": "main", "index": 0 }
+        ]
+      ]
+    }
+  }
+}

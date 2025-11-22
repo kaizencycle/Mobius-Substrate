@@ -267,6 +267,50 @@ mobius-systems/
 └─ .github/workflows/             # CI/CD pipeline
 ```
 
+## Mobius Universal Orchestrator (n8n)
+
+Mobius ships with a **universal orchestration flow** that turns the OS into a router over multiple AI engines.
+
+### What it does
+
+- Accepts a request from any client (web, mobile, bots)
+- Routes via the **Thought Broker** to engines:
+  - Gemini (Antigravity)
+  - Claude
+  - DeepSeek
+  - OpenAI (GPT/tools)
+  - Code agents (Cursor / Claude Code)
+- Pushes candidates through **Sentinel Consensus** (ATLAS • AUREA • EVE)
+- Applies a **Global Integrity (GI)** gate
+- Writes an attested event to the **Civic Ledger**
+- Fans out to channels: Substack, Discord, Telegram (human-in-loop), GitHub, LivePatch, Apps/Labs
+
+### Quick start (n8n)
+
+1. Import:
+   - `infra/dva/flows/universal/universal_orchestrator.json`
+   - `infra/dva/flows/lite/dva_lite_monitor.json`
+   - `infra/dva/flows/one/dva_one_feedback.json`
+2. Configure credentials:
+   - Telegram, Discord, GitHub, Substack (or HTTP bridge)
+3. Set env vars in n8n:
+   - `BROKER_URL`, `CONSENSUS_URL`, `LEDGER_URL`
+   - `SUBSTACK_WEBHOOK_URL`, `DISCORD_WEBHOOK_URL`
+4. Activate the workflows.
+5. Hit the webhook:
+
+```bash
+curl -X POST \"$N8N_BASE_URL/webhook/mobius/universal\" \\
+  -H \"Content-Type: application/json\" \\
+  -d '{\"prompt\":\"Explain Mobius OS like I am 15\",\"intent\":\"publish\"}'
+```
+
+See:
+- `docs/architecture/N8N_UNIVERSAL_FLOW.md`
+- `docs/architecture/DVA_FLOWS_OVERVIEW.md`
+- `docs/specs/N8N_UNIVERSAL_FLOW_API.md`
+- `infra/dva/flows/README.md`
+
 ## 🚀 Quick Start
 
 ### Hello World (5 minutes)

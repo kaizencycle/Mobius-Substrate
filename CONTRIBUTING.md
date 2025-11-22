@@ -211,6 +211,45 @@ npm run dev
 npm run lint
 ```
 
+## Extending the Mobius Universal Orchestrator
+
+You can add new **engines** or **channels** to the orchestrator, but they MUST respect the constitutional pipeline:
+
+`User → Thought Broker → Engines → Sentinels → GI Gate → Ledger → Channels`
+
+### Adding a new engine
+
+1. Add a node (or service) that produces the shared engine schema:
+
+```json
+{
+  "engine": "your-engine-name",
+  "answer": "string",
+  "metadata": {
+    "tokens": 0,
+    "latency_ms": 0,
+    "tools_used": [],
+    "risk_flags": []
+  }
+}
+```
+
+2. Update the Thought Broker routing logic so the new engine is used for appropriate tasks.
+3. Confirm Sentinel consensus ingests the new engine under `engines.<name>`.
+4. Document credentials/env vars in `infra/dva/flows/**`.
+
+### Adding a new channel
+
+1. Add a node after Civic Ledger attestation.
+2. Enforce GI thresholds before side effects (`gi >= 0.95` for standard, `>= 0.98` for high-risk).
+3. Require human-in-loop confirmation for irreversible actions (deploy, finance, governance).
+
+### Non‑negotiables
+
+- Engines are tools, not governors.
+- Sentinel consensus + GI gate stay the decision authority.
+- All significant actions must be Civic-Ledger attested or escalated to human review.
+
 ## 🔐 Security
 
 ### Reporting Security Vulnerabilities

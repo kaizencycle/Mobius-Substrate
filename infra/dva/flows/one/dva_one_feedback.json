@@ -1,0 +1,47 @@
+{
+  "name": "DVA.ONE Feedback Collector",
+  "type": "workflow",
+  "version": 1,
+  "nodes": [
+    {
+      "id": "webhook_feedback",
+      "type": "webhook",
+      "name": "Feedback Webhook",
+      "parameters": {
+        "path": "dva/one/feedback",
+        "methods": ["POST"],
+        "responseMode": "onReceived"
+      }
+    },
+    {
+      "id": "store_feedback",
+      "type": "httpRequest",
+      "name": "Store Feedback Event",
+      "parameters": {
+        "url": "{{$env.LEDGER_URL}}/ledger/events",
+        "method": "POST",
+        "jsonParameters": true,
+        "body": {
+          "type": "HUMAN_FEEDBACK",
+          "decisionId": "={{$json.decisionId}}",
+          "originalGi": "={{$json.originalGi}}",
+          "override": "={{$json.override}}",
+          "comments": "={{$json.comments || ''}}",
+          "meta": {
+            "source": "dva.one",
+            "channel": "={{$json.channel || 'unknown'}}"
+          }
+        }
+      }
+    }
+  ],
+  "connections": {
+    "webhook_feedback": {
+      "main": [
+        [
+          { "node": "store_feedback", "type": "main", "index": 0 }
+        ]
+      ]
+    }
+  }
+}

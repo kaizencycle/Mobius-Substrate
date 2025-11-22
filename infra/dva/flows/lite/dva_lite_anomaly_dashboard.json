@@ -1,0 +1,67 @@
+{
+  "name": "DVA.LITE Anomaly Dashboard",
+  "type": "workflow",
+  "version": 1,
+  "nodes": [
+    {
+      "id": "cron_daily",
+      "type": "cron",
+      "name": "Daily at 06:00",
+      "parameters": {
+        "interval": 1,
+        "unit": "days",
+        "hour": 6,
+        "minute": 0
+      }
+    },
+    {
+      "id": "fetch_metrics",
+      "type": "httpRequest",
+      "name": "Fetch Last 24h Metrics",
+      "parameters": {
+        "url": "{{$env.MONITORING_URL}}/metrics/dva-lite?window=24h",
+        "method": "GET"
+      }
+    },
+    {
+      "id": "build_report",
+      "type": "function",
+      "name": "Build Anomaly Report",
+      "parameters": {
+        "functionCode": "// TODO: inspect metrics, detect anomalies, summarize\nreturn items;"
+      }
+    },
+    {
+      "id": "send_report",
+      "type": "telegram",
+      "name": "Send Daily Report",
+      "parameters": {
+        "chatId": "={{$env.TELEGRAM_DVA_MONITOR_CHAT_ID}}",
+        "text": "DVA.LITE Daily Anomaly Report:\n\n={{$json.summary || 'No anomalies detected'}}"
+      }
+    }
+  ],
+  "connections": {
+    "cron_daily": {
+      "main": [
+        [
+          { "node": "fetch_metrics", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "fetch_metrics": {
+      "main": [
+        [
+          { "node": "build_report", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "build_report": {
+      "main": [
+        [
+          { "node": "send_report", "type": "main", "index": 0 }
+        ]
+      ]
+    }
+  }
+}

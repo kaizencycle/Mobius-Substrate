@@ -1,0 +1,46 @@
+{
+  "name": "DVA.FULL Multi-Agent Orchestrator",
+  "type": "workflow",
+  "version": 1,
+  "nodes": [
+    {
+      "id": "webhook_task",
+      "type": "webhook",
+      "name": "Multi-Agent Task",
+      "parameters": {
+        "path": "dva/full/task",
+        "methods": ["POST"],
+        "responseMode": "onReceived"
+      }
+    },
+    {
+      "id": "broker_plan",
+      "type": "httpRequest",
+      "name": "Broker: Plan Task",
+      "parameters": {
+        "url": "{{$env.BROKER_URL}}/v1/deliberate",
+        "method": "POST",
+        "jsonParameters": true,
+        "body": {
+          "prompt": "Decompose this high-level task into a sequence of subtasks and agent assignments.",
+          "context": {
+            "task": "={{$json}}"
+          },
+          "routingMode": "local",
+          "metadata": {
+            "flow": "dva.full.plan"
+          }
+        }
+      }
+    }
+  ],
+  "connections": {
+    "webhook_task": {
+      "main": [
+        [
+          { "node": "broker_plan", "type": "main", "index": 0 }
+        ]
+      ]
+    }
+  }
+}
