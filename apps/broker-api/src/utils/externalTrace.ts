@@ -1,22 +1,33 @@
-export interface ExternalTracePayload {
+import type { AntigravityLiftResponse } from '../services/antigravityClient';
+
+export interface ExternalTrace {
+  deliberationId: string;
   provider: string;
-  answer: string;
-  toolTraces: unknown[];
+  answerPreview: string;
+  toolTraces: AntigravityLiftResponse['toolTraces'];
   riskFlags: string[];
+  createdAt: string;
   meta?: Record<string, unknown>;
 }
 
-export async function attachExternalTrace(deliberationId: string, trace: ExternalTracePayload): Promise<void> {
-  // TODO: Persist to a dedicated table or storage service.
-  // For now, log so Sentinels and auditors can replay the evidence path.
-  console.log(`[EXTERNAL_TRACE] ${deliberationId} ← ${trace.provider}`);
-  console.log(`  answer_length=${trace.answer.length}`);
-  console.log(`  tools=${trace.toolTraces
-    .map((t: any) => t?.toolName ?? 'unknown')
-    .filter(Boolean)
-    .join(', ')}`);
-  console.log(`  risk_flags=${trace.riskFlags.join(', ') || 'none'}`);
-  if (trace.meta) {
-    console.log(`  meta=${JSON.stringify(trace.meta).slice(0, 500)}`);
-  }
+export async function attachExternalTrace(
+  deliberationId: string,
+  response: AntigravityLiftResponse,
+  meta?: Record<string, unknown>
+): Promise<ExternalTrace> {
+  const trace: ExternalTrace = {
+    deliberationId,
+    provider: response.provider,
+    answerPreview: response.answer.slice(0, 200),
+    toolTraces: response.toolTraces,
+    riskFlags: response.riskFlags,
+    createdAt: new Date().toISOString(),
+    meta
+  };
+
+  // TODO: persist to DB when schema ready. For now, keep it as an audit log.
+  // eslint-disable-next-line no-console
+  console.log('[EXTERNAL_TRACE]', JSON.stringify(trace, null, 2));
+
+  return trace;
 }
