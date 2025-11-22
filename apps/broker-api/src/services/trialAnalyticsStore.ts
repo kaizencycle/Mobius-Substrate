@@ -192,12 +192,13 @@ export class InMemoryTrialAnalyticsStore {
     return trial.events.slice();
   }
 
-  listSummaries(): TrialSummary[] {
-    return Array.from(this.trials.values()).map((t) => this.toSummary(t));
+  listSummaries(protocolId?: string): TrialSummary[] {
+    return this.filterTrials(protocolId).map((t) => this.toSummary(t));
   }
 
-  getGlobalStats(): GlobalTrialStats {
-    const totalTrials = this.trials.size;
+  getGlobalStats(protocolId?: string): GlobalTrialStats {
+    const trials = this.filterTrials(protocolId);
+    const totalTrials = trials.length;
     let activeTrials = 0;
     let completedTrials = 0;
     let abortedTrials = 0;
@@ -207,7 +208,7 @@ export class InMemoryTrialAnalyticsStore {
     let totalGi = 0;
     let totalGiCount = 0;
 
-    this.trials.forEach((trial) => {
+    trials.forEach((trial) => {
       if (trial.status === 'active') {
         activeTrials += 1;
       }
@@ -231,7 +232,7 @@ export class InMemoryTrialAnalyticsStore {
     const avgGiSnapshot = totalGiCount > 0 ? totalGi / totalGiCount : undefined;
 
     return {
-      protocolId: DEFAULT_PROTOCOL_ID,
+      protocolId: protocolId ?? DEFAULT_PROTOCOL_ID,
       totalTrials,
       activeTrials,
       completedTrials,
@@ -264,6 +265,13 @@ export class InMemoryTrialAnalyticsStore {
       avgGiSnapshot:
         trial.countGiSnapshot > 0 ? trial.sumGiSnapshot / trial.countGiSnapshot : undefined,
     };
+  }
+
+  private filterTrials(protocolId?: string): InternalTrialAnalytics[] {
+    if (!protocolId) {
+      return Array.from(this.trials.values());
+    }
+    return Array.from(this.trials.values()).filter((trial) => trial.protocolId === protocolId);
   }
 }
 

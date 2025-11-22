@@ -35,12 +35,12 @@ export async function getTrialEventsHandler(req: Request, res: Response): Promis
 }
 
 export async function getGlobalTrialStatsHandler(_req: Request, res: Response): Promise<void> {
-  const stats = trialAnalyticsStore.getGlobalStats();
+  const stats = trialAnalyticsStore.getGlobalStats(PROTOCOL_ID);
   res.status(200).json(stats);
 }
 
 export async function listTrialSummariesHandler(_req: Request, res: Response): Promise<void> {
-  const summaries = trialAnalyticsStore.listSummaries();
+  const summaries = trialAnalyticsStore.listSummaries(PROTOCOL_ID);
   res.status(200).json({
     protocolId: PROTOCOL_ID,
     count: summaries.length,

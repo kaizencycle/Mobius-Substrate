@@ -19,7 +19,7 @@ export async function getMicSuggestionForTrialHandler(
     return;
   }
 
-  const globalStats = trialAnalyticsStore.getGlobalStats();
+  const globalStats = trialAnalyticsStore.getGlobalStats(summary.protocolId);
   const suggestion = suggestMicReward(summary, globalStats);
 
   res.status(200).json({

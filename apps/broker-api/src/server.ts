@@ -23,6 +23,7 @@ import {
   listTrialSummariesHandler,
 } from './routes/trialAnalytics';
 import { getMicSuggestionForTrialHandler } from './routes/mic';
+import { exportKtt001Handler } from './routes/exportKtt';
 import {
   initTrialHandler,
   recruitTrialHandler,
@@ -212,6 +213,7 @@ app.post('/v1/trials/ktt-001/close', closeTrialSessionHandler);
 
 app.get('/v1/trials/ktt-001', listTrialSummariesHandler);
 app.get('/v1/trials/ktt-001/stats', getGlobalTrialStatsHandler);
+app.get('/v1/trials/ktt-001/export', exportKtt001Handler);
 app.get('/v1/trials/ktt-001/:trialId/summary', getTrialSummaryHandler);
 app.get('/v1/trials/ktt-001/:trialId/events', getTrialEventsHandler);
 app.get('/v1/trials/ktt-001/:trialId/mic-suggestion', getMicSuggestionForTrialHandler);
