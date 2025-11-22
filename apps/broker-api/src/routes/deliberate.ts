@@ -5,33 +5,26 @@ import { healthMonitor } from '../monitoring/health';
 import { signDeliberation } from '../crypto/attestation';
 import { saveDeliberation, saveSentinelResponse, saveAttestation, getDeliberation } from '../services/persistence';
 import { notifyWebhook } from '../services/webhook';
-import { callAntigravityLift, AntigravityLiftResult, RoutingMode } from '../services/antigravityClient';
-import { attachExternalTrace } from '../utils/externalTrace';
-import { CreateDeliberationBody } from '../types/deliberation';
+import { antigravityClient, AntigravityLiftResponse, AntigravitySafetyLevel } from '../services/antigravityClient';
+import { attachExternalTrace, ExternalTrace } from '../utils/externalTrace';
+import { DeliberateRequestBody, RoutingMode } from '../types/deliberation';
 import { config } from '../config';
 
 const router = Router();
 
 router.post('/', async (req, res) => {
-  const body = req.body as CreateDeliberationBody;
-  const {
-    prompt,
-    context,
-    requiredSentinels,
-    consensusThreshold = 0.75,
-    webhookUrl,
-    allowedTools,
-    metadata
-  } = body;
+  const body = req.body as DeliberateRequestBody;
   const routingMode: RoutingMode = body.routingMode ?? 'local';
-  const safetyLevel: 'low' | 'medium' | 'high' = body.safetyLevel ?? 'medium';
+  const safetyLevel: AntigravitySafetyLevel = body.safetyLevel ?? 'medium';
 
-  if (!prompt) {
+  if (!body.prompt) {
     return res.status(400).json({ error: 'Prompt is required' });
   }
 
-  if ((routingMode === 'local' || routingMode === 'antigravity-first') &&
-    (!requiredSentinels || !Array.isArray(requiredSentinels) || requiredSentinels.length === 0)) {
+  if (
+    (routingMode === 'local' || routingMode === 'antigravity-first') &&
+    (!Array.isArray(body.requiredSentinels) || body.requiredSentinels.length === 0)
+  ) {
     return res.status(400).json({ error: 'requiredSentinels array is required' });
   }
 
@@ -39,27 +32,20 @@ router.post('/', async (req, res) => {
     return res.status(503).json({ error: 'ANTIGRAVITY_DISABLED' });
   }
 
-  const id = uuid();
-  const processInput: ProcessInput = {
-    id,
-    prompt,
-    context,
-    sentinels: requiredSentinels ?? [],
-    threshold: consensusThreshold,
-    routingMode,
-    allowedTools,
-    safetyLevel,
-    metadata
-  };
+  const deliberationId = uuid();
 
-  if (webhookUrl) {
-    res.json({ id, status: 'pending', message: 'Deliberation started, will notify webhook on completion' });
-    processAsync(processInput, webhookUrl);
+  if (body.webhookUrl) {
+    res.json({
+      deliberationId,
+      status: 'pending',
+      message: 'Deliberation started, will notify webhook on completion'
+    });
+    processAsync(deliberationId, body, routingMode, safetyLevel, body.webhookUrl);
     return;
   }
 
   try {
-    const result = await processDeliberation(processInput);
+    const result = await orchestrateDeliberation(deliberationId, body, routingMode, safetyLevel);
     res.json(result);
   } catch (error) {
     res.status(500).json({ error: String(error) });
@@ -78,104 +64,233 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-interface ProcessInput {
-  id: string;
-  prompt: string;
-  context: any;
-  sentinels: string[];
-  threshold: number;
-  routingMode: RoutingMode;
-  allowedTools?: string[];
-  safetyLevel: 'low' | 'medium' | 'high';
-  metadata?: Record<string, unknown>;
+async function orchestrateDeliberation(
+  deliberationId: string,
+  body: DeliberateRequestBody,
+  routingMode: RoutingMode,
+  safetyLevel: AntigravitySafetyLevel
+) {
+  const startTime = Date.now();
+  const allowedTools = body.allowedTools ?? [];
+  const metadata = body.metadata;
+
+  if (routingMode === 'antigravity-only') {
+    const antigravity = await antigravityClient.lift({
+      prompt: body.prompt,
+      allowedTools,
+      safetyLevel,
+      metadata: {
+        deliberationId,
+        mode: routingMode,
+        ...(metadata ?? {})
+      }
+    });
+
+    const trace: ExternalTrace = await attachExternalTrace(
+      deliberationId,
+      antigravity,
+      {
+        routingMode,
+        allowedTools,
+        safetyLevel
+      }
+    );
+
+    const contextEnvelope = buildContextEnvelope(body.context, {
+      routingMode,
+      allowedTools,
+      safetyLevel,
+      metadata
+    });
+
+    await saveDeliberation({
+      id: deliberationId,
+      prompt: body.prompt,
+      context: contextEnvelope,
+      status: 'processing',
+      createdAt: startTime,
+      requester: 'api'
+    });
+
+    await saveDeliberation({
+      id: deliberationId,
+      prompt: body.prompt,
+      context: contextEnvelope,
+      status: 'complete',
+      consensusAchieved: null,
+      finalMII: null,
+      createdAt: startTime,
+      completedAt: Date.now(),
+      requester: 'api'
+    });
+
+    return {
+      mode: routingMode,
+      deliberationId,
+      id: deliberationId,
+      antigravity: {
+        answer: antigravity.answer,
+        toolTraces: antigravity.toolTraces,
+        riskFlags: antigravity.riskFlags,
+        trace
+      },
+      duration: Date.now() - startTime
+    };
+  }
+
+  if (routingMode === 'antigravity-first') {
+    try {
+      const antigravity = await antigravityClient.lift({
+        prompt: body.prompt,
+        allowedTools,
+        safetyLevel,
+        metadata: {
+          deliberationId,
+          mode: routingMode,
+          ...(metadata ?? {})
+        }
+      });
+
+      const trace: ExternalTrace = await attachExternalTrace(
+        deliberationId,
+        antigravity,
+        {
+          routingMode,
+          allowedTools,
+          safetyLevel
+        }
+      );
+
+      const externalEvidence = {
+        prompt: body.prompt,
+        externalAnswer: antigravity.answer,
+        externalToolTraces: antigravity.toolTraces,
+        externalRiskFlags: antigravity.riskFlags,
+        deliberationId
+      };
+
+      const consensusResult = await runLocalDeliberation(deliberationId, body, {
+        startTime,
+        routingMode,
+        allowedTools,
+        safetyLevel,
+        metadata,
+        antigravityResponse: antigravity,
+        externalEvidence
+      });
+
+      return {
+        mode: routingMode,
+        deliberationId,
+        id: deliberationId,
+        antigravity: {
+          answer: antigravity.answer,
+          toolTraces: antigravity.toolTraces,
+          riskFlags: antigravity.riskFlags,
+          trace
+        },
+        consensus: consensusResult,
+        duration: Date.now() - startTime
+      };
+    } catch (error) {
+      console.warn('Antigravity lift failed, continuing with local consensus:', error);
+      const fallback = await runLocalDeliberation(deliberationId, body, {
+        startTime,
+        routingMode: 'local',
+        allowedTools,
+        safetyLevel,
+        metadata
+      });
+      return {
+        mode: 'local',
+        deliberationId,
+        ...fallback
+      };
+    }
+  }
+
+  const localResult = await runLocalDeliberation(deliberationId, body, {
+    startTime,
+    routingMode,
+    allowedTools,
+    safetyLevel,
+    metadata
+  });
+
+  return {
+    mode: routingMode,
+    deliberationId,
+    ...localResult
+  };
 }
 
-async function processDeliberation(input: ProcessInput) {
-  const { id, prompt, context, sentinels, threshold, routingMode, allowedTools, safetyLevel, metadata } = input;
-  const start = Date.now();
-  const contextEnvelope = buildContextEnvelope(context, { routingMode, allowedTools, safetyLevel, metadata });
+interface RunLocalDeliberationOptions {
+  startTime: number;
+  routingMode: RoutingMode;
+  allowedTools?: string[];
+  safetyLevel: AntigravitySafetyLevel;
+  metadata?: Record<string, unknown>;
+  antigravityResponse?: AntigravityLiftResponse | null;
+  externalEvidence?: Record<string, unknown>;
+}
+
+async function runLocalDeliberation(
+  deliberationId: string,
+  body: DeliberateRequestBody,
+  options: RunLocalDeliberationOptions
+) {
+  const sentinels = body.requiredSentinels ?? [];
+  const threshold = body.consensusThreshold ?? 0.75;
+  const start = options.startTime ?? Date.now();
+
+  const contextEnvelope = buildContextEnvelope(body.context, {
+    routingMode: options.routingMode,
+    allowedTools: options.allowedTools,
+    safetyLevel: options.safetyLevel,
+    metadata: options.metadata,
+    externalEvidence: options.externalEvidence
+  });
 
   await saveDeliberation({
-    id,
-    prompt,
+    id: deliberationId,
+    prompt: body.prompt,
     context: contextEnvelope,
     status: 'processing',
     createdAt: start,
     requester: 'api'
   });
 
-  let antigravityResult: AntigravityLiftResult | null = null;
-  if (routingMode === 'antigravity-first' || routingMode === 'antigravity-only') {
-    try {
-      antigravityResult = await callAntigravityLift({
-        taskId: id,
-        intent: prompt,
-        context: { ...(context ?? {}), metadata },
-        allowedTools,
-        safetyLevel
-      });
-
-      await attachExternalTrace(id, {
-        provider: 'antigravity',
-        answer: antigravityResult.answer,
-        toolTraces: antigravityResult.toolTraces,
-        riskFlags: antigravityResult.riskFlags,
-        meta: antigravityResult.rawModelMeta
-      });
-    } catch (error) {
-      if (routingMode === 'antigravity-only') {
-        throw error;
-      }
-      console.warn('Antigravity lift failed, continuing with local consensus:', error);
-    }
-  }
-
-  if (routingMode === 'antigravity-only' && antigravityResult) {
-    await saveDeliberation({
-      id,
-      prompt,
-      context: contextEnvelope,
-      status: 'complete',
-      consensusAchieved: null,
-      finalMII: null,
-      createdAt: start,
-      completedAt: Date.now(),
-      requester: 'api'
-    });
-
-    return {
-      id,
-      mode: routingMode,
-      antigravity: antigravityResult,
-      duration: Date.now() - start
-    };
-  }
-
   const responses = await Promise.all(
-    sentinels.map(async (s) => {
+    sentinels.map(async (sentinel) => {
       const t = Date.now();
       try {
-        const resp = await callSentinel(s, prompt, { ...(context ?? {}), antigravity: antigravityResult });
+        const sentinelContext = {
+          ...(body.context ?? {}),
+          ...(options.antigravityResponse ? { antigravity: options.antigravityResponse } : {}),
+          ...(options.externalEvidence ? { externalEvidence: options.externalEvidence } : {})
+        };
+
+        const resp = await callSentinel(sentinel, body.prompt, sentinelContext);
         const mii = gradeResponse(resp);
-        healthMonitor.record(s, true, Date.now() - t);
-        await saveSentinelResponse(id, s, 1, { response: resp, miiScore: mii });
-        return { sentinel: s, response: resp, miiScore: mii };
+        healthMonitor.record(sentinel, true, Date.now() - t);
+        await saveSentinelResponse(deliberationId, sentinel, 1, { response: resp, miiScore: mii });
+        return { sentinel, miiScore: mii };
       } catch (error) {
-        healthMonitor.record(s, false, Date.now() - t);
+        healthMonitor.record(sentinel, false, Date.now() - t);
         throw error;
       }
     })
   );
 
-  const avgMII = responses.reduce((s, r) => s + r.miiScore, 0) / responses.length;
+  const avgMII = responses.reduce((sum, item) => sum + item.miiScore, 0) / responses.length;
   const consensus = avgMII >= threshold;
 
-  const attestation = await signDeliberation(id, { consensus, mii: avgMII });
-  await saveAttestation(id, attestation);
+  const attestation = await signDeliberation(deliberationId, { consensus, mii: avgMII });
+  await saveAttestation(deliberationId, attestation);
 
   await saveDeliberation({
-    id,
-    prompt,
+    id: deliberationId,
+    prompt: body.prompt,
     context: contextEnvelope,
     status: 'complete',
     consensusAchieved: consensus,
@@ -186,12 +301,11 @@ async function processDeliberation(input: ProcessInput) {
   });
 
   return {
-    id,
-    mode: routingMode,
+    id: deliberationId,
     consensus: { achieved: consensus, confidence: avgMII },
     miiScore: avgMII,
-    responses: responses.map(r => ({ sentinel: r.sentinel, miiScore: r.miiScore })),
-    antigravity: antigravityResult,
+    responses,
+    antigravity: options.antigravityResponse ?? null,
     attestation: {
       signature: attestation.signature,
       publicKey: attestation.publicKey
@@ -200,32 +314,43 @@ async function processDeliberation(input: ProcessInput) {
   };
 }
 
-async function processAsync(input: ProcessInput, webhook: string) {
+async function processAsync(
+  deliberationId: string,
+  body: DeliberateRequestBody,
+  routingMode: RoutingMode,
+  safetyLevel: AntigravitySafetyLevel,
+  webhook: string
+) {
   try {
-    const result = await processDeliberation(input);
+    const result = await orchestrateDeliberation(deliberationId, body, routingMode, safetyLevel);
     await notifyWebhook(webhook, { ...result, status: 'complete' });
   } catch (error) {
     await saveDeliberation({
-      id: input.id,
-      prompt: input.prompt,
-      context: buildContextEnvelope(input.context, {
-        routingMode: input.routingMode,
-        allowedTools: input.allowedTools,
-        safetyLevel: input.safetyLevel,
-        metadata: input.metadata
+      id: deliberationId,
+      prompt: body.prompt,
+      context: buildContextEnvelope(body.context, {
+        routingMode,
+        allowedTools: body.allowedTools,
+        safetyLevel,
+        metadata: body.metadata
       }),
       status: 'failed',
       createdAt: Date.now(),
       requester: 'api'
     });
-    await notifyWebhook(webhook, { id: input.id, status: 'failed', error: String(error) });
+    await notifyWebhook(webhook, { deliberationId, status: 'failed', error: String(error) });
   }
 }
 
-function buildContextEnvelope(
-  baseContext: any,
-  options: Pick<ProcessInput, 'routingMode' | 'allowedTools' | 'safetyLevel' | 'metadata'>
-) {
+interface ContextEnvelopeOptions {
+  routingMode: RoutingMode;
+  allowedTools?: string[];
+  safetyLevel: AntigravitySafetyLevel;
+  metadata?: Record<string, unknown>;
+  externalEvidence?: Record<string, unknown>;
+}
+
+function buildContextEnvelope(baseContext: any, options: ContextEnvelopeOptions) {
   return {
     ...(baseContext ?? {}),
     _antigravity: {
@@ -233,7 +358,8 @@ function buildContextEnvelope(
       allowedTools: options.allowedTools ?? [],
       safetyLevel: options.safetyLevel,
       metadata: options.metadata
-    }
+    },
+    ...(options.externalEvidence ? { externalEvidence: options.externalEvidence } : {})
   };
 }
 

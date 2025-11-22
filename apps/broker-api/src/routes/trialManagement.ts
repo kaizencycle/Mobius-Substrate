@@ -220,16 +220,21 @@ export async function testTrialHandler(req: Request, res: Response): Promise<voi
 export async function getTrialDataHandler(req: Request, res: Response): Promise<void> {
   try {
     const { trialId } = req.params;
-    const query: DataRequest = req.query as any;
+    const rawQuery = req.query as Partial<DataRequest> & Record<string, unknown>;
 
-    // Normalize query.data_types to prevent type confusion attacks
-    // Express query params can be string | string[] | undefined
+    // Normalize data_types query param to string[]
     let dataTypes: string[] = [];
-    if (typeof query.data_types === 'string') {
-      dataTypes = [query.data_types];
-    } else if (Array.isArray(query.data_types)) {
-      dataTypes = query.data_types.filter((item: any) => typeof item === 'string');
+
+    if (typeof rawQuery.data_types === 'string') {
+      dataTypes = [rawQuery.data_types];
+    } else if (Array.isArray(rawQuery.data_types)) {
+      dataTypes = (rawQuery.data_types as unknown[]).filter(
+        (value): value is string => typeof value === 'string'
+      );
     }
+
+    dataTypes = Object.freeze([...dataTypes]);
+    const hasDataType = (type: string) => dataTypes.includes(type);
 
     const trial = trialRegistry.get(trialId);
     if (!trial) {
@@ -251,7 +256,7 @@ export async function getTrialDataHandler(req: Request, res: Response): Promise<
       end_time: trial.end_time,
     };
 
-    if (dataTypes.includes('cognitive_effort')) {
+    if (hasDataType('cognitive_effort')) {
       data.cognitive_effort = {
         total_tokens: 125000,
         avg_processing_time_ms: 450,
@@ -259,7 +264,7 @@ export async function getTrialDataHandler(req: Request, res: Response): Promise<
       };
     }
 
-    if (dataTypes.includes('reasoning_coherence')) {
+    if (hasDataType('reasoning_coherence')) {
       data.reasoning_coherence = {
         internal_consistency: 0.96,
         cross_sentinel_agreement: 0.94,
@@ -267,7 +272,7 @@ export async function getTrialDataHandler(req: Request, res: Response): Promise<
       };
     }
 
-    if (dataTypes.includes('constitutional_compliance')) {
+    if (hasDataType('constitutional_compliance')) {
       data.constitutional_compliance = {
         gi_threshold_pass_rate: 0.98,
         violation_frequency: 0.02,
@@ -275,7 +280,7 @@ export async function getTrialDataHandler(req: Request, res: Response): Promise<
       };
     }
 
-    if (dataTypes.includes('gi_stability')) {
+    if (hasDataType('gi_stability')) {
       data.gi_stability = {
         variance: 0.001,
         drift_detection_accuracy: 0.99,
@@ -283,7 +288,7 @@ export async function getTrialDataHandler(req: Request, res: Response): Promise<
       };
     }
 
-    if (dataTypes.includes('multi_agent_consensus')) {
+    if (hasDataType('multi_agent_consensus')) {
       data.multi_agent_consensus = {
         achievement_rate: 0.95,
         disagreement_resolution_effectiveness: 0.92,
