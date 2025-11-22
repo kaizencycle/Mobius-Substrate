@@ -1,4 +1,4 @@
-# Mobius Universal n8n Flow — Multi-Engine AI Orchestration
+# Mobius Universal Flow — Multi-Engine AI Orchestration
 
 **Status:** Draft v0.1  
 **Scope:** Architectural blueprint for n8n-style workflow integrating Thought Broker, multi-engine AI, Sentinels, GI, Civic Ledger, and human channels.
