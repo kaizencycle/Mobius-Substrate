@@ -1,81 +1,71 @@
 import axios from 'axios';
-import { antigravityConfig } from '../config';
+import { EngineResult, SafetyLevel } from '../types/routing';
+import { attachExternalTrace } from '../utils/externalTrace';
 
-export type AntigravitySafetyLevel = 'low' | 'medium' | 'high';
+export type AntigravitySafetyLevel = SafetyLevel;
 
-export interface AntigravityToolTrace {
-  toolName: string;
-  input: unknown;
-  output: unknown;
-  startedAt: string;
-  finishedAt: string;
-  latencyMs?: number;
-}
-
-export interface AntigravityLiftRequest {
+export async function callAntigravity(opts: {
+  deliberationId: string;
   prompt: string;
   allowedTools?: string[];
-  safetyLevel?: AntigravitySafetyLevel;
-  metadata?: Record<string, unknown>;
-}
-
-export interface AntigravityLiftResponse {
-  provider: 'antigravity';
-  answer: string;
-  toolTraces: AntigravityToolTrace[];
-  riskFlags: string[];
-  raw?: unknown;
-}
-
-export class AntigravityDisabledError extends Error {
-  constructor() {
-    super('Antigravity integration is disabled');
-    this.name = 'AntigravityDisabledError';
+  safetyLevel?: SafetyLevel;
+}): Promise<EngineResult> {
+  if (process.env.ANTIGRAVITY_ENABLED !== 'true') {
+    throw new Error('Antigravity integration is disabled');
   }
-}
 
-export class AntigravityClient {
-  async lift(req: AntigravityLiftRequest): Promise<AntigravityLiftResponse> {
-    if (!antigravityConfig.enabled) {
-      throw new AntigravityDisabledError();
-    }
+  const baseUrl = process.env.ANTIGRAVITY_URL;
+  const apiKey = process.env.ANTIGRAVITY_API_KEY;
 
-    if (!antigravityConfig.url) {
-      throw new Error('ANTIGRAVITY_URL is not configured');
-    }
-
-    const url = `${antigravityConfig.url.replace(/\/$/, '')}/v1/antigravity/lift`;
-
-    const payload = {
-      prompt: req.prompt,
-      allowedTools: req.allowedTools ?? [],
-      safetyLevel: req.safetyLevel ?? 'medium',
-      metadata: req.metadata ?? {}
-    };
-
-    const headers: Record<string, string> = {
-      'Content-Type': 'application/json'
-    };
-
-    if (antigravityConfig.apiKey) {
-      headers.Authorization = `Bearer ${antigravityConfig.apiKey}`;
-    }
-
-    const response = await axios.post(url, payload, {
-      headers,
-      timeout: antigravityConfig.timeoutMs
-    });
-
-    const data = response.data as any;
-
-    return {
-      provider: 'antigravity',
-      answer: String(data.answer ?? ''),
-      toolTraces: Array.isArray(data.toolTraces) ? data.toolTraces : [],
-      riskFlags: Array.isArray(data.riskFlags) ? data.riskFlags : [],
-      raw: data
-    };
+  if (!baseUrl) {
+    throw new Error('ANTIGRAVITY_URL is not configured');
   }
-}
+  if (!apiKey) {
+    throw new Error('ANTIGRAVITY_API_KEY is not configured');
+  }
 
-export const antigravityClient = new AntigravityClient();
+  const started = Date.now();
+  const url = `${baseUrl.replace(/\/$/, '')}/v1/antigravity/lift`;
+
+  const res = await axios.post(
+    url,
+    {
+      prompt: opts.prompt,
+      tools: opts.allowedTools && opts.allowedTools.length > 0 ? opts.allowedTools : ['web-search'],
+      safety_level: opts.safetyLevel ?? 'high',
+      metadata: {
+        deliberationId: opts.deliberationId,
+      },
+    },
+    {
+      headers: { Authorization: `Bearer ${apiKey}` },
+      timeout: Number(process.env.ANTIGRAVITY_TIMEOUT_MS ?? 20_000),
+    },
+  );
+
+  const data = res.data as {
+    answer?: string;
+    tool_traces?: any[];
+    risk_flags?: string[];
+    meta?: Record<string, unknown>;
+  };
+
+  const result: EngineResult = {
+    engineId: 'antigravity',
+    answer: data.answer ?? '',
+    toolTraces: Array.isArray(data.tool_traces) ? data.tool_traces : [],
+    riskFlags: Array.isArray(data.risk_flags) ? data.risk_flags : [],
+    latencyMs: Date.now() - started,
+    meta: data.meta,
+  };
+
+  await attachExternalTrace(opts.deliberationId, {
+    provider: 'antigravity',
+    answer: result.answer,
+    toolTraces: result.toolTraces ?? [],
+    riskFlags: result.riskFlags,
+    meta: { latencyMs: result.latencyMs, ...(data.meta ?? {}) },
+  });
+
+  return result;
+}

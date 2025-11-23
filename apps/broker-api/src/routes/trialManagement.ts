@@ -220,17 +220,15 @@ export async function testTrialHandler(req: Request, res: Response): Promise<voi
 export async function getTrialDataHandler(req: Request, res: Response): Promise<void> {
   try {
     const { trialId } = req.params;
-    const rawQuery = req.query as Partial<DataRequest> & Record<string, unknown>;
+    const query = req.query as Partial<DataRequest> & Record<string, unknown>;
 
     // Normalize data_types query param to string[]
     let dataTypes: string[] = [];
 
-    if (typeof rawQuery.data_types === 'string') {
-      dataTypes = [rawQuery.data_types];
-    } else if (Array.isArray(rawQuery.data_types)) {
-      dataTypes = (rawQuery.data_types as unknown[]).filter(
-        (value): value is string => typeof value === 'string'
-      );
+    if (typeof query.data_types === 'string') {
+      dataTypes = [query.data_types];
+    } else if (Array.isArray(query.data_types)) {
+      dataTypes = query.data_types.filter((value: unknown): value is string => typeof value === 'string');
     }
 
     dataTypes = Object.freeze([...dataTypes]);

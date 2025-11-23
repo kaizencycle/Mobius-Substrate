@@ -1,54 +1,90 @@
+import crypto from 'node:crypto';
+import axios from 'axios';
 import { Router } from 'express';
-import { v4 as uuid } from 'uuid';
+import { callAntigravity } from '../services/antigravityClient';
+import { callOpenAI } from '../services/openaiClient';
+import { callClaude } from '../services/claudeClient';
+import { callDeepseek } from '../services/deepseekClient';
+import { ENGINE_CONFIG, DEFAULT_ROUTING_MODE } from '../config/engines';
+import { EngineId, EngineResult, RoutingMode, SafetyLevel } from '../types/routing';
+import { DeliberateRequestBody } from '../types/deliberation';
+import { config } from '../config';
 import { gradeResponse } from '../mii/grader';
 import { healthMonitor } from '../monitoring/health';
 import { signDeliberation } from '../crypto/attestation';
 import { saveDeliberation, saveSentinelResponse, saveAttestation, getDeliberation } from '../services/persistence';
 import { notifyWebhook } from '../services/webhook';
-import { antigravityClient, AntigravityLiftResponse, AntigravitySafetyLevel } from '../services/antigravityClient';
-import { attachExternalTrace, ExternalTrace } from '../utils/externalTrace';
-import { DeliberateRequestBody, RoutingMode } from '../types/deliberation';
-import { config } from '../config';
 
 const router = Router();
+const ROUTING_MODES: RoutingMode[] = ['local', 'antigravity-first', 'antigravity-only', 'multi-engine'];
+const ROUTING_MODE_SET = new Set<RoutingMode>(ROUTING_MODES);
+const ENGINE_ID_SET = new Set<EngineId>(['local', 'antigravity', 'openai', 'claude', 'deepseek']);
+const GI_THRESHOLD = config.giMin ?? 0.95;
+
+interface SentinelDecision {
+  source: 'remote' | 'local';
+  answer: string;
+  giScore: number;
+  decision: 'ok' | 'needs_human_review' | 'human_required' | 'reject';
+  flags: string[];
+  meta?: Record<string, unknown>;
+  attestation?: Record<string, unknown>;
+  responses?: Array<{ sentinel: string; miiScore: number }>;
+}
 
 router.post('/', async (req, res) => {
   const body = req.body as DeliberateRequestBody;
-  const routingMode: RoutingMode = body.routingMode ?? 'local';
-  const safetyLevel: AntigravitySafetyLevel = body.safetyLevel ?? 'medium';
+  const routingMode: RoutingMode = ROUTING_MODE_SET.has(body.routingMode as RoutingMode)
+    ? (body.routingMode as RoutingMode)
+    : DEFAULT_ROUTING_MODE;
+  const safetyLevel: SafetyLevel = body.safetyLevel ?? 'high';
+  const allowedTools = Array.isArray(body.allowedTools)
+    ? body.allowedTools.filter((tool): tool is string => typeof tool === 'string')
+    : [];
+  const requestedEngines = Array.isArray(body.engines)
+    ? (body.engines.filter((engine): engine is EngineId => ENGINE_ID_SET.has(engine as EngineId)) as EngineId[])
+    : undefined;
 
-  if (!body.prompt) {
+  if (!body.prompt || typeof body.prompt !== 'string') {
     return res.status(400).json({ error: 'Prompt is required' });
   }
 
+  const requiresSentinels = !process.env.SENTINEL_CONSENSUS_URL;
   if (
-    (routingMode === 'local' || routingMode === 'antigravity-first') &&
+    requiresSentinels &&
     (!Array.isArray(body.requiredSentinels) || body.requiredSentinels.length === 0)
   ) {
-    return res.status(400).json({ error: 'requiredSentinels array is required' });
+    return res.status(400).json({ error: 'requiredSentinels array is required when Sentinel consensus API is unavailable' });
   }
 
-  if ((routingMode === 'antigravity-first' || routingMode === 'antigravity-only') && !config.antigravity.enabled) {
+  if ((routingMode === 'antigravity-first' || routingMode === 'antigravity-only') && process.env.ANTIGRAVITY_ENABLED !== 'true') {
     return res.status(503).json({ error: 'ANTIGRAVITY_DISABLED' });
   }
 
-  const deliberationId = uuid();
+  const deliberationId = crypto.randomUUID();
 
   if (body.webhookUrl) {
     res.json({
       deliberationId,
       status: 'pending',
-      message: 'Deliberation started, will notify webhook on completion'
+      message: 'Deliberation started, will notify webhook on completion',
     });
-    processAsync(deliberationId, body, routingMode, safetyLevel, body.webhookUrl);
+    processAsync(deliberationId, body, routingMode, safetyLevel, allowedTools, requestedEngines, body.webhookUrl);
     return;
   }
 
   try {
-    const result = await orchestrateDeliberation(deliberationId, body, routingMode, safetyLevel);
+    const result = await orchestrateDeliberation(
+      deliberationId,
+      body,
+      routingMode,
+      safetyLevel,
+      allowedTools,
+      requestedEngines,
+    );
     res.json(result);
   } catch (error) {
-    res.status(500).json({ error: String(error) });
+    res.status(500).json({ error: error instanceof Error ? error.message : 'Deliberation failed' });
   }
 });
 
@@ -60,7 +96,7 @@ router.get('/:id', async (req, res) => {
     }
     res.json(deliberation);
   } catch (error) {
-    res.status(500).json({ error: String(error) });
+    res.status(500).json({ error: error instanceof Error ? error.message : 'Failed to fetch deliberation' });
   }
 });
 
@@ -68,178 +104,316 @@ async function orchestrateDeliberation(
   deliberationId: string,
   body: DeliberateRequestBody,
   routingMode: RoutingMode,
-  safetyLevel: AntigravitySafetyLevel
+  safetyLevel: SafetyLevel,
+  allowedTools: string[],
+  requestedEngines?: EngineId[],
 ) {
   const startTime = Date.now();
-  const allowedTools = body.allowedTools ?? [];
-  const metadata = body.metadata;
+  const metadata = body.metadata ?? {};
+  const enginePlan = resolveEnginePlan(routingMode, requestedEngines);
 
-  if (routingMode === 'antigravity-only') {
-    const antigravity = await antigravityClient.lift({
-      prompt: body.prompt,
-      allowedTools,
-      safetyLevel,
-      metadata: {
-        deliberationId,
-        mode: routingMode,
-        ...(metadata ?? {})
-      }
-    });
-
-    const trace: ExternalTrace = await attachExternalTrace(
-      deliberationId,
-      antigravity,
-      {
-        routingMode,
-        allowedTools,
-        safetyLevel
-      }
-    );
-
-    const contextEnvelope = buildContextEnvelope(body.context, {
-      routingMode,
-      allowedTools,
-      safetyLevel,
-      metadata
-    });
-
-    await saveDeliberation({
-      id: deliberationId,
-      prompt: body.prompt,
-      context: contextEnvelope,
-      status: 'processing',
-      createdAt: startTime,
-      requester: 'api'
-    });
-
-    await saveDeliberation({
-      id: deliberationId,
-      prompt: body.prompt,
-      context: contextEnvelope,
-      status: 'complete',
-      consensusAchieved: null,
-      finalMII: null,
-      createdAt: startTime,
-      completedAt: Date.now(),
-      requester: 'api'
-    });
-
-    return {
-      mode: routingMode,
-      deliberationId,
-      id: deliberationId,
-      antigravity: {
-        answer: antigravity.answer,
-        toolTraces: antigravity.toolTraces,
-        riskFlags: antigravity.riskFlags,
-        trace
-      },
-      duration: Date.now() - startTime
-    };
-  }
-
-  if (routingMode === 'antigravity-first') {
-    try {
-      const antigravity = await antigravityClient.lift({
-        prompt: body.prompt,
-        allowedTools,
-        safetyLevel,
-        metadata: {
+  const engineResults =
+    routingMode === 'local'
+      ? []
+      : await invokeEnginePlan(enginePlan, {
           deliberationId,
-          mode: routingMode,
-          ...(metadata ?? {})
-        }
-      });
-
-      const trace: ExternalTrace = await attachExternalTrace(
-        deliberationId,
-        antigravity,
-        {
-          routingMode,
+          prompt: body.prompt,
           allowedTools,
-          safetyLevel
-        }
-      );
+          safetyLevel,
+        });
 
-      const externalEvidence = {
-        prompt: body.prompt,
-        externalAnswer: antigravity.answer,
-        externalToolTraces: antigravity.toolTraces,
-        externalRiskFlags: antigravity.riskFlags,
-        deliberationId
-      };
-
-      const consensusResult = await runLocalDeliberation(deliberationId, body, {
-        startTime,
-        routingMode,
-        allowedTools,
-        safetyLevel,
-        metadata,
-        antigravityResponse: antigravity,
-        externalEvidence
-      });
-
-      return {
-        mode: routingMode,
-        deliberationId,
-        id: deliberationId,
-        antigravity: {
-          answer: antigravity.answer,
-          toolTraces: antigravity.toolTraces,
-          riskFlags: antigravity.riskFlags,
-          trace
-        },
-        consensus: consensusResult,
-        duration: Date.now() - startTime
-      };
-    } catch (error) {
-      console.warn('Antigravity lift failed, continuing with local consensus:', error);
-      const fallback = await runLocalDeliberation(deliberationId, body, {
-        startTime,
-        routingMode: 'local',
-        allowedTools,
-        safetyLevel,
-        metadata
-      });
-      return {
-        mode: 'local',
-        deliberationId,
-        ...fallback
-      };
-    }
-  }
-
-  const localResult = await runLocalDeliberation(deliberationId, body, {
-    startTime,
+  const contextEnvelope = buildContextEnvelope(body.context, {
     routingMode,
     allowedTools,
     safetyLevel,
-    metadata
+    metadata,
+    engineEvidence: engineResults,
+    externalEvidence: body.externalEvidence,
   });
 
-  return {
-    mode: routingMode,
+  let decision: SentinelDecision | null = null;
+  let usedRemoteConsensus = false;
+
+  if (process.env.SENTINEL_CONSENSUS_URL) {
+    try {
+      await saveDeliberation({
+        id: deliberationId,
+        prompt: body.prompt,
+        context: contextEnvelope,
+        status: 'processing',
+        createdAt: startTime,
+        requester: 'api',
+      });
+
+      decision = await runRemoteConsensus({
+        deliberationId,
+        prompt: body.prompt,
+        routingMode,
+        engineResults,
+        metadata,
+      });
+
+      await saveDeliberation({
+        id: deliberationId,
+        prompt: body.prompt,
+        context: contextEnvelope,
+        status: 'complete',
+        consensusAchieved: decision.decision === 'ok',
+        finalMII: decision.giScore,
+        createdAt: startTime,
+        completedAt: Date.now(),
+        requester: 'api',
+      });
+      usedRemoteConsensus = true;
+    } catch (error) {
+      console.warn('[BROKER] Remote Sentinel consensus failed, falling back to local pipeline:', error);
+      decision = null;
+    }
+  }
+
+  if (!decision) {
+    if (!Array.isArray(body.requiredSentinels) || body.requiredSentinels.length === 0) {
+      throw new Error('Sentinel consensus unavailable and no requiredSentinels provided for fallback.');
+    }
+
+    const localResult = await runLocalDeliberation(deliberationId, body, {
+      startTime,
+      routingMode,
+      allowedTools,
+      safetyLevel,
+      metadata,
+      engineEvidence: engineResults,
+      externalEvidence: body.externalEvidence,
+    });
+
+    decision = {
+      source: 'local',
+      answer: resolveFinalAnswer(engineResults, body.prompt),
+      giScore: localResult.miiScore,
+      decision: localResult.consensus.achieved ? 'ok' : 'needs_human_review',
+      flags: [],
+      meta: { consensus: localResult.consensus },
+      attestation: localResult.attestation,
+      responses: localResult.responses,
+    };
+  }
+
+  await emitLedgerAttestation({
     deliberationId,
-    ...localResult
+    decision,
+    engineResults,
+  });
+
+  const status = deriveStatus(decision);
+
+  return {
+    status,
+    decision: decision.decision,
+    gi_score: decision.giScore,
+    answer: decision.answer,
+    deliberation_id: deliberationId,
+    deliberationId,
+    routing_mode: routingMode,
+    routingMode,
+    engines: engineResults,
+    flags: decision.flags,
+    consensus_source: decision.source,
+    consensus_meta: decision.meta,
+    duration_ms: Date.now() - startTime,
+    remote_consensus: usedRemoteConsensus,
   };
+}
+
+interface EngineInvocationOptions {
+  deliberationId: string;
+  prompt: string;
+  allowedTools?: string[];
+  safetyLevel?: SafetyLevel;
+}
+
+async function invokeEnginePlan(engineIds: EngineId[], opts: EngineInvocationOptions): Promise<EngineResult[]> {
+  if (!engineIds.length) {
+    return [];
+  }
+
+  const tasks = engineIds.map(engineId =>
+    runExternalEngine(engineId, opts).then(
+      result => ({ status: 'fulfilled' as const, result }),
+      error => ({ status: 'rejected' as const, error }),
+    ),
+  );
+
+  const settled = await Promise.all(tasks);
+  const successful: EngineResult[] = [];
+
+  settled.forEach((entry, index) => {
+    if (entry.status === 'fulfilled') {
+      successful.push(entry.result);
+    } else {
+      console.warn(`[BROKER] Engine ${engineIds[index]} failed:`, entry.error);
+    }
+  });
+
+  return successful;
+}
+
+async function runExternalEngine(engineId: EngineId, opts: EngineInvocationOptions): Promise<EngineResult> {
+  if (!isEngineEnabled(engineId)) {
+    throw new Error(`Engine ${engineId} is disabled`);
+  }
+
+  switch (engineId) {
+    case 'antigravity':
+      return callAntigravity({
+        deliberationId: opts.deliberationId,
+        prompt: opts.prompt,
+        allowedTools: opts.allowedTools,
+        safetyLevel: opts.safetyLevel,
+      });
+    case 'openai':
+      return callOpenAI({ deliberationId: opts.deliberationId, prompt: opts.prompt });
+    case 'claude':
+      return callClaude({ deliberationId: opts.deliberationId, prompt: opts.prompt });
+    case 'deepseek':
+      return callDeepseek({ deliberationId: opts.deliberationId, prompt: opts.prompt });
+    default:
+      throw new Error(`Unsupported engine ${engineId}`);
+  }
+}
+
+function resolveEnginePlan(routingMode: RoutingMode, requested?: EngineId[]): EngineId[] {
+  const unique = (requested ?? []).filter(engine => engine !== 'local');
+  if (unique.length > 0) {
+    return dedupe(unique).filter(isEngineEnabled);
+  }
+
+  if (routingMode === 'multi-engine') {
+    return filterEnabled(['antigravity', 'openai', 'claude']);
+  }
+
+  if (routingMode === 'antigravity-first' || routingMode === 'antigravity-only') {
+    return filterEnabled(['antigravity']);
+  }
+
+  return [];
+}
+
+function dedupe<T>(items: T[]): T[] {
+  return Array.from(new Set(items));
+}
+
+function filterEnabled(engineIds: EngineId[]): EngineId[] {
+  return engineIds.filter(isEngineEnabled);
+}
+
+function isEngineEnabled(engineId: EngineId): boolean {
+  const configEntry = ENGINE_CONFIG.find(engine => engine.id === engineId);
+  return Boolean(configEntry?.enabled);
+}
+
+async function runRemoteConsensus(opts: {
+  deliberationId: string;
+  prompt: string;
+  routingMode: RoutingMode;
+  engineResults: EngineResult[];
+  metadata: Record<string, unknown>;
+}): Promise<SentinelDecision> {
+  const url = process.env.SENTINEL_CONSENSUS_URL;
+  if (!url) {
+    throw new Error('SENTINEL_CONSENSUS_URL is not configured');
+  }
+
+  const response = await axios.post(
+    url,
+    {
+      deliberationId: opts.deliberationId,
+      prompt: opts.prompt,
+      routingMode: opts.routingMode,
+      candidates: opts.engineResults,
+      metadata: opts.metadata,
+    },
+    { timeout: Number(process.env.SENTINEL_CONSENSUS_TIMEOUT_MS ?? 30_000) },
+  );
+
+  const data = response.data as {
+    final_answer?: string;
+    gi_score?: number;
+    decision?: SentinelDecision['decision'];
+    flags?: string[];
+    meta?: Record<string, unknown>;
+  };
+
+  return {
+    source: 'remote',
+    answer: data.final_answer ?? resolveFinalAnswer(opts.engineResults, opts.prompt),
+    giScore: Number(data.gi_score ?? 0),
+    decision: data.decision ?? 'needs_human_review',
+    flags: Array.isArray(data.flags) ? data.flags : [],
+    meta: data.meta,
+  };
+}
+
+async function emitLedgerAttestation(params: {
+  deliberationId: string;
+  decision: SentinelDecision;
+  engineResults: EngineResult[];
+}): Promise<void> {
+  const ledgerUrl = process.env.LEDGER_ATTEST_URL;
+  if (!ledgerUrl) {
+    return;
+  }
+
+  try {
+    await axios.post(
+      ledgerUrl,
+      {
+        deliberation_id: params.deliberationId,
+        gi_score: params.decision.giScore,
+        decision: params.decision.decision,
+        flags: params.decision.flags,
+        engines: params.engineResults.map(engine => ({
+          engineId: engine.engineId,
+          latencyMs: engine.latencyMs,
+          riskFlags: engine.riskFlags,
+        })),
+      },
+      { timeout: Number(process.env.LEDGER_ATTEST_TIMEOUT_MS ?? 15_000) },
+    );
+  } catch (error) {
+    console.warn('[BROKER] Failed to write Civic Ledger attestation:', error);
+  }
+}
+
+function deriveStatus(decision: SentinelDecision): string {
+  if (decision.decision === 'ok' && decision.giScore >= GI_THRESHOLD) {
+    return 'ok';
+  }
+  if (decision.decision === 'human_required' || decision.decision === 'needs_human_review') {
+    return 'needs_human_review';
+  }
+  return 'pending_review';
 }
 
 interface RunLocalDeliberationOptions {
   startTime: number;
   routingMode: RoutingMode;
   allowedTools?: string[];
-  safetyLevel: AntigravitySafetyLevel;
+  safetyLevel: SafetyLevel;
   metadata?: Record<string, unknown>;
-  antigravityResponse?: AntigravityLiftResponse | null;
+  engineEvidence?: EngineResult[];
   externalEvidence?: Record<string, unknown>;
 }
 
 async function runLocalDeliberation(
   deliberationId: string,
   body: DeliberateRequestBody,
-  options: RunLocalDeliberationOptions
+  options: RunLocalDeliberationOptions,
 ) {
   const sentinels = body.requiredSentinels ?? [];
+  if (sentinels.length === 0) {
+    throw new Error('requiredSentinels array is required for local deliberation');
+  }
+
   const threshold = body.consensusThreshold ?? 0.75;
   const start = options.startTime ?? Date.now();
 
@@ -248,7 +422,8 @@ async function runLocalDeliberation(
     allowedTools: options.allowedTools,
     safetyLevel: options.safetyLevel,
     metadata: options.metadata,
-    externalEvidence: options.externalEvidence
+    engineEvidence: options.engineEvidence,
+    externalEvidence: options.externalEvidence,
   });
 
   await saveDeliberation({
@@ -257,17 +432,19 @@ async function runLocalDeliberation(
     context: contextEnvelope,
     status: 'processing',
     createdAt: start,
-    requester: 'api'
+    requester: 'api',
   });
 
   const responses = await Promise.all(
-    sentinels.map(async (sentinel) => {
+    sentinels.map(async sentinel => {
       const t = Date.now();
       try {
         const sentinelContext = {
           ...(body.context ?? {}),
-          ...(options.antigravityResponse ? { antigravity: options.antigravityResponse } : {}),
-          ...(options.externalEvidence ? { externalEvidence: options.externalEvidence } : {})
+          ...(options.engineEvidence && options.engineEvidence.length
+            ? { engineEvidence: options.engineEvidence }
+            : {}),
+          ...(options.externalEvidence ?? {}),
         };
 
         const resp = await callSentinel(sentinel, body.prompt, sentinelContext);
@@ -279,7 +456,7 @@ async function runLocalDeliberation(
         healthMonitor.record(sentinel, false, Date.now() - t);
         throw error;
       }
-    })
+    }),
   );
 
   const avgMII = responses.reduce((sum, item) => sum + item.miiScore, 0) / responses.length;
@@ -297,7 +474,7 @@ async function runLocalDeliberation(
     finalMII: avgMII,
     createdAt: start,
     completedAt: Date.now(),
-    requester: 'api'
+    requester: 'api',
   });
 
   return {
@@ -305,12 +482,11 @@ async function runLocalDeliberation(
     consensus: { achieved: consensus, confidence: avgMII },
     miiScore: avgMII,
     responses,
-    antigravity: options.antigravityResponse ?? null,
     attestation: {
       signature: attestation.signature,
-      publicKey: attestation.publicKey
+      publicKey: attestation.publicKey,
     },
-    duration: Date.now() - start
+    duration: Date.now() - start,
   };
 }
 
@@ -318,11 +494,20 @@ async function processAsync(
   deliberationId: string,
   body: DeliberateRequestBody,
   routingMode: RoutingMode,
-  safetyLevel: AntigravitySafetyLevel,
-  webhook: string
+  safetyLevel: SafetyLevel,
+  allowedTools: string[],
+  requestedEngines: EngineId[] | undefined,
+  webhook: string,
 ) {
   try {
-    const result = await orchestrateDeliberation(deliberationId, body, routingMode, safetyLevel);
+    const result = await orchestrateDeliberation(
+      deliberationId,
+      body,
+      routingMode,
+      safetyLevel,
+      allowedTools,
+      requestedEngines,
+    );
     await notifyWebhook(webhook, { ...result, status: 'complete' });
   } catch (error) {
     await saveDeliberation({
@@ -330,43 +515,60 @@ async function processAsync(
       prompt: body.prompt,
       context: buildContextEnvelope(body.context, {
         routingMode,
-        allowedTools: body.allowedTools,
+        allowedTools,
         safetyLevel,
-        metadata: body.metadata
+        metadata: body.metadata,
+        externalEvidence: body.externalEvidence,
       }),
       status: 'failed',
       createdAt: Date.now(),
-      requester: 'api'
+      requester: 'api',
     });
-    await notifyWebhook(webhook, { deliberationId, status: 'failed', error: String(error) });
+    await notifyWebhook(webhook, { deliberationId, status: 'failed', error: error instanceof Error ? error.message : String(error) });
   }
 }
 
 interface ContextEnvelopeOptions {
   routingMode: RoutingMode;
   allowedTools?: string[];
-  safetyLevel: AntigravitySafetyLevel;
+  safetyLevel: SafetyLevel;
   metadata?: Record<string, unknown>;
+  engineEvidence?: EngineResult[];
   externalEvidence?: Record<string, unknown>;
 }
 
 function buildContextEnvelope(baseContext: any, options: ContextEnvelopeOptions) {
   return {
     ...(baseContext ?? {}),
-    _antigravity: {
+    _routing: {
       routingMode: options.routingMode,
       allowedTools: options.allowedTools ?? [],
       safetyLevel: options.safetyLevel,
-      metadata: options.metadata
+      metadata: options.metadata,
     },
-    ...(options.externalEvidence ? { externalEvidence: options.externalEvidence } : {})
+    ...(options.engineEvidence && options.engineEvidence.length
+      ? { engineEvidence: options.engineEvidence }
+      : {}),
+    ...(options.externalEvidence ? { externalEvidence: options.externalEvidence } : {}),
   };
+}
+
+function resolveFinalAnswer(engineResults: EngineResult[], prompt: string): string {
+  if (engineResults.length === 0) {
+    return `Sentinel consensus completed for prompt: ${prompt}`;
+  }
+
+  const prioritized =
+    engineResults.find(engine => engine.engineId === 'antigravity') ?? engineResults[0];
+  return prioritized.answer;
 }
 
 async function callSentinel(name: string, prompt: string, context: any): Promise<string> {
   // Mock implementation for now - will be replaced with actual Sentinel calls
   await new Promise(resolve => setTimeout(resolve, 100 + Math.random() * 200));
-  return `${name} analyzed: "${prompt}". ${context ? `Context considered: ${JSON.stringify(context)}. ` : ''}Recommendation based on integrity principles.`;
+  return `${name} analyzed: "${prompt}". ${
+    context ? `Context considered: ${JSON.stringify(context)}. ` : ''
+  }Recommendation based on integrity principles.`;
 }
 
 export default router;
