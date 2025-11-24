@@ -14,6 +14,8 @@ import { healthMonitor } from '../monitoring/health';
 import { signDeliberation } from '../crypto/attestation';
 import { saveDeliberation, saveSentinelResponse, saveAttestation, getDeliberation } from '../services/persistence';
 import { notifyWebhook } from '../services/webhook';
+import { evaluateWithIntegrityTier, IntegrityTierResponse } from '../services/integrityTierClient';
+import { INTEGRITY_TIER_ENABLED } from '../config';
 
 const router = Router();
 const ROUTING_MODES: RoutingMode[] = ['local', 'antigravity-first', 'antigravity-only', 'multi-engine'];
@@ -69,7 +71,16 @@ router.post('/', async (req, res) => {
       status: 'pending',
       message: 'Deliberation started, will notify webhook on completion',
     });
-    processAsync(deliberationId, body, routingMode, safetyLevel, allowedTools, requestedEngines, body.webhookUrl);
+    processAsync(
+      deliberationId,
+      body,
+      routingMode,
+      safetyLevel,
+      allowedTools,
+      requestedEngines,
+      body.webhookUrl,
+      (req as any).id,
+    );
     return;
   }
 
@@ -81,6 +92,7 @@ router.post('/', async (req, res) => {
       safetyLevel,
       allowedTools,
       requestedEngines,
+      (req as any).id,
     );
     res.json(result);
   } catch (error) {
@@ -107,6 +119,7 @@ async function orchestrateDeliberation(
   safetyLevel: SafetyLevel,
   allowedTools: string[],
   requestedEngines?: EngineId[],
+  requestId?: string,
 ) {
   const startTime = Date.now();
   const metadata = body.metadata ?? {};
@@ -198,10 +211,28 @@ async function orchestrateDeliberation(
     };
   }
 
+  const integrityAssessment = await runIntegrityAssessment({
+    enabled: INTEGRITY_TIER_ENABLED,
+    answer: decision.answer,
+    engineResults,
+    routingMode,
+    deliberationId,
+    requestId: requestId ?? deliberationId,
+  });
+
+  if (integrityAssessment && integrityAssessment.giScore < 0.95) {
+    return res.status(409).json({
+      status: 'blocked_low_integrity',
+      reason: 'GI score below threshold',
+      assessment: integrityAssessment,
+    });
+  }
+
   await emitLedgerAttestation({
     deliberationId,
     decision,
     engineResults,
+    provenance: integrityAssessment,
   });
 
   const status = deriveStatus(decision);
@@ -219,6 +250,7 @@ async function orchestrateDeliberation(
     flags: decision.flags,
     consensus_source: decision.source,
     consensus_meta: decision.meta,
+    provenance: integrityAssessment,
     duration_ms: Date.now() - startTime,
     remote_consensus: usedRemoteConsensus,
   };
@@ -357,6 +389,7 @@ async function emitLedgerAttestation(params: {
   deliberationId: string;
   decision: SentinelDecision;
   engineResults: EngineResult[];
+  provenance?: IntegrityTierResponse | null;
 }): Promise<void> {
   const ledgerUrl = process.env.LEDGER_ATTEST_URL;
   if (!ledgerUrl) {
@@ -376,6 +409,16 @@ async function emitLedgerAttestation(params: {
           latencyMs: engine.latencyMs,
           riskFlags: engine.riskFlags,
         })),
+        provenance: params.provenance
+          ? {
+              id: params.provenance.provenanceId,
+              tier: params.provenance.tier,
+              giScore: params.provenance.giScore,
+              signals: params.provenance.signals,
+              notes: params.provenance.notes,
+              timestamp: Date.now(),
+            }
+          : undefined,
       },
       { timeout: Number(process.env.LEDGER_ATTEST_TIMEOUT_MS ?? 15_000) },
     );
@@ -498,6 +541,7 @@ async function processAsync(
   allowedTools: string[],
   requestedEngines: EngineId[] | undefined,
   webhook: string,
+  requestId?: string,
 ) {
   try {
     const result = await orchestrateDeliberation(
@@ -507,6 +551,7 @@ async function processAsync(
       safetyLevel,
       allowedTools,
       requestedEngines,
+      requestId,
     );
     await notifyWebhook(webhook, { ...result, status: 'complete' });
   } catch (error) {
@@ -561,6 +606,39 @@ function resolveFinalAnswer(engineResults: EngineResult[], prompt: string): stri
   const prioritized =
     engineResults.find(engine => engine.engineId === 'antigravity') ?? engineResults[0];
   return prioritized.answer;
+}
+
+async function runIntegrityAssessment(params: {
+  enabled: boolean;
+  answer: string;
+  engineResults: EngineResult[];
+  routingMode: RoutingMode;
+  deliberationId: string;
+  requestId: string;
+}): Promise<IntegrityTierResponse | null> {
+  if (!params.enabled || !params.answer?.trim()) {
+    return null;
+  }
+
+  const primaryEngine =
+    params.engineResults.find(engine => engine.engineId === 'antigravity') ??
+    params.engineResults[0];
+
+  try {
+    return await evaluateWithIntegrityTier({
+      content: params.answer,
+      engine: primaryEngine?.engineId ?? 'unknown-engine',
+      routingMode: params.routingMode ?? 'unknown-routing',
+      metadata: {
+        deliberationId: params.deliberationId,
+        requestId: params.requestId,
+        engineEvidenceCount: params.engineResults.length,
+      },
+    });
+  } catch (error) {
+    console.error('[broker] IntegrityTier evaluation failed', error);
+    return null;
+  }
 }
 
 async function callSentinel(name: string, prompt: string, context: any): Promise<string> {

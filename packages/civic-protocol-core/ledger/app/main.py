@@ -84,6 +84,7 @@ class AttestationRequest(BaseModel):
     civic_id: str
     lab_source: str
     payload: Dict[str, Any]
+    provenance: Optional[Dict[str, Any]] = None
     signature: Optional[str] = None
 
 class EventResponse(BaseModel):
@@ -173,7 +174,25 @@ def calculate_event_hash(event: LedgerEvent) -> str:
     event_data = f"{event.event_id}{event.event_type}{event.civic_id}{event.lab_source}{json.dumps(event.payload, sort_keys=True)}{event.timestamp}{event.previous_hash}"
     return hashlib.sha256(event_data.encode()).hexdigest()
 
-def create_ledger_event(event_type: str, civic_id: str, lab_source: str, 
+def attach_provenance(payload: Dict[str, Any], provenance: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+    """Append provenance metadata when provided."""
+    if not provenance:
+        return payload
+
+    merged = dict(payload)
+    provenance_record = {
+        "id": provenance.get("id") or provenance.get("provenanceId"),
+        "tier": provenance.get("tier"),
+        "giScore": provenance.get("giScore"),
+        "signals": provenance.get("signals", {}),
+        "notes": provenance.get("notes", []),
+        "timestamp": provenance.get("timestamp") or int(datetime.now(timezone.utc).timestamp() * 1000),
+    }
+
+    merged["provenance"] = provenance_record
+    return merged
+
+def create_ledger_event(event_type: str, civic_id: str, lab_source: str,
                        payload: Dict[str, Any], signature: Optional[str] = None) -> LedgerEvent:
     """Create a new ledger event"""
     event_id = f"evt_{int(datetime.now().timestamp() * 1000)}_{hashlib.sha256(f'{civic_id}{event_type}'.encode()).hexdigest()[:8]}"
@@ -256,7 +275,7 @@ def attest_event(request: AttestationRequest,
         event_type=request.event_type,
         civic_id=request.civic_id,
         lab_source=request.lab_source,
-        payload=request.payload,
+        payload=attach_provenance(request.payload, request.provenance),
         signature=request.signature
     )
     
