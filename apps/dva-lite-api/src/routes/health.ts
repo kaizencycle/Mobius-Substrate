@@ -1,12 +1,17 @@
 import { Router } from 'express';
-import { getGiSnapshot } from '../services/giSnapshot';
 import { getBrokerMetrics } from '../services/brokerMetrics';
+import { getGiSnapshot } from '../services/giSnapshot';
+import { updateIntegritySnapshot } from '../state/integrityState';
 
 export const router = Router();
 
 router.get('/', async (_req, res, next) => {
   try {
     const [gi, broker] = await Promise.allSettled([getGiSnapshot(), getBrokerMetrics()]);
+
+    if (gi.status === 'fulfilled') {
+      updateIntegritySnapshot(gi.value);
+    }
 
     res.json({
       status: 'ok',
