@@ -12,6 +12,15 @@
 
 ---
 
+## 🏛️ Civilization Blueprints
+
+- [Mobius Systems: Complete Civilization Blueprint](./blueprints/CIVILIZATION_BLUEPRINT.md)
+- [Boulder Real-World Use Case](./blueprints/REAL_WORLD_USE_CASE.md)
+- [NYC Use Cases](./blueprints/NYC_USE_CASES.md)
+- [USA National Grid](./blueprints/USA_NATIONAL_GRID.md)
+
+---
+
 ## 📖 Documentation Categories
 
 ### 01. 📚 Whitepapers — Economic Theory
