@@ -50,6 +50,7 @@
 **[📂 Browse Architecture](./03-architecture/)**
 
 - [Architecture Overview](./03-architecture/ARCHITECTURE.md) — Layer map, flows, hooks ⭐
+- [Architecture Quick Reference](./03-architecture/ARCHITECTURE_QUICK_REFERENCE.md) — Fast, layered cheat sheet
 - [Universal Emulator OS — Mobius + Gemini 3](./03-architecture/UNIVERSAL_EMULATOR_OS.md) — Mobius + Gemini as a constitutional OS with DVA wiring
 - [DVA Tier Mapping — LITE / ONE / FULL / HIVE](./03-architecture/DVA_TIER_MAPPING.md) — How each DVA deployment tier maps to the Universal Emulator OS
 - [Kaizen OS Complete Lab Architecture](./03-architecture/technical/Kaizen_OS_Complete_Lab_Architecture.md) — Lab-by-lab blueprint
