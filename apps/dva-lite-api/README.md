@@ -4,9 +4,10 @@ DVA.LITE is the first tier of the Dynamic Verification Architecture. It is a pas
 
 ## Features
 
-- `/health` &mdash; readiness/liveness endpoint summarizing GI snapshot and broker metrics.
-- `/metrics` &mdash; Prometheus-style counters suitable for Grafana/Render scraping.
-- `/alerts/check` &mdash; on-demand hook that emits a webhook alert when MII drops below 0.95.
+- `/health` — readiness/liveness endpoint summarizing GI snapshot and broker metrics.
+- `/metrics` — full Prometheus registry (GI gauges, engine histograms, alerts, etc.).
+- `/alerts/check` — on-demand hook that emits a webhook alert when MII drops below the configured threshold.
+- `/ops/summary` — JSON snapshot powering the Mobius `/ops` dashboard.
 
 The service never mutates ledger or broker state. It exists purely as the “stethoscope” for operators.
 
@@ -18,6 +19,9 @@ The service never mutates ledger or broker state. It exists purely as the “ste
 | `LEDGER_BASE_URL` | Civic Ledger base URL | `http://localhost:4006` |
 | `BROKER_METRICS_URL` | Optional URL returning broker metrics JSON | _unset_ |
 | `ALERT_WEBHOOK_URL` | Optional webhook target (Discord/Slack/etc.) | _unset_ |
+| `MII_THRESHOLD` | Minimum acceptable integrity score before alerts fire | `0.95` |
+| `SAFE_MODE_ENABLED` | Whether to expose the service as already in safe mode (0/1 gauge) | `false` |
+| `METRICS_REFRESH_MS` | Polling interval for GI snapshots feeding `/metrics` & `/ops/summary` | `30000` |
 
 ## Development
 
