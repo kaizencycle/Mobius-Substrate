@@ -248,6 +248,7 @@ Completed documents: 21
 - [Ceremonial Summons PR - Complete Package](README.md) — readme
 - [Repository Structure Guide](REPOSITORY_STRUCTURE.md) — doc
 - [Opening Invocation (All Gatherings)](rituals/opening_invocation.md) — doc
+- [Mobius Operator Runbook (v0.1)](runbooks/MOBIUS_OPERATOR_RUNBOOK.md) — doc
 - [Citizen Shield — Incident Response Runbook (v1)](runbooks/incident_response_citizen_shield.md) — doc
 - [🔥 CEREMONIAL SUMMONS - START HERE 🔥](START_HERE.md) — doc
 - [🌍 The Internet Breathes Again](THE_INTERNET_BREATHES_AGAIN.md) — doc

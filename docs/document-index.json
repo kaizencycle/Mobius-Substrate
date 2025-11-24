@@ -1588,6 +1588,14 @@
       "size": 11275
     },
     {
+      "path": "docs/08-processes/runbooks/MOBIUS_OPERATOR_RUNBOOK.md",
+      "name": "MOBIUS_OPERATOR_RUNBOOK.md",
+      "title": "Mobius Operator Runbook (v0.1)",
+      "category": "doc",
+      "status": "active",
+      "size": 4820
+    },
+    {
       "path": "docs/DOCUMENT_REGISTRY.md",
       "name": "DOCUMENT_REGISTRY.md",
       "title": "Kaizen OS Document Registry",
