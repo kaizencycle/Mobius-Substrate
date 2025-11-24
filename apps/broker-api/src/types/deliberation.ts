@@ -1,4 +1,4 @@
-export type RoutingMode = 'local' | 'antigravity-first' | 'antigravity-only';
+import { EngineId, RoutingMode, SafetyLevel } from './routing';
 
 export interface DeliberateRequestBody {
   prompt: string;
@@ -7,8 +7,9 @@ export interface DeliberateRequestBody {
   consensusThreshold?: number;
   webhookUrl?: string;
   routingMode?: RoutingMode;
+  engines?: EngineId[];
   allowedTools?: string[];
-  safetyLevel?: 'low' | 'medium' | 'high';
+  safetyLevel?: SafetyLevel;
   metadata?: Record<string, unknown>;
   externalEvidence?: Record<string, unknown>;
   [key: string]: unknown;
