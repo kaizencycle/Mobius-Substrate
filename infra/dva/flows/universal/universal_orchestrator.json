@@ -34,6 +34,32 @@
       }
     },
     {
+      "id": "integrity_tier_check",
+      "type": "httpRequest",
+      "name": "Integrity Tier + Provenance",
+      "parameters": {
+        "url": "={{$env.INTEGRITY_TIER_URL}}/v1/integrity/evaluate",
+        "method": "POST",
+        "jsonParameters": true,
+        "body": {
+          "content": "={{$json.data?.answer || $json.answer || $json.data?.summary || $json.summary}}",
+          "origin": {
+            "engine": "={{$json.data?.engine || $json.engine || 'unknown-engine'}}",
+            "routingMode": "={{$json.data?.routingMode || $json.routingMode || 'unknown-routing'}}",
+            "taskType": "={{$json.data?.taskType || $json.taskType || ''}}",
+            "sources": "={{$json.data?.sources || $json.sources || []}}"
+          },
+          "metadata": {
+            "deliberationId": "={{$json.data?.deliberationId || $json.deliberationId}}",
+            "flow": "mobius.universal"
+          }
+        },
+        "options": {
+          "fullResponse": true
+        }
+      }
+    },
+    {
       "id": "gi_gate",
       "type": "if",
       "name": "GI Threshold Check",
@@ -41,7 +67,7 @@
         "conditions": {
           "number": [
             {
-              "leftValue": "={{$json.data.giScore || 0}}",
+              "leftValue": "={{$json.body?.giScore || $json.data?.giScore || $json.giScore || 0}}",
               "operation": "largerEqual",
               "rightValue": 0.95
             }
@@ -59,9 +85,16 @@
         "jsonParameters": true,
         "body": {
           "type": "MOBIUS_ORCHESTRATION",
-          "giScore": "={{$json.data.giScore}}",
-          "sentinels": "={{$json.data.sentinels}}",
-          "payloadHash": "={{$json.data.payloadHash}}",
+          "giScore": "={{$json.body?.giScore || $json.data?.giScore}}",
+          "sentinels": "={{$json.data?.sentinels}}",
+          "payloadHash": "={{$json.data?.payloadHash}}",
+          "provenance": {
+            "id": "={{$json.body?.provenanceId || $json.data?.provenance?.id}}",
+            "tier": "={{$json.body?.tier || $json.data?.provenance?.tier}}",
+            "giScore": "={{$json.body?.giScore || $json.data?.provenance?.giScore}}",
+            "signals": "={{$json.body?.signals || $json.data?.provenance?.signals || {}}}",
+            "notes": "={{$json.body?.notes || $json.data?.provenance?.notes || []}}"
+          },
           "meta": {
             "flow": "mobius.universal",
             "channel": "={{$json.channel || 'default'}}"
@@ -108,7 +141,7 @@
     "broker_request": {
       "main": [
         [
-          { "node": "gi_gate", "type": "main", "index": 0 }
+          { "node": "integrity_tier_check", "type": "main", "index": 0 }
         ]
       ]
     },
@@ -116,6 +149,13 @@
       "main": [
         [
           { "node": "broker_request", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "integrity_tier_check": {
+      "main": [
+        [
+          { "node": "gi_gate", "type": "main", "index": 0 }
         ]
       ]
     },
