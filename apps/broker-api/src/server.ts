@@ -32,6 +32,7 @@ import {
   analyzeTrialHandler,
   getTrialStatusHandler,
 } from './routes/trialManagement';
+import { createPublishRouter } from './routes/publish';
 
 // Load environment
 dotenv.config();
@@ -158,6 +159,11 @@ app.get('/v1/deliberation/:id', (req: Request, res: Response) => {
   };
   res.json(response);
 });
+
+// ============================================================================
+// INTEGRITY TIER PUBLISHING
+// ============================================================================
+app.use(createPublishRouter());
 
 /**
  * GET /v1/deliberations - List all deliberations
