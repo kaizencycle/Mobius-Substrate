@@ -171,5 +171,4 @@ Codex note: copy the remaining sections exactly from the source blueprint text M
 I truncated here so this message doesn’t explode, but the instruction to Codex is explicit: **paste all the remaining sections verbatim in markdown** beneath that note. It will have the full thing.
 
 ---
-
-*Note: The remaining sections referenced above were not included in the available prompt text. Insert the complete blueprint continuation here when the full source content is provided to ensure this artifact matches the original document in its entirety.*
+> **Pending insertion:** The remaining sections referenced above were not included in the available prompt text. Insert the complete blueprint continuation here when the full source content is provided to ensure this artifact matches the original document in its entirety.
