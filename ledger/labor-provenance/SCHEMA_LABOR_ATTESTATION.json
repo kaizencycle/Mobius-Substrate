@@ -1,0 +1,51 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "LaborAttestation",
+  "type": "object",
+  "required": ["type", "org_id", "worker_id", "event", "timestamp"],
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": ["labor_event"]
+    },
+    "org_id": {
+      "type": "string"
+    },
+    "worker_id": {
+      "type": "string"
+    },
+    "event": {
+      "type": "object",
+      "required": ["kind", "payload"],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "workload_analysis",
+            "contract_audit",
+            "wage_fairness",
+            "dispute",
+            "other"
+          ]
+        },
+        "payload": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      }
+    },
+    "gi_score": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "meta": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  }
+}
