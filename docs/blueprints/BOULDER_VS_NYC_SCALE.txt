@@ -43,7 +43,9 @@
 │  ├─ Decisions:      300K+/year (combined across departments)       │
 │  ├─ Auto-approved:  ~75% (proven at Boulder scale)                 │
 │  ├─ Human review:   ~25%                                            │
-│  ├─ Lives improved: 500K+ New Yorkers/year                         │
+│  ├─ Lives saved:    ~300/year (79 traffic + 220 health)           │
+│  ├─ People served:   500K+/year (200K applicants + 200K students + │
+│  │                   55K taxpayers + others)                       │
 │  └─ Public trust:   31% → 75%+ (similar improvement curve)         │
 │                                                                      │
 │  COST:                                                              │
@@ -123,7 +125,9 @@
 │                                                                      │
 │  ═══════════════════════════════════════════════════════════════   │
 │  TOTAL IMPACT:                                                      │
-│  - 500K+ New Yorkers directly affected per year                     │
+│  - Lives saved: ~300/year (79 traffic + 220 health)               │
+│  - People served: 500K+/year (200K applicants + 200K students +     │
+│                    55K taxpayers + others)                           │
 │  - 1.2M staff hours saved (= 577 FTE positions freed)              │
 │  - $3.66B/year savings across all departments                       │
 │  - Infrastructure cost: $3.2M/year                                  │
@@ -231,7 +235,8 @@
 │  Network effects multiply value.                                    │
 │                                                                      │
 │  At 8.3M population:                                                │
-│  - 500K+ New Yorkers served better                                 │
+│  - Lives saved: ~300/year (79 traffic + 220 health)                │
+│  - People served: 500K+/year                                        │
 │  - $3.66B/year saved                                                │
 │  - $3.2M/year infrastructure                                       │
 │  - 1,144x ROI                                                       │

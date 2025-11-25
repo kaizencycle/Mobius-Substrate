@@ -32,7 +32,8 @@
 │  Population: 8,300,000 (75x Boulder)       │
 │  Use Cases: 6 departments                   │
 │  Decisions: 300K+/year                      │
-│  Lives improved: 500K/year                  │
+│  Lives saved: ~300/year (79 traffic + 220 health)│
+│  People served: 500K+/year                  │
 │  Savings: $3.66B/year                        │
 │  Cost: $3.2M/year                           │
 │  ROI: 1,144x                                │
