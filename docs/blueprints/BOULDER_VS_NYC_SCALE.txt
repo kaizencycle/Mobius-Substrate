@@ -44,8 +44,12 @@
 │  ├─ Auto-approved:  ~75% (proven at Boulder scale)                 │
 │  ├─ Human review:   ~25%                                            │
 │  ├─ Lives saved:    ~300/year (79 traffic + 220 health)           │
-│  ├─ People served:   500K+/year (200K applicants + 200K students + │
-│  │                   55K taxpayers + others)                       │
+│  ├─ People served:   ~455K/year (direct service recipients:        │
+│  │                   200K housing applicants + 200K students +     │
+│  │                   55K tax appeals)                               │
+│  │                   Note: Transportation (40K studies) and Health  │
+│  │                   (1.1M ED visits) have broader indirect       │
+│  │                   impacts but are not counted in this metric    │
 │  └─ Public trust:   31% → 75%+ (similar improvement curve)         │
 │                                                                      │
 │  COST:                                                              │
@@ -126,8 +130,11 @@
 │  ═══════════════════════════════════════════════════════════════   │
 │  TOTAL IMPACT:                                                      │
 │  - Lives saved: ~300/year (79 traffic + 220 health)               │
-│  - People served: 500K+/year (200K applicants + 200K students +     │
-│                    55K taxpayers + others)                           │
+│  - People served: ~455K/year (direct service recipients:            │
+│                    200K housing applicants + 200K students +         │
+│                    55K tax appeals)                                  │
+│                    Note: Transportation and Health have broader      │
+│                    indirect impacts but are not counted in this metric│
 │  - 1.2M staff hours saved (= 577 FTE positions freed)              │
 │  - $3.66B/year savings across all departments                       │
 │  - Infrastructure cost: $3.2M/year                                  │
@@ -236,7 +243,7 @@
 │                                                                      │
 │  At 8.3M population:                                                │
 │  - Lives saved: ~300/year (79 traffic + 220 health)                │
-│  - People served: 500K+/year                                        │
+│  - People served: ~455K/year (direct service recipients)            │
 │  - $3.66B/year saved                                                │
 │  - $3.2M/year infrastructure                                       │
 │  - 1,144x ROI                                                       │

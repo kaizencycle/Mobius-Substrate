@@ -213,7 +213,8 @@ Not extraction (zero-sum), but coordination (positive-sum)
   6. Finance: 55K appeals, estimated 20mo → 3 weeks (projected)
 
 - Projected results (not validated):
-  - Estimated: 500K+ New Yorkers served
+  - Estimated: ~455K New Yorkers served (direct service recipients: 200K housing applicants + 200K students + 55K tax appeals)
+  - Note: Transportation and Health have broader indirect impacts but are not counted in this metric
   - Estimated savings: $3.66B/year
   - Estimated lives saved: 300/year
   - Infrastructure cost: $3.2M/year (estimated)
@@ -692,7 +693,7 @@ Human-in-Loop Requirements:
 3. **MacKenzie Scott** ($100M)
    - Pitch: "Civilization-scale transformation"
    - Focus: Economic equity (participatory budgeting, housing)
-   - ROI: 500K+ New Yorkers served better
+   - ROI: ~455K New Yorkers served (direct service recipients)
 
 **Use of Funds**:
 - 10-city pilot network: $15M

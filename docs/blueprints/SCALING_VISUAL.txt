@@ -33,7 +33,8 @@
 │  Use Cases: 6 departments                   │
 │  Decisions: 300K+/year                      │
 │  Lives saved: ~300/year (79 traffic + 220 health)│
-│  People served: 500K+/year                  │
+│  People served: ~455K/year (direct: 200K housing +│
+│                 200K students + 55K tax appeals) │
 │  Savings: $3.66B/year                        │
 │  Cost: $3.2M/year                           │
 │  ROI: 1,144x                                │
