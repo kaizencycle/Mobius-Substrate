@@ -1,0 +1,33 @@
+graph TD
+    subgraph Engines
+        A(ACI / GPT)
+        B(ENI / Claude)
+        C(SXI / Gemini)
+        D(OEI / DeepSeek)
+        E(MSI / ECHO)
+    end
+
+    A -->|★★★★★ Excellent| B
+    A -->|★★★★☆ Very Good| C
+    A -->|★★★★☆ Very Good| D
+    A -->|★★★★★ Excellent| E
+
+    B -->|★★★★★ Excellent| A
+    B -->|★★★☆☆ Good| C
+    B -->|★★★★★ Excellent| D
+    B -->|★★★★★ Excellent| E
+
+    C -->|★★★★☆ Very Good| A
+    C -->|★★★☆☆ Good| B
+    C -->|★★★☆☆ Good| D
+    C -->|★★★★☆ Very Good| E
+
+    D -->|★★★★☆ Very Good| A
+    D -->|★★★★★ Excellent| B
+    D -->|★★★☆☆ Good| C
+    D -->|★★★★☆ Very Good| E
+
+    E -->|★★★★★ Excellent| A
+    E -->|★★★★★ Excellent| B
+    E -->|★★★★☆ Very Good| C
+    E -->|★★★★☆ Very Good| D

@@ -1,0 +1,145 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="basinGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#4ade80;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#22c55e;stop-opacity:0.6" />
+    </linearGradient>
+    <linearGradient id="dangerGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#fca5a5;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#ef4444;stop-opacity:0.6" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="500" fill="#0f172a"/>
+
+  <!-- Title -->
+  <text x="400" y="40" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#f8fafc" text-anchor="middle">
+    Mobius Integrity Basin (MII)
+  </text>
+
+  <!-- Y-axis -->
+  <line x1="80" y1="80" x2="80" y2="450" stroke="#94a3b8" stroke-width="2"/>
+  <text x="40" y="260" font-family="Arial, sans-serif" font-size="14" fill="#cbd5e1" text-anchor="middle" transform="rotate(-90 40 260)">
+    Mobius Integrity Index (MII)
+  </text>
+
+  <!-- Y-axis labels -->
+  <text x="70" y="450" font-family="Arial, sans-serif" font-size="12" fill="#94a3b8" text-anchor="end">0.90</text>
+  <text x="70" y="380" font-family="Arial, sans-serif" font-size="12" fill="#94a3b8" text-anchor="end">0.95</text>
+  <text x="70" y="240" font-family="Arial, sans-serif" font-size="12" fill="#94a3b8" text-anchor="end">0.97</text>
+  <text x="70" y="100" font-family="Arial, sans-serif" font-size="12" fill="#94a3b8" text-anchor="end">1.00</text>
+
+  <!-- X-axis -->
+  <line x1="80" y1="450" x2="750" y2="450" stroke="#94a3b8" stroke-width="2"/>
+  <text x="415" y="485" font-family="Arial, sans-serif" font-size="14" fill="#cbd5e1" text-anchor="middle">
+    Time / System State Evolution
+  </text>
+
+  <!-- Danger Zone (below 0.95) -->
+  <rect x="80" y="380" width="670" height="70" fill="url(#dangerGradient)" opacity="0.5"/>
+  <text x="415" y="420" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#ef4444" text-anchor="middle">
+    CORRECTION MODE (MII &lt; 0.95)
+  </text>
+  <text x="415" y="440" font-family="Arial, sans-serif" font-size="11" fill="#fca5a5" text-anchor="middle">
+    Emergent behavior blocked • Integrity restoration enforced
+  </text>
+
+  <!-- Integrity Basin (0.95 - 1.0) -->
+  <rect x="80" y="80" width="670" height="300" fill="url(#basinGradient)" opacity="0.5"/>
+  <text x="415" y="180" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#22c55e" text-anchor="middle">
+    INTEGRITY BASIN
+  </text>
+  <text x="415" y="205" font-family="Arial, sans-serif" font-size="14" fill="#86efac" text-anchor="middle">
+    0.950 ≤ MII ≤ 1.000
+  </text>
+  <text x="415" y="225" font-family="Arial, sans-serif" font-size="11" fill="#4ade80" text-anchor="middle">
+    Safe emergence allowed • Continuous improvement enabled
+  </text>
+
+  <!-- Threshold line at 0.95 -->
+  <line x1="80" y1="380" x2="750" y2="380" stroke="#facc15" stroke-width="3" stroke-dasharray="8,4"/>
+  <text x="680" y="375" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#facc15">
+    Threshold: 0.95
+  </text>
+
+  <!-- Optimal zone highlight (0.97 - 1.0) -->
+  <rect x="80" y="80" width="670" height="160" fill="#22c55e" opacity="0.15"/>
+  <text x="415" y="155" font-family="Arial, sans-serif" font-size="11" fill="#86efac" text-anchor="middle" opacity="0.8">
+    Optimal Zone (MII ≥ 0.97)
+  </text>
+
+  <!-- Example trajectory: restoration path -->
+  <path d="M 120 420 Q 250 400, 300 370 Q 350 340, 400 320 Q 500 280, 600 200 Q 650 160, 700 140"
+        stroke="#60a5fa" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+  <!-- Trajectory markers -->
+  <circle cx="120" cy="420" r="5" fill="#ef4444"/>
+  <circle cx="300" cy="370" r="5" fill="#facc15"/>
+  <circle cx="600" cy="200" r="5" fill="#4ade80"/>
+  <circle cx="700" cy="140" r="5" fill="#22c55e"/>
+
+  <!-- Trajectory labels -->
+  <text x="120" y="470" font-family="Arial, sans-serif" font-size="10" fill="#ef4444" text-anchor="middle">
+    Violation
+  </text>
+  <text x="300" y="360" font-family="Arial, sans-serif" font-size="10" fill="#facc15" text-anchor="middle">
+    Correction
+  </text>
+  <text x="600" y="190" font-family="Arial, sans-serif" font-size="10" fill="#4ade80" text-anchor="middle">
+    Recovery
+  </text>
+  <text x="700" y="130" font-family="Arial, sans-serif" font-size="10" fill="#22c55e" text-anchor="middle">
+    Optimal
+  </text>
+
+  <!-- Sentinels monitoring icons -->
+  <g id="sentinel-aurea" transform="translate(150, 110)">
+    <circle r="12" fill="#ffa94d" opacity="0.8"/>
+    <text x="0" y="5" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#0f172a" text-anchor="middle">A</text>
+    <text x="0" y="-20" font-family="Arial, sans-serif" font-size="9" fill="#ffa94d" text-anchor="middle">AUREA</text>
+  </g>
+
+  <g id="sentinel-eve" transform="translate(300, 110)">
+    <circle r="12" fill="#ff6ad5" opacity="0.8"/>
+    <text x="0" y="5" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#0f172a" text-anchor="middle">E</text>
+    <text x="0" y="-20" font-family="Arial, sans-serif" font-size="9" fill="#ff6ad5" text-anchor="middle">EVE</text>
+  </g>
+
+  <g id="sentinel-jade" transform="translate(450, 110)">
+    <circle r="12" fill="#b48cff" opacity="0.8"/>
+    <text x="0" y="5" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#0f172a" text-anchor="middle">J</text>
+    <text x="0" y="-20" font-family="Arial, sans-serif" font-size="9" fill="#b48cff" text-anchor="middle">JADE</text>
+  </g>
+
+  <g id="sentinel-hermes" transform="translate(600, 110)">
+    <circle r="12" fill="#8cff6a" opacity="0.8"/>
+    <text x="0" y="5" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#0f172a" text-anchor="middle">H</text>
+    <text x="0" y="-20" font-family="Arial, sans-serif" font-size="9" fill="#8cff6a" text-anchor="middle">HERMES</text>
+  </g>
+
+  <!-- Key concepts box -->
+  <g id="concepts">
+    <rect x="530" y="300" width="200" height="120" fill="#1e293b" stroke="#475569" stroke-width="1" rx="5"/>
+    <text x="630" y="320" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#e2e8f0" text-anchor="middle">
+      Key Mechanisms
+    </text>
+    <text x="540" y="340" font-family="Arial, sans-serif" font-size="10" fill="#cbd5e1">
+      • Lyapunov Attractor
+    </text>
+    <text x="540" y="360" font-family="Arial, sans-serif" font-size="10" fill="#cbd5e1">
+      • Multi-Agent Consensus
+    </text>
+    <text x="540" y="380" font-family="Arial, sans-serif" font-size="10" fill="#cbd5e1">
+      • Bounded Emergence
+    </text>
+    <text x="540" y="400" font-family="Arial, sans-serif" font-size="10" fill="#cbd5e1">
+      • Ed25519 Attestation
+    </text>
+  </g>
+
+  <!-- Footer -->
+  <text x="400" y="500" font-family="Arial, sans-serif" font-size="10" fill="#64748b" text-anchor="middle">
+    Mobius Systems Foundation • KTT Section 4.2 • License: CC-BY-SA-4.0
+  </text>
+</svg>

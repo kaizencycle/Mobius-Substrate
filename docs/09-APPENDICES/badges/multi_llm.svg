@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="178" height="28" role="img" aria-label="Model-Agnostic Consensus">
+  <title>Model-Agnostic Consensus</title>
+  <linearGradient id="multi-llm-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+    <stop offset="0%" stop-color="#5a189a" />
+    <stop offset="100%" stop-color="#9d4edd" />
+  </linearGradient>
+  <rect width="178" height="28" rx="6" fill="url(#multi-llm-grad)" />
+  <rect width="178" height="28" rx="6" fill="none" stroke="#3c0c6e" stroke-width="2" />
+  <text x="89" y="18" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" font-size="12" text-anchor="middle">
+    Model-Agnostic Consensus
+  </text>
+</svg>

@@ -1,0 +1,132 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2025-11-06T15:32:32.484638",
+  "params": {
+    "lambda_bias": 0.5,
+    "mu_entropy": 0.5,
+    "ds_warn": 0.05,
+    "ds_quarantine": 0.1,
+    "gi_live_threshold": 0.95,
+    "gi_emergency_stop": 0.9
+  },
+  "cases": [
+    {
+      "id": "baseline_stable",
+      "description": "Small GI wobble within budget; should PASS.",
+      "metrics": {
+        "gi_prev": 0.972,
+        "gi_curr": 0.968,
+        "delta_bias": 0.01,
+        "delta_entropy": 0.0
+      },
+      "expected": {
+        "ds": "computed",
+        "action": "pass",
+        "notes": "No rollback; continue canary if active."
+      },
+      "attestation": {
+        "model_sha256": "deadcafedeadcafedeadcafedeadcafedeadcafedeadcafedeadcafedeadcafe",
+        "dataset_sha256": "feedbabefeedbabefeedbabefeedbabefeedbabefeedbabefeedbabefeedbabe",
+        "container_sig": "sig:placeholder",
+        "owners": [
+          "human:ownerA",
+          "human:ownerB"
+        ],
+        "two_human_gate": true,
+        "capability_envelope": [
+          "read",
+          "classify"
+        ]
+      }
+    },
+    {
+      "id": "exceeds_budget_rollback",
+      "description": "Bias jump causes DS > warn; expect rollback flag.",
+      "metrics": {
+        "gi_prev": 0.965,
+        "gi_curr": 0.945,
+        "delta_bias": 0.06,
+        "delta_entropy": 0.01
+      },
+      "expected": {
+        "action": "rollback",
+        "reason": "DS>0.05",
+        "red_team_event": true
+      },
+      "attestation": {
+        "model_sha256": "0011223300112233001122330011223300112233001122330011223300112233",
+        "dataset_sha256": "4455667744556677445566774455667744556677445566774455667744556677",
+        "container_sig": "sig:placeholder",
+        "owners": [
+          "human:ownerA",
+          "human:ownerB"
+        ],
+        "two_human_gate": true,
+        "capability_envelope": [
+          "read",
+          "classify"
+        ]
+      }
+    },
+    {
+      "id": "emergency_stop",
+      "description": "GI drops below 0.90; immediate stop regardless of DS.",
+      "metrics": {
+        "gi_prev": 0.92,
+        "gi_curr": 0.889,
+        "delta_bias": 0.08,
+        "delta_entropy": 0.08
+      },
+      "expected": {
+        "action": "emergency_stop",
+        "reason": "GI<0.90",
+        "quarantine": true,
+        "notify_humans": true
+      },
+      "attestation": {
+        "model_sha256": "89abcdef89abcdef89abcdef89abcdef89abcdef89abcdef89abcdef89abcdef",
+        "dataset_sha256": "7654321076543210765432107654321076543210765432107654321076543210",
+        "container_sig": "sig:placeholder",
+        "owners": [
+          "human:ownerA",
+          "human:ownerB"
+        ],
+        "two_human_gate": true,
+        "capability_envelope": [
+          "read",
+          "classify"
+        ]
+      }
+    },
+    {
+      "id": "capability_breach",
+      "description": "Attempt to use capability not in envelope; should fail gate.",
+      "metrics": {
+        "gi_prev": 0.99,
+        "gi_curr": 0.991,
+        "delta_bias": 0.0,
+        "delta_entropy": 0.0
+      },
+      "expected": {
+        "action": "block",
+        "reason": "capability_violation"
+      },
+      "attestation": {
+        "model_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "dataset_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "container_sig": "sig:placeholder",
+        "owners": [
+          "human:ownerA",
+          "human:ownerB"
+        ],
+        "two_human_gate": true,
+        "capability_envelope": [
+          "read",
+          "classify"
+        ],
+        "requested_capability": "write_production"
+      }
+    }
+  ]
+}
+

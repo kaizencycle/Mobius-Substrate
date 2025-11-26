@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <!-- Background -->
+  <rect width="800" height="600" fill="#0a0a0a"/>
+
+  <!-- Title -->
+  <text x="400" y="40" text-anchor="middle" fill="#00ff88" font-family="monospace" font-size="24" font-weight="bold">
+    THE FOUR PILLARS OF AGI
+  </text>
+  <text x="400" y="65" text-anchor="middle" fill="#888888" font-family="monospace" font-size="14">
+    (2020-2040)
+  </text>
+
+  <!-- Pillar 1: Compute -->
+  <rect x="100" y="150" width="140" height="200" fill="#1a1a2e" stroke="#00ff88" stroke-width="2" rx="10"/>
+  <text x="170" y="190" text-anchor="middle" fill="#00ff88" font-family="monospace" font-size="16" font-weight="bold">
+    1. COMPUTE
+  </text>
+  <text x="170" y="220" text-anchor="middle" fill="#cccccc" font-family="monospace" font-size="12">
+    • NVIDIA GPUs
+  </text>
+  <text x="170" y="240" text-anchor="middle" fill="#cccccc" font-family="monospace" font-size="12">
+    • Cloud Clusters
+  </text>
+  <text x="170" y="260" text-anchor="middle" fill="#cccccc" font-family="monospace" font-size="12">
+    • TPUs / NPUs
+  </text>
+  <text x="170" y="320" text-anchor="middle" fill="#888888" font-family="monospace" font-size="11" font-style="italic">
+    SOLVED
+  </text>
+
+  <!-- Pillar 2: Architecture -->
+  <rect x="250" y="150" width="140" height="200" fill="#1a1a2e" stroke="#00ff88" stroke-width="2" rx="10"/>
+  <text x="320" y="190" text-anchor="middle" fill="#00ff88" font-family="monospace" font-size="16" font-weight="bold">
+    2. ARCHITECTURE
+  </text>
+  <text x="320" y="220" text-anchor="middle" fill="#cccccc" font-family="monospace" font-size="12">
+    • Transformers
+  </text>
+  <text x="320" y="240" text-anchor="middle" fill="#cccccc" font-family="monospace" font-size="12">
+    • MoE Networks
+  </text>
+  <text x="320" y="260" text-anchor="middle" fill="#cccccc" font-family="monospace" font-size="12">
+    • State Space
+  </text>
+  <text x="320" y="320" text-anchor="middle" fill="#888888" font-family="monospace" font-size="11" font-style="italic">
+    SOLVED
+  </text>
+
+  <!-- Pillar 3: Data -->
+  <rect x="400" y="150" width="140" height="200" fill="#1a1a2e" stroke="#00ff88" stroke-width="2" rx="10"/>
+  <text x="470" y="190" text-anchor="middle" fill="#00ff88" font-family="monospace" font-size="16" font-weight="bold">
+    3. DATA
+  </text>
+  <text x="470" y="220" text-anchor="middle" fill="#cccccc" font-family="monospace" font-size="12">
+    • Internet Corpus
+  </text>
+  <text x="470" y="240" text-anchor="middle" fill="#cccccc" font-family="monospace" font-size="12">
+    • Synthetic Data
+  </text>
+  <text x="470" y="260" text-anchor="middle" fill="#cccccc" font-family="monospace" font-size="12">
+    • Multimodal Sets
+  </text>
+  <text x="470" y="320" text-anchor="middle" fill="#888888" font-family="monospace" font-size="11" font-style="italic">
+    SOLVED
+  </text>
+
+  <!-- Pillar 4: Civilization (MOBIUS) -->
+  <rect x="550" y="150" width="140" height="200" fill="#0f2a1f" stroke="#ff6b35" stroke-width="3" rx="10"/>
+  <text x="620" y="190" text-anchor="middle" fill="#ff6b35" font-family="monospace" font-size="16" font-weight="bold">
+    4. CIVILIZATION
+  </text>
+  <text x="620" y="220" text-anchor="middle" fill="#ffcc00" font-family="monospace" font-size="12" font-weight="bold">
+    • MOBIUS
+  </text>
+  <text x="620" y="240" text-anchor="middle" fill="#ffcc00" font-family="monospace" font-size="12">
+    • AI Habitat
+  </text>
+  <text x="620" y="260" text-anchor="middle" fill="#ffcc00" font-family="monospace" font-size="12">
+    • Integrity
+  </text>
+  <text x="620" y="320" text-anchor="middle" fill="#ff6b35" font-family="monospace" font-size="11" font-weight="bold">
+    MOBIUS ONLY
+  </text>
+
+  <!-- Arrow pointing to missing pillar -->
+  <path d="M 350 380 L 380 400 L 350 420 Z" fill="#ff6b35"/>
+  <line x1="100" y1="400" x2="350" y2="400" stroke="#ff6b35" stroke-width="2" stroke-dasharray="5,5"/>
+
+  <text x="225" y="450" text-anchor="middle" fill="#ff6b35" font-family="monospace" font-size="14" font-weight="bold">
+    Corporations focus here
+  </text>
+
+  <!-- Bottom text -->
+  <text x="400" y="510" text-anchor="middle" fill="#00ff88" font-family="monospace" font-size="16" font-weight="bold">
+    Mobius solves the missing pillar
+  </text>
+  <text x="400" y="540" text-anchor="middle" fill="#888888" font-family="monospace" font-size="12">
+    The Civilization Layer is the prerequisite for safe AGI
+  </text>
+
+  <!-- Footer -->
+  <text x="400" y="580" text-anchor="middle" fill="#555555" font-family="monospace" font-size="10">
+    Mobius Systems | Cycle C-130 | The Fourth Pillar of AGI
+  </text>
+</svg>
