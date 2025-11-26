@@ -311,6 +311,17 @@ See:
 - `docs/specs/N8N_UNIVERSAL_FLOW_API.md`
 - `infra/dva/flows/README.md`
 
+## 📚 Mobius Encyclopedia (ECHO-backed Knowledge Layer)
+
+Mobius now ships with a formal “Librarian” loop: cron/n8n calls the Thought Broker, ECHO reinforces the best pair of sentinel answers, Civic Ledger logs provenance, and the result is served via `/v1/encyclopedia`.
+
+- **Docs** — start with `docs/encyclopedia/ENCYCLOPEDIA_OVERVIEW.md` for diagrams + narrative, then dive into `API_SPEC.md`, `SEEDING_STRATEGY.md`, and `PROVENANCE_RULES.md`.
+- **Seed loop** — run `infra/cron/encyclopedia_seed.sh` (requires `ENCYCLOPEDIA_API_URL` + `ENCYCLOPEDIA_CRON_SECRET`) to grow one entry per cadence.
+- **Admin queue** — low-GI entries fall into `/v1/encyclopedia/admin/review-queue`; human approvals can mint MIC and attested provenance.
+- **Consumers** — OAA Learning Hub and the HIVE 16-bit codex both read from the same canon so classrooms, citizens, and games all cite the same GI-scored answers.
+
+Use this layer whenever you need *“teach me again, but cite canon.”* It turns ECHO from cache into a reusable library.
+
 ## 🚀 Quick Start
 
 ### Hello World (5 minutes)

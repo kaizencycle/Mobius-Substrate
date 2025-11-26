@@ -2,6 +2,7 @@
 // ECHO Layer API Routes
 
 import { Router } from "express";
+import { reinforce, SentinelAnswer } from "@mobius/echo-layer";
 import { answerWithEcho } from "../../services/answerWithEcho";
 import { 
   getExactFromEchoCache, 
@@ -14,6 +15,41 @@ import { canonicalizeKey } from "../../utils/textCanonicalization";
 import { validateAdminKey } from "../../middleware/auth";
 
 export const echoRouter = Router();
+
+function normalizeSentinelAnswer(input: any, label: 'a1' | 'a2'): SentinelAnswer {
+  if (!input || typeof input.answer !== "string" || !input.answer.trim()) {
+    throw new Error(`Missing answer for ${label}`);
+  }
+
+  const rawSources = Array.isArray(input.sources) ? input.sources : [];
+  const sources = rawSources
+    .filter((item: unknown): item is string => typeof item === "string" && item.trim().length > 0)
+    .map((item: string) => item.trim());
+
+  return {
+    answer: input.answer,
+    sources,
+  };
+}
+
+echoRouter.post("/reinforce", async (req, res, next) => {
+  try {
+    const { question, a1, a2 } = req.body ?? {};
+    if (typeof question !== "string" || !question.trim()) {
+      return res.status(400).json({ error: "question is required" });
+    }
+
+    const entry = reinforce(
+      normalizeSentinelAnswer(a1, "a1"),
+      normalizeSentinelAnswer(a2, "a2"),
+      question
+    );
+
+    res.json(entry);
+  } catch (err) {
+    next(err);
+  }
+});
 
 /**
  * POST /v1/echo/deliberate

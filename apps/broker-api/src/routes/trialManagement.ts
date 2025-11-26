@@ -231,8 +231,8 @@ export async function getTrialDataHandler(req: Request, res: Response): Promise<
       dataTypes = query.data_types.filter((value: unknown): value is string => typeof value === 'string');
     }
 
-    dataTypes = Object.freeze([...dataTypes]);
-    const hasDataType = (type: string) => dataTypes.includes(type);
+    const normalizedDataTypes = [...dataTypes];
+    const hasDataType = (type: string) => normalizedDataTypes.includes(type);
 
     const trial = trialRegistry.get(trialId);
     if (!trial) {
