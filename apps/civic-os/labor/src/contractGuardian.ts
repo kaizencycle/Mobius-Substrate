@@ -45,6 +45,7 @@ export async function auditContract(
   const suggestedRewrites: SuggestedRewrite[] = [];
 
   const text = input.contractText.toLowerCase();
+
   if (text.includes("non-compete") || text.includes("noncompete")) {
     issues.push({
       clauseId: "auto-noncompete-detected",
@@ -53,6 +54,7 @@ export async function auditContract(
       explanation:
         "Detected a non-compete clause. These can be coercive or unenforceable depending on jurisdiction."
     });
+
     suggestedRewrites.push({
       clauseId: "auto-noncompete-detected",
       replacement:

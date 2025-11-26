@@ -33,6 +33,8 @@ import { authenticateAPIKey, deliberationRateLimit } from './middleware/auth';
 import deliberateRouter from './routes/deliberate';
 import healthRouter from './routes/health';
 import metricsRouter from './routes/metrics';
+import echoStatsRouter from './routes/echoStats';
+import humanReviewRouter from './routes/humanReview';
 
 const app = express();
 const PORT = process.env.PORT || 4005;
@@ -49,6 +51,8 @@ app.use(express.json());
 app.use('/v1/deliberate', authenticateAPIKey, deliberationRateLimit, deliberateRouter);
 app.use('/v1/health', healthRouter);
 app.use('/v1/metrics', metricsRouter);
+app.use('/v1/echo', echoStatsRouter);
+app.use('/v1/echo/review', humanReviewRouter);
 
 // Sentinel routes
 app.use('/api/sentinels/uriel', urielRouter);

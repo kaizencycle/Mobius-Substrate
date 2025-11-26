@@ -16,6 +16,7 @@ import { saveDeliberation, saveSentinelResponse, saveAttestation, getDeliberatio
 import { notifyWebhook } from '../services/webhook';
 import { evaluateWithIntegrityTier, IntegrityTierResponse } from '../services/integrityTierClient';
 import { INTEGRITY_TIER_ENABLED } from '../config';
+import { answerWithEcho } from '../services/answerWithEcho';
 
 const router = Router();
 const ROUTING_MODES: RoutingMode[] = ['local', 'antigravity-first', 'antigravity-only', 'multi-engine'];
@@ -123,6 +124,68 @@ async function orchestrateDeliberation(
 ) {
   const startTime = Date.now();
   const metadata = body.metadata ?? {};
+  
+  // ECHO Layer: Check cache first (if enabled)
+  const echoLayerEnabled = process.env.ECHO_LAYER_ENABLED !== 'false';
+  let cacheHit = false;
+  let cacheResult: { answer: string; gi: number; cacheHit: 'exact' | 'semantic' | null; similarity?: number; ledgerTx: string | null } | null = null;
+
+  if (echoLayerEnabled && body.prompt) {
+    try {
+      // Check cache but don't run deliberation yet if cache misses
+      // We'll run deliberation below if needed
+      const { getExactEntry, getNearestEntry, isStale } = await import('../services/integrityCache');
+      const { canonicalizeKey } = await import('../utils/textCanonicalization');
+      const { GI_STRICT_THRESHOLD, GI_BASELINE, SIMILARITY_MIN } = await import('../config/integrityCache');
+
+      const canonicalKey = canonicalizeKey(body.prompt);
+      const domain = body.metadata?.domain as string | undefined;
+      const locale = body.metadata?.locale as string | undefined;
+
+      // Tier 0: Exact hit
+      const exact = await getExactEntry(canonicalKey);
+      if (exact && exact.gi_score >= GI_STRICT_THRESHOLD && !isStale(exact)) {
+        cacheHit = true;
+        cacheResult = {
+          answer: exact.answer_text,
+          gi: Number(exact.gi_score),
+          cacheHit: 'exact',
+          ledgerTx: exact.ledger_tx_id,
+        };
+      } else {
+        // Tier 1: Semantic hit (would need embedding - skip for now)
+        // Could implement semantic search here if embeddings are available
+      }
+    } catch (error) {
+      // If cache check fails, continue with normal deliberation
+      console.warn('[BROKER] Integrity Cache check failed, continuing with deliberation:', error);
+    }
+  }
+
+  // If cache hit, return early
+  if (cacheHit && cacheResult) {
+    return {
+      status: 'ok',
+      decision: 'ok' as const,
+      gi_score: cacheResult.gi,
+      answer: cacheResult.answer,
+      deliberation_id: deliberationId,
+      deliberationId,
+      routing_mode: routingMode,
+      routingMode,
+      engines: [],
+      flags: [],
+          consensus_source: 'echo_layer' as const,
+      consensus_meta: {
+        cacheHit: cacheResult.cacheHit,
+        similarity: cacheResult.similarity,
+      },
+      provenance: null,
+      duration_ms: Date.now() - startTime,
+      remote_consensus: false,
+    };
+  }
+
   const enginePlan = resolveEnginePlan(routingMode, requestedEngines);
 
   const engineResults =
@@ -234,6 +297,29 @@ async function orchestrateDeliberation(
     engineResults,
     provenance: integrityAssessment,
   });
+
+  // ECHO Layer: Cache the result if GI >= baseline
+  if (echoLayerEnabled && decision.giScore >= 0.95) {
+    try {
+      const { storeEntry } = await import('../services/echoLayer');
+      await storeEntry({
+        questionRaw: body.prompt,
+        answerText: decision.answer,
+        giScore: decision.giScore,
+        sources: [], // Extract from engineResults if available
+        sentinels: decision.responses || {},
+        ledgerTxId: null, // Extract from attestation if available
+        ledgerHash: null,
+        domain: body.metadata?.domain as string | undefined,
+        locale: body.metadata?.locale as string | undefined,
+        jurisdiction: body.metadata?.jurisdiction as string | undefined,
+        embedding: [], // Would need to compute embedding
+      });
+    } catch (error) {
+      console.warn('[BROKER] Failed to cache deliberation result:', error);
+      // Don't fail the request if caching fails
+    }
+  }
 
   const status = deriveStatus(decision);
 

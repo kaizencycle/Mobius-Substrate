@@ -33,7 +33,9 @@ export class WorkerAutonomyAgent {
     this.context = context;
   }
 
-  async reviewContract(contractText: string): Promise<ContractAuditResult> {
+  async reviewContract(
+    contractText: string
+  ): Promise<ContractAuditResult> {
     const input: ContractAuditInput = {
       workerId: this.context.workerId,
       contractText,

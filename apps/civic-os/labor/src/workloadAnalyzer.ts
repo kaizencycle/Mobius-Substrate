@@ -11,7 +11,7 @@ export interface WorkerLoadSample {
 export interface WorkloadAnalysisInput extends LaborAnalysisContext {
   period: {
     from: string; // ISO date
-    to: string; // ISO date
+    to: string;   // ISO date
   };
   workers: WorkerLoadSample[];
 }
@@ -38,7 +38,7 @@ export async function analyzeWorkload(
   input: WorkloadAnalysisInput
 ): Promise<WorkloadAnalysisResult> {
   const flags: WorkloadFlag[] = [];
-
+  
   for (const worker of input.workers) {
     if (worker.hours > 48) {
       flags.push({
@@ -64,7 +64,7 @@ export async function analyzeWorkload(
         : `Detected ${flags.length} potential workload issues.`,
     flags,
     notes: [
-      "This is a heuristic implementation. Replace with DVA-integrated scoring."
+      "This is a heuristic implementation. Replace with DVA-integrated scoring.",
     ]
   };
 }

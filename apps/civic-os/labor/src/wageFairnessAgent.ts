@@ -38,11 +38,12 @@ export async function analyzeWageFairness(
   input: WageFairnessInput
 ): Promise<WageFairnessResult> {
   const { worker, internalPeers, externalMarketBand } = input;
+
   let toInternalMedian: number | undefined;
   let toExternalMedian: number | undefined;
 
   if (internalPeers && internalPeers.length > 0) {
-    const sorted = [...internalPeers].map((p) => p.salary).sort((a, b) => a - b);
+    const sorted = [...internalPeers].map(p => p.salary).sort((a, b) => a - b);
     const mid = Math.floor(sorted.length / 2);
     const median =
       sorted.length % 2 === 0
@@ -59,7 +60,10 @@ export async function analyzeWageFairness(
   let recommendation = "Compensation appears broadly aligned with benchmarks.";
   let giScore = 0.96;
 
-  if (typeof toExternalMedian === "number" && toExternalMedian > 5000) {
+  if (
+    typeof toExternalMedian === "number" &&
+    toExternalMedian > 5000
+  ) {
     verdict = "BELOW_MARKET";
     recommendation = `Consider raising salary by at least $${Math.round(
       toExternalMedian

@@ -31,7 +31,8 @@
     "ws": "^8.14.0",
     "zod": "^3.22.0",
     "nanoid": "^5.0.0",
-    "dotenv": "^16.3.0"
+    "dotenv": "^16.3.0",
+    "pg": "^8.11.3"
   },
   "devDependencies": {
     "@types/better-sqlite3": "^7.6.8",
@@ -42,6 +43,7 @@
     "@types/supertest": "^2.0.16",
     "@types/uuid": "^9.0.7",
     "@types/ws": "^8.5.0",
+    "@types/pg": "^8.10.9",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",
     "eslint": "^8.0.0",
