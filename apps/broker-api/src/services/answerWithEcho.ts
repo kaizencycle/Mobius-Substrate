@@ -9,57 +9,40 @@ import {
   GI_BASELINE,
   SIMILARITY_MIN,
   DEFAULT_LOCALE,
-} from '../config/echo';
+  inferFreshnessTag,
+} from '../config/integrityCache';
 import {
-  getExactEntry,
-  getNearestEntry,
-  storeEntry,
-  isStale,
-  EchoLayerEntry,
-} from './echoLayer';
+  getExactFromEchoCache,
+  getSimilarFromEchoCache,
+  writeToEchoCache,
+} from './echo/cache';
+import { runEchoReview } from './echo/reviewEngine';
 
-// Mock embedding function - replace with actual embedding service
-async function embedText(text: string): Promise<number[]> {
-  // In production, call OpenAI/Anthropic embedding API
-  // For now, return empty array (semantic search disabled)
-  return [];
-}
+const GI_HUMAN_REVIEW = 0.85;
+const NON_CACHEABLE_DOMAINS = new Set([
+  "personal_medical",
+  "personal_legal",
+  "therapy",
+  "individual_counseling"
+]);
 
-interface AnswerWithIntegrityOptions {
+interface AnswerOptions {
   domain?: string;
   locale?: string;
   jurisdiction?: string;
-  cacheable?: boolean; // Allow opt-out for personal/sensitive flows
-  embedding?: number[]; // Optional pre-computed embedding
-}
-
-interface DeliberationResult {
-  answer: string;
-  gi: number;
-  sources?: any[];
-  sentinels?: any;
-  ledgerTxId?: string | null;
-  ledgerHash?: string | null;
+  cacheable?: boolean;
+  bypassCache?: boolean;
 }
 
 interface AnswerResult {
   answer: string;
-  gi: number;
-  cacheHit: 'exact' | 'semantic' | null;
+  giScore: number;
+  cacheHit: "exact" | "semantic" | null;
   similarity?: number;
-  ledgerTx: string | null;
-}
-
-/**
- * Run full deliberation (placeholder - integrate with actual deliberation engine)
- */
-async function runDeliberation(
-  question: string,
-  opts: { domain?: string }
-): Promise<DeliberationResult> {
-  // This should call the actual deliberation engine
-  // For now, return a placeholder
-  throw new Error('Deliberation engine integration required');
+  ledgerTxId: string | null;
+  sources: any[];
+  sentinels: any;
+  requiresReview?: boolean;
 }
 
 /**
@@ -73,106 +56,160 @@ async function runDeliberation(
  */
 export async function answerWithEcho(
   question: string,
-  opts: AnswerWithIntegrityOptions = {},
-  deliberationFn?: (q: string, o: { domain?: string }) => Promise<DeliberationResult>
+  opts: AnswerOptions = {}
 ): Promise<AnswerResult> {
-  const now = new Date();
-  const domain = opts.domain ?? 'general';
-  const locale = opts.locale ?? DEFAULT_LOCALE;
+  const startTime = Date.now();
+  const domain = opts.domain || "general";
+  const locale = opts.locale || DEFAULT_LOCALE;
 
-  // Bypass cache for non-cacheable requests (personal/therapeutic)
-  if (opts.cacheable === false) {
-    const deliberation = deliberationFn
-      ? await deliberationFn(question, { domain })
-      : await runDeliberation(question, { domain });
+  // Privacy override: never cache sensitive domains
+  const isCacheable = opts.cacheable !== false && 
+                     !NON_CACHEABLE_DOMAINS.has(domain) &&
+                     !opts.bypassCache;
 
-    return {
-      answer: deliberation.answer,
-      gi: deliberation.gi,
-      cacheHit: null,
-      ledgerTx: deliberation.ledgerTxId ?? null,
-    };
-  }
-
-  const canonicalKey = canonicalizeKey(question);
-
-  // Tier 0: Exact cache hit
-  const exact = await getExactEntry(canonicalKey);
-  if (
-    exact &&
-    exact.gi_score >= GI_STRICT_THRESHOLD &&
-    !isStale(exact)
-  ) {
-    return {
-      answer: exact.answer_text,
-      gi: Number(exact.gi_score),
-      cacheHit: 'exact',
-      ledgerTx: exact.ledger_tx_id,
-    };
-  }
-
-  // Tier 1: Semantic cache hit
-  const embedding = opts.embedding || await embedText(question);
-  if (embedding.length > 0) {
-    const nearest = await getNearestEntry({
-      question,
-      domain,
-      locale,
-      embedding,
-    });
-
-    if (
-      nearest &&
-      nearest.similarity !== undefined &&
-      nearest.similarity >= SIMILARITY_MIN &&
-      nearest.gi_score >= GI_BASELINE &&
-      !isStale(nearest)
-    ) {
+  // 1. Tier 0: Exact cache hit
+  if (isCacheable) {
+    const canonicalKey = canonicalizeKey(question);
+    const exactEntry = await getExactFromEchoCache(canonicalKey);
+    
+    if (exactEntry && 
+        exactEntry.gi_score >= GI_STRICT_THRESHOLD &&
+        isFresh(exactEntry)) {
+      
+      console.log("[ECHO] Exact hit", { 
+        canonicalKey, 
+        gi: exactEntry.gi_score,
+        domain 
+      });
+      
       return {
-        answer: nearest.answer_text,
-        gi: Number(nearest.gi_score),
-        cacheHit: 'semantic',
-        similarity: nearest.similarity,
-        ledgerTx: nearest.ledger_tx_id,
+        answer: exactEntry.answer_text,
+        giScore: exactEntry.gi_score,
+        cacheHit: "exact",
+        ledgerTxId: exactEntry.ledger_tx_id,
+        sources: Array.isArray(exactEntry.sources_json) ? exactEntry.sources_json : [],
+        sentinels: exactEntry.sentinels_json || {},
       };
     }
   }
 
-  // Tier 2: Full deliberation
-  const deliberation = deliberationFn
-    ? await deliberationFn(question, { domain })
-    : await runDeliberation(question, { domain });
+  // 2. Tier 1: Semantic cache hit
+  if (isCacheable) {
+    const semanticEntry = await getSimilarFromEchoCache(
+      question,
+      domain,
+      0.85 // Lower threshold for semantic matches
+    );
+    
+    if (semanticEntry && 
+        semanticEntry.similarity !== undefined &&
+        semanticEntry.similarity >= 0.85 &&
+        semanticEntry.gi_score >= GI_BASELINE &&
+        isFresh(semanticEntry)) {
+      
+      console.log("[ECHO] Semantic hit", {
+        similarity: semanticEntry.similarity,
+        gi: semanticEntry.gi_score,
+        domain
+      });
+      
+      return {
+        answer: semanticEntry.answer_text,
+        giScore: semanticEntry.gi_score,
+        cacheHit: "semantic",
+        similarity: semanticEntry.similarity,
+        ledgerTxId: semanticEntry.ledger_tx_id,
+        sources: Array.isArray(semanticEntry.sources_json) ? semanticEntry.sources_json : [],
+        sentinels: semanticEntry.sentinels_json || {},
+      };
+    }
+  }
 
-  // Cache if GI >= baseline
-  if (deliberation.gi >= GI_BASELINE) {
+  // 3. Tier 2: Full deliberation
+  console.log("[ECHO] Cache miss, running deliberation", { domain });
+  const canonicalKey = canonicalizeKey(question);
+  const reviewResult = await runEchoReview(question, {
+    domain,
+    locale,
+    jurisdiction: opts.jurisdiction
+  }, {
+    cacheKey: canonicalKey,
+    domain,
+    enableValidation: true
+  });
+  
+  const deliberation = {
+    answer: reviewResult.consensus.answer,
+    giScore: reviewResult.consensus.giScore,
+    sources: reviewResult.consensus.sources,
+    sentinels: reviewResult.consensus.sentinels,
+    ledgerTxId: null,
+    ledgerHash: null
+  };
+
+  const duration = Date.now() - startTime;
+  
+  // 4. Store if high GI
+  if (deliberation.giScore >= GI_BASELINE) {
     try {
-      await storeEntry({
-        questionRaw: question,
-        answerText: deliberation.answer,
-        giScore: deliberation.gi,
-        sources: deliberation.sources ?? [],
-        sentinels: deliberation.sentinels ?? {},
-        ledgerTxId: deliberation.ledgerTxId ?? null,
-        ledgerHash: deliberation.ledgerHash ?? null,
+      const cacheId = await writeToEchoCache(canonicalKey, {
+        query: question,
+        answer: deliberation.answer,
+        giScore: deliberation.giScore,
+        sources: deliberation.sources,
+        sentinels: deliberation.sentinels,
         domain,
         locale,
-        jurisdiction: opts.jurisdiction ?? null,
-        embedding,
+        freshnessTag: inferFreshnessTag(domain)
+      });
+      
+      console.log("[ECHO] Cached new entry", {
+        cacheId,
+        gi: deliberation.giScore,
+        durationMs: duration
       });
     } catch (error) {
-      console.error('[AnswerWithIntegrity] Failed to cache entry:', error);
-      // Don't fail the request if caching fails
+      console.error("[ECHO] Failed to cache entry", { error });
+      // Non-critical: don't fail the request if caching fails
     }
-  } else {
-    // Low GI - could enqueue for human review here
-    // await enqueueForHumanReview(deliberation);
+  } else if (deliberation.giScore < GI_HUMAN_REVIEW) {
+    // Route low-GI answers to human review
+    await enqueueForHumanReview({
+      question,
+      deliberation,
+      reason: `Low GI score: ${deliberation.giScore} < ${GI_HUMAN_REVIEW}`,
+    });
+    
+    return {
+      answer: deliberation.answer,
+      giScore: deliberation.giScore,
+      cacheHit: null,
+      ledgerTxId: deliberation.ledgerTxId,
+      sources: deliberation.sources,
+      sentinels: deliberation.sentinels,
+      requiresReview: true,
+    };
   }
 
   return {
     answer: deliberation.answer,
-    gi: deliberation.gi,
+    giScore: deliberation.giScore,
     cacheHit: null,
-    ledgerTx: deliberation.ledgerTxId ?? null,
+    ledgerTxId: deliberation.ledgerTxId,
+    sources: deliberation.sources,
+    sentinels: deliberation.sentinels,
   };
 }
 
+// Helpers
+function isFresh(entry: { valid_until: Date | null }): boolean {
+  if (!entry.valid_until) return true;
+  return new Date(entry.valid_until) > new Date();
+}
+
+async function enqueueForHumanReview(data: any): Promise<void> {
+  // TODO: Integrate with DVA.ONE review queue
+  console.warn("[ECHO] Human review required", { 
+    question: data.question?.substring(0, 100) 
+  });
+}

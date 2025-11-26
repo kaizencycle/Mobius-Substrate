@@ -134,17 +134,17 @@ async function orchestrateDeliberation(
     try {
       // Check cache but don't run deliberation yet if cache misses
       // We'll run deliberation below if needed
-      const { getExactEntry, getNearestEntry, isStale } = await import('../services/integrityCache');
+      const { getExactFromEchoCache, getSimilarFromEchoCache } = await import('../services/echo/cache');
       const { canonicalizeKey } = await import('../utils/textCanonicalization');
-      const { GI_STRICT_THRESHOLD, GI_BASELINE, SIMILARITY_MIN } = await import('../config/integrityCache');
+      const { GI_STRICT_THRESHOLD, GI_BASELINE } = await import('../config/integrityCache');
 
       const canonicalKey = canonicalizeKey(body.prompt);
       const domain = body.metadata?.domain as string | undefined;
       const locale = body.metadata?.locale as string | undefined;
 
       // Tier 0: Exact hit
-      const exact = await getExactEntry(canonicalKey);
-      if (exact && exact.gi_score >= GI_STRICT_THRESHOLD && !isStale(exact)) {
+      const exact = await getExactFromEchoCache(canonicalKey);
+      if (exact && exact.gi_score >= GI_STRICT_THRESHOLD && (!exact.valid_until || new Date(exact.valid_until) > new Date())) {
         cacheHit = true;
         cacheResult = {
           answer: exact.answer_text,
@@ -301,7 +301,9 @@ async function orchestrateDeliberation(
   // ECHO Layer: Cache the result if GI >= baseline
   if (echoLayerEnabled && decision.giScore >= 0.95) {
     try {
-      const { storeEntry } = await import('../services/echoLayer');
+      const { writeToEchoCache } = await import('../services/echo/cache');
+      const { canonicalizeKey: getCanonicalKey } = await import('../utils/textCanonicalization');
+      const { inferFreshnessTag } = await import('../config/integrityCache');
       await storeEntry({
         questionRaw: body.prompt,
         answerText: decision.answer,

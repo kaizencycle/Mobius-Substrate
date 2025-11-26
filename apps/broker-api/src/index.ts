@@ -35,6 +35,7 @@ import healthRouter from './routes/health';
 import metricsRouter from './routes/metrics';
 import echoStatsRouter from './routes/echoStats';
 import humanReviewRouter from './routes/humanReview';
+import echoRouter from './routes/v1/echo';
 
 const app = express();
 const PORT = process.env.PORT || 4005;
@@ -51,7 +52,8 @@ app.use(express.json());
 app.use('/v1/deliberate', authenticateAPIKey, deliberationRateLimit, deliberateRouter);
 app.use('/v1/health', healthRouter);
 app.use('/v1/metrics', metricsRouter);
-app.use('/v1/echo', echoStatsRouter);
+app.use('/v1/echo', echoRouter);
+app.use('/v1/echo/stats', echoStatsRouter);
 app.use('/v1/echo/review', humanReviewRouter);
 
 // Sentinel routes
