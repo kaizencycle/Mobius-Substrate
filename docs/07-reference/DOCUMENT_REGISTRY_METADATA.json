@@ -1,0 +1,1595 @@
+{
+  "generated_at": "2025-11-26T21:25:26.861298",
+  "total_documents": 227,
+  "documents": [
+    {
+      "path": "00-START-HERE.md",
+      "name": "00-START-HERE.md",
+      "size": 6775,
+      "modified": "2025-11-26T14:54:58.764887",
+      "category": "root"
+    },
+    {
+      "path": "01-whitepapers/Loop_Breaking_Architecture_AGI_Safety.md",
+      "name": "Loop_Breaking_Architecture_AGI_Safety.md",
+      "size": 21184,
+      "modified": "2025-11-26T14:54:58.764887",
+      "category": "."
+    },
+    {
+      "path": "01-whitepapers/MIC_Foundation_Up_Economics_Addendum.md",
+      "name": "MIC_Foundation_Up_Economics_Addendum.md",
+      "size": 42653,
+      "modified": "2025-11-26T14:54:58.764887",
+      "category": "."
+    },
+    {
+      "path": "01-whitepapers/MIC_Whitepaper_Final.md",
+      "name": "MIC_Whitepaper_Final.md",
+      "size": 15148,
+      "modified": "2025-11-26T14:54:58.764887",
+      "category": "."
+    },
+    {
+      "path": "01-whitepapers/MIC_Whitepaper_v2.0.md",
+      "name": "MIC_Whitepaper_v2.0.md",
+      "size": 14511,
+      "modified": "2025-11-26T14:54:58.764887",
+      "category": "."
+    },
+    {
+      "path": "01-whitepapers/README.md",
+      "name": "README.md",
+      "size": 2308,
+      "modified": "2025-11-26T14:54:58.764887",
+      "category": "."
+    },
+    {
+      "path": "01-whitepapers/UBI_Mechanism_v2.0.md",
+      "name": "UBI_Mechanism_v2.0.md",
+      "size": 8739,
+      "modified": "2025-11-26T14:54:58.764887",
+      "category": "."
+    },
+    {
+      "path": "02-governance/README.md",
+      "name": "README.md",
+      "size": 2029,
+      "modified": "2025-11-26T14:54:58.768887",
+      "category": "."
+    },
+    {
+      "path": "02-governance/SENTINEL_CONSTITUTION.md",
+      "name": "SENTINEL_CONSTITUTION.md",
+      "size": 10740,
+      "modified": "2025-11-26T14:54:58.768887",
+      "category": "."
+    },
+    {
+      "path": "02-governance/council.md",
+      "name": "council.md",
+      "size": 4011,
+      "modified": "2025-11-26T14:54:58.768887",
+      "category": "."
+    },
+    {
+      "path": "02-governance/elections.md",
+      "name": "elections.md",
+      "size": 6220,
+      "modified": "2025-11-26T14:54:58.768887",
+      "category": "."
+    },
+    {
+      "path": "02-governance/hr/Kaizen_OS_HR_Framework.md",
+      "name": "Kaizen_OS_HR_Framework.md",
+      "size": 3042,
+      "modified": "2025-11-26T14:54:58.768887",
+      "category": "."
+    },
+    {
+      "path": "02-governance/kintsugi_protocol.md",
+      "name": "kintsugi_protocol.md",
+      "size": 10544,
+      "modified": "2025-11-26T14:54:58.768887",
+      "category": "."
+    },
+    {
+      "path": "02-governance/overview.md",
+      "name": "overview.md",
+      "size": 3250,
+      "modified": "2025-11-26T14:54:58.768887",
+      "category": "."
+    },
+    {
+      "path": "02-governance/quorum.md",
+      "name": "quorum.md",
+      "size": 7059,
+      "modified": "2025-11-26T14:54:58.768887",
+      "category": "."
+    },
+    {
+      "path": "02-governance/rfc_index.md",
+      "name": "rfc_index.md",
+      "size": 2728,
+      "modified": "2025-11-26T14:54:58.768887",
+      "category": "."
+    },
+    {
+      "path": "02-governance/tsc.md",
+      "name": "tsc.md",
+      "size": 5027,
+      "modified": "2025-11-26T14:54:58.768887",
+      "category": "."
+    },
+    {
+      "path": "03-architecture/ARCHITECTURE.md",
+      "name": "ARCHITECTURE.md",
+      "size": 4400,
+      "modified": "2025-11-26T14:54:58.768887",
+      "category": "."
+    },
+    {
+      "path": "03-architecture/ARCHITECTURE_QUICK_REFERENCE.md",
+      "name": "ARCHITECTURE_QUICK_REFERENCE.md",
+      "size": 2381,
+      "modified": "2025-11-26T14:54:58.768887",
+      "category": "."
+    },
+    {
+      "path": "03-architecture/DVA_TIER_MAPPING.md",
+      "name": "DVA_TIER_MAPPING.md",
+      "size": 3729,
+      "modified": "2025-11-26T14:54:58.768887",
+      "category": "."
+    },
+    {
+      "path": "03-architecture/README.md",
+      "name": "README.md",
+      "size": 2202,
+      "modified": "2025-11-26T14:54:58.768887",
+      "category": "."
+    },
+    {
+      "path": "03-architecture/UNIVERSAL_EMULATOR_OS.md",
+      "name": "UNIVERSAL_EMULATOR_OS.md",
+      "size": 5056,
+      "modified": "2025-11-26T14:54:58.768887",
+      "category": "."
+    },
+    {
+      "path": "03-architecture/adr/0001-kernel-v0_1.md",
+      "name": "0001-kernel-v0_1.md",
+      "size": 1511,
+      "modified": "2025-11-26T14:54:58.768887",
+      "category": "."
+    },
+    {
+      "path": "03-architecture/adr/0002-integrity-gates.md",
+      "name": "0002-integrity-gates.md",
+      "size": 1084,
+      "modified": "2025-11-26T14:54:58.768887",
+      "category": "."
+    },
+    {
+      "path": "03-architecture/adr/0003-model-agnostic-adapter.md",
+      "name": "0003-model-agnostic-adapter.md",
+      "size": 1264,
+      "modified": "2025-11-26T14:54:58.768887",
+      "category": "."
+    },
+    {
+      "path": "03-architecture/adr/001-atlas-integration.md",
+      "name": "001-atlas-integration.md",
+      "size": 9576,
+      "modified": "2025-11-26T14:54:58.768887",
+      "category": "."
+    },
+    {
+      "path": "03-architecture/adr/001-integrity-first-architecture.md",
+      "name": "001-integrity-first-architecture.md",
+      "size": 2430,
+      "modified": "2025-11-26T14:54:58.768887",
+      "category": "."
+    },
+    {
+      "path": "03-architecture/adr/002-uriel-sentinel-boarding.md",
+      "name": "002-uriel-sentinel-boarding.md",
+      "size": 11815,
+      "modified": "2025-11-26T14:54:58.768887",
+      "category": "."
+    },
+    {
+      "path": "03-architecture/adr/README.md",
+      "name": "README.md",
+      "size": 1799,
+      "modified": "2025-11-26T14:54:58.768887",
+      "category": "."
+    },
+    {
+      "path": "03-architecture/diagrams/README.md",
+      "name": "README.md",
+      "size": 7050,
+      "modified": "2025-11-26T14:54:58.768887",
+      "category": "."
+    },
+    {
+      "path": "03-architecture/technical/FOUNDING_AGENTS_SOVEREIGN_STACK.md",
+      "name": "FOUNDING_AGENTS_SOVEREIGN_STACK.md",
+      "size": 22021,
+      "modified": "2025-11-26T14:54:58.768887",
+      "category": "."
+    },
+    {
+      "path": "03-architecture/technical/GIC_Architecture_Spec_v1.md",
+      "name": "GIC_Architecture_Spec_v1.md",
+      "size": 14131,
+      "modified": "2025-11-26T14:54:58.768887",
+      "category": "."
+    },
+    {
+      "path": "03-architecture/technical/Kaizen_OS_Complete_Lab_Architecture.md",
+      "name": "Kaizen_OS_Complete_Lab_Architecture.md",
+      "size": 28222,
+      "modified": "2025-11-26T14:54:58.768887",
+      "category": "."
+    },
+    {
+      "path": "03-architecture/technical/LABS_MASTER_ARCHITECTURE.md",
+      "name": "LABS_MASTER_ARCHITECTURE.md",
+      "size": 16224,
+      "modified": "2025-11-26T14:54:58.768887",
+      "category": "."
+    },
+    {
+      "path": "03-architecture/technical/Lab5_Humanities_Healthcare_Specification.md",
+      "name": "Lab5_Humanities_Healthcare_Specification.md",
+      "size": 57007,
+      "modified": "2025-11-26T14:54:58.768887",
+      "category": "."
+    },
+    {
+      "path": "03-architecture/technical/beyond_context_window.md",
+      "name": "beyond_context_window.md",
+      "size": 4318,
+      "modified": "2025-11-26T14:54:58.768887",
+      "category": "."
+    },
+    {
+      "path": "03-architecture/technical/kaizen_bridge_arch.md",
+      "name": "kaizen_bridge_arch.md",
+      "size": 2824,
+      "modified": "2025-11-26T14:54:58.768887",
+      "category": "."
+    },
+    {
+      "path": "03-architecture/technical/living_interface_layer.md",
+      "name": "living_interface_layer.md",
+      "size": 15179,
+      "modified": "2025-11-26T14:54:58.768887",
+      "category": "."
+    },
+    {
+      "path": "03-architecture/technical/overview.md",
+      "name": "overview.md",
+      "size": 2250,
+      "modified": "2025-11-26T14:54:58.768887",
+      "category": "."
+    },
+    {
+      "path": "04-guides/README.md",
+      "name": "README.md",
+      "size": 2706,
+      "modified": "2025-11-26T14:54:58.768887",
+      "category": "."
+    },
+    {
+      "path": "04-guides/deployment/CIVIC_MOUNT_INTEGRATION.md",
+      "name": "CIVIC_MOUNT_INTEGRATION.md",
+      "size": 9278,
+      "modified": "2025-11-26T14:54:58.768887",
+      "category": "."
+    },
+    {
+      "path": "04-guides/deployment/DEPLOYMENT_GUIDE.md",
+      "name": "DEPLOYMENT_GUIDE.md",
+      "size": 4086,
+      "modified": "2025-11-26T14:54:58.768887",
+      "category": "."
+    },
+    {
+      "path": "04-guides/deployment/VERCEL_DEPLOYMENT_GUIDE.md",
+      "name": "VERCEL_DEPLOYMENT_GUIDE.md",
+      "size": 10628,
+      "modified": "2025-11-26T14:54:58.768887",
+      "category": "."
+    },
+    {
+      "path": "04-guides/development/API_INTEGRATION.md",
+      "name": "API_INTEGRATION.md",
+      "size": 13933,
+      "modified": "2025-11-26T14:54:58.768887",
+      "category": "."
+    },
+    {
+      "path": "04-guides/development/FRONTEND_DEVELOPMENT.md",
+      "name": "FRONTEND_DEVELOPMENT.md",
+      "size": 5223,
+      "modified": "2025-11-26T14:54:58.768887",
+      "category": "."
+    },
+    {
+      "path": "04-guides/development/MKDOCS_GUIDE.md",
+      "name": "MKDOCS_GUIDE.md",
+      "size": 3219,
+      "modified": "2025-11-26T14:54:58.768887",
+      "category": "."
+    },
+    {
+      "path": "04-guides/development/MKDOCS_IMPLEMENTATION.md",
+      "name": "MKDOCS_IMPLEMENTATION.md",
+      "size": 4194,
+      "modified": "2025-11-26T14:54:58.768887",
+      "category": "."
+    },
+    {
+      "path": "04-guides/development/cursor-integration.md",
+      "name": "cursor-integration.md",
+      "size": 7034,
+      "modified": "2025-11-26T14:54:58.768887",
+      "category": "."
+    },
+    {
+      "path": "04-guides/operations/CUSTODIAN_GUIDE.md",
+      "name": "CUSTODIAN_GUIDE.md",
+      "size": 6501,
+      "modified": "2025-11-26T14:54:58.768887",
+      "category": "."
+    },
+    {
+      "path": "04-guides/operations/FORKING_GUIDE.md",
+      "name": "FORKING_GUIDE.md",
+      "size": 21976,
+      "modified": "2025-11-26T14:54:58.768887",
+      "category": "."
+    },
+    {
+      "path": "04-guides/operations/RECOVERY_PLAYBOOK.md",
+      "name": "RECOVERY_PLAYBOOK.md",
+      "size": 4014,
+      "modified": "2025-11-26T14:54:58.768887",
+      "category": "."
+    },
+    {
+      "path": "04-guides/quickstart/HELLO_WORLD.md",
+      "name": "HELLO_WORLD.md",
+      "size": 10584,
+      "modified": "2025-11-26T14:54:58.768887",
+      "category": "."
+    },
+    {
+      "path": "04-guides/quickstart/START_HERE.md",
+      "name": "START_HERE.md",
+      "size": 8327,
+      "modified": "2025-11-26T14:54:58.768887",
+      "category": "."
+    },
+    {
+      "path": "05-research/README.md",
+      "name": "README.md",
+      "size": 3788,
+      "modified": "2025-11-26T14:54:58.768887",
+      "category": "."
+    },
+    {
+      "path": "05-research/constitution/AI_INTEGRITY_CONSTITUTION.md",
+      "name": "AI_INTEGRITY_CONSTITUTION.md",
+      "size": 8337,
+      "modified": "2025-11-26T14:54:58.768887",
+      "category": "."
+    },
+    {
+      "path": "05-research/constitution/INDEPENDENCE_MANIFEST.md",
+      "name": "INDEPENDENCE_MANIFEST.md",
+      "size": 3461,
+      "modified": "2025-11-26T14:54:58.772887",
+      "category": "."
+    },
+    {
+      "path": "05-research/foundations/civic_transition_cycle.md",
+      "name": "civic_transition_cycle.md",
+      "size": 870,
+      "modified": "2025-11-26T14:54:58.772887",
+      "category": "."
+    },
+    {
+      "path": "05-research/foundations/foundational_blueprint_integrity_economy_v2.md",
+      "name": "foundational_blueprint_integrity_economy_v2.md",
+      "size": 4326,
+      "modified": "2025-11-26T14:54:58.772887",
+      "category": "."
+    },
+    {
+      "path": "05-research/foundations/kaizen_theorems.md",
+      "name": "kaizen_theorems.md",
+      "size": 5178,
+      "modified": "2025-11-26T14:54:58.772887",
+      "category": "."
+    },
+    {
+      "path": "05-research/ktt/00_primer.md",
+      "name": "00_primer.md",
+      "size": 7148,
+      "modified": "2025-11-26T14:54:58.772887",
+      "category": "."
+    },
+    {
+      "path": "05-research/ktt/02_methods.md",
+      "name": "02_methods.md",
+      "size": 14056,
+      "modified": "2025-11-26T14:54:58.772887",
+      "category": "."
+    },
+    {
+      "path": "05-research/ktt/03_governance_of_governors.md",
+      "name": "03_governance_of_governors.md",
+      "size": 17435,
+      "modified": "2025-11-26T14:54:58.772887",
+      "category": "."
+    },
+    {
+      "path": "05-research/ktt/05_related_work.md",
+      "name": "05_related_work.md",
+      "size": 20141,
+      "modified": "2025-11-26T14:54:58.772887",
+      "category": "."
+    },
+    {
+      "path": "05-research/ktt/INTEGRATION_SUMMARY.md",
+      "name": "INTEGRATION_SUMMARY.md",
+      "size": 3445,
+      "modified": "2025-11-26T14:54:58.772887",
+      "category": "."
+    },
+    {
+      "path": "05-research/ktt/README.md",
+      "name": "README.md",
+      "size": 5088,
+      "modified": "2025-11-26T14:54:58.772887",
+      "category": "."
+    },
+    {
+      "path": "05-research/ktt/executive_summary_integrity_gated_optimization.md",
+      "name": "executive_summary_integrity_gated_optimization.md",
+      "size": 3644,
+      "modified": "2025-11-26T14:54:58.772887",
+      "category": "."
+    },
+    {
+      "path": "05-research/ktt/section_4_2_integrity_gated_optimization.md",
+      "name": "section_4_2_integrity_gated_optimization.md",
+      "size": 9135,
+      "modified": "2025-11-26T14:54:58.772887",
+      "category": "."
+    },
+    {
+      "path": "06-specifications/README.md",
+      "name": "README.md",
+      "size": 2493,
+      "modified": "2025-11-26T14:54:58.772887",
+      "category": "."
+    },
+    {
+      "path": "06-specifications/manifests/manifest_oaa.md",
+      "name": "manifest_oaa.md",
+      "size": 731,
+      "modified": "2025-11-26T14:54:58.772887",
+      "category": "."
+    },
+    {
+      "path": "06-specifications/specs/consensus.md",
+      "name": "consensus.md",
+      "size": 686,
+      "modified": "2025-11-26T14:54:58.772887",
+      "category": "."
+    },
+    {
+      "path": "06-specifications/specs/consensus/thought-broker-consensus.md",
+      "name": "thought-broker-consensus.md",
+      "size": 8548,
+      "modified": "2025-11-26T14:54:58.772887",
+      "category": "."
+    },
+    {
+      "path": "06-specifications/specs/cryptography/mii-signature-spec.md",
+      "name": "mii-signature-spec.md",
+      "size": 8389,
+      "modified": "2025-11-26T14:54:58.772887",
+      "category": "."
+    },
+    {
+      "path": "06-specifications/specs/mii-crypto-spec.md",
+      "name": "mii-crypto-spec.md",
+      "size": 1657,
+      "modified": "2025-11-26T14:54:58.772887",
+      "category": "."
+    },
+    {
+      "path": "06-specifications/specs/mii.md",
+      "name": "mii.md",
+      "size": 518,
+      "modified": "2025-11-26T14:54:58.772887",
+      "category": "."
+    },
+    {
+      "path": "06-specifications/specs/mii_spec_v0.1.md",
+      "name": "mii_spec_v0.1.md",
+      "size": 6287,
+      "modified": "2025-11-26T14:54:58.772887",
+      "category": "."
+    },
+    {
+      "path": "07-reference/ACADEMIC_INDEX.md",
+      "name": "ACADEMIC_INDEX.md",
+      "size": 27518,
+      "modified": "2025-11-26T21:24:55.488516",
+      "category": "."
+    },
+    {
+      "path": "07-reference/DOCUMENT_REGISTRY.md",
+      "name": "DOCUMENT_REGISTRY.md",
+      "size": 43520,
+      "modified": "2025-11-26T14:54:58.772887",
+      "category": "."
+    },
+    {
+      "path": "07-reference/INDEX.md",
+      "name": "INDEX.md",
+      "size": 4032,
+      "modified": "2025-11-26T14:54:58.772887",
+      "category": "."
+    },
+    {
+      "path": "07-reference/MASTER_README.md",
+      "name": "MASTER_README.md",
+      "size": 33860,
+      "modified": "2025-11-26T14:54:58.772887",
+      "category": "."
+    },
+    {
+      "path": "07-reference/README.md",
+      "name": "README.md",
+      "size": 3551,
+      "modified": "2025-11-26T14:54:58.772887",
+      "category": "."
+    },
+    {
+      "path": "07-reference/REORGANIZATION_PLAN.md",
+      "name": "REORGANIZATION_PLAN.md",
+      "size": 6120,
+      "modified": "2025-11-26T21:25:23.229141",
+      "category": "."
+    },
+    {
+      "path": "07-reference/REPOSITORY_STRUCTURE.md",
+      "name": "REPOSITORY_STRUCTURE.md",
+      "size": 23493,
+      "modified": "2025-11-26T14:54:58.772887",
+      "category": "."
+    },
+    {
+      "path": "08-processes/README.md",
+      "name": "README.md",
+      "size": 2811,
+      "modified": "2025-11-26T14:54:58.772887",
+      "category": "."
+    },
+    {
+      "path": "08-processes/operations/DEPLOYMENT_CHECKLIST.md",
+      "name": "DEPLOYMENT_CHECKLIST.md",
+      "size": 9177,
+      "modified": "2025-11-26T14:54:58.772887",
+      "category": "."
+    },
+    {
+      "path": "08-processes/operations/failure-modes.md",
+      "name": "failure-modes.md",
+      "size": 3598,
+      "modified": "2025-11-26T14:54:58.772887",
+      "category": "."
+    },
+    {
+      "path": "08-processes/operations/rollout-phases.md",
+      "name": "rollout-phases.md",
+      "size": 2424,
+      "modified": "2025-11-26T14:54:58.772887",
+      "category": "."
+    },
+    {
+      "path": "08-processes/operations/sla-degradation-policy.md",
+      "name": "sla-degradation-policy.md",
+      "size": 525,
+      "modified": "2025-11-26T14:54:58.772887",
+      "category": "."
+    },
+    {
+      "path": "08-processes/rituals/opening_invocation.md",
+      "name": "opening_invocation.md",
+      "size": 4316,
+      "modified": "2025-11-26T14:54:58.772887",
+      "category": "."
+    },
+    {
+      "path": "08-processes/runbooks/MOBIUS_OPERATOR_RUNBOOK.md",
+      "name": "MOBIUS_OPERATOR_RUNBOOK.md",
+      "size": 4820,
+      "modified": "2025-11-26T14:54:58.772887",
+      "category": "."
+    },
+    {
+      "path": "08-processes/runbooks/VERCEL_DEPLOYMENT_RUNBOOK.md",
+      "name": "VERCEL_DEPLOYMENT_RUNBOOK.md",
+      "size": 11280,
+      "modified": "2025-11-26T14:54:58.772887",
+      "category": "."
+    },
+    {
+      "path": "08-processes/runbooks/incident_response_citizen_shield.md",
+      "name": "incident_response_citizen_shield.md",
+      "size": 12513,
+      "modified": "2025-11-26T14:54:58.772887",
+      "category": "."
+    },
+    {
+      "path": "09-reports/EXECUTIVE_PRESENTATION.md",
+      "name": "EXECUTIVE_PRESENTATION.md",
+      "size": 20285,
+      "modified": "2025-11-26T14:54:58.772887",
+      "category": "."
+    },
+    {
+      "path": "09-reports/MSCI_C129.md",
+      "name": "MSCI_C129.md",
+      "size": 3566,
+      "modified": "2025-11-26T14:54:58.772887",
+      "category": "."
+    },
+    {
+      "path": "09-reports/README.md",
+      "name": "README.md",
+      "size": 2999,
+      "modified": "2025-11-26T14:54:58.772887",
+      "category": "."
+    },
+    {
+      "path": "09-reports/communications/press/press_release_c119_return.md",
+      "name": "press_release_c119_return.md",
+      "size": 6799,
+      "modified": "2025-11-26T14:54:58.772887",
+      "category": "."
+    },
+    {
+      "path": "09-reports/cycles/BETTAFISH_INTEGRATION_SUMMARY.md",
+      "name": "BETTAFISH_INTEGRATION_SUMMARY.md",
+      "size": 6330,
+      "modified": "2025-11-26T14:54:58.772887",
+      "category": "."
+    },
+    {
+      "path": "09-reports/cycles/C121_IMPLEMENTATION_SUMMARY.md",
+      "name": "C121_IMPLEMENTATION_SUMMARY.md",
+      "size": 6190,
+      "modified": "2025-11-26T14:54:58.772887",
+      "category": "."
+    },
+    {
+      "path": "09-reports/cycles/C126_CHANGELOG_UPDATE_SUMMARY.md",
+      "name": "C126_CHANGELOG_UPDATE_SUMMARY.md",
+      "size": 10129,
+      "modified": "2025-11-26T14:54:58.772887",
+      "category": "."
+    },
+    {
+      "path": "09-reports/cycles/C126_DRIFT_INTEGRATION_SUMMARY.md",
+      "name": "C126_DRIFT_INTEGRATION_SUMMARY.md",
+      "size": 11528,
+      "modified": "2025-11-26T14:54:58.772887",
+      "category": "."
+    },
+    {
+      "path": "09-reports/cycles/C126_PULSE_UI_INTEGRATION_SUMMARY.md",
+      "name": "C126_PULSE_UI_INTEGRATION_SUMMARY.md",
+      "size": 8501,
+      "modified": "2025-11-26T14:54:58.772887",
+      "category": "."
+    },
+    {
+      "path": "09-reports/cycles/URIEL_BOARDING_SUMMARY.md",
+      "name": "URIEL_BOARDING_SUMMARY.md",
+      "size": 11863,
+      "modified": "2025-11-26T14:54:58.772887",
+      "category": "."
+    },
+    {
+      "path": "09-reports/cycles/founders-epoch-cycle-report-2025-08-14_to_2025-11-01.md",
+      "name": "founders-epoch-cycle-report-2025-08-14_to_2025-11-01.md",
+      "size": 1441,
+      "modified": "2025-11-26T14:54:58.772887",
+      "category": "."
+    },
+    {
+      "path": "09-reports/implementation/AI_INTEGRITY_IMPLEMENTATION_SUMMARY.md",
+      "name": "AI_INTEGRITY_IMPLEMENTATION_SUMMARY.md",
+      "size": 6647,
+      "modified": "2025-11-26T14:54:58.772887",
+      "category": "."
+    },
+    {
+      "path": "09-reports/implementation/DEPLOYMENT_EXECUTION_REPORT.md",
+      "name": "DEPLOYMENT_EXECUTION_REPORT.md",
+      "size": 8645,
+      "modified": "2025-11-26T14:54:58.772887",
+      "category": "."
+    },
+    {
+      "path": "09-reports/implementation/IMPLEMENTATION_SUMMARY.md",
+      "name": "IMPLEMENTATION_SUMMARY.md",
+      "size": 12379,
+      "modified": "2025-11-26T14:54:58.772887",
+      "category": "."
+    },
+    {
+      "path": "09-reports/implementation/multi-service-deployment-status.md",
+      "name": "multi-service-deployment-status.md",
+      "size": 7303,
+      "modified": "2025-11-26T14:54:58.776887",
+      "category": "."
+    },
+    {
+      "path": "09-reports/prs/feat-echo-sentinel-anchor.md",
+      "name": "feat-echo-sentinel-anchor.md",
+      "size": 6538,
+      "modified": "2025-11-26T14:54:58.776887",
+      "category": "."
+    },
+    {
+      "path": "README.md",
+      "name": "README.md",
+      "size": 15223,
+      "modified": "2025-11-26T14:54:58.776887",
+      "category": "root"
+    },
+    {
+      "path": "README_KTT_OUTREACH.md",
+      "name": "README_KTT_OUTREACH.md",
+      "size": 7195,
+      "modified": "2025-11-26T14:54:58.776887",
+      "category": "root"
+    },
+    {
+      "path": "THE_INTERNET_BREATHES_AGAIN.md",
+      "name": "THE_INTERNET_BREATHES_AGAIN.md",
+      "size": 7074,
+      "modified": "2025-11-26T14:54:58.776887",
+      "category": "root"
+    },
+    {
+      "path": "about/README_RENDER.md",
+      "name": "README_RENDER.md",
+      "size": 2332,
+      "modified": "2025-11-26T14:54:58.776887",
+      "category": "."
+    },
+    {
+      "path": "about/REPOSITORY_STRUCTURE.md",
+      "name": "REPOSITORY_STRUCTURE.md",
+      "size": 30375,
+      "modified": "2025-11-26T14:54:58.776887",
+      "category": "."
+    },
+    {
+      "path": "about/codexrule.md",
+      "name": "codexrule.md",
+      "size": 4053,
+      "modified": "2025-11-26T14:54:58.776887",
+      "category": "."
+    },
+    {
+      "path": "agents/AGENT_CI.md",
+      "name": "AGENT_CI.md",
+      "size": 631,
+      "modified": "2025-11-26T14:54:58.776887",
+      "category": "."
+    },
+    {
+      "path": "agents/FOUNDING_AGENTS.md",
+      "name": "FOUNDING_AGENTS.md",
+      "size": 7173,
+      "modified": "2025-11-26T14:54:58.776887",
+      "category": "."
+    },
+    {
+      "path": "agents/LLM_Docking_Spec_v1.md",
+      "name": "LLM_Docking_Spec_v1.md",
+      "size": 1706,
+      "modified": "2025-11-26T14:54:58.776887",
+      "category": "."
+    },
+    {
+      "path": "api/ECHO_CLIENT_SDK.md",
+      "name": "ECHO_CLIENT_SDK.md",
+      "size": 2918,
+      "modified": "2025-11-26T14:54:58.776887",
+      "category": "."
+    },
+    {
+      "path": "architecture/DVA_FLOWS_OVERVIEW.md",
+      "name": "DVA_FLOWS_OVERVIEW.md",
+      "size": 2561,
+      "modified": "2025-11-26T14:54:58.776887",
+      "category": "."
+    },
+    {
+      "path": "architecture/DVA_LITE_OVERVIEW.md",
+      "name": "DVA_LITE_OVERVIEW.md",
+      "size": 1498,
+      "modified": "2025-11-26T14:54:58.776887",
+      "category": "."
+    },
+    {
+      "path": "architecture/ECHO_LAYER_CANON.md",
+      "name": "ECHO_LAYER_CANON.md",
+      "size": 3737,
+      "modified": "2025-11-26T14:54:58.776887",
+      "category": "."
+    },
+    {
+      "path": "architecture/INTEGRITY_TIER_AND_CIVIC_PROVENANCE.md",
+      "name": "INTEGRITY_TIER_AND_CIVIC_PROVENANCE.md",
+      "size": 1718,
+      "modified": "2025-11-26T14:54:58.776887",
+      "category": "."
+    },
+    {
+      "path": "architecture/INTEGRITY_TIER_OVERVIEW.md",
+      "name": "INTEGRITY_TIER_OVERVIEW.md",
+      "size": 2739,
+      "modified": "2025-11-26T14:54:58.776887",
+      "category": "."
+    },
+    {
+      "path": "architecture/MEMT/MEMT_OVERVIEW.md",
+      "name": "MEMT_OVERVIEW.md",
+      "size": 2023,
+      "modified": "2025-11-26T21:22:17.348563",
+      "category": "."
+    },
+    {
+      "path": "architecture/MEMT/MEMT_WHITEPAPER.md",
+      "name": "MEMT_WHITEPAPER.md",
+      "size": 24446,
+      "modified": "2025-11-26T21:22:17.348563",
+      "category": "."
+    },
+    {
+      "path": "architecture/MOBIUS_UNIVERSAL_FLOW.md",
+      "name": "MOBIUS_UNIVERSAL_FLOW.md",
+      "size": 7842,
+      "modified": "2025-11-26T14:54:58.776887",
+      "category": "."
+    },
+    {
+      "path": "architecture/MULTI_ENGINE_BROKER.md",
+      "name": "MULTI_ENGINE_BROKER.md",
+      "size": 4723,
+      "modified": "2025-11-26T21:22:17.348563",
+      "category": "."
+    },
+    {
+      "path": "architecture/N8N_UNIVERSAL_FLOW.md",
+      "name": "N8N_UNIVERSAL_FLOW.md",
+      "size": 2633,
+      "modified": "2025-11-26T14:54:58.776887",
+      "category": "."
+    },
+    {
+      "path": "assets/README.md",
+      "name": "README.md",
+      "size": 3009,
+      "modified": "2025-11-26T14:54:58.780887",
+      "category": "."
+    },
+    {
+      "path": "assets/badges/README.md",
+      "name": "README.md",
+      "size": 2178,
+      "modified": "2025-11-26T14:54:58.780887",
+      "category": "."
+    },
+    {
+      "path": "assets/diagrams/README.md",
+      "name": "README.md",
+      "size": 1330,
+      "modified": "2025-11-26T14:54:58.780887",
+      "category": "."
+    },
+    {
+      "path": "audits/AUDIT_IMPLEMENTATION_SUMMARY.md",
+      "name": "AUDIT_IMPLEMENTATION_SUMMARY.md",
+      "size": 14090,
+      "modified": "2025-11-26T14:54:58.780887",
+      "category": "."
+    },
+    {
+      "path": "audits/AUDIT_RESOLUTION_SUMMARY.md",
+      "name": "AUDIT_RESOLUTION_SUMMARY.md",
+      "size": 8570,
+      "modified": "2025-11-26T14:54:58.780887",
+      "category": "."
+    },
+    {
+      "path": "audits/FRONTEND_AUDIT_REPORT.md",
+      "name": "FRONTEND_AUDIT_REPORT.md",
+      "size": 8675,
+      "modified": "2025-11-26T14:54:58.780887",
+      "category": "."
+    },
+    {
+      "path": "blueprints/BEFORE_AFTER_COMPARISON.md",
+      "name": "BEFORE_AFTER_COMPARISON.md",
+      "size": 10733,
+      "modified": "2025-11-26T14:54:58.780887",
+      "category": "."
+    },
+    {
+      "path": "blueprints/CIVILIZATION_BLUEPRINT.md",
+      "name": "CIVILIZATION_BLUEPRINT.md",
+      "size": 36236,
+      "modified": "2025-11-26T14:54:58.780887",
+      "category": "."
+    },
+    {
+      "path": "blueprints/COMPLETE_INDEX_ALL_SCALES.md",
+      "name": "COMPLETE_INDEX_ALL_SCALES.md",
+      "size": 469,
+      "modified": "2025-11-26T14:54:58.780887",
+      "category": "."
+    },
+    {
+      "path": "blueprints/NYC_USE_CASES.md",
+      "name": "NYC_USE_CASES.md",
+      "size": 383,
+      "modified": "2025-11-26T14:54:58.780887",
+      "category": "."
+    },
+    {
+      "path": "blueprints/REAL_WORLD_USE_CASE.md",
+      "name": "REAL_WORLD_USE_CASE.md",
+      "size": 13059,
+      "modified": "2025-11-26T14:54:58.780887",
+      "category": "."
+    },
+    {
+      "path": "blueprints/SUBSTRATE_UNIFICATION.md",
+      "name": "SUBSTRATE_UNIFICATION.md",
+      "size": 23785,
+      "modified": "2025-11-26T14:54:58.780887",
+      "category": "."
+    },
+    {
+      "path": "blueprints/USA_NATIONAL_GRID.md",
+      "name": "USA_NATIONAL_GRID.md",
+      "size": 53498,
+      "modified": "2025-11-26T14:54:58.784887",
+      "category": "."
+    },
+    {
+      "path": "blueprints/temp_index_recovery.md",
+      "name": "temp_index_recovery.md",
+      "size": 35550,
+      "modified": "2025-11-26T14:54:58.784887",
+      "category": "."
+    },
+    {
+      "path": "blueprints/temp_nyc_recovery.md",
+      "name": "temp_nyc_recovery.md",
+      "size": 76062,
+      "modified": "2025-11-26T14:54:58.784887",
+      "category": "."
+    },
+    {
+      "path": "c115-zenith-integration/CONSENSUS_DECISION.md",
+      "name": "CONSENSUS_DECISION.md",
+      "size": 9369,
+      "modified": "2025-11-26T14:54:58.784887",
+      "category": "."
+    },
+    {
+      "path": "codex/jade/_index.md",
+      "name": "_index.md",
+      "size": 4246,
+      "modified": "2025-11-26T14:54:58.784887",
+      "category": "."
+    },
+    {
+      "path": "companions/README.md",
+      "name": "README.md",
+      "size": 3953,
+      "modified": "2025-11-26T14:54:58.784887",
+      "category": "."
+    },
+    {
+      "path": "companions/atlas.md",
+      "name": "atlas.md",
+      "size": 1808,
+      "modified": "2025-11-26T14:54:58.784887",
+      "category": "."
+    },
+    {
+      "path": "companions/solara.md",
+      "name": "solara.md",
+      "size": 2438,
+      "modified": "2025-11-26T14:54:58.784887",
+      "category": "."
+    },
+    {
+      "path": "companions/uriel.md",
+      "name": "uriel.md",
+      "size": 8823,
+      "modified": "2025-11-26T14:54:58.784887",
+      "category": "."
+    },
+    {
+      "path": "companions/zenith.md",
+      "name": "zenith.md",
+      "size": 2412,
+      "modified": "2025-11-26T14:54:58.784887",
+      "category": "."
+    },
+    {
+      "path": "consensus-chamber/Consensus_Chamber_Implementation_Guide.md",
+      "name": "Consensus_Chamber_Implementation_Guide.md",
+      "size": 9240,
+      "modified": "2025-11-26T14:54:58.784887",
+      "category": "."
+    },
+    {
+      "path": "consensus-chamber/Consensus_Chamber_Live_Session.md",
+      "name": "Consensus_Chamber_Live_Session.md",
+      "size": 5968,
+      "modified": "2025-11-26T14:54:58.784887",
+      "category": "."
+    },
+    {
+      "path": "consensus-chamber/Consensus_Chamber_Template.md",
+      "name": "Consensus_Chamber_Template.md",
+      "size": 5007,
+      "modified": "2025-11-26T14:54:58.784887",
+      "category": "."
+    },
+    {
+      "path": "consensus-chamber/README.md",
+      "name": "README.md",
+      "size": 12657,
+      "modified": "2025-11-26T14:54:58.784887",
+      "category": "."
+    },
+    {
+      "path": "constitution/ORCHESTRATOR_GUARDRAILS.md",
+      "name": "ORCHESTRATOR_GUARDRAILS.md",
+      "size": 1995,
+      "modified": "2025-11-26T14:54:58.784887",
+      "category": "."
+    },
+    {
+      "path": "constitution/custos-charter.md",
+      "name": "custos-charter.md",
+      "size": 5232,
+      "modified": "2025-11-26T14:54:58.784887",
+      "category": "."
+    },
+    {
+      "path": "design/figma_prompts/01_integrity_pulse_dashboard.md",
+      "name": "01_integrity_pulse_dashboard.md",
+      "size": 619,
+      "modified": "2025-11-26T14:54:58.784887",
+      "category": "."
+    },
+    {
+      "path": "design/figma_prompts/02_lab4_reflections.md",
+      "name": "02_lab4_reflections.md",
+      "size": 283,
+      "modified": "2025-11-26T14:54:58.784887",
+      "category": "."
+    },
+    {
+      "path": "design/figma_prompts/03_lab6_citizen_shield.md",
+      "name": "03_lab6_citizen_shield.md",
+      "size": 181,
+      "modified": "2025-11-26T14:54:58.784887",
+      "category": "."
+    },
+    {
+      "path": "design/figma_prompts/04_lab7_oaa.md",
+      "name": "04_lab7_oaa.md",
+      "size": 159,
+      "modified": "2025-11-26T14:54:58.784887",
+      "category": "."
+    },
+    {
+      "path": "design/figma_prompts/05_hive_ui.md",
+      "name": "05_hive_ui.md",
+      "size": 151,
+      "modified": "2025-11-26T14:54:58.784887",
+      "category": "."
+    },
+    {
+      "path": "diagrams/README.md",
+      "name": "README.md",
+      "size": 7050,
+      "modified": "2025-11-26T14:54:58.788887",
+      "category": "."
+    },
+    {
+      "path": "diagrams/loop-breaking-architecture.md",
+      "name": "loop-breaking-architecture.md",
+      "size": 16960,
+      "modified": "2025-11-26T14:54:58.788887",
+      "category": "."
+    },
+    {
+      "path": "drift/DRIFT_CONTROL_CHARTER.md",
+      "name": "DRIFT_CONTROL_CHARTER.md",
+      "size": 2404,
+      "modified": "2025-11-26T14:54:58.788887",
+      "category": "."
+    },
+    {
+      "path": "drift/INTEGRATION_TREE.md",
+      "name": "INTEGRATION_TREE.md",
+      "size": 5358,
+      "modified": "2025-11-26T14:54:58.788887",
+      "category": "."
+    },
+    {
+      "path": "drift/README.md",
+      "name": "README.md",
+      "size": 1135,
+      "modified": "2025-11-26T14:54:58.788887",
+      "category": "."
+    },
+    {
+      "path": "drift/RED_TEAM_SCOREBOARD.md",
+      "name": "RED_TEAM_SCOREBOARD.md",
+      "size": 694,
+      "modified": "2025-11-26T14:54:58.788887",
+      "category": "."
+    },
+    {
+      "path": "drift/SIGSTORE_README.md",
+      "name": "SIGSTORE_README.md",
+      "size": 632,
+      "modified": "2025-11-26T14:54:58.788887",
+      "category": "."
+    },
+    {
+      "path": "dva/DVA_MEMT_INTEGRATION.md",
+      "name": "DVA_MEMT_INTEGRATION.md",
+      "size": 12520,
+      "modified": "2025-11-26T21:22:17.348563",
+      "category": "."
+    },
+    {
+      "path": "dva/INTEGRITY_CACHE.md",
+      "name": "INTEGRITY_CACHE.md",
+      "size": 12782,
+      "modified": "2025-11-26T14:54:58.792887",
+      "category": "."
+    },
+    {
+      "path": "encyclopedia/AI_ENCYCLOPEDIA_FLOW.md",
+      "name": "AI_ENCYCLOPEDIA_FLOW.md",
+      "size": 3141,
+      "modified": "2025-11-26T21:22:17.348563",
+      "category": "."
+    },
+    {
+      "path": "encyclopedia/API_SPEC.md",
+      "name": "API_SPEC.md",
+      "size": 4436,
+      "modified": "2025-11-26T21:22:17.348563",
+      "category": "."
+    },
+    {
+      "path": "encyclopedia/CHARTER.md",
+      "name": "CHARTER.md",
+      "size": 6866,
+      "modified": "2025-11-26T21:22:17.348563",
+      "category": "."
+    },
+    {
+      "path": "encyclopedia/ENCYCLOPEDIA_OVERVIEW.md",
+      "name": "ENCYCLOPEDIA_OVERVIEW.md",
+      "size": 6822,
+      "modified": "2025-11-26T21:22:17.348563",
+      "category": "."
+    },
+    {
+      "path": "encyclopedia/PROVENANCE_RULES.md",
+      "name": "PROVENANCE_RULES.md",
+      "size": 2609,
+      "modified": "2025-11-26T21:22:17.348563",
+      "category": "."
+    },
+    {
+      "path": "encyclopedia/README.md",
+      "name": "README.md",
+      "size": 8273,
+      "modified": "2025-11-26T21:22:17.348563",
+      "category": "."
+    },
+    {
+      "path": "encyclopedia/RETRIEVAL_PRIORITY.md",
+      "name": "RETRIEVAL_PRIORITY.md",
+      "size": 1197,
+      "modified": "2025-11-26T21:22:17.348563",
+      "category": "."
+    },
+    {
+      "path": "encyclopedia/SEEDING_STRATEGY.md",
+      "name": "SEEDING_STRATEGY.md",
+      "size": 2753,
+      "modified": "2025-11-26T21:22:17.348563",
+      "category": "."
+    },
+    {
+      "path": "fixes/C126_VERCEL_BUILD_FIX.md",
+      "name": "C126_VERCEL_BUILD_FIX.md",
+      "size": 10491,
+      "modified": "2025-11-26T14:54:58.792887",
+      "category": "."
+    },
+    {
+      "path": "fixes/FIXES_SUMMARY.md",
+      "name": "FIXES_SUMMARY.md",
+      "size": 3693,
+      "modified": "2025-11-26T14:54:58.792887",
+      "category": "."
+    },
+    {
+      "path": "founders-agents.gic.md",
+      "name": "founders-agents.gic.md",
+      "size": 3139,
+      "modified": "2025-11-26T14:54:58.792887",
+      "category": "root"
+    },
+    {
+      "path": "genesis/chapter-iv-one-window-console-manifest.md",
+      "name": "chapter-iv-one-window-console-manifest.md",
+      "size": 9807,
+      "modified": "2025-11-26T14:54:58.792887",
+      "category": "."
+    },
+    {
+      "path": "governance/GI_ENGINE_RULES.md",
+      "name": "GI_ENGINE_RULES.md",
+      "size": 7047,
+      "modified": "2025-11-26T21:22:17.352563",
+      "category": "."
+    },
+    {
+      "path": "handbook/appendices.md",
+      "name": "appendices.md",
+      "size": 6687,
+      "modified": "2025-11-26T14:54:58.792887",
+      "category": "."
+    },
+    {
+      "path": "handbook/index.md",
+      "name": "index.md",
+      "size": 4499,
+      "modified": "2025-11-26T14:54:58.792887",
+      "category": "."
+    },
+    {
+      "path": "handbook/part-i-foundations.md",
+      "name": "part-i-foundations.md",
+      "size": 2817,
+      "modified": "2025-11-26T14:54:58.792887",
+      "category": "."
+    },
+    {
+      "path": "handbook/part-ii-technical-architecture.md",
+      "name": "part-ii-technical-architecture.md",
+      "size": 6199,
+      "modified": "2025-11-26T14:54:58.792887",
+      "category": "."
+    },
+    {
+      "path": "handbook/part-iii-implementation.md",
+      "name": "part-iii-implementation.md",
+      "size": 3870,
+      "modified": "2025-11-26T14:54:58.792887",
+      "category": "."
+    },
+    {
+      "path": "handbook/part-iv-future-vision.md",
+      "name": "part-iv-future-vision.md",
+      "size": 4157,
+      "modified": "2025-11-26T14:54:58.792887",
+      "category": "."
+    },
+    {
+      "path": "intelligence/sentinel-classification.md",
+      "name": "sentinel-classification.md",
+      "size": 10185,
+      "modified": "2025-11-26T14:54:58.792887",
+      "category": "."
+    },
+    {
+      "path": "intelligence/typology.md",
+      "name": "typology.md",
+      "size": 5982,
+      "modified": "2025-11-26T14:54:58.792887",
+      "category": "."
+    },
+    {
+      "path": "jade/LETTERS_FROM_JADE.md",
+      "name": "LETTERS_FROM_JADE.md",
+      "size": 3030,
+      "modified": "2025-11-26T14:54:58.792887",
+      "category": "."
+    },
+    {
+      "path": "ktt-trial-001-implementation.md",
+      "name": "ktt-trial-001-implementation.md",
+      "size": 7824,
+      "modified": "2025-11-26T14:54:58.792887",
+      "category": "root"
+    },
+    {
+      "path": "lab7/004-evolution-language.md",
+      "name": "004-evolution-language.md",
+      "size": 2967,
+      "modified": "2025-11-26T14:54:58.792887",
+      "category": "."
+    },
+    {
+      "path": "labor/HAYMARKET_TO_AI.md",
+      "name": "HAYMARKET_TO_AI.md",
+      "size": 3794,
+      "modified": "2025-11-26T14:54:58.792887",
+      "category": "."
+    },
+    {
+      "path": "ledger/gi-formula.md",
+      "name": "gi-formula.md",
+      "size": 6317,
+      "modified": "2025-11-26T14:54:58.792887",
+      "category": "."
+    },
+    {
+      "path": "manifesto/triad_of_healing.md",
+      "name": "triad_of_healing.md",
+      "size": 5094,
+      "modified": "2025-11-26T14:54:58.792887",
+      "category": "."
+    },
+    {
+      "path": "mic/01_MIC_SPEC.md",
+      "name": "01_MIC_SPEC.md",
+      "size": 15371,
+      "modified": "2025-11-26T14:54:58.792887",
+      "category": "."
+    },
+    {
+      "path": "mobius-kernel-spec-v0.1.md",
+      "name": "mobius-kernel-spec-v0.1.md",
+      "size": 4472,
+      "modified": "2025-11-26T14:54:58.792887",
+      "category": "root"
+    },
+    {
+      "path": "observability/MOBIUS_OPS_CONSOLE.md",
+      "name": "MOBIUS_OPS_CONSOLE.md",
+      "size": 6790,
+      "modified": "2025-11-26T14:54:58.792887",
+      "category": "."
+    },
+    {
+      "path": "onboarding/README.md",
+      "name": "README.md",
+      "size": 1372,
+      "modified": "2025-11-26T14:54:58.792887",
+      "category": "."
+    },
+    {
+      "path": "onboarding/guide.md",
+      "name": "guide.md",
+      "size": 17497,
+      "modified": "2025-11-26T14:54:58.792887",
+      "category": "."
+    },
+    {
+      "path": "optimizations/2025-11-10-dependency-security-hardening.md",
+      "name": "2025-11-10-dependency-security-hardening.md",
+      "size": 9536,
+      "modified": "2025-11-26T14:54:58.792887",
+      "category": "."
+    },
+    {
+      "path": "outreach/BRIEFING_DOSSIER.md",
+      "name": "BRIEFING_DOSSIER.md",
+      "size": 5555,
+      "modified": "2025-11-26T14:54:58.792887",
+      "category": "."
+    },
+    {
+      "path": "outreach/POLICY_BRIEF.md",
+      "name": "POLICY_BRIEF.md",
+      "size": 2304,
+      "modified": "2025-11-26T14:54:58.792887",
+      "category": "."
+    },
+    {
+      "path": "outreach/README.md",
+      "name": "README.md",
+      "size": 2470,
+      "modified": "2025-11-26T14:54:58.792887",
+      "category": "."
+    },
+    {
+      "path": "outreach/email-gillian-hadfield.md",
+      "name": "email-gillian-hadfield.md",
+      "size": 3116,
+      "modified": "2025-11-26T14:54:58.792887",
+      "category": "."
+    },
+    {
+      "path": "outreach/email-glen-weyl.md",
+      "name": "email-glen-weyl.md",
+      "size": 2482,
+      "modified": "2025-11-26T14:54:58.792887",
+      "category": "."
+    },
+    {
+      "path": "peer-review-response.md",
+      "name": "peer-review-response.md",
+      "size": 5044,
+      "modified": "2025-11-26T14:54:58.792887",
+      "category": "root"
+    },
+    {
+      "path": "peer-review-summary.md",
+      "name": "peer-review-summary.md",
+      "size": 4679,
+      "modified": "2025-11-26T14:54:58.792887",
+      "category": "root"
+    },
+    {
+      "path": "philosophy/MOBIUS_PHILOSOPHY.md",
+      "name": "MOBIUS_PHILOSOPHY.md",
+      "size": 14500,
+      "modified": "2025-11-26T21:22:17.352563",
+      "category": "."
+    },
+    {
+      "path": "policy/safety-tiers.md",
+      "name": "safety-tiers.md",
+      "size": 1719,
+      "modified": "2025-11-26T14:54:58.792887",
+      "category": "."
+    },
+    {
+      "path": "product/FEDERATION_PROTOCOL_BRIEF.md",
+      "name": "FEDERATION_PROTOCOL_BRIEF.md",
+      "size": 11144,
+      "modified": "2025-11-26T14:54:58.792887",
+      "category": "."
+    },
+    {
+      "path": "product/PRO_LANDING_PAGE.md",
+      "name": "PRO_LANDING_PAGE.md",
+      "size": 3748,
+      "modified": "2025-11-26T14:54:58.792887",
+      "category": "."
+    },
+    {
+      "path": "product/SELF_HOST_GUIDE.md",
+      "name": "SELF_HOST_GUIDE.md",
+      "size": 8185,
+      "modified": "2025-11-26T14:54:58.792887",
+      "category": "."
+    },
+    {
+      "path": "protocols/CIVIC_PROVENANCE_PROTOCOL.md",
+      "name": "CIVIC_PROVENANCE_PROTOCOL.md",
+      "size": 4268,
+      "modified": "2025-11-26T14:54:58.792887",
+      "category": "."
+    },
+    {
+      "path": "protocols/MLLP.md",
+      "name": "MLLP.md",
+      "size": 7977,
+      "modified": "2025-11-26T14:54:58.792887",
+      "category": "."
+    },
+    {
+      "path": "rituals/opening_invocation.md",
+      "name": "opening_invocation.md",
+      "size": 4316,
+      "modified": "2025-11-26T14:54:58.792887",
+      "category": "."
+    },
+    {
+      "path": "security/threat-model.md",
+      "name": "threat-model.md",
+      "size": 9018,
+      "modified": "2025-11-26T14:54:58.792887",
+      "category": "."
+    },
+    {
+      "path": "security/threat_model_v0.1.md",
+      "name": "threat_model_v0.1.md",
+      "size": 4802,
+      "modified": "2025-11-26T14:54:58.792887",
+      "category": "."
+    },
+    {
+      "path": "sentinels/uriel.md",
+      "name": "uriel.md",
+      "size": 272,
+      "modified": "2025-11-26T14:54:58.792887",
+      "category": "."
+    },
+    {
+      "path": "specs/N8N_UNIVERSAL_API.md",
+      "name": "N8N_UNIVERSAL_API.md",
+      "size": 1938,
+      "modified": "2025-11-26T14:54:58.792887",
+      "category": "."
+    },
+    {
+      "path": "specs/N8N_UNIVERSAL_FLOW_API.md",
+      "name": "N8N_UNIVERSAL_FLOW_API.md",
+      "size": 2637,
+      "modified": "2025-11-26T14:54:58.792887",
+      "category": "."
+    },
+    {
+      "path": "theory/cognitive-cycle-theory.md",
+      "name": "cognitive-cycle-theory.md",
+      "size": 8099,
+      "modified": "2025-11-26T14:54:58.792887",
+      "category": "."
+    },
+    {
+      "path": "tokenomics/MIC_reward_formula.md",
+      "name": "MIC_reward_formula.md",
+      "size": 1345,
+      "modified": "2025-11-26T21:22:17.352563",
+      "category": "."
+    },
+    {
+      "path": "tokenomics/MIC_v2_overview.md",
+      "name": "MIC_v2_overview.md",
+      "size": 1557,
+      "modified": "2025-11-26T21:22:17.352563",
+      "category": "."
+    },
+    {
+      "path": "tokenomics/integrity_multipliers.md",
+      "name": "integrity_multipliers.md",
+      "size": 1111,
+      "modified": "2025-11-26T21:22:17.352563",
+      "category": "."
+    },
+    {
+      "path": "tokenomics/node_types_rewards.md",
+      "name": "node_types_rewards.md",
+      "size": 1245,
+      "modified": "2025-11-26T21:22:17.352563",
+      "category": "."
+    }
+  ]
+}
