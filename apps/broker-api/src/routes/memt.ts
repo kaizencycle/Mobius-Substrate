@@ -304,7 +304,7 @@ router.post('/deliberate', async (req: Request, res: Response) => {
       });
     }
 
-    // 8. Attest to Ledger (async, non-blocking)
+    // 8. Attest to Ledger (wait for tx id so caller gets reference)
     let ledgerTxId: string | undefined;
     if (!body.skipLedger && consensus.giScore >= routingPlan.giThreshold) {
       const ledgerPayload = buildLedgerPayload({
@@ -323,18 +323,27 @@ router.post('/deliberate', async (req: Request, res: Response) => {
         metadata: body.metadata,
       });
 
-      // Fire and forget, but capture txId if available
-      ledgerAttest(ledgerPayload).then(result => {
-        if (result.ledgerTxId) {
-          ledgerTxId = result.ledgerTxId;
-        }
-      });
+      try {
+        const ledgerResult = await ledgerAttest(ledgerPayload);
+        ledgerTxId = ledgerResult.ledgerTxId;
+      } catch (ledgerErr) {
+        console.warn('[MEMT] Ledger attestation failed:', (ledgerErr as Error).message);
+      }
     }
 
     // 9. Build response
+    const status: MemtDeliberateResponse['status'] =
+      consensus.decision === 'reject'
+        ? 'rejected'
+        : consensus.needsHumanReview
+        ? 'needs_human_review'
+        : 'ok';
+
+    const needsHumanReview = status !== 'ok';
+
     const response: MemtDeliberateResponse = {
       taskId,
-      status: consensus.needsHumanReview ? 'needs_human_review' : 'ok',
+      status,
       prompt: normalizedTask.prompt,
       kind: normalizedTask.kind,
       risk: normalizedTask.risk,
@@ -344,7 +353,7 @@ router.post('/deliberate', async (req: Request, res: Response) => {
       requireConsensus: routingPlan.requireConsensus,
       decision: consensus.decision,
       consensusSummary: consensus.consensusSummary,
-      needsHumanReview: consensus.needsHumanReview,
+      needsHumanReview,
       engines: engineOutputs.map(e => ({
         id: e.engineId,
         role: e.role,
