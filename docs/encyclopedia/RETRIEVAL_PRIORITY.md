@@ -1,65 +1,35 @@
-# Retrieval Priority Contract
+# Retrieval Priority Logic
 
-Agents should trust already-anchored knowledge before invoking a new deliberation. The flow below prioritizes ECHO, Encyclopedia, and Draft entries before falling back to Thought Broker.
+You already feel this, but here it is clean so you can wire it into SDKs.
 
-```mermaid
-flowchart TD
-    A[Agent receives query] --> B{ECHO exact hit?}
-    B -->|YES| C[Return ECHO answer + KTI]
-    B -->|NO| D{Encyclopedia canonical?}
-    D -->|YES| E[Return Encyclopedia entry + KTI]
-    D -->|NO| F{ECHO semantic ≥ 0.95?}
-    F -->|YES| G[Return ECHO semantic + KTI]
-    F -->|NO| H{Encyclopedia draft ≥ 0.93?}
-    H -->|YES| I[Return draft + flag “under review”]
-    H -->|NO| J[Route to Thought Broker → full KTT cycle]
-    J --> K[Store result in ECHO + Encyclopedia if GI ≥ 0.95]
-```
+---
 
-**Priority Constants** (inject via env or config):
-```
-PRIORITY_ECHO_EXACT   = 1.0
-PRIORITY_ENC_CANON    = 0.98
-PRIORITY_ECHO_SEM     = 0.95
-PRIORITY_ENC_DRAFT    = 0.93
-PRIORITY_FALLBACK     = 0.0
-```
+## Priority Stack
 
-## SDK Helper Reference
-Use the following contract (TypeScript pseudocode) for any agent SDK or orchestrator. Adjust the imports to match your actual client factories.
+1. **ECHO Layer** – “recent memory / cache”
+   - Fast, cheap,  high-hit-rate for *recent* topics
+   - Good for: “What did I decide yesterday?” / “What did Mobius already say about X this week?”
 
-```ts
-import { echoClient } from '@mobius/echo-client';
-import { encyclopediaClient } from '@mobius/encyclopedia-client';
+2. **Encyclopedia** – “long-term canon”
+   - Slower than ECHO but much more stable, GI-filtered
+   - Good for: “What is MIC?” / “What is the HIVE game?” / “What is Thought Broker?”
 
-export async function retrieveCanon(query: string, domain?: string) {
-  // 1. ECHO exact
-  const echo = await echoClient.loadState(query, { domain, similarityThreshold: 1.0 });
-  if (echo?.source === 'cache' && echo.giScore >= 0.95) return echo;
+3. **Thought Broker** – “live consensus”
+   - Most expensive, uses all engines
+   - Good for: new questions, changing facts, or when canon doesn’t exist / is out of date.
 
-  // 2. Encyclopedia canonical
-  const topicId = domain ? `${domain}.${slug(query)}` : slug(query);
-  const enc = await encyclopediaClient.getByTopic(topicId);
-  if (enc && enc.status === 'CANONICAL') {
-    return { answer: enc.content, giScore: enc.giScore, source: 'encyclopedia' };
-  }
+---
 
-  // 3. ECHO semantic
-  const echoSem = await echoClient.loadState(query, { domain, similarityThreshold: 0.95 });
-  if (echoSem && echoSem.giScore >= 0.95) return echoSem;
+## Simple Decision Tree
 
-  // 4. Encyclopedia draft
-  if (enc && enc.status === 'DRAFT' && enc.giScore >= 0.93) {
-    return { answer: enc.content, giScore: enc.giScore, source: 'encyclopedia-draft', needsReview: true };
-  }
+1. Derive or detect `topicId` (from question, or explicit param).
+2. Ask ECHO:
+   - If hit with `giScore ≥ 0.93` **and** timestamp < freshness window:
+     - Use ECHO result.
+3. Ask Encyclopedia:
+   - If canonical entry exists with `giScore ≥ 0.95`:
+     - Use Encyclopedia result.
+4. Else:
+   - Use Thought Broker; if `giScore ≥ 0.95` → optionally enqueue for Encyclopedia ingest.
 
-  // 5. Fall back to Thought Broker
-  return null; // callers interpret null as “run /v1/deliberate”
-}
-
-function slug(value: string) {
-  return value.toLowerCase().replace(/[^a-z0-9]+/g, '_');
-}
-```
-
-The helper returns the highest-priority cached context if available. A `null` response signals the agent to initiate a new deliberation and eventually feed its consensus output back into both ECHO and the Encyclopedia pipeline.
+That’s the **“cache → canon → compute”** pattern.
