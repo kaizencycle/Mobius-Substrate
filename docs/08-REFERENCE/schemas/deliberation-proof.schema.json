@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mobius/schemas/deliberation-proof.v0_1.json",
+  "type": "object",
+  "required": [
+    "issue_id",
+    "agents",
+    "protocol",
+    "trace",
+    "consensus",
+    "mii_snapshot",
+    "signature",
+    "kid"
+  ],
+  "properties": {
+    "issue_id": { "type": "string" },
+    "agents": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1
+    },
+    "protocol": {
+      "type": "string",
+      "enum": ["consensus.v0.pbft-lite"]
+    },
+    "trace": {
+      "type": "array",
+      "items": { "type": "object" }
+    },
+    "consensus": {
+      "type": "object",
+      "required": ["quorum", "threshold", "score"],
+      "properties": {
+        "quorum": { "type": "integer", "minimum": 1 },
+        "threshold": { "type": "number", "minimum": 0, "maximum": 1 },
+        "score": { "type": "number", "minimum": 0, "maximum": 1 }
+      },
+      "additionalProperties": false
+    },
+    "mii_snapshot": { "type": "number", "minimum": 0, "maximum": 1 },
+    "signature": { "type": "string" },
+    "kid": { "type": "string" }
+  },
+  "additionalProperties": false
+}

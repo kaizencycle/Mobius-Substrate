@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mobius/schemas/data-models/command-ledger-entry.v0_1.json",
+  "type": "object",
+  "required": [
+    "entry_id",
+    "type",
+    "subject",
+    "amount",
+    "asset",
+    "timestamp"
+  ],
+  "properties": {
+    "entry_id": { "type": "string" },
+    "type": {
+      "type": "string",
+      "enum": [
+        "earn",
+        "burn",
+        "shard_mint",
+        "cycle_reflection"
+      ]
+    },
+    "subject": {
+      "type": "object",
+      "required": ["type", "id"],
+      "properties": {
+        "type": { "type": "string" },
+        "id": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "amount": { "type": "number" },
+    "asset": { "type": "string" },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "mii_snapshot": { "type": "number", "minimum": 0, "maximum": 1 },
+    "attestation_id": { "type": "string" },
+    "notes": { "type": "string" },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}

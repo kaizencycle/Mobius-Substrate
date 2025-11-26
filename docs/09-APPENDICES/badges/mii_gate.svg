@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="146" height="28" role="img" aria-label="MII ≥ 0.95">
+  <title>MII ≥ 0.95</title>
+  <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
+    <stop offset="0%" stop-color="#1b3d6b" />
+    <stop offset="100%" stop-color="#2d82c7" />
+  </linearGradient>
+  <rect width="146" height="28" rx="6" fill="url(#grad)" />
+  <rect width="146" height="28" rx="6" fill="none" stroke="#0a1f33" stroke-width="2" />
+  <text x="73" y="18" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" font-size="13" text-anchor="middle">
+    MII ≥ 0.95
+  </text>
+</svg>

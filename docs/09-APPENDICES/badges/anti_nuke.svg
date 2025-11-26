@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="176" height="28" role="img" aria-label="Additive-Only PRs">
+  <title>Additive-Only PRs</title>
+  <linearGradient id="anti-nuke-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+    <stop offset="0%" stop-color="#2b9348" />
+    <stop offset="100%" stop-color="#55a630" />
+  </linearGradient>
+  <rect width="176" height="28" rx="6" fill="url(#anti-nuke-grad)" />
+  <rect width="176" height="28" rx="6" fill="none" stroke="#1b592c" stroke-width="2" />
+  <text x="88" y="18" fill="#ffffff" font-family="Helvetica, Arial, sans-serif" font-size="13" text-anchor="middle">
+    Additive-Only PRs
+  </text>
+</svg>

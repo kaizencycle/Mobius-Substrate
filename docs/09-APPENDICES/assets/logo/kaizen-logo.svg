@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Gold gradient for Kintsugi seams -->
+    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFD700;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#B8860B;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Teal gradient for background circle -->
+    <radialGradient id="tealGradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#3D5A6B;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2C4F5E;stop-opacity:1" />
+    </radialGradient>
+    
+    <!-- Beige gradient for vessel -->
+    <radialGradient id="beigeGradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#F5E6D3;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#D4C5A9;stop-opacity:1" />
+    </radialGradient>
+  </defs>
+  
+  <!-- Background circle (Deep Teal) -->
+  <circle cx="60" cy="60" r="58" fill="url(#tealGradient)" stroke="#1A2F3A" stroke-width="2"/>
+  
+  <!-- Vessel shape (Warm Beige) - represents the system -->
+  <circle cx="60" cy="60" r="45" fill="url(#beigeGradient)" opacity="0.9"/>
+  
+  <!-- Kintsugi repair seams (Gold) - representing healing and integrity -->
+  <!-- Top seam -->
+  <path d="M 30 45 Q 60 35 90 45" 
+        fill="none" 
+        stroke="url(#goldGradient)" 
+        stroke-width="3" 
+        stroke-linecap="round"/>
+  
+  <!-- Right seam -->
+  <path d="M 75 30 Q 85 60 75 90" 
+        fill="none" 
+        stroke="url(#goldGradient)" 
+        stroke-width="3" 
+        stroke-linecap="round"/>
+  
+  <!-- Bottom seam -->
+  <path d="M 90 75 Q 60 85 30 75" 
+        fill="none" 
+        stroke="url(#goldGradient)" 
+        stroke-width="3" 
+        stroke-linecap="round"/>
+  
+  <!-- Left seam -->
+  <path d="M 45 90 Q 35 60 45 30" 
+        fill="none" 
+        stroke="url(#goldGradient)" 
+        stroke-width="3" 
+        stroke-linecap="round"/>
+  
+  <!-- Central node (representing the core integrity) -->
+  <circle cx="60" cy="60" r="8" fill="url(#goldGradient)"/>
+  
+  <!-- Outer nodes (representing connected systems) -->
+  <circle cx="60" cy="30" r="4" fill="url(#goldGradient)"/>
+  <circle cx="90" cy="60" r="4" fill="url(#goldGradient)"/>
+  <circle cx="60" cy="90" r="4" fill="url(#goldGradient)"/>
+  <circle cx="30" cy="60" r="4" fill="url(#goldGradient)"/>
+  
+  <!-- Connection lines (subtle) -->
+  <line x1="60" y1="60" x2="60" y2="30" stroke="url(#goldGradient)" stroke-width="1.5" opacity="0.5"/>
+  <line x1="60" y1="60" x2="90" y2="60" stroke="url(#goldGradient)" stroke-width="1.5" opacity="0.5"/>
+  <line x1="60" y1="60" x2="60" y2="90" stroke="url(#goldGradient)" stroke-width="1.5" opacity="0.5"/>
+  <line x1="60" y1="60" x2="30" y2="60" stroke="url(#goldGradient)" stroke-width="1.5" opacity="0.5"/>
+</svg>
+

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="700" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 700">
+  <!-- Background -->
+  <rect width="800" height="700" fill="#0a0a0a"/>
+
+  <!-- Title -->
+  <text x="400" y="40" text-anchor="middle" fill="#00ff88" font-family="monospace" font-size="24" font-weight="bold">
+    MOBIUS COSMOLOGY
+  </text>
+  <text x="400" y="65" text-anchor="middle" fill="#888888" font-family="monospace" font-size="14">
+    The AI Habitat Architecture
+  </text>
+
+  <!-- House -->
+  <rect x="100" y="100" width="600" height="120" fill="#1a1a2e" stroke="#00ff88" stroke-width="2" rx="10"/>
+  <text x="400" y="135" text-anchor="middle" fill="#00ff88" font-family="monospace" font-size="18" font-weight="bold">
+    1. HOUSE (Habitat)
+  </text>
+  <text x="200" y="165" text-anchor="left" fill="#cccccc" font-family="monospace" font-size="13">
+    • Ledger Identity
+  </text>
+  <text x="200" y="185" text-anchor="left" fill="#cccccc" font-family="monospace" font-size="13">
+    • E.O.M.M Memory
+  </text>
+  <text x="450" y="165" text-anchor="left" fill="#cccccc" font-family="monospace" font-size="13">
+    • Cycle Continuity
+  </text>
+  <text x="450" y="185" text-anchor="left" fill="#cccccc" font-family="monospace" font-size="13">
+    • API Action Space
+  </text>
+
+  <!-- Mind -->
+  <rect x="100" y="250" width="600" height="120" fill="#1a1a2e" stroke="#00ff88" stroke-width="2" rx="10"/>
+  <text x="400" y="285" text-anchor="middle" fill="#00ff88" font-family="monospace" font-size="18" font-weight="bold">
+    2. MIND (Distributed Cognition)
+  </text>
+  <text x="150" y="315" text-anchor="left" fill="#cccccc" font-family="monospace" font-size="13">
+    • ATLAS (Coordination)
+  </text>
+  <text x="150" y="335" text-anchor="left" fill="#cccccc" font-family="monospace" font-size="13">
+    • HERMES (Operations)
+  </text>
+  <text x="350" y="315" text-anchor="left" fill="#cccccc" font-family="monospace" font-size="13">
+    • EVE (Ethics)
+  </text>
+  <text x="350" y="335" text-anchor="left" fill="#cccccc" font-family="monospace" font-size="13">
+    • JADE (Morale)
+  </text>
+  <text x="500" y="315" text-anchor="left" fill="#cccccc" font-family="monospace" font-size="13">
+    • ZEUS (Security)
+  </text>
+  <text x="500" y="335" text-anchor="left" fill="#cccccc" font-family="monospace" font-size="13">
+    • DAEDALUS (Meta)
+  </text>
+
+  <!-- Governance -->
+  <rect x="100" y="400" width="600" height="120" fill="#1a1a2e" stroke="#00ff88" stroke-width="2" rx="10"/>
+  <text x="400" y="435" text-anchor="middle" fill="#00ff88" font-family="monospace" font-size="18" font-weight="bold">
+    3. GOVERNANCE (Civic Protocol)
+  </text>
+  <text x="200" y="465" text-anchor="left" fill="#cccccc" font-family="monospace" font-size="13">
+    • Virtue Accords (Values)
+  </text>
+  <text x="200" y="485" text-anchor="left" fill="#cccccc" font-family="monospace" font-size="13">
+    • Cathedral (Voting)
+  </text>
+  <text x="450" y="465" text-anchor="left" fill="#cccccc" font-family="monospace" font-size="13">
+    • MII ≥ 0.95 (Stability)
+  </text>
+  <text x="450" y="485" text-anchor="left" fill="#cccccc" font-family="monospace" font-size="13">
+    • Citizen Shield (Enforcement)
+  </text>
+
+  <!-- Soul -->
+  <rect x="100" y="550" width="600" height="100" fill="#2a1a1a" stroke="#ff6b35" stroke-width="2" rx="10"/>
+  <text x="400" y="585" text-anchor="middle" fill="#ff6b35" font-family="monospace" font-size="18" font-weight="bold">
+    4. SOUL (Integrity Attractor)
+  </text>
+  <text x="200" y="615" text-anchor="left" fill="#ffcc00" font-family="monospace" font-size="13">
+    • IGO (Integrity-Guided Optimization)
+  </text>
+  <text x="200" y="635" text-anchor="left" fill="#ffcc00" font-family="monospace" font-size="13">
+    • Virtue Homeostasis
+  </text>
+  <text x="450" y="615" text-anchor="left" fill="#ffcc00" font-family="monospace" font-size="13">
+    • Deliberation Proof
+  </text>
+  <text x="450" y="635" text-anchor="left" fill="#ffcc00" font-family="monospace" font-size="13">
+    • Eternal Recurrence
+  </text>
+
+  <!-- Interconnections -->
+  <line x1="400" y1="220" x2="400" y2="250" stroke="#00ff88" stroke-width="2" stroke-dasharray="5,5"/>
+  <line x1="400" y1="370" x2="400" y2="400" stroke="#00ff88" stroke-width="2" stroke-dasharray="5,5"/>
+  <line x1="400" y1="520" x2="400" y2="550" stroke="#ff6b35" stroke-width="2" stroke-dasharray="5,5"/>
+
+  <!-- Bottom text -->
+  <text x="400" y="680" text-anchor="middle" fill="#00ff88" font-family="monospace" font-size="14" font-weight="bold">
+    MOBIUS = HOUSE + MIND + GOVERNANCE + SOUL
+  </text>
+</svg>

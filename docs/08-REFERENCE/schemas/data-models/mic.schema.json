@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mobius/schemas/data-models/mic.v0_1.json",
+  "type": "object",
+  "required": [
+    "mic_id",
+    "subject",
+    "mii",
+    "window",
+    "gi_components",
+    "source",
+    "created_at"
+  ],
+  "properties": {
+    "mic_id": { "type": "string" },
+    "subject": {
+      "type": "object",
+      "required": ["type", "id"],
+      "properties": {
+        "type": { "type": "string" },
+        "id": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "mii": { "type": "number", "minimum": 0, "maximum": 1 },
+    "window": {
+      "type": "object",
+      "required": ["from", "to"],
+      "properties": {
+        "from": { "type": "string", "format": "date-time" },
+        "to": { "type": "string", "format": "date-time" }
+      },
+      "additionalProperties": false
+    },
+    "gi_components": {
+      "type": "object",
+      "additionalProperties": { "type": "number" }
+    },
+    "source": { "type": "string" },
+    "attestation_id": { "type": "string" },
+    "created_at": { "type": "string", "format": "date-time" }
+  },
+  "additionalProperties": false
+}

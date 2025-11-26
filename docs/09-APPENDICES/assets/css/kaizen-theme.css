@@ -1,0 +1,367 @@
+/**
+ * Kaizen-OS Custom Theme for MkDocs Material
+ * Based on Kaizen Visual Design System v1.0.0
+ * 
+ * Color Palette:
+ * - Deep Teal (#2C4F5E): Primary background, contemplation
+ * - Gold (#FFD700): Healing, accent, emphasis
+ * - Cream (#F5E6D3): Primary text, illumination
+ * - Warm Beige (#D4C5A9): Secondary text, ceramic
+ * - Darker Teal (#1A2F3A): Depth, shadows
+ * - Lighter Teal (#3D5A6B): Highlights, clarity
+ */
+
+:root {
+  /* Kaizen Color System */
+  --kaizen-deep-teal: #2C4F5E;
+  --kaizen-darker-teal: #1A2F3A;
+  --kaizen-lighter-teal: #3D5A6B;
+  --kaizen-gold: #FFD700;
+  --kaizen-gold-dark: #B8860B;
+  --kaizen-cream: #F5E6D3;
+  --kaizen-beige: #D4C5A9;
+  
+  /* Semantic Colors */
+  --kaizen-success: #95e1d3;
+  --kaizen-warning: #ffd93d;
+  --kaizen-error: #ff6b6b;
+  --kaizen-neutral: #666666;
+}
+
+/* Dark mode (default) - Deep Teal theme */
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color: var(--kaizen-deep-teal);
+  --md-primary-fg-color--light: var(--kaizen-lighter-teal);
+  --md-primary-fg-color--dark: var(--kaizen-darker-teal);
+  --md-accent-fg-color: var(--kaizen-gold);
+  --md-accent-fg-color--transparent: rgba(255, 215, 0, 0.1);
+  
+  /* Backgrounds */
+  --md-default-bg-color: var(--kaizen-darker-teal);
+  --md-default-bg-color--light: var(--kaizen-deep-teal);
+  --md-default-bg-color--lighter: var(--kaizen-lighter-teal);
+  --md-default-bg-color--lightest: var(--kaizen-lighter-teal);
+  
+  /* Text */
+  --md-default-fg-color: var(--kaizen-cream);
+  --md-default-fg-color--light: var(--kaizen-beige);
+  --md-default-fg-color--lighter: rgba(245, 230, 211, 0.7);
+  --md-default-fg-color--lightest: rgba(245, 230, 211, 0.5);
+  
+  /* Code blocks */
+  --md-code-bg-color: var(--kaizen-deep-teal);
+  --md-code-fg-color: var(--kaizen-cream);
+  
+  /* Admonitions */
+  --md-admonition-fg-color: var(--kaizen-cream);
+  --md-admonition-bg-color: var(--kaizen-deep-teal);
+}
+
+/* Light mode - Cream and Teal theme */
+[data-md-color-scheme="default"] {
+  --md-primary-fg-color: var(--kaizen-deep-teal);
+  --md-primary-fg-color--light: var(--kaizen-lighter-teal);
+  --md-primary-fg-color--dark: var(--kaizen-darker-teal);
+  --md-accent-fg-color: var(--kaizen-gold-dark);
+  --md-accent-fg-color--transparent: rgba(184, 134, 11, 0.1);
+  
+  /* Backgrounds */
+  --md-default-bg-color: #ffffff;
+  --md-default-bg-color--light: var(--kaizen-cream);
+  --md-default-bg-color--lighter: rgba(245, 230, 211, 0.5);
+  --md-default-bg-color--lightest: rgba(245, 230, 211, 0.25);
+  
+  /* Text */
+  --md-default-fg-color: var(--kaizen-darker-teal);
+  --md-default-fg-color--light: var(--kaizen-deep-teal);
+  --md-default-fg-color--lighter: rgba(26, 47, 58, 0.7);
+  --md-default-fg-color--lightest: rgba(26, 47, 58, 0.5);
+  
+  /* Code blocks */
+  --md-code-bg-color: var(--kaizen-cream);
+  --md-code-fg-color: var(--kaizen-darker-teal);
+}
+
+/* Logo styling */
+.md-header__button.md-logo {
+  padding: 0.4rem;
+}
+
+.md-header__button.md-logo img,
+.md-header__button.md-logo svg {
+  height: 2rem;
+  width: auto;
+}
+
+/* Navigation header */
+.md-header {
+  background-color: var(--kaizen-deep-teal);
+  box-shadow: 0 0 0.2rem rgba(0, 0, 0, 0.1), 0 0.2rem 0.4rem rgba(0, 0, 0, 0.2);
+}
+
+.md-header__title {
+  color: var(--kaizen-cream);
+  font-weight: 600;
+}
+
+/* Search */
+.md-search__form {
+  background-color: var(--kaizen-deep-teal);
+}
+
+.md-search__input {
+  background-color: var(--kaizen-darker-teal);
+  color: var(--kaizen-cream);
+}
+
+.md-search__input::placeholder {
+  color: var(--kaizen-beige);
+}
+
+/* Links */
+a {
+  color: var(--kaizen-gold);
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--kaizen-gold-dark);
+}
+
+/* Code blocks */
+.highlight {
+  background-color: var(--md-code-bg-color);
+  border-radius: 0.2rem;
+}
+
+code {
+  background-color: var(--md-code-bg-color);
+  color: var(--md-code-fg-color);
+  padding: 0.1rem 0.3rem;
+  border-radius: 0.2rem;
+  font-size: 0.9em;
+}
+
+/* Admonitions - Custom Kaizen styling */
+.md-typeset .admonition {
+  border-left: 0.2rem solid var(--kaizen-gold);
+  background-color: var(--md-admonition-bg-color);
+}
+
+.md-typeset .admonition-title {
+  background-color: var(--kaizen-deep-teal);
+  color: var(--kaizen-cream);
+  font-weight: 600;
+}
+
+.md-typeset .admonition.note {
+  border-left-color: var(--kaizen-lighter-teal);
+}
+
+.md-typeset .admonition.tip,
+.md-typeset .admonition.success {
+  border-left-color: var(--kaizen-success);
+}
+
+.md-typeset .admonition.warning,
+.md-typeset .admonition.important {
+  border-left-color: var(--kaizen-warning);
+}
+
+.md-typeset .admonition.danger,
+.md-typeset .admonition.error {
+  border-left-color: var(--kaizen-error);
+}
+
+/* Tables */
+.md-typeset table:not([class]) {
+  border: 1px solid var(--kaizen-beige);
+}
+
+.md-typeset table:not([class]) th {
+  background-color: var(--kaizen-deep-teal);
+  color: var(--kaizen-cream);
+  font-weight: 600;
+}
+
+.md-typeset table:not([class]) td {
+  border-top: 1px solid var(--kaizen-beige);
+}
+
+.md-typeset table:not([class]) tr:hover {
+  background-color: var(--kaizen-deep-teal);
+}
+
+/* Buttons */
+.md-typeset .md-button {
+  background-color: var(--kaizen-gold);
+  color: var(--kaizen-darker-teal);
+  border-radius: 0.2rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.md-typeset .md-button:hover {
+  background-color: var(--kaizen-gold-dark);
+  color: var(--kaizen-cream);
+}
+
+.md-typeset .md-button--primary {
+  background-color: var(--kaizen-deep-teal);
+  color: var(--kaizen-cream);
+}
+
+.md-typeset .md-button--primary:hover {
+  background-color: var(--kaizen-lighter-teal);
+}
+
+/* Navigation sidebar */
+.md-nav__link--active {
+  color: var(--kaizen-gold);
+  font-weight: 600;
+}
+
+.md-nav__link:hover {
+  color: var(--kaizen-gold);
+}
+
+/* Footer */
+.md-footer {
+  background-color: var(--kaizen-darker-teal);
+  color: var(--kaizen-cream);
+}
+
+.md-footer__inner {
+  border-top: 1px solid var(--kaizen-deep-teal);
+}
+
+.md-footer__link {
+  color: var(--kaizen-gold);
+}
+
+.md-footer__link:hover {
+  color: var(--kaizen-gold-dark);
+}
+
+/* Typography enhancements */
+.md-typeset h1 {
+  color: var(--kaizen-gold);
+  font-weight: 700;
+  border-bottom: 2px solid var(--kaizen-gold);
+  padding-bottom: 0.5rem;
+}
+
+.md-typeset h2 {
+  color: var(--kaizen-cream);
+  font-weight: 600;
+  border-bottom: 1px solid var(--kaizen-beige);
+  padding-bottom: 0.3rem;
+}
+
+.md-typeset h3 {
+  color: var(--kaizen-beige);
+  font-weight: 600;
+}
+
+/* Kintsugi-inspired decorative elements */
+.kaizen-divider {
+  height: 2px;
+  background: linear-gradient(to right, transparent, var(--kaizen-gold), transparent);
+  margin: 2rem 0;
+}
+
+/* Kaizen badge styling */
+.kaizen-badge {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  background-color: var(--kaizen-deep-teal);
+  color: var(--kaizen-gold);
+  border: 1px solid var(--kaizen-gold);
+  border-radius: 0.2rem;
+  font-size: 0.85em;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Quote styling */
+.md-typeset blockquote {
+  border-left: 0.2rem solid var(--kaizen-gold);
+  background-color: var(--kaizen-deep-teal);
+  color: var(--kaizen-cream);
+  padding: 1rem 1.5rem;
+  margin: 1rem 0;
+  border-radius: 0.2rem;
+}
+
+.md-typeset blockquote p {
+  margin: 0.5rem 0;
+}
+
+.md-typeset blockquote p:first-child {
+  font-style: italic;
+  color: var(--kaizen-gold);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--kaizen-darker-teal);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--kaizen-deep-teal);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--kaizen-lighter-teal);
+}
+
+/* Print styles */
+@media print {
+  .md-header,
+  .md-sidebar,
+  .md-footer {
+    display: none;
+  }
+  
+  .md-main__inner {
+    margin: 0;
+  }
+  
+  .md-content {
+    max-width: 100%;
+  }
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 76.1875em) {
+  .md-nav--primary .md-nav__title {
+    background-color: var(--kaizen-deep-teal);
+    color: var(--kaizen-cream);
+  }
+  
+  .md-nav--primary .md-nav__title .md-nav__button {
+    color: var(--kaizen-gold);
+  }
+}
+
+/* Animation for Kaizen elements */
+@keyframes kaizen-glow {
+  0%, 100% {
+    box-shadow: 0 0 5px var(--kaizen-gold);
+  }
+  50% {
+    box-shadow: 0 0 20px var(--kaizen-gold), 0 0 30px var(--kaizen-gold);
+  }
+}
+
+.kaizen-highlight {
+  animation: kaizen-glow 2s ease-in-out infinite;
+}
+

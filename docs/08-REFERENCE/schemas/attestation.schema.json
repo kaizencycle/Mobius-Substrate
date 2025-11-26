@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mobius/schemas/attestation.v0_1.json",
+  "type": "object",
+  "required": [
+    "service_id",
+    "mii",
+    "mii_window",
+    "gi_components",
+    "nonce",
+    "issued_at",
+    "expires_at",
+    "schema",
+    "signature",
+    "kid"
+  ],
+  "properties": {
+    "service_id": { "type": "string" },
+    "instance": { "type": "string" },
+    "mii": { "type": "number", "minimum": 0, "maximum": 1 },
+    "mii_window": {
+      "type": "object",
+      "required": ["from", "to"],
+      "properties": {
+        "from": { "type": "string", "format": "date-time" },
+        "to": { "type": "string", "format": "date-time" }
+      }
+    },
+    "gi_components": {
+      "type": "object",
+      "additionalProperties": { "type": "number" }
+    },
+    "nonce": { "type": "string" },
+    "prev_attestation_hash": { "type": "string" },
+    "issued_at": { "type": "string", "format": "date-time" },
+    "expires_at": { "type": "string", "format": "date-time" },
+    "schema": { "type": "string" },
+    "signature": { "type": "string" },
+    "kid": { "type": "string" }
+  },
+  "additionalProperties": false
+}

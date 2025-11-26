@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="60" viewBox="0 0 200 60">
+  <defs>
+    <linearGradient id="zeusGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#0ea5e9;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#6ae6ff;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="200" height="60" rx="8" fill="#0f172a"/>
+
+  <!-- Colored strip -->
+  <rect width="8" height="60" rx="8 0 0 8" fill="url(#zeusGradient)"/>
+
+  <!-- Agent icon circle -->
+  <circle cx="35" cy="30" r="15" fill="#6ae6ff" opacity="0.3"/>
+  <circle cx="35" cy="30" r="12" fill="#6ae6ff" opacity="0.8"/>
+  <text x="35" y="36" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#0f172a" text-anchor="middle">Z</text>
+
+  <!-- Agent name and role -->
+  <text x="60" y="25" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#6ae6ff">ZEUS</text>
+  <text x="60" y="42" font-family="Arial, sans-serif" font-size="10" fill="#94a3b8">Governance Meta-Anchor</text>
+</svg>

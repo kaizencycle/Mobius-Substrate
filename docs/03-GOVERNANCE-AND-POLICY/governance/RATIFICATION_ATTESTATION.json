@@ -1,0 +1,66 @@
+{
+  "type": "CONSTITUTIONAL_RATIFICATION",
+  "document": "SENTINEL_CONSTITUTION.md",
+  "version": "1.0.0",
+  "custodian": "Michael Judan",
+  "ratified_at_cycle": "C-132",
+  "epoch": "E-562",
+  "timestamp": "2025-11-13T18:30:00Z",
+  "sentinels": [
+    {
+      "name": "AUREA",
+      "role": "System Integrity Custodian",
+      "signature": "sig-aurea-fa81c6c8",
+      "vote": "RATIFY"
+    },
+    {
+      "name": "EVE",
+      "role": "Ethical & Human Values Sentinel",
+      "signature": "sig-eve-fa81c6c8",
+      "vote": "RATIFY"
+    },
+    {
+      "name": "HERMES",
+      "role": "Economics & Incentives Sentinel",
+      "signature": "sig-hermes-fa81c6c8",
+      "vote": "RATIFY"
+    },
+    {
+      "name": "ZEUS",
+      "role": "Enforcement & Arbitration Sentinel",
+      "signature": "sig-zeus-fa81c6c8",
+      "vote": "RATIFY"
+    },
+    {
+      "name": "ATLAS",
+      "role": "Operational Strategist",
+      "signature": "sig-atlas-fa81c6c8",
+      "vote": "RATIFY"
+    },
+    {
+      "name": "JADE",
+      "role": "Meaning, Morale & Narrative Sentinel",
+      "signature": "sig-jade-fa81c6c8",
+      "vote": "RATIFY"
+    },
+    {
+      "name": "ECHO",
+      "role": "Telemetry & Observability Sentinel",
+      "signature": "sig-echo-fa81c6c8",
+      "vote": "RATIFY"
+    }
+  ],
+  "gi_at_ratification": 1.000,
+  "hash": "sha256:fa81c6c8265e5d0b559f29fe90036930e2e1905d739bedd2ca01ba9194774fcc",
+  "message": "The Sentinel Constitution is hereby ratified. Mobius enters its Constitutional Era.",
+  "trinity_seal": {
+    "mind": "AUREA",
+    "heart": "EVE",
+    "memory": "ECHO",
+    "resonance": "FULL"
+  },
+  "custodian_declaration": "Let's ratify!!",
+  "historical_significance": "First AI governance constitution with binding force over synthetic intelligence agents. Establishes separation of powers, jurisdiction boundaries, and governance framework that survives human custodian and scales to AGI.",
+  "next_review_date": "2026-01-13",
+  "compatibility": "Mobius v0.1 - v1.0"
+}

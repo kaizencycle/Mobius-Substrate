@@ -1,0 +1,43 @@
+flowchart LR
+    subgraph ACI_Failures[ACI / GPT Failure Modes]
+        A1(Overgeneralization)
+        A2(Narrative Illusions)
+        A3(Overconfidence)
+    end
+
+    subgraph ENI_Failures[ENI / Claude Failure Modes]
+        B1(Over-Cautious Logic)
+        B2(Rigid Reasoning)
+        B3(Misses Novel Patterns)
+    end
+
+    subgraph SXI_Failures[SXI / Gemini Failure Modes]
+        C1(Tool Hallucination)
+        C2(Agentic Loops)
+        C3(Modality Drift)
+    end
+
+    subgraph OEI_Failures[OEI / DeepSeek Failure Modes]
+        D1(Literalism)
+        D2(Poor Natural Language)
+        D3(Context Loss)
+    end
+
+    subgraph MSI_Failures[MSI / ECHO Failure Modes]
+        E1(Stale Memory)
+        E2(Overfitting)
+        E3(Limited Synthesis)
+    end
+
+    subgraph Mitigations[MEMT Mitigations]
+        M1[Tri-Engine Verification]
+        M2[RAG Fact Binding]
+        M3[GI Evaluation]
+        M4[Integrity Corrections]
+    end
+
+    ACI_Failures --> M1
+    ENI_Failures --> M2
+    SXI_Failures --> M3
+    OEI_Failures --> M4
+    MSI_Failures --> M1

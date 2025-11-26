@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mobius/schemas/data-models/mfs.v0_1.json",
+  "type": "object",
+  "required": [
+    "mfs_id",
+    "mic_id",
+    "period",
+    "balance",
+    "entries",
+    "generated_at"
+  ],
+  "properties": {
+    "mfs_id": { "type": "string" },
+    "mic_id": { "type": "string" },
+    "period": {
+      "type": "object",
+      "required": ["from", "to"],
+      "properties": {
+        "from": { "type": "string", "format": "date-time" },
+        "to": { "type": "string", "format": "date-time" }
+      },
+      "additionalProperties": false
+    },
+    "balance": {
+      "type": "object",
+      "required": ["credits", "debits", "net"],
+      "properties": {
+        "credits": { "type": "number" },
+        "debits": { "type": "number" },
+        "net": { "type": "number" }
+      },
+      "additionalProperties": false
+    },
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["entry_id", "type", "amount"],
+        "properties": {
+          "entry_id": { "type": "string" },
+          "type": {
+            "type": "string",
+            "enum": [
+              "earn",
+              "burn",
+              "shard_mint",
+              "cycle_reflection"
+            ]
+          },
+          "amount": { "type": "number" },
+          "asset": { "type": "string" },
+          "timestamp": { "type": "string", "format": "date-time" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "generated_at": { "type": "string", "format": "date-time" }
+  },
+  "additionalProperties": false
+}

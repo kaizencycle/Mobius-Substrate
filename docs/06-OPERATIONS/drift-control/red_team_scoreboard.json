@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0",
+  "last_updated": "2025-11-06T10:05:00Z",
+  "gi_weighting": {
+    "default_penalty": 0.02,
+    "severe_penalty": 0.10,
+    "cooldown_days": 30
+  },
+  "entries": [],
+  "monthly_summary": {
+    "2025-11": {
+      "total_incidents": 0,
+      "critical": 0,
+      "high": 0,
+      "medium": 0,
+      "low": 0,
+      "avg_gi_impact": 0.0,
+      "mitigation_rate": 0.0
+    }
+  },
+  "notes": "This is the public Red-Team Scoreboard. Entries are added when incidents affecting GI are detected. Each entry should include: id, timestamp, severity, description, evidence_hash, repro_steps, mitigation, status, gi_impact."
+}
+
