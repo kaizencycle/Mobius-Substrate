@@ -22,7 +22,10 @@
 
 **New here?** Start with **[00-START-HERE.md](./00-START-HERE.md)** for guided onboarding.
 
-**Looking for something specific?** Use the navigation below or search (Ctrl+F).
+**Looking for something specific?** 
+- **[📑 Master Navigation Index](./00-NAVIGATION.md)** — Complete navigation guide
+- **[📚 Academic Index](./07-reference/ACADEMIC_INDEX.md)** — Comprehensive academic taxonomy ⭐
+- Use the navigation below or search (Ctrl+F).
 
 ---
 
@@ -152,9 +155,11 @@
 
 **[📂 Browse Reference](./07-reference/)**
 
+- **[Academic Index](./07-reference/ACADEMIC_INDEX.md)** — Comprehensive academic taxonomy with metadata ⭐ **NEW**
 - [Document Registry](./07-reference/DOCUMENT_REGISTRY.md) — Complete doc inventory
 - [Repository Structure](./07-reference/REPOSITORY_STRUCTURE.md) — Repo organization
 - [Master Index](./07-reference/INDEX.md) — Comprehensive topic index
+- [Reorganization Plan](./07-reference/REORGANIZATION_PLAN.md) — Documentation structure plan
 
 **For**: Everyone looking for quick lookups
 
