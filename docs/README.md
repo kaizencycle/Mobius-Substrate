@@ -4,6 +4,20 @@
 
 ---
 
+## 🎓 Academic Index
+
+**For academic citation and research purposes**, see the **[Academic Documentation Index](./00-ACADEMIC-INDEX.md)** which provides:
+
+- **298+ documents** cataloged with unique identifiers (MS-DOC-XXX)
+- **Academic Rigor (AR) Levels** 1-5 classification
+- **Citation standards** and cross-reference matrix
+- **Metadata extraction** with keywords, categories, and abstracts
+- **Searchable index** by category, keyword, and AR level
+
+📖 **[View Academic Index →](./00-ACADEMIC-INDEX.md)** | **[Reorganization Plan →](./00-REORGANIZATION-PLAN.md)**
+
+---
+
 ## 🚀 Quick Start
 
 **New here?** Start with **[00-START-HERE.md](./00-START-HERE.md)** for guided onboarding.
