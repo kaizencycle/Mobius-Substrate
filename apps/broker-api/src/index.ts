@@ -36,6 +36,7 @@ import metricsRouter from './routes/metrics';
 import echoStatsRouter from './routes/echoStats';
 import humanReviewRouter from './routes/humanReview';
 import echoRouter from './routes/v1/echo';
+import rewardsRouter from './routes/rewards';
 
 const app = express();
 const PORT = process.env.PORT || 4005;
@@ -50,6 +51,7 @@ app.use(express.json());
 
 // Production API routes (authenticated)
 app.use('/v1/deliberate', authenticateAPIKey, deliberationRateLimit, deliberateRouter);
+app.use('/v1/rewards', authenticateAPIKey, rewardsRouter);
 app.use('/v1/health', healthRouter);
 app.use('/v1/metrics', metricsRouter);
 app.use('/v1/echo', echoRouter);

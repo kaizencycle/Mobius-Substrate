@@ -1,0 +1,33 @@
+{
+  "name": "@mobius/tokenomics-engine",
+  "version": "0.1.0",
+  "description": "Integrity-anchored MIC reward engine with cron payout loop",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "tsc -w -p tsconfig.json",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "keywords": [
+    "mobius",
+    "mic",
+    "tokenomics",
+    "integrity",
+    "reward-engine"
+  ],
+  "author": "Kaizen Cycle",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^22.5.1",
+    "typescript": "^5.5.4",
+    "vitest": "^2.1.1"
+  }
+}
