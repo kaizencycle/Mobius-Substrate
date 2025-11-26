@@ -11,6 +11,7 @@ import {
 } from "../../services/echo/cache";
 import { runEchoReview } from "../../services/echo/reviewEngine";
 import { canonicalizeKey } from "../../utils/textCanonicalization";
+import { validateAdminKey } from "../../middleware/auth";
 
 export const echoRouter = Router();
 
@@ -173,8 +174,7 @@ echoRouter.post("/validate", async (req, res, next) => {
     const { limit = 100 } = req.body;
     
     // Admin only - requires special key
-    const apiKey = req.headers["x-admin-key"] as string;
-    if (apiKey !== process.env.ECHO_ADMIN_KEY) {
+    if (!validateAdminKey(req)) {
       return res.status(403).json({ error: "Admin access required" });
     }
 

@@ -1,25 +1,35 @@
-import { rateLimit } from 'express-rate-limit';
-import { Request, Response, NextFunction } from 'express';
+// apps/broker-api/src/middleware/auth.ts
+// Authentication middleware and utilities
 
-export function authenticateAPIKey(req: Request, res: Response, next: NextFunction) {
-  const key = req.headers['x-api-key'] as string;
-  if (!key) {
-    return res.status(401).json({ error: 'API key required' });
+import { Request, Response, NextFunction } from "express";
+
+/**
+ * Validates admin API key from request headers
+ * Returns true if valid, false otherwise
+ * 
+ * Security: Explicitly checks that both the header and environment variable
+ * are defined and match. Prevents undefined === undefined bypass.
+ */
+export function validateAdminKey(req: Request): boolean {
+  const apiKey = req.headers["x-admin-key"] as string | undefined;
+  const expectedKey = process.env.ECHO_ADMIN_KEY;
+  
+  // Explicitly validate both values exist and match
+  if (!expectedKey || !apiKey || apiKey !== expectedKey) {
+    return false;
   }
-
-  const validKeys = process.env.VALID_API_KEYS?.split(',') || [];
-  if (!validKeys.includes(key)) {
-    return res.status(403).json({ error: 'Invalid API key' });
-  }
-
-  next();
+  
+  return true;
 }
 
-export const deliberationRateLimit = rateLimit({
-  windowMs: 60_000,
-  max: 10,
-  message: 'Rate limit exceeded',
-  standardHeaders: true,
-  legacyHeaders: false,
-  keyGenerator: (req) => (req.headers['x-api-key'] as string) || req.ip || 'unknown'
-});
+/**
+ * Express middleware to require admin authentication
+ * Returns 403 if authentication fails
+ */
+export function requireAdminAuth(req: Request, res: Response, next: NextFunction): void {
+  if (!validateAdminKey(req)) {
+    res.status(403).json({ error: "Admin access required" });
+    return;
+  }
+  next();
+}
