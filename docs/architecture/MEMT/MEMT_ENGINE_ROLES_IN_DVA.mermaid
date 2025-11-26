@@ -1,0 +1,21 @@
+flowchart TD
+    DVA[DVA Architecture]
+
+    DVA --> LITE[DVA.LITE<br/>Monitoring Tier<br/>GI Threshold: 0.90]
+    DVA --> ONE[DVA.ONE<br/>Personal Agent Tier<br/>GI Threshold: 0.93]
+    DVA --> FULL[DVA.FULL<br/>Multi-Agent Orchestration<br/>GI Threshold: 0.95]
+    DVA --> HIVE[DVA.HIVE<br/>Global Civic Network<br/>GI Threshold: 0.98]
+
+    LITE --> LITE_OEI(OEI: DeepSeek Optimization)
+    LITE --> LITE_MSI(MSI: ECHO Memory Layer)
+
+    ONE --> ONE_ACI(ACI: GPT Architecture)
+    ONE --> ONE_ENI(ENI: Claude Engineering)
+
+    FULL --> FULL_ACI(ACI: GPT)
+    FULL --> FULL_ENI(ENI: Claude)
+    FULL --> FULL_SXI(SXI: Gemini)
+    FULL --> FULL_OEI(OEI: DeepSeek)
+    FULL --> FULL_MSI(MSI: ECHO)
+
+    HIVE --> HIVE_ALL[All Engines +<br/>Cross-Model Consensus +<br/>Human-in-Loop for Critical]

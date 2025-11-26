@@ -2,6 +2,8 @@
 
 Mobius Broker operates as a constitutional router that can evaluate a prompt across several engines (Gemini Antigravity, OpenAI, Claude, DeepSeek, and local Sentinels) while preserving the AI→AI break by routing all final decisions through Sentinel consensus and the Civic Ledger.
 
+> **See Also:** For the comprehensive Multi-Engine Model Taxonomy (MEMT) that classifies engines by cognitive specialization and provides intelligent routing, see [MEMT Documentation](./MEMT/MEMT_WHITEPAPER.md).
+
 ## Routing Modes
 
 | Mode | Description |
@@ -32,3 +34,29 @@ Each engine has a typed configuration (`EngineConfig`) that captures `id`, `base
 - Every deliberation produces a Civic Ledger attestation to maintain an auditable chain of custody.
 - Remote consensus failures fall back to local Sentinels only if `requiredSentinels` are provided, preventing silent degradation.
 - External traces are emitted per engine (`provider`, `riskFlags`, latency) to support retrospective investigations.
+
+## MEMT Integration
+
+The broker now supports MEMT (Multi-Engine Model Taxonomy) routing via `/v1/memt/deliberate`. MEMT provides:
+
+- **Task Classification**: Automatically classify tasks as ARCHITECTURE, ENGINEERING, FRONTEND, MATH_OPTIMIZATION, MEMORY_RECALL, CIVIC_POLICY, CRITICAL_DECISION, or GENERAL
+- **Cognitive Routing**: Route tasks to the most appropriate engines based on their cognitive specialization:
+  - **ACI (GPT)**: Architect-Class Intelligence for planning and synthesis
+  - **ENI (Claude)**: Engineer-Class Intelligence for code and verification
+  - **SXI (Gemini)**: Software Operator Intelligence for UI and tools
+  - **OEI (DeepSeek)**: Optimization Engine Intelligence for math and performance
+  - **MSI (ECHO)**: Memory-State Intelligence for caching and recall
+- **DVA Tier Support**: Automatic tier inference (LITE, ONE, FULL, HIVE) based on task risk and kind
+- **Dynamic GI Thresholds**: Risk-based GI thresholds from 0.90 (LOW) to 0.98 (CRITICAL)
+
+### MEMT Endpoints
+
+| Endpoint | Description |
+|----------|-------------|
+| `POST /v1/memt/deliberate` | MEMT-routed deliberation with intelligent engine selection |
+| `POST /v1/memt/classify` | Classify a prompt without executing |
+| `GET /v1/memt/engines` | List all engine profiles with MAQ scores |
+| `GET /v1/memt/engine/:id` | Get specific engine capabilities |
+| `GET /v1/memt/health` | MEMT routing health status |
+
+See [MEMT Whitepaper](./MEMT/MEMT_WHITEPAPER.md) for full documentation.

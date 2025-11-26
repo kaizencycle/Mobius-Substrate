@@ -33,6 +33,7 @@ import {
   getTrialStatusHandler,
 } from './routes/trialManagement';
 import { createPublishRouter } from './routes/publish';
+import memtRouter from './routes/memt';
 
 // Load environment
 dotenv.config();
@@ -159,6 +160,11 @@ app.get('/v1/deliberation/:id', (req: Request, res: Response) => {
   };
   res.json(response);
 });
+
+// ============================================================================
+// MEMT ROUTING (Multi-Engine Model Taxonomy)
+// ============================================================================
+app.use('/v1/memt', memtRouter);
 
 // ============================================================================
 // INTEGRITY TIER PUBLISHING
@@ -294,6 +300,13 @@ Endpoints:
   GET  /v1/deliberation/:id
   GET  /v1/deliberations
   POST /v1/grade
+
+MEMT Endpoints:
+  POST /v1/memt/deliberate   — MEMT-routed deliberation
+  POST /v1/memt/classify     — Classify task without routing
+  GET  /v1/memt/engines      — List engine profiles
+  GET  /v1/memt/engine/:id   — Get engine profile
+  GET  /v1/memt/health       — MEMT health check
 
 "The Broker is not a service. The Broker is where the system thinks."
 
