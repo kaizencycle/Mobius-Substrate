@@ -1,0 +1,46 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "MIC Reward Result v2",
+  "type": "object",
+  "required": ["nodeId", "mic", "breakdown"],
+  "properties": {
+    "nodeId": {
+      "type": "string"
+    },
+    "mic": {
+      "type": "number",
+      "minimum": 0
+    },
+    "breakdown": {
+      "type": "object",
+      "required": [
+        "integrity",
+        "humanIntent",
+        "coordination",
+        "resilience",
+        "multipliers"
+      ],
+      "properties": {
+        "integrity": { "type": "number" },
+        "humanIntent": { "type": "number" },
+        "coordination": { "type": "number" },
+        "resilience": { "type": "number" },
+        "multipliers": {
+          "type": "object",
+          "required": [
+            "giMultiplier",
+            "consensusMultiplier",
+            "noveltyMultiplier",
+            "antiDriftMultiplier"
+          ],
+          "properties": {
+            "giMultiplier": { "type": "number" },
+            "consensusMultiplier": { "type": "number" },
+            "noveltyMultiplier": { "type": "number" },
+            "antiDriftMultiplier": { "type": "number" }
+          }
+        }
+      }
+    }
+  }
+}
