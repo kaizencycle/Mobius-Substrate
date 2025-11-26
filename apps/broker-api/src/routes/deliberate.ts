@@ -17,6 +17,8 @@ import { notifyWebhook } from '../services/webhook';
 import { evaluateWithIntegrityTier, IntegrityTierResponse } from '../services/integrityTierClient';
 import { INTEGRITY_TIER_ENABLED } from '../config';
 import { answerWithEcho } from '../services/answerWithEcho';
+import { tryReinforceWithEcho } from '../services/echo/reinforcementBridge';
+import type { EchoEntry } from '@mobius/echo-layer';
 
 const router = Router();
 const ROUTING_MODES: RoutingMode[] = ['local', 'antigravity-first', 'antigravity-only', 'multi-engine'];
@@ -95,6 +97,9 @@ router.post('/', async (req, res) => {
       requestedEngines,
       (req as any).id,
     );
+    if (result.status === 'blocked_low_integrity') {
+      return res.status(409).json(result);
+    }
     res.json(result);
   } catch (error) {
     res.status(500).json({ error: error instanceof Error ? error.message : 'Deliberation failed' });
@@ -274,6 +279,13 @@ async function orchestrateDeliberation(
     };
   }
 
+  let echoEntry: EchoEntry | null = null;
+  try {
+    echoEntry = tryReinforceWithEcho(body.prompt, engineResults);
+  } catch (error) {
+    console.warn('[BROKER] ECHO reinforcement failed (non-blocking):', error);
+  }
+
   const integrityAssessment = await runIntegrityAssessment({
     enabled: INTEGRITY_TIER_ENABLED,
     answer: decision.answer,
@@ -283,13 +295,7 @@ async function orchestrateDeliberation(
     requestId: requestId ?? deliberationId,
   });
 
-  if (integrityAssessment && integrityAssessment.giScore < 0.95) {
-    return res.status(409).json({
-      status: 'blocked_low_integrity',
-      reason: 'GI score below threshold',
-      assessment: integrityAssessment,
-    });
-  }
+  const blockedLowIntegrity = Boolean(integrityAssessment && integrityAssessment.giScore < 0.95);
 
   await emitLedgerAttestation({
     deliberationId,
@@ -304,18 +310,18 @@ async function orchestrateDeliberation(
       const { writeToEchoCache } = await import('../services/echo/cache');
       const { canonicalizeKey: getCanonicalKey } = await import('../utils/textCanonicalization');
       const { inferFreshnessTag } = await import('../config/integrityCache');
-      await storeEntry({
-        questionRaw: body.prompt,
-        answerText: decision.answer,
+      const cacheKey = getCanonicalKey(body.prompt);
+      const reinforcementDomain = body.metadata?.domain as string | undefined;
+      const freshnessTag = inferFreshnessTag(reinforcementDomain ?? 'general');
+      await writeToEchoCache(cacheKey, {
+        query: body.prompt,
+        answer: decision.answer,
         giScore: decision.giScore,
-        sources: [], // Extract from engineResults if available
-        sentinels: decision.responses || {},
-        ledgerTxId: null, // Extract from attestation if available
-        ledgerHash: null,
-        domain: body.metadata?.domain as string | undefined,
+        sources: [],
+        sentinels: decision.responses || [],
+        domain: reinforcementDomain,
         locale: body.metadata?.locale as string | undefined,
-        jurisdiction: body.metadata?.jurisdiction as string | undefined,
-        embedding: [], // Would need to compute embedding
+        freshnessTag,
       });
     } catch (error) {
       console.warn('[BROKER] Failed to cache deliberation result:', error);
@@ -323,12 +329,21 @@ async function orchestrateDeliberation(
     }
   }
 
-  const status = deriveStatus(decision);
+  const status = blockedLowIntegrity ? 'blocked_low_integrity' : deriveStatus(decision);
+  const sentinelSummary =
+    decision.responses && decision.responses.length > 0
+      ? decision.responses
+      : engineResults.map(engine => ({
+          sentinel: engine.engineId,
+          answer: engine.answer,
+          sources: extractEngineSources(engine),
+        }));
 
   return {
     status,
     decision: decision.decision,
     gi_score: decision.giScore,
+    finalAnswer: decision.answer,
     answer: decision.answer,
     deliberation_id: deliberationId,
     deliberationId,
@@ -338,6 +353,8 @@ async function orchestrateDeliberation(
     flags: decision.flags,
     consensus_source: decision.source,
     consensus_meta: decision.meta,
+    sentinels: sentinelSummary,
+    echo: echoEntry || undefined,
     provenance: integrityAssessment,
     duration_ms: Date.now() - startTime,
     remote_consensus: usedRemoteConsensus,
@@ -349,6 +366,24 @@ interface EngineInvocationOptions {
   prompt: string;
   allowedTools?: string[];
   safetyLevel?: SafetyLevel;
+}
+
+function extractEngineSources(engine: EngineResult): string[] | undefined {
+  const meta = engine.meta as Record<string, unknown> | undefined;
+  if (!meta) {
+    return undefined;
+  }
+
+  const candidate = (meta as Record<string, unknown>).sources;
+  if (!Array.isArray(candidate)) {
+    return undefined;
+  }
+
+  const normalized = candidate
+    .filter((item): item is string => typeof item === 'string' && item.trim().length > 0)
+    .map(item => item.trim());
+
+  return normalized.length > 0 ? normalized : undefined;
 }
 
 async function invokeEnginePlan(engineIds: EngineId[], opts: EngineInvocationOptions): Promise<EngineResult[]> {

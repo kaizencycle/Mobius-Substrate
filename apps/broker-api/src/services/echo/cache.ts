@@ -7,7 +7,8 @@ import {
   GI_BASELINE,
   inferFreshnessTag,
   computeValidUntil,
-  DEFAULT_LOCALE
+  DEFAULT_LOCALE,
+  FreshnessTag
 } from "../../config/integrityCache";
 import { canonicalizeKey, canonicalizeText } from "../../utils/textCanonicalization";
 
@@ -139,14 +140,14 @@ export async function writeToEchoCache(
     domain?: string;
     locale?: string;
     context?: any;
-    freshnessTag?: string;
+    freshnessTag?: FreshnessTag;
   }
 ): Promise<string> {
   try {
     const questionNorm = canonicalizeText(data.query);
     const embedding = await embedText(data.query);
     const domain = data.domain || "general";
-    const freshnessTag = data.freshnessTag || inferFreshnessTag(domain);
+    const freshnessTag: FreshnessTag = data.freshnessTag ?? inferFreshnessTag(domain);
     const validUntil = computeValidUntil(freshnessTag);
 
     // Convert embedding array to PostgreSQL vector format
