@@ -34,6 +34,7 @@ import {
 } from './routes/trialManagement';
 import { createPublishRouter } from './routes/publish';
 import memtRouter from './routes/memt';
+import encyclopediaRouter from './routes/encyclopedia';
 
 // Load environment
 dotenv.config();
@@ -165,6 +166,11 @@ app.get('/v1/deliberation/:id', (req: Request, res: Response) => {
 // MEMT ROUTING (Multi-Engine Model Taxonomy)
 // ============================================================================
 app.use('/v1/memt', memtRouter);
+
+// ============================================================================
+// ENCYCLOPEDIA ROUTES
+// ============================================================================
+app.use('/v1/encyclopedia', encyclopediaRouter);
 
 // ============================================================================
 // INTEGRITY TIER PUBLISHING
