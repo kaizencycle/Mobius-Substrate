@@ -6,7 +6,8 @@ const inferredBrokerHost = (() => {
     return 'localhost';
   }
 })();
-const brokerAllowedHosts = (process.env.BROKER_ALLOWED_HOSTS ?? inferredBrokerHost)
+const rawAllowedHosts = process.env.BROKER_ALLOWED_HOSTS ?? '';
+const brokerAllowedHosts = (rawAllowedHosts.trim() ? rawAllowedHosts : inferredBrokerHost)
   .split(',')
   .map((host) => host.trim())
   .filter(Boolean);
