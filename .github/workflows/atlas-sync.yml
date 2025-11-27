@@ -71,7 +71,7 @@ jobs:
           echo "  -d '{...}'"
 
       - name: Update cycle badge (on main push)
-        if: miithub.event_name == 'push' && github.ref == 'refs/heads/main'
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
           echo "Cycle C-125 confirmed via workflow"
           echo "GI baseline: 0.993"

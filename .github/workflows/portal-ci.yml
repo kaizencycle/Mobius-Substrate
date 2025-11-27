@@ -54,7 +54,7 @@ jobs:
           retention-days: 1
 
   deploy-preview:
-    if: miithub.event_name == 'pull_request'
+    if: github.event_name == 'pull_request'
     needs: build
     runs-on: ubuntu-latest
     defaults:

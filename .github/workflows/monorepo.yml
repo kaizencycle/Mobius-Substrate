@@ -37,7 +37,7 @@ jobs:
         run: npx turbo run test --filter=...[origin/main]
 
       - name: Security scan
-        run: npx turbo run security --filter=...[origin/main]
+        run: npm audit --audit-level=high
         continue-on-error: true  # Report but don't block (can be made blocking later)
 
       - name: Integrity gates
@@ -56,7 +56,7 @@ jobs:
 
   deploy:
     needs: ci
-    if: miithub.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

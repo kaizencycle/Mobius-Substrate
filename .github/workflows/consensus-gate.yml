@@ -43,7 +43,7 @@ jobs:
           VOTE_KEY_ATLAS: ${{ secrets.VOTE_KEY_ATLAS }}
           VOTE_KEY_ECHO:  ${{ secrets.VOTE_KEY_ECHO }}
           VOTE_KEY_URIEL: ${{ secrets.VOTE_KEY_URIEL }}
-          VOTE_KEY_ZENITH:${{ secrets.VOTE_KEY_ZENITH }}
+          VOTE_KEY_ZENITH: ${{ secrets.VOTE_KEY_ZENITH }}
         run: |
           echo "$BODY" | grep -qi '^/vote' || exit 0
           AGENT=$(echo "$BODY" | awk -F'agent:' 'NF>1{print $2}' | awk '{print $1}' | tr -d '\r')

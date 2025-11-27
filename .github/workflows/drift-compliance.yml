@@ -28,7 +28,7 @@ jobs:
           echo "All test vectors validated against GI thresholds"
 
       - name: Comment on PR (if applicable)
-        if: miithub.event_name == 'pull_request'
+        if: github.event_name == 'pull_request'
         uses: actions/github-script@v7
         with:
           script: |
