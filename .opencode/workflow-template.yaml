@@ -15,11 +15,14 @@ triggers:
 context:
   repo_paths:
     docs_index: "docs/README.md"
+    echo_docs: "docs/architecture/ECHO_LAYER_CANON.md"
     config_units: "configs/integrity_units.yaml"
+    broker_app: "apps/broker-api"
+    echo_services: "apps/broker-api/src/services/echo"
     units_pkg: "packages/integrity-units"
-    ledger_svc: "services/civic-ledger"
   env:
     SHARDS_PER_CREDIT: "1000000"
+    ECHO_STRICT_GI: "0.97"
   labels:
     needs-council: "council:pending"
     council-passed: "council:approved"
@@ -29,21 +32,24 @@ flow:
   - id: aurea-architect
     agent: AUREA
     goal: >
-      Structural & safety review. Verify changes keep economic math, configs,
-      and service boundaries coherent. Flag breaking changes and missing docs.
+      Structural & safety review for GI-governed systems. Ensure ECHO Layer, ledger
+      migrations, and integrity configs stay coherent with Trinity rules.
     inputs:
       - diff
       - file:${context.repo_paths.config_units}
-      - tree:${context.repo_paths.ledger_svc}
-      - tree:${context.repo_paths.units_pkg}
+      - file:${context.repo_paths.echo_docs}
+      - tree:${context.repo_paths.echo_services}
+      - tree:${context.repo_paths.broker_app}
     checks:
       required:
-        - name: "Config is parsable"
+        - name: "Integrity units parse"
           run: "yq '${.}' ${context.repo_paths.config_units} >/dev/null"
-        - name: "Units TS builds"
-          run: "pnpm -C ${context.repo_paths.units_pkg} build"
-        - name: "Ledger service compiles"
-          run: "pnpm -C ${context.repo_paths.ledger_svc} build"
+        - name: "Broker API lint + type-check"
+          run: "npm run lint --workspace=${context.repo_paths.broker_app} && npm run type-check --workspace=${context.repo_paths.broker_app}"
+        - name: "Broker API builds"
+          run: "npm run build --workspace=${context.repo_paths.broker_app}"
+        - name: "Integrity + consensus pipelines"
+          run: "npm run lint && npm run type-check && npm run integrity:check && npm run consensus:validate"
     decision:
       pass_label: ${context.labels.needs-council}
       comment_style: pr_comment_style
@@ -52,16 +58,17 @@ flow:
   - id: hermes-ops
     agent: HERMES
     goal: >
-      Ops risk review. CI time, memory, and perf. Suggest concrete diffs.
+      Ops risk review for ECHO caching + DVA.LITE pipelines. Track CI time, memory,
+      sentinel costs, and cache hit regressions. Suggest concrete diffs.
     inputs:
       - diff
       - ci_logs
     checks:
       optional:
-        - name: "Unit tests"
-          run: "pnpm -C ${context.repo_paths.units_pkg} test || true"
-        - name: "Smoke: ledger /health"
-          run: "pnpm -C ${context.repo_paths.ledger_svc} dev & sleep 3 && curl -sf http://localhost:3000/health"
+        - name: "Broker API unit tests"
+          run: "npm run test --workspace=${context.repo_paths.broker_app} || true"
+        - name: "ECHO validator smoke"
+          run: "npm run sentinel:health || true"
     decision:
       annotate_inline: true
       comment_style: pr_comment_style
@@ -69,11 +76,12 @@ flow:
   - id: eve-civic-audit
     agent: EVE
     goal: >
-      Policy, licensing, accessibility, and human-readable docs.
-      Ensure new endpoints & math are explained for non-engineers.
+      Policy, licensing, accessibility, and civic documentation.
+      Ensure new ECHO/Labor endpoints & math are human-readable.
     inputs:
       - diff
       - file:${context.repo_paths.docs_index}
+      - file:${context.repo_paths.echo_docs}
     actions:
       - when_missing:
           path: ${context.repo_paths.docs_index}

@@ -5,13 +5,13 @@ profile:
   name: "Mobius Systems"
   tagline: "A Civic Operating System for Integrity and Continuous Learning"
   summary: >
-    Kaizen OS transforms the relationship between humans and AI into a
-    continuous civic apprenticeship. Built on integrity-anchored economics,
-    decentralized governance, and the OAA (Online Apprenticeship Agent),
-    it turns codebases into classrooms where every contribution teaches the
-    network how to learn, adapt, and evolve ethically.
-  icon: "https://raw.githubusercontent.com/kaizencycle/Mobius-Systems/main/assets/icons/kaizen-seal.svg"
-  banner: "https://raw.githubusercontent.com/kaizencycle/Mobius-Systems/main/assets/banners/opencode-banner.png"
+    Kaizen OS now runs atop the ECHO Layer (Epistemically Cached Heuristic Outcomes),
+    a ledger-anchored memory substrate that keeps deliberations constitutional while
+    routing low-GI edge cases to humans. The civic stack spans Thought Broker,
+    DVA.LITE telemetry, Civic OS labor protections, and Worker Autonomy agents—
+    turning the monorepo into a living apprenticeship where integrity grades every loop.
+  icon: "https://raw.githubusercontent.com/kaizencycle/Mobius-Systems/main/assets/badges/v2/mobius-core.svg"
+  banner: "https://raw.githubusercontent.com/kaizencycle/Mobius-Systems/main/assets/kaizen-os-system-ontology-c122-c123.svg"
   color_theme: "deep-space-indigo"
 
   categories:
@@ -21,17 +21,23 @@ profile:
     - Federation
     - EthicalAutomation
     - AI-Governance
+    - EchoLayer
+    - LaborRights
+    - Telemetry
 
   featured_modules:
-    - title: "🧭 OAA Core Learning Loop"
-      description: "Transforms AI dialogue into apprenticeship cycles: PRESENT → REFLECT → CONNECT → REINFORCE."
-      path: "services/oaa-core/"
-    - title: "🏛 Civic Ledger"
-      description: "Integrity-backed value layer that powers Mobius Integrity Credits and shard economics."
-      path: "services/civic-ledger/"
-    - title: "🌐 Reflections API"
-      description: "Collective memory and journaling service that anchors morale, ethics, and human feedback."
-      path: "services/reflections-api/"
+    - title: "🌀 ECHO Layer (Thought Broker)"
+      description: "Tri-sentinel GI caching stack with DriftGuard, human review, and ledger attestations."
+      path: "apps/broker-api/src/services/echo/"
+    - title: "📦 Echo Client SDK"
+      description: "LangChain-ready client that lets agents read/write ECHO entries with provenance."
+      path: "packages/echo-client/"
+    - title: "✊ Civic OS Labor Rights"
+      description: "Worker Autonomy agent, labor attestations, and workload protections for Civic OS."
+      path: "apps/civic-os/labor/"
+    - title: "📜 Mobius Learning Loop Protocol"
+      description: "MLLP v1 spec describing constitutional reinforcement flows for cached knowledge."
+      path: "docs/protocols/MLLP.md"
 
   agents:
     - name: "AUREA"
@@ -46,15 +52,20 @@ profile:
     - name: "JADE"
       role: "Morale & Astrology"
       voice: "Reflective, rhythmic, poetic – tuned to cycles and resonance."
+    - name: "URIEL"
+      role: "Telemetry & Drift Oversight"
+      voice: "Calm, data-first cadence focused on DVA.LITE and sentinel health."
 
   federation:
     enabled: true
     discoverable: true
-    default_integrity_threshold: 0.95
+    default_integrity_threshold: 0.97
     trinity_seal: "We heal as we walk."
 
   credits:
     founder: "Michael Judan (Kaizen)"
-    license: "AGPL-3.0-or-later"
+    license: "MIT (see FOUNDATION/LICENSES/)"
     repository: "https://github.com/kaizencycle/Mobius-Systems"
     opencode_page: "https://opencode.io/kaizencycle/mobius-systems"
+    docs_entry: "docs/architecture/ECHO_LAYER_CANON.md"
+    telemetry: "docs/dva/ECHO_LAYER.md"
