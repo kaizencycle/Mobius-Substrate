@@ -1,87 +1,90 @@
-# 📖 Guides — User & Developer Documentation
+# Guides & How-Tos
 
-Practical guides for deploying, developing, and operating Mobius Systems.
+This is the **practical handbook** section.
 
-## 🚀 Getting Started
+If you want to **do something** with Mobius today, start here.
 
-### Quickstart
-- **[START HERE](./quickstart/START_HERE.md)** ⭐ NEW USER ONBOARDING
-  Your first steps with Mobius Systems
+---
 
-## 📦 Deployment Guides
+## Contents
 
-Learn how to deploy Mobius Systems in various environments:
+Organized by the directories that actually live inside `docs/04-guides/`:
 
-- **[Deployment Guide](./deployment/DEPLOYMENT_GUIDE.md)**
-  General deployment instructions and best practices
+### `quickstart/`
+**For everyone — get started in minutes**
+- `START_HERE.md` — Orientation, tooling, and local runbook
+- `HELLO_WORLD.md` — Your first Mobius program end‑to‑end
 
-- **[Vercel Deployment](./deployment/VERCEL_DEPLOYMENT_GUIDE.md)**
-  Deploy Mobius apps to Vercel platform
+### `deployment/`
+**For platform custodians shipping Mobius**
+- `DEPLOYMENT_GUIDE.md` — Baseline deployment steps and checklists
+- `VERCEL_DEPLOYMENT_GUIDE.md` — Deploying UI workloads to Vercel
+- `CIVIC_MOUNT_INTEGRATION.md` — Wiring into Civic Mount infrastructure
 
-- **[Civic Mount Integration](./deployment/CIVIC_MOUNT_INTEGRATION.md)**
-  Integrating with Civic Mount infrastructure
+### `development/`
+**For engineers contributing code**
+- `FRONTEND_DEVELOPMENT.md` — UI environment and workflows
+- `API_INTEGRATION.md` — Calling Mobius services safely
+- `cursor-integration.md` — Using Cursor with Mobius projects
+- `MKDOCS_GUIDE.md` — How we build and preview docs
+- `MKDOCS_IMPLEMENTATION.md` — MkDocs deep dive for maintainers
 
-## 💻 Development Guides
+### `operations/`
+**For DevOps/SRE teams keeping Mobius healthy**
+- `CUSTODIAN_GUIDE.md` — Day‑to‑day service operations
+- `RECOVERY_PLAYBOOK.md` — Disaster recovery and restoration plan
+- `FORKING_GUIDE.md` — Policy + steps for controlled network forks
 
-For contributors and developers:
+---
 
-- **[Frontend Development](./development/FRONTEND_DEVELOPMENT.md)**
-  Building Mobius UI components and applications
+## Quick Reference by Task
 
-- **[API Integration](./development/API_INTEGRATION.md)**
-  Connecting to Mobius APIs
+**I want to…**
 
-- **[Cursor Integration](./development/cursor-integration.md)**
-  Using Cursor AI editor with Mobius development
+- **Run Mobius locally** → [`quickstart/START_HERE.md`](./quickstart/START_HERE.md)
+- **Ship a deployment** → [`deployment/DEPLOYMENT_GUIDE.md`](./deployment/DEPLOYMENT_GUIDE.md)
+- **Publish to Vercel** → [`deployment/VERCEL_DEPLOYMENT_GUIDE.md`](./deployment/VERCEL_DEPLOYMENT_GUIDE.md)
+- **Integrate with APIs** → [`development/API_INTEGRATION.md`](./development/API_INTEGRATION.md)
+- **Use Cursor effectively** → [`development/cursor-integration.md`](./development/cursor-integration.md)
+- **Operate production** → [`operations/CUSTODIAN_GUIDE.md`](./operations/CUSTODIAN_GUIDE.md)
+- **Recover from incidents** → [`operations/RECOVERY_PLAYBOOK.md`](./operations/RECOVERY_PLAYBOOK.md)
 
-- **[MkDocs Guide](./development/MKDOCS_GUIDE.md)**
-  Documentation workflow with MkDocs
+---
 
-- **[MkDocs Implementation](./development/MKDOCS_IMPLEMENTATION.md)**
-  Technical implementation details
+## Guide Principles
 
-## ⚙️ Operations Guides
+All guides follow these standards:
 
-For system operators and custodians:
+1. **Action-Oriented** — Clear steps, not just theory
+2. **Copy-Pasteable** — Code examples that actually work
+3. **Prerequisites Listed** — Know what you need upfront
+4. **Expected Outcomes** — Know what success looks like
+5. **Troubleshooting** — Common problems and solutions
+6. **Further Reading** — Links to deeper documentation
 
-- **[Custodian Guide](./operations/CUSTODIAN_GUIDE.md)**
-  Running and maintaining Mobius infrastructure
+---
 
-- **[Recovery Playbook](./operations/RECOVERY_PLAYBOOK.md)**
-  Disaster recovery and system restoration procedures
+## Contributing New Guides
 
-- **[Forking Guide](./operations/FORKING_GUIDE.md)**
-  How to fork Mobius Systems for your own use
+We welcome new guides! If you've solved a problem or built something useful:
 
-## 🎯 Guide Categories
+1. Write a guide following the principles above
+2. Place it in the appropriate folder (`quickstart/`, `deployment/`, `development/`, or `operations/`)
+3. Add it to this README
+4. Submit a PR with `[C-XXX]` cycle tag
+5. Earn MIC for your contribution!
 
-### For New Users
-1. Read [START HERE](./quickstart/START_HERE.md)
-2. Review [Architecture Overview](../03-architecture/)
-3. Try a [Deployment Guide](./deployment/)
+See [`developers/contributing.md`](./developers/contributing.md) for details.
 
-### For Developers
-1. Set up development environment
-2. Read [API Integration](./development/API_INTEGRATION.md)
-3. Review [Frontend Development](./development/FRONTEND_DEVELOPMENT.md)
+---
 
-### For Operators
-1. Read [Custodian Guide](./operations/CUSTODIAN_GUIDE.md)
-2. Set up monitoring (see [../08-processes/](../08-processes/))
-3. Keep [Recovery Playbook](./operations/RECOVERY_PLAYBOOK.md) accessible
+## Relationship to Other Sections
 
-## 🔗 Related Documentation
+- See [`02-architecture/`](../02-architecture/README.md) for understanding system design
+- See [`03-specifications/`](../03-specifications/README.md) for exact technical details
+- See [`06-OPERATIONS/`](../06-OPERATIONS/README.md) for production operations
 
-- [Architecture](../03-architecture/) - System design
-- [Specifications](../06-specifications/) - Technical specs
-- [Processes](../08-processes/) - Operational procedures
+---
 
-## 📝 Contributing Guides
-
-Want to add a guide? See [CONTRIBUTING.md](../../CONTRIBUTING.md)
-
-All guides should:
-- Have clear objectives
-- Include step-by-step instructions
-- Provide troubleshooting tips
-- Link to related documentation
+*Cycle C-147 • 2025-11-27*  
+*"We heal as we walk."*
