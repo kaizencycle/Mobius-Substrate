@@ -35,6 +35,7 @@ import { healthRouter } from './routes/health';
 import metricsRouter from './routes/metrics';
 import humanReviewRouter from './routes/humanReview';
 import echoRouter from './routes/v1/echo';
+import dailyReflectionsRouter from './routes/v1/dailyReflections';
 import rewardsRouter from './routes/rewards';
 
 const app = express();
@@ -55,6 +56,7 @@ app.use('/v1/health', healthRouter);
 app.use('/v1/metrics', metricsRouter);
 app.use('/v1/echo', echoRouter);
 app.use('/v1/echo/review', humanReviewRouter);
+app.use('/', dailyReflectionsRouter); // Mounts at /v1/reflections/daily
 
 // Sentinel routes
 app.use('/api/sentinels/uriel', urielRouter);
