@@ -117,7 +117,7 @@ services:
     env: node
     rootDir: .
     buildCommand: npm ci && npx turbo run build --filter=broker-api
-    startCommand: cd apps/broker-api && npm start
+    startCommand: node apps/broker-api/dist/server.js
     healthCheckPath: /v1/loop/health
     envVars:
       - key: NODE_ENV
