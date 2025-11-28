@@ -17,6 +17,7 @@ Research documentation (to be populated in Phase 2):
 
 ### `papers/`
 **Published and in-progress research papers**
+- `macro_civic_ml_mobius.md` — Macro-Scale Machine Learning architecture paper (C-147)
 - `ida-framework.md` — Integrity-Driven Architecture
 - `masl-protocol.md` — Model-Agnostic Sovereignty Layer
 - `deliberation-proof.md` — Cryptographic consensus protocol
