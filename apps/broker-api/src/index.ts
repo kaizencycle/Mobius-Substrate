@@ -31,9 +31,8 @@ import { initDB } from './db/client';
 import { initCrypto } from './crypto/attestation';
 import { authenticateAPIKey, deliberationRateLimit } from './middleware/auth';
 import deliberateRouter from './routes/deliberate';
-import healthRouter from './routes/health';
+import { healthRouter } from './routes/health';
 import metricsRouter from './routes/metrics';
-import echoStatsRouter from './routes/echoStats';
 import humanReviewRouter from './routes/humanReview';
 import echoRouter from './routes/v1/echo';
 import rewardsRouter from './routes/rewards';
@@ -55,7 +54,6 @@ app.use('/v1/rewards', authenticateAPIKey, rewardsRouter);
 app.use('/v1/health', healthRouter);
 app.use('/v1/metrics', metricsRouter);
 app.use('/v1/echo', echoRouter);
-app.use('/v1/echo/stats', echoStatsRouter);
 app.use('/v1/echo/review', humanReviewRouter);
 
 // Sentinel routes
