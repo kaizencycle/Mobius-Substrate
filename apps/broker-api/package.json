@@ -4,7 +4,7 @@
   "description": "Thought Broker - Multi-LLM consensus engine for Mobius Systems",
   "main": "dist/server.js",
   "scripts": {
-    "build": "tsc",
+    "build": "node ../../scripts/build-broker-deps.js && tsc",
     "dev": "tsc --watch && node dist/server.js",
     "start": "node dist/server.js",
     "clean": "rm -rf dist",
