@@ -45,21 +45,34 @@ const app = express();
 const PORT = Number(process.env.PORT ?? '4005');
 const WS_PORT = Number(process.env.WS_PORT ?? '4006');
 
-// Middleware
-app.use(helmet({
-  contentSecurityPolicy: false, // Allow Swagger UI to load
-}));
+// Middleware - Apply helmet with default CSP for all routes
+app.use(helmet());
 app.use(cors());
 app.use(express.json());
 
-// Swagger UI
+// Swagger UI - Apply relaxed CSP only for documentation routes
 try {
   const swaggerDocument = YAML.load(path.join(__dirname, '../openapi.yaml'));
+  
+  // Apply relaxed CSP middleware only for Swagger UI routes
+  app.use('/api-docs', helmet({
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        styleSrc: ["'self'", "'unsafe-inline'"],
+        scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'"],
+        imgSrc: ["'self'", "data:", "https:"],
+        fontSrc: ["'self'", "data:"],
+      },
+    },
+  }));
+  
   app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, {
     customCss: '.swagger-ui .topbar { display: none }',
     customSiteTitle: 'Thought Broker API Documentation',
     customfavIcon: '/favicon.ico',
   }));
+  
   console.log('📚 Swagger UI available at /api-docs');
 } catch (error) {
   console.warn('⚠️  Swagger UI setup failed:', error);
