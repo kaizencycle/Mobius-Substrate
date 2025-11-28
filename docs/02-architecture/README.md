@@ -40,6 +40,12 @@ Recommended structure (to be populated in Phase 2):
 - `ubi-mechanics.md` — Universal basic income via integrity
 - `mic-minting-rules.md` — When and how MIC is created
 
+### `applications/`
+- `README.md` — Overview of Mobius applications across scales
+- `global/` — Civilization-scale applications (Daedalus Protocol)
+  - `DAEDALUS_PROTOCOL.md` — Master specification for global architecture
+  - Domain-specific implementations (governance, finance, health, climate, etc.)
+
 ### `adr/`
 - Architecture Decision Records (existing, to be moved here)
 
@@ -94,8 +100,9 @@ The Mobius architecture consists of 8 primary layers:
 - See [`01-philosophy/`](../01-philosophy/README.md) for the "why" behind these architectural choices
 - See [`03-specifications/`](../03-specifications/README.md) for exact technical implementations
 - See [`06-operations/`](../06-operations/README.md) for how to run this in production
+- See [`applications/`](./applications/README.md) for real-world applications of Mobius architecture
 
 ---
 
-*Cycle C-147 • 2025-11-27*  
+*Cycle C-148 • 2025-11-28*  
 *"We heal as we walk."*
