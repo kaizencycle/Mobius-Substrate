@@ -34,11 +34,24 @@ Recommended structure (to be populated in Phase 2):
 - `api-gateway.md` — Service mesh interface
 - `echo-layer.md` — Learning and validation loop
 
+### `echo/`
+- `README.md` — ECHO Layer overview
+- `STRANGE_METAMORPHOSIS_LOOP.md` — **Human-aligned recursive learning** (C-148)
+  - Daily 3-question protocol: Worldview, Mood, Intent
+
 ### `economics/`
-- `tokenomics-v2.md` — MIC, Proof-of-Integrity
+- `README.md` — Economics overview
+- `negentropic-economics.md` — **The Economics of Integrity** (C-148)
+- `tokenomics-v3-proof-of-negentropy.md` — Proof-of-Negentropy specification
+- `tokenomics-v2.md` — MIC, Proof-of-Integrity (legacy)
 - `gic-system.md` — Global Integrity Credits (legacy)
 - `ubi-mechanics.md` — Universal basic income via integrity
 - `mic-minting-rules.md` — When and how MIC is created
+
+### `applications/global/`
+- `README.md` — Global applications overview
+- `DAEDALUS_PROTOCOL.md` — **Global Integrity Architecture** (C-148)
+  - Eight domain applications: Governance, Health, Education, Climate, Finance, Infrastructure, Security, Knowledge
 
 ### `adr/`
 - Architecture Decision Records (existing, to be moved here)
