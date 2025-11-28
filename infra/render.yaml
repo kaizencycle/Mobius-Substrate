@@ -115,9 +115,9 @@ services:
   - type: web
     name: broker-api
     env: node
-    rootDir: apps/broker-api
-    buildCommand: npm ci && npm run build
-    startCommand: npm start
+    rootDir: .
+    buildCommand: npm ci && npx turbo run build --filter=broker-api
+    startCommand: cd apps/broker-api && npm start
     healthCheckPath: /v1/loop/health
     envVars:
       - key: NODE_ENV
