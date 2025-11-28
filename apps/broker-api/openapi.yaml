@@ -1,0 +1,382 @@
+openapi: 3.1.0
+info:
+  title: Thought Broker API
+  version: 0.1.0
+  description: |
+    Thought Broker - Multi-LLM consensus engine for Mobius Systems.
+    
+    The Broker orchestrates multi-agent deliberation loops, synthesizes positions,
+    calculates Mobius Integrity Index (MII) scores, and generates cryptographic
+    DeliberationProof artifacts.
+    
+    > "The Broker is not a service. The Broker is where the system thinks."
+    > — ATLAS, C-132
+  contact:
+    name: Kaizen Cycle
+    url: https://github.com/kaizencycle/Mobius-Systems
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+
+servers:
+  - url: http://localhost:4005
+    description: Local development
+  - url: https://thought-broker-api.onrender.com
+    description: Production (Render)
+
+tags:
+  - name: Health
+    description: Health check endpoints
+  - name: Deliberation
+    description: Multi-agent deliberation and consensus
+  - name: MII
+    description: Mobius Integrity Index grading
+  - name: Trials
+    description: KTT Trial management and analytics
+  - name: MEMT
+    description: Multi-Engine Model Taxonomy routing
+  - name: Encyclopedia
+    description: Knowledge base operations
+  - name: Publishing
+    description: Integrity tier publishing
+
+paths:
+  /healthz:
+    get:
+      tags:
+        - Health
+      summary: Health check
+      description: Basic health check endpoint
+      responses:
+        '200':
+          description: Service is healthy
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: healthy
+                  service:
+                    type: string
+                    example: thought-broker-api
+                  version:
+                    type: string
+                    example: "0.1.0"
+                  timestamp:
+                    type: string
+                    format: date-time
+
+  /v1/loop/health:
+    get:
+      tags:
+        - Health
+      summary: Deliberation loop health
+      description: Health check with active deliberation count
+      responses:
+        '200':
+          description: Loop is healthy
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: healthy
+                  service:
+                    type: string
+                    example: thought-broker-loop
+                  activeDeliberations:
+                    type: integer
+                    example: 3
+                  timestamp:
+                    type: string
+                    format: date-time
+
+  /v1/deliberate:
+    post:
+      tags:
+        - Deliberation
+      summary: Initiate deliberation
+      description: Start a new multi-agent deliberation loop
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - prompt
+              properties:
+                prompt:
+                  type: string
+                  description: The deliberation prompt/question
+                agents:
+                  type: array
+                  items:
+                    type: string
+                  description: Optional list of agent IDs to include
+                maxRounds:
+                  type: integer
+                  default: 5
+                  description: Maximum deliberation rounds
+                convergenceThreshold:
+                  type: number
+                  default: 0.95
+                  description: Consensus convergence threshold
+      responses:
+        '202':
+          description: Deliberation initiated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  data:
+                    type: object
+                    properties:
+                      deliberationId:
+                        type: string
+                  timestamp:
+                    type: string
+                    format: date-time
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  error:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                      message:
+                        type: string
+
+  /v1/deliberation/{id}:
+    get:
+      tags:
+        - Deliberation
+      summary: Get deliberation status
+      description: Retrieve the current status and results of a deliberation
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Deliberation ID
+      responses:
+        '200':
+          description: Deliberation found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                      status:
+                        type: string
+                        enum: [pending, active, completed, failed]
+                      rounds:
+                        type: integer
+                      consensus:
+                        type: number
+        '404':
+          description: Deliberation not found
+
+  /v1/deliberations:
+    get:
+      tags:
+        - Deliberation
+      summary: List all deliberations
+      description: Get a list of all active and completed deliberations
+      responses:
+        '200':
+          description: List of deliberations
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  data:
+                    type: array
+                    items:
+                      type: object
+
+  /v1/grade:
+    post:
+      tags:
+        - MII
+      summary: Grade MII without deliberation
+      description: Calculate Mobius Integrity Index score without full deliberation loop
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                content:
+                  type: string
+                  description: Content to grade
+                context:
+                  type: object
+                  description: Additional context for grading
+      responses:
+        '200':
+          description: MII grade calculated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  data:
+                    type: object
+                    properties:
+                      score:
+                        type: number
+                      dimensions:
+                        type: object
+
+  /v1/memt/deliberate:
+    post:
+      tags:
+        - MEMT
+      summary: MEMT-routed deliberation
+      description: Initiate deliberation with MEMT routing
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                prompt:
+                  type: string
+      responses:
+        '202':
+          description: Deliberation initiated via MEMT
+
+  /v1/memt/engines:
+    get:
+      tags:
+        - MEMT
+      summary: List engine profiles
+      description: Get all available MEMT engine profiles
+      responses:
+        '200':
+          description: List of engines
+
+  /v1/trials/ktt-001/session:
+    post:
+      tags:
+        - Trials
+      summary: Create KTT-001 trial session
+      description: Initialize a new KTT-001 trial session
+      responses:
+        '201':
+          description: Session created
+
+  /v1/trials/ktt-001:
+    get:
+      tags:
+        - Trials
+      summary: List KTT-001 trial summaries
+      description: Get all KTT-001 trial summaries
+      responses:
+        '200':
+          description: List of trials
+
+  /v1/trials/ktt-001/stats:
+    get:
+      tags:
+        - Trials
+      summary: Get global KTT-001 statistics
+      description: Retrieve aggregated statistics for all KTT-001 trials
+      responses:
+        '200':
+          description: Statistics
+
+  /v1/trials/ktt-001/{trialId}/summary:
+    get:
+      tags:
+        - Trials
+      summary: Get trial summary
+      description: Get detailed summary for a specific trial
+      parameters:
+        - name: trialId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Trial summary
+
+  /v1/trials/ktt-001/{trialId}/events:
+    get:
+      tags:
+        - Trials
+      summary: Get trial events
+      description: Get all events for a specific trial
+      parameters:
+        - name: trialId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of events
+
+  /v1/encyclopedia:
+    get:
+      tags:
+        - Encyclopedia
+      summary: Encyclopedia operations
+      description: Access the knowledge base
+      responses:
+        '200':
+          description: Encyclopedia data
+
+components:
+  schemas:
+    APIResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+        data:
+          type: object
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+            details:
+              type: array
+        timestamp:
+          type: string
+          format: date-time
+

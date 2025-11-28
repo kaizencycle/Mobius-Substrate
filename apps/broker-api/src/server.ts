@@ -9,6 +9,8 @@ import helmet from 'helmet';
 import { WebSocketServer } from 'ws';
 import http from 'http';
 import dotenv from 'dotenv';
+import swaggerUi from 'swagger-ui-express';
+import YAML from 'yamljs';
 import { DeliberationEngine } from './deliberation/engine';
 import { DeliberationRequestSchema, APIResponse, WSEvent } from './types';
 import {
@@ -44,9 +46,24 @@ const PORT = Number(process.env.PORT ?? '4005');
 const WS_PORT = Number(process.env.WS_PORT ?? '4006');
 
 // Middleware
-app.use(helmet());
+app.use(helmet({
+  contentSecurityPolicy: false, // Allow Swagger UI to load
+}));
 app.use(cors());
 app.use(express.json());
+
+// Swagger UI
+try {
+  const swaggerDocument = YAML.load(path.join(__dirname, '../openapi.yaml'));
+  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, {
+    customCss: '.swagger-ui .topbar { display: none }',
+    customSiteTitle: 'Thought Broker API Documentation',
+    customfavIcon: '/favicon.ico',
+  }));
+  console.log('📚 Swagger UI available at /api-docs');
+} catch (error) {
+  console.warn('⚠️  Swagger UI setup failed:', error);
+}
 
 app.use(
   express.static(path.join(__dirname, '../public'), {
@@ -306,6 +323,7 @@ Endpoints:
   GET  /v1/deliberation/:id
   GET  /v1/deliberations
   POST /v1/grade
+  GET  /api-docs          — Swagger UI Documentation
 
 MEMT Endpoints:
   POST /v1/memt/deliberate   — MEMT-routed deliberation
