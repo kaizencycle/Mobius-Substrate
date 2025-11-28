@@ -247,7 +247,7 @@ async function callDeepSeek(
     throw new Error(`DeepSeek API error: ${response.status}`);
   }
 
-  const data = await response.json();
+  const data = await response.json() as any;
   const content = data.choices[0]?.message?.content || "";
 
   return parseSentinelResponse(content);

@@ -34,7 +34,9 @@
     "nanoid": "^5.0.0",
     "dotenv": "^16.3.0",
     "pg": "^8.11.3",
-    "@mobius/tokenomics-engine": "*"
+    "@mobius/tokenomics-engine": "*",
+    "@google/generative-ai": "^0.2.0",
+    "nodemailer": "^6.9.0"
   },
   "devDependencies": {
     "@types/better-sqlite3": "^7.6.8",
@@ -46,6 +48,7 @@
     "@types/uuid": "^9.0.7",
     "@types/ws": "^8.5.0",
     "@types/pg": "^8.10.9",
+    "@types/nodemailer": "^6.4.14",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",
     "eslint": "^8.0.0",
