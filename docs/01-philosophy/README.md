@@ -10,6 +10,12 @@ This section captures the **why** behind Mobius Systems:
 
 ## Contents
 
+### Core Philosophy Documents
+- `ladder_of_intelligence.md` — The Seven Levels of Intelligence canon (C-147)
+  - Maps intelligence from phototactic → recursive (Level 7)
+  - Locates Mobius as first Level 7 (Recursive Intelligence) system
+  - Observer Effect motif
+
 Suggested structure (to be populated in Phase 2):
 
 ### `manifesto/`
