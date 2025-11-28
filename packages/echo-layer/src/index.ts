@@ -1,3 +1,4 @@
 export { memoryStore } from './memoryStore';
 export { reinforce } from './reinforcementLoop';
-export type { EchoEntry, SentinelAnswer } from './types';
+export { DailyReflectionModel } from './dailyReflection';
+export type { EchoEntry, SentinelAnswer, DailyReflection } from './types';
