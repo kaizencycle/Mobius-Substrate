@@ -30,6 +30,39 @@ Over time, MIC/GIC may be unified; both refer to integrity-tied value.
 **Proof-of-Integrity**  
 Economic model where currency (MIC) only mints when Global Integrity measurably increases.
 
+**Proof-of-Negentropy**  
+Tokenomics v3.0 mechanism where MIC mints only when entropy (disorder) is reduced in the system.  
+- Formula: `MIC_minted = k × max(0, I - τ)` where I = MII, τ = threshold (0.93-0.95)  
+- Revolutionary: First currency pegged to order creation instead of scarcity
+
+**Negentropy**  
+Negative entropy — order creation, coherence, stability.  
+- Measured via Mobius Integrity Index (MII)  
+- Generates MIC through Proof-of-Negentropy  
+- Reduces debt via equation: `ΔD = λN` (debt reduction = negentropy × conversion factor)
+
+**Entropy (Economic)**  
+Uncertainty, risk, chaos in economic systems.  
+- Manifests as: inflation, default risk, political instability, coordination failure  
+- Drives interest rates: `Interest Rate (r) = αS + βR + γ(1 - C)`  
+- Accumulates as debt over time
+
+**Debt Reduction via Order Creation**  
+Revolutionary economic mechanism where debt is reduced through integrity improvement rather than pure monetary extraction.  
+- Formula: `Debt Reduction (ΔD) = λN`  
+- First lawful unification of thermodynamics and economics
+
+**Daedalus Protocol**  
+Global integrity architecture applying Mobius Systems across eight critical domains:  
+- Governance, Health, Education, Climate, Finance, Infrastructure, Security, Knowledge  
+- First civilization operating system built on integrity rather than extraction
+
+**Strange Metamorphosis Loop (SML)**  
+Daily human-aligned recursive learning protocol.  
+- Three questions: Worldview, Mood, Intent  
+- Generates integrity data for negentropic economics  
+- Enables safe recursive AI learning without surveillance capitalism
+
 ---
 
 ## Architecture & Flows
