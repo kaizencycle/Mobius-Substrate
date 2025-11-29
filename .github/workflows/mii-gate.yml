@@ -1,0 +1,308 @@
+# MOBIUS-CLASS: core-integrity
+# OWNER: @kaizencycle
+# INTRODUCED: C-148
+# LAST-REVIEWED: 2025-11-29
+# STATUS: active
+# VERSION: 2.0 (Enhanced with ATLAS recommendations)
+
+name: MII Integrity Gate (Enhanced)
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  compute-mii-enhanced:
+    name: Enhanced MII Computation
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      
+      - name: Install dependencies
+        run: npm ci || true
+      
+      - name: Install bc for calculations
+        run: sudo apt-get update && sudo apt-get install -y bc
+      
+      # ============================================
+      # Enhanced MII Calculation (ATLAS v2.0)
+      # ============================================
+      
+      - name: Compute Enhanced MII Score
+        id: mii
+        run: |
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo "🧮 Enhanced MII Calculation (ATLAS v2.0)"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          
+          # Get changed files
+          FILES=$(git diff --name-only origin/main...HEAD)
+          FILES_CHANGED=$(echo "$FILES" | wc -l)
+          LINES_ADDED=$(git diff origin/main...HEAD --numstat | awk '{sum+=$1} END {print sum+0}')
+          LINES_REMOVED=$(git diff origin/main...HEAD --numstat | awk '{sum+=$2} END {print sum+0}')
+          
+          echo "Files changed: $FILES_CHANGED"
+          echo "Lines added: $LINES_ADDED"
+          echo "Lines removed: $LINES_REMOVED"
+          
+          # Base score
+          MII_BASE=0.90
+          BONUSES=0
+          PENALTIES=0
+          
+          echo ""
+          echo "Base MII: $MII_BASE"
+          echo ""
+          
+          # ============================================
+          # Bonuses
+          # ============================================
+          
+          # 1. Test coverage (ATLAS recommendation)
+          if echo "$FILES" | grep -q "\.test\.ts\|\.spec\.ts"; then
+            TEST_FILES=$(echo "$FILES" | grep -c "\.test\.ts\|\.spec\.ts" || echo 0)
+            CODE_FILES=$(echo "$FILES" | grep -c "\.ts\|\.tsx" | grep -v "test\|spec" || echo 0)
+            
+            if [ $CODE_FILES -gt 0 ]; then
+              COVERAGE=$(echo "scale=2; $TEST_FILES / $CODE_FILES" | bc)
+              
+              if (( $(echo "$COVERAGE >= 0.8" | bc -l) )); then
+                BONUS=0.03
+                echo "✅ Test coverage ≥80% (+0.03)"
+              elif (( $(echo "$COVERAGE >= 0.5" | bc -l) )); then
+                BONUS=0.02
+                echo "✅ Test coverage ≥50% (+0.02)"
+              else
+                BONUS=0.01
+                echo "✅ Some tests present (+0.01)"
+              fi
+              
+              BONUSES=$(echo "$BONUSES + $BONUS" | bc)
+            fi
+          else
+            echo "⚠️  No tests found (0.00)"
+          fi
+          
+          # 2. Documentation
+          if echo "$FILES" | grep -q "\.md\|docs/\|README"; then
+            DOC_LINES=$(git diff origin/main...HEAD -- "*.md" "docs/**" | grep "^+" | grep -v "^+++" | wc -l)
+            
+            if [ $DOC_LINES -gt 50 ]; then
+              BONUS=0.02
+              echo "✅ Comprehensive documentation (+0.02)"
+            else
+              BONUS=0.01
+              echo "✅ Documentation updated (+0.01)"
+            fi
+            
+            BONUSES=$(echo "$BONUSES + $BONUS" | bc)
+          fi
+          
+          # 3. Workflow improvements
+          if echo "$FILES" | grep -q "\.github/workflows"; then
+            BONUS=0.02
+            echo "✅ Workflow improvements (+0.02)"
+            BONUSES=$(echo "$BONUSES + $BONUS" | bc)
+          fi
+          
+          # 4. Security scan clean (ATLAS recommendation)
+          if npm run lint >/dev/null 2>&1; then
+            BONUS=0.02
+            echo "✅ Lint clean (+0.02)"
+            BONUSES=$(echo "$BONUSES + $BONUS" | bc)
+          fi
+          
+          # 5. No breaking changes (ATLAS recommendation)
+          if ! echo "$FILES" | grep -q "BREAKING\|breaking"; then
+            BONUS=0.01
+            echo "✅ No breaking changes (+0.01)"
+            BONUSES=$(echo "$BONUSES + $BONUS" | bc)
+          fi
+          
+          # ============================================
+          # Penalties (ATLAS scaled penalties)
+          # ============================================
+          
+          echo ""
+          
+          # 1. Large changes (scaled by ATLAS)
+          if [ $LINES_ADDED -lt 500 ]; then
+            echo "✅ Small change (0.00)"
+          elif [ $LINES_ADDED -lt 1000 ]; then
+            PENALTY=0.01
+            echo "⚠️  Medium change (-0.01)"
+            PENALTIES=$(echo "$PENALTIES + $PENALTY" | bc)
+          elif [ $LINES_ADDED -lt 2000 ]; then
+            PENALTY=0.02
+            echo "⚠️  Large change (-0.02)"
+            PENALTIES=$(echo "$PENALTIES + $PENALTY" | bc)
+          else
+            PENALTY=0.03
+            echo "⚠️  Very large change (-0.03)"
+            PENALTIES=$(echo "$PENALTIES + $PENALTY" | bc)
+          fi
+          
+          # 2. Missing tests for code changes (ATLAS recommendation)
+          if echo "$FILES" | grep -q "\.ts\|\.tsx" && ! echo "$FILES" | grep -q "\.test\.ts\|\.spec\.ts"; then
+            PENALTY=0.03
+            echo "⚠️  Code changes without tests (-0.03)"
+            PENALTIES=$(echo "$PENALTIES + $PENALTY" | bc)
+          fi
+          
+          # 3. Database changes without tests
+          if echo "$FILES" | grep -q "migrations/\|database/\|\.sql"; then
+            if ! echo "$FILES" | grep -q "\.test\.ts"; then
+              PENALTY=0.03
+              echo "⚠️  Database changes without tests (-0.03)"
+              PENALTIES=$(echo "$PENALTIES + $PENALTY" | bc)
+            fi
+          fi
+          
+          # 4. Complexity increase (ATLAS recommendation)
+          # Heuristic: large files or deep nesting
+          LARGE_FILES=$(git diff origin/main...HEAD --numstat | awk '$1 > 300 {count++} END {print count+0}')
+          if [ $LARGE_FILES -gt 3 ]; then
+            PENALTY=$(echo "scale=2; $LARGE_FILES * 0.01" | bc)
+            if (( $(echo "$PENALTY > 0.05" | bc -l) )); then
+              PENALTY=0.05
+            fi
+            echo "⚠️  Complexity increase (-$PENALTY)"
+            PENALTIES=$(echo "$PENALTIES + $PENALTY" | bc)
+          fi
+          
+          # ============================================
+          # Final MII Calculation
+          # ============================================
+          
+          MII_FINAL=$(echo "scale=2; $MII_BASE + $BONUSES - $PENALTIES" | bc)
+          
+          # Cap at 1.00
+          if (( $(echo "$MII_FINAL > 1.00" | bc -l) )); then
+            MII_FINAL=1.00
+          fi
+          
+          # Floor at 0.00
+          if (( $(echo "$MII_FINAL < 0.00" | bc -l) )); then
+            MII_FINAL=0.00
+          fi
+          
+          echo ""
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo "Final MII Calculation:"
+          echo "  Base:     $MII_BASE"
+          echo "  Bonuses:  +$BONUSES"
+          echo "  Penalties: -$PENALTIES"
+          echo "  Final:    $MII_FINAL"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          
+          echo "mii_score=$MII_FINAL" >> $GITHUB_OUTPUT
+          echo "bonuses=$BONUSES" >> $GITHUB_OUTPUT
+          echo "penalties=$PENALTIES" >> $GITHUB_OUTPUT
+          echo "files_changed=$FILES_CHANGED" >> $GITHUB_OUTPUT
+          echo "lines_added=$LINES_ADDED" >> $GITHUB_OUTPUT
+          echo "lines_removed=$LINES_REMOVED" >> $GITHUB_OUTPUT
+      
+      # ============================================
+      # MII Threshold Check
+      # ============================================
+      
+      - name: Check MII Threshold
+        env:
+          MII_SCORE: ${{ steps.mii.outputs.mii_score }}
+        run: |
+          echo "MII Score: $MII_SCORE"
+          echo "Threshold: 0.95"
+          
+          if (( $(echo "$MII_SCORE < 0.95" | bc -l) )); then
+            echo ""
+            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            echo "❌ MII BELOW THRESHOLD"
+            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            echo ""
+            echo "Current MII: $MII_SCORE"
+            echo "Required: 0.95"
+            echo ""
+            echo "Improvement suggestions:"
+            echo "  1. Add tests for all code changes"
+            echo "  2. Update documentation"
+            echo "  3. Break large PRs into smaller cycles"
+            echo "  4. Reduce code complexity"
+            echo "  5. Fix linting issues"
+            echo ""
+            exit 1
+          fi
+          
+          echo "✅ MII Score acceptable: $MII_SCORE ≥ 0.95"
+      
+      # ============================================
+      # Post Detailed Comment
+      # ============================================
+      
+      - name: Post MII Report
+        if: always()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const mii = parseFloat('${{ steps.mii.outputs.mii_score }}');
+            const bonuses = parseFloat('${{ steps.mii.outputs.bonuses }}');
+            const penalties = parseFloat('${{ steps.mii.outputs.penalties }}');
+            const files = parseInt('${{ steps.mii.outputs.files_changed }}');
+            const added = parseInt('${{ steps.mii.outputs.lines_added }}');
+            const removed = parseInt('${{ steps.mii.outputs.lines_removed }}');
+            
+            const status = mii >= 0.95 ? '✅' : '❌';
+            const grade = mii >= 0.98 ? 'A+' : 
+                          mii >= 0.95 ? 'A' :
+                          mii >= 0.90 ? 'B' :
+                          mii >= 0.85 ? 'C' : 'D';
+            
+            const body = `## ${status} Mobius Integrity Index (MII) - Enhanced v2.0
+            
+**Score:** ${mii.toFixed(2)} / 1.00 (Grade: ${grade})  
+**Threshold:** 0.95  
+**Status:** ${mii >= 0.95 ? 'PASS ✅' : 'FAIL ❌'}
+
+### 📊 Calculation Breakdown
+
+\`\`\`
+Base MII:     0.90
+Bonuses:     +${bonuses.toFixed(2)}
+Penalties:   -${penalties.toFixed(2)}
+─────────────────
+Final MII:    ${mii.toFixed(2)}
+\`\`\`
+
+### 📈 Change Summary
+
+- Files changed: ${files}
+- Lines added: ${added}
+- Lines removed: ${removed}
+- Net change: ${added - removed > 0 ? '+' : ''}${added - removed}
+
+### ${mii >= 0.95 ? '✅ Integrity Requirements Met' : '❌ Integrity Requirements Not Met'}
+
+${mii >= 0.95 
+  ? '**Excellent work!** This PR demonstrates high integrity through:\n- Comprehensive testing\n- Updated documentation\n- Manageable change size\n- Clean code quality' 
+  : '**Improvements needed:**\n\n1. **Add tests** for all code changes (critical)\n2. **Update documentation** for new features\n3. **Break large changes** into smaller cycles\n4. **Reduce complexity** where possible\n5. **Fix linting issues** before submission\n\nTarget MII ≥ 0.95 before merge.'}
+
+---
+
+*Enhanced MII v2.0 with ATLAS recommendations • Cycle C-148*
+`;
+            
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: body
+            });

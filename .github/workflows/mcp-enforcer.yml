@@ -1,170 +1,338 @@
-name: MCP Enforcer
+# MOBIUS-CLASS: core-integrity
+# OWNER: @kaizencycle
+# INTRODUCED: C-120 (updated C-148)
+# LAST-REVIEWED: 2025-11-29
+# STATUS: active
+# MCP-VERSION: 1.0
+
+name: MCP Enforcer (v1.0)
 
 on:
   pull_request:
-    branches: [ "main" ]
-  push:
-    branches: [ "main" ]
+    branches: [main]
+    types: [opened, synchronize, edited]
 
 jobs:
-  validate-cycle:
+  validate-cycle-protocol:
+    name: Mobius Cycle Protocol Validation
     runs-on: ubuntu-latest
+    
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Check Cycle Metadata
-        id: cycle_metadata
+      
+      - name: Parse PR metadata
+        id: parse
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          PR_BODY: ${{ github.event.pull_request.body }}
         run: |
-          echo "Checking for Cycle metadata in PR..."
+          echo "Parsing PR for MCP v1.0 compliance..."
           
-          # Check PR description for cycle number
-          if [ "${{ github.event_name }}" == "pull_request" ]; then
-            PR_BODY="${{ github.event.pull_request.body }}"
-            if echo "$PR_BODY" | grep -qE "Cycle:\s*C-[0-9]+"; then
-              echo "✅ Cycle metadata found in PR description"
-              CYCLE_NUM=$(echo "$PR_BODY" | grep -oE "Cycle:\s*C-[0-9]+" | head -1 | grep -oE "C-[0-9]+")
-              echo "cycle_number=$CYCLE_NUM" >> $GITHUB_OUTPUT
-            else
-              echo "❌ MCP Enforcement: Missing Cycle metadata in PR description."
-              echo "PR must include 'Cycle: C-XXX' in the description."
-              exit 1
-            fi
-          fi
+          # Extract cycle number from title or body
+          CYCLE=$(echo "$PR_TITLE $PR_BODY" | grep -oP 'C-\d+' | head -1)
           
-          # Check commit messages for cycle tags
-          if git log --oneline -10 | grep -qE "\[C-[0-9]+\]"; then
-            echo "✅ Cycle tag found in commit messages"
+          if [ -z "$CYCLE" ]; then
+            echo "cycle_found=false" >> $GITHUB_OUTPUT
           else
-            echo "⚠️  Warning: No cycle tags found in recent commits"
+            echo "cycle_found=true" >> $GITHUB_OUTPUT
+            echo "cycle=$CYCLE" >> $GITHUB_OUTPUT
+            echo "✅ Found cycle: $CYCLE"
           fi
-
-      - name: Validate GI Score Present
+      
+      # ============================================
+      # Phase 1: CYCLE_BEGIN Validation
+      # ============================================
+      
+      - name: "MCP Phase 1: CYCLE_BEGIN"
+        if: steps.parse.outputs.cycle_found == 'true'
+        env:
+          PR_BODY: ${{ github.event.pull_request.body }}
+          CYCLE: ${{ steps.parse.outputs.cycle }}
         run: |
-          echo "Checking for GI Score in PR..."
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo "🌀 MCP Phase 1: CYCLE_BEGIN"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo ""
+          echo "Validating cycle initiation requirements..."
+          echo "Cycle: $CYCLE"
           
-          if [ "${{ github.event_name }}" == "pull_request" ]; then
-            PR_BODY="${{ github.event.pull_request.body }}"
-            
-            # Check for GI Score section
-            if echo "$PR_BODY" | grep -qiE "GI Score|GI:\s*[0-9]+\.[0-9]+"; then
-              echo "✅ GI Score found in PR"
-              
-              # Extract GI score value
-              GI_SCORE=$(echo "$PR_BODY" | grep -oE "GI Score:\s*[0-9]+\.[0-9]+" | head -1 | grep -oE "[0-9]+\.[0-9]+" || echo "")
-              
-              if [ -n "$GI_SCORE" ]; then
-                echo "GI Score: $GI_SCORE"
-                
-                # Check if GI >= 0.95
-                if (( $(echo "$GI_SCORE >= 0.95" | bc -l) )); then
-                  echo "✅ GI Score meets threshold (≥ 0.95)"
-                else
-                  echo "❌ MCP Enforcement: GI Score $GI_SCORE is below threshold (≥ 0.95 required)"
-                  exit 1
-                fi
-              fi
-            else
-              echo "❌ MCP Enforcement: GI Score not found in PR description."
-              echo "PR must include GI Score in the Integrity Checks section."
-              exit 1
-            fi
+          # Check for human intent declaration
+          if ! echo "$PR_BODY" | grep -q "Human Intent\|Intent:"; then
+            echo "❌ Missing human intent declaration"
+            echo "MCP v1.0 requires: Human Intent section in PR"
+            exit 1
           fi
-
-      - name: Validate ECHO Score Present
-        run: |
-          echo "Checking for ECHO Score in PR..."
+          echo "✅ Human intent declared"
           
-          if [ "${{ github.event_name }}" == "pull_request" ]; then
-            PR_BODY="${{ github.event.pull_request.body }}"
-            
-            # Check for ECHO Score section
-            if echo "$PR_BODY" | grep -qiE "ECHO Score|Echo Score:\s*[0-9]+\.[0-9]+"; then
-              echo "✅ ECHO Score found in PR"
-              
-              # Extract ECHO score value
-              ECHO_SCORE=$(echo "$PR_BODY" | grep -oE "ECHO Score:\s*[0-9]+\.[0-9]+|Echo Score:\s*[0-9]+\.[0-9]+" | head -1 | grep -oE "[0-9]+\.[0-9]+" || echo "")
-              
-              if [ -n "$ECHO_SCORE" ]; then
-                echo "ECHO Score: $ECHO_SCORE"
-                
-                # Check if ECHO >= 0.95
-                if (( $(echo "$ECHO_SCORE >= 0.95" | bc -l) )); then
-                  echo "✅ ECHO Score meets threshold (≥ 0.95)"
-                else
-                  echo "❌ MCP Enforcement: ECHO Score $ECHO_SCORE is below threshold (≥ 0.95 required)"
-                  exit 1
-                fi
-              fi
-            else
-              echo "❌ MCP Enforcement: ECHO Score missing in PR description."
-              echo "PR must include ECHO Score in the Integrity Checks section."
-              exit 1
-            fi
+          # Check for baseline GI
+          if echo "$PR_BODY" | grep -qE "Baseline.*GI|GI.*Baseline"; then
+            echo "✅ Baseline GI documented"
+          else
+            echo "⚠️  Baseline GI not explicitly stated (acceptable)"
           fi
-
-      - name: Validate PR Bundle Sections
+      
+      # ============================================
+      # Phase 2: CYCLE_WORK Validation
+      # ============================================
+      
+      - name: "MCP Phase 2: CYCLE_WORK"
+        if: steps.parse.outputs.cycle_found == 'true'
         run: |
-          echo "Checking for required PR Bundle sections..."
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo "⚙️  MCP Phase 2: CYCLE_WORK"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo ""
+          echo "Validating work artifacts..."
           
-          if [ "${{ github.event_name }}" == "pull_request" ]; then
-            PR_BODY="${{ github.event.pull_request.body }}"
-            
-            REQUIRED_SECTIONS=(
-              "Summary"
-              "Human Intent"
-              "Technical Changes"
-              "Integrity Checks"
-              "Ready for Merge"
-            )
-            
-            MISSING_SECTIONS=()
-            
-            for section in "${REQUIRED_SECTIONS[@]}"; do
-              if ! echo "$PR_BODY" | grep -qiE "^##.*$section|^###.*$section"; then
-                MISSING_SECTIONS+=("$section")
-              fi
-            done
-            
-            if [ ${#MISSING_SECTIONS[@]} -gt 0 ]; then
-              echo "❌ MCP Enforcement: Missing required PR Bundle sections:"
-              printf '  - %s\n' "${MISSING_SECTIONS[@]}"
-              echo ""
-              echo "Please use the PR template: docs/04-guides/development/pr-cycle-template.md"
-              exit 1
-            else
-              echo "✅ All required PR Bundle sections present"
-            fi
-          fi
-
-      - name: Check for Sentinel Approvals
-        run: |
-          echo "Checking for Sentinel approval indicators..."
+          # Check for changed files
+          CHANGED_FILES=$(git diff --name-only origin/main...HEAD | wc -l)
           
-          if [ "${{ github.event_name }}" == "pull_request" ]; then
-            PR_BODY="${{ github.event.pull_request.body }}"
-            
-            # Check for Sentinel approval section
-            if echo "$PR_BODY" | grep -qiE "ATLAS.*Approved|AUREA.*Approved|ECHO.*Approved"; then
-              echo "✅ Sentinel approval indicators found"
-            else
-              echo "⚠️  Warning: No explicit Sentinel approvals found in PR"
-              echo "Sentinels should review and approve before merge"
-            fi
+          if [ "$CHANGED_FILES" -eq 0 ]; then
+            echo "❌ No files changed (empty PR)"
+            exit 1
           fi
-
-      - name: MCP Validation Summary
-        if: always()
+          
+          echo "✅ Files changed: $CHANGED_FILES"
+          
+          # Check for technical changes section
+          if echo "$PR_BODY" | grep -q "Technical Changes"; then
+            echo "✅ Technical changes documented"
+          else
+            echo "⚠️  Technical changes section missing (should be present)"
+          fi
+      
+      # ============================================
+      # Phase 3: CYCLE_CLOSE Validation
+      # ============================================
+      
+      - name: "MCP Phase 3: CYCLE_CLOSE"
+        if: steps.parse.outputs.cycle_found == 'true'
+        env:
+          PR_BODY: ${{ github.event.pull_request.body }}
         run: |
-          echo "## 🌀 MCP Validation Summary" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "**Cycle:** ${{ steps.cycle_metadata.outputs.cycle_number }}" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "✅ Cycle metadata validated" >> $GITHUB_STEP_SUMMARY
-          echo "✅ GI Score validated" >> $GITHUB_STEP_SUMMARY
-          echo "✅ ECHO Score validated" >> $GITHUB_STEP_SUMMARY
-          echo "✅ PR Bundle sections validated" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "**Status:** Ready for Sentinel review" >> $GITHUB_STEP_SUMMARY
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo "📋 MCP Phase 3: CYCLE_CLOSE"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo ""
+          echo "Validating PR Bundle requirements..."
+          
+          # Required PR Bundle sections
+          required_sections=(
+            "Summary"
+            "Human Intent"
+            "Technical Changes"
+            "Integrity Checks"
+          )
+          
+          all_present=true
+          
+          for section in "${required_sections[@]}"; do
+            if echo "$PR_BODY" | grep -qi "$section"; then
+              echo "✅ Section present: $section"
+            else
+              echo "❌ Section missing: $section"
+              all_present=false
+            fi
+          done
+          
+          if [ "$all_present" = false ]; then
+            echo ""
+            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            echo "❌ PR Bundle incomplete"
+            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            echo ""
+            echo "Required PR Bundle format:"
+            echo ""
+            echo "## Summary"
+            echo "[Describe work completed]"
+            echo ""
+            echo "## Human Intent"
+            echo "[State your intent at CYCLE_BEGIN]"
+            echo ""
+            echo "## Technical Changes"
+            echo "- [List changes]"
+            echo ""
+            echo "## Integrity Checks"
+            echo "- GI Score: 0.XX"
+            echo "- Echo Score: 0.XX"
+            echo ""
+            exit 1
+          fi
+      
+      # ============================================
+      # GI Score Validation
+      # ============================================
+      
+      - name: Validate GI Score
+        if: steps.parse.outputs.cycle_found == 'true'
+        env:
+          PR_BODY: ${{ github.event.pull_request.body }}
+        run: |
+          echo "Checking GI Score..."
+          
+          # Extract GI score
+          GI=$(echo "$PR_BODY" | grep -oP 'GI Score:?\s*\K[0-9.]+' | head -1)
+          
+          if [ -z "$GI" ]; then
+            echo "❌ GI Score not found in PR description"
+            echo "Required format: 'GI Score: 0.XX'"
+            exit 1
+          fi
+          
+          echo "Found GI Score: $GI"
+          
+          # Validate GI >= 0.95
+          if (( $(echo "$GI < 0.95" | bc -l) )); then
+            echo "❌ GI Score below threshold ($GI < 0.95)"
+            echo ""
+            echo "To improve GI:"
+            echo "  - Ensure architectural coherence"
+            echo "  - Add comprehensive documentation"
+            echo "  - Include tests for changes"
+            echo "  - Review for integrity alignment"
+            exit 1
+          fi
+          
+          echo "✅ GI Score acceptable: $GI ≥ 0.95"
+      
+      # ============================================
+      # ECHO Score Validation
+      # ============================================
+      
+      - name: Validate ECHO Score
+        if: steps.parse.outputs.cycle_found == 'true'
+        env:
+          PR_BODY: ${{ github.event.pull_request.body }}
+        run: |
+          echo "Checking ECHO Score..."
+          
+          # Extract ECHO score
+          ECHO=$(echo "$PR_BODY" | grep -oP 'Echo Score:?\s*\K[0-9.]+' | head -1)
+          
+          if [ -z "$ECHO" ]; then
+            echo "❌ ECHO Score not found in PR description"
+            echo "Required format: 'Echo Score: 0.XX'"
+            exit 1
+          fi
+          
+          echo "Found ECHO Score: $ECHO"
+          
+          # Validate ECHO >= 0.95
+          if (( $(echo "$ECHO < 0.95" | bc -l) )); then
+            echo "❌ ECHO Score below threshold ($ECHO < 0.95)"
+            echo ""
+            echo "To improve ECHO Score:"
+            echo "  - Fix drift from previous cycle"
+            echo "  - Ensure semantic coherence"
+            echo "  - Maintain consistency with Bio-DNA"
+            echo "  - Review for reflection quality"
+            exit 1
+          fi
+          
+          echo "✅ ECHO Score acceptable: $ECHO ≥ 0.95"
+      
+      # ============================================
+      # Sentinel Validation
+      # ============================================
+      
+      - name: Validate Sentinel Signatures
+        if: steps.parse.outputs.cycle_found == 'true'
+        env:
+          PR_BODY: ${{ github.event.pull_request.body }}
+        run: |
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo "🤖 Sentinel Validation"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo ""
+          echo "Checking for tri-sentinel approval..."
+          
+          # Required sentinels for MCP v1.0
+          required_sentinels=("ATLAS" "AUREA" "ECHO")
+          
+          all_approved=true
+          
+          for sentinel in "${required_sentinels[@]}"; do
+            if echo "$PR_BODY" | grep -qi "$sentinel.*approve\|approve.*$sentinel\|✅.*$sentinel"; then
+              echo "✅ $sentinel approved"
+            else
+              echo "❌ $sentinel approval missing"
+              all_approved=false
+            fi
+          done
+          
+          if [ "$all_approved" = false ]; then
+            echo ""
+            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            echo "❌ Sentinel approval incomplete"
+            echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            echo ""
+            echo "MCP v1.0 requires ALL THREE sentinels:"
+            echo "  - ATLAS (architectural coherence)"
+            echo "  - AUREA (logical correctness)"
+            echo "  - ECHO (drift analysis)"
+            echo ""
+            echo "Add to PR description:"
+            echo "  ✅ ATLAS approved"
+            echo "  ✅ AUREA approved"
+            echo "  ✅ ECHO approved"
+            exit 1
+          fi
+          
+          echo ""
+          echo "✅ All sentinels approved (ATLAS, AUREA, ECHO)"
+      
+      # ============================================
+      # MCP Compliance Summary
+      # ============================================
+      
+      - name: MCP Compliance Summary
+        if: steps.parse.outputs.cycle_found == 'true'
+        env:
+          CYCLE: ${{ steps.parse.outputs.cycle }}
+        run: |
+          echo ""
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo "✅ MCP v1.0 VALIDATION PASSED"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo ""
+          echo "Cycle: $CYCLE"
+          echo "Protocol: Mobius Cycle Protocol v1.0"
+          echo ""
+          echo "✅ Phase 1: CYCLE_BEGIN (intent declared)"
+          echo "✅ Phase 2: CYCLE_WORK (changes present)"
+          echo "✅ Phase 3: CYCLE_CLOSE (PR bundle complete)"
+          echo "✅ GI Score ≥ 0.95"
+          echo "✅ ECHO Score ≥ 0.95"
+          echo "✅ Sentinel consensus achieved"
+          echo ""
+          echo "This PR is MCP-compliant and ready for Phase 4: CYCLE_ATTEST"
+          echo ""
+          echo "Next step: Merge → Ledger attestation"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+      
+      # ============================================
+      # Handle Non-Cycle PRs
+      # ============================================
+      
+      - name: Non-Cycle PR Warning
+        if: steps.parse.outputs.cycle_found == 'false'
+        run: |
+          echo ""
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo "⚠️  NON-CYCLE PR DETECTED"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo ""
+          echo "This PR does not include a cycle number (C-XXX)."
+          echo ""
+          echo "For hotfixes and emergency patches, this is acceptable."
+          echo "However, all regular work should follow MCP v1.0."
+          echo ""
+          echo "To make this MCP-compliant:"
+          echo "  1. Add cycle number to PR title or description (e.g., C-148)"
+          echo "  2. Include Human Intent section"
+          echo "  3. Add GI Score and ECHO Score"
+          echo "  4. Document sentinel approvals"
+          echo ""
+          echo "⚠️  This check will PASS but the PR is not tracked in ledger"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
