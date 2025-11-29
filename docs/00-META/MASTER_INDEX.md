@@ -22,22 +22,35 @@ license: CC-BY-SA-4.0
 # Master Documentation Index
 ## Mobius Systems Documentation Catalog
 
-**Version**: 1.0.0  
-**Last Updated**: 2025-11-26  
-**Total Documents**: 298+ markdown files, 352+ total files  
-**Classification System**: Dewey Decimal-Inspired (000-900)
+**Version**: 2.0.0  
+**Last Updated**: 2025-01-27  
+**Total Documents**: 500+ markdown files, 600+ total files  
+**Classification System**: Dewey Decimal-Inspired (000-900)  
+**Entry Point**: [INDEX.md](../INDEX.md) — Single point of entry for all documentation
 
 ---
 
 ## Table of Contents
 
-1. [Classification Overview](#classification-overview)
-2. [Document Index by Classification](#document-index-by-classification)
-3. [Alphabetical Index](#alphabetical-index)
-4. [Subject Index](#subject-index)
-5. [Cross-Reference Map](#cross-reference-map)
-6. [Citation Index](#citation-index)
-7. [Revision History](#revision-history)
+1. [Quick Links](#quick-links)
+2. [Classification Overview](#classification-overview)
+3. [Document Index by Classification](#document-index-by-classification)
+4. [Alphabetical Index](#alphabetical-index)
+5. [Subject Index](#subject-index)
+6. [Cross-Reference Map](#cross-reference-map)
+7. [Citation Index](#citation-index)
+8. [LaTeX Index](#latex-index)
+9. [Revision History](#revision-history)
+
+---
+
+## Quick Links
+
+- **[📖 Master Entry Point](../INDEX.md)** — Single point of entry for all documentation
+- **[📚 Navigation Guide](./NAVIGATION_GUIDE.md)** — How to navigate the docs
+- **[🔍 Subject Index](./SUBJECT_INDEX.md)** — Browse by topic
+- **[📄 LaTeX Index](./LATEX_INDEX.tex)** — Academic citations
+- **[📋 Reference Index](../07-reference/INDEX.md)** — Quick reference materials
 
 ---
 
@@ -121,7 +134,9 @@ The Mobius Systems documentation follows a hierarchical classification system:
 | Doc ID | Title | Path | Status | Version |
 |--------|-------|------|--------|---------|
 | META-2025-001 | Documentation System Overview | `00-META/README.md` | Published | 1.0.0 |
-| INDEX-2025-001 | Master Documentation Index | `00-META/MASTER_INDEX.md` | Published | 1.0.0 |
+| INDEX-ROOT-2025-001 | Master Entry Point | `INDEX.md` | Published | 2.0.0 |
+| INDEX-2025-001 | Master Documentation Index | `00-META/MASTER_INDEX.md` | Published | 2.0.0 |
+| LATEX-2025-001 | LaTeX Index | `00-META/LATEX_INDEX.tex` | Published | 2.0.0 |
 | STYLE-2025-001 | Academic Style Guide | `00-META/STYLE_GUIDE.md` | Draft | 0.9.0 |
 | TAX-2025-001 | Documentation Taxonomy | `00-META/TAXONOMY.md` | Draft | 0.9.0 |
 | MAINT-2025-001 | Maintenance Procedures | `00-META/MAINTENANCE.md` | Draft | 0.9.0 |
@@ -654,10 +669,18 @@ Format: `[@DOC-ID]` or `[@DOC-ID, Section X]`
 
 ---
 
+## LaTeX Index
+
+For academic citations and LaTeX-based documentation, see:
+- **[LATEX_INDEX.tex](./LATEX_INDEX.tex)** — Complete LaTeX-formatted index with citation formats
+
+---
+
 ## Revision History
 
 | Version | Date | Changes | Author |
 |---------|------|---------|--------|
+| 2.0.0 | 2025-01-27 | Major reorganization, unified entry point, LaTeX index added | Documentation Team |
 | 1.0.0 | 2025-11-26 | Initial comprehensive index | Documentation Team |
 | 0.9.0 | 2025-11-20 | Draft structure created | System |
 
@@ -666,9 +689,10 @@ Format: `[@DOC-ID]` or `[@DOC-ID, Section X]`
 ## Index Maintenance
 
 **Update Frequency**: Monthly  
-**Last Audit**: 2025-11-26  
-**Next Audit**: 2025-12-26  
-**Responsible**: Documentation Team
+**Last Audit**: 2025-01-27  
+**Next Audit**: 2025-02-27  
+**Responsible**: Documentation Team  
+**Entry Point**: [INDEX.md](../INDEX.md)
 
 **To Add New Document**:
 1. Assign Doc ID following classification
@@ -682,18 +706,21 @@ Format: `[@DOC-ID]` or `[@DOC-ID, Section X]`
 
 ## Statistics
 
-- **Total Documents**: 298+ markdown files
+- **Total Documents**: 500+ markdown files
 - **Total Classifications**: 10 major (000-900)
 - **Total Subcategories**: 40+
-- **Cross-References**: 150+
+- **Cross-References**: 200+
 - **External Citations**: 50+
-- **Last Updated**: 2025-11-26
+- **LaTeX Index**: Available at `00-META/LATEX_INDEX.tex`
+- **Last Updated**: 2025-01-27
 
 ---
 
 **Classification**: 000 - Meta-Documentation  
 **Status**: Published  
 **License**: CC-BY-SA-4.0  
-**Document ID**: INDEX-2025-001
+**Document ID**: INDEX-2025-001  
+**Related**: [Master Entry Point](../INDEX.md) | [LaTeX Index](./LATEX_INDEX.tex) | [Navigation Guide](./NAVIGATION_GUIDE.md)
 
-*"Documentation is the memory of the system. This index is its map."*
+*"Documentation is the memory of the system. This index is its map."*  
+*"We heal as we walk."* — Founder's Seal

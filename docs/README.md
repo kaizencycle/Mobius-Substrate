@@ -4,6 +4,33 @@
 
 ---
 
+## 📖 **→ [START HERE: Master Entry Point (INDEX.md)](./INDEX.md) ←**
+
+**This is the single point of entry for all Mobius Systems documentation.**
+
+The INDEX.md file provides comprehensive navigation for:
+- 👤 **New Users** — Quick start guides and onboarding
+- 👨‍💻 **Developers** — Technical documentation and APIs
+- 🔬 **Researchers** — Academic papers and whitepapers
+- 🏛️ **Elders/Philosophers** — Theoretical foundations and philosophy
+- ⚙️ **Operators** — Deployment and operations guides
+- 🏛️ **Governance Participants** — Governance and policy documents
+
+---
+
+## 🚀 Quick Links
+
+| Document | Purpose |
+|----------|---------|
+| **[📖 Master Entry Point (INDEX.md)](./INDEX.md)** | Single point of entry for all documentation |
+| **[📚 Master Index](./00-META/MASTER_INDEX.md)** | Complete document catalog |
+| **[🔍 Subject Index](./00-META/SUBJECT_INDEX.md)** | Browse by topic |
+| **[📄 LaTeX Index](./00-META/LATEX_INDEX.tex)** | Academic citations |
+| **[📋 Reference Index](./07-reference/INDEX.md)** | Quick reference materials |
+| **[🗺️ Navigation Guide](./00-META/NAVIGATION_GUIDE.md)** | How to navigate the docs |
+
+---
+
 ## 🚀 Start Here — Choose Your Path
 
 ### 👥 I am a...
