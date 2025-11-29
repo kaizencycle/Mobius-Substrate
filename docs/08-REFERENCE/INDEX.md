@@ -22,8 +22,8 @@ license: CC-BY-SA-4.0
 # Reference Index
 ## Quick Reference Materials for Mobius Systems
 
-**Version**: 2.0.0  
-**Last Updated**: 2025-01-27  
+**Version**: 3.0.0  
+**Last Updated**: 2025-11-29  
 **Purpose**: Rapid lookup and reference for developers, operators, and researchers
 
 ---
@@ -49,11 +49,11 @@ license: CC-BY-SA-4.0
 #### REST APIs
 - **Encyclopedia API** → `07-RESEARCH-AND-PUBLICATIONS/encyclopedia/API_SPEC.md` [ENC-2025-003]
 - **Ledger API** → See `specs/openapi/ledger.yaml`
-- **N8N Universal API** → `specs/N8N_UNIVERSAL_API.md`
-- **N8N Universal Flow API** → `specs/N8N_UNIVERSAL_FLOW_API.md`
+- **N8N Universal API** → `11-SUPPLEMENTARY/specs/N8N_UNIVERSAL_API.md`
+- **N8N Universal Flow API** → `11-SUPPLEMENTARY/specs/N8N_UNIVERSAL_FLOW_API.md`
 
 #### GraphQL APIs
-- **API Reference** → `07-reference/api/` [API-2025-001]
+- **API Reference** → `11-SUPPLEMENTARY/api/` [API-2025-001]
 
 #### WebSocket APIs
 - **Real-time Protocols** → `06-OPERATIONS/protocols/`
@@ -62,18 +62,18 @@ license: CC-BY-SA-4.0
 
 #### JSON Schemas
 - **GI Metrics Schema** → `config/telemetry/schemas/gi_metrics.json`
-- **Document Registry** → `07-reference/DOCUMENT_REGISTRY.md`
-- **Attestation Schemas** → `attestations/`
+- **Document Registry** → `./DOCUMENT_REGISTRY.md`
+- **Attestation Schemas** → `11-SUPPLEMENTARY/attestations/`
 
 #### YAML Schemas
-- **Manifest Schemas** → `06-specifications/manifests/`
+- **Manifest Schemas** → `10-ARCHIVES/legacy/06-specifications/manifests/`
 - **Configuration Schemas** → `config/`
 
 ### Intelligence Classification
 
 #### Sentinel Classification
-- **Sentinel Classification** → `07-reference/intelligence-classification/sentinel-classification.md` [INTEL-2025-001] ⭐
-- **Intelligence Typology** → `07-reference/intelligence-classification/typology.md` [INTEL-2025-002]
+- **Sentinel Classification** → `11-SUPPLEMENTARY/intelligence/sentinel-classification.md` [INTEL-2025-001] ⭐
+- **Intelligence Typology** → `11-SUPPLEMENTARY/intelligence/typology.md` [INTEL-2025-002]
 
 #### Agent Classification
 - **Founding Agents** → `09-APPENDICES/agents/FOUNDING_AGENTS.md` [AGENT-2025-001]
@@ -106,8 +106,8 @@ license: CC-BY-SA-4.0
 
 #### Citation Formats
 - **LaTeX Index** → `00-META/LATEX_INDEX.tex` [LATEX-2025-001] ⭐
-- **Academic Index** → `07-reference/ACADEMIC_INDEX.md`
-- **Document Registry** → `07-reference/DOCUMENT_REGISTRY.md`
+- **Academic Index** → `./ACADEMIC_INDEX.md`
+- **Document Registry** → `./DOCUMENT_REGISTRY.md`
 
 ### Protocol Specifications
 
@@ -152,8 +152,8 @@ license: CC-BY-SA-4.0
 
 | Type | Location | Count |
 |------|----------|-------|
-| **API Documentation** | `07-reference/api/`, `specs/` | 10+ |
-| **Schemas** | `config/telemetry/schemas/`, `06-specifications/` | 15+ |
+| **API Documentation** | `11-SUPPLEMENTARY/api/`, `specs/` | 10+ |
+| **Schemas** | `config/telemetry/schemas/`, `08-REFERENCE/` | 15+ |
 | **Protocols** | `06-OPERATIONS/protocols/` | 5+ |
 | **Runbooks** | `06-OPERATIONS/processes/runbooks/` | 5+ |
 | **Quick References** | Various locations | 20+ |

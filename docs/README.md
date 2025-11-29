@@ -26,7 +26,7 @@ The INDEX.md file provides comprehensive navigation for:
 | **[📚 Master Index](./00-META/MASTER_INDEX.md)** | Complete document catalog |
 | **[🔍 Subject Index](./00-META/SUBJECT_INDEX.md)** | Browse by topic |
 | **[📄 LaTeX Index](./00-META/LATEX_INDEX.tex)** | Academic citations |
-| **[📋 Reference Index](./07-reference/INDEX.md)** | Quick reference materials |
+| **[📋 Reference Index](./08-REFERENCE/INDEX.md)** | Quick reference materials |
 | **[🗺️ Navigation Guide](./00-META/NAVIGATION_GUIDE.md)** | How to navigate the docs |
 
 ---

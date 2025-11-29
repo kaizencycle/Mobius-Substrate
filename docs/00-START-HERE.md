@@ -11,12 +11,12 @@
 ### 👤 I'm a...
 
 **New User**
-- 👉 [Quickstart Guide](./04-guides/quickstart/START_HERE.md)
+- 👉 [Quickstart Guide](./05-IMPLEMENTATION/guides/quickstart/START_HERE.md)
 - 📖 [System Overview](./03-architecture/)
 - 🎓 [Research Foundations](./05-research/)
 
 **Developer**
-- 💻 [Development Guides](./04-guides/development/)
+- 💻 [Development Guides](./05-IMPLEMENTATION/guides/development/)
 - 🏗️ [Architecture Docs](./03-architecture/)
 - ⚙️ [API Specifications](./06-specifications/)
 
@@ -26,8 +26,8 @@
 - 🏛️ [Governance Model](./02-governance/)
 
 **Operator**
-- 📦 [Deployment Guides](./04-guides/deployment/)
-- ⚙️ [Operations Manual](./04-guides/operations/)
+- 📦 [Deployment Guides](./05-IMPLEMENTATION/guides/deployment/)
+- ⚙️ [Operations Manual](./05-IMPLEMENTATION/guides/operations/)
 - 🔄 [Processes & Runbooks](./08-processes/)
 
 </td>
@@ -46,8 +46,8 @@
 - 🗳️ [Elections & Voting](./02-governance/elections.md)
 
 **Deploy Mobius**
-- 🚀 [Deployment Guide](./04-guides/deployment/DEPLOYMENT_GUIDE.md)
-- ☁️ [Vercel Deployment](./04-guides/deployment/VERCEL_DEPLOYMENT_GUIDE.md)
+- 🚀 [Deployment Guide](./05-IMPLEMENTATION/guides/deployment/DEPLOYMENT_GUIDE.md)
+- ☁️ [Vercel Deployment](./05-IMPLEMENTATION/guides/deployment/VERCEL_DEPLOYMENT_GUIDE.md)
 
 **Contribute**
 - 🤝 [Contributing Guide](../CONTRIBUTING.md)
@@ -65,16 +65,18 @@
 ```
 docs/
 ├── 00-START-HERE.md              ← You are here!
-├── 01-whitepapers/              Economic theory & MIC specifications
-├── 02-governance/               Foundation governance & policies
-├── 03-architecture/             System design & technical architecture
-├── 04-guides/                   Deployment, development, operations
-├── 05-research/                 Academic research & foundations
-├── 06-specifications/           Technical specs & protocols
-├── 07-reference/                Indices & quick reference
-├── 08-processes/                Workflows & runbooks
-├── 09-reports/                  Status & implementation reports
-└── archive/                     Historical & deprecated docs
+├── 00-META/                      Meta-documentation & indices
+├── 01-INTRODUCTION/              Introduction materials
+├── 02-THEORETICAL-FOUNDATIONS/   Philosophy & theory
+├── 03-GOVERNANCE-AND-POLICY/     Governance documents
+├── 04-TECHNICAL-ARCHITECTURE/    System design & architecture
+├── 05-IMPLEMENTATION/            Deployment & development guides
+├── 06-OPERATIONS/                Operations & runbooks
+├── 07-RESEARCH-AND-PUBLICATIONS/ Research & whitepapers
+├── 08-REFERENCE/                 Indices & quick reference
+├── 09-APPENDICES/                Supporting materials
+├── 10-ARCHIVES/                  Historical documents
+└── 11-SUPPLEMENTARY/             Topic-specific content
 ```
 
 ---
@@ -117,8 +119,8 @@ docs/
 
 ### Path 3: Technical Implementation (2 hours)
 1. [Labs Master Architecture](./03-architecture/technical/LABS_MASTER_ARCHITECTURE.md)
-2. [API Integration](./04-guides/development/API_INTEGRATION.md)
-3. [Deployment Guide](./04-guides/deployment/DEPLOYMENT_GUIDE.md)
+2. [API Integration](./05-IMPLEMENTATION/guides/development/API_INTEGRATION.md)
+3. [Deployment Guide](./05-IMPLEMENTATION/guides/deployment/DEPLOYMENT_GUIDE.md)
 4. [Specifications](./06-specifications/)
 
 ### Path 4: Governance & Policy (1 hour)
@@ -136,16 +138,16 @@ docs/
 | [MIC Whitepaper v2.0](./01-whitepapers/MIC_Whitepaper_v2.0.md) | Complete economic specification | Economists, Researchers |
 | [Governance Overview](./02-governance/overview.md) | How Mobius is governed | Everyone |
 | [Foundation Charter](../FOUNDATION/CHARTER.md) | Legal foundation | Policy makers, Legal |
-| [START HERE Guide](./04-guides/quickstart/START_HERE.md) | New user onboarding | New users |
-| [Deployment Guide](./04-guides/deployment/DEPLOYMENT_GUIDE.md) | How to deploy | Operators, DevOps |
-| [API Integration](./04-guides/development/API_INTEGRATION.md) | Developer integration | Developers |
+| [START HERE Guide](./05-IMPLEMENTATION/guides/quickstart/START_HERE.md) | New user onboarding | New users |
+| [Deployment Guide](./05-IMPLEMENTATION/guides/deployment/DEPLOYMENT_GUIDE.md) | How to deploy | Operators, DevOps |
+| [API Integration](./05-IMPLEMENTATION/guides/development/API_INTEGRATION.md) | Developer integration | Developers |
 
 ---
 
 ## 📞 Getting Help
 
 ### Documentation
-- 📖 [Reference Index](./07-reference/)
+- 📖 [Reference Index](./08-REFERENCE/)
 - 🔍 Search this repository
 - 💬 [GitHub Discussions](https://github.com/kaizencycle/Mobius-Systems/discussions)
 

@@ -19,33 +19,36 @@ Quick reference materials, indices, and navigation aids.
 ## 🔍 Quick Lookups
 
 ### By Topic
-- **Economics**: See [01-whitepapers/](../01-whitepapers/)
-- **Governance**: See [02-governance/](../02-governance/)
-- **Architecture**: See [03-architecture/](../03-architecture/)
-- **How-To Guides**: See [04-guides/](../04-guides/)
-- **Research**: See [05-research/](../05-research/)
+- **Economics**: See [07-RESEARCH-AND-PUBLICATIONS/whitepapers/](../07-RESEARCH-AND-PUBLICATIONS/whitepapers/)
+- **Governance**: See [03-GOVERNANCE-AND-POLICY/](../03-GOVERNANCE-AND-POLICY/)
+- **Architecture**: See [04-TECHNICAL-ARCHITECTURE/](../04-TECHNICAL-ARCHITECTURE/)
+- **How-To Guides**: See [05-IMPLEMENTATION/guides/](../05-IMPLEMENTATION/guides/)
+- **Research**: See [07-RESEARCH-AND-PUBLICATIONS/](../07-RESEARCH-AND-PUBLICATIONS/)
 
 ### By Role
-- **New Users**: Start with [04-guides/quickstart/START_HERE.md](../04-guides/quickstart/START_HERE.md)
-- **Developers**: See [04-guides/development/](../04-guides/development/)
-- **Operators**: See [04-guides/operations/](../04-guides/operations/)
-- **Researchers**: See [05-research/](../05-research/)
+- **New Users**: Start with [00-START-HERE.md](../00-START-HERE.md)
+- **Developers**: See [05-IMPLEMENTATION/guides/development/](../05-IMPLEMENTATION/guides/development/)
+- **Operators**: See [06-OPERATIONS/](../06-OPERATIONS/)
+- **Researchers**: See [07-RESEARCH-AND-PUBLICATIONS/](../07-RESEARCH-AND-PUBLICATIONS/)
 - **Contributors**: See [CONTRIBUTING.md](../../CONTRIBUTING.md)
 
 ## 📖 Documentation Categories
 
 ```
 docs/
-├── 01-whitepapers/      Economic theory & MIC specifications
-├── 02-governance/       Foundation governance & decision-making
-├── 03-architecture/     System design & technical architecture
-├── 04-guides/          Deployment, development, operations guides
-├── 05-research/        Academic research & theoretical foundations
-├── 06-specifications/  Technical specifications & protocols
-├── 07-reference/       This directory - indices & quick reference
-├── 08-processes/       Workflows, runbooks, operational procedures
-├── 09-reports/         Status reports & implementation summaries
-└── archive/           Deprecated & historical documents
+├── 00-META/                      Meta-documentation & indices
+├── 00-START-HERE/                Getting started materials
+├── 01-INTRODUCTION/              Introduction materials
+├── 02-THEORETICAL-FOUNDATIONS/   Philosophy, theory, manifestos
+├── 03-GOVERNANCE-AND-POLICY/     Governance documents
+├── 04-TECHNICAL-ARCHITECTURE/    System design & architecture
+├── 05-IMPLEMENTATION/            Deployment & development guides
+├── 06-OPERATIONS/                Operations & runbooks
+├── 07-RESEARCH-AND-PUBLICATIONS/ Research & whitepapers
+├── 08-REFERENCE/                 This directory - references
+├── 09-APPENDICES/                Supporting materials
+├── 10-ARCHIVES/                  Historical documents
+└── 11-SUPPLEMENTARY/             Topic-specific content
 ```
 
 ## 🗺️ Navigation Tips
@@ -55,7 +58,7 @@ docs/
 1. **Know what you want?** Use the search function (Ctrl+F in browser)
 2. **Browsing?** Start with section READMEs (this file is an example)
 3. **Lost?** Return to [main README](../../README.md)
-4. **Need help?** See [04-guides/](../04-guides/)
+4. **Need help?** See [05-IMPLEMENTATION/guides/](../05-IMPLEMENTATION/guides/)
 
 ### Cross-References
 
@@ -68,10 +71,10 @@ Documents are heavily cross-referenced. Look for:
 
 | Task | Where to Look |
 |------|---------------|
-| Deploy Mobius | [04-guides/deployment/](../04-guides/deployment/) |
-| Understand MIC | [01-whitepapers/MIC_Whitepaper_v2.0.md](../01-whitepapers/MIC_Whitepaper_v2.0.md) |
-| Governance rules | [02-governance/](../02-governance/) |
-| System architecture | [03-architecture/](../03-architecture/) |
+| Deploy Mobius | [05-IMPLEMENTATION/guides/deployment/](../05-IMPLEMENTATION/guides/deployment/) |
+| Understand MIC | [07-RESEARCH-AND-PUBLICATIONS/whitepapers/](../07-RESEARCH-AND-PUBLICATIONS/whitepapers/) |
+| Governance rules | [03-GOVERNANCE-AND-POLICY/](../03-GOVERNANCE-AND-POLICY/) |
+| System architecture | [04-TECHNICAL-ARCHITECTURE/](../04-TECHNICAL-ARCHITECTURE/) |
 | Contribute code | [CONTRIBUTING.md](../../CONTRIBUTING.md) |
 | Report security issue | [.github/SECURITY.md](../../.github/SECURITY.md) |
 | Foundation charter | [FOUNDATION/CHARTER.md](../../FOUNDATION/CHARTER.md) |
@@ -90,4 +93,4 @@ Documentation is version controlled. To see latest changes:
 git log --follow -- docs/
 ```
 
-Last major reorganization: 2025-11-08 (Cycle C-128)
+Last major reorganization: 2025-11-29 (v3.0.0)
