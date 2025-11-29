@@ -1,6 +1,7 @@
 // MIC Indexer API - Placeholder implementation
 import express from 'express';
 import cors from 'cors';
+import cyclesRouter from './routes/cycles';
 
 const app = express();
 const PORT = process.env.PORT || 4002;
@@ -18,6 +19,9 @@ app.get('/healthz', (req, res) => {
     version: '1.0.0'
   });
 });
+
+// Cycle routes (MCP v1.0)
+app.use('/api', cyclesRouter);
 
 // Placeholder endpoints
 app.get('/gic/balance/:address', (req, res) => {
