@@ -132,14 +132,14 @@ services:
     environment:
       - NODE_ENV=development
       - CIVIC_ENV=dev
-      - PORT=3000
+      - PORT=3004
       - LEDGER_BASE_URL=http://ledger:4001
       - INDEXER_BASE_URL=http://indexer:4002
       - EOMM_BASE_URL=http://eomm:4003
       - SHIELD_BASE_URL=http://shield:4004
       - BROKER_BASE_URL=http://broker:4005
     ports:
-      - "3000:3000"
+      - "3004:3004"
     depends_on:
       ledger:
         condition: service_healthy
