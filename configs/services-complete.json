@@ -1,0 +1,378 @@
+{
+  "version": "1.0.0",
+  "updated": "2025-11-29",
+  "monorepo": "Mobius-Systems",
+  "description": "Complete service manifest for all Mobius applications and packages",
+  "cycle": "C-150",
+  
+  "services": [
+    {
+      "name": "ledger-api",
+      "path": "apps/ledger-api",
+      "type": "api",
+      "port": 4001,
+      "runtime": "python:3.11",
+      "buildCommand": "pip install -r requirements.txt",
+      "startCommand": "uvicorn ledger.app.main:app --host 0.0.0.0 --port 4001",
+      "devCommand": "python start-all-services.py",
+      "healthCheck": "/healthz",
+      "dependencies": [],
+      "environment": {
+        "required": [
+          "DATABASE_URL",
+          "PORT"
+        ],
+        "optional": [
+          "LOG_LEVEL",
+          "NODE_ENV"
+        ]
+      },
+      "description": "Mobius Ledger Core - Immutable integrity attestations (Python/FastAPI)",
+      "status": "implemented",
+      "priority": "critical",
+      "language": "python",
+      "framework": "fastapi"
+    },
+    {
+      "name": "indexer-api",
+      "path": "apps/indexer-api",
+      "type": "api",
+      "port": 4002,
+      "runtime": "node:20",
+      "buildCommand": "pnpm build",
+      "startCommand": "pnpm start",
+      "devCommand": "pnpm dev",
+      "healthCheck": "/healthz",
+      "dependencies": [
+        "ledger-api"
+      ],
+      "environment": {
+        "required": [
+          "DATABASE_URL",
+          "LEDGER_API_URL",
+          "PORT"
+        ],
+        "optional": [
+          "CACHE_TTL",
+          "LOG_LEVEL"
+        ]
+      },
+      "description": "MIC Indexer - Token balances and transaction history",
+      "status": "boilerplate",
+      "priority": "critical",
+      "language": "typescript",
+      "framework": "express"
+    },
+    {
+      "name": "eomm-api",
+      "path": "apps/eomm-api",
+      "type": "api",
+      "port": 4003,
+      "runtime": "node:20",
+      "buildCommand": "pnpm build",
+      "startCommand": "pnpm start",
+      "devCommand": "pnpm dev",
+      "healthCheck": "/healthz",
+      "dependencies": [
+        "ledger-api"
+      ],
+      "environment": {
+        "required": [
+          "DATABASE_URL",
+          "PORT"
+        ],
+        "optional": [
+          "REFLECTION_SCHEDULE",
+          "ANTHROPIC_API_KEY"
+        ]
+      },
+      "description": "E.O.M.M. Reflections - Daily SML implementation",
+      "status": "boilerplate",
+      "priority": "high",
+      "notes": "Implements Strange Metamorphosis Loop (SML) daily reflections",
+      "language": "typescript",
+      "framework": "express"
+    },
+    {
+      "name": "shield-api",
+      "path": "apps/shield-api",
+      "type": "api",
+      "port": 4004,
+      "runtime": "node:20",
+      "buildCommand": "pnpm build",
+      "startCommand": "pnpm start",
+      "devCommand": "pnpm dev",
+      "healthCheck": "/healthz",
+      "dependencies": [],
+      "environment": {
+        "required": [
+          "PORT"
+        ],
+        "optional": [
+          "RATE_LIMIT",
+          "MAX_REQUESTS_PER_MINUTE"
+        ]
+      },
+      "description": "Citizen Shield - Security request guards and rate limiting",
+      "status": "boilerplate",
+      "priority": "high",
+      "language": "typescript",
+      "framework": "express"
+    },
+    {
+      "name": "broker-api",
+      "path": "apps/broker-api",
+      "type": "api",
+      "port": 4005,
+      "runtime": "node:20",
+      "buildCommand": "pnpm build",
+      "startCommand": "pnpm start",
+      "devCommand": "pnpm dev",
+      "healthCheck": "/v1/loop/health",
+      "dependencies": [],
+      "environment": {
+        "required": [
+          "OPENAI_API_KEY",
+          "ANTHROPIC_API_KEY",
+          "PORT"
+        ],
+        "optional": [
+          "DEEPSEEK_API_KEY",
+          "GEMINI_API_KEY",
+          "CONSENSUS_THRESHOLD"
+        ]
+      },
+      "description": "Thought Broker - Multi-LLM consensus orchestration",
+      "status": "implemented",
+      "priority": "critical",
+      "notes": "Orchestrates ATLAS, AUREA, ECHO sentinels across multiple LLM providers",
+      "language": "typescript",
+      "framework": "express"
+    },
+    {
+      "name": "hive-app",
+      "path": "apps/hive-app",
+      "type": "frontend",
+      "port": 3001,
+      "runtime": "node:20",
+      "buildCommand": "pnpm build",
+      "startCommand": "pnpm start",
+      "devCommand": "pnpm dev",
+      "healthCheck": "/health",
+      "dependencies": [
+        "broker-api",
+        "ledger-api"
+      ],
+      "environment": {
+        "required": [
+          "NEXT_PUBLIC_API_URL",
+          "PORT"
+        ],
+        "optional": [
+          "NEXT_PUBLIC_LEDGER_URL"
+        ]
+      },
+      "description": "Citizen Hive - Main citizen interface and portal",
+      "status": "implemented",
+      "priority": "high",
+      "language": "javascript",
+      "framework": "static"
+    },
+    {
+      "name": "cathedral-app",
+      "path": "apps/cathedral-app",
+      "type": "frontend",
+      "port": 3002,
+      "runtime": "node:20",
+      "buildCommand": "pnpm build",
+      "startCommand": "pnpm start",
+      "devCommand": "pnpm dev",
+      "healthCheck": "/health",
+      "dependencies": [
+        "ledger-api"
+      ],
+      "environment": {
+        "required": [
+          "NEXT_PUBLIC_API_URL",
+          "PORT"
+        ],
+        "optional": []
+      },
+      "description": "Cathedral - Governance UI and democratic deliberation interface",
+      "status": "boilerplate",
+      "priority": "medium",
+      "language": "typescript",
+      "framework": "express"
+    },
+    {
+      "name": "genesisdome-app",
+      "path": "apps/genesisdome-app",
+      "type": "frontend",
+      "port": 3003,
+      "runtime": "node:20",
+      "buildCommand": "pnpm build",
+      "startCommand": "pnpm start",
+      "devCommand": "pnpm dev",
+      "healthCheck": "/health",
+      "dependencies": [],
+      "environment": {
+        "required": [
+          "PORT"
+        ],
+        "optional": [
+          "NEXT_PUBLIC_API_URL"
+        ]
+      },
+      "description": "Genesis Dome - Genesis interface and onboarding",
+      "status": "boilerplate",
+      "priority": "medium",
+      "language": "html",
+      "framework": "static"
+    },
+    {
+      "name": "hub-web",
+      "path": "apps/hub-web",
+      "type": "frontend",
+      "port": 3004,
+      "runtime": "node:20",
+      "buildCommand": "pnpm build",
+      "startCommand": "pnpm start",
+      "devCommand": "pnpm dev",
+      "healthCheck": "/api/integrity-check",
+      "dependencies": [
+        "broker-api",
+        "ledger-api",
+        "indexer-api"
+      ],
+      "environment": {
+        "required": [
+          "NEXT_PUBLIC_API_URL",
+          "PORT"
+        ],
+        "optional": [
+          "NEXT_PUBLIC_LEDGER_URL",
+          "NEXT_PUBLIC_INDEXER_URL"
+        ]
+      },
+      "description": "Hub Web - Main portal aggregating all Mobius services",
+      "status": "implemented",
+      "priority": "high",
+      "language": "typescript",
+      "framework": "nextjs"
+    }
+  ],
+  
+  "packages": [
+    {
+      "name": "civic-sdk",
+      "path": "packages/civic-sdk",
+      "description": "API clients and TypeScript types for all Mobius services",
+      "exports": [
+        "./ledger",
+        "./indexer",
+        "./broker",
+        "./types"
+      ],
+      "status": "active"
+    },
+    {
+      "name": "integrity-core",
+      "path": "packages/integrity-core",
+      "description": "GI scoring engine and MII computation",
+      "exports": [
+        "./compute",
+        "./validate",
+        "./types"
+      ],
+      "status": "active"
+    },
+    {
+      "name": "ui-kit",
+      "path": "packages/ui-kit",
+      "description": "React component library for all Mobius frontends",
+      "exports": [
+        "./components",
+        "./hooks",
+        "./styles"
+      ],
+      "status": "active"
+    },
+    {
+      "name": "oaa-memory",
+      "path": "packages/oaa-memory",
+      "description": "OAA parsers and schemas",
+      "status": "active"
+    },
+    {
+      "name": "shield-policies",
+      "path": "packages/shield-policies",
+      "description": "Security request guards and rate limiting policies",
+      "status": "active"
+    }
+  ],
+  
+  "sentinels": [
+    {
+      "name": "ATLAS",
+      "path": "sentinels/atlas",
+      "provider": "anthropic",
+      "model": "claude-sonnet-4",
+      "role": "Architecture & Quality",
+      "description": "Monitors architectural coherence and quality metrics"
+    },
+    {
+      "name": "AUREA",
+      "path": "sentinels/aurea",
+      "provider": "openai",
+      "model": "gpt-4",
+      "role": "Correctness & Logic",
+      "description": "Validates logical correctness and formal verification"
+    },
+    {
+      "name": "ECHO",
+      "path": "sentinels/echo",
+      "provider": "deepseek",
+      "model": "deepseek-v3",
+      "role": "Drift Detection",
+      "description": "Detects semantic drift and reflection quality"
+    },
+    {
+      "name": "EVE",
+      "path": "sentinels/eve",
+      "provider": "various",
+      "role": "Verifier/Reflector",
+      "description": "Verification and reflection tasks"
+    },
+    {
+      "name": "HERMES",
+      "path": "sentinels/hermes",
+      "provider": "various",
+      "role": "Auditor/Messenger",
+      "description": "Audit trails and inter-service messaging"
+    }
+  ],
+  
+  "portMapping": {
+    "frontend": "3000-3999",
+    "api": "4000-4999",
+    "internal": "5000-5999"
+  },
+  
+  "deploymentTargets": {
+    "development": "localhost",
+    "staging": "render.com",
+    "production": "render.com"
+  },
+  
+  "integrationTests": {
+    "enabled": true,
+    "database": "postgresql://mobius:mobius@localhost:5432/mobius_test",
+    "coverage": {
+      "threshold": 80,
+      "statements": 80,
+      "branches": 75,
+      "functions": 80,
+      "lines": 80
+    }
+  }
+}
