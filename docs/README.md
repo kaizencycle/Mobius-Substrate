@@ -26,7 +26,7 @@ The INDEX.md file provides comprehensive navigation for:
 | **[📚 Master Index](./00-META/MASTER_INDEX.md)** | Complete document catalog |
 | **[🔍 Subject Index](./00-META/SUBJECT_INDEX.md)** | Browse by topic |
 | **[📄 LaTeX Index](./00-META/LATEX_INDEX.tex)** | Academic citations |
-| **[📋 Reference Index](./07-reference/INDEX.md)** | Quick reference materials |
+| **[📋 Reference Index](./08-REFERENCE/INDEX.md)** | Quick reference materials |
 | **[🗺️ Navigation Guide](./00-META/NAVIGATION_GUIDE.md)** | How to navigate the docs |
 
 ---
@@ -51,173 +51,158 @@ The INDEX.md file provides comprehensive navigation for:
 
 ## 📚 Documentation Categories
 
-### 01. 📊 Economic Theory
-**Path:** `01-whitepapers/`  
-**For:** Economists, researchers, policy makers
+> **Note:** Documentation reorganized 2025-11-29 (v3.0.0). See [Folder Index](./00-META/FOLDER_INDEX.md) for complete structure.
 
-- **[MIC Whitepaper v2.0](./01-whitepapers/MIC_Whitepaper_v2.0.md)** ⭐ *Complete shard-denominated specification*
-- **[UBI Mechanism v2.0](./01-whitepapers/UBI_Mechanism_v2.0.md)** *MII-throttled distribution*
-- **[Foundation Economics](./01-whitepapers/MIC_Foundation_Up_Economics_Addendum.md)** *Foundation-up philosophy*
+### 00. 📋 Meta-Documentation
+**Path:** `00-META/`, `00-START-HERE/`  
+**For:** Navigation, getting started
+
+- **[Master Index](./00-META/MASTER_INDEX.md)** ⭐ *Complete document catalog*
+- **[Folder Index](./00-META/FOLDER_INDEX.md)** *Folder structure guide*
+- **[Navigation Guide](./00-META/NAVIGATION_GUIDE.md)** *How to navigate docs*
 
 ---
 
-### 02. 🏛️ Governance & Policy
-**Path:** `02-governance/`  
+### 01. 📖 Introduction
+**Path:** `01-INTRODUCTION/`  
+**For:** New users, onboarding
+
+- Introduction materials and getting started guides
+
+---
+
+### 02. 🎭 Theoretical Foundations
+**Path:** `02-THEORETICAL-FOUNDATIONS/`  
+**For:** Philosophers, theorists, academics
+
+- **[Kaizen Theorems](./02-THEORETICAL-FOUNDATIONS/theory/kaizen_theorems.md)** *Mathematical axioms (KZ-Θ series)*
+- Philosophy, theory, and manifestos
+
+---
+
+### 03. 🏛️ Governance & Policy
+**Path:** `03-GOVERNANCE-AND-POLICY/`  
 **For:** Governance participants, community members
 
-- **[Governance Overview](./02-governance/overview.md)** ⭐ *Two-house model (Council + TSC)*
-- **[Concord Council](./02-governance/council.md)** *7-seat ethics & policy body*
-- **[TSC](./02-governance/tsc.md)** *5-seat technical leadership*
-- **[Elections & Voting](./02-governance/elections.md)** *Ranked-choice voting, meritocratic selection*
-- **[Sentinel Constitution](./02-governance/SENTINEL_CONSTITUTION.md)** *Ratified Article I–X framework*
+- **[Governance Overview](./03-GOVERNANCE-AND-POLICY/governance/overview.md)** ⭐ *Two-house model (Council + TSC)*
+- **[Sentinel Constitution](./03-GOVERNANCE-AND-POLICY/constitution/SENTINEL_CONSTITUTION.md)** *Ratified framework*
+- Constitution, policies, and procedures
 
 ---
 
-### 03. 🏗️ System Architecture
-**Path:** `03-architecture/`  
+### 04. 🏗️ Technical Architecture
+**Path:** `04-TECHNICAL-ARCHITECTURE/`  
 **For:** Architects, senior developers, system designers
 
-- **[Architecture Overview](./03-architecture/ARCHITECTURE.md)** ⭐ *Layer map, flows, hooks*
-- **[Architecture Quick Reference](./03-architecture/ARCHITECTURE_QUICK_REFERENCE.md)** *Fast, layered cheat sheet*
-- **[Universal Emulator OS](./03-architecture/UNIVERSAL_EMULATOR_OS.md)** *Mobius + Gemini as constitutional OS*
-- **[Labs Master Architecture](./03-architecture/technical/LABS_MASTER_ARCHITECTURE.md)** *System-wide topology*
-- **[ADRs](./03-architecture/adr/)** *Architecture Decision Records*
+- **[Architecture Overview](./04-TECHNICAL-ARCHITECTURE/overview/ARCHITECTURE.md)** ⭐ *Layer map, flows, hooks*
+- **[DVA Documentation](./04-TECHNICAL-ARCHITECTURE/dva/)** *Distributed Virtual Agent*
+- **[MEMT Documentation](./04-TECHNICAL-ARCHITECTURE/memt/)** *Multi-Engine Memory Topology*
 
 ---
 
-### 04. 🛠️ Development Guides
-**Path:** `04-guides/`  
+### 05. 🛠️ Implementation
+**Path:** `05-IMPLEMENTATION/`  
 **For:** Developers, engineers, technical implementers
 
-#### 🚀 Quickstart
-- **[START HERE](./04-guides/quickstart/START_HERE.md)** ⭐ *New user onboarding*
-- **[Hello World](./04-guides/quickstart/HELLO_WORLD.md)** *First steps with Mobius*
-
-#### 📦 Deployment
-- **[Deployment Guide](./04-guides/deployment/DEPLOYMENT_GUIDE.md)** *General deployment*
-- **[Vercel Deployment](./04-guides/deployment/VERCEL_DEPLOYMENT_GUIDE.md)** *Vercel-specific*
-- **[Civic Mount Integration](./04-guides/deployment/CIVIC_MOUNT_INTEGRATION.md)** *Infrastructure integration*
-
-#### 💻 Development
-- **[Frontend Development](./04-guides/development/FRONTEND_DEVELOPMENT.md)** *UI/UX development*
-- **[API Integration](./04-guides/development/API_INTEGRATION.md)** *API connections*
-- **[Cursor Integration](./04-guides/development/cursor-integration.md)** *AI editor setup*
-
-#### ⚙️ Operations
-- **[Custodian Guide](./04-guides/operations/CUSTODIAN_GUIDE.md)** *System maintenance*
-- **[Recovery Playbook](./04-guides/operations/RECOVERY_PLAYBOOK.md)** *Disaster recovery*
-- **[Forking Guide](./04-guides/operations/FORKING_GUIDE.md)** *How to fork*
+- **[Deployment Guide](./05-IMPLEMENTATION/guides/deployment/DEPLOYMENT_GUIDE.md)** ⭐ *General deployment*
+- **[Development Guides](./05-IMPLEMENTATION/guides/development/)** *Development documentation*
+- **[Quickstart](./05-IMPLEMENTATION/guides/quickstart/)** *Getting started quickly*
 
 ---
 
-### 05. 🔬 Research & Academia
-**Path:** `05-research/`  
-**For:** Researchers, academics, theorists
+### 06. ⚙️ Operations
+**Path:** `06-OPERATIONS/`  
+**For:** Operators, DevOps, administrators
 
-#### Foundations
-- **[Foundational Blueprint v2](./05-research/foundations/foundational_blueprint_integrity_economy_v2.md)** *Complete theoretical framework*
-- **[Kaizen Theorems](./05-research/foundations/kaizen_theorems.md)** *Mathematical axioms (KZ-Θ series)*
-- **[Civic Transition Cycle](./05-research/foundations/civic_transition_cycle.md)** *5-phase adoption framework*
-
-#### Constitution & Ethics
-- **[AI Integrity Constitution](./05-research/constitution/AI_INTEGRITY_CONSTITUTION.md)** *AI alignment principles*
-- **[Independence Manifest](./05-research/constitution/INDEPENDENCE_MANIFEST.md)** *Sovereignty declaration*
-
-#### KTT Research
-- **[Kaizen Turing Test](./05-research/ktt/)** *Evaluation framework*
+- **[Runbooks](./06-OPERATIONS/processes/runbooks/)** *Operational runbooks*
+- Processes, procedures, and operational documentation
 
 ---
 
-### 06. ⚙️ Technical Specifications
-**Path:** `06-specifications/`  
-**For:** Integration developers, protocol implementers
+### 07. 🔬 Research & Publications
+**Path:** `07-RESEARCH-AND-PUBLICATIONS/`  
+**For:** Researchers, academics, policy makers
 
-- **[APIs](./06-specifications/apis/)** *REST, GraphQL, WebSocket specs*
-- **[Protocols](./protocols/)** *Network & communication protocols*
-- **[Manifests](./06-specifications/manifests/)** *Configuration specifications*
+- **[Whitepapers](./07-RESEARCH-AND-PUBLICATIONS/whitepapers/)** *Economic and technical papers*
+- **[Blueprints](./07-RESEARCH-AND-PUBLICATIONS/blueprints/)** *System blueprints*
+- **[Encyclopedia](./07-RESEARCH-AND-PUBLICATIONS/encyclopedia/)** *Knowledge encyclopedia*
 
 ---
 
-### 07. 📚 Reference & Indices
-**Path:** `07-reference/`  
+### 08. 📚 Reference
+**Path:** `08-REFERENCE/`  
 **For:** Everyone looking for quick lookups
 
-- **[Academic Index](./07-reference/ACADEMIC_INDEX.md)** ⭐ *Comprehensive academic taxonomy with metadata*
-- **[Document Registry](./07-reference/DOCUMENT_REGISTRY.md)** *Complete doc inventory*
-- **[Repository Structure](./07-reference/REPOSITORY_STRUCTURE.md)** *Repo organization*
-- **[Master Index](./07-reference/INDEX.md)** *Comprehensive topic index*
+- **[Academic Index](./08-REFERENCE/ACADEMIC_INDEX.md)** ⭐ *Comprehensive academic taxonomy*
+- **[Document Registry](./08-REFERENCE/DOCUMENT_REGISTRY.md)** *Complete doc inventory*
+- **[Reference Index](./08-REFERENCE/INDEX.md)** *Quick reference materials*
 
 ---
 
-### 08. 🔄 Processes & Runbooks
-**Path:** `08-processes/`  
-**For:** Operators, community organizers
+### 09. 📎 Appendices
+**Path:** `09-APPENDICES/`  
+**For:** Supporting materials, templates
 
-#### Runbooks
-- **[Mobius Operator Runbook](./08-processes/runbooks/MOBIUS_OPERATOR_RUNBOOK.md)**
-- **[Incident Response](./08-processes/runbooks/incident_response_citizen_shield.md)**
-- **[Vercel Deployment Runbook](./08-processes/runbooks/VERCEL_DEPLOYMENT_RUNBOOK.md)**
-
-#### Operations
-- **[Deployment Checklist](./08-processes/operations/DEPLOYMENT_CHECKLIST.md)**
-- **[Failure Modes](./08-processes/operations/failure-modes.md)**
-- **[Rollout Phases](./08-processes/operations/rollout-phases.md)**
-
-#### Rituals
-- **[Opening Invocation](./08-processes/rituals/opening_invocation.md)**
+- Supporting documentation and appendices
+- Templates and glossary materials
 
 ---
 
-### 09. 📊 Reports & Status
-**Path:** `09-reports/`  
-**For:** Stakeholders, community members, contributors
+### 10. 🗄️ Archives
+**Path:** `10-ARCHIVES/`  
+**For:** Historical reference
 
-#### Implementation
-- **[Implementation Summary](./09-reports/implementation/IMPLEMENTATION_SUMMARY.md)**
-- **[Deployment Execution](./09-reports/implementation/DEPLOYMENT_EXECUTION_REPORT.md)**
-- **[AI Integrity Implementation](./09-reports/implementation/AI_INTEGRITY_IMPLEMENTATION_SUMMARY.md)**
+- **[Legacy Folders](./10-ARCHIVES/legacy/)** *Archived duplicate folders*
+- **[General Archive](./10-ARCHIVES/archive/)** *Historical documentation*
+- Completed implementations and historical documents
 
-#### Cycles & Communications
-- **[Founders Epoch Cycle](./09-reports/cycles/founders-epoch-cycle-report-2025-08-14_to_2025-11-01.md)**
-- **[URIEL Boarding Summary](./09-reports/cycles/URIEL_BOARDING_SUMMARY.md)**
-- **[Press Release C119](./09-reports/communications/press/press_release_c119_return.md)**
+---
+
+### 11. 📦 Supplementary
+**Path:** `11-SUPPLEMENTARY/`  
+**For:** Topic-specific supplementary content
+
+- **[Handbook](./11-SUPPLEMENTARY/handbook/)** *User handbook*
+- **[Companions](./11-SUPPLEMENTARY/companions/)** *Companion profiles*
+- **[Drift Control](./11-SUPPLEMENTARY/drift/)** *Drift documentation*
+- 47 topic-specific folders organized here
 
 ---
 
 ## 🤖 Agents & Systems
 
 ### Founding Agents
-- **[Founding Agents](./agents/FOUNDING_AGENTS.md)** *Core persona bios*
-- **[Founders Config](./founding-agents/founders-config.json)** *Network seed data*
+- **[Founding Agents](./11-SUPPLEMENTARY/agents/FOUNDING_AGENTS.md)** *Core persona bios*
+- **[Founders Config](./11-SUPPLEMENTARY/founding-agents/founders-config.json)** *Network seed data*
 - **[Founders DNS Guide](./founders-agents.gic.md)** *`.gic` onboarding*
 
 ### Sentinels & Companions
-- **[Companion Profiles](./companions/README.md)** *SOLARA, ZENITH, URIEL, ATLAS*
-- **[Sentinel Classification](./intelligence/sentinel-classification.md)**
-- **[Letters from JADE](./jade/LETTERS_FROM_JADE.md)** *Narrative alignment*
+- **[Companion Profiles](./11-SUPPLEMENTARY/companions/README.md)** *SOLARA, ZENITH, URIEL, ATLAS*
+- **[Sentinel Classification](./11-SUPPLEMENTARY/intelligence/sentinel-classification.md)**
+- **[Letters from JADE](./11-SUPPLEMENTARY/jade/LETTERS_FROM_JADE.md)** *Narrative alignment*
 
 ---
 
 ## 🛡️ Security & Assurance
 
 ### Threat Models & Audits
-- **[Security Threat Models](./security/threat_model_v0.1.md)**
-- **[Audit Reports](./audits/)** *Frontend, backend, remediation summaries*
+- **[Security Threat Models](./11-SUPPLEMENTARY/security/threat_model_v0.1.md)**
+- **[Audit Reports](./11-SUPPLEMENTARY/audits/)** *Frontend, backend, remediation summaries*
 
 ### Drift Control & Policy
-- **[Drift Control Charter](./drift/DRIFT_CONTROL_CHARTER.md)** *Drift gates + telemetry*
-- **[Fix Logs](./fixes/FIXES_SUMMARY.md)** *Consolidated production fixes*
-- **[Policy & Safety Tiers](./policy/safety-tiers.md)** *Enforcement gradients*
-- **[Ledger Integrity Notes](./ledger/gi-formula.md)** *GI math references*
+- **[Drift Control Charter](./11-SUPPLEMENTARY/drift/DRIFT_CONTROL_CHARTER.md)** *Drift gates + telemetry*
+- **[Fix Logs](./11-SUPPLEMENTARY/fixes/FIXES_SUMMARY.md)** *Consolidated production fixes*
+- **[Policy & Safety Tiers](./11-SUPPLEMENTARY/policy/safety-tiers.md)** *Enforcement gradients*
+- **[Ledger Integrity Notes](./11-SUPPLEMENTARY/ledger/gi-formula.md)** *GI math references*
 
 ---
 
 ## 📣 Briefings & Narratives
 
-- **[Handbook](./handbook/index.md)** *End-to-end orientation*
-- **[Manifesto](./manifesto/triad_of_healing.md)** *Foundational ethos*
-- **[Consensus Chamber](./consensus-chamber/)** *Templates & live sessions*
-- **[Genesis Manifest](./genesis/chapter-iv-one-window-console-manifest.md)** *Product arc*
+- **[Handbook](./11-SUPPLEMENTARY/handbook/index.md)** *End-to-end orientation*
+- **[Manifesto](./11-SUPPLEMENTARY/manifesto/triad_of_healing.md)** *Foundational ethos*
+- **[Consensus Chamber](./11-SUPPLEMENTARY/consensus-chamber/)** *Templates & live sessions*
+- **[Genesis Manifest](./11-SUPPLEMENTARY/genesis/chapter-iv-one-window-console-manifest.md)** *Product arc*
 - **[THE INTERNET BREATHES AGAIN](./THE_INTERNET_BREATHES_AGAIN.md)** *Restoration report*
 
 ---
@@ -226,16 +211,16 @@ The INDEX.md file provides comprehensive navigation for:
 
 - **[Assets](./assets/)** *Logos, CSS, JS, badges*
 - **[Figures & Diagrams](./figures/)** *High-res exports*
-- **[Design Prompts](./design/figma_prompts/)** *Visual systems*
-- **[Document Index](./document-index.json)** *Machine-readable catalog (458 docs)*
+- **[Design Prompts](./11-SUPPLEMENTARY/design/figma_prompts/)** *Visual systems*
+- **[Document Index](./document-index.json)** *Machine-readable catalog*
 
 ---
 
 ## 🗄️ Archives & History
 
-- **[Complete Archive](./archive/)** *Historical documentation*
-- **[Legacy Documentation](./archive/legacy/)** *Preserved historical dirs*
-- **[Completed Initiatives](./10-ARCHIVES/)** *Finished implementations*
+- **[10-ARCHIVES/](./10-ARCHIVES/)** *All archived documentation*
+- **[Legacy Folders](./10-ARCHIVES/legacy/)** *Archived duplicate numbered folders*
+- **[General Archive](./10-ARCHIVES/archive/)** *Historical documentation*
 
 ---
 
@@ -244,14 +229,14 @@ The INDEX.md file provides comprehensive navigation for:
 ### Quick Search
 - **Use Ctrl+F** to search this page
 - **Browse by category** above
-- **Check the [Academic Index](./07-reference/ACADEMIC_INDEX.md)** for comprehensive taxonomy
+- **Check the [Academic Index](./08-REFERENCE/ACADEMIC_INDEX.md)** for comprehensive taxonomy
 
 ### By Role
-- **New User:** Start with [Quickstart](./04-guides/quickstart/START_HERE.md) → [Hello World](./04-guides/quickstart/HELLO_WORLD.md)
-- **Developer:** [Development Guides](./04-guides/development/) → [Architecture](./03-architecture/)
-- **Researcher:** [Whitepapers](./01-whitepapers/) → [Research](./05-research/)
-- **Operator:** [Operations](./04-guides/operations/) → [Processes](./08-processes/)
-- **Governance:** [Governance](./02-governance/) → [Foundation Docs](../FOUNDATION/)
+- **New User:** Start with [00-START-HERE.md](./00-START-HERE.md) → [Handbook](./11-SUPPLEMENTARY/handbook/)
+- **Developer:** [Development Guides](./05-IMPLEMENTATION/guides/development/) → [Architecture](./04-TECHNICAL-ARCHITECTURE/)
+- **Researcher:** [Whitepapers](./07-RESEARCH-AND-PUBLICATIONS/whitepapers/) → [Research](./07-RESEARCH-AND-PUBLICATIONS/)
+- **Operator:** [Operations](./06-OPERATIONS/) → [Runbooks](./06-OPERATIONS/processes/runbooks/)
+- **Governance:** [Governance](./03-GOVERNANCE-AND-POLICY/) → [Foundation Docs](../FOUNDATION/)
 
 ---
 
@@ -279,9 +264,10 @@ The INDEX.md file provides comprehensive navigation for:
 
 ## 🔄 Documentation Status
 
-**Last Updated:** 2025-11-27  
-**Total Documents:** 460+ markdown files  
-**Active Categories:** 13 major sections  
+**Last Updated:** 2025-11-29  
+**Total Documents:** 500+ markdown files  
+**Active Categories:** 12 numbered classifications  
+**Reorganization:** v3.0.0 (2025-11-29)  
 **Maintained By:** Mobius Systems Documentation Team
 
 ---
@@ -290,4 +276,4 @@ The INDEX.md file provides comprehensive navigation for:
 
 ---
 
-**[⬆️ Back to Top](#-mobius-systems-documentation-portal)** | **[🏠 Main Repository](../README.md)** | **[🚀 Get Started](./04-guides/quickstart/START_HERE.md)**
+**[⬆️ Back to Top](#-mobius-systems-documentation-portal)** | **[🏠 Main Repository](../README.md)** | **[🚀 Get Started](./00-START-HERE.md)**
