@@ -24,9 +24,9 @@ license: CC-BY-SA-4.0
 > **"We heal as we walk."** — Founder's Seal  
 > **"Intelligence moves. Integrity guides."** — Mobius Principle
 
-**Version**: 2.0.0  
-**Last Updated**: 2025-01-27  
-**Total Documents**: 500+ markdown files across 10 major classifications
+**Version**: 3.0.0  
+**Last Updated**: 2025-11-29  
+**Total Documents**: 500+ markdown files across 12 numbered classifications
 
 ---
 
@@ -36,10 +36,10 @@ license: CC-BY-SA-4.0
 
 | I am a... | Start Here | Key Documents |
 |-----------|------------|---------------|
-| **👤 New User** | [00-START-HERE Guide](./00-START-HERE.md) | [Handbook](./handbook/index.md), [FAQ](./00-START-HERE/FAQ.md) |
-| **👨‍💻 Developer** | [Development Guides](./04-guides/development/) | [Architecture](./03-architecture/), [API Specs](./06-specifications/) |
-| **🔬 Researcher** | [Whitepapers](./01-whitepapers/) | [Research Portal](./05-research/), [Academic Index](./07-reference/ACADEMIC_INDEX.md) |
-| **🏛️ Elder/Philosopher** | [Philosophy](./01-philosophy/) | [Theoretical Foundations](./02-THEORETICAL-FOUNDATIONS/), [Manifestos](./manifesto/) |
+| **👤 New User** | [00-START-HERE Guide](./00-START-HERE.md) | [Handbook](./11-SUPPLEMENTARY/handbook/index.md), [FAQ](./00-START-HERE/FAQ.md) |
+| **👨‍💻 Developer** | [Development Guides](./05-IMPLEMENTATION/guides/development/) | [Architecture](./04-TECHNICAL-ARCHITECTURE/), [API Specs](./08-REFERENCE/) |
+| **🔬 Researcher** | [Whitepapers](./07-RESEARCH-AND-PUBLICATIONS/whitepapers/) | [Research Portal](./07-RESEARCH-AND-PUBLICATIONS/), [Academic Index](./08-REFERENCE/ACADEMIC_INDEX.md) |
+| **🏛️ Elder/Philosopher** | [Philosophy](./02-THEORETICAL-FOUNDATIONS/) | [Theoretical Foundations](./02-THEORETICAL-FOUNDATIONS/), [Manifestos](./11-SUPPLEMENTARY/manifesto/) |
 | **⚙️ Operator** | [Operations Hub](./06-OPERATIONS/) | [Runbooks](./06-OPERATIONS/processes/runbooks/), [Deployment](./05-IMPLEMENTATION/guides/deployment/) |
 | **🏛️ Governance Participant** | [Governance Overview](./03-GOVERNANCE-AND-POLICY/governance/overview.md) | [Constitution](./03-GOVERNANCE-AND-POLICY/constitution/), [Policies](./03-GOVERNANCE-AND-POLICY/policy/) |
 
@@ -47,13 +47,13 @@ license: CC-BY-SA-4.0
 
 | I want to... | Go To... |
 |--------------|----------|
-| **Understand the system** | [System Overview](./03-architecture/ARCHITECTURE.md) |
-| **Learn economics** | [MIC Whitepaper v2.0](./01-whitepapers/MIC_Whitepaper_v2.0.md) ⭐ |
+| **Understand the system** | [System Overview](./04-TECHNICAL-ARCHITECTURE/overview/ARCHITECTURE.md) |
+| **Learn economics** | [MIC Whitepaper v2.0](./07-RESEARCH-AND-PUBLICATIONS/whitepapers/MIC_Whitepaper_v2.0.md) ⭐ |
 | **Deploy Mobius** | [Deployment Guide](./05-IMPLEMENTATION/guides/deployment/DEPLOYMENT_GUIDE.md) |
-| **Study philosophy** | [Mobius Philosophy](./01-philosophy/MOBIUS_PHILOSOPHY.md) |
-| **Read research** | [Research Portal](./05-research/) |
+| **Study philosophy** | [Mobius Philosophy](./11-SUPPLEMENTARY/philosophy/MOBIUS_PHILOSOPHY.md) |
+| **Read research** | [Research Portal](./07-RESEARCH-AND-PUBLICATIONS/) |
 | **Find any document** | [Master Index](./00-META/MASTER_INDEX.md) |
-| **Quick reference** | [Reference Index](./07-reference/INDEX.md) |
+| **Quick reference** | [Reference Index](./08-REFERENCE/INDEX.md) |
 | **Academic citations** | [LaTeX Index](./00-META/LATEX_INDEX.tex) |
 
 ---
@@ -63,36 +63,31 @@ license: CC-BY-SA-4.0
 ```
 docs/
 ├── INDEX.md                          ← YOU ARE HERE (Master Entry Point)
-├── 00-START-HERE.md                 Quick start for new users
-├── 00-META/                         Documentation system & indices
-│   ├── MASTER_INDEX.md              Complete document catalog
-│   ├── LATEX_INDEX.tex              Academic LaTeX index
-│   ├── NAVIGATION_GUIDE.md          How to navigate docs
-│   └── SUBJECT_INDEX.md             Topic-based index
-├── 01-INTRODUCTION/                  Getting started materials
-├── 01-philosophy/                    Core philosophical principles
-├── 01-whitepapers/                   Economic theory & MIC specifications
-├── 02-THEORETICAL-FOUNDATIONS/       Academic foundations
-├── 02-governance/                    Legacy governance (see 03-)
-├── 02-architecture/                  Legacy architecture (see 03-)
-├── 03-GOVERNANCE-AND-POLICY/         Active governance documents
-├── 03-architecture/                  Active technical architecture
-├── 03-specifications/                Technical specifications
-├── 04-TECHNICAL-ARCHITECTURE/        Comprehensive architecture docs
-├── 04-guides/                        Implementation guides
-├── 05-IMPLEMENTATION/                Deployment & development guides
-├── 05-research/                       Academic research & foundations
-├── 05-security/                       Security documentation
-├── 06-OPERATIONS/                     Operational procedures & runbooks
-├── 06-specifications/                Protocol specifications
-├── 07-reference/                     Reference materials & indices
-├── 07-RESEARCH-AND-PUBLICATIONS/     Research papers & publications
-├── 08-REFERENCE/                     Additional reference materials
-├── 08-processes/                     Workflow processes
-├── 09-APPENDICES/                    Supporting materials
-├── 09-reports/                       Status reports & communications
+├── 00-START-HERE.md                  Quick start for new users
+├── 00-META/                          Documentation system & indices [000]
+│   ├── MASTER_INDEX.md               Complete document catalog
+│   ├── FOLDER_INDEX.md               Folder structure guide
+│   ├── LATEX_INDEX.tex               Academic LaTeX index
+│   ├── NAVIGATION_GUIDE.md           How to navigate docs
+│   └── SUBJECT_INDEX.md              Topic-based index
+├── 00-START-HERE/                    Getting started materials [000]
+├── 01-INTRODUCTION/                  Introduction materials [100]
+├── 02-THEORETICAL-FOUNDATIONS/       Philosophy, theory, manifestos [200]
+├── 03-GOVERNANCE-AND-POLICY/         Governance documents [300]
+├── 04-TECHNICAL-ARCHITECTURE/        System design, DVA, MEMT [400]
+├── 05-IMPLEMENTATION/                Deployment & development guides [500]
+├── 06-OPERATIONS/                    Operational procedures & runbooks [600]
+├── 07-RESEARCH-AND-PUBLICATIONS/     Research papers & publications [700]
+├── 08-REFERENCE/                     APIs, schemas, quick references [800]
+├── 09-APPENDICES/                    Supporting materials [900]
 ├── 10-ARCHIVES/                      Archived & completed documents
-└── [root-level files]                Various entry points & summaries
+│   ├── archive/                      General archive
+│   └── legacy/                       Archived duplicate folders
+├── 11-SUPPLEMENTARY/                 Topic-specific supplementary content
+├── assets/                           Static assets (logos, CSS)
+├── badges/                           SVG badges
+├── diagrams/                         Diagram images
+└── figures/                          Figure images
 ```
 
 ---
@@ -101,40 +96,40 @@ docs/
 
 ### 🏆 Flagship Publications
 
-1. **[MIC Whitepaper v2.0](./01-whitepapers/MIC_Whitepaper_v2.0.md)** ⭐  
+1. **[MIC Whitepaper v2.0](./07-RESEARCH-AND-PUBLICATIONS/whitepapers/MIC_Whitepaper_v2.0.md)** ⭐  
    Complete specification of the Mobius Integrity Credits economy
 
 2. **[Governance Overview](./03-GOVERNANCE-AND-POLICY/governance/overview.md)** ⭐  
    Two-house governance model (Concord Council + TSC)
 
-3. **[Architecture Overview](./03-architecture/ARCHITECTURE.md)** ⭐  
+3. **[Architecture Overview](./04-TECHNICAL-ARCHITECTURE/overview/ARCHITECTURE.md)** ⭐  
    Complete system architecture and design
 
-4. **[Mobius Philosophy](./01-philosophy/MOBIUS_PHILOSOPHY.md)** ⭐  
+4. **[Mobius Philosophy](./11-SUPPLEMENTARY/philosophy/MOBIUS_PHILOSOPHY.md)** ⭐  
    Core principles and worldview
 
 ### 📖 Core Reading Paths
 
 #### Path 1: Quick Overview (30 minutes)
 1. [00-START-HERE.md](./00-START-HERE.md)
-2. [MIC Whitepaper Abstract](./01-whitepapers/MIC_Whitepaper_v2.0.md#abstract)
+2. [MIC Whitepaper Abstract](./07-RESEARCH-AND-PUBLICATIONS/whitepapers/MIC_Whitepaper_v2.0.md#abstract)
 3. [Governance Overview](./03-GOVERNANCE-AND-POLICY/governance/overview.md)
 4. [Architecture Quick Reference](./04-TECHNICAL-ARCHITECTURE/overview/ARCHITECTURE_QUICK_REFERENCE.md)
 
 #### Path 2: Deep Dive Economics (2 hours)
-1. [MIC Whitepaper v2.0](./01-whitepapers/MIC_Whitepaper_v2.0.md)
-2. [UBI Mechanism v2.0](./01-whitepapers/UBI_Mechanism_v2.0.md)
-3. [Foundation Economics](./01-whitepapers/MIC_Foundation_Up_Economics_Addendum.md)
-4. [Shard Economics](./01-whitepapers/Shard_Economics_Addendum.md)
+1. [MIC Whitepaper v2.0](./07-RESEARCH-AND-PUBLICATIONS/whitepapers/MIC_Whitepaper_v2.0.md)
+2. [UBI Mechanism v2.0](./07-RESEARCH-AND-PUBLICATIONS/whitepapers/UBI_Mechanism_v2.0.md)
+3. [Foundation Economics](./07-RESEARCH-AND-PUBLICATIONS/whitepapers/MIC_Foundation_Up_Economics_Addendum.md)
+4. [Tokenomics](./11-SUPPLEMENTARY/tokenomics/)
 
 #### Path 3: Philosophy & Theory (2 hours)
-1. [Mobius Philosophy](./01-philosophy/MOBIUS_PHILOSOPHY.md)
+1. [Mobius Philosophy](./11-SUPPLEMENTARY/philosophy/MOBIUS_PHILOSOPHY.md)
 2. [Kaizen Theorems](./02-THEORETICAL-FOUNDATIONS/theory/kaizen_theorems.md)
-3. [Triad of Healing](./02-THEORETICAL-FOUNDATIONS/manifesto/triad_of_healing.md)
-4. [Haymarket to AI](./02-THEORETICAL-FOUNDATIONS/labor-theory/HAYMARKET_TO_AI.md)
+3. [Triad of Healing](./11-SUPPLEMENTARY/manifesto/triad_of_healing.md)
+4. [Haymarket to AI](./11-SUPPLEMENTARY/labor/HAYMARKET_TO_AI.md)
 
 #### Path 4: Technical Implementation (3 hours)
-1. [Architecture Overview](./03-architecture/ARCHITECTURE.md)
+1. [Architecture Overview](./04-TECHNICAL-ARCHITECTURE/overview/ARCHITECTURE.md)
 2. [DVA Overview](./04-TECHNICAL-ARCHITECTURE/dva/)
 3. [Labs Master Architecture](./04-TECHNICAL-ARCHITECTURE/overview/LABS_MASTER_ARCHITECTURE.md)
 4. [Deployment Guide](./05-IMPLEMENTATION/guides/deployment/DEPLOYMENT_GUIDE.md)
@@ -181,36 +176,39 @@ All documents follow a Dewey Decimal-inspired classification:
 👉 **[LATEX_INDEX.tex](./00-META/LATEX_INDEX.tex)** — Academic citations & references
 
 ### Method 5: Reference Index
-👉 **[07-reference/INDEX.md](./07-reference/INDEX.md)** — Quick reference materials
+👉 **[08-REFERENCE/INDEX.md](./08-REFERENCE/INDEX.md)** — Quick reference materials
 
 ### Method 6: Academic Index
-👉 **[07-reference/ACADEMIC_INDEX.md](./07-reference/ACADEMIC_INDEX.md)** — Academic taxonomy
+👉 **[08-REFERENCE/ACADEMIC_INDEX.md](./08-REFERENCE/ACADEMIC_INDEX.md)** — Academic taxonomy
+
+### Method 7: Folder Index
+👉 **[00-META/FOLDER_INDEX.md](./00-META/FOLDER_INDEX.md)** — Complete folder structure guide
 
 ---
 
 ## 🎓 For Different Audiences
 
 ### 👨‍💻 Developers
-- **Start**: [Development Guides](./04-guides/development/)
+- **Start**: [Development Guides](./05-IMPLEMENTATION/guides/development/)
 - **Architecture**: [Technical Architecture](./04-TECHNICAL-ARCHITECTURE/)
-- **APIs**: [Specifications](./06-specifications/)
+- **APIs**: [Reference](./08-REFERENCE/)
 - **Deployment**: [Implementation Guides](./05-IMPLEMENTATION/)
 
 ### 🔬 Researchers & Academics
-- **Start**: [Research Portal](./05-research/)
-- **Whitepapers**: [01-whitepapers/](./01-whitepapers/)
-- **Publications**: [07-RESEARCH-AND-PUBLICATIONS/](./07-RESEARCH-AND-PUBLICATIONS/)
+- **Start**: [Research Portal](./07-RESEARCH-AND-PUBLICATIONS/)
+- **Whitepapers**: [Whitepapers](./07-RESEARCH-AND-PUBLICATIONS/whitepapers/)
+- **Publications**: [Research & Publications](./07-RESEARCH-AND-PUBLICATIONS/)
 - **Citations**: [LaTeX Index](./00-META/LATEX_INDEX.tex)
 
 ### 🏛️ Elders & Philosophers
-- **Start**: [Philosophy](./01-philosophy/)
+- **Start**: [Philosophy](./02-THEORETICAL-FOUNDATIONS/)
 - **Foundations**: [Theoretical Foundations](./02-THEORETICAL-FOUNDATIONS/)
-- **Manifestos**: [Manifesto](./manifesto/)
+- **Manifestos**: [Manifesto](./11-SUPPLEMENTARY/manifesto/)
 - **Ethics**: [Constitution](./03-GOVERNANCE-AND-POLICY/constitution/)
 
 ### 👥 Users & Community
 - **Start**: [00-START-HERE.md](./00-START-HERE.md)
-- **Handbook**: [Handbook](./handbook/index.md)
+- **Handbook**: [Handbook](./11-SUPPLEMENTARY/handbook/index.md)
 - **FAQ**: [FAQ](./00-START-HERE/FAQ.md)
 - **Glossary**: [Glossary](./00-START-HERE/GLOSSARY.md)
 
@@ -218,7 +216,7 @@ All documents follow a Dewey Decimal-inspired classification:
 - **Start**: [Operations Hub](./06-OPERATIONS/)
 - **Runbooks**: [Runbooks](./06-OPERATIONS/processes/runbooks/)
 - **Deployment**: [Deployment Guides](./05-IMPLEMENTATION/guides/deployment/)
-- **Monitoring**: [Observability](./06-OPERATIONS/observability/)
+- **Monitoring**: [Observability](./11-SUPPLEMENTARY/observability/)
 
 ### 🏛️ Governance Participants
 - **Start**: [Governance Overview](./03-GOVERNANCE-AND-POLICY/governance/overview.md)
@@ -249,11 +247,12 @@ All documents follow a Dewey Decimal-inspired classification:
 
 ## 🔄 Documentation Status
 
-**Last Updated**: 2025-01-27  
+**Last Updated**: 2025-11-29  
 **Total Documents**: 500+ markdown files  
-**Active Categories**: 10 major classifications  
+**Active Categories**: 12 numbered classifications  
 **Maintained By**: Mobius Systems Documentation Team  
-**GI Score**: ≥ 0.95 (Continuous Integrity Architecture)
+**GI Score**: ≥ 0.95 (Continuous Integrity Architecture)  
+**Reorganization**: Completed 2025-11-29 (v3.0.0)
 
 ---
 
@@ -310,8 +309,8 @@ All major documents include:
 
 Historical and completed documents are preserved in:
 - **[10-ARCHIVES/](./10-ARCHIVES/)** — Completed implementations & historical docs
-- **[archive/](./archive/)** — Legacy documentation
-- **[99-archive/](./99-archive/)** — Additional archived materials
+  - **[10-ARCHIVES/archive/](./10-ARCHIVES/archive/)** — General archive
+  - **[10-ARCHIVES/legacy/](./10-ARCHIVES/legacy/)** — Archived duplicate folders
 
 **Note**: Archived documents are preserved for historical reference but may not reflect current system state.
 
@@ -320,11 +319,12 @@ Historical and completed documents are preserved in:
 ## 📚 Related Indices
 
 - **[Master Index](./00-META/MASTER_INDEX.md)** — Complete document catalog
+- **[Folder Index](./00-META/FOLDER_INDEX.md)** — Folder structure guide
 - **[Subject Index](./00-META/SUBJECT_INDEX.md)** — Topic-based organization
 - **[Navigation Guide](./00-META/NAVIGATION_GUIDE.md)** — How to navigate
 - **[LaTeX Index](./00-META/LATEX_INDEX.tex)** — Academic citations
-- **[Reference Index](./07-reference/INDEX.md)** — Quick references
-- **[Academic Index](./07-reference/ACADEMIC_INDEX.md)** — Academic taxonomy
+- **[Reference Index](./08-REFERENCE/INDEX.md)** — Quick references
+- **[Academic Index](./08-REFERENCE/ACADEMIC_INDEX.md)** — Academic taxonomy
 
 ---
 
