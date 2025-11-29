@@ -62,6 +62,23 @@ Suggested structure (to be populated in Phase 2):
 
 ---
 
+## Mobius Cycle Protocol Philosophy
+
+**From Cycle C-148:**
+
+*"A Cycle is the smallest unit of meaning.  
+A PR is the crystallization of intent.  
+The Ledger is memory.
+
+Intelligence grows, not through answers,  
+but through the integrity of the work we choose to finish."*
+
+This philosophy underpins the Mobius Cycle Protocol (MCP) v1.0, which ensures that every unit of human–AI work is intentional, documented, attested, consensus-verified, drift-resistant, and ledger-anchored.
+
+See [`06-OPERATIONS/protocols/MCP_v1.0.md`](../06-OPERATIONS/protocols/MCP_v1.0.md) for the full specification.
+
+---
+
 ## Relationship to Other Sections
 
 - See [`02-architecture/`](../02-architecture/README.md) for how these principles manifest in system design

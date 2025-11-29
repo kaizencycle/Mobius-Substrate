@@ -16,7 +16,8 @@
     "@civic/sdk": "*",
     "@civic/integrity-core": "*",
     "express": "^4.18.0",
-    "cors": "^2.8.5"
+    "cors": "^2.8.5",
+    "zod": "^3.22.0"
   },
   "devDependencies": {
     "typescript": "^5.0.0",
