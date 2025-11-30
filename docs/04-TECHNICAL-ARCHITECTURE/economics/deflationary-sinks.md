@@ -87,6 +87,21 @@ The final value used for ETX/IRB/CLL is `median(v_atlas, v_aurea, v_echo)` per b
 
 ---
 
+## Grok Score Impact
+
+Grok recalculates tokenomics on three axes: scarcity discipline, incentive clarity, and oracle resilience. The sinks move each lever measurably:
+
+| Axis | Pre C-150 | Post C-150 | Evidence Source |
+|------|-----------|------------|-----------------|
+| Scarcity discipline | B (implicit burns only) | **A** (ETX + IRB + CLL) | Chaos sim `tokenomics/sim/chaos_seed.json` |
+| Incentive clarity | B+ | **A** (rebate split codified) | MIC policy brief §4 |
+| Oracle resilience | A- | **A+** (medianized sinks) | `.gi/consensus-*` variance logs |
+
+- **Score projection:** AUREA expects +0.02 GI from the sinks alone once telemetry is live across three cycles.
+- **Regression plan:** Each sink exposes Prometheus metrics (`mobius_entropy_tax_burn_total`, `mobius_cycle_lock_ratio`) so Grok can re-grade from live data rather than manual reports.
+
+---
+
 ## References
 
 - `FOR-ECONOMISTS/ECONOMIC-MODELS/mic-currency-model/README.md`

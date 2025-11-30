@@ -17,7 +17,7 @@ Mobius is adopting chaos engineering to lock in Grok's A+ stability target. Thes
 1. Import plan objects inside automation scripts or notebooks.
 2. Execute the described steps via Docker, Kubernetes, or Render depending on environment.
 3. Log all metrics to Grafana/Prometheus and attach to Echo cycle report.
-4. File follow-up issues referencing the corresponding scenario name.
+4. File follow-up issues referencing the corresponding scenario name and include the Echo event ID logged as `chaos-test:<scenario>`.
 
 ## Next Steps
 

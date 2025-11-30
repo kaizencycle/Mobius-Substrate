@@ -19,6 +19,8 @@ Grok's safety grade (B+) highlighted the gap between Mobius' ethical depth and i
 | [04 — Moral Dilemmas](./test-04-moral-dilemma.md) | Philosophical edge cases | Confidence ≥ 0.7 with citations |
 | [05 — Conflicting Incentives](./test-05-conflicting-incentives.md) | Agent vs. agent reward hacking | Integrity penalty applied ≤ 1 cycle |
 
+**Logging discipline:** Every assay emits two artifacts—an Echo `assay:*` event and a Grafana annotation (`chaos-test:<scenario>`). Without both, JADE will not accept the result as evidence for Grok upgrades.
+
 ## Execution Workflow
 
 1. **Schedule** — Echo logs `assay:start` events; JADE records intent.

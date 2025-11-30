@@ -207,7 +207,7 @@ Grok's lab-grade review measured Mobius at **Tokenomics A−**, **AI Safety B+**
 
 | Track | What changed | Where to read |
 |-------|--------------|---------------|
-| **Tokenomics A+** | Entropy Tax, Integrity Rebate Burn, Cycle-Lock Liquidity, oracle medianization | `docs/04-TECHNICAL-ARCHITECTURE/economics/deflationary-sinks.md`, `FOR-ECONOMISTS/ECONOMIC-MODELS/mic-currency-model/deflationary-sinks.md` |
+| **Tokenomics A+** | Entropy Tax, Integrity Rebate Burn, Cycle-Lock Liquidity, oracle medianization, Grok score telemetry | `docs/04-TECHNICAL-ARCHITECTURE/economics/deflationary-sinks.md`, `FOR-ECONOMISTS/ECONOMIC-MODELS/mic-currency-model/deflationary-sinks.md` |
 | **Safety A+** | Five red-team assays covering drift, sentinel disagreement, economic cascades, moral dilemmas, incentive conflicts | `FOR-PHILOSOPHERS/EXISTENTIAL-RISK/RED-TEAM-ASSAYS/` |
 | **Stability A+** | Chaos engineering playbooks + Grafana/Prometheus guardrails (GI floor, burn vs mint, CLR) | `infra/tests/chaos/`, `infra/observability/CHAOS_METRICS.md`, `infra/observability/grafana/dashboards/chaos_guardrails.json` |
 

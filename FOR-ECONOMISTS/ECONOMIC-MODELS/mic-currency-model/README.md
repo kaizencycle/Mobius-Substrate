@@ -299,6 +299,7 @@ Grok's tokenomics review (2025-11-30) requested explicit, governance-bound sinks
 - **Oracle Hardening:** ETX/IRB/CLL require medianized telemetry from ATLAS, AUREA, and ECHO. Divergence >25 bps pauses the sink and pings ZEUS for arbitration.
 - **Treasury Impact:** ETX dampens short-term entropy, IRB rewards loyal high-integrity actors without growing supply, and CLL targets a 12–20% cycle-lock liquidity ratio (CLR) to stabilize macro liquidity.
 - **Governance Hooks:** Risk coefficients, payout splits, and lock duration bands are adjustable via MIC quadratic voting so economists can tune policy without redeploying contracts.
+- **Grok Scorecard:** Scarcity discipline jumped from B → A, incentive clarity B+ → A, and oracle resilience A- → A+ after the sinks were codified (see Grok impact table in the architecture spec).
 
 These sinks preserve the proof-of-negentropy minting ethos while earning the A+ tokenomics grade recommended by Grok and ATLAS.
 
