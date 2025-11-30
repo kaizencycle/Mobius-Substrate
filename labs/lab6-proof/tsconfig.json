@@ -13,8 +13,5 @@
     "jsx": "react-jsx",
     "types": ["node"]
   },
-  "include": ["src", "vite-env.d.ts"],
-  "references": [
-    { "path": "./citizen-shield-app" }
-  ]
+  "include": ["src", "vite-env.d.ts"]
 }

@@ -84,8 +84,8 @@ export async function mintAttestRoute(req: Request, res: Response) {
     if (gi < giFloor) {
       return res.status(403).json({
         error: "GI below required floor",
-        current_gi: mii,
-        required_gi: miiFloor,
+        current_gi: gi,
+        required_gi: giFloor,
         status: "halted",
       });
     }
@@ -129,7 +129,7 @@ export async function mintAttestRoute(req: Request, res: Response) {
         action: "mint",
         amount_shards: amountBI.toString(),
         timestamp,
-        gi_at_mint: mii,
+        gi_at_mint: gi,
       },
       metadata: metadata || {},
     });
@@ -188,8 +188,8 @@ export async function burnAttestRoute(req: Request, res: Response) {
     if (gi < giFloor) {
       return res.status(403).json({
         error: "GI below required floor",
-        current_gi: mii,
-        required_gi: miiFloor,
+        current_gi: gi,
+        required_gi: giFloor,
         status: "halted",
       });
     }
@@ -234,7 +234,7 @@ export async function burnAttestRoute(req: Request, res: Response) {
         amount_shards: amountBI.toString(),
         timestamp,
         reason: reason || "Supply management",
-        gi_at_burn: mii,
+        gi_at_burn: gi,
       },
       metadata: metadata || {},
     });

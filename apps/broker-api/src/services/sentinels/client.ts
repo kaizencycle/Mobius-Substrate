@@ -263,7 +263,7 @@ function parseSentinelResponse(content: string): SentinelResponse {
   const voteMatch = content.match(/Vote:\s*(APPROVE|REJECT|UNCERTAIN)/i);
   
   // Extract URLs from content
-  const urlMatches = content.match(/https?:\/\/[^\s\)]+/g) || [];
+  const urlMatches = content.match(/https?:\/\/[^\s)]+/g) || [];
   const sources = urlMatches.map(url => ({ url }));
 
   return {

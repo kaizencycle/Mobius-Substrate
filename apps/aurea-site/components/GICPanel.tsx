@@ -26,8 +26,8 @@ export function GICPanel() {
       } else {
         setMessage(`✗ Error: ${data.error}`)
       }
-    } catch (error: any) {
-      setMessage(`✗ Error: ${error.message}`)
+    } catch (error) {
+      setMessage(`✗ Error: ${error instanceof Error ? error.message : 'Unknown error'}`)
     } finally {
       setLoading(false)
     }
@@ -54,8 +54,8 @@ export function GICPanel() {
       } else {
         setMessage(`✗ Error: ${data.error}`)
       }
-    } catch (error: any) {
-      setMessage(`✗ Error: ${error.message}`)
+    } catch (error) {
+      setMessage(`✗ Error: ${error instanceof Error ? error.message : 'Unknown error'}`)
     } finally {
       setLoading(false)
     }

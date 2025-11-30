@@ -13,12 +13,12 @@ export function GiBadge() {
     // Connect to GI stream
     const eventSource = new EventSource('/api/gi/stream')
 
-    eventSource.addEventListener('hello', (e) => {
+    eventSource.addEventListener('hello', () => {
       setIsLive(true)
     })
 
-    eventSource.addEventListener('heartbeat', (e) => {
-      const data = JSON.parse(e.data)
+    eventSource.addEventListener('heartbeat', (event) => {
+      const data = JSON.parse(event.data)
       const newGi = data.gi
 
       // Determine trend
@@ -30,8 +30,8 @@ export function GiBadge() {
       setLastUpdate('Just now')
     })
 
-    eventSource.addEventListener('deliberation', (e) => {
-      const data = JSON.parse(e.data)
+    eventSource.addEventListener('deliberation', (event) => {
+      const data = JSON.parse(event.data)
       if (data.agent === 'AUREA') {
         setGi(data.gi)
         setLastUpdate('Just now')

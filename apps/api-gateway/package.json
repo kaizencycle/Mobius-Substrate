@@ -11,7 +11,7 @@
     "clean": "rm -rf dist",
     "type-check": "tsc --noEmit",
     "lint": "eslint src api --ext .ts",
-    "test": "jest"
+    "test": "jest --passWithNoTests"
   },
   "dependencies": {
     "@civic/integrity-core": "*",

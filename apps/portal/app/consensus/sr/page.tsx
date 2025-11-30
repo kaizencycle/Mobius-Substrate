@@ -23,7 +23,7 @@ export default async function SRIndexPage() {
                   {e.details?.subject || e.event_id}
                 </Link>
                 <div className="text-xs text-zinc-400 mt-1">
-                  Cycle {e.details?.cycle || '—'} · GI {e.gi?.toFixed?.(3) ?? '—'} · {new Date(e.timestamp).toLocaleString()}
+                  Cycle {e.details?.cycle || '—'} · MII {e.mii?.toFixed?.(3) ?? '—'} · {new Date(e.timestamp).toLocaleString()}
                 </div>
               </div>
               <SRBadge verdict={e.details?.verdict} />

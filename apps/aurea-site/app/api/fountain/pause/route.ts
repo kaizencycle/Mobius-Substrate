@@ -69,7 +69,7 @@ export async function POST(request: NextRequest) {
     ]
 
     // Validate all signatures are from valid controllers
-    const signerDIDs = signatures.map((s: any) => s.did)
+    const signerDIDs = signatures.map((s: { did: string }) => s.did)
     const invalidSigners = signerDIDs.filter(
       (did: string) => !validControllers.includes(did)
     )

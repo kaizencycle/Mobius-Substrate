@@ -67,7 +67,7 @@ export async function POST(request: NextRequest) {
       calculation: {
         total_supply: totalSupply,
         rate: donationRate,
-        gi_stability_factor: miiStabilityFactor,
+        gi_stability_factor: giStabilityFactor,
         network_gi: netGI,
       },
       attestors: {

@@ -168,11 +168,11 @@ export function MultiAgentGrid({
 // Smooth camera rotation
 function AutoRotateCamera() {
   useEffect(() => {
-    let angle = 0;
+    let _angle = 0;
     let animationId: number;
 
     const animate = () => {
-      angle += 0.002;
+      _angle += 0.002;
       // Camera will be controlled by OrbitControls when user interacts
       animationId = requestAnimationFrame(animate);
     };

@@ -33,7 +33,7 @@ export async function POST(request: Request) {
     return NextResponse.json({
       success: true,
       cycle: cycle ?? process.env.KAIZEN_CURRENT_CYCLE ?? 'C-121',
-      mii: mii ?? Number(process.env.KAIZEN_GI_BASELINE ?? '0.993'),
+      gi: gi ?? Number(process.env.KAIZEN_GI_BASELINE ?? '0.993'),
       room: room ?? 'Consensus Chamber',
       timestamp: new Date().toISOString()
     });

@@ -1,7 +1,7 @@
 import React from "react";
 import Head from "next/head";
-import { makeBeacon, toLD, BeaconOpts } from "../lib/seo/beacon";
-import { getSiteBaseUrl } from "../lib/seo/site";
+import { makeBeacon, toLD, BeaconOpts } from "@/lib/seo/beacon";
+import { getSiteBaseUrl } from "@/lib/seo/site";
 
 export default function SeoBeacon(props: BeaconOpts){
   const baseUrl = getSiteBaseUrl();

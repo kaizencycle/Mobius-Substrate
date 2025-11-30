@@ -2,7 +2,7 @@
 import { GIResponse } from '@/lib/types';
 
 interface GiGaugeProps {
-  mii: GIResponse;
+  gi: GIResponse;
 }
 
 export function GiGauge({ gi }: GiGaugeProps) {

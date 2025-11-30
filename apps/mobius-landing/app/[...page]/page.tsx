@@ -1,25 +1,38 @@
+'use client';
+
+import { useEffect, useState } from 'react';
 import { builder } from '@/lib/builder';
 import { BuilderComponent } from '@builder.io/react';
-import { notFound } from 'next/navigation';
 import '@/components/builder/registry'; // ensures components registered
 
-export const revalidate = 60; // ISR: 60s
-
-export default async function Page({ 
+export default function Page({ 
   params 
 }: { 
   params: { page?: string[] } 
 }) {
+  const [content, setContent] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
   const urlPath = '/' + (params.page?.join('/') || '');
   
-  const content = await builder
-    .get('page', {
-      userAttributes: { urlPath }
-    })
-    .toPromise();
+  useEffect(() => {
+    builder
+      .get('page', {
+        userAttributes: { urlPath }
+      })
+      .toPromise()
+      .then((data) => {
+        setContent(data);
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
+  }, [urlPath]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   if (!content) {
-    return notFound();
+    return <div>Page not found</div>;
   }
 
   return (

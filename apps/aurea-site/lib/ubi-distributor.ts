@@ -103,7 +103,7 @@ export function calculateUBIAmount(
 /**
  * Check if recipient has already claimed today
  */
-export async function hasClaimedToday(recipientDID: string): Promise<boolean> {
+export async function hasClaimedToday(_recipientDID: string): Promise<boolean> {
   // TODO: Query on-chain fountain contract or database
   // For now, return mock data
   return false
@@ -219,7 +219,7 @@ export async function verifyAutomationProof(proof: string): Promise<boolean> {
     return false
   }
 
-  const [type, hash, signature] = parts
+  const [type, _hash, _signature] = parts
   if (type !== 'automation_proof') {
     return false
   }
@@ -232,8 +232,8 @@ export async function verifyAutomationProof(proof: string): Promise<boolean> {
  * Get recipient's UBI history
  */
 export async function getUBIHistory(
-  recipientDID: string,
-  limit: number = 30
+  _recipientDID: string,
+  _limit: number = 30
 ): Promise<UBIDistribution[]> {
   // TODO: Query from database or on-chain events
   // For now, return mock data

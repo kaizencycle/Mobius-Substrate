@@ -20,7 +20,8 @@ async function proofsForUserCycle(userId:string, cycle:string){
     headers: { authorization:`Bearer ${TOKEN}` }
   });
   if (!r.ok) return [];
-  return (await r.json()).items || [];
+  const data = await r.json() as { items?: unknown[] };
+  return data.items || [];
 }
 
 function meritFromProofs(items:any[]){

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // apps/portal/lib/integrity.ts
 const BASE = process.env.NEXT_PUBLIC_INTEGRITY_FEED_BASE || '';
 

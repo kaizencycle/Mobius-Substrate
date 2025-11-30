@@ -10,7 +10,7 @@ export async function GET(request: NextRequest) {
   const writer = stream.writable.getWriter()
 
   // Helper to send SSE message
-  const send = (event: string, data: any) => {
+  const send = (event: string, data: Record<string, unknown>) => {
     const message = `event: ${event}\ndata: ${JSON.stringify(data)}\n\n`
     writer.write(encoder.encode(message))
   }

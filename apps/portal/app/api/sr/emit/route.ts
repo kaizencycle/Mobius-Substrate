@@ -47,7 +47,7 @@ export async function POST(req: NextRequest) {
 
   const sr = {
     cycle: body.cycle ?? "C-121",
-    mii: Number(body.gi ?? 0).toFixed(3),
+    mii: Number(body.mii ?? 0).toFixed(3),
     details: {
       verdict: String(body.verdict ?? "UNKNOWN").toUpperCase(),
       notes: body.notes ?? "",

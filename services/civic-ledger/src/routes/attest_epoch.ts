@@ -37,7 +37,7 @@ export async function attestEpochRoute(req: Request, res: Response) {
   // 4) Enforce GI floor
   const halt = cfg?.gi?.thresholds?.halt ?? 0.9;
   if (gi_used < halt) {
-    return res.status(409).json({ error: 'gi_below_halt', mii: mii_used, halt });
+    return res.status(409).json({ error: 'gi_below_halt', mii: gi_used, halt });
   }
 
   // 5) Store attestation

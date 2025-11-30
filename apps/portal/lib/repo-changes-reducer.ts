@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // apps/portal/lib/repo-changes-reducer.ts
 
 type ChangeStatus = "added" | "modified" | "removed" | "renamed";

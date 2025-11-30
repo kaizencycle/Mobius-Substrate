@@ -5,7 +5,7 @@ export async function GET(_req: NextRequest, { params }: { params: { name: strin
   try {
     const data = await resolveName(params.name);
     return NextResponse.json(data, { status: 200, headers: { 'Cache-Control': 'no-store' } });
-  } catch (e:any) {
-    return NextResponse.json({ error: e.message }, { status: 400 });
+  } catch (e) {
+    return NextResponse.json({ error: e instanceof Error ? e.message : 'Unknown error' }, { status: 400 });
   }
 }

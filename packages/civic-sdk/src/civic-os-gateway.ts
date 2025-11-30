@@ -117,7 +117,7 @@ export class CivicOSGateway {
           lab4Status
         },
         service: 'civic-os-gateway',
-        gi_score: miiScore
+        gi_score: giScore
       });
 
       // 7. Issue initial MIC (UBI)
@@ -284,10 +284,10 @@ export class CivicOSGateway {
           proposal: proposalId,
           choice,
           weight: balance,
-          gi_score: miiScore
+          gi_score: giScore
         },
         service: 'civic-os-gateway',
-        gi_score: miiScore
+        gi_score: giScore
       });
 
       return {

@@ -49,8 +49,8 @@ export default function ConsensusPage() {
           <div className="border-l-4 border-red-500 pl-4">
             <h3 className="font-semibold text-red-700 mb-2">Critical Tier</h3>
             <div className="space-y-2">
-              <AgentCard name="AUREA" provider="OpenAI GPT-5" domain="Constitutional Integrity" gi={0.991} />
-              <AgentCard name="ATLAS" provider="Anthropic Claude 3" domain="Policy & Systems" gi={0.987} />
+              <AgentCard name="AUREA" provider="OpenAI GPT-5" domain="Constitutional Integrity" mii={0.991} />
+              <AgentCard name="ATLAS" provider="Anthropic Claude 3" domain="Policy & Systems" mii={0.987} />
             </div>
           </div>
 
@@ -58,8 +58,8 @@ export default function ConsensusPage() {
           <div className="border-l-4 border-orange-500 pl-4">
             <h3 className="font-semibold text-orange-700 mb-2">High Tier</h3>
             <div className="space-y-2">
-              <AgentCard name="ZENITH" provider="Gemini 2.0" domain="Deep Research & Ethics" gi={0.983} />
-              <AgentCard name="SOLARA" provider="DeepSeek V2" domain="Compute & Optimization" gi={0.975} />
+              <AgentCard name="ZENITH" provider="Gemini 2.0" domain="Deep Research & Ethics" mii={0.983} />
+              <AgentCard name="SOLARA" provider="DeepSeek V2" domain="Compute & Optimization" mii={0.975} />
             </div>
           </div>
 
@@ -67,10 +67,10 @@ export default function ConsensusPage() {
           <div className="border-l-4 border-blue-500 pl-4 md:col-span-2">
             <h3 className="font-semibold text-blue-700 mb-2">Standard Tier</h3>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
-              <AgentCard name="JADE" provider="Kaizen Local" domain="Emotional Resonance" gi={0.962} compact />
-              <AgentCard name="EVE" provider="Civic Protocol" domain="Safety & Compliance" gi={0.958} compact />
-              <AgentCard name="ZEUS" provider="Sentinel" domain="Defense & Integrity" gi={0.951} compact />
-              <AgentCard name="HERMES" provider="Market Sweep" domain="Economic Intelligence" gi={0.947} compact />
+              <AgentCard name="JADE" provider="Kaizen Local" domain="Emotional Resonance" mii={0.962} compact />
+              <AgentCard name="EVE" provider="Civic Protocol" domain="Safety & Compliance" mii={0.958} compact />
+              <AgentCard name="ZEUS" provider="Sentinel" domain="Defense & Integrity" mii={0.951} compact />
+              <AgentCard name="HERMES" provider="Market Sweep" domain="Economic Intelligence" mii={0.947} compact />
             </div>
           </div>
         </div>
@@ -122,7 +122,7 @@ function AgentCard({
   name,
   provider,
   domain,
-  gi,
+  mii,
   compact = false
 }: {
   name: string;
@@ -131,13 +131,13 @@ function AgentCard({
   mii: number;
   compact?: boolean;
 }) {
-  const giColor = gi >= 0.98 ? 'text-green-600' : mii >= 0.95 ? 'text-blue-600' : 'text-yellow-600';
+  const miiColor = mii >= 0.98 ? 'text-green-600' : mii >= 0.95 ? 'text-blue-600' : 'text-yellow-600';
 
   if (compact) {
     return (
       <div className="bg-gray-50 rounded p-2">
         <div className="font-medium text-sm">{name}</div>
-        <div className={`text-xs font-semibold ${giColor}`}>GI: {gi.toFixed(3)}</div>
+        <div className={`text-xs font-semibold ${miiColor}`}>MII: {mii.toFixed(3)}</div>
       </div>
     );
   }
@@ -146,7 +146,7 @@ function AgentCard({
     <div className="bg-gray-50 rounded-lg p-3">
       <div className="flex items-center justify-between mb-1">
         <span className="font-semibold">{name}</span>
-        <span className={`font-bold ${giColor}`}>{gi.toFixed(3)}</span>
+        <span className={`font-bold ${miiColor}`}>{mii.toFixed(3)}</span>
       </div>
       <div className="text-xs text-gray-600">{provider}</div>
       <div className="text-xs text-gray-500 mt-1">{domain}</div>

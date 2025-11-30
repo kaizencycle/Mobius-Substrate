@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { shaHex } from "../../../lib/dev/hash";
+import { shaHex } from "../../../../lib/dev/hash";
 
 /**
  * GET  /api/dev/ledger/proof?companion=&sha256=

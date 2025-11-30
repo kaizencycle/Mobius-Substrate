@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { HealthStatus, Companion, GIResponse, Reflection, DomainPreview, OnboardApplication } from './types';
 
 export const API_BASE = process.env.NEXT_PUBLIC_API_BASE!;

@@ -43,7 +43,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<NearRe
       "id": "att-near-001",
       "latitude": latitude + 0.01,
       "longitude": longitude + 0.01,
-      "distance:": calculateDistance(latitude, longitude, latitude + 0.01, longitude + 0.01),
+      "distance": calculateDistance(latitude, longitude, latitude + 0.01, longitude + 0.01),
       "integrityScore": 0.94,
       "civicImpact": 0.87,
       "geoWeight": 0.89,
@@ -58,7 +58,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<NearRe
       "id": "att-near-002", 
       "latitude": latitude - 0.005,
       "longitude": longitude + 0.02,
-      "distance:": calculateDistance(latitude, longitude, latitude - 0.005, longitude + 0.02),
+      "distance": calculateDistance(latitude, longitude, latitude - 0.005, longitude + 0.02),
       "integrityScore": 0.91,
       "civicImpact": 0.83,
       "geoWeight": 0.85,
@@ -92,4 +92,5 @@ function calculateDistance(lat1: number, lon1: number, lat2: number, lon2: numbe
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
   return R * c;
 }
+
 

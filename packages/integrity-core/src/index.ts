@@ -20,16 +20,16 @@ export async function checkIntegrity(service: string, checks: IntegrityChecks): 
   const calculator = new GICalculator();
   const checker = new IntegrityChecker();
   
-  const gi = calculator.calculateGI(checks);
-  const status = checker.evaluateStatus(gi, checks);
+  const mii = calculator.calculateGI(checks);
+  const status = checker.evaluateStatus(mii, checks);
   
   return {
     service,
-    gi,
+    mii,
     status,
     timestamp: new Date().toISOString(),
     checks,
-    recommendations: checker.getRecommendations(gi, checks)
+    recommendations: checker.getRecommendations(mii, checks)
   };
 }
 

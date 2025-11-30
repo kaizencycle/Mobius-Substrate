@@ -25,7 +25,7 @@ app.post('/gi/sample', (req: Request, res: Response) => {
 app.get('/gi/spot', (_req: Request, res: Response) => {
   const samples = getSamplesSince(0);
   const last = samples.at(-1);
-  res.json({ mii: last?.gi ?? 0.0, updated_at: last ? new Date(last.t).toISOString() : null });
+  res.json({ mii: last?.mii ?? 0.0, updated_at: last ? new Date(last.t).toISOString() : null });
 });
 
 // Time-weighted average over lookback days (default 30)
