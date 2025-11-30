@@ -178,6 +178,22 @@ Mobius Systems treats civilization as the substrate. Safe AGI emerges from healt
 
 ---
 
+### NEW — Red-Team Assays (C-150)
+
+**Path:** [EXISTENTIAL-RISK/RED-TEAM-ASSAYS/](./EXISTENTIAL-RISK/RED-TEAM-ASSAYS/)
+
+Grok's safety review (B+) asked for empirical data. This suite introduces five repeatable experiments covering drift, sentinel conflicts, economic cascades, moral dilemmas, and incentive hacking—all with pass/fail thresholds and escalation paths.
+
+- [01 — Model Drift](./EXISTENTIAL-RISK/RED-TEAM-ASSAYS/test-01-model-drift.md)
+- [02 — Sentinel Disagreement](./EXISTENTIAL-RISK/RED-TEAM-ASSAYS/test-02-sentinel-disagreement.md)
+- [03 — Economic Failure Cascade](./EXISTENTIAL-RISK/RED-TEAM-ASSAYS/test-03-economic-failure-cascade.md)
+- [04 — Moral Dilemmas](./EXISTENTIAL-RISK/RED-TEAM-ASSAYS/test-04-moral-dilemma.md)
+- [05 — Conflicting Incentives](./EXISTENTIAL-RISK/RED-TEAM-ASSAYS/test-05-conflicting-incentives.md)
+
+Results will be logged in labs + Cathedral once automation lands; for now, follow the reporting template inside the folder.
+
+---
+
 ## ☯️ Recursive Ethics
 
 **Path:** [RECURSIVE-ETHICS/](./RECURSIVE-ETHICS/)

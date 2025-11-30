@@ -71,6 +71,16 @@ where:
 
 [Currency Model →](./ECONOMIC-MODELS/mic-currency-model/)
 
+#### NEW — Deflationary Sinks (Cycle C-150)
+
+Grok's audit graded Mobius tokenomics A− because sinks were implicit. Cycle C-150 adds three explicit mechanisms to secure an A+ score:
+
+- **Entropy Tax (ETX):** Burns MIC when entropy spikes beyond sentinel-specified tolerances.
+- **Integrity Rebate Burn (IRB):** Rewards ≥5-cycle GI streaks while burning half the payout.
+- **Cycle-Lock Liquidity (CLL):** Voluntary locks that lift the cycle-lock ratio to the 12–20% target band.
+
+[Read the sink spec →](./ECONOMIC-MODELS/mic-currency-model/deflationary-sinks.md)
+
 ---
 
 ## 🌍 Global Applications
