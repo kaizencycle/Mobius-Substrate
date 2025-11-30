@@ -20,6 +20,12 @@ export function Nav() {
         <Link href="/charter" className="text-slate-700 hover:text-indigo-600 transition-colors">
           Charter
         </Link>
+        <Link href="/reflections" className="text-slate-700 hover:text-indigo-600 transition-colors">
+          Reflections
+        </Link>
+        <Link href="/shield" className="text-slate-700 hover:text-indigo-600 transition-colors">
+          Shield
+        </Link>
         <Link href="/docs" className="text-slate-700 hover:text-indigo-600 transition-colors">
           Docs
         </Link>
