@@ -11,6 +11,9 @@ export * from './mic/micMinting';
 export * from './mic/shardWeights';
 export * from './mic/micMintService';
 
+// Mobius Habits (C-150)
+export * from './habits';
+
 import { GICalculator } from './gi-calculator';
 import { IntegrityChecker } from './integrity-checker';
 import { IntegrityChecks, IntegrityResult } from './types';

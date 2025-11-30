@@ -218,3 +218,42 @@ services:
       - key: ALLOWED_ORIGINS
         value: "*"
 
+  - type: web
+    name: mobius-habits-api
+    env: node
+    plan: starter
+    region: oregon
+    rootDir: .
+    buildCommand: npm ci && npx turbo run build --filter=@mobius/habits-api
+    startCommand: node apps/habits-api/dist/index.js
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 4005
+      - key: DATABASE_URL
+        sync: false
+      - key: HABITS_SIGNING_KEY
+        sync: false
+    autoDeploy: true
+
+  - type: web
+    name: mobius-habits-web
+    env: node
+    plan: starter
+    region: oregon
+    rootDir: apps/habits-web
+    buildCommand: npm ci && npm run build
+    startCommand: npm start
+    healthCheckPath: /
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NEXT_PUBLIC_HABITS_API_BASE
+        fromService:
+          type: web
+          name: mobius-habits-api
+          property: host
+    autoDeploy: true
+
