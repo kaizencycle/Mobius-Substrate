@@ -545,7 +545,7 @@ jobs:
 ## 14. References
 
 - [Architecture Documentation](./ARCHITECTURE.md)
-- [Performance Benchmarks](./PERFORMANCE.md)
+- [Performance Benchmarks](../root-docs/PERFORMANCE.md)
 - [Contributing Guide](./CONTRIBUTING.md)
 - [MII Specification](./specs/mii_spec_v1.md)
 

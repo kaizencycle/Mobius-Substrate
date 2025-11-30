@@ -12,11 +12,13 @@
   },
   "dependencies": {
     "crypto": "^1.0.1",
-    "tweetnacl": "^1.0.3"
+    "tweetnacl": "^1.0.3",
+    "js-yaml": "^4.1.0"
   },
   "devDependencies": {
     "typescript": "^5.0.0",
-    "@types/node": "^20.0.0"
+    "@types/node": "^20.0.0",
+    "@types/js-yaml": "^4.0.9"
   },
   "exports": {
     ".": {

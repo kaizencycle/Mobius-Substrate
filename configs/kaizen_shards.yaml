@@ -1,0 +1,24 @@
+# Kaizen Shard Weights — v1.0
+# Cycle: C-150
+
+threshold_mii: 0.95        # τ for MIC minting
+
+shard_weights:
+  reflection: 1.0
+  learning: 1.0
+  civic: 1.5
+  stability: 2.0
+  stewardship: 2.0
+  innovation: 2.5
+  guardian: 3.0
+
+# Optional: caps per cycle to avoid abuse / spam
+caps:
+  per_cycle:
+    reflection: 10          # max reflection shards per citizen per cycle
+    learning: 5
+    civic: 10
+    stability: 10
+    stewardship: 10
+    innovation: 5
+    guardian: 3

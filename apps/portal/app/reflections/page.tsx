@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 type ReflectionForm = {
   worldview_text: string;
   mood_label: string;
+  mood_intensity: number;
   intent_text: string;
 };
 
@@ -18,6 +19,7 @@ export default function DailyReflectionsPage() {
   const [form, setForm] = useState<ReflectionForm>({
     worldview_text: "",
     mood_label: "",
+    mood_intensity: 0.5,
     intent_text: "",
   });
 
@@ -43,6 +45,7 @@ export default function DailyReflectionsPage() {
           setForm({
             worldview_text: data.worldviewText || data.worldview_text || "",
             mood_label: data.moodLabel || data.mood_label || "",
+            mood_intensity: data.moodIntensity ?? data.mood_intensity ?? 0.5,
             intent_text: data.intentText || data.intent_text || "",
           });
           setMessage("Loaded today's reflection.");
@@ -65,7 +68,11 @@ export default function DailyReflectionsPage() {
   const handleChange =
     (field: keyof ReflectionForm) =>
     (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-      setForm((prev) => ({ ...prev, [field]: e.target.value }));
+      const value =
+        field === 'mood_intensity'
+          ? parseFloat(e.target.value)
+          : e.target.value;
+      setForm((prev) => ({ ...prev, [field]: value }));
     };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -85,6 +92,7 @@ export default function DailyReflectionsPage() {
           date,
           worldview_text: form.worldview_text,
           mood_label: form.mood_label,
+          mood_intensity: form.mood_intensity,
           intent_text: form.intent_text,
           metadata: { source: "frontend_reflections_page" },
         }),
@@ -141,17 +149,32 @@ export default function DailyReflectionsPage() {
           />
         </section>
 
-        <section className="space-y-1">
+        <section className="space-y-2">
           <label className="block text-sm font-medium">
             2. How are you feeling right now?
           </label>
           <input
             value={form.mood_label}
             onChange={handleChange("mood_label")}
-            className="w-full border rounded-md px-3 py-2 text-sm focus:outline-none focus:ring"
+            className="w-full border rounded-md px-3 py-2 text-sm focus:outline-none focus:ring mb-2"
             placeholder='e.g. "tired but grateful", "calm", "overwhelmed"'
             disabled={loading || saving}
           />
+          <div className="space-y-1">
+            <label className="block text-xs text-gray-600">
+              Intensity: {Math.round(form.mood_intensity * 100)}%
+            </label>
+            <input
+              type="range"
+              min="0"
+              max="1"
+              step="0.01"
+              value={form.mood_intensity}
+              onChange={handleChange("mood_intensity")}
+              className="w-full"
+              disabled={loading || saving}
+            />
+          </div>
         </section>
 
         <section className="space-y-1">
