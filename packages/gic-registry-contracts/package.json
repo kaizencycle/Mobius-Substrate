@@ -2,7 +2,7 @@
   "name": "gic-registry-contracts",
   "private": true,
   "version": "0.1.0",
-  "type": "module",
+  "type": "commonjs",
   "scripts": {
     "build": "hardhat compile",
     "deploy": "hardhat run scripts/deploy.ts --network $NETWORK"

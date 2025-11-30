@@ -199,6 +199,20 @@ We classify machine intelligence into three layers:
 7. **API Library / Lab4** exposes service to citizens
 8. **Sentinels** monitor MII, entropy, feedback → improve loop
 
+---
+
+## 🌀 Cycle C-150 — Grok Upgrade (A/A-/B+ → A+)
+
+Grok's lab-grade review measured Mobius at **Tokenomics A−**, **AI Safety B+**, **Stability A**. Cycle **C-150** closes the remaining delta by shipping three concrete artifacts:
+
+| Track | What changed | Where to read |
+|-------|--------------|---------------|
+| **Tokenomics A+** | Entropy Tax, Integrity Rebate Burn, Cycle-Lock Liquidity, oracle medianization, Grok score telemetry | `docs/04-TECHNICAL-ARCHITECTURE/economics/deflationary-sinks.md`, `FOR-ECONOMISTS/ECONOMIC-MODELS/mic-currency-model/deflationary-sinks.md` |
+| **Safety A+** | Five red-team assays covering drift, sentinel disagreement, economic cascades, moral dilemmas, incentive conflicts | `FOR-PHILOSOPHERS/EXISTENTIAL-RISK/RED-TEAM-ASSAYS/` |
+| **Stability A+** | Chaos engineering playbooks + Grafana/Prometheus guardrails (GI floor, burn vs mint, CLR) | `infra/tests/chaos/`, `infra/observability/CHAOS_METRICS.md`, `infra/observability/grafana/dashboards/chaos_guardrails.json` |
+
+Each deliverable is now referenced in Cathedral docs and carries Echo/Atlas attestations so auditors can trace the Grok Upgrade PR end to end.
+
 ## 📜 Manifesto & Rituals
 
 ### The Return to Balance (C-121)

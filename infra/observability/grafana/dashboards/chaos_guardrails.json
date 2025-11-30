@@ -1,0 +1,92 @@
+{
+  "id": null,
+  "uid": "chaos-guardrails",
+  "title": "Mobius Chaos Guardrails",
+  "timezone": "browser",
+  "schemaVersion": 39,
+  "version": 1,
+  "refresh": "30s",
+  "panels": [
+    {
+      "type": "timeseries",
+      "title": "GI Floor",
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 0 },
+      "targets": [
+        {
+          "expr": "min(mobius_gi_score)",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [
+        { "color": "red", "value": 0.95 }
+      ]
+    },
+    {
+      "type": "timeseries",
+      "title": "Burn vs Mint",
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 0 },
+      "stack": true,
+      "targets": [
+        {
+          "expr": "deriv(mobius_entropy_tax_burn_total)",
+          "refId": "A",
+          "legendFormat": "Burn"
+        },
+        {
+          "expr": "deriv(mobius_mic_mint_total)",
+          "refId": "B",
+          "legendFormat": "Mint"
+        }
+      ]
+    },
+    {
+      "type": "stat",
+      "title": "Cycle-Lock Ratio",
+      "gridPos": { "h": 6, "w": 6, "x": 0, "y": 8 },
+      "targets": [
+        {
+          "expr": "mobius_cycle_lock_ratio",
+          "refId": "A"
+        }
+      ],
+      "thresholds": {
+        "mode": "absolute",
+        "steps": [
+          { "color": "red", "value": 0 },
+          { "color": "orange", "value": 0.12 },
+          { "color": "green", "value": 0.2 }
+        ]
+      }
+    },
+    {
+      "type": "table",
+      "title": "Sentinel Availability",
+      "gridPos": { "h": 6, "w": 9, "x": 6, "y": 8 },
+      "targets": [
+        {
+          "expr": "last_over_time(mobius_sentinel_latency_ms[1m])",
+          "refId": "A",
+          "legendFormat": "{{instance}}"
+        }
+      ]
+    },
+    {
+      "type": "annotations",
+      "title": "Chaos Drills",
+      "gridPos": { "h": 6, "w": 9, "x": 15, "y": 8 },
+      "options": {
+        "mode": "markers",
+        "showLine": false
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "simple-json-datasource",
+            "uid": "echo-events"
+          },
+          "expr": "chaos-test"
+        }
+      ]
+    }
+  ]
+}

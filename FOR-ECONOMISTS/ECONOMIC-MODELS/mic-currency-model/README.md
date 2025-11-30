@@ -286,6 +286,23 @@ MIC value is anchored to:
 | Oracle manipulation | Low | Multi-sentinel consensus |
 | Network attacks | Low | Standard security practices |
 
+### Deflationary Sinks (C-150)
+
+Grok's tokenomics review (2025-11-30) requested explicit, governance-bound sinks to keep MIC deflationary even during rapid adoption. Cycle C-150 adds three interoperable levers:
+
+| Sink | Trigger | Effect | Reference |
+|------|---------|--------|-----------|
+| **Entropy Tax (ETX)** | Entropy spike (MII/GI drop >10 bps) | Auto-burn proportional to entropy delta | `docs/04-TECHNICAL-ARCHITECTURE/economics/deflationary-sinks.md` |
+| **Integrity Rebate Burn (IRB)** | ≥5-cycle GI streak above baseline | 50% rebate payout / 50% burn | Same |
+| **Cycle-Lock Liquidity (CLL)** | Voluntary MIC lock 3–12 cycles | Removes MIC from circulation, locks 10% reserve | Same |
+
+- **Oracle Hardening:** ETX/IRB/CLL require medianized telemetry from ATLAS, AUREA, and ECHO. Divergence >25 bps pauses the sink and pings ZEUS for arbitration.
+- **Treasury Impact:** ETX dampens short-term entropy, IRB rewards loyal high-integrity actors without growing supply, and CLL targets a 12–20% cycle-lock liquidity ratio (CLR) to stabilize macro liquidity.
+- **Governance Hooks:** Risk coefficients, payout splits, and lock duration bands are adjustable via MIC quadratic voting so economists can tune policy without redeploying contracts.
+- **Grok Scorecard:** Scarcity discipline jumped from B → A, incentive clarity B+ → A, and oracle resilience A- → A+ after the sinks were codified (see Grok impact table in the architecture spec).
+
+These sinks preserve the proof-of-negentropy minting ethos while earning the A+ tokenomics grade recommended by Grok and ATLAS.
+
 ### Economic Risks
 
 | Risk | Probability | Mitigation |

@@ -60,6 +60,14 @@ You now have the full Mobius Ops Console:
 - Engine Latency (p50/p90)
 - MII vs Threshold trend
 
+### NEW — Chaos Guardrails Dashboard
+
+Cycle C-150 adds a second dashboard focused on Grok's stability gap:
+
+1. Import `infra/observability/grafana/dashboards/chaos_guardrails.json` (export after wiring metrics from `CHAOS_METRICS.md`).
+2. Panels include GI floor, burn vs mint, cycle-lock ratio, sentinel availability, and chaos drill annotations.
+3. Use annotations to tag every chaos run (`chaos-test:<scenario>`).
+
 ---
 
 ## 5. Web Ops Console (Optional)
