@@ -67,7 +67,7 @@ jobs:
           # Read cycle from secret or fallback to STATE file or default
           CYCLE="${{ secrets.MOBIUS_CYCLE }}"
           if [ -z "$CYCLE" ]; then
-            CYCLE=$(cat STATE/CYCLE.txt 2>/dev/null || echo "C-127")
+            CYCLE=$(cat STATE/CYCLE.txt 2>/dev/null || echo "C-150")
           fi
           VERDICT=$(cat STATE/VERDICT.txt 2>/dev/null || echo "ADOPT")
 

@@ -201,17 +201,17 @@ We classify machine intelligence into three layers:
 
 ---
 
-## 🌀 Cycle C-150 — Grok Upgrade (A/A-/B+ → A+)
+## 🌀 Cycle C-150 — MIC + Kaizen Shards + Mobius Habits
 
-Grok's lab-grade review measured Mobius at **Tokenomics A−**, **AI Safety B+**, **Stability A**. Cycle **C-150** closes the remaining delta by shipping three concrete artifacts:
+Cycle **C-150** introduces **MIC (Mobius Integrity Credits)** minting, **Kaizen Shards** taxonomy, and **Mobius Habits** (Reflections + Citizen Shield) as the first public surface of Mobius Systems.
 
-| Track | What changed | Where to read |
-|-------|--------------|---------------|
-| **Tokenomics A+** | Entropy Tax, Integrity Rebate Burn, Cycle-Lock Liquidity, oracle medianization, Grok score telemetry | `docs/04-TECHNICAL-ARCHITECTURE/economics/deflationary-sinks.md`, `FOR-ECONOMISTS/ECONOMIC-MODELS/mic-currency-model/deflationary-sinks.md` |
-| **Safety A+** | Five red-team assays covering drift, sentinel disagreement, economic cascades, moral dilemmas, incentive conflicts | `FOR-PHILOSOPHERS/EXISTENTIAL-RISK/RED-TEAM-ASSAYS/` |
-| **Stability A+** | Chaos engineering playbooks + Grafana/Prometheus guardrails (GI floor, burn vs mint, CLR) | `infra/tests/chaos/`, `infra/observability/CHAOS_METRICS.md`, `infra/observability/grafana/dashboards/chaos_guardrails.json` |
+| Component | What changed | Where to read |
+|-----------|--------------|---------------|
+| **MIC Minting** | Integrity-linked currency with formula: `MIC = max(0, S * (MII - τ))` | `packages/integrity-core/src/mic/`, `docs/11-SUPPLEMENTARY/implementation-summaries/C150_MIC_KAIZEN_SHARDS_SUMMARY.md` |
+| **Kaizen Shards** | 7 shard types (reflection, learning, civic, stability, stewardship, innovation, guardian) with configurable weights | `configs/kaizen_shards.yaml`, `packages/integrity-core/src/mic/README.md` |
+| **Mobius Habits** | Daily Reflections (SML loop) + Weekly Citizen Shield (cybersecurity checklist) | `apps/portal/app/reflections/`, `apps/portal/app/shield/`, `docs/11-SUPPLEMENTARY/implementation-summaries/C150_MOBIUS_HABITS_SUMMARY.md` |
 
-Each deliverable is now referenced in Cathedral docs and carries Echo/Atlas attestations so auditors can trace the Grok Upgrade PR end to end.
+All components are integrated and ready for backend wiring. See `docs/11-SUPPLEMENTARY/implementation-summaries/C150_COMPLETE_IMPLEMENTATION.md` for full details.
 
 ## 📜 Manifesto & Rituals
 
@@ -729,5 +729,5 @@ Your **proof-of-evolution**: collectible milestones for cycles, reflections, and
 
 ---
 
-*Cycle C-127 | Mobius-main-tree | Implementing KTT*
+*Cycle C-150 | Mobius-main-tree | MIC + Kaizen Shards + Mobius Habits*
 
