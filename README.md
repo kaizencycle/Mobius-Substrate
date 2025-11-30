@@ -45,7 +45,7 @@
 
 <!-- Situational Report (repo-native badges) -->
 <!-- SR • Cycle -->
-![SR • Cycle](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/kaizencycle/Mobius-Systems/main/.badges/cycle.json)
+![Kaizen • Cycle](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/kaizencycle/Mobius-Systems/main/.badges/cycle.json)
 
 <!-- Verdict -->
 ![Verdict](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/kaizencycle/Mobius-Systems/main/.badges/verdict.json)
