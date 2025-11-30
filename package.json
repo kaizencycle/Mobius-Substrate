@@ -28,6 +28,7 @@
     "integrity:report": "./scripts/integrity-report.sh",
     "integrity:check": "./scripts/integrity-report.sh",
     "consensus:validate": "./scripts/gi-consensus-validate.sh",
+    "seed:habits": "tsx scripts/seed-mobius-habits.ts",
     "gi:validate": "./scripts/gi-consensus-validate.sh",
     "console": "cd apps/console && python main.py",
     "docs:generate": "echo \"Documentation generation coming soon\"",
@@ -42,7 +43,8 @@
     "@changesets/cli": "^2.27.1",
     "@types/node": "^20.0.0",
     "turbo": "^2.6.0",
-    "typescript": "^5.0.0"
+    "typescript": "^5.0.0",
+    "tsx": "^4.7.0"
   },
   "engines": {
     "node": ">=18.0.0",
