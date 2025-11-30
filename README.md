@@ -44,7 +44,7 @@
 [![Labs](https://img.shields.io/badge/Labs-7-8B5CF6)](labs)
 
 <!-- Situational Report (repo-native badges) -->
-<!-- SR • Cycle -->
+<!-- Kaizen • Cycle -->
 ![Kaizen • Cycle](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/kaizencycle/Mobius-Systems/main/.badges/cycle.json)
 
 <!-- Verdict -->
