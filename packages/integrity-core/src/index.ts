@@ -5,6 +5,12 @@ export * from './middleware';
 export * from './types';
 export * from './crypto/mii_sign';
 
+// MIC (Mobius Integrity Credits) and Kaizen Shards
+export * from './mic/types';
+export * from './mic/micMinting';
+export * from './mic/shardWeights';
+export * from './mic/micMintService';
+
 import { GICalculator } from './gi-calculator';
 import { IntegrityChecker } from './integrity-checker';
 import { IntegrityChecks, IntegrityResult } from './types';
