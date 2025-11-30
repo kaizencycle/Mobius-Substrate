@@ -1,7 +1,8 @@
 // Mobius Habits API Routes
 // C-150: Reflections, Shield, Identity, Insights
 
-import { Router } from 'express';
+import { Router, RequestHandler } from 'express';
+import rateLimit from 'express-rate-limit';
 import { Pool } from 'pg';
 import { computeMII, calculateShieldCompletionScore } from '@civic/integrity-core';
 import { awardMIC, calculateWeeklyBonus } from '@civic/integrity-core';
@@ -10,10 +11,56 @@ import { checkShards, KaizenShardType } from '@civic/integrity-core';
 const router = Router();
 const pool = new Pool({ connectionString: process.env.DATABASE_URL });
 
+// Rate limiter for write operations: 20 requests per minute per IP
+const writeLimiter = rateLimit({
+  windowMs: 60 * 1000, // 1 minute
+  max: 20,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: 'Write rate limit exceeded, please slow down.' },
+});
+
+// Whitelist of valid Shield step columns for safe SQL queries
+const VALID_SHIELD_STEPS = {
+  update_devices: 'step_update_devices',
+  router_hygiene: 'step_router_hygiene',
+  browser_lockdown: 'step_browser_lockdown',
+  '2fa_check': 'step_2fa_check',
+  backup_essentials: 'step_backup_essentials',
+} as const;
+
+type ShieldStep = keyof typeof VALID_SHIELD_STEPS;
+
+// Input sanitization helpers
+function sanitizeUserId(userId: unknown): string {
+  if (typeof userId !== 'string') return 'kaizen';
+  // Allow only alphanumeric, underscore, dash; max 64 chars
+  const sanitized = userId.slice(0, 64).replace(/[^a-zA-Z0-9_-]/g, '');
+  return sanitized || 'kaizen';
+}
+
+function sanitizeText(text: unknown, maxLength = 1000): string {
+  if (typeof text !== 'string') return '';
+  // Trim and limit length
+  return text.trim().slice(0, maxLength);
+}
+
+function sanitizeMoodLabel(label: unknown): string | null {
+  const validMoods = ['excited', 'content', 'neutral', 'anxious', 'frustrated', 'calm', 'energized', 'tired'];
+  if (typeof label !== 'string') return null;
+  const lower = label.toLowerCase().trim();
+  return validMoods.includes(lower) ? lower : null;
+}
+
+function sanitizeMoodIntensity(intensity: unknown): number {
+  if (typeof intensity !== 'number') return 0.5;
+  return Math.max(0, Math.min(1, intensity));
+}
+
 // GET /habits/dashboard?userId=kaizen
 router.get('/dashboard', async (req, res) => {
   try {
-    const userId = (req.query.userId as string) || 'kaizen';
+    const userId = sanitizeUserId(req.query.userId);
     const today = new Date().toISOString().slice(0, 10);
 
     const client = await pool.connect();
@@ -102,18 +149,17 @@ router.get('/dashboard', async (req, res) => {
 });
 
 // POST /habits/reflection
-router.post('/reflection', async (req, res) => {
+router.post('/reflection', writeLimiter as RequestHandler, async (req, res) => {
   try {
-    const {
-      userId = 'kaizen',
-      worldviewText,
-      moodLabel,
-      moodIntensity = 0.5,
-      intentText,
-    } = req.body ?? {};
+    const body = req.body ?? {};
+    const userId = sanitizeUserId(body.userId);
+    const worldviewText = sanitizeText(body.worldviewText);
+    const moodLabel = sanitizeMoodLabel(body.moodLabel);
+    const moodIntensity = sanitizeMoodIntensity(body.moodIntensity);
+    const intentText = sanitizeText(body.intentText);
 
     if (!worldviewText || !moodLabel || !intentText) {
-      return res.status(400).json({ error: 'Missing required fields' });
+      return res.status(400).json({ error: 'Missing or invalid required fields' });
     }
 
     const today = new Date().toISOString().slice(0, 10);
@@ -198,14 +244,23 @@ router.post('/reflection', async (req, res) => {
 });
 
 // POST /habits/shield/submit
-router.post('/shield/submit', async (req, res) => {
+router.post('/shield/submit', writeLimiter as RequestHandler, async (req, res) => {
   try {
-    const { userId = 'kaizen', step, completed } = req.body ?? {};
+    const body = req.body ?? {};
+    const userId = sanitizeUserId(body.userId);
+    const step = body.step;
+    const completed = body.completed;
 
     if (!step || typeof completed !== 'boolean') {
       return res.status(400).json({ error: 'Missing step or completed status' });
     }
 
+    // Validate step against whitelist (prevents SQL injection)
+    if (!(step in VALID_SHIELD_STEPS)) {
+      return res.status(400).json({ error: 'Invalid step name' });
+    }
+
+    const stepColumn = VALID_SHIELD_STEPS[step as ShieldStep];
     const weekStart = getWeekStart(new Date());
     const client = await pool.connect();
 
@@ -216,13 +271,6 @@ router.post('/shield/submit', async (req, res) => {
          WHERE user_id = $1 AND week_start_date = $2`,
         [userId, weekStart]
       );
-
-      const stepColumn = `step_${step}`;
-      const validSteps = ['update_devices', 'router_hygiene', 'browser_lockdown', '2fa_check', 'backup_essentials'];
-      
-      if (!validSteps.includes(step)) {
-        return res.status(400).json({ error: 'Invalid step name' });
-      }
 
       if (existing.rows.length === 0) {
         // Create new shield run
@@ -348,7 +396,7 @@ router.post('/shield/submit', async (req, res) => {
 // GET /habits/identity
 router.get('/identity', async (req, res) => {
   try {
-    const userId = (req.query.userId as string) || 'kaizen';
+    const userId = sanitizeUserId(req.query.userId);
     const client = await pool.connect();
 
     try {
@@ -393,7 +441,7 @@ router.get('/identity', async (req, res) => {
 // GET /habits/insights
 router.get('/insights', async (req, res) => {
   try {
-    const userId = (req.query.userId as string) || 'kaizen';
+    const userId = sanitizeUserId(req.query.userId);
     const client = await pool.connect();
 
     try {
