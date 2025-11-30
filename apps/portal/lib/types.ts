@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export interface HealthStatus {
   ok: boolean;
   components: Record<string, string>;

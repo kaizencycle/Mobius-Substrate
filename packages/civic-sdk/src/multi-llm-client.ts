@@ -89,7 +89,7 @@ export class CivicMultiLLMClient {
     return this.req('/v1/reflections/api/charter/validate', {
       method: 'POST',
       body: JSON.stringify(payload)
-    });
+    }) as Promise<ConstitutionalValidation>;
   }
 
   /**
@@ -120,11 +120,11 @@ export class CivicMultiLLMClient {
           })
         });
 
-        results[name] = response;
+        results[name] = response as { content: string };
 
         // Validate constitutionally
         const validation = await this.validateConstitution({
-          prompt: response.content || '',
+          prompt: (response as { content: string }).content || '',
           source: `companion_${name}`
         });
 
@@ -152,7 +152,7 @@ export class CivicMultiLLMClient {
       .sort((a, b) => b[1] - a[1])[0]?.[0];
 
     const bestResponse = bestCompanion 
-      ? await this.req(`/v1/oaa/companion/${bestCompanion}/last-response`)
+      ? await this.req(`/v1/oaa/companion/${bestCompanion}/last-response`) as { content: string }
       : { content: '' };
 
     return {

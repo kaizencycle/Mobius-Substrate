@@ -202,23 +202,24 @@ class ATLASSentinel {
       const { name, arguments: args } = request.params;
 
       try {
+        const typedArgs = args as Record<string, unknown> || {};
         switch (name) {
           case 'health_check':
             return await this.healthCheck();
           case 'calculate_gi_score':
-            return await this.calculateGIScore(args?.target || 'system');
+            return await this.calculateGIScore((typedArgs.target as string) || 'system');
           case 'audit_code_quality':
-            return await this.auditCodeQuality(args?.repository);
+            return await this.auditCodeQuality(typedArgs.repository as string | undefined);
           case 'synthesize_learning':
-            return await this.synthesizeLearning(args?.cycles || []);
+            return await this.synthesizeLearning((typedArgs.cycles as string[]) || []);
           case 'get_memory':
-            return await this.getMemory(args?.key);
+            return await this.getMemory(typedArgs.key as string | undefined);
           case 'store_memory':
-            return await this.storeMemory(args?.key, args?.value);
+            return await this.storeMemory(typedArgs.key as string, typedArgs.value as string);
           case 'clock_in':
-            return await this.clockIn(args?.intent || []);
+            return await this.clockIn((typedArgs.intent as string[]) || []);
           case 'clock_out':
-            return await this.clockOut(args?.wins || [], args?.blocks || [], args?.nextIntent || []);
+            return await this.clockOut((typedArgs.wins as string[]) || [], (typedArgs.blocks as string[]) || [], (typedArgs.nextIntent as string[]) || []);
           default:
             throw new Error(`Unknown tool: ${name}`);
         }
@@ -308,8 +309,8 @@ ${Object.entries(results).map(([name, data]) =>
       const bonusScore = Math.min(0.1, healthyAPIs * 0.02); // Bonus for multiple healthy APIs
       const giScore = Math.min(0.99, baseScore + bonusScore);
       
-      const status = giScore >= 0.95 ? 'PASS' : miiScore >= 0.80 ? 'WARN' : 'FAIL';
-      const emoji = giScore >= 0.95 ? '🟢' : miiScore >= 0.80 ? '🟡' : '🔴';
+      const status = giScore >= 0.95 ? 'PASS' : giScore >= 0.80 ? 'WARN' : 'FAIL';
+      const emoji = giScore >= 0.95 ? '🟢' : giScore >= 0.80 ? '🟡' : '🔴';
       
       const report = `📊 **GI Score Calculation: System**
       
@@ -328,7 +329,7 @@ ${status === 'PASS' ? '✅ System integrity maintained' :
     } else {
       // Calculate individual citizen GI score (simplified)
       const giScore = 0.85 + Math.random() * 0.14; // Mock calculation
-      const status = giScore >= 0.95 ? 'EXCELLENT' : miiScore >= 0.80 ? 'GOOD' : 'NEEDS_IMPROVEMENT';
+      const status = giScore >= 0.95 ? 'EXCELLENT' : giScore >= 0.80 ? 'GOOD' : 'NEEDS_IMPROVEMENT';
       
       const report = `📊 **GI Score Calculation: ${target}**
       

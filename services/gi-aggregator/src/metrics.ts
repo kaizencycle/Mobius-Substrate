@@ -12,7 +12,7 @@ export function timeWeightedAverage(samples: GISample[], now = Date.now()): numb
     const age = Math.max(0, now - s.t);
     const frac = 1 - Math.min(1, age / (lookbackMs || 1)); // 0..1
     const w = (s.w ?? 1) * (0.2 + 0.8 * frac);             // floor 0.2 to avoid zeroing older samples
-    num += s.gi * w;
+    num += s.mii * w;
     den += w;
   }
 
@@ -22,11 +22,11 @@ export function timeWeightedAverage(samples: GISample[], now = Date.now()): numb
 export function rejectOutliers(samples: GISample[], zMax = 3): GISample[] {
   if (samples.length < 8) return samples;
 
-  const vals = samples.map(s => s.gi);
+  const vals = samples.map(s => s.mii);
   const mean = vals.reduce((a, b) => a + b, 0) / vals.length;
   const variance = vals.reduce((a, b) => a + (b - mean) ** 2, 0) / vals.length;
   const sd = Math.sqrt(variance) || 1e-6;
 
-  return samples.filter(s => Math.abs(s.gi - mean) / sd <= zMax);
+  return samples.filter(s => Math.abs(s.mii - mean) / sd <= zMax);
 }
 

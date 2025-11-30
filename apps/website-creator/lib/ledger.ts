@@ -1,14 +1,41 @@
 type Reservation = { reservation_id: string; fee: string; expires_at: string };
+
+interface Profile {
+  "@context": string[];
+  name: string;
+  identifier: string;
+  bio: string;
+  links: { href: string; title: string }[];
+  badges: string[];
+}
+
+interface Proofs {
+  ledgerHash: string;
+  timestamp: string;
+}
+
 type Resolution = {
   name: string;
   did: string;
   owner_keys: string[];
   content_root: string;
-  profile: any;
-  proofs: { ledgerHash: string; timestamp: string };
+  profile: Profile;
+  proofs: Proofs;
 };
 
-const memoryDB: Record<string, any> = {};
+interface DBEntry {
+  reservation_id: string;
+  name: string;
+  pubkey: string;
+  committed: boolean;
+  created_at: string;
+  did?: string;
+  content_root?: string;
+  profile?: Profile;
+  proofs?: Proofs;
+}
+
+const memoryDB: Record<string, DBEntry> = {};
 
 export async function reserveName(name: string, pubkey: string): Promise<Reservation> {
   if (!name || !/^[a-z0-9-]{3,30}$/.test(name)) throw new Error('Invalid name');
@@ -20,7 +47,7 @@ export async function reserveName(name: string, pubkey: string): Promise<Reserva
 }
 
 export async function commitName(reservation_id: string, did: string, content_root: string) {
-  const entry = Object.values(memoryDB).find((v:any)=>v.reservation_id===reservation_id);
+  const entry = Object.values(memoryDB).find((v)=>v.reservation_id===reservation_id);
   if (!entry) throw new Error('Reservation not found');
   entry.did = did || ('did:gic:' + Math.random().toString(36).slice(2));
   entry.content_root = content_root || 'ipfs://placeholder';
@@ -40,6 +67,9 @@ export async function commitName(reservation_id: string, did: string, content_ro
 export async function resolveName(name: string): Promise<Resolution> {
   const entry = memoryDB[name];
   if (!entry || !entry.committed) throw new Error('Name not found or not committed');
+  if (!entry.did || !entry.content_root || !entry.profile || !entry.proofs) {
+    throw new Error('Name not fully registered');
+  }
   return {
     name: entry.name + ".gic",
     did: entry.did,
@@ -50,7 +80,7 @@ export async function resolveName(name: string): Promise<Resolution> {
   };
 }
 
-export async function submitAttestation(body: any) {
+export async function submitAttestation(body: Record<string, unknown>) {
   return { ok: true, received: body, ts: new Date().toISOString() };
 }
 

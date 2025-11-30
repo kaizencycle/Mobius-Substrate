@@ -22,7 +22,7 @@ export default function RelayFilters(){
     const cur = getFilters();
     const set = new Set([...cur[kind] as Set<string>]);
     set.has(value)? set.delete(value) : set.add(value);
-    setFilters({[kind]: set} as any); setV(getFilters());
+    setFilters({[kind]: set} as Parameters<typeof setFilters>[0]); setV(getFilters());
   }
   function togglePause(){ setFilters({paused: !getFilters().paused}); setV(getFilters()); }
   function clearAll(){ setFilters({from:new Set(),to:new Set(),projector:new Set()}); setV(getFilters()); }

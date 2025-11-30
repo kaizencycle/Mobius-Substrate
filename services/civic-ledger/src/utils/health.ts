@@ -107,10 +107,10 @@ export async function getSystemHealth(): Promise<SystemHealth> {
       precision_bits: 64,
     },
     gi_status: {
-      current: mii,
+      current: gi,
       threshold_warn: thresholdWarn,
       threshold_halt: thresholdHalt,
-      status: mii >= thresholdWarn ? "healthy" : mii >= thresholdHalt ? "warning" : "critical",
+      status: gi >= thresholdWarn ? "healthy" : gi >= thresholdHalt ? "warning" : "critical",
     },
     epoch: {
       current_epoch: currentEpoch,

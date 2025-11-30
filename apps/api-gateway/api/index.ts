@@ -21,7 +21,7 @@ const integrityMiddleware = new IntegrityMiddleware({
   skipPaths: ['/health', '/api/integrity-check']
 });
 
-const shieldManager = new ShieldPolicyManager();
+const _shieldManager = new ShieldPolicyManager();
 
 // Security middleware
 app.use(helmet({
@@ -95,7 +95,7 @@ Object.entries(services).forEach(([serviceName, serviceUrl]) => {
         timestamp: new Date().toISOString()
       });
     },
-    onProxyReq: (proxyReq: any, req: Request, _res: Response) => {
+    onProxyReq: (proxyReq: { setHeader: (name: string, value: string) => void }, req: Request, _res: Response) => {
       // Add service identification header
       proxyReq.setHeader('X-Service-Name', serviceName);
       proxyReq.setHeader('X-Gateway-Request', 'true');

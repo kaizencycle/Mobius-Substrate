@@ -11,6 +11,11 @@
  * - Morale Anchor: "Truth Through Verification"
  */
 
+import * as crypto from 'crypto';
+import { execSync } from 'child_process';
+import * as fs from 'fs';
+import * as path from 'path';
+
 export interface AtlasConfig {
   giThreshold: number;
   qualityThreshold: number;
@@ -226,7 +231,6 @@ export class AtlasSentinel {
    * Generate SHA256 hash of attestation
    */
   private async hashAttestation(attestation: Omit<AtlasAttestation, 'hash'>): Promise<string> {
-    const crypto = require('crypto');
     const data = JSON.stringify(attestation);
     return crypto.createHash('sha256').update(data).digest('hex');
   }
@@ -274,7 +278,6 @@ export class AtlasSentinel {
    */
   private async getCommitHash(): Promise<string> {
     try {
-      const { execSync } = require('child_process');
       return execSync('git rev-parse HEAD').toString().trim();
     } catch {
       return 'unknown';
@@ -315,9 +318,6 @@ export class AtlasSentinel {
    * Accepts raw code strings, file paths, or directory paths.
    */
   private async resolveCodebaseSnapshot(codebase: string): Promise<string> {
-    const fs = require('fs');
-    const path = require('path');
-
     if (!codebase) {
       return '';
     }
@@ -400,7 +400,6 @@ export class AtlasSentinel {
   }
 
   private isAllowedExtension(filename: string): boolean {
-    const path = require('path');
     const ext = path.extname(filename).toLowerCase();
     const allowed = new Set([
       '.ts', '.tsx', '.js', '.jsx', '.json', '.md', '.py', '.yml', '.yaml', '.sh', '.mjs', '.cjs'
@@ -433,10 +432,45 @@ export class AtlasSentinel {
 }
 
 /**
+ * Cycle data structure for Learning Synthesizer
+ */
+export interface CycleData {
+  cycle?: string;
+  wins?: string[];
+  blocks?: string[];
+  tomorrowIntent?: string[];
+}
+
+/**
+ * Pattern frequency data structure
+ */
+export interface PatternFrequency {
+  pattern: string;
+  count: number;
+}
+
+/**
+ * Synthesis result data structure
+ */
+export interface SynthesisResult {
+  cycleRange: {
+    start: string | undefined;
+    end: string | undefined;
+    count: number;
+  };
+  insights: {
+    topWins: PatternFrequency[];
+    recurringBlocks: PatternFrequency[];
+    emergingIntents: PatternFrequency[];
+  };
+  recommendations: string[];
+}
+
+/**
  * Learning Synthesizer - Extracts patterns from Eve's cycles
  */
 export class LearningSynthesizer {
-  async synthesizeCycles(cycles: any[]): Promise<any> {
+  async synthesizeCycles(cycles: CycleData[]): Promise<SynthesisResult> {
     console.log('🧠 Synthesizing learning from cycles...');
 
     const wins = cycles.flatMap(c => c.wins || []);
@@ -463,7 +497,7 @@ export class LearningSynthesizer {
     };
   }
 
-  private extractPatterns(items: string[]): Array<{pattern: string, count: number}> {
+  private extractPatterns(items: string[]): PatternFrequency[] {
     const frequency: Record<string, number> = {};
     
     items.forEach(item => {
@@ -477,8 +511,8 @@ export class LearningSynthesizer {
   }
 
   private generateLearningRecommendations(
-    wins: any[],
-    blocks: any[]
+    wins: PatternFrequency[],
+    blocks: PatternFrequency[]
   ): string[] {
     const recommendations: string[] = [];
 
@@ -497,10 +531,37 @@ export class LearningSynthesizer {
 }
 
 /**
+ * ADR Decision data structure
+ */
+export interface ADRDecision {
+  number: number;
+  title: string;
+  status: string;
+  context: string;
+  decision: string;
+  consequences: string;
+  charterCompliant: boolean;
+  giImpact: string;
+}
+
+/**
+ * Cycle summary data structure
+ */
+export interface CycleSummary {
+  id: string;
+  companions: string[];
+  giScore: number;
+  duration: string;
+  wins: string[];
+  blocks: string[];
+  tomorrowIntent: string[];
+}
+
+/**
  * Documentation Generator - Creates living docs from code
  */
 export class DocumentationGenerator {
-  async generateADR(decision: any): Promise<string> {
+  async generateADR(decision: ADRDecision): Promise<string> {
     const template = `# ADR-${decision.number}: ${decision.title}
 
 ## Status
@@ -527,7 +588,7 @@ ${decision.consequences}
     return template;
   }
 
-  async generateCycleSummary(cycle: any): Promise<string> {
+  async generateCycleSummary(cycle: CycleSummary): Promise<string> {
     return `# Cycle ${cycle.id} Summary
 
 ## Overview

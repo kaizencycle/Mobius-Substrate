@@ -21,7 +21,7 @@ export function useEventStream(url: string | undefined) {
         const evt: RelayEvt = JSON.parse(e.data);
         setLast(evt);
         setCount((c) => c + 1);
-      } catch {}
+      } catch { /* Parse error, skip malformed event */ }
     };
     es.onerror = () => {
       es.close();

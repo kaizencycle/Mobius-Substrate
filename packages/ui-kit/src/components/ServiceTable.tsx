@@ -103,14 +103,14 @@ const ServiceTable: React.FC<ServiceTableProps> = ({
                     <div className="w-16 bg-gray-200 rounded-full h-2 mr-2">
                       <div
                         className={`h-2 rounded-full ${
-                          service.gi >= 0.9 ? 'bg-green-500' :
-                          service.gi >= 0.7 ? 'bg-yellow-500' : 'bg-red-500'
+                          service.mii >= 0.9 ? 'bg-green-500' :
+                          service.mii >= 0.7 ? 'bg-yellow-500' : 'bg-red-500'
                         }`}
-                        style={{ width: `${service.gi * 100}%` }}
+                        style={{ width: `${service.mii * 100}%` }}
                       ></div>
                     </div>
                     <span className="text-sm font-medium">
-                      {(service.gi * 100).toFixed(1)}%
+                      {(service.mii * 100).toFixed(1)}%
                     </span>
                   </div>
                 </td>

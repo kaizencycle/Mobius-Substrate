@@ -4,7 +4,7 @@ import { useState } from 'react';
 export default function Home() {
   const [name, setName] = useState('');
   const [pubkey, setPubkey] = useState('');
-  const [result, setResult] = useState<any>(null);
+  const [result, setResult] = useState<Record<string, unknown> | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   async function claimName() {
@@ -18,8 +18,8 @@ export default function Home() {
       const d = await r.json();
       if (!r.ok) throw new Error(d?.error || 'Request failed');
       setResult(d);
-    } catch (e:any) {
-      setError(e.message);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'Unknown error');
     }
   }
 

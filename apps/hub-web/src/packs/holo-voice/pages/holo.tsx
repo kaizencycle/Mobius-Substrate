@@ -74,7 +74,7 @@ export default function HoloOAA() {
       const plan = await planRes.json();
       const actRes = await fetch("/api/oaa/act", { method:"POST", headers:{ "content-type":"application/json" }, body: JSON.stringify({ tool: plan?.plan?.tool || "webDataScout", args: { url: "https://status.render.com", fields: [{name:"title", required:true}] } })});
       const out = await actRes.json();
-      const text = out?.ok ? \`Here’s what I found: \${out?.data?.title || "Success."}\` : \`I hit a policy guard: \${out?.error}\`;
+      const text = out?.ok ? `Here's what I found: ${out?.data?.title || "Success."}` : `I hit a policy guard: ${out?.error}`;
       setReply(text);
 
       // Request TTS + visemes

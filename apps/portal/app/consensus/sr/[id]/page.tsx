@@ -31,7 +31,7 @@ export default async function SRDetailPage({ params }: { params: { id: string }}
         <SRHeader
           subject={item.details?.subject}
           cycle={item.details?.cycle}
-          gi={item.gi}
+          mii={item.mii}
           timestamp={item.timestamp}
           eventId={item.event_id}
         />

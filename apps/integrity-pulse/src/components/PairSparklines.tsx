@@ -6,7 +6,7 @@ import { colorFor } from "../lib/agents";
 import { getPairSeries, topPairs, eventsPerMin } from "../state/metrics";
 
 export default function PairSparklines(){
-  const [tick, setTick] = useState(0);
+  const [_tick, setTick] = useState(0);
   const [pairs, setPairs] = useState<string[]>([]);
   useEffect(()=>{
     const id = setInterval(()=>{

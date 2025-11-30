@@ -4,7 +4,7 @@
 export interface CodexRequest {
   agent: string
   input: string
-  context?: any
+  context?: Record<string, unknown>
   maxTokens?: number
   temperature?: number
   tags?: string[]

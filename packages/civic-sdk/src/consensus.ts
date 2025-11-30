@@ -123,5 +123,5 @@ export function isEligibleForTier(companionTier: SafetyTier, operationTier: Safe
   return tierRank[companionTier] >= tierRank[operationTier];
 }
 
-export { consensusPolicies };
+// consensusPolicies already exported above
 

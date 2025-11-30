@@ -25,7 +25,7 @@ export default async function CivicHome({ params }: { params: { name: string } }
         <div style={{marginTop:20}}>
           <h3>Links</h3>
           <ul>
-            {data.profile.links.map((l:any, i:number)=>(
+            {data.profile.links.map((l: { href: string; title: string }, i: number)=>(
               <li key={i}><a href={l.href} target="_blank">{l.title}</a></li>
             ))}
           </ul>

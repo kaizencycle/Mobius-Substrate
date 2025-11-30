@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
 import { useEffect, useRef, useState, useCallback } from 'react';
@@ -408,15 +409,15 @@ export default function SacredViz({ mockData = true }: SacredVizProps) {
       // drive each layer by its agent GI & stats
       layers.forEach((L, idx) => {
         const a = telem[L.id];
-        const gi = a?.gi ?? 0.98;
+        const mii = a?.mii ?? 0.98;
         const err = a?.errorRate ?? 0.01;
         const thr = a?.throughput ?? 1.0;
 
         L.uniforms.uTime.value = t + idx * 0.13;
         L.uniforms.uBass.value = Math.min(1, bass * (1.0 + thr * 0.03));
         L.uniforms.uMid.value  = Math.min(1, mid  * (1.0 + err * 2.0));
-        L.uniforms.uHigh.value = Math.min(1, high * (1.0 + (1.0 - gi) * 3.0));
-        L.uniforms.uScale.value = 1.0 + (gi - 0.95) * 3.0;
+        L.uniforms.uHigh.value = Math.min(1, high * (1.0 + (1.0 - mii) * 3.0));
+        L.uniforms.uScale.value = 1.0 + (mii - 0.95) * 3.0;
         L.uniforms.uTwist.value = 0.6 + 1.2 * (err * 0.8 + mid*0.2);
         L.uniforms.uTension.value = 0.25 + 0.35 * Math.min(1, thr/20);
         L.mesh.visible = true;

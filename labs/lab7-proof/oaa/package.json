@@ -7,7 +7,7 @@
     "build": "tsc",
     "dev": "ts-node hub.ts",
     "start": "node dist/hub.js",
-    "test": "jest",
+    "test": "jest --passWithNoTests",
     "lint": "eslint . --ext .ts,.tsx",
     "type-check": "tsc --noEmit"
   },

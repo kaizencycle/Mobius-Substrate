@@ -195,12 +195,13 @@ export class EnergyRoutingService {
           modifiedAmount = Math.min(modifiedAmount, ENERGY_CONSTITUTION.MAX_SINGLE_TRANSFER_KWH);
           break;
         
-        case "MAX_TRANSFER_PERCENT_OF_CAPACITY":
+        case "MAX_TRANSFER_PERCENT_OF_CAPACITY": {
           const maxByCapacity = source.capacityKwh * (ENERGY_CONSTITUTION.MAX_TRANSFER_PERCENT_OF_CAPACITY / 100);
           modifiedAmount = Math.min(modifiedAmount, maxByCapacity);
           break;
+        }
         
-        case "MIN_SOURCE_STORAGE_AFTER_TRANSFER":
+        case "MIN_SOURCE_STORAGE_AFTER_TRANSFER": {
           const currentStorageKwh = (source.storagePercent / 100) * source.capacityKwh;
           const minRetain = (ENERGY_CONSTITUTION.MIN_SOURCE_STORAGE_AFTER_TRANSFER / 100) * source.capacityKwh;
           const maxTransfer = currentStorageKwh - minRetain;
@@ -210,6 +211,7 @@ export class EnergyRoutingService {
             canModify = false;
           }
           break;
+        }
         
         default:
           // Some constraints can't be modified around

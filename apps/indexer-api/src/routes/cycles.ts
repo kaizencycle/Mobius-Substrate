@@ -68,7 +68,7 @@ router.get('/cycles', async (req: Request, res: Response) => {
     const paginated = filtered.slice(offsetNum, offsetNum + limitNum);
 
     res.json({
-      cycles: paginated.map(({ id, created_at, ...cycle }) => cycle),
+      cycles: paginated.map(({ id: _id, created_at: _created_at, ...cycle }) => cycle),
       total: filtered.length,
       limit: limitNum,
       offset: offsetNum,
@@ -105,7 +105,7 @@ router.get('/cycles/:cycle', async (req: Request, res: Response) => {
       });
     }
 
-    const { id, created_at, ...cycleData } = attestation;
+    const { id: _id, created_at: _created_at, ...cycleData } = attestation;
     res.json(cycleData);
   } catch (error) {
     res.status(500).json({

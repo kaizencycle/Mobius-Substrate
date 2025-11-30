@@ -98,7 +98,7 @@ export class ConstitutionalAgent {
         throw new Error(`Failed to load charter: ${response.statusText}`);
       }
 
-      const data = await response.json();
+      const data = await response.json() as { charter: Charter };
       this.charter = data.charter;
 
       // Verify the charter integrity

@@ -31,13 +31,13 @@ export function useMicrophoneAnalyser(opts: MicAnalyserOptions = {}): MicAnalyse
   const ctxRef = useRef<AudioContext | null>(null);
   const analyserRef = useRef<AnalyserNode | null>(null);
   const streamRef = useRef<MediaStream | null>(null);
-  const [ready, setReady] = useState(false);
+  const [_ready, setReady] = useState(false);
 
   const start = async () => {
     if (streamRef.current) return;
     
     try {
-      const ctx = new (window.AudioContext || (window as any).webkitAudioContext)();
+      const ctx = new (window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext)();
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
       const source = ctx.createMediaStreamSource(stream);
 
@@ -77,7 +77,6 @@ export function useMicrophoneAnalyser(opts: MicAnalyserOptions = {}): MicAnalyse
       start().catch(console.error);
     }
     return () => stop();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return {

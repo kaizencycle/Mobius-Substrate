@@ -205,12 +205,12 @@ async function main() {
     // Test illumination
     const testQuery: UrielQuery = {
       intent: 'What entropy shall we reduce in the next cycle?',
-      mii: 0.993
+      gi: 0.993
     };
 
     const response = await urielDeliberate(testQuery);
     console.log('✅ URIEL illumination complete');
-    console.log(`📊 GI Score: ${response.gi.toFixed(3)}`);
+    console.log(`📊 GI Score: ${response.mii.toFixed(3)}`);
     console.log(`💡 Illumination: ${response.illumination.substring(0, 100)}...`);
 
   } catch (error) {

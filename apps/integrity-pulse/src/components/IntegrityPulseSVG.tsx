@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 export type PulseProps = { mii: number; entropy?: number; eventsPerMin?: number };
-export default function IntegrityPulseSVG({ gi, entropy = 0.02, eventsPerMin = 1 }: PulseProps) {
+export default function IntegrityPulseSVG({ mii, entropy: _entropy = 0.02, eventsPerMin = 1 }: PulseProps) {
   const R = 180;
   const nodes = useMemo(() => {
     const pts: [number, number][] = [[0, 0]];
@@ -8,7 +8,7 @@ export default function IntegrityPulseSVG({ gi, entropy = 0.02, eventsPerMin = 1
     ring(R); ring(R * 2);
     return pts;
   }, []);
-  const hue = 160 + Math.round(70 * Math.min(1, Math.max(0, gi)));
+  const hue = 160 + Math.round(70 * Math.min(1, Math.max(0, mii)));
   const pulsar = 0.5 + eventsPerMin * 0.2;
   return (
     <svg viewBox="-420 -260 840 520" width="100%" height="100%" role="img" aria-label="Integrity Pulse sacred geometry">

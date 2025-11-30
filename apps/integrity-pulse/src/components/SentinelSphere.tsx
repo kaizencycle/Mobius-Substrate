@@ -52,7 +52,7 @@ const glowFragmentShader = `
 `;
 
 export function SentinelSphere({
-  agentId,
+  agentId: _agentId,
   position,
   color,
   mii,

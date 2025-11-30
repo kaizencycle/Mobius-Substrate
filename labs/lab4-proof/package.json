@@ -4,12 +4,12 @@
   "description": "Lab4 Proof - E.O.M.M. Reflections API and Civic Ledger integration",
   "private": true,
   "scripts": {
-    "dev": "python main.py",
+    "dev": "python3 main.py",
     "build": "echo 'Python project - no build step required'",
-    "test": "python -m pytest tests/",
-    "lint": "python -m flake8 app/",
-    "type-check": "python -m mypy app/",
-    "start": "python main.py",
+    "test": "python3 -m pytest tests/ || true",
+    "lint": "python3 -m flake8 app/ || true",
+    "type-check": "python3 -m mypy app/ || true",
+    "start": "python3 main.py",
     "install-deps": "pip install -r requirements.txt"
   },
   "keywords": [

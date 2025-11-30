@@ -1,4 +1,4 @@
-import { Clock, Coins, TrendingUp, Heart, Flame } from 'lucide-react'
+import { Coins, TrendingUp, Heart, Flame } from 'lucide-react'
 import { SeasonClock } from '@/components/SeasonClock'
 import { GICPanel } from '@/components/GICPanel'
 

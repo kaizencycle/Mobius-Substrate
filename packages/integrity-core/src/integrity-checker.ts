@@ -76,13 +76,13 @@ export class IntegrityChecker {
     checks: IntegrityChecks;
     recommendations: string[];
   } {
-    const status = this.evaluateStatus(gi, checks);
-    const recommendations = this.getRecommendations(gi, checks);
+    const status = this.evaluateStatus(mii, checks);
+    const recommendations = this.getRecommendations(mii, checks);
     
     return {
       service,
       timestamp: new Date().toISOString(),
-      gi,
+      mii,
       status,
       checks,
       recommendations

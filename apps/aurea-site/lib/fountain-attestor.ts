@@ -15,7 +15,7 @@ export interface FountainAttestation {
   checksum: string
 }
 
-async function readOnChainBalance(address: string): Promise<number> {
+async function readOnChainBalance(_address: string): Promise<number> {
   // TODO: Connect to blockchain RPC
   // Mock for now
   return 1_000_000
@@ -47,7 +47,7 @@ export async function buildFountainAttestation(): Promise<FountainAttestation> {
   }
 
   // Generate checksum
-  const { checksum, ...data } = payload
+  const { checksum: _checksum, ...data } = payload
   payload.checksum = sha3_512(JSON.stringify(data))
 
   return payload

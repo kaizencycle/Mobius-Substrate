@@ -37,7 +37,7 @@ export default function CycleTracker(props?: CycleTrackerProps) {
             const j = await r.json();
             setTracker({
               cycle: j.cycle ?? tracker.cycle,
-              mii:    j.gi    ?? tracker.gi,
+              mii:    j.mii ?? j.gi ?? tracker.mii,
               room:  j.room  ?? tracker.room,
             });
           }
@@ -59,7 +59,7 @@ Date: ${date}
 Time: ${time}
 Cycle ID: ${tracker.cycle}
 Status: Active
-Integrity: ${tracker.gi.toFixed(3)}
+Integrity: ${tracker.mii.toFixed(3)}
 Host: Kaizen OS — ${tracker.room}
 ──────────────────────────────
 "Consistency becomes proof of life."`}

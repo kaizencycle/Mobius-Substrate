@@ -1,17 +1,32 @@
+'use client';
+
+import { useEffect, useState } from 'react';
 import { builder } from '@/lib/builder';
 import { BuilderComponent } from '@builder.io/react';
 import '@/components/builder/registry'; // ensures components registered
 
-export const revalidate = 30; // ISR: 30s
+export default function Home() {
+  const [content, setContent] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
 
-export default async function Home() {
-  const content = await builder
-    .get('page', {
-      userAttributes: {
-        urlPath: '/',
-      },
-    })
-    .toPromise();
+  useEffect(() => {
+    builder
+      .get('page', {
+        userAttributes: {
+          urlPath: '/',
+        },
+      })
+      .toPromise()
+      .then((data) => {
+        setContent(data);
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   if (!content) {
     return (

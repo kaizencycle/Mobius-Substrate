@@ -14,7 +14,7 @@
     "react-dom": "18.3.1",
     "react-markdown": "^9.0.1",
     "rehype-raw": "^7.0.0",
-    "@civic/integrity-core": "workspace:*"
+    "@civic/integrity-core": "*"
   },
   "devDependencies": {
     "@types/node": "^20",

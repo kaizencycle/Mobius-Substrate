@@ -6,8 +6,8 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const out = await submitAttestation(body);
     return NextResponse.json(out, { status: 200 });
-  } catch (e:any) {
-    return NextResponse.json({ error: e.message }, { status: 400 });
+  } catch (e) {
+    return NextResponse.json({ error: e instanceof Error ? e.message : 'Unknown error' }, { status: 400 });
   }
 }
 

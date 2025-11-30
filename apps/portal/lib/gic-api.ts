@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /**
  * MIC API Integration Utilities
  *
@@ -87,7 +88,7 @@ export async function registerGICDomain(params: {
         domain: params.domain,
         owner: params.owner,
         agent_id: params.agent_id,
-        gi_score: miiValidation.data.overall_score,
+        gi_score: giValidation.data.overall_score,
         timestamp: new Date().toISOString()
       })
     });
@@ -170,7 +171,7 @@ export async function mintGICTokens(params: {
         amount: params.amount.toString(),
         recipient: params.recipient,
         purpose: params.purpose,
-        gi_score: miiValidation.data.overall_score,
+        gi_score: giValidation.data.overall_score,
         timestamp: new Date().toISOString()
       })
     });

@@ -28,10 +28,10 @@ export async function POST(request: NextRequest) {
     const proof = await codexDeliberate(codexRequest)
 
     return NextResponse.json(proof)
-  } catch (error: any) {
+  } catch (error) {
     console.error('[API] Codex query error:', error)
     return NextResponse.json(
-      { error: error?.message || 'Internal server error' },
+      { error: error instanceof Error ? error.message : 'Internal server error' },
       { status: 500 }
     )
   }

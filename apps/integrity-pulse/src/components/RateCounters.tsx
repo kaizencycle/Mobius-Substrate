@@ -5,7 +5,7 @@ import { KNOWN_AGENTS, colorFor } from "../lib/agents";
 import { getAgentSeries, eventsPerMin } from "../state/metrics";
 
 export default function RateCounters(){
-  const [tick, setTick] = useState(0);
+  const [_tick, setTick] = useState(0);
   useEffect(()=>{
     const id = setInterval(()=> setTick(t=>t+1), 2_000); // soft refresh
     return ()=> clearInterval(id);

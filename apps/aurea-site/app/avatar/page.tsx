@@ -57,12 +57,12 @@ export default function AvatarPage() {
           },
         ])
       }
-    } catch (error: any) {
+    } catch (error) {
       setMessages((prev) => [
         ...prev,
         {
           role: 'assistant',
-          content: `Error: ${error.message}`,
+          content: `Error: ${error instanceof Error ? error.message : 'Unknown error'}`,
         },
       ])
     } finally {
