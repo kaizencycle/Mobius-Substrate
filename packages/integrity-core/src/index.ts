@@ -11,6 +11,10 @@ export * from './mic/micMinting';
 export * from './mic/shardWeights';
 export * from './mic/micMintService';
 
+// MIC/KS Constants and Conversions (C-151)
+export * from './mic/constants';
+export * from './mic/conversions';
+
 // Mobius Habits (C-150)
 export * from './habits';
 

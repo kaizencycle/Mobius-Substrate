@@ -1,0 +1,106 @@
+# MIC/KS Tokenomics Configuration
+# Cycle: C-151
+# Updated: December 1, 2025
+
+# Core Currency Definition
+currency:
+  name: "Mobius Integrity Credit"
+  symbol: "MIC"
+  decimals: 6
+  
+  denominations:
+    base:
+      name: "MIC"
+      symbol: "MIC"
+      ratio: 1
+      
+    shard:
+      name: "Kaizen Shard"
+      symbol: "KS"
+      ratio: 1000000    # 1 MIC = 1,000,000 KS
+      precision: 0      # Integer only
+
+# Minting Configuration
+minting:
+  threshold_mii: 0.95       # τ - minimum MII for minting
+  base_coefficient: 1.0     # α - base mint multiplier
+  
+  # Quality multipliers based on EOMM evaluation
+  quality_multipliers:
+    poor: 0.2
+    fair: 0.5
+    good: 0.8
+    excellent: 1.0
+    exceptional: 1.5
+    
+  # Per-cycle caps (in MIC)
+  caps:
+    per_citizen_per_cycle: 10.0
+    per_action_max: 2.0
+    global_per_cycle: 100000.0
+
+# Burn Configuration
+burning:
+  coefficient: 0.05         # β - burn rate multiplier
+  
+  # Severity levels
+  severity_levels:
+    minor: 1
+    moderate: 3
+    major: 5
+    critical: 7
+    catastrophic: 10
+    
+  # Actions that trigger burns
+  burn_triggers:
+    - fraudulent_attestation
+    - sentinel_override
+    - integrity_breach
+    - drift_correction
+    - policy_violation
+
+# Shard Weights (imported from kaizen_shards.yaml)
+shard_weights:
+  reflection: 1.0
+  learning: 1.0
+  civic: 1.5
+  stability: 2.0
+  stewardship: 2.0
+  innovation: 2.5
+  guardian: 3.0
+
+# Governance Integration
+governance:
+  proposal_threshold_mic: 10.0
+  voting_threshold_mic: 0.1
+  sentinel_candidacy_mic: 100.0
+  dispute_stake_mic: 5.0
+
+# Network Parameters
+network:
+  settlement_layer: "ks"    # KS for integer settlement
+  display_layer: "mic"      # MIC for human display
+  ledger_encoding: "dual"   # Store both MIC and KS
+
+# API Configuration
+api:
+  endpoints:
+    balance: "/v1/mic/balance/:id"
+    mint: "/v1/mic/mint"
+    burn: "/v1/mic/burn"
+    transfer: "/v1/mic/transfer"
+    metrics: "/v1/mic/metrics"
+    shards: "/v1/mic/shards"
+    
+  rate_limits:
+    balance_per_minute: 60
+    mint_per_hour: 10
+    transfer_per_hour: 20
+
+# Backward Compatibility
+aliases:
+  GIC: "MIC"
+  gic: "mic"
+  shard: "KS"
+  shards: "ks"
+  governance_integrity_credit: "MIC"

@@ -1,0 +1,34 @@
+{
+  "name": "@kaizen/local-ledger",
+  "version": "1.0.0",
+  "description": "Local-first ledger for Mobius integrity tracking",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "better-sqlite3": "^9.4.0",
+    "tweetnacl": "^1.0.3"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.8",
+    "@types/node": "^20.10.0",
+    "jest": "^29.7.0",
+    "typescript": "^5.3.0"
+  },
+  "keywords": [
+    "mobius",
+    "ledger",
+    "integrity",
+    "mic",
+    "ks"
+  ],
+  "author": "Kaizen OS",
+  "license": "AGPL-3.0"
+}
