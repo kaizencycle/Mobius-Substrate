@@ -15,6 +15,8 @@ This cathedral contains economic theory, policy tools, and implementation framew
 | 📋 Policy papers | [POLICY-RECOMMENDATIONS/](./POLICY-RECOMMENDATIONS/) |
 | 📈 Impact calculators | [ROI-CALCULATORS/](./ROI-CALCULATORS/) |
 | 📊 Historical data | [MARKET-DATA/](./MARKET-DATA/) |
+| 🔌 API endpoints | [ENDPOINTS.md](./ENDPOINTS.md) |
+| 📋 Machine-readable API | [endpoints.json](./endpoints.json) |
 
 ---
 
@@ -239,6 +241,31 @@ curl https://pulse.mobius.systems/economy/supply
 # Download complete MIC history
 curl https://pulse.mobius.systems/economy/mic-history.csv > mic-history.csv
 ```
+
+**Full API Documentation**: [ENDPOINTS.md](./ENDPOINTS.md)
+
+---
+
+## 📚 Related Documentation
+
+### Economic Theory & Models
+- [Economic Architecture](../../docs/04-TECHNICAL-ARCHITECTURE/economics/) — Economic models
+- [MIC Economics Research](../../docs/07-RESEARCH-AND-PUBLICATIONS/mic-economics/) — Academic research
+- [Tokenomics Research](../../docs/07-RESEARCH-AND-PUBLICATIONS/tokenomics/) — Tokenomics studies
+- [Tokenomics Details](../../docs/11-SUPPLEMENTARY/tokenomics/) — Implementation details
+
+### Implementation & Deployment
+- [Implementation Guides](../../docs/05-IMPLEMENTATION/) — Deployment procedures
+- [Operations Manuals](../../docs/06-OPERATIONS/) — Operational procedures
+- [Implementation Summaries](../../docs/11-SUPPLEMENTARY/implementation-summaries/) — C-150/C-151 summaries
+
+### Use Cases & Blueprints
+- [Use Case Blueprints](../../docs/07-RESEARCH-AND-PUBLICATIONS/blueprints/) — Real-world applications
+- [Global Applications](./GLOBAL-APPLICATIONS/) — Country-specific frameworks
+
+### Market Data
+- [Market Data](./MARKET-DATA/) — Historical MIC/sentinel data
+- [ROI Calculators](./ROI-CALCULATORS/) — Impact analysis tools
 
 ---
 

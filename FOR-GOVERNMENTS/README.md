@@ -16,6 +16,8 @@ This cathedral contains policy briefs, legislative text, and implementation road
 | 👥 Talking points | [STAKEHOLDER-BRIEFINGS/](./STAKEHOLDER-BRIEFINGS/) |
 | 📊 Cost-benefit analysis | [IMPACT-ASSESSMENTS/](./IMPACT-ASSESSMENTS/) |
 | 🗳️ Public consultation | [DEMOCRATIC-LEGITIMACY/](./DEMOCRATIC-LEGITIMACY/) |
+| 🔌 API endpoints | [ENDPOINTS.md](./ENDPOINTS.md) |
+| 📋 Machine-readable API | [endpoints.json](./endpoints.json) |
 
 ---
 
@@ -259,6 +261,33 @@ curl -H "Authorization: Bearer $GOV_API_KEY" \
 # Get transparency report
 curl https://pulse.mobius.systems/government/transparency.pdf
 ```
+
+**Full API Documentation**: [ENDPOINTS.md](./ENDPOINTS.md)
+
+---
+
+## 📚 Related Documentation
+
+### Policy & Compliance
+- [Policy Documentation](../../docs/03-GOVERNANCE-AND-POLICY/policy/) — Policy documents
+- [Policy Details](../../docs/11-SUPPLEMENTARY/policy/) — Additional policy docs
+- [Regulatory Compliance](./REGULATORY-COMPLIANCE/) — Compliance status
+
+### Implementation & Operations
+- [Implementation Guides](../../docs/05-IMPLEMENTATION/) — Deployment procedures
+- [Deployment Guides](../../docs/05-IMPLEMENTATION/guides/deployment/) — Deployment details
+- [Operations Manuals](../../docs/06-OPERATIONS/) — Operational procedures
+- [Runbooks](../../docs/06-OPERATIONS/processes/runbooks/) — Operational runbooks
+
+### Architecture & Security
+- [Architecture Documentation](../../docs/11-SUPPLEMENTARY/architecture-docs/) — Architecture for policy makers
+- [Security Documentation](../../docs/11-SUPPLEMENTARY/security/) — Security details
+- [Audit Reports](../../docs/11-SUPPLEMENTARY/audits/) — Audit reports
+- [Threat Model](../../docs/11-SUPPLEMENTARY/architecture-docs/THREAT_MODEL.md) — Threat modeling
+
+### Impact & Analysis
+- [Impact Assessments](./IMPACT-ASSESSMENTS/) — Cost-benefit analysis
+- [Stakeholder Briefings](./STAKEHOLDER-BRIEFINGS/) — Talking points
 
 ---
 
