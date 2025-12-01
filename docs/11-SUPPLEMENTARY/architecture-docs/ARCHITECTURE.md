@@ -239,7 +239,7 @@ T_{n+1} = B(R(T_n)) only if:
 
 **Result**: Bounded emergence—AI can improve itself, but only within constitutional constraints.
 
-See [Loop-Breaking Architecture Paper](../docs/01-whitepapers/Loop_Breaking_Architecture_AGI_Safety.md) for full theoretical treatment.
+See [Loop-Breaking Architecture Paper](../../07-RESEARCH-AND-PUBLICATIONS/whitepapers/Loop_Breaking_Architecture_AGI_Safety.md) for full theoretical treatment.
 
 ### 3.5 Model-Agnostic Sovereignty Layer (MASL)
 

@@ -17,8 +17,8 @@
 | **See architecture** | [`docs/03-architecture/`](./03-architecture/) |
 | **Deploy to Vercel** | [`docs/08-processes/runbooks/VERCEL_DEPLOYMENT_RUNBOOK.md`](./08-processes/runbooks/VERCEL_DEPLOYMENT_RUNBOOK.md) |
 | **Contribute code** | [`CONTRIBUTING.md`](../CONTRIBUTING.md) (coming soon) |
-| **Run AI services** | [`apps/broker-api/`](../apps/broker-api/) (Thought Broker) |
-| **Build reflection app** | [`apps/eomm-api/`](../apps/eomm-api/) (E.O.M.M.) |
+| **Run AI services** | [`apps/broker-api/`](../../apps/broker-api/) (Thought Broker) |
+| **Build reflection app** | [`apps/eomm-api/`](../../apps/eomm-api/) (E.O.M.M.) |
 | **Understand governance** | [`docs/02-governance/`](./02-governance/) |
 | **Join community** | Discord (link in main README) |
 

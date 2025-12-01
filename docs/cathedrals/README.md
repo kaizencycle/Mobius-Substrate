@@ -36,7 +36,7 @@ Higher multipliers compensate for increased compliance overhead in domains like 
 ### Key Documents
 
 - [MIC Coordination Economics](./FOR-ECONOMISTS/MIC_COORDINATION.md) — Full C-151 economic specification
-- [CoordinationMIC Contract](../packages/gic-registry-contracts/contracts/C151/CoordinationMIC.sol) — Smart contract
+- [CoordinationMIC Contract](../../packages/gic-registry-contracts/contracts/C151/CoordinationMIC.sol) — Smart contract
 
 ---
 

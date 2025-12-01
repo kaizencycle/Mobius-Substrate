@@ -112,7 +112,7 @@ Added KTT section to `mkdocs.yml` navigation:
 
 - [Kaizen Theorems](../kaizen_theorems.md)
 - [AI Integrity Constitution](../AI_INTEGRITY_CONSTITUTION.md)
-- [GI Formula](../ledger/gi-formula.md)
+- [GI Formula](../../../../../04-TECHNICAL-ARCHITECTURE/ledger/gi-formula.md)
 - [DVA Architecture](../03-architecture/overview.md)
 
 ---

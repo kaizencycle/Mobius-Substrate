@@ -605,7 +605,7 @@ The portal uses this endpoint to render the Mobius Pulse Card, showing:
 - Apps / packages / workflows
 - Total files and lines of code
 
-📖 **Full documentation**: [docs/09-operations/mobius-pulse-protocol.md](docs/09-operations/mobius-pulse-protocol.md)
+📖 **Full documentation**: [docs/06-OPERATIONS/protocols/mobius-pulse-protocol.md](docs/06-OPERATIONS/protocols/mobius-pulse-protocol.md)
 
 ### 🫀 Mobius Pulse
 

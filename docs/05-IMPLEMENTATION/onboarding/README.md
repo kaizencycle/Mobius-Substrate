@@ -22,14 +22,14 @@ This directory contains the complete AI Model Onboarding documentation for Kaize
 For the constitutional framework and technical specifications, see:
 
 - **Constitutional Charter:** `../constitution/custos-charter.md`
-- **GI Formula:** `../ledger/gi-formula.md`
+- **GI Formula:** `../../04-TECHNICAL-ARCHITECTURE/ledger/gi-formula.md`
 - **Architecture:** `../03-architecture/octave.yaml`
 
 ## Quick Start
 
 1. Read the [complete onboarding guide](guide.md)
 2. Review the [Custos Charter](../constitution/custos-charter.md)
-3. Understand the [GI scoring system](../ledger/gi-formula.md)
+3. Understand the [GI scoring system](../../04-TECHNICAL-ARCHITECTURE/ledger/gi-formula.md)
 4. Submit your application via the API
 
 ## Support

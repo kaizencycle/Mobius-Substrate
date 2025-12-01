@@ -245,7 +245,7 @@ When the system reaches this threshold:
 - [Kaizen Manifest](../kaizen_manifest.yaml)
 - [Architecture Overview](../03-architecture/overview.md)
 - [Triad of Healing](../manifesto/triad_of_healing.md)
-- [GI Formula](../ledger/gi-formula.md)
+- [GI Formula](../../04-TECHNICAL-ARCHITECTURE/ledger/gi-formula.md)
 
 ---
 
