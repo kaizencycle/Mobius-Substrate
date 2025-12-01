@@ -1,5 +1,5 @@
 {
-  "name": "@kaizen/local-ledger",
+  "name": "@civic/local-ledger",
   "version": "1.0.0",
   "description": "Local-first ledger for Mobius integrity tracking",
   "main": "dist/index.js",

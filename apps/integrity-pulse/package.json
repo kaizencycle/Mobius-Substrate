@@ -1,5 +1,5 @@
 {
-  "name": "@kaizen/integrity-pulse",
+  "name": "@civic/integrity-pulse",
   "version": "1.0.0",
   "private": true,
   "description": "Real-time 3D visualization of Mobius Systems sentinel integrity metrics",
