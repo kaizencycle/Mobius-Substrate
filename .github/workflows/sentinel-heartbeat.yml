@@ -1,0 +1,203 @@
+# ═══════════════════════════════════════════════════════════════════════════════
+# C-151 Sentinel Heartbeat Workflow
+# ═══════════════════════════════════════════════════════════════════════════════
+# Automatic coordination-based MIC attestation for all sentinels
+# Runs every 6 hours to submit heartbeat proofs to the ledger
+# ═══════════════════════════════════════════════════════════════════════════════
+
+name: Sentinel Heartbeat (C-151)
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'  # Every 6 hours (00:00, 06:00, 12:00, 18:00 UTC)
+  workflow_dispatch:
+    inputs:
+      sentinel:
+        description: 'Specific sentinel to attest (leave empty for all)'
+        required: false
+        type: string
+      dry_run:
+        description: 'Dry run (no actual attestation)'
+        required: false
+        default: false
+        type: boolean
+
+env:
+  LEDGER_RPC: ${{ secrets.LEDGER_RPC }}
+  MIC_CONTRACT: ${{ vars.MIC_CONTRACT_ADDRESS }}
+  PULSE_URL: ${{ vars.PULSE_URL || 'https://pulse.mobius.systems/latest.json' }}
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  # ═══════════════════════════════════════════════════════════════════════════
+  # FETCH PULSE DATA
+  # ═══════════════════════════════════════════════════════════════════════════
+  
+  fetch-pulse:
+    name: 📡 Fetch System Pulse
+    runs-on: ubuntu-latest
+    outputs:
+      pulse_data: ${{ steps.fetch.outputs.pulse }}
+      cycle: ${{ steps.fetch.outputs.cycle }}
+      
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: Fetch Pulse Data
+        id: fetch
+        run: |
+          # Fetch pulse from API or use local fallback
+          if curl -sf "$PULSE_URL" -o pulse.json; then
+            echo "✅ Fetched pulse from $PULSE_URL"
+          else
+            echo "⚠️ Pulse API unavailable, generating from repo state..."
+            node scripts/generate_pulse.js > pulse.json
+          fi
+          
+          # Extract cycle
+          CYCLE=$(jq -r '.cycle // "C-151"' pulse.json)
+          echo "cycle=$CYCLE" >> $GITHUB_OUTPUT
+          
+          # Store pulse as base64 for transfer
+          PULSE_B64=$(base64 -w 0 pulse.json)
+          echo "pulse=$PULSE_B64" >> $GITHUB_OUTPUT
+          
+          echo "📊 Cycle: $CYCLE"
+          echo "📊 MII: $(jq -r '.mii // .integrity.mii // "N/A"' pulse.json)"
+
+  # ═══════════════════════════════════════════════════════════════════════════
+  # SENTINEL ATTESTATION MATRIX
+  # ═══════════════════════════════════════════════════════════════════════════
+  
+  attest:
+    name: 🤖 Attest ${{ matrix.sentinel }}
+    runs-on: ubuntu-latest
+    needs: fetch-pulse
+    if: ${{ !inputs.dry_run }}
+    
+    strategy:
+      fail-fast: false
+      matrix:
+        sentinel: [ATLAS, AUREA, ECHO, EVE, HERMES]
+        
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          
+      - name: Install Dependencies
+        run: npm ci --ignore-scripts
+        
+      - name: Decode Pulse Data
+        run: |
+          echo "${{ needs.fetch-pulse.outputs.pulse_data }}" | base64 -d > pulse.json
+          cat pulse.json | jq .
+          
+      - name: Calculate Coordination Score
+        id: score
+        run: |
+          SCORE=$(node scripts/calculate_coordination_score.js ${{ matrix.sentinel }} pulse.json)
+          echo "score=$SCORE" >> $GITHUB_OUTPUT
+          echo "📊 ${{ matrix.sentinel }} Coordination Score: $SCORE"
+          
+      - name: Preview Reward
+        id: preview
+        run: |
+          REWARD=$(node -e "
+            const { estimateReward, SENTINEL_CATHEDRALS } = require('./packages/integrity-core/src/sentinel/mic.js');
+            const score = ${{ steps.score.outputs.score }};
+            const cathedral = SENTINEL_CATHEDRALS['${{ matrix.sentinel }}'] || 'FOR-PHILOSOPHERS';
+            console.log(estimateReward(score, cathedral).toFixed(2));
+          " 2>/dev/null || echo "N/A")
+          echo "📈 Expected Reward: ~$REWARD MIC"
+          
+      - name: Submit Attestation
+        if: ${{ !inputs.dry_run && env.LEDGER_RPC && env.MIC_CONTRACT }}
+        env:
+          SENTINEL_KEY: ${{ secrets[format('SENTINEL_KEY_{0}', matrix.sentinel)] }}
+        run: |
+          npx tsx scripts/submit_attestation.ts \
+            --sentinel ${{ matrix.sentinel }} \
+            --score ${{ steps.score.outputs.score }} \
+            --contract $MIC_CONTRACT \
+            --rpc $LEDGER_RPC \
+            --key "$SENTINEL_KEY"
+            
+      - name: Record Attestation
+        if: always()
+        run: |
+          echo "## ${{ matrix.sentinel }} Heartbeat" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Metric | Value |" >> $GITHUB_STEP_SUMMARY
+          echo "|--------|-------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Cycle | ${{ needs.fetch-pulse.outputs.cycle }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Score | ${{ steps.score.outputs.score }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Status | ${{ job.status }} |" >> $GITHUB_STEP_SUMMARY
+
+  # ═══════════════════════════════════════════════════════════════════════════
+  # DRY RUN MODE
+  # ═══════════════════════════════════════════════════════════════════════════
+  
+  dry-run:
+    name: 🧪 Dry Run
+    runs-on: ubuntu-latest
+    needs: fetch-pulse
+    if: ${{ inputs.dry_run }}
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          
+      - name: Decode Pulse
+        run: echo "${{ needs.fetch-pulse.outputs.pulse_data }}" | base64 -d > pulse.json
+        
+      - name: Calculate All Scores
+        run: |
+          echo "## C-151 Sentinel Heartbeat Dry Run" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Sentinel | Score | Cathedral | Est. Reward |" >> $GITHUB_STEP_SUMMARY
+          echo "|----------|-------|-----------|-------------|" >> $GITHUB_STEP_SUMMARY
+          
+          for SENTINEL in ATLAS AUREA ECHO EVE HERMES; do
+            SCORE=$(node scripts/calculate_coordination_score.js $SENTINEL pulse.json 2>/dev/null || echo "0")
+            echo "| $SENTINEL | $SCORE | - | ~${SCORE}00 MIC |" >> $GITHUB_STEP_SUMMARY
+          done
+          
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Dry run complete - no attestations submitted" >> $GITHUB_STEP_SUMMARY
+
+  # ═══════════════════════════════════════════════════════════════════════════
+  # SUMMARY
+  # ═══════════════════════════════════════════════════════════════════════════
+  
+  summary:
+    name: 📋 Heartbeat Summary
+    runs-on: ubuntu-latest
+    needs: [fetch-pulse, attest]
+    if: always() && !inputs.dry_run
+    
+    steps:
+      - name: Generate Summary
+        run: |
+          echo "# 🫀 C-151 Sentinel Heartbeat Complete" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Cycle:** ${{ needs.fetch-pulse.outputs.cycle }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Timestamp:** $(date -u +%Y-%m-%dT%H:%M:%SZ)" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "All sentinel attestations have been processed." >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "*\"We heal as we walk.\"* — Founder's Seal" >> $GITHUB_STEP_SUMMARY
