@@ -2,13 +2,14 @@
 import express from 'express';
 import cors from 'cors';
 import cyclesRouter from './routes/cycles';
+import pulseRouter from './routes/pulse';
 
 const app = express();
 const PORT = process.env.PORT || 4002;
 
 // Middleware
 app.use(cors());
-app.use(express.json());
+app.use(express.json({ limit: '5mb' })); // Allow larger payloads for pulses
 
 // Health check endpoint
 app.get('/healthz', (req, res) => {
@@ -22,6 +23,9 @@ app.get('/healthz', (req, res) => {
 
 // Cycle routes (MCP v1.0)
 app.use('/api', cyclesRouter);
+
+// Pulse routes (Sentinel heartbeat protocol)
+app.use('/api', pulseRouter);
 
 // Placeholder endpoints
 app.get('/gic/balance/:address', (req, res) => {

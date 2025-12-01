@@ -616,6 +616,9 @@ ${cycle.tomorrowIntent.map((i: string) => `- ${i}`).join('\n')}
   }
 }
 
+// Mobius Pulse fetcher for Sentinel synchronization
+export * from './fetchPulse';
+
 // Default export for convenience
 export default AtlasSentinel;
 
