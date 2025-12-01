@@ -254,9 +254,15 @@ router.get("/v1/pulse/history", async (req: Request, res: Response): Promise<voi
 /**
  * GET /v1/pulse/badge
  * Get badge JSON (Shields.io compatible)
+ * 
+ * Query params:
+ *   - metric: "combined" (default), "gi", or "mii"
  */
 router.get("/v1/pulse/badge", async (req: Request, res: Response): Promise<void> => {
   try {
+    const metricRaw = (req.query.metric as string | undefined) ?? "combined";
+    const metric = metricRaw.toLowerCase();
+
     if (pulseStore.length === 0) {
       return res.json({
         schemaVersion: 1,
@@ -273,16 +279,47 @@ router.get("/v1/pulse/badge", async (req: Request, res: Response): Promise<void>
     const giPct = (gi * 100).toFixed(1);
     const miiPct = (mii * 100).toFixed(1);
 
-    let color = "red";
-    if (gi >= 0.98 && mii >= 0.98) color = "brightgreen";
-    else if (gi >= 0.95 && mii >= 0.95) color = "yellowgreen";
-    else if (gi >= 0.9 && mii >= 0.9) color = "yellow";
+    // Helper: derive color from a single score
+    const colorFor = (score: number): string => {
+      if (Number.isNaN(score)) return "lightgrey";
+      if (score >= 0.98) return "brightgreen";
+      if (score >= 0.95) return "yellowgreen";
+      if (score >= 0.9) return "yellow";
+      return "red";
+    };
 
-    res.json({
+    // Combined mode: both GI & MII drive color
+    const combinedColor = (() => {
+      if (gi >= 0.98 && mii >= 0.98) return "brightgreen";
+      if (gi >= 0.95 && mii >= 0.95) return "yellowgreen";
+      if (gi >= 0.9 && mii >= 0.9) return "yellow";
+      return "red";
+    })();
+
+    if (metric === "gi") {
+      return res.json({
+        schemaVersion: 1,
+        label: "Mobius GI",
+        message: `${giPct}%`,
+        color: colorFor(gi),
+      });
+    }
+
+    if (metric === "mii") {
+      return res.json({
+        schemaVersion: 1,
+        label: "Mobius MII",
+        message: `${miiPct}%`,
+        color: colorFor(mii),
+      });
+    }
+
+    // Default: combined
+    return res.json({
       schemaVersion: 1,
       label: "Mobius GI/MII",
       message: `${giPct}% / ${miiPct}%`,
-      color,
+      color: combinedColor,
     });
   } catch (err) {
     console.error("[pulseBadge] error:", err);
