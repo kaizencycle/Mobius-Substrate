@@ -1,0 +1,34 @@
+{
+  "name": "@kaizen/mobius-companion",
+  "version": "0.1.0",
+  "description": "Mobius Local Node Companion - Decentralized AI assistant with local ledger",
+  "private": true,
+  "main": "dist/main.js",
+  "scripts": {
+    "dev": "next dev -p 3010",
+    "build": "next build",
+    "start": "next start -p 3010",
+    "lint": "next lint",
+    "electron:dev": "electron .",
+    "electron:build": "electron-builder"
+  },
+  "dependencies": {
+    "@kaizen/local-ledger": "*",
+    "@kaizen/integrity-core": "*",
+    "next": "^14.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "better-sqlite3": "^9.4.0",
+    "framer-motion": "^10.16.0"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.8",
+    "@types/node": "^20.10.0",
+    "@types/react": "^18.2.0",
+    "electron": "^28.0.0",
+    "electron-builder": "^24.9.0",
+    "typescript": "^5.3.0"
+  },
+  "author": "Kaizen OS",
+  "license": "AGPL-3.0"
+}
