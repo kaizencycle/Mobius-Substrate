@@ -23,9 +23,25 @@ const integrityMiddleware = new IntegrityMiddleware({
 
 const _shieldManager = new ShieldPolicyManager();
 
-// Security middleware
+// Security middleware with proper CSP configuration
 app.use(helmet({
-  contentSecurityPolicy: process.env.NODE_ENV === 'production' ? undefined : false
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'"],
+      styleSrc: ["'self'", "'unsafe-inline'"],  // Allow inline styles for API responses
+      imgSrc: ["'self'", "data:"],
+      connectSrc: ["'self'"],
+      fontSrc: ["'self'"],
+      objectSrc: ["'none'"],
+      mediaSrc: ["'self'"],
+      frameSrc: ["'none'"],
+      // Relax CSP in development for debugging tools
+      ...(process.env.NODE_ENV !== 'production' && {
+        scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'"],
+      }),
+    },
+  },
 }));
 
 app.use(cors({

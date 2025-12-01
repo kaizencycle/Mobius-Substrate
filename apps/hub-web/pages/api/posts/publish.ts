@@ -23,7 +23,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     // Enqueue post-publish job (retryable)
     try {
-      const label = (req.query?.companion as string || "").toLowerCase();
+      const rawLabel = req.query?.companion;
+      // Sanitize label to prevent format string injection and ensure it's a string
+      const label = typeof rawLabel === 'string' ? rawLabel.toLowerCase().replace(/[^a-z0-9_-]/gi, '') : '';
       if (label && integrityHex) {
         const enqueueRes = await fetch(`${req.headers.host?.startsWith('http') ? '' : 'http://localhost:3000'}/api/queue/enqueue`, {
           method: "POST",
@@ -33,7 +35,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         
         if (enqueueRes.ok) {
           const enqueueData = await enqueueRes.json();
-          console.log(`Enqueued publish job for ${label}:`, enqueueData.id);
+          // Use separate arguments to avoid format string injection
+          console.log('Enqueued publish job for %s:', label, enqueueData.id);
         } else {
           console.error("Failed to enqueue publish job:", await enqueueRes.text());
         }

@@ -2,6 +2,7 @@
 // Health check endpoints
 
 import { Router } from "express";
+import rateLimit from "express-rate-limit";
 import { Pool } from "pg";
 import { getAllSentinelHealth } from "../services/sentinels/health";
 import { validateAdminKey } from "../middleware/auth";
@@ -10,11 +11,28 @@ import { formatPrometheusMetric } from "../utils/prometheus";
 const pool = new Pool({ connectionString: process.env.DATABASE_URL });
 export const healthRouter = Router();
 
+// Rate limiting for health endpoints
+const healthRateLimiter = rateLimit({
+  windowMs: 60 * 1000, // 1 minute
+  max: 60, // 60 requests per minute per IP
+  message: { error: "Too many health check requests, please try again later" },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
+const detailedHealthRateLimiter = rateLimit({
+  windowMs: 60 * 1000, // 1 minute
+  max: 30, // 30 requests per minute per IP for detailed endpoints
+  message: { error: "Too many requests for detailed health info, please try again later" },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
 /**
  * GET /health
  * Basic health check
  */
-healthRouter.get("/", async (req, res) => {
+healthRouter.get("/", healthRateLimiter, async (req, res) => {
   try {
     // Check database
     await pool.query("SELECT 1");
@@ -52,7 +70,7 @@ healthRouter.get("/", async (req, res) => {
  * GET /health/detailed
  * Detailed health metrics
  */
-healthRouter.get("/detailed", async (req, res) => {
+healthRouter.get("/detailed", detailedHealthRateLimiter, async (req, res) => {
   if (!validateAdminKey(req)) {
     return res.status(403).json({ error: "Admin access required" });
   }
@@ -99,7 +117,7 @@ healthRouter.get("/detailed", async (req, res) => {
  * GET /metrics
  * Prometheus-compatible metrics
  */
-healthRouter.get("/metrics", async (req, res) => {
+healthRouter.get("/metrics", detailedHealthRateLimiter, async (req, res) => {
   if (!validateAdminKey(req)) {
     return res.status(403).json({ error: "Admin access required" });
   }

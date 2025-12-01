@@ -1,4 +1,5 @@
 import express, { type Request, type Response, type NextFunction } from "express";
+import rateLimit from "express-rate-limit";
 import { giStatus, giIngest, giTwa } from "./routes/gi.js";
 import { shardsToCreditsRoute, creditsToShardsRoute } from "./routes/convert.js";
 import { mintAttestRoute, burnAttestRoute } from "./routes/attest.js";
@@ -13,8 +14,18 @@ import { ingestSentiment, getSentimentSummary } from "./routes/sentiment.js";
 
 const app = express();
 
+// Rate limiting for API endpoints
+const apiRateLimiter = rateLimit({
+  windowMs: 60 * 1000, // 1 minute
+  max: 100, // 100 requests per minute per IP
+  message: { error: "Too many requests, please try again later" },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
 // Middleware
 app.use(express.json());
+app.use(apiRateLimiter);
 
 // Health check
 app.get("/health", (_req: Request, res: Response) => {

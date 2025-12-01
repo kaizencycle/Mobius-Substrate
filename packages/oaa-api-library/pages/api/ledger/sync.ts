@@ -102,10 +102,35 @@ function verifyIntegrityAnchor(sweep: ChamberSweep): boolean {
   }
 }
 
+/**
+ * Validate path component to prevent path traversal
+ */
+function validatePathComponent(component: string, name: string): string {
+  if (!component || typeof component !== 'string') {
+    throw new Error(`Invalid ${name}: must be a non-empty string`);
+  }
+  // Only allow alphanumeric, dash, underscore, dot
+  const sanitized = component.replace(/[^a-zA-Z0-9._-]/g, '_');
+  if (sanitized.includes('..') || sanitized.startsWith('.') || sanitized.includes('/') || sanitized.includes('\\')) {
+    throw new Error(`Invalid ${name}: contains illegal characters`);
+  }
+  return sanitized;
+}
+
 // Store chamber sweep in ledger
 function storeChamberSweep(sweep: ChamberSweep, syncId: string): string {
-  const ledgerDir = path.join(process.cwd(), '.civic', 'ledger', 'sweeps');
-  const cycleDir = path.join(ledgerDir, sweep.cycle);
+  // Validate cycle and chamber_id to prevent path traversal
+  const safeCycle = validatePathComponent(sweep.cycle, 'cycle');
+  const safeChamberId = validatePathComponent(sweep.chamber_id, 'chamber_id');
+  
+  const cwd = path.resolve(process.cwd());
+  const ledgerDir = path.join(cwd, '.civic', 'ledger', 'sweeps');
+  const cycleDir = path.join(ledgerDir, safeCycle);
+  
+  // Double-check resolved paths stay within cwd
+  if (!path.resolve(cycleDir).startsWith(cwd + path.sep)) {
+    throw new Error('Invalid cycle: path escapes working directory');
+  }
   
   // Ensure directories exist
   if (!fs.existsSync(ledgerDir)) {
@@ -115,7 +140,13 @@ function storeChamberSweep(sweep: ChamberSweep, syncId: string): string {
     fs.mkdirSync(cycleDir, { recursive: true });
   }
   
-  const sweepFile = path.join(cycleDir, `${sweep.chamber_id}-sweep.json`);
+  const sweepFile = path.join(cycleDir, `${safeChamberId}-sweep.json`);
+  
+  // Final path validation
+  if (!path.resolve(sweepFile).startsWith(cwd + path.sep)) {
+    throw new Error('Invalid chamber_id: path escapes working directory');
+  }
+  
   const ledgerEntry = {
     sync_id: syncId,
     timestamp: new Date().toISOString(),

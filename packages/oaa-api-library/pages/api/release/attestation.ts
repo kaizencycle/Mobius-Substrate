@@ -204,7 +204,8 @@ function calculateFileHash(filePath: string): string {
     const content = fs.readFileSync(filePath);
     return createHash('sha256').update(content).digest('hex');
   } catch (error) {
-    console.error(`Error calculating hash for ${filePath}:`, error);
+    // Use separate arguments to avoid format string injection
+    console.error('Error calculating hash for %s:', String(filePath), error);
     return '';
   }
 }
@@ -215,9 +216,49 @@ function getFileSize(filePath: string): number {
     const stats = fs.statSync(filePath);
     return stats.size;
   } catch (error) {
-    console.error(`Error getting size for ${filePath}:`, error);
+    // Use separate arguments to avoid format string injection
+    console.error('Error getting size for %s:', String(filePath), error);
     return 0;
   }
+}
+
+/**
+ * Validate path component to prevent path traversal
+ */
+function validatePathComponent(component: string, name: string): string {
+  if (!component || typeof component !== 'string') {
+    throw new Error(`Invalid ${name}: must be a non-empty string`);
+  }
+  // Only allow alphanumeric, dash, underscore, dot
+  const sanitized = component.replace(/[^a-zA-Z0-9._-]/g, '_');
+  if (sanitized.includes('..') || sanitized.startsWith('.') || sanitized.includes('/') || sanitized.includes('\\')) {
+    throw new Error(`Invalid ${name}: contains illegal characters`);
+  }
+  return sanitized;
+}
+
+/**
+ * Validate and sanitize file path for artifact
+ */
+function validateArtifactPath(filePath: string): string {
+  if (!filePath || typeof filePath !== 'string') {
+    throw new Error('Invalid artifact file path');
+  }
+  
+  // Normalize and check for traversal
+  const normalized = path.normalize(filePath).replace(/^(\.\.(\/|\\|$))+/, '');
+  if (normalized.includes('..') || path.isAbsolute(normalized)) {
+    throw new Error(`Invalid artifact path: path traversal detected`);
+  }
+  
+  // Verify resolved path stays within cwd
+  const cwd = path.resolve(process.cwd());
+  const resolved = path.resolve(path.join(cwd, normalized));
+  if (!resolved.startsWith(cwd + path.sep)) {
+    throw new Error(`Invalid artifact path: escapes working directory`);
+  }
+  
+  return normalized;
 }
 
 // Generate release attestation
@@ -230,12 +271,13 @@ function generateReleaseAttestation(
   const deploymentId = `deploy-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
   const ledgerEntryId = `ledger-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
   
-  // Process artifacts
+  // Process artifacts with path validation
   const processedArtifacts = request.artifacts.map(artifact => {
-    const fullPath = path.join(process.cwd(), artifact.file_path);
+    const safePath = validateArtifactPath(artifact.file_path);
+    const fullPath = path.join(process.cwd(), safePath);
     return {
       type: artifact.type,
-      file_path: artifact.file_path,
+      file_path: safePath,
       hash: `sha256:${calculateFileHash(fullPath)}`,
       size_bytes: getFileSize(fullPath),
       description: artifact.description
@@ -322,8 +364,18 @@ function generateReleaseAttestation(
 
 // Store attestation in ledger
 function storeAttestation(attestation: ReleaseAttestation): string {
-  const ledgerDir = path.join(process.cwd(), '.civic', 'ledger', 'attestations');
-  const cycleDir = path.join(ledgerDir, attestation.cycle);
+  // Validate cycle and attestation_id to prevent path traversal
+  const safeCycle = validatePathComponent(attestation.cycle, 'cycle');
+  const safeAttestationId = validatePathComponent(attestation.attestation_id, 'attestation_id');
+  
+  const cwd = path.resolve(process.cwd());
+  const ledgerDir = path.join(cwd, '.civic', 'ledger', 'attestations');
+  const cycleDir = path.join(ledgerDir, safeCycle);
+  
+  // Double-check resolved paths stay within cwd
+  if (!path.resolve(cycleDir).startsWith(cwd + path.sep)) {
+    throw new Error('Invalid cycle: path escapes working directory');
+  }
   
   // Ensure directories exist
   if (!fs.existsSync(ledgerDir)) {
@@ -333,7 +385,13 @@ function storeAttestation(attestation: ReleaseAttestation): string {
     fs.mkdirSync(cycleDir, { recursive: true });
   }
   
-  const attestationFile = path.join(cycleDir, `${attestation.attestation_id}.json`);
+  const attestationFile = path.join(cycleDir, `${safeAttestationId}.json`);
+  
+  // Final path validation
+  if (!path.resolve(attestationFile).startsWith(cwd + path.sep)) {
+    throw new Error('Invalid attestation_id: path escapes working directory');
+  }
+  
   fs.writeFileSync(attestationFile, JSON.stringify(attestation, null, 2));
   
   return attestation.ledger_entry.entry_id;

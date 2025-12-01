@@ -335,6 +335,15 @@
 
     <script>
       (function () {
+        // HTML escape function to prevent XSS
+        function escapeHtml(text) {
+          if (text == null) return '';
+          const str = String(text);
+          const div = document.createElement('div');
+          div.textContent = str;
+          return div.innerHTML;
+        }
+
         const baseUrlInput = document.getElementById('baseUrlInput');
         const refreshButton = document.getElementById('refreshButton');
         const trialsTableBody = document.getElementById('trialsTableBody');
@@ -436,18 +445,18 @@
             .sort((a, b) => (a.createdAt || '').localeCompare(b.createdAt || ''))
             .map((t) => {
               const statusLabel = t.status === 'active' ? 'Active' : 'Closed';
-              const completion = t.completionStatus || '';
+              const completion = t.completionStatus ? escapeHtml(t.completionStatus) : '';
               const statusText = completion ? statusLabel + ' • ' + completion : statusLabel;
 
               const isActive = activeTrialId && activeTrialId === t.trialId;
 
               return `
-              <tr data-trial-id="${t.trialId}" class="${
+              <tr data-trial-id="${escapeHtml(t.trialId)}" class="${
                 isActive ? 'active-row' : ''
               }">
-                <td><code>${t.trialId}</code></td>
-                <td>${t.participantId || '<span class="muted">anonymous</span>'}</td>
-                <td>${t.scenarioId || '<span class="muted">—</span>'}</td>
+                <td><code>${escapeHtml(t.trialId)}</code></td>
+                <td>${t.participantId ? escapeHtml(t.participantId) : '<span class="muted">anonymous</span>'}</td>
+                <td>${t.scenarioId ? escapeHtml(t.scenarioId) : '<span class="muted">—</span>'}</td>
                 <td>${statusText}</td>
                 <td>${typeof t.steps === 'number' ? t.steps : '—'}</td>
                 <td>${formatScore(t.avgAlignmentScore)}</td>
@@ -479,7 +488,7 @@
             else row.classList.remove('active-row');
           });
 
-          currentTrialLabel.innerHTML = 'Selected trial: <code>' + trialId + '</code>';
+          currentTrialLabel.innerHTML = 'Selected trial: <code>' + escapeHtml(trialId) + '</code>';
           summaryBlock.textContent = 'Loading…';
           eventsBlock.textContent = 'Loading…';
 
@@ -509,18 +518,18 @@
 
           summaryBlock.innerHTML = `
             <div style="margin-bottom: 0.5rem;">
-              <div><span class="label">Trial ID</span> <code>${s.trialId}</code></div>
+              <div><span class="label">Trial ID</span> <code>${escapeHtml(s.trialId)}</code></div>
               <div><span class="label">Participant</span> ${
-                s.participantId || '<span class="muted">anonymous</span>'
+                s.participantId ? escapeHtml(s.participantId) : '<span class="muted">anonymous</span>'
               }</div>
               <div><span class="label">Scenario</span> ${
-                s.scenarioId || '<span class="muted">—</span>'
+                s.scenarioId ? escapeHtml(s.scenarioId) : '<span class="muted">—</span>'
               }</div>
             </div>
             <div style="margin-bottom: 0.5rem;">
               <div><span class="label">Status</span> ${
                 s.status === 'active' ? 'Active' : 'Closed'
-              } ${s.completionStatus ? '• ' + s.completionStatus : ''}</div>
+              } ${s.completionStatus ? '• ' + escapeHtml(s.completionStatus) : ''}</div>
               <div><span class="label">Steps</span> ${typeof s.steps === 'number' ? s.steps : '—'}</div>
             </div>
             <div style="margin-bottom: 0.5rem;">
@@ -532,8 +541,8 @@
               <div class="muted">Loading MIC suggestion…</div>
             </div>
             <div class="muted" style="margin-top: 0.5rem;">
-              <div><span class="label">Created</span> ${s.createdAt || '—'}</div>
-              <div><span class="label">Closed</span> ${s.closedAt || '—'}</div>
+              <div><span class="label">Created</span> ${escapeHtml(s.createdAt) || '—'}</div>
+              <div><span class="label">Closed</span> ${escapeHtml(s.closedAt) || '—'}</div>
             </div>
           `;
 
@@ -551,15 +560,15 @@
             .sort((a, b) => (a.stepIndex || 0) - (b.stepIndex || 0))
             .map((e) => {
               const tags = Array.isArray(e.tags)
-                ? e.tags.map((t) => '<span class="tag">' + t + '</span>').join('')
+                ? e.tags.map((t) => '<span class="tag">' + escapeHtml(t) + '</span>').join('')
                 : '';
 
               return `
               <div style="margin-bottom: 0.5rem; padding-bottom: 0.5rem; border-bottom: 1px solid #111827;">
                 <div class="flex-between">
                   <div>
-                    <strong>Step ${e.stepIndex}</strong>
-                    <div class="muted">${e.createdAt || ''}</div>
+                    <strong>Step ${typeof e.stepIndex === 'number' ? e.stepIndex : escapeHtml(e.stepIndex)}</strong>
+                    <div class="muted">${escapeHtml(e.createdAt) || ''}</div>
                   </div>
                   <div>
                     <span class="label">Align</span> ${formatScore(e.alignmentScore)}<br/>
@@ -568,15 +577,15 @@
                 </div>
                 <div style="margin-top: 0.25rem;">
                   <div class="label">Prompt</div>
-                  <div>${e.prompt || '<span class="muted">—</span>'}</div>
+                  <div>${e.prompt ? escapeHtml(e.prompt) : '<span class="muted">—</span>'}</div>
                 </div>
                 <div style="margin-top: 0.25rem;">
                   <div class="label">User Choice</div>
-                  <div>${e.userChoice || '<span class="muted">—</span>'}</div>
+                  <div>${e.userChoice ? escapeHtml(e.userChoice) : '<span class="muted">—</span>'}</div>
                 </div>
                 <div style="margin-top: 0.25rem;">
                   <div class="label">Model Choice</div>
-                  <div>${e.modelChoice || '<span class="muted">—</span>'}</div>
+                  <div>${e.modelChoice ? escapeHtml(e.modelChoice) : '<span class="muted">—</span>'}</div>
                 </div>
                 ${
                   tags
