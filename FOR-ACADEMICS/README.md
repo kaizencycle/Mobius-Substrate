@@ -15,6 +15,8 @@ This cathedral contains peer-reviewed research, empirical datasets, and academic
 | 🎓 PhD frameworks | [THESIS-TEMPLATES/](./THESIS-TEMPLATES/) |
 | 📚 Academic context | [LITERATURE-REVIEWS/](./LITERATURE-REVIEWS/) |
 | 🔬 Replication guides | [EXPERIMENTAL-PROTOCOLS/](./EXPERIMENTAL-PROTOCOLS/) |
+| 🔌 API endpoints | [ENDPOINTS.md](./ENDPOINTS.md) |
+| 📋 Machine-readable API | [endpoints.json](./endpoints.json) |
 
 ---
 
@@ -191,6 +193,35 @@ curl https://pulse.mobius.systems/academics/dataset.json > mobius-research.json
 # Get 30-day MII timeline
 curl https://pulse.mobius.systems/academics/mii-timeline.csv
 ```
+
+**Full API Documentation**: [ENDPOINTS.md](./ENDPOINTS.md)
+
+---
+
+## 📚 Related Documentation
+
+### Research & Publications
+- [Research & Publications](../../docs/07-RESEARCH-AND-PUBLICATIONS/) — Complete research corpus
+- [Whitepapers](../../docs/07-RESEARCH-AND-PUBLICATIONS/whitepapers/) — All whitepapers
+- [MIC Economics Research](../../docs/07-RESEARCH-AND-PUBLICATIONS/mic-economics/) — Economic research
+- [Tokenomics Research](../../docs/07-RESEARCH-AND-PUBLICATIONS/tokenomics/) — Tokenomics studies
+- [Encyclopedia Project](../../docs/07-RESEARCH-AND-PUBLICATIONS/encyclopedia/) — Knowledge base
+
+### Technical Architecture
+- [Technical Architecture Overview](../../docs/04-TECHNICAL-ARCHITECTURE/) — System design
+- [DVA Documentation](../../docs/04-TECHNICAL-ARCHITECTURE/dva/) — Decentralized Verification Architecture
+- [MEMT Documentation](../../docs/04-TECHNICAL-ARCHITECTURE/memt/) — Multi-Engine Model Taxonomy
+- [Ledger Documentation](../../docs/04-TECHNICAL-ARCHITECTURE/ledger/) — Integrity ledger
+
+### Reference Materials
+- [API Reference](../../docs/08-REFERENCE/) — Complete API documentation
+- [Master Documentation Index](../../docs/00-META/MASTER_INDEX.md) — Complete catalog
+- [Subject Index](../../docs/00-META/SUBJECT_INDEX.md) — Browse by topic
+- [Navigation Guide](../../docs/00-META/NAVIGATION_GUIDE.md) — How to navigate
+
+### Implementation & Replication
+- [Implementation Guides](../../docs/05-IMPLEMENTATION/) — Deployment procedures
+- [Experimental Protocols](../../EXPERIMENTAL-PROTOCOLS/) — Replication guides
 
 ---
 

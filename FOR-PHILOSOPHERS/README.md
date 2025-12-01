@@ -16,6 +16,8 @@ This cathedral contains ethical frameworks, governance philosophy, and existenti
 | 🧨 AGI safety | [EXISTENTIAL-RISK/](./EXISTENTIAL-RISK/) |
 | 🕊️ Conflict resolution | [PEACE-STUDIES/](./PEACE-STUDIES/) |
 | 📜 Core documents | [MANIFESTOS/](./MANIFESTOS/) |
+| 🔌 API endpoints | [ENDPOINTS.md](./ENDPOINTS.md) |
+| 📋 Machine-readable API | [endpoints.json](./endpoints.json) |
 
 ---
 
@@ -288,6 +290,32 @@ curl https://pulse.mobius.systems/philosophy/deliberations.json
 # Get virtue metrics
 curl https://pulse.mobius.systems/philosophy/virtues.json
 ```
+
+**Full API Documentation**: [ENDPOINTS.md](./ENDPOINTS.md)
+
+---
+
+## 📚 Related Documentation
+
+### Governance & Philosophy
+- [Governance & Policy](../../docs/03-GOVERNANCE-AND-POLICY/) — Complete governance docs
+- [Governance Structures](../../docs/03-GOVERNANCE-AND-POLICY/governance/) — Governance frameworks
+- [Constitutional Documents](../../docs/03-GOVERNANCE-AND-POLICY/constitution/) — Constitutions
+- [Codex & Virtue Systems](../../docs/03-GOVERNANCE-AND-POLICY/codex/) — Virtue frameworks
+
+### Theoretical Foundations
+- [Theoretical Foundations](../../docs/02-THEORETICAL-FOUNDATIONS/) — Core theory
+- [Philosophy Documentation](../../docs/02-THEORETICAL-FOUNDATIONS/philosophy/) — Core philosophy
+- [Manifestos](../../docs/02-THEORETICAL-FOUNDATIONS/manifesto/) — Core declarations
+- [Philosophy Details](../../docs/11-SUPPLEMENTARY/philosophy/) — Additional philosophy
+
+### Ethical Frameworks
+- [Codex Documentation](../../docs/11-SUPPLEMENTARY/codex/) — Codex details
+- [Consensus Chamber](../../docs/11-SUPPLEMENTARY/consensus-chamber/) — Consensus mechanisms
+
+### Safety & Risk
+- [Security Documentation](../../docs/11-SUPPLEMENTARY/security/) — Security & safety
+- [Threat Model](../../docs/11-SUPPLEMENTARY/architecture-docs/THREAT_MODEL.md) — Threat modeling
 
 ---
 

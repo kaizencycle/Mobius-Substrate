@@ -6,6 +6,12 @@
 
 ---
 
+## 🎯 Quick Access
+
+👉 **[Complete Cathedral Index →](./INDEX.md)** — Full documentation map with all endpoints and cross-references
+
+---
+
 ## Overview
 
 Cathedrals are specialized documentation and governance domains within Mobius Systems. Each cathedral serves a distinct audience with tailored content, compliance requirements, and economic multipliers.
@@ -14,12 +20,12 @@ Cathedrals are specialized documentation and governance domains within Mobius Sy
 
 ## Cathedral Directory
 
-| Cathedral | Audience | Multiplier | Description |
-|-----------|----------|------------|-------------|
-| [FOR-ACADEMICS](/FOR-ACADEMICS/) | Researchers & Academia | 1.2× | Research papers, citations, peer review |
-| [FOR-ECONOMISTS](/FOR-ECONOMISTS/) | Economic Analysts | 1.5× | Tokenomics, MIC economy, incentive design |
-| [FOR-GOVERNMENTS](/FOR-GOVERNMENTS/) | Policy Makers | 2.0× | Regulatory compliance, legislative drafts |
-| [FOR-PHILOSOPHERS](/FOR-PHILOSOPHERS/) | Ethicists & Thinkers | 1.0× | Philosophy, ethics, manifestos |
+| Cathedral | Audience | Multiplier | Description | Entry Point |
+|-----------|----------|------------|-------------|-------------|
+| [FOR-ACADEMICS](/FOR-ACADEMICS/) | Researchers & Academia | 1.2× | Research papers, citations, peer review | [Research Cathedral →](/FOR-ACADEMICS/) |
+| [FOR-ECONOMISTS](/FOR-ECONOMISTS/) | Economic Analysts | 1.5× | Tokenomics, MIC economy, incentive design | [Market Cathedral →](/FOR-ECONOMISTS/) |
+| [FOR-GOVERNMENTS](/FOR-GOVERNMENTS/) | Policy Makers | 2.0× | Regulatory compliance, legislative drafts | [Policy Cathedral →](/FOR-GOVERNMENTS/) |
+| [FOR-PHILOSOPHERS](/FOR-PHILOSOPHERS/) | Ethicists & Thinkers | 1.0× | Philosophy, ethics, manifestos | [Ethics Cathedral →](/FOR-PHILOSOPHERS/) |
 
 ### Machine-Readable Endpoints
 
@@ -68,6 +74,14 @@ Each sentinel is assigned to a primary cathedral:
 
 ---
 
+## 📚 Documentation Mapping
+
+👉 **[Complete Documentation Map →](./DOCUMENTATION_MAP.md)** — Maps all `/docs` folder content to appropriate cathedrals
+
+This map shows how every document in the `/docs` folder relates to the four cathedrals, making it easy to find relevant documentation for each audience.
+
+---
+
 ## Contributing
 
 When adding content to a cathedral:
@@ -76,6 +90,7 @@ When adding content to a cathedral:
 2. Include proper frontmatter with `cathedral` field
 3. Cross-reference related documents
 4. Submit for sentinel review
+5. Update the [Documentation Map](./DOCUMENTATION_MAP.md) if adding new categories
 
 ---
 
