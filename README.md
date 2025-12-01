@@ -579,6 +579,29 @@ All services include integrity checks and health endpoints:
 - `/api/integrity-check` - Mobius Systems integrity verification
 - `/v1/loop/health` - Thought Broker specific health
 
+### 🌀 Mobius Pulse API
+
+A nightly integrity snapshot of the monorepo is published via:
+
+- `GET /api/v1/pulse/latest` — latest Mobius pulse
+- `GET /api/v1/pulse/history` — pulse history (last 90 days)
+- `GET /api/v1/pulse/badge` — Shields.io badge JSON
+- `POST /api/v1/pulse/ingest` — internal, used by CI
+
+**Example:**
+
+```bash
+curl "$MOBIUS_INDEXER_BASE_URL/api/v1/pulse/latest" | jq
+```
+
+The portal uses this endpoint to render the Mobius Pulse Card, showing:
+- Global Integrity (GI)
+- Mobius Integrity Index (MII)
+- Apps / packages / workflows
+- Total files and lines of code
+
+📖 **Full documentation**: [docs/09-operations/mobius-pulse-protocol.md](docs/09-operations/mobius-pulse-protocol.md)
+
 ## 🔐 Security
 
 - **Citizen Shield** provides network security and policy enforcement

@@ -4,3 +4,4 @@
  */
 
 export * from "./mobiusPulse";
+export * from "./mobiusPulseV2";
