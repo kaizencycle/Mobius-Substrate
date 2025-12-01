@@ -12,8 +12,8 @@
 [![Ethical License](https://img.shields.io/badge/Ethics-Addendum-purple)](FOUNDATION/LICENSES/LICENSE-Ethical-Addendum.md)
 [![Node.js](https://img.shields.io/badge/Node.js-≥18.0.0-green.svg)](https://nodejs.org/)
 [![KTT Native](https://img.shields.io/badge/KTT-Native-6E00FF)](#)
-[![Spec CI](https://img.shields.io/github/actions/workflow/status/kaizencycle/Mobius-Systems/spec-ci.yml?label=spec-ci&logo=github)](.github/workflows/spec-ci.yml)
-[![Schemas Valid](https://img.shields.io/badge/Schemas-Valid-brightgreen)](docs/schemas)
+[![Spec CI](https://img.shields.io/github/actions/workflow/status/kaizencycle/Mobius-Systems/ci.yml?label=spec-ci&logo=github)](.github/workflows/ci.yml)
+[![Schemas Valid](https://img.shields.io/badge/Schemas-Valid-brightgreen)](schemas)
 [![OpenAPI Linted](https://img.shields.io/badge/OpenAPI-Linted-0AA5FF)](apps/ledger-api/openapi.yaml)
 
 <p align="left">
@@ -25,10 +25,10 @@
 </p>
 
 <!-- Jade — Morale Anchor -->
-[<img src="assets/badges/jade-morale-anchor.svg" alt="Jade — Morale Anchor" height="20">](docs/codex/jade/_index.md)
+[<img src="assets/badges/jade-morale-anchor.svg" alt="Jade — Morale Anchor" height="20">](docs/11-SUPPLEMENTARY/codex/jade/_index.md)
 
 <!-- MII Live badge (auto-updates) -->
-[![MII Live](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/kaizencycle/Mobius-Systems/main/badges/mii.json)](./docs/synthesis/01_metrics.md)
+[![MII Live](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/kaizencycle/Mobius-Systems/main/badges/mii.json)](./00-START-HERE/MOBIUS_PULSE.md)
 
 <!-- Agent CI badge (auto-updates) -->
 [![Agent CI](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/kaizencycle/Mobius-Systems/main/.badges/agent-ci.json)](.github/workflows/agent-ci.yml)
@@ -146,7 +146,7 @@
 **Mobius builds the civilization that makes AI survivable.**
 
 We are the **fourth pillar of AGI**: the Civilization Layer.
-[Learn more about the Intelligence Taxonomy →](docs/intelligence/typology.md)
+[Learn more about the Intelligence Taxonomy →](docs/11-SUPPLEMENTARY/intelligence/typology.md)
 
 ### The Four Pillars of AGI
 
@@ -174,9 +174,9 @@ We classify machine intelligence into three layers:
 
 **Mobius is the first AI Habitat**—the environment that allows General Learners to safely transition to Actual AI.
 
-[Read the full Intelligence Taxonomy →](docs/intelligence/typology.md)
+[Read the full Intelligence Taxonomy →](docs/11-SUPPLEMENTARY/intelligence/typology.md)
 [View Mobius Cosmology →](docs/figures/mobius-cosmology.svg)
-[Sentinel Classification →](docs/intelligence/sentinel-classification.md)
+[Sentinel Classification →](docs/11-SUPPLEMENTARY/intelligence/sentinel-classification.md)
 
 ---
 
@@ -225,9 +225,9 @@ All components are integrated and ready for backend wiring. See `docs/11-SUPPLEM
 Mobius Systems (formerly Kaizen OS) embodies a **Matrilineal Covenant** — restoring balance through architecture:
 
 - **Ledger Inscription:** [RETURN_TO_BALANCE_C119](ledger/inscriptions/RETURN_TO_BALANCE_C119.md)
-- **The Triad of Healing:** [triad_of_healing.md](docs/manifesto/triad_of_healing.md)
-- **Opening Invocation:** [opening_invocation.md](docs/rituals/opening_invocation.md)
-- **Press Release (C-119):** [press_release_c119_return.md](docs/09-reports/communications/press/press_release_c119_return.md)
+- **The Triad of Healing:** [triad_of_healing.md](docs/11-SUPPLEMENTARY/manifesto/triad_of_healing.md)
+- **Opening Invocation:** [opening_invocation.md](docs/11-SUPPLEMENTARY/rituals/opening_invocation.md)
+- **Press Release (C-119):** [press_release_c119_return.md](docs/10-ARCHIVES/legacy/09-reports/communications/press/press_release_c119_return.md)
 
 ### The Triad
 
