@@ -33,6 +33,11 @@
 <!-- Agent CI badge (auto-updates) -->
 [![Agent CI](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/kaizencycle/Mobius-Systems/main/.badges/agent-ci.json)](.github/workflows/agent-ci.yml)
 
+<!-- Mobius Pulse badges (live integrity heartbeat) -->
+[![Mobius GI/MII](https://img.shields.io/endpoint?url=https%3A%2F%2Findexer.mobius.sys%2Fapi%2Fv1%2Fpulse%2Fbadge)](./00-START-HERE/MOBIUS_PULSE.md)
+[![Mobius GI](https://img.shields.io/endpoint?url=https%3A%2F%2Findexer.mobius.sys%2Fapi%2Fv1%2Fpulse%2Fbadge%3Fmetric%3Dgi)](./00-START-HERE/MOBIUS_PULSE.md)
+[![Mobius MII](https://img.shields.io/endpoint?url=https%3A%2F%2Findexer.mobius.sys%2Fapi%2Fv1%2Fpulse%2Fbadge%3Fmetric%3Dmii)](./00-START-HERE/MOBIUS_PULSE.md)
+
 > **Tip:** These badges are repo-native (JSON via Shields endpoint). A scheduled workflow updates them automatically.
 
 <!-- Monorepo Structure Badges -->
@@ -601,6 +606,14 @@ The portal uses this endpoint to render the Mobius Pulse Card, showing:
 - Total files and lines of code
 
 📖 **Full documentation**: [docs/09-operations/mobius-pulse-protocol.md](docs/09-operations/mobius-pulse-protocol.md)
+
+### 🫀 Mobius Pulse
+
+Mobius runs a daily **Pulse**: a snapshot of Global Integrity (GI) and Mobius Integrity Index (MII) for the entire monorepo.
+
+- **Live status** → see the badges at the top of this README
+- **Timeline** → `/pulse/timeline` in the portal
+- **Details** → [Mobius Pulse explainer](./00-START-HERE/MOBIUS_PULSE.md)
 
 ## 🔐 Security
 
