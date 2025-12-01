@@ -2,5 +2,6 @@
   "schemaVersion": 1,
   "label": "SR • Cycle",
   "message": "C-151",
-  "color": "blueviolet"
+  "color": "blue",
+  "labelColor": "black"
 }
