@@ -138,6 +138,6 @@ The actual schema should live in `packages/integrity-core/src/pulse/` (Zod or Ty
 
 ## References
 
-- [Cycle C-151 Ledger Entry](../ledger/cycles/C-151.md)
-- [Pulse Schema Source](../../packages/integrity-core/src/pulse/mobiusPulse.ts)
-- [Indexer API Routes](../../apps/indexer-api/src/routes/pulse.ts)
+- [Cycle C-151 Ledger Entry](../../../ledger/cycles/C-151.md)
+- [Pulse Schema Source](../../../../packages/integrity-core/src/pulse/mobiusPulse.ts)
+- [Indexer API Routes](../../../../apps/indexer-api/src/routes/pulse.ts)

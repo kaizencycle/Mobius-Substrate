@@ -35,7 +35,7 @@ This directory contains SVG badge assets for all Mobius Systems sentinel agents.
 ### In Markdown
 
 ```markdown
-![ZEUS Badge](../docs/assets/badges/zeus-badge.svg)
+![ZEUS Badge](./docs/assets/badges/zeus-badge.svg)
 ```
 
 ### In HTML
