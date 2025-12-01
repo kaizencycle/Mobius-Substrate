@@ -275,4 +275,20 @@ Collaborate on formal verification.
 
 *"The question is not whether machines can think, but whether civilizations can remain coherent while thinking machines exist."*
 
-**Cycle C-149 • Ethics Cathedral**
+---
+
+## 🔗 Machine-Readable API
+
+For programmatic access to philosophical resources, see [endpoints.json](./endpoints.json).
+
+```bash
+# Get sentinel deliberation logs
+curl https://pulse.mobius.systems/philosophy/deliberations.json
+
+# Get virtue metrics
+curl https://pulse.mobius.systems/philosophy/virtues.json
+```
+
+---
+
+**Cycle C-151 • Ethics Cathedral**

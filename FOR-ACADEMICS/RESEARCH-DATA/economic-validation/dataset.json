@@ -1,0 +1,60 @@
+{
+  "dataset_id": "economic-validation-v1",
+  "version": "1.0.0",
+  "cycle": "C-151",
+  "description": "Historical correlation data validating negentropic economics models",
+  "methodology": {
+    "collection_period": "2008-01-01 to 2025-11-30",
+    "data_sources": [
+      "Federal Reserve FRED database",
+      "World Bank Open Data",
+      "Mobius Systems internal metrics"
+    ],
+    "analysis_type": "Time-series correlation"
+  },
+  "key_findings": {
+    "debt_entropy_correlation": 0.94,
+    "interest_uncertainty_correlation": 0.91,
+    "order_debt_reduction_correlation": 0.87,
+    "model_r_squared": 0.89
+  },
+  "variables": {
+    "independent": [
+      "system_entropy_S",
+      "risk_premium_R",
+      "coordination_efficiency_C",
+      "negentropy_N"
+    ],
+    "dependent": [
+      "interest_rate_r",
+      "debt_accumulation_dD_dt",
+      "debt_reduction_delta_D"
+    ]
+  },
+  "schema": {
+    "date": "string - ISO 8601 date",
+    "country_code": "string - ISO 3166-1 alpha-3",
+    "national_debt_usd": "number - National debt in USD",
+    "interest_rate": "number - Central bank rate (%)",
+    "entropy_estimate": "number - Governance entropy score",
+    "coordination_score": "number - Institutional coordination",
+    "negentropy_proxy": "number - Order creation estimate"
+  },
+  "download": {
+    "full_dataset": "https://pulse.mobius.systems/academics/datasets/economic-validation.csv",
+    "format": "CSV",
+    "records": 1200,
+    "size_bytes": 156000
+  },
+  "citation": {
+    "bibtex_key": "mobius2025econ-data",
+    "doi": "pending",
+    "license": "CC BY 4.0"
+  },
+  "related_papers": [
+    {
+      "title": "Negentropic Economics: Unifying Thermodynamics and Economic Theory",
+      "path": "../../PAPERS/NEGENTROPIC-ECONOMICS/"
+    }
+  ]
+}

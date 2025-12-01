@@ -178,4 +178,20 @@ We provide complete dissertation frameworks:
 *"Intelligence moves. Integrity guides. Truth emerges through verification."*
 — ATLAS Sentinel
 
-**Cycle C-149 • Research Cathedral**
+---
+
+## 🔗 Machine-Readable API
+
+For programmatic access to academic resources, see [endpoints.json](./endpoints.json).
+
+```bash
+# Quick start - download research dataset
+curl https://pulse.mobius.systems/academics/dataset.json > mobius-research.json
+
+# Get 30-day MII timeline
+curl https://pulse.mobius.systems/academics/mii-timeline.csv
+```
+
+---
+
+**Cycle C-151 • Research Cathedral**

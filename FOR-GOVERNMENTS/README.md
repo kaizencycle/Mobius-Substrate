@@ -245,4 +245,21 @@ We can brief your committee.
 
 *"Governance is not control — it is the art of enabling flourishing while preventing harm."*
 
-**Cycle C-149 • Policy Cathedral**
+---
+
+## 🔗 Machine-Readable API
+
+For programmatic access to government resources, see [endpoints.json](./endpoints.json).
+
+```bash
+# Get compliance report (requires API key)
+curl -H "Authorization: Bearer $GOV_API_KEY" \
+  https://pulse.mobius.systems/government/compliance-report.json
+
+# Get transparency report
+curl https://pulse.mobius.systems/government/transparency.pdf
+```
+
+---
+
+**Cycle C-151 • Policy Cathedral**

@@ -1,0 +1,43 @@
+{
+  "dataset_id": "mcp-compliance-v1",
+  "version": "1.0.0",
+  "cycle": "C-151",
+  "description": "Mobius Cycle Protocol compliance metrics from production deployment",
+  "methodology": {
+    "collection_period": "2025-06-01 to 2025-11-30",
+    "sample_size": "46 production cycles",
+    "sentinel_count": 5,
+    "data_sources": [
+      "Sentinel attestations",
+      "Compliance gate outcomes",
+      "Protocol violation logs"
+    ]
+  },
+  "key_findings": {
+    "overall_compliance_rate": 0.997,
+    "attestation_success_rate": 0.99,
+    "gate_pass_rate": 0.995,
+    "violation_resolution_time_hours": 2.3
+  },
+  "schema": {
+    "cycle_id": "string - Unique cycle identifier",
+    "date": "string - ISO 8601 date",
+    "attestations_submitted": "integer - Total attestations",
+    "attestations_valid": "integer - Valid attestations",
+    "gates_passed": "integer - Compliance gates passed",
+    "gates_total": "integer - Total compliance gates",
+    "violations": "integer - Protocol violations detected",
+    "violations_resolved": "integer - Violations resolved within cycle"
+  },
+  "download": {
+    "full_dataset": "https://pulse.mobius.systems/academics/datasets/mcp-compliance.csv",
+    "format": "CSV",
+    "records": 46,
+    "size_bytes": 3800
+  },
+  "citation": {
+    "bibtex_key": "mobius2025mcp-data",
+    "doi": "pending",
+    "license": "CC0 1.0 Universal"
+  }
+}

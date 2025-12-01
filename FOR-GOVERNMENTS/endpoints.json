@@ -1,0 +1,73 @@
+{
+  "cathedral": "FOR-GOVERNMENTS",
+  "version": "C-151",
+  "generated": "2025-12-01T00:00:00Z",
+  "description": "Policy-maker's guide to Mobius Systems",
+  "multiplier": 2.0,
+  "endpoints": {
+    "compliance_report": {
+      "url": "https://pulse.mobius.systems/government/compliance-report.json",
+      "format": "JSON",
+      "auth_required": true,
+      "description": "Complete regulatory compliance status"
+    },
+    "audit_trail": {
+      "url": "https://ledger.mobius.systems/export",
+      "format": "CSV/JSON",
+      "auth_required": true,
+      "parameters": ["from", "to", "format", "filter"],
+      "description": "Exportable audit trail for regulatory review"
+    },
+    "transparency_report": {
+      "url": "https://pulse.mobius.systems/government/transparency.pdf",
+      "format": "PDF",
+      "description": "Annual transparency report"
+    },
+    "sentinel_status": {
+      "url": "https://pulse.mobius.systems/government/sentinel-status.json",
+      "format": "JSON",
+      "description": "Real-time sentinel operational status"
+    },
+    "policy_impact": {
+      "url": "https://pulse.mobius.systems/government/policy-impact.json",
+      "format": "JSON",
+      "description": "Economic and social impact projections"
+    }
+  },
+  "regulatory_compliance": {
+    "USA": {
+      "SEC": "compatible",
+      "CFTC": "compatible",
+      "Federal_Reserve_Act": "compatible"
+    },
+    "EU": {
+      "GDPR": "compliant",
+      "AI_Act": "high_risk_compliant",
+      "MiCA": "utility_token"
+    },
+    "UK": {
+      "FCA": "compatible",
+      "Data_Protection_Act": "compliant"
+    },
+    "International": {
+      "Basel_III": "compatible",
+      "FATF": "compliant"
+    }
+  },
+  "access_tiers": {
+    "public": {
+      "rate_limit": "100/day",
+      "endpoints": ["transparency_report", "sentinel_status"]
+    },
+    "government": {
+      "rate_limit": "unlimited",
+      "endpoints": "all",
+      "auth": "GOV_API_KEY required"
+    }
+  },
+  "contact": {
+    "policy_liaison": "policy@mobius.systems",
+    "technical_compliance": "compliance@mobius.systems",
+    "emergency": "+1-555-MOBIUS (24/7)"
+  }
+}

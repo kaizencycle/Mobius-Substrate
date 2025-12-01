@@ -16,10 +16,19 @@ Cathedrals are specialized documentation and governance domains within Mobius Sy
 
 | Cathedral | Audience | Multiplier | Description |
 |-----------|----------|------------|-------------|
-| [FOR-ACADEMICS](./FOR-ACADEMICS/) | Researchers & Academia | 1.2× | Research papers, citations, peer review |
-| [FOR-ECONOMISTS](./FOR-ECONOMISTS/) | Economic Analysts | 1.5× | Tokenomics, MIC economy, incentive design |
-| [FOR-GOVERNMENTS](./FOR-GOVERNMENTS/) | Policy Makers | 2.0× | Regulatory compliance, legislative drafts |
-| [FOR-PHILOSOPHERS](./FOR-PHILOSOPHERS/) | Ethicists & Thinkers | 1.0× | Philosophy, ethics, manifestos |
+| [FOR-ACADEMICS](/FOR-ACADEMICS/) | Researchers & Academia | 1.2× | Research papers, citations, peer review |
+| [FOR-ECONOMISTS](/FOR-ECONOMISTS/) | Economic Analysts | 1.5× | Tokenomics, MIC economy, incentive design |
+| [FOR-GOVERNMENTS](/FOR-GOVERNMENTS/) | Policy Makers | 2.0× | Regulatory compliance, legislative drafts |
+| [FOR-PHILOSOPHERS](/FOR-PHILOSOPHERS/) | Ethicists & Thinkers | 1.0× | Philosophy, ethics, manifestos |
+
+### Machine-Readable Endpoints
+
+Each cathedral provides a machine-readable `endpoints.json` for programmatic access:
+
+- [FOR-ACADEMICS/endpoints.json](/FOR-ACADEMICS/endpoints.json)
+- [FOR-ECONOMISTS/endpoints.json](/FOR-ECONOMISTS/endpoints.json)
+- [FOR-PHILOSOPHERS/endpoints.json](/FOR-PHILOSOPHERS/endpoints.json)
+- [FOR-GOVERNMENTS/endpoints.json](/FOR-GOVERNMENTS/endpoints.json)
 
 ---
 

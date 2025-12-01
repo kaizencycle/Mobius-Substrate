@@ -1,0 +1,74 @@
+{
+  "cathedral": "FOR-ECONOMISTS",
+  "version": "C-151",
+  "generated": "2025-12-01T00:00:00Z",
+  "description": "Analyze the MIC economy in real-time",
+  "multiplier": 1.5,
+  "endpoints": {
+    "supply": {
+      "url": "https://pulse.mobius.systems/economy/supply",
+      "format": "JSON",
+      "update_frequency": "real-time",
+      "description": "Current MIC total supply and distribution",
+      "fields": ["total_supply", "circulating", "locked", "burned"]
+    },
+    "mii": {
+      "url": "https://pulse.mobius.systems/economy/mii",
+      "format": "JSON",
+      "update_frequency": "6 hours",
+      "description": "Current Mobius Integrity Index and threshold"
+    },
+    "coordination": {
+      "url": "https://pulse.mobius.systems/economy/coordination",
+      "format": "JSON",
+      "description": "Average coordination score across all sentinels"
+    },
+    "roi": {
+      "url": "https://pulse.mobius.systems/economy/roi",
+      "format": "JSON",
+      "description": "Sentinel ROI analysis by cathedral"
+    },
+    "mic_history": {
+      "url": "https://pulse.mobius.systems/economy/mic-history.csv",
+      "format": "CSV",
+      "description": "Complete MIC minting history since genesis"
+    },
+    "sentinel_roi": {
+      "url": "https://pulse.mobius.systems/economy/sentinel-roi.json",
+      "format": "JSON",
+      "description": "Per-sentinel ROI breakdown"
+    },
+    "cathedral_multipliers": {
+      "url": "https://pulse.mobius.systems/economy/cathedral-multipliers.csv",
+      "format": "CSV",
+      "description": "Historical cathedral multiplier timeline"
+    }
+  },
+  "economic_models": {
+    "logistic_reward": {
+      "formula": "R = L / (1 + e^(-k*(s - x0))) × M_c",
+      "parameters": {
+        "L": 1000,
+        "k": 0.05,
+        "x0": 50,
+        "M_c": "cathedral multiplier (1.0-2.0)"
+      }
+    },
+    "coordination_score": {
+      "formula": "score = (0.4×apps + 0.3×packages + 0.2×workflows + 0.1×(10-drift)) × (1 + log(uptime))"
+    },
+    "mii_decay": {
+      "formula": "threshold = 95 - 2*log10(total_MIC/1e6)"
+    }
+  },
+  "rate_limits": {
+    "anonymous": "100 requests/day",
+    "economist": "2000 requests/day",
+    "institutional": "unlimited (partnership required)"
+  },
+  "contact": {
+    "economic_research": "economics@mobius.systems",
+    "api_support": "api@mobius.systems",
+    "partnerships": "partnerships@mobius.systems"
+  }
+}

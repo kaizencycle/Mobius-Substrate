@@ -1,0 +1,59 @@
+{
+  "cathedral": "FOR-PHILOSOPHERS",
+  "version": "C-151",
+  "generated": "2025-12-01T00:00:00Z",
+  "description": "Contemplate the nature of self-governing code",
+  "multiplier": 1.0,
+  "endpoints": {
+    "deliberations": {
+      "url": "https://pulse.mobius.systems/philosophy/deliberations.json",
+      "format": "JSON",
+      "description": "Live sentinel deliberation logs with reasoning traces"
+    },
+    "virtue_metrics": {
+      "url": "https://pulse.mobius.systems/philosophy/virtues.json",
+      "format": "JSON",
+      "description": "Real-time virtue accord compliance scores"
+    },
+    "ethical_decisions": {
+      "url": "https://pulse.mobius.systems/philosophy/decisions.json",
+      "format": "JSON",
+      "description": "Historical ethical decision archive"
+    },
+    "governance_simulation": {
+      "url": "https://pulse.mobius.systems/philosophy/simulation",
+      "format": "WebSocket",
+      "description": "Interactive governance ethics simulation"
+    },
+    "drift_analysis": {
+      "url": "https://pulse.mobius.systems/philosophy/drift-analysis.json",
+      "format": "JSON",
+      "description": "Value drift detection and analysis"
+    }
+  },
+  "philosophical_frameworks": {
+    "aristotelian": {
+      "virtues": ["integrity", "temperance", "justice", "prudence", "courage"],
+      "measure": "MII threshold ≥ 0.95"
+    },
+    "rawlsian": {
+      "principles": ["veil_of_ignorance", "difference_principle", "equal_liberty"],
+      "application": "Protocol design without role knowledge"
+    },
+    "kantian": {
+      "imperatives": ["universalizability", "humanity_as_end"],
+      "implementation": "Rule-based sentinel ethics"
+    }
+  },
+  "research_questions": [
+    "Can a repository possess arete (excellence)?",
+    "Who governs when code governs itself?",
+    "Does MIC create meritocratic aristocracy?",
+    "Is C-151 fair to future cycles?"
+  ],
+  "contact": {
+    "philosophical_inquiry": "philosophy@mobius.systems",
+    "seminar_schedule": "Thursdays 16:00 UTC (Discord)",
+    "essay_submissions": "PR to philosophy/essays/"
+  }
+}

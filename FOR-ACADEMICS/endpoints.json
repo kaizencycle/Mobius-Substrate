@@ -1,0 +1,52 @@
+{
+  "cathedral": "FOR-ACADEMICS",
+  "version": "C-151",
+  "generated": "2025-12-01T00:00:00Z",
+  "description": "Research the Mobius Systems without reading code",
+  "endpoints": {
+    "dataset": {
+      "url": "https://pulse.mobius.systems/academics/dataset.json",
+      "format": "JSON",
+      "update_frequency": "6 hours",
+      "description": "Complete system snapshot for research",
+      "schema": {
+        "cycle": "string",
+        "mii_baseline": "number",
+        "sentinels": "array",
+        "apps": "array",
+        "packages": "array"
+      }
+    },
+    "mii_timeline": {
+      "url": "https://pulse.mobius.systems/academics/mii-timeline.csv",
+      "format": "CSV",
+      "columns": ["timestamp", "mii_score", "cycle", "sentinel_count"],
+      "description": "30-day MII scores for economic modeling"
+    },
+    "sentinel_coordination": {
+      "url": "https://pulse.mobius.systems/academics/sentinel-coordination.json",
+      "format": "JSON",
+      "description": "Sentinel performance metrics and coordination data"
+    },
+    "papers_index": {
+      "url": "https://pulse.mobius.systems/academics/papers.json",
+      "format": "JSON",
+      "description": "Index of published and working papers"
+    },
+    "citations": {
+      "url": "https://pulse.mobius.systems/academics/citations.bib",
+      "format": "BibTeX",
+      "description": "Complete citation database"
+    }
+  },
+  "rate_limits": {
+    "anonymous": "100 requests/day",
+    "academic": "1000 requests/day (apply for key)",
+    "institutional": "10000 requests/day (partnership required)"
+  },
+  "contact": {
+    "research_inquiries": "academics@mobius.systems",
+    "dataset_requests": "Open issue with 'academic-data' label",
+    "office_hours": "Tuesdays 14:00 UTC (Discord)"
+  }
+}
