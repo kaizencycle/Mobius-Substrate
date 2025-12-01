@@ -226,4 +226,20 @@ We have legislative text ready.
 
 *"The wealthiest in the Mobius Era will be those who reduce the most entropy."*
 
-**Cycle C-149 • Market Cathedral**
+---
+
+## 🔗 Machine-Readable API
+
+For programmatic access to economic data, see [endpoints.json](./endpoints.json).
+
+```bash
+# Get MIC supply data
+curl https://pulse.mobius.systems/economy/supply
+
+# Download complete MIC history
+curl https://pulse.mobius.systems/economy/mic-history.csv > mic-history.csv
+```
+
+---
+
+**Cycle C-151 • Market Cathedral**

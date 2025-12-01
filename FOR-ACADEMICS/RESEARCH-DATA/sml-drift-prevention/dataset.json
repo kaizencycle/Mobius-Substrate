@@ -1,0 +1,70 @@
+{
+  "dataset_id": "sml-drift-prevention-v1",
+  "version": "1.0.0",
+  "cycle": "C-151",
+  "description": "Strange Metamorphosis Loop drift prevention metrics from production deployment",
+  "methodology": {
+    "collection_period": "2025-06-01 to 2025-11-30",
+    "sample_size": "46 production cycles",
+    "sentinel_count": 5,
+    "data_sources": [
+      "Daily SML reflections",
+      "MII score calculations",
+      "Drift detection events"
+    ]
+  },
+  "key_findings": {
+    "drift_prevention_rate": 0.97,
+    "average_mii_score": 0.953,
+    "reflection_completion_rate": 0.94,
+    "correlation_reflection_mii": 0.89
+  },
+  "schema": {
+    "cycle_id": "string - Unique cycle identifier (e.g., C-150)",
+    "date": "string - ISO 8601 date",
+    "mii_score": "number - Mobius Integrity Index (0.0-1.0)",
+    "reflection_count": "integer - Daily reflections completed",
+    "drift_events": "integer - Number of detected drifts",
+    "drift_resolved": "integer - Number of resolved drifts",
+    "sentinels_active": "integer - Active sentinel count",
+    "entropy_measure": "number - System entropy score"
+  },
+  "sample_records": [
+    {
+      "cycle_id": "C-145",
+      "date": "2025-10-15",
+      "mii_score": 0.96,
+      "reflection_count": 15,
+      "drift_events": 1,
+      "drift_resolved": 1,
+      "sentinels_active": 5,
+      "entropy_measure": 2.34
+    },
+    {
+      "cycle_id": "C-146",
+      "date": "2025-10-22",
+      "mii_score": 0.95,
+      "reflection_count": 14,
+      "drift_events": 0,
+      "drift_resolved": 0,
+      "sentinels_active": 5,
+      "entropy_measure": 2.18
+    }
+  ],
+  "download": {
+    "full_dataset": "https://pulse.mobius.systems/academics/datasets/sml-drift-prevention.csv",
+    "format": "CSV",
+    "records": 46,
+    "size_bytes": 4200
+  },
+  "citation": {
+    "bibtex_key": "mobius2025sml-data",
+    "doi": "pending",
+    "license": "CC0 1.0 Universal"
+  },
+  "contact": {
+    "dataset_owner": "Mobius Systems Foundation",
+    "email": "academics@mobius.systems",
+    "issues": "https://github.com/kaizencycle/Mobius-Systems/issues"
+  }
+}
