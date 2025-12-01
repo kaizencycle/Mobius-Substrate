@@ -21,8 +21,37 @@ function validateEntry(entry: any): string[] {
 function sha256Hex(s: string) { return crypto.createHash("sha256").update(s).digest("hex"); }
 function slugify(s: string) { return String(s).toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/(^-|-$)/g,""); }
 
+/**
+ * Validate and sanitize relative path to prevent path traversal
+ */
+function validateRelativePath(relPath: string): string {
+  // Remove leading slashes and normalize
+  const normalized = path.normalize(relPath).replace(/^(\.\.(\/|\\|$))+/, '');
+  
+  // Check for path traversal attempts
+  if (normalized.includes('..') || path.isAbsolute(normalized)) {
+    throw new Error(`Invalid path: path traversal detected in ${relPath}`);
+  }
+  
+  // Ensure path starts with allowed prefix
+  if (!normalized.startsWith('data/eomm/')) {
+    throw new Error(`Invalid path: must be within data/eomm/ directory`);
+  }
+  
+  return normalized;
+}
+
 async function writeToDisk(relPath: string, body: string) {
-  const abs = path.join(process.cwd(), relPath);
+  const safePath = validateRelativePath(relPath);
+  const abs = path.join(process.cwd(), safePath);
+  
+  // Double-check the resolved path is within cwd
+  const cwd = path.resolve(process.cwd());
+  const resolvedPath = path.resolve(abs);
+  if (!resolvedPath.startsWith(cwd + path.sep)) {
+    throw new Error(`Invalid path: resolved path escapes working directory`);
+  }
+  
   fs.mkdirSync(path.dirname(abs), { recursive: true });
   fs.writeFileSync(abs, body);
   return abs;

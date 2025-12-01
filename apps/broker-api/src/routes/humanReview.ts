@@ -4,9 +4,27 @@
  */
 
 import { Router } from 'express';
+import rateLimit from 'express-rate-limit';
 import { Pool } from 'pg';
 
 const router = Router();
+
+// Rate limiting for human review endpoints
+const reviewRateLimiter = rateLimit({
+  windowMs: 60 * 1000, // 1 minute
+  max: 100, // 100 requests per minute per IP
+  message: { status: 'error', error: 'Too many requests, please try again later' },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
+const writeRateLimiter = rateLimit({
+  windowMs: 60 * 1000, // 1 minute
+  max: 30, // 30 write requests per minute per IP
+  message: { status: 'error', error: 'Too many write requests, please try again later' },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
 
 // Database connection pool
 const pool = new Pool({
@@ -20,7 +38,7 @@ const pool = new Pool({
  * GET /v1/cache/review/pending
  * List pending review items
  */
-router.get('/pending', async (req, res) => {
+router.get('/pending', reviewRateLimiter, async (req, res) => {
   try {
     const limit = parseInt(req.query.limit as string) || 50;
     const priority = req.query.priority as string | undefined;
@@ -68,7 +86,7 @@ router.get('/pending', async (req, res) => {
  * POST /v1/cache/review/:id/approve
  * Approve a review item and promote to cache
  */
-router.post('/:id/approve', async (req, res) => {
+router.post('/:id/approve', writeRateLimiter, async (req, res) => {
   try {
     const { id } = req.params;
     const { editorId, editorNotes, finalAnswer, finalGiScore } = req.body;
@@ -139,7 +157,7 @@ router.post('/:id/approve', async (req, res) => {
  * POST /v1/cache/review/:id/reject
  * Reject a review item
  */
-router.post('/:id/reject', async (req, res) => {
+router.post('/:id/reject', writeRateLimiter, async (req, res) => {
   try {
     const { id } = req.params;
     const { editorId, editorNotes } = req.body;
@@ -173,7 +191,7 @@ router.post('/:id/reject', async (req, res) => {
  * POST /v1/cache/review/enqueue
  * Enqueue a deliberation for human review
  */
-router.post('/enqueue', async (req, res) => {
+router.post('/enqueue', writeRateLimiter, async (req, res) => {
   try {
     const {
       deliberationId,

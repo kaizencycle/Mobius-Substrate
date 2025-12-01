@@ -134,9 +134,16 @@ function sectionMarkdown(weekStart, report) {
   const tableHeader = `| # | Status | Created (UTC) | Closed (UTC) | Hours | Depth | Fail% | Title |
 |---:|:------:|:-------------:|:------------:|------:|------:|------:|:------|
 `;
+  // Escape pipe characters and backslashes in title to prevent markdown table breaking
+  const escapeMarkdownTableCell = (str) => {
+    if (!str) return '';
+    return String(str)
+      .replace(/\\/g, '\\\\')  // Escape backslashes first
+      .replace(/\|/g, '\\|');  // Then escape pipes
+  };
   const lines = report.rows
     .sort((a,b)=>a.number-b.number)
-    .map(r => `| ${r.number} | ${r.state} | ${fmt(r.created)} | ${r.closed?fmt(r.closed):"—"} | ${h(r.durationH)} | ${r.depth} | ${(r.fail*100).toFixed(1)} | ${r.title.replace(/\|/g,"\\|")} |`)
+    .map(r => `| ${r.number} | ${r.state} | ${fmt(r.created)} | ${r.closed?fmt(r.closed):"—"} | ${h(r.durationH)} | ${r.depth} | ${(r.fail*100).toFixed(1)} | ${escapeMarkdownTableCell(r.title)} |`)
     .join("\n");
   return `${title}\n\n${head}\n\n${tableHeader}${lines}\n`;
 }

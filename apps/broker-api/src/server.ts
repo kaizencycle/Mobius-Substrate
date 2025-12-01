@@ -6,6 +6,7 @@ import path from 'path';
 import express, { Request, Response } from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
+import rateLimit from 'express-rate-limit';
 import { WebSocketServer } from 'ws';
 import http from 'http';
 import dotenv from 'dotenv';
@@ -45,10 +46,24 @@ const app = express();
 const PORT = Number(process.env.PORT ?? '4005');
 const WS_PORT = Number(process.env.WS_PORT ?? '4006');
 
+// Rate limiting for API endpoints
+const apiRateLimiter = rateLimit({
+  windowMs: 60 * 1000, // 1 minute
+  max: 100, // 100 requests per minute per IP
+  message: {
+    success: false,
+    error: { code: 'RATE_LIMIT_EXCEEDED', message: 'Too many requests, please try again later' },
+    timestamp: new Date()
+  },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
 // Middleware - Apply helmet with default CSP for all routes
 app.use(helmet());
 app.use(cors());
 app.use(express.json());
+app.use(apiRateLimiter);
 
 // Swagger UI - Apply relaxed CSP only for documentation routes
 try {

@@ -405,7 +405,8 @@ async function invokeEnginePlan(engineIds: EngineId[], opts: EngineInvocationOpt
     if (entry.status === 'fulfilled') {
       successful.push(entry.result);
     } else {
-      console.warn(`[BROKER] Engine ${engineIds[index]} failed:`, entry.error);
+      // Use separate arguments to avoid format string injection
+      console.warn('[BROKER] Engine %s failed:', String(engineIds[index]), entry.error);
     }
   });
 

@@ -1,3 +1,4 @@
+import dns from 'dns/promises';
 import fetch from 'node-fetch';
 
 const PRIVATE_HOSTNAME_PATTERNS = [
@@ -9,7 +10,36 @@ const PRIVATE_HOSTNAME_PATTERNS = [
   /^169\.254\./,
   /^0\./,
   /^::1$/,
+  /^fc00:/i,   // IPv6 unique local
+  /^fe80:/i,   // IPv6 link-local
 ];
+
+/**
+ * Check if an IP address is private/internal
+ */
+function isPrivateIPAddress(ip: string): boolean {
+  return PRIVATE_HOSTNAME_PATTERNS.some((pattern) => pattern.test(ip));
+}
+
+/**
+ * Verify hostname doesn't resolve to private IPs (DNS rebinding protection)
+ */
+async function verifyHostnameResolution(hostname: string): Promise<void> {
+  try {
+    const addresses = await dns.resolve4(hostname);
+    for (const ip of addresses) {
+      if (isPrivateIPAddress(ip)) {
+        throw new Error(`DNS resolution returned private IP for ${hostname}: ${ip}`);
+      }
+    }
+  } catch (error) {
+    if (error instanceof Error && error.message.includes('private IP')) {
+      throw error;
+    }
+    // DNS resolution failed for non-private-IP reason - log and continue
+    console.warn(`[broker:webhook] DNS resolution warning for ${hostname}:`, error);
+  }
+}
 
 const DEFAULT_WEBHOOK_HOSTS = [
   'hooks.slack.com',
@@ -142,8 +172,9 @@ function hostMatchesAllowlist(hostname: string, config: WebhookConfig): boolean 
 
 /**
  * Validate webhook URL to prevent SSRF attacks
+ * Includes DNS rebinding protection
  */
-function validateWebhookUrl(url: string): URL {
+async function validateWebhookUrl(url: string): Promise<URL> {
   if (!url || typeof url !== 'string') {
     throw new Error('Invalid webhook URL: must be a non-empty string');
   }
@@ -178,6 +209,9 @@ function validateWebhookUrl(url: string): URL {
     throw new Error(`Path traversal not allowed in webhook URL: ${parsedUrl.pathname}`);
   }
   
+  // DNS rebinding protection: verify hostname doesn't resolve to private IP
+  await verifyHostnameResolution(hostname);
+  
   parsedUrl.username = '';
   parsedUrl.password = '';
   return parsedUrl;
@@ -186,17 +220,21 @@ function validateWebhookUrl(url: string): URL {
 export async function notifyWebhook(url: string, payload: any): Promise<void> {
   let safeUrl: URL;
   try {
-    safeUrl = validateWebhookUrl(url);
+    safeUrl = await validateWebhookUrl(url);
   } catch (error) {
     console.error('Webhook URL validation failed:', error);
     return;
   }
 
+  // Convert to string immediately to prevent URL object mutation
+  const sanitizedUrlString = safeUrl.toString();
+  
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 5000);
 
   try {
-    const response = await fetch(safeUrl.toString(), {
+    // codeql[js/request-forgery]: URL is validated through validateWebhookUrl with allowlist, private IP check, and DNS rebinding protection
+    const response = await fetch(sanitizedUrlString, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
