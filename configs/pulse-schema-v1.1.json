@@ -1,0 +1,226 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://mobius.systems/schemas/pulse-v1.1.json",
+  "title": "Mobius Pulse Schema v1.1",
+  "description": "C-151 Enhanced pulse schema with coordination metrics",
+  "type": "object",
+  "required": ["cycle", "timestamp", "version"],
+  "properties": {
+    "version": {
+      "type": "string",
+      "const": "1.1.0",
+      "description": "Schema version"
+    },
+    "cycle": {
+      "type": "string",
+      "pattern": "^C-[0-9]+$",
+      "description": "Current cycle identifier"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Pulse generation timestamp"
+    },
+    "structure": {
+      "type": "object",
+      "description": "Repository structure metrics",
+      "properties": {
+        "apps": {
+          "oneOf": [
+            { "type": "array", "items": { "type": "string" } },
+            { "type": "number" }
+          ]
+        },
+        "packages": {
+          "oneOf": [
+            { "type": "array", "items": { "type": "string" } },
+            { "type": "number" }
+          ]
+        },
+        "sentinels": {
+          "oneOf": [
+            { "type": "array", "items": { "type": "string" } },
+            { "type": "number" }
+          ]
+        },
+        "workflows": {
+          "type": "object",
+          "properties": {
+            "count": { "type": "number" },
+            "active": { "type": "array", "items": { "type": "string" } }
+          }
+        }
+      }
+    },
+    "integrity": {
+      "type": "object",
+      "description": "Integrity metrics",
+      "properties": {
+        "mii": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Mobius Integrity Index"
+        },
+        "drift": {
+          "type": ["string", "null"],
+          "description": "Current drift status"
+        },
+        "drift_events": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": { "type": "string" },
+              "severity": { "type": "string" },
+              "timestamp": { "type": "string", "format": "date-time" }
+            }
+          }
+        },
+        "verdict": {
+          "type": "string",
+          "enum": ["ADOPT", "HOLD", "TRIAL", "REJECT"]
+        }
+      }
+    },
+    "coordination": {
+      "type": "object",
+      "description": "C-151+ Coordination metrics for MIC economy",
+      "properties": {
+        "sentinels": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "required": ["score", "cathedral"],
+            "properties": {
+              "score": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 100,
+                "description": "Coordination score (0-100)"
+              },
+              "cathedral": {
+                "type": "string",
+                "description": "Cathedral assignment"
+              },
+              "uptime_days": {
+                "type": "number",
+                "description": "Sentinel uptime in days"
+              },
+              "last_attestation": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "mic_balance": {
+                "type": "number",
+                "description": "Current MIC balance"
+              }
+            }
+          }
+        },
+        "multipliers": {
+          "type": "object",
+          "description": "Cathedral multiplier configuration",
+          "additionalProperties": {
+            "type": "number",
+            "minimum": 0.5,
+            "maximum": 5.0
+          }
+        },
+        "total_mic_supply": {
+          "type": "number",
+          "description": "Total MIC in circulation"
+        },
+        "attestations_this_cycle": {
+          "type": "number",
+          "description": "Number of attestations in current cycle"
+        }
+      }
+    },
+    "ledger": {
+      "type": "object",
+      "description": "Ledger statistics",
+      "properties": {
+        "entries": {
+          "type": "number"
+        },
+        "last_entry": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "sentinel_uptime_days": {
+      "type": "number",
+      "description": "Average sentinel uptime (deprecated, use coordination.sentinels)"
+    }
+  },
+  "examples": [
+    {
+      "version": "1.1.0",
+      "cycle": "C-151",
+      "timestamp": "2025-12-01T17:12:41Z",
+      "structure": {
+        "apps": 9,
+        "packages": 5,
+        "sentinels": 5,
+        "workflows": {
+          "count": 27,
+          "active": ["monorepo.yml", "atlas-sentinel.yml", "sentinel-heartbeat.yml"]
+        }
+      },
+      "integrity": {
+        "mii": 0.97,
+        "drift": null,
+        "drift_events": [],
+        "verdict": "ADOPT"
+      },
+      "coordination": {
+        "sentinels": {
+          "ATLAS": {
+            "score": 67.3,
+            "cathedral": "FOR-GOVERNMENTS",
+            "uptime_days": 30,
+            "mic_balance": 1250.5
+          },
+          "AUREA": {
+            "score": 54.1,
+            "cathedral": "FOR-ECONOMISTS",
+            "uptime_days": 28,
+            "mic_balance": 980.2
+          },
+          "ECHO": {
+            "score": 48.7,
+            "cathedral": "FOR-ACADEMICS",
+            "uptime_days": 25,
+            "mic_balance": 720.8
+          },
+          "EVE": {
+            "score": 41.2,
+            "cathedral": "FOR-PHILOSOPHERS",
+            "uptime_days": 30,
+            "mic_balance": 650.0
+          },
+          "HERMES": {
+            "score": 59.8,
+            "cathedral": "FOR-GOVERNMENTS",
+            "uptime_days": 27,
+            "mic_balance": 1100.3
+          }
+        },
+        "multipliers": {
+          "FOR-GOVERNMENTS": 2.0,
+          "FOR-ECONOMISTS": 1.5,
+          "FOR-ACADEMICS": 1.2,
+          "FOR-PHILOSOPHERS": 1.0
+        },
+        "total_mic_supply": 4701.8,
+        "attestations_this_cycle": 15
+      },
+      "ledger": {
+        "entries": 151,
+        "last_entry": "2025-12-01T17:00:00Z"
+      }
+    }
+  ]
+}

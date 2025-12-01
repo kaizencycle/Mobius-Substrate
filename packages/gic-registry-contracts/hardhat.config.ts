@@ -1,7 +1,7 @@
 import { HardhatUserConfig } from 'hardhat/config';
+import '@nomicfoundation/hardhat-toolbox';
 
-// Note: @nomicfoundation/hardhat-toolbox requires many peer dependencies
-// For basic compilation, we don't need it
+// C-151: CoordinationMIC contract configuration
 
 const config: HardhatUserConfig = {
   solidity: {

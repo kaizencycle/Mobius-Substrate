@@ -3,7 +3,7 @@
   "updated": "2025-11-29",
   "monorepo": "Mobius-Systems",
   "description": "Complete service manifest for all Mobius applications and packages",
-  "cycle": "C-150",
+  "cycle": "C-151",
   
   "services": [
     {

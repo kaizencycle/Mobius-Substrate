@@ -21,6 +21,9 @@ export * from './habits';
 // Mobius Pulse (Sentinel-ready repo heartbeat)
 export * from './pulse';
 
+// C-151 Sentinel Coordination MIC Economy
+export * from './sentinel';
+
 import { GICalculator } from './gi-calculator';
 import { IntegrityChecker } from './integrity-checker';
 import { IntegrityChecks, IntegrityResult } from './types';

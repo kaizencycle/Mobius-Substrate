@@ -4,13 +4,20 @@
   "version": "0.1.0",
   "type": "commonjs",
   "scripts": {
-    "build": "echo 'Skipping hardhat compile - missing @openzeppelin/contracts'",
+    "build": "hardhat compile",
+    "test": "hardhat test",
     "compile": "hardhat compile",
     "deploy": "hardhat run scripts/deploy.ts --network $NETWORK"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^5.0.0"
   },
   "devDependencies": {
     "hardhat": "2.22.5",
     "@nomicfoundation/hardhat-toolbox": "4.0.0",
+    "@nomicfoundation/hardhat-ethers": "^3.0.0",
+    "ethers": "^6.13.0",
+    "chai": "^4.3.0",
     "typescript": "5.4.5",
     "ts-node": "10.9.2"
   }
