@@ -3,6 +3,7 @@ import express from 'express';
 import cors from 'cors';
 import cyclesRouter from './routes/cycles';
 import pulseRouter from './routes/pulse';
+import pulseV2Router from './routes/pulseV2';
 
 const app = express();
 const PORT = process.env.PORT || 4002;
@@ -26,6 +27,8 @@ app.use('/api', cyclesRouter);
 
 // Pulse routes (Sentinel heartbeat protocol)
 app.use('/api', pulseRouter);
+// Pulse routes v2 (C-151 - with GI/MII scores)
+app.use('/api', pulseV2Router);
 
 // Placeholder endpoints
 app.get('/gic/balance/:address', (req, res) => {
