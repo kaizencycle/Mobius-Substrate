@@ -14,6 +14,9 @@ export * from './mic/micMintService';
 // Mobius Habits (C-150)
 export * from './habits';
 
+// Mobius Pulse (Sentinel-ready repo heartbeat)
+export * from './pulse';
+
 import { GICalculator } from './gi-calculator';
 import { IntegrityChecker } from './integrity-checker';
 import { IntegrityChecks, IntegrityResult } from './types';

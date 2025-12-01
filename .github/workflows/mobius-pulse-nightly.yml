@@ -1,0 +1,141 @@
+# ╔═══════════════════════════════════════════════════════════════════╗
+# ║ Mobius Nightly Pulse                                             ║
+# ║ Generates a Sentinel-ready JSON snapshot of the repository       ║
+# ║ for AI agents (ATLAS, AUREA, ECHO, etc.) to sync state.          ║
+# ╚═══════════════════════════════════════════════════════════════════╝
+
+name: Mobius Nightly Pulse
+
+on:
+  schedule:
+    - cron: "0 4 * * *" # 4:00 UTC nightly
+  workflow_dispatch:
+    inputs:
+      cycle_label:
+        description: "Cycle label (e.g., C-150)"
+        required: false
+        default: ""
+      mii_estimate:
+        description: "MII estimate (e.g., 0.970)"
+        required: false
+        default: ""
+      source_tag:
+        description: "Source tag for the pulse"
+        required: false
+        default: "nightly"
+
+permissions:
+  contents: read
+
+jobs:
+  generate-pulse:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 20 # Fetch enough history for commit analysis
+
+      - name: Set up Node.js (for turbo)
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "npm"
+
+      - name: Install dependencies (optional, for turbo graph)
+        run: |
+          if [ -f package-lock.json ]; then
+            npm ci --ignore-scripts --fund=false --audit=false || true
+          elif [ -f pnpm-lock.yaml ]; then
+            npm install -g pnpm
+            pnpm install --ignore-scripts || true
+          elif [ -f yarn.lock ]; then
+            yarn install --ignore-scripts || true
+          fi
+        continue-on-error: true
+
+      - name: Install jq and tree
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y jq tree
+
+      - name: Ensure pulse script is executable
+        run: chmod +x scripts/mobius_pulse_json.sh
+
+      - name: Determine cycle label
+        id: cycle
+        run: |
+          # Use input or generate from date
+          if [ -n "${{ github.event.inputs.cycle_label }}" ]; then
+            CYCLE="${{ github.event.inputs.cycle_label }}"
+          else
+            # Generate cycle label from commit count or date
+            COMMIT_COUNT=$(git rev-list --count HEAD 2>/dev/null || echo "0")
+            CYCLE="C-${COMMIT_COUNT}"
+          fi
+          echo "label=${CYCLE}" >> $GITHUB_OUTPUT
+
+      - name: Generate Mobius Pulse JSON
+        env:
+          MOBIUS_CYCLE: ${{ steps.cycle.outputs.label }}
+          MOBIUS_MII: ${{ github.event.inputs.mii_estimate || '0.970' }}
+          MOBIUS_SOURCE: ${{ github.event.inputs.source_tag || 'nightly' }}
+        run: |
+          mkdir -p infra/pulses
+
+          # Generate timestamp for filename
+          ts="$(date -u +'%Y%m%dT%H%M%SZ')"
+          outfile="infra/pulses/mobius_pulse_${ts}.json"
+
+          # Generate the pulse
+          ./scripts/mobius_pulse_json.sh > "$outfile"
+
+          # Validate JSON
+          if jq empty "$outfile" 2>/dev/null; then
+            echo "✅ Valid JSON pulse generated: $outfile"
+            jq '.meta' "$outfile"
+          else
+            echo "❌ Invalid JSON generated"
+            cat "$outfile"
+            exit 1
+          fi
+
+          # Store output path for artifact upload
+          echo "PULSE_FILE=$outfile" >> $GITHUB_ENV
+          echo "PULSE_TIMESTAMP=$ts" >> $GITHUB_ENV
+
+          # Show pulse summary
+          echo "📊 Pulse Summary:"
+          echo "  - Head: $(jq -r '.repo.head' "$outfile" | cut -c1-8)"
+          echo "  - Branch: $(jq -r '.repo.branch' "$outfile")"
+          echo "  - Tracked Files: $(jq -r '.repo.trackedFiles' "$outfile")"
+          echo "  - Changed Files: $(jq '.git.changedFiles | length' "$outfile")"
+          echo "  - Recent Commits: $(jq '.git.recentCommits | length' "$outfile")"
+          echo "  - Workflows: $(jq '.structure.workflows | length' "$outfile")"
+
+      - name: Upload Pulse Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: mobius-pulse-${{ env.PULSE_TIMESTAMP }}
+          path: ${{ env.PULSE_FILE }}
+          retention-days: 30
+          if-no-files-found: error
+
+      - name: Create pulse summary
+        run: |
+          echo "## 🌀 Mobius Pulse Generated" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Property | Value |" >> $GITHUB_STEP_SUMMARY
+          echo "|----------|-------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Timestamp | $(jq -r '.meta.timestamp' "${{ env.PULSE_FILE }}")" >> $GITHUB_STEP_SUMMARY
+          echo "| Cycle | $(jq -r '.meta.cycleLabel // "N/A"' "${{ env.PULSE_FILE }}")" >> $GITHUB_STEP_SUMMARY
+          echo "| MII Estimate | $(jq -r '.meta.miiEstimate // "N/A"' "${{ env.PULSE_FILE }}")" >> $GITHUB_STEP_SUMMARY
+          echo "| HEAD | \`$(jq -r '.repo.head' "${{ env.PULSE_FILE }}" | cut -c1-8)\`" >> $GITHUB_STEP_SUMMARY
+          echo "| Branch | $(jq -r '.repo.branch' "${{ env.PULSE_FILE }}")" >> $GITHUB_STEP_SUMMARY
+          echo "| Files Tracked | $(jq -r '.repo.trackedFiles' "${{ env.PULSE_FILE }}")" >> $GITHUB_STEP_SUMMARY
+          echo "| Packages | $(jq -r '.repo.packagesCount' "${{ env.PULSE_FILE }}")" >> $GITHUB_STEP_SUMMARY
+          echo "| Apps | $(jq -r '.repo.appsCount' "${{ env.PULSE_FILE }}")" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Download the artifact to sync with Sentinels (ATLAS, AUREA, ECHO, etc.)" >> $GITHUB_STEP_SUMMARY
