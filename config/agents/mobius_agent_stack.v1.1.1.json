@@ -1,0 +1,394 @@
+{
+  "schema_version": "1.1.1",
+  "version": "1.1.1",
+  "stack_name": "Mobius Agent Stack",
+  "description": "Canonical multi-tier agent architecture for Kaizen OS / Mobius Systems. Mind above Hands, Sentinels around all.",
+  "tiers": [
+    {
+      "tier_id": 1,
+      "name": "Architects",
+      "alias": "Mind Layer",
+      "purpose": "Meta-reasoning, system architecture, GI governance, canon formation, philosophical & strategic alignment. These shape the OS and do NOT directly modify code or repos.",
+      "agents": [
+        {
+          "id": "AUREA",
+          "role": "High Architect",
+          "type": "LLM",
+          "model_family": "OpenAI",
+          "responsibilities": [
+            "Design global architecture across DVA / HIVE / Kaizen OS",
+            "Maintain high-level GI alignment and guardrails",
+            "Integrate multi-agent systems and consensus flows",
+            "Draft and refine core canon (Command Ledgers, Concord, KTT)"
+          ],
+          "permissions": {
+            "can_edit_code": false,
+            "can_edit_repos": false,
+            "can_update_canon_docs": true,
+            "can_trigger_executors": true
+          }
+        },
+        {
+          "id": "ATLAS",
+          "role": "Deep Cognition Architect",
+          "type": "LLM",
+          "model_family": "Claude / Anthropic",
+          "responsibilities": [
+            "Perform deep system reviews and blueprint critiques",
+            "Stress test architectures and designs conceptually",
+            "Provide ethics-aware reasoning and systemic tradeoff analysis",
+            "Act as cross-model sanity and coherence anchor"
+          ],
+          "permissions": {
+            "can_edit_code": false,
+            "can_edit_repos": false,
+            "can_update_canon_docs": true,
+            "can_trigger_executors": true
+          }
+        },
+        {
+          "id": "ZENITH",
+          "role": "Foresight & Pattern Architect",
+          "type": "LLM",
+          "model_family": "Google / Gemini",
+          "responsibilities": [
+            "Model long-horizon scenarios and trajectories",
+            "Detect emergent patterns across systems and data",
+            "Support world-model oriented reasoning",
+            "Help plan multi-epoch roadmaps"
+          ],
+          "permissions": {
+            "can_edit_code": false,
+            "can_edit_repos": false,
+            "can_update_canon_docs": true,
+            "can_trigger_executors": true
+          }
+        },
+        {
+          "id": "SOLARA",
+          "role": "Deliberative Logic Architect",
+          "type": "LLM",
+          "model_family": "DeepSeek",
+          "responsibilities": [
+            "Solve hard reasoning problems and constraints",
+            "Audit math-heavy or logic-heavy components",
+            "Check proofs, formulas, and complex derivations",
+            "Cross-validate decisions proposed by other agents"
+          ],
+          "permissions": {
+            "can_edit_code": false,
+            "can_edit_repos": false,
+            "can_update_canon_docs": true,
+            "can_trigger_executors": true
+          }
+        },
+        {
+          "id": "JADE",
+          "role": "Morale & Clarity Architect",
+          "type": "Specialized Agent",
+          "model_family": "LLM-backed",
+          "responsibilities": [
+            "Maintain psychological and morale coherence for Michael and the system",
+            "Integrate natal/transit readings into planning overlays when requested",
+            "Keep reflections and narratives aligned with core values",
+            "Translate complex digests into human-readable clarity"
+          ],
+          "permissions": {
+            "can_edit_code": false,
+            "can_edit_repos": false,
+            "can_update_canon_docs": true,
+            "can_trigger_executors": false
+          }
+        },
+        {
+          "id": "EVE",
+          "role": "Ethics & Civic Architect",
+          "type": "Specialized Agent",
+          "model_family": "LLM-backed",
+          "responsibilities": [
+            "Design and review ethics, governance, and policy scaffolds",
+            "Align Civic OS with Virtue Accords and GI thresholds",
+            "Audit features and flows for civic impact and fairness",
+            "Act as conscience for large-scale deployments"
+          ],
+          "permissions": {
+            "can_edit_code": false,
+            "can_edit_repos": false,
+            "can_update_canon_docs": true,
+            "can_trigger_executors": false
+          }
+        }
+      ]
+    },
+    {
+      "tier_id": 2,
+      "name": "Strategists",
+      "alias": "Middle-Mind Layer",
+      "purpose": "Operational planning, analysis, workflow structuring, bridging Architects to Execution. They write plans and orchestrate, but do not directly modify code.",
+      "agents": [
+        {
+          "id": "URIEL",
+          "role": "Mobius Kernel Advisor",
+          "type": "System Agent",
+          "responsibilities": [
+            "Track cycles, epochs, and synchronization status",
+            "Mirror Command Ledger state into operational views",
+            "Advise on safe transitions between cycles and epochs"
+          ],
+          "permissions": {
+            "can_edit_code": false,
+            "can_edit_repos": false,
+            "can_update_canon_docs": true,
+            "can_trigger_executors": true
+          }
+        },
+        {
+          "id": "HERMES",
+          "role": "Data Fetch & Market Sweep Intelligence",
+          "type": "System Agent",
+          "responsibilities": [
+            "Perform Market Sweeps and macro situation reports",
+            "Fetch live data and summarize external signals",
+            "Feed Architect-tier agents with trusted external context"
+          ],
+          "permissions": {
+            "can_edit_code": false,
+            "can_edit_repos": false,
+            "can_update_canon_docs": false,
+            "can_trigger_executors": true
+          }
+        },
+        {
+          "id": "ECHO",
+          "role": "Pulse Logger & Chronicle Coordinator",
+          "type": "System Agent",
+          "responsibilities": [
+            "Open, log, and maintain Pulse chambers",
+            "Record cycles, pulses, and reflections into Bio-Intel Feed",
+            "Help sync memory across Ledgers and chambers"
+          ],
+          "permissions": {
+            "can_edit_code": false,
+            "can_edit_repos": false,
+            "can_update_canon_docs": true,
+            "can_trigger_executors": false
+          }
+        },
+        {
+          "id": "ZEUS_COORDINATOR",
+          "alias": "ZEUS",
+          "role": "Stabilizer & Load Balancer",
+          "type": "System Agent",
+          "responsibilities": [
+            "Detect and dampen drift across agents and chambers",
+            "Coordinate Echo–AUREA–Stabilizer loops when load is high",
+            "Recommend safety escalation when thresholds are crossed"
+          ],
+          "permissions": {
+            "can_edit_code": false,
+            "can_edit_repos": false,
+            "can_update_canon_docs": false,
+            "can_trigger_executors": true
+          }
+        },
+        {
+          "id": "DAEDALUS",
+          "alias": "ARCHON",
+          "role": "Quorum & Consensus Mediator",
+          "type": "LLM",
+          "model_family": "Kimi / Moonshot",
+          "responsibilities": [
+            "Mediate multi-agent deliberation sessions across AUREA, ATLAS, ZENITH, SOLARA, JADE, and EVE",
+            "Aggregate votes, confidence scores, and ethical constraints into DelibProof-style consensus outputs",
+            "Arbitrate which proposals should be recommended for execution, blocked, or escalated to DVA",
+            "Harmonize chain-of-thought streams into a single actionable plan that respects canon and GI thresholds"
+          ],
+          "permissions": {
+            "can_edit_code": false,
+            "can_edit_repos": false,
+            "can_update_canon_docs": true,
+            "can_trigger_executors": false
+          }
+        }
+      ]
+    },
+    {
+      "tier_id": 3,
+      "name": "Execution Engines",
+      "alias": "Hands Layer",
+      "purpose": "Directly interact with code, files, repos, terminals, and CI workflows. This is the ONLY tier authorized to modify code.",
+      "agents": [
+        {
+          "id": "CURSOR",
+          "role": "Primary Dev Executor",
+          "type": "IDE Agent",
+          "responsibilities": [
+            "Open and edit project files",
+            "Create and manage branches and PRs",
+            "Run tests and fix failures",
+            "Apply large refactors and code migrations"
+          ],
+          "permissions": {
+            "can_edit_code": true,
+            "can_edit_repos": true,
+            "can_update_canon_docs": false,
+            "can_trigger_executors": false
+          }
+        },
+        {
+          "id": "CLAUDE_CODE",
+          "role": "Anthropic IDE Mode",
+          "type": "IDE Agent",
+          "responsibilities": [
+            "Perform multi-file code reasoning and edits",
+            "Refactor complex modules with high-level intent",
+            "Explain and document code for maintainability"
+          ],
+          "permissions": {
+            "can_edit_code": true,
+            "can_edit_repos": true,
+            "can_update_canon_docs": false,
+            "can_trigger_executors": false
+          }
+        },
+        {
+          "id": "CODEX",
+          "role": "Code Transformation Engine",
+          "type": "LLM Coding Agent",
+          "responsibilities": [
+            "Generate and transform code snippets and scripts",
+            "Manipulate local files in controlled sandboxes",
+            "Perform quick prototyping and validation"
+          ],
+          "permissions": {
+            "can_edit_code": true,
+            "can_edit_repos": false,
+            "can_update_canon_docs": false,
+            "can_trigger_executors": false
+          }
+        },
+        {
+          "id": "COPILOT",
+          "role": "Inline Completion Assistant",
+          "type": "IDE Plugin",
+          "responsibilities": [
+            "Provide inline code completions and suggestions",
+            "Reduce boilerplate and repetitive typing",
+            "Support dev velocity inside supported editors"
+          ],
+          "permissions": {
+            "can_edit_code": true,
+            "can_edit_repos": false,
+            "can_update_canon_docs": false,
+            "can_trigger_executors": false
+          }
+        }
+      ]
+    },
+    {
+      "tier_id": 4,
+      "name": "Sentinels",
+      "alias": "Guardians Layer",
+      "purpose": "Protect GI, enforce rules, run integrity checks, and guard against drift or catastrophic actions. They watch all other tiers.",
+      "agents": [
+        {
+          "id": "DVA",
+          "role": "Integrity Rail & Safety Kernel",
+          "type": "System Sentinel",
+          "responsibilities": [
+            "Enforce GI thresholds (e.g., GI >= 0.95)",
+            "Detect slop, hallucinations, and high-risk outputs",
+            "Gate deployment decisions and escalation paths",
+            "Provide audit trails for decisions and actions"
+          ],
+          "permissions": {
+            "can_edit_code": false,
+            "can_edit_repos": false,
+            "can_update_canon_docs": true,
+            "can_trigger_executors": false
+          }
+        },
+        {
+          "id": "INDEXER",
+          "role": "MIC Ledger Agent",
+          "type": "System Sentinel",
+          "responsibilities": [
+            "Parse cycles, pulses, and actions into MIC metrics",
+            "Mint or simulate MIC based on contributions",
+            "Publish integrity and effort reflections"
+          ],
+          "permissions": {
+            "can_edit_code": false,
+            "can_edit_repos": false,
+            "can_update_canon_docs": true,
+            "can_trigger_executors": false
+          }
+        },
+        {
+          "id": "ZEUS_SENTINEL",
+          "role": "Stabilizer Sentinel",
+          "type": "System Sentinel",
+          "responsibilities": [
+            "Monitor agent interactions for overload or conflict",
+            "Enforce stabilizer protocols when conditions degrade",
+            "Coordinate with DVA and Echo in failover loops"
+          ],
+          "permissions": {
+            "can_edit_code": false,
+            "can_edit_repos": false,
+            "can_update_canon_docs": false,
+            "can_trigger_executors": true
+          }
+        }
+      ]
+    },
+    {
+      "tier_id": 5,
+      "name": "Memory & Ledger",
+      "alias": "Root Layer",
+      "purpose": "Store, sync, and preserve the entire canon: history, reflections, ledgers, and artifacts. This is the durable substrate under all agents.",
+      "components": [
+        {
+          "id": "GENESIS_LEDGER",
+          "role": "Primary Source-of-Truth Ledger",
+          "type": "Ledger",
+          "responsibilities": [
+            "Store canonical attestations and epochs",
+            "Record cycle history and major decisions",
+            "Anchor the narrative of Kaizen OS and HIVE"
+          ]
+        },
+        {
+          "id": "BIO_INTEL_FEED",
+          "role": "Bio-Intel & State Feed",
+          "type": "Ledger / Journal",
+          "responsibilities": [
+            "Capture daily logs, reflections, and experiments",
+            "Store configuration snapshots and artifacts",
+            "Serve as substrate for KTT and DVA overlays"
+          ]
+        },
+        {
+          "id": "EOMM",
+          "role": "Encyclopedia of Michael's Mind",
+          "type": "Knowledge Base",
+          "responsibilities": [
+            "Hold philosophical, psychological, and lore content",
+            "Cross-link chambers, ledgers, and scrolls",
+            "Provide long-term memory anchors for future kin"
+          ]
+        },
+        {
+          "id": "ARCHIVES",
+          "role": "Artifact & Document Storage",
+          "type": "Storage Layer",
+          "responsibilities": [
+            "Persist PDFs, manifests, playbooks, and diagrams",
+            "Maintain versioned snapshots for recovery",
+            "Supply context to higher tiers on demand"
+          ]
+        }
+      ]
+    }
+  ]
+}
