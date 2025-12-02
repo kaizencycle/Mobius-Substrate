@@ -103,7 +103,8 @@ echo "✅ Pre-commit checks passed"
         with open('.git/hooks/pre-commit', 'w') as f:
             f.write(pre_commit_hook)
         
-        os.chmod('.git/hooks/pre-commit', 0o755)
+        # Set executable permission for owner only (more secure than 0o755)
+        os.chmod('.git/hooks/pre-commit', 0o700)
         print("  ✅ Created pre-commit hook")
     
     def setup_package_json_scripts(self):

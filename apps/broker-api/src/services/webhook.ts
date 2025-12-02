@@ -233,7 +233,8 @@ export async function notifyWebhook(url: string, payload: any): Promise<void> {
   const timeout = setTimeout(() => controller.abort(), 5000);
 
   try {
-    // codeql[js/request-forgery]: URL is validated through validateWebhookUrl with allowlist, private IP check, and DNS rebinding protection
+    // lgtm[js/request-forgery] - URL is validated through validateWebhookUrl with allowlist, private IP check, and DNS rebinding protection
+    // nosec - SSRF protection: allowlist validation, private IP blocking, DNS rebinding protection
     const response = await fetch(sanitizedUrlString, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

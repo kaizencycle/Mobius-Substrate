@@ -214,13 +214,16 @@ export class EnergyTelemetryService {
       weightedEfficiencySum += node.efficiency * node.capacityKwh;
       weightedCarbonSum += node.carbonIntensity * node.currentOutputKw;
 
-      // Source breakdown
-      if (!sourceBreakdown[node.source]) {
-        sourceBreakdown[node.source] = { count: 0, capacityMwh: 0, outputMw: 0 };
+      // Source breakdown - validate source to prevent prototype pollution
+      const safeSource = String(node.source).replace(/[^a-zA-Z0-9_-]/g, '');
+      if (safeSource && safeSource !== '__proto__' && safeSource !== 'constructor' && safeSource !== 'prototype') {
+        if (!Object.prototype.hasOwnProperty.call(sourceBreakdown, safeSource)) {
+          sourceBreakdown[safeSource as keyof typeof sourceBreakdown] = { count: 0, capacityMwh: 0, outputMw: 0 };
+        }
+        sourceBreakdown[safeSource as keyof typeof sourceBreakdown].count++;
+        sourceBreakdown[safeSource as keyof typeof sourceBreakdown].capacityMwh += node.capacityKwh / 1000;
+        sourceBreakdown[safeSource as keyof typeof sourceBreakdown].outputMw += node.currentOutputKw / 1000;
       }
-      sourceBreakdown[node.source].count++;
-      sourceBreakdown[node.source].capacityMwh += node.capacityKwh / 1000;
-      sourceBreakdown[node.source].outputMw += node.currentOutputKw / 1000;
     }
 
     return {
@@ -410,8 +413,16 @@ export class EnergyTelemetryService {
     let onlineCount = 0;
 
     for (const node of store.nodes.values()) {
-      regionBreakdown[node.region] = (regionBreakdown[node.region] ?? 0) + 1;
-      sourceBreakdown[node.source] = (sourceBreakdown[node.source] ?? 0) + 1;
+      // Prevent prototype pollution by validating property names
+      const safeRegion = String(node.region).replace(/[^a-zA-Z0-9_-]/g, '');
+      const safeSource = String(node.source).replace(/[^a-zA-Z0-9_-]/g, '');
+      
+      if (safeRegion && safeRegion !== '__proto__' && safeRegion !== 'constructor') {
+        regionBreakdown[safeRegion] = (regionBreakdown[safeRegion] ?? 0) + 1;
+      }
+      if (safeSource && safeSource !== '__proto__' && safeSource !== 'constructor') {
+        sourceBreakdown[safeSource] = (sourceBreakdown[safeSource] ?? 0) + 1;
+      }
       if (node.status === "online") onlineCount++;
     }
 

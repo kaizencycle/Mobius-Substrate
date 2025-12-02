@@ -72,7 +72,10 @@ def generate_keys_for_agent(agent_id: str, output_dir: str = ".keys"):
     
     # Set permissions (Unix only)
     import os
+    # Private key: owner read/write only (0o600)
     os.chmod(private_path, 0o600)
+    # Public key: owner read/write, group/others read (0o644) - intentional as it's a PUBLIC key
+    # nosec - public keys are meant to be readable by others
     os.chmod(public_path, 0o644)
     
     print(f"   ✅ Private key: {private_path}")

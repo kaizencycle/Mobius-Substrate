@@ -30,7 +30,9 @@ url = f"{BASE_URL}/health/auth"
 
 print("------------------------------------------------")
 print(f"🔗 Sending request to {url}")
-print(f"🔑 API_KEY starts with: {API_KEY[:5]}...  |  LAB_ID: {LAB_ID}")
+# nosec - Only logging first 3 characters to avoid sensitive data exposure
+api_key_preview = API_KEY[:3] + "***" if len(API_KEY) >= 3 else "***"
+print(f"🔑 API_KEY configured: {api_key_preview}  |  LAB_ID: {LAB_ID}")
 print("------------------------------------------------")
 
 try:

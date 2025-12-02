@@ -1,11 +1,33 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from typing import Any, Dict, Optional
-import json, os, time, uuid
+from pathlib import Path
+import json, os, time, uuid, re
 
 EPISODES_PATH = os.environ.get("PAL_EPISODES_PATH", "ledger/episodes.jsonl")
 POLICY_PATH   = os.environ.get("PAL_POLICY_PATH", "ledger/policies/linucb_v1.json")
 MODELCARD_DIR = os.environ.get("PAL_MODELCARD_DIR", "ledger/model_cards")
+
+# Secure path validation
+VERSION_PATTERN = re.compile(r'^[a-zA-Z0-9_\-\.]+$')
+
+def _validate_version(version: str) -> None:
+    """Validate version string to prevent path traversal."""
+    if not VERSION_PATTERN.match(version):
+        raise ValueError(f"Invalid version format: {version}")
+    if '..' in version or '/' in version or '\\' in version:
+        raise ValueError(f"Invalid characters in version: {version}")
+
+def _safe_modelcard_path(version: str) -> str:
+    """Safely construct modelcard path."""
+    _validate_version(version)
+    base_dir = Path(MODELCARD_DIR).resolve()
+    full_path = (base_dir / f"{version}.json").resolve()
+    try:
+        full_path.relative_to(base_dir)
+    except ValueError:
+        raise ValueError(f"Path traversal detected: {version}")
+    return str(full_path)
 
 app = FastAPI(title="PAL Sentinel-Learn (Lab7)")
 
@@ -76,9 +98,13 @@ def pal_train(t: TrainReq):
 
 @app.get("/pal/model-card/{version}")
 def pal_model_card(version: str):
-    p = os.path.join(MODELCARD_DIR, f"{version}.json")
+    try:
+        p = _safe_modelcard_path(version)
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))
     if not os.path.exists(p):
-        return {"error": "model card not found"}
-    return json.load(open(p))
+        raise HTTPException(status_code=404, detail="model card not found")
+    with open(p, 'r') as f:
+        return json.load(f)
 
 

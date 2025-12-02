@@ -1,4 +1,5 @@
 import express from "express";
+import rateLimit from "express-rate-limit";
 import { makeRelayRoute } from "./routes/relay.js";
 import { sseEndpoint } from "./events.js";
 import fs from "node:fs";
@@ -17,6 +18,16 @@ function loadConfig() {
 const cfg = loadConfig();
 const app = express();
 app.use(express.json({ limit: "512kb" }));
+
+// Rate limiting to prevent abuse
+const limiter = rateLimit({
+  windowMs: 60 * 1000, // 1 minute
+  max: 100, // 100 requests per minute per IP
+  message: { error: "Rate limit exceeded", status: "error" },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+app.use(limiter);
 
 app.get("/health", (_req,res)=> res.json({ status:"ok", service:"kaizen-bridge-broker" }));
 app.get("/events/relays", sseEndpoint);

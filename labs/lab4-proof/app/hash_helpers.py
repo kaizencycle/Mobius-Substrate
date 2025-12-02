@@ -1,9 +1,29 @@
 # app/hash_helpers.py
 from __future__ import annotations
-import json, hashlib
+import json, hashlib, re
 from pathlib import Path
 from datetime import datetime
 from typing import Iterable, List, Dict, Any, Optional
+
+# Date format validation for path safety
+DATE_PATTERN = re.compile(r'^\d{4}-\d{2}-\d{2}$')
+
+def _validate_date_path(date_str: str) -> None:
+    """Validate date string to prevent path traversal."""
+    if not DATE_PATTERN.match(date_str):
+        raise ValueError(f"Invalid date format: {date_str}")
+    if '..' in date_str or '/' in date_str or '\\' in date_str:
+        raise ValueError(f"Invalid characters in date: {date_str}")
+
+def _safe_path(base_dir: Path, component: str) -> Path:
+    """Safely resolve a path within the base directory."""
+    full_path = (base_dir / component).resolve()
+    base_resolved = base_dir.resolve()
+    try:
+        full_path.relative_to(base_resolved)
+    except ValueError:
+        raise ValueError(f"Path traversal detected: {component}")
+    return full_path
 
 # ---------- Canonical JSON ----------
 def canonical_json(obj: Any) -> str:
@@ -83,10 +103,13 @@ def build_day_root(date_str: str, data_dir: Path) -> Dict[str, Any]:
     Writes:
       data/{DATE}.root.json
     """
-    seed_p = data_dir / f"{date_str}.seed.json"
-    echo_p = data_dir / f"{date_str}.echo.json"
-    seal_p = data_dir / f"{date_str}.seal.json"
-    root_p = data_dir / f"{date_str}.root.json"
+    # Validate date to prevent path traversal
+    _validate_date_path(date_str)
+    
+    seed_p = _safe_path(data_dir, f"{date_str}.seed.json")
+    echo_p = _safe_path(data_dir, f"{date_str}.echo.json")
+    seal_p = _safe_path(data_dir, f"{date_str}.seal.json")
+    root_p = _safe_path(data_dir, f"{date_str}.root.json")
 
     def read_json(path: Path) -> Any:
         with path.open("r", encoding="utf-8") as f:

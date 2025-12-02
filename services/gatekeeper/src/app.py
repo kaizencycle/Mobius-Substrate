@@ -117,7 +117,10 @@ async def execute(req: ExecRequest, request: Request):
         
         # 6) High-risk actions require DelibProof consensus
         if risk_requires_consensus(req.risk):
-            logger.info(f"High-risk action {req.action} requires consensus for {req.actor_did}")
+            # Sanitize user-controlled values before logging to prevent log injection
+            safe_action = str(req.action).replace('\n', '').replace('\r', '')[:50]
+            safe_did = str(req.actor_did).replace('\n', '').replace('\r', '')[:100]
+            logger.info(f"High-risk action {safe_action} requires consensus for {safe_did}")
             consensus_ok = await delibproof_consensus(req.model_dump())
             if not consensus_ok:
                 await attest_blocked(req.model_dump(), "Sentinel consensus failed")
@@ -181,7 +184,11 @@ async def execute(req: ExecRequest, request: Request):
         # 9) Generate result preview
         preview = (result.get("stdout", "") or result.get("stderr", ""))[:240]
         
-        logger.info(f"Action {req.action} executed successfully for {req.actor_did}, tx: {tx_hash}")
+        # Sanitize user-controlled values before logging to prevent log injection
+        safe_action = str(req.action).replace('\n', '').replace('\r', '')[:50]
+        safe_did = str(req.actor_did).replace('\n', '').replace('\r', '')[:100]
+        safe_tx = str(tx_hash).replace('\n', '').replace('\r', '')[:100]
+        logger.info(f"Action {safe_action} executed successfully for {safe_did}, tx: {safe_tx}")
         
         return ExecResponse(
             status="ok",

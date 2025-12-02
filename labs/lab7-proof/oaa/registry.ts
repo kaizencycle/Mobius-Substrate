@@ -215,8 +215,13 @@ export class RegistryManager {
   }
   
   updateToolMetrics(name: string, success: boolean, executionTime: number): void {
+    // Prevent prototype pollution by validating the name
+    if (!name || typeof name !== 'string' || name === '__proto__' || name === 'constructor' || name === 'prototype') {
+      return;
+    }
+    
     const tool = this.getTool(name);
-    if (tool) {
+    if (tool && Object.prototype.hasOwnProperty.call(tools, name)) {
       tool.last_used = new Date();
       
       // Update success rate (simple moving average)

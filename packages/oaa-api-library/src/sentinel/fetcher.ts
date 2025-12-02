@@ -117,7 +117,8 @@ export async function fetchDoc(url: string): Promise<FetchedDoc> {
   );
 
   try {
-    // codeql[js/request-forgery]: URL is validated through buildSafeAllowlistedUrl with allowlist, private IP check, and DNS rebinding protection
+    // lgtm[js/request-forgery] - URL is validated through buildSafeAllowlistedUrl with allowlist, private IP check, and DNS rebinding protection
+    // nosec - SSRF protection: allowlist validation, private IP blocking, DNS rebinding protection
     const res = await fetch(sanitizedUrlString, {
       method: "GET",
       headers: new Headers({
