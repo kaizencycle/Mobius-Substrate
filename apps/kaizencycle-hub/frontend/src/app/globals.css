@@ -1,0 +1,7 @@
+body{background:#0b0b0e;color:#e9e7df;font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;margin:0}
+h1,h2{font-family:'Playfair Display',Georgia,serif}
+.container{max-width:960px;margin:0 auto;padding:24px}
+.gold{color:#d4af37}
+a{color:#d4af37;text-decoration:none}
+.header{border-bottom:1px solid #1d1d24;padding:18px 0}
+.card{background:#0f0f14;border:1px solid #1e1e26;border-radius:12px;padding:16px;margin:12px 0}
