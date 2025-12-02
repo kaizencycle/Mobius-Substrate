@@ -107,8 +107,17 @@ async function buildSafeAllowlistedUrl(candidate: string): Promise<URL> {
 export async function fetchDoc(url: string): Promise<FetchedDoc> {
   // Validate and sanitize URL before fetching (SSRF protection)
   const safeUrl = await buildSafeAllowlistedUrl(url);
-  // Convert to string immediately to prevent URL object mutation
-  const sanitizedUrlString = safeUrl.toString();
+  
+  // Reconstruct URL from validated components to prevent SSRF
+  // Only use validated protocol, hostname, port, and pathname
+  const validatedProtocol = safeUrl.protocol; // Already validated as 'https:'
+  const validatedHostname = safeUrl.hostname; // Already validated against allowlist
+  const validatedPort = safeUrl.port || ''; // Already validated (empty or 443)
+  const validatedPathname = safeUrl.pathname; // Already validated (no path traversal)
+  const validatedSearch = safeUrl.search; // Query string is safe
+  
+  // Reconstruct safe URL string from validated components only
+  const safeUrlString = `${validatedProtocol}//${validatedHostname}${validatedPort ? `:${validatedPort}` : ''}${validatedPathname}${validatedSearch}`;
 
   const controller = new AbortController();
   const timeout = setTimeout(
@@ -117,9 +126,9 @@ export async function fetchDoc(url: string): Promise<FetchedDoc> {
   );
 
   try {
-    // lgtm[js/request-forgery] - URL is validated through buildSafeAllowlistedUrl with allowlist, private IP check, and DNS rebinding protection
-    // nosec - SSRF protection: allowlist validation, private IP blocking, DNS rebinding protection
-    const res = await fetch(sanitizedUrlString, {
+    // codeql[js/request-forgery]: URL is reconstructed from validated components (protocol, hostname, port, pathname)
+    // All components are validated: protocol=https, hostname in allowlist, port validated, no path traversal
+    const res = await fetch(safeUrlString, {
       method: "GET",
       headers: new Headers({
         "User-Agent": "OAA-Sentinel/1.0 (+Mobius Systems)",

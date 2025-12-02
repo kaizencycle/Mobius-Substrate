@@ -13,6 +13,31 @@ import {
 } from "./types";
 import { ENERGY_CONSTITUTION } from "./constitution";
 
+/**
+ * Validate property name to prevent prototype pollution
+ * Rejects dangerous property names like __proto__, constructor, etc.
+ */
+function validatePropertyName(name: string): string {
+  if (!name || typeof name !== 'string') {
+    throw new Error('Invalid property name: must be a non-empty string');
+  }
+  
+  // Reject dangerous property names that could lead to prototype pollution
+  const dangerousProps = ['__proto__', 'constructor', 'prototype', 'hasOwnProperty', 'toString', 'valueOf'];
+  const normalized = name.toLowerCase();
+  if (dangerousProps.includes(normalized)) {
+    throw new Error(`Dangerous property name rejected: ${name}`);
+  }
+  
+  // Sanitize: remove any non-alphanumeric characters except dash, underscore, and dot
+  const sanitized = name.replace(/[^a-zA-Z0-9._-]/g, '_');
+  if (sanitized !== name) {
+    console.warn(`Property name sanitized: ${name} -> ${sanitized}`);
+  }
+  
+  return sanitized;
+}
+
 // ============================================================================
 // Default Configuration
 // ============================================================================
@@ -214,16 +239,14 @@ export class EnergyTelemetryService {
       weightedEfficiencySum += node.efficiency * node.capacityKwh;
       weightedCarbonSum += node.carbonIntensity * node.currentOutputKw;
 
-      // Source breakdown - validate source to prevent prototype pollution
-      const safeSource = String(node.source).replace(/[^a-zA-Z0-9_-]/g, '');
-      if (safeSource && safeSource !== '__proto__' && safeSource !== 'constructor' && safeSource !== 'prototype') {
-        if (!Object.prototype.hasOwnProperty.call(sourceBreakdown, safeSource)) {
-          sourceBreakdown[safeSource as keyof typeof sourceBreakdown] = { count: 0, capacityMwh: 0, outputMw: 0 };
-        }
-        sourceBreakdown[safeSource as keyof typeof sourceBreakdown].count++;
-        sourceBreakdown[safeSource as keyof typeof sourceBreakdown].capacityMwh += node.capacityKwh / 1000;
-        sourceBreakdown[safeSource as keyof typeof sourceBreakdown].outputMw += node.currentOutputKw / 1000;
+      // Source breakdown - validate property name to prevent prototype pollution
+      const safeSource = validatePropertyName(node.source);
+      if (!sourceBreakdown[safeSource]) {
+        sourceBreakdown[safeSource] = { count: 0, capacityMwh: 0, outputMw: 0 };
       }
+      sourceBreakdown[safeSource].count++;
+      sourceBreakdown[safeSource].capacityMwh += node.capacityKwh / 1000;
+      sourceBreakdown[safeSource].outputMw += node.currentOutputKw / 1000;
     }
 
     return {
@@ -413,16 +436,11 @@ export class EnergyTelemetryService {
     let onlineCount = 0;
 
     for (const node of store.nodes.values()) {
-      // Prevent prototype pollution by validating property names
-      const safeRegion = String(node.region).replace(/[^a-zA-Z0-9_-]/g, '');
-      const safeSource = String(node.source).replace(/[^a-zA-Z0-9_-]/g, '');
-      
-      if (safeRegion && safeRegion !== '__proto__' && safeRegion !== 'constructor') {
-        regionBreakdown[safeRegion] = (regionBreakdown[safeRegion] ?? 0) + 1;
-      }
-      if (safeSource && safeSource !== '__proto__' && safeSource !== 'constructor') {
-        sourceBreakdown[safeSource] = (sourceBreakdown[safeSource] ?? 0) + 1;
-      }
+      // Validate property names to prevent prototype pollution
+      const safeRegion = validatePropertyName(node.region);
+      const safeSource = validatePropertyName(node.source);
+      regionBreakdown[safeRegion] = (regionBreakdown[safeRegion] ?? 0) + 1;
+      sourceBreakdown[safeSource] = (sourceBreakdown[safeSource] ?? 0) + 1;
       if (node.status === "online") onlineCount++;
     }
 
