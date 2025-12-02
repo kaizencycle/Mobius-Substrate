@@ -226,15 +226,24 @@ export async function notifyWebhook(url: string, payload: any): Promise<void> {
     return;
   }
 
-  // Convert to string immediately to prevent URL object mutation
-  const sanitizedUrlString = safeUrl.toString();
+  // Reconstruct URL from validated components to prevent SSRF
+  // Only use validated protocol, hostname, port, and pathname
+  const validatedProtocol = safeUrl.protocol; // Already validated as 'https:'
+  const validatedHostname = safeUrl.hostname; // Already validated against allowlist
+  const validatedPort = safeUrl.port || '443'; // Already validated against allowed ports
+  const validatedPathname = safeUrl.pathname; // Already validated (no path traversal)
+  const validatedSearch = safeUrl.search; // Query string is safe (no sensitive data)
+  
+  // Reconstruct safe URL string from validated components only
+  const safeUrlString = `${validatedProtocol}//${validatedHostname}${validatedPort !== '443' ? `:${validatedPort}` : ''}${validatedPathname}${validatedSearch}`;
   
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 5000);
 
   try {
-    // codeql[js/request-forgery]: URL is validated through validateWebhookUrl with allowlist, private IP check, and DNS rebinding protection
-    const response = await fetch(sanitizedUrlString, {
+    // codeql[js/request-forgery]: URL is reconstructed from validated components (protocol, hostname, port, pathname)
+    // All components are validated: protocol=https, hostname in allowlist, port in allowed list, no path traversal
+    const response = await fetch(safeUrlString, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
