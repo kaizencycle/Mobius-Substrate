@@ -145,7 +145,7 @@ If we ever:
 
 ---
 
-## 6. Quick Reference Table (Nov 2025)
+## 6. Quick Reference Table (Nov–Dec 2025)
 
 ```
 2025-11-01 → C-121
@@ -174,15 +174,24 @@ If we ever:
 2025-11-24 → C-144
 2025-11-25 → C-145
 2025-11-26 → C-146
-2025-11-27 → C-147  ← TODAY
+2025-11-27 → C-147
 2025-11-28 → C-148
 2025-11-29 → C-149
 2025-11-30 → C-150
+2025-12-01 → C-151  ← TODAY (Cycle C-151 closeout)
+2025-12-02 → C-152
+...
+2025-12-31 → C-181
 ```
 
 ---
 
 ## 7. Revision Log
+
+- **C-151 (2025-12-01)** — Extended cycle index to December 2025.
+  - Added C-151 as today's cycle (Cycle closeout).
+  - Extended quick reference table through December 2025.
+  - Added `docs/cycles/` directory for cycle summaries.
 
 - **C-147 (2025-11-27)** — Initial creation of CYCLE_INDEX.md.
   - Anchor confirmed: C-121 = 2025-11-01.
@@ -192,4 +201,4 @@ If we ever:
 ---
 
 *"We heal as we walk."*  
-*Mobius Systems • Cycle C-147*
+*Mobius Systems • Cycle C-151*
