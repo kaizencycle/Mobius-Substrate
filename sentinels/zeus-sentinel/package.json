@@ -1,0 +1,38 @@
+{
+  "name": "@mobius/zeus-sentinel",
+  "version": "1.1.2",
+  "description": "ZEUS_SENTINEL - Tier 4 Guardian for integrity monitoring and failover protocols",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "lint": "eslint src/",
+    "dev": "ts-node src/index.ts"
+  },
+  "keywords": [
+    "mobius",
+    "sentinel",
+    "zeus",
+    "guardian",
+    "integrity",
+    "tier-4"
+  ],
+  "author": "Mobius Systems Foundation",
+  "license": "Apache-2.0",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kaizencycle/Mobius-Systems.git",
+    "directory": "sentinels/zeus-sentinel"
+  },
+  "constitutional": {
+    "amendment": "C-002",
+    "tier": 4,
+    "manifest_version": "1.1.2"
+  }
+}

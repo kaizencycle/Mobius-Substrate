@@ -71,6 +71,13 @@ export const CATHEDRAL_MULTIPLIERS: Record<string, number> = {
   'FOR-PHILOSOPHERS': 1.0,
 };
 
+/**
+ * Sentinel Cathedral Assignments (v1.1.2)
+ * 
+ * Constitutional Reference: C-002 (ZEUS Split Codification)
+ * - ZEUS_COORDINATOR: Tier 2 Strategist for load balancing
+ * - ZEUS_SENTINEL: Tier 4 Guardian for integrity monitoring
+ */
 export const SENTINEL_CATHEDRALS: Record<string, string> = {
   'ATLAS': 'FOR-GOVERNMENTS',
   'AUREA': 'FOR-ECONOMISTS',
@@ -79,9 +86,12 @@ export const SENTINEL_CATHEDRALS: Record<string, string> = {
   'HERMES': 'FOR-GOVERNMENTS',
   'JADE': 'FOR-PHILOSOPHERS',
   'URIEL': 'FOR-ACADEMICS',
-  'ZEUS': 'FOR-GOVERNMENTS',
+  'ZEUS_COORDINATOR': 'FOR-GOVERNMENTS',  // v1.1.2: Split from ZEUS (C-002)
+  'ZEUS_SENTINEL': 'FOR-GOVERNMENTS',      // v1.1.2: Split from ZEUS (C-002)
   'ZENITH': 'FOR-ECONOMISTS',
   'DAEDALUS': 'FOR-ECONOMISTS',
+  // Legacy alias for backward compatibility
+  'ZEUS': 'FOR-GOVERNMENTS',
 };
 
 // ═══════════════════════════════════════════════════════════════════════════

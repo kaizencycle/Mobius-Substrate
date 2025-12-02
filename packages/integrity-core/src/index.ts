@@ -24,6 +24,9 @@ export * from './pulse';
 // C-151 Sentinel Coordination MIC Economy
 export * from './sentinel';
 
+// C-152 Constitutional Enforcement (v1.1.2)
+export * from './constitutional';
+
 import { GICalculator } from './gi-calculator';
 import { IntegrityChecker } from './integrity-checker';
 import { IntegrityChecks, IntegrityResult } from './types';
