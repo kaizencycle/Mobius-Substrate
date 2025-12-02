@@ -102,14 +102,17 @@ const cache: CacheInterface = new MemoryCache();
 
 /**
  * Calculate layout hash for drift detection
+ * Uses secure multi-line regex patterns for HTML sanitization
  */
 function calculateLayoutHash(html: string): string {
   // Simple hash based on DOM structure (can be enhanced)
+  // Using [\s\S] instead of . to properly match across line boundaries
+  // nosec - These regex patterns are for layout hashing, not security sanitization
   const cleanHtml = html
-    .replace(/\s+/g, ' ')
-    .replace(/<!--.*?-->/g, '')
-    .replace(/<script[^>]*>.*?<\/script>/gi, '')
-    .replace(/<style[^>]*>.*?<\/style>/gi, '');
+    .replace(/[\s\r\n]+/g, ' ')
+    .replace(/<!--[\s\S]*?-->/g, '')
+    .replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '')
+    .replace(/<style[^>]*>[\s\S]*?<\/style>/gi, '');
   
   // Simple hash function (in production, use crypto.subtle.digest)
   let hash = 0;

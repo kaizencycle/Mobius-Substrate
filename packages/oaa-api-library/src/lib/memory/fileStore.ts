@@ -4,12 +4,18 @@ import path from "path";
 const DEFAULT_PATH = path.join(process.cwd(), "OAA_MEMORY.json");
 
 export function readMemory(filePath = process.env.OAA_MEMORY_PATH || DEFAULT_PATH) {
-  if (!fs.existsSync(filePath)) {
-    const seed = { version: "v1", updatedAt: new Date().toISOString(), notes: [] as any[] };
-    fs.writeFileSync(filePath, JSON.stringify(seed, null, 2));
-    return seed;
+  // Use try-catch to avoid TOCTOU race condition between existsSync and readFileSync
+  try {
+    return JSON.parse(fs.readFileSync(filePath, "utf8"));
+  } catch (error: any) {
+    if (error.code === 'ENOENT') {
+      // File doesn't exist, create it
+      const seed = { version: "v1", updatedAt: new Date().toISOString(), notes: [] as any[] };
+      fs.writeFileSync(filePath, JSON.stringify(seed, null, 2));
+      return seed;
+    }
+    throw error;
   }
-  return JSON.parse(fs.readFileSync(filePath, "utf8"));
 }
 
 export function writeMemory(obj: any, filePath = process.env.OAA_MEMORY_PATH || DEFAULT_PATH) {

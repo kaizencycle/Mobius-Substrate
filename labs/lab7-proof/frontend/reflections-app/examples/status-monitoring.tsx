@@ -114,9 +114,16 @@ function StatusCard({ result }: { result: any }) {
   };
 
   const getServiceName = (url: string) => {
-    if (url.includes('render.com')) return 'Render';
-    if (url.includes('githubstatus.com')) return 'GitHub';
-    if (url.includes('aws.amazon.com')) return 'AWS';
+    // Use URL parsing for secure hostname extraction
+    try {
+      const parsedUrl = new URL(url);
+      const hostname = parsedUrl.hostname.toLowerCase();
+      if (hostname === 'status.render.com' || hostname.endsWith('.render.com')) return 'Render';
+      if (hostname === 'www.githubstatus.com' || hostname === 'githubstatus.com') return 'GitHub';
+      if (hostname === 'status.aws.amazon.com' || hostname.endsWith('.aws.amazon.com')) return 'AWS';
+    } catch {
+      // Invalid URL, return unknown
+    }
     return 'Unknown Service';
   };
 

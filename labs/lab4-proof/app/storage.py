@@ -2,9 +2,42 @@ from __future__ import annotations
 from pathlib import Path
 import json
 import os
+import re
 from typing import Dict, List, Tuple, Any, Optional
 
 DATA_DIR = Path(__file__).resolve().parent.parent / "data"
+
+# Secure path validation to prevent directory traversal
+def _validate_path_component(component: str) -> bool:
+    """Validate a path component to prevent directory traversal."""
+    if not component:
+        return False
+    # Reject path traversal attempts
+    if '..' in component or component.startswith('/') or component.startswith('\\'):
+        return False
+    # Only allow safe characters: alphanumeric, dash, underscore, dot, space
+    if not re.match(r'^[\w\-. ]+$', component):
+        return False
+    return True
+
+def _safe_path(base_dir: Path, relative_path: str) -> Path:
+    """Safely resolve a path within the base directory."""
+    # Validate path components
+    for component in Path(relative_path).parts:
+        if not _validate_path_component(component):
+            raise ValueError(f"Invalid path component: {component}")
+    
+    # Resolve the full path
+    full_path = (base_dir / relative_path).resolve()
+    base_resolved = base_dir.resolve()
+    
+    # Ensure the path is within the base directory
+    try:
+        full_path.relative_to(base_resolved)
+    except ValueError:
+        raise ValueError(f"Path traversal detected: {relative_path}")
+    
+    return full_path
 
 def get_node_metadata() -> Dict[str, str]:
     """Get node identity metadata from environment variables."""
@@ -26,17 +59,22 @@ def today_files(date_str: str) -> Dict[str, str]:
     }
 
 def p(path_rel: str) -> Path:
-    """Absolute path under DATA_DIR."""
+    """Absolute path under DATA_DIR with traversal protection."""
     DATA_DIR.mkdir(parents=True, exist_ok=True)
-    return DATA_DIR / path_rel
+    return _safe_path(DATA_DIR, path_rel)
 
 def read_json(path_rel: str) -> Any:
-    with open(p(path_rel), "r", encoding="utf-8") as f:
+    """Read JSON file with path traversal protection."""
+    safe_path = p(path_rel)
+    with open(safe_path, "r", encoding="utf-8") as f:
         return json.load(f)
 
 def write_json(path_rel: str, obj: Any) -> None:
+    """Write JSON file with path traversal protection."""
     DATA_DIR.mkdir(parents=True, exist_ok=True)
-    with open(p(path_rel), "w", encoding="utf-8") as f:
+    safe_path = p(path_rel)
+    safe_path.parent.mkdir(parents=True, exist_ok=True)
+    with open(safe_path, "w", encoding="utf-8") as f:
         json.dump(obj, f, ensure_ascii=False, indent=2)
 
 def load_day(date_str: str) -> Tuple[Optional[dict], List[dict], Optional[dict]]:

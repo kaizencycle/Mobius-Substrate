@@ -132,13 +132,10 @@ function storeChamberSweep(sweep: ChamberSweep, syncId: string): string {
     throw new Error('Invalid cycle: path escapes working directory');
   }
   
-  // Ensure directories exist
-  if (!fs.existsSync(ledgerDir)) {
-    fs.mkdirSync(ledgerDir, { recursive: true });
-  }
-  if (!fs.existsSync(cycleDir)) {
-    fs.mkdirSync(cycleDir, { recursive: true });
-  }
+  // Ensure directories exist - use recursive mkdir which handles existing dirs
+  // This avoids TOCTOU race condition between existsSync and mkdirSync
+  fs.mkdirSync(ledgerDir, { recursive: true });
+  fs.mkdirSync(cycleDir, { recursive: true });
   
   const sweepFile = path.join(cycleDir, `${safeChamberId}-sweep.json`);
   
@@ -163,29 +160,40 @@ function storeChamberSweep(sweep: ChamberSweep, syncId: string): string {
 function updateContinuityMap(sweep: ChamberSweep, syncId: string): void {
   const continuityFile = path.join(process.cwd(), '.civic', 'continuity-map.json');
   
+  // Use try-catch to avoid TOCTOU race condition between existsSync and readFileSync
   let continuityMap: any = {};
-  if (fs.existsSync(continuityFile)) {
-    try {
-      continuityMap = JSON.parse(fs.readFileSync(continuityFile, 'utf8'));
-    } catch (error) {
+  try {
+    continuityMap = JSON.parse(fs.readFileSync(continuityFile, 'utf8'));
+  } catch (error: any) {
+    if (error.code !== 'ENOENT') {
       console.error('Error reading continuity map:', error);
-      continuityMap = {};
     }
+    continuityMap = {};
   }
   
   if (!continuityMap.cycles) {
     continuityMap.cycles = {};
   }
   
-  if (!continuityMap.cycles[sweep.cycle]) {
-    continuityMap.cycles[sweep.cycle] = {
+  // Validate keys to prevent prototype pollution
+  const safeCycle = validatePathComponent(sweep.cycle, 'cycle');
+  const safeChamberId = validatePathComponent(sweep.chamber_id, 'chamber_id');
+  
+  // Additional prototype pollution check
+  if (['__proto__', 'constructor', 'prototype'].includes(safeCycle) ||
+      ['__proto__', 'constructor', 'prototype'].includes(safeChamberId)) {
+    throw new Error('Invalid cycle or chamber_id');
+  }
+  
+  if (!Object.prototype.hasOwnProperty.call(continuityMap.cycles, safeCycle)) {
+    continuityMap.cycles[safeCycle] = {
       chambers: {},
       total_morale_delta: 0,
       status: 'ACTIVE'
     };
   }
   
-  continuityMap.cycles[sweep.cycle].chambers[sweep.chamber_id] = {
+  continuityMap.cycles[safeCycle].chambers[safeChamberId] = {
     name: sweep.chamber_name,
     status: sweep.status,
     result: sweep.result,
@@ -195,7 +203,7 @@ function updateContinuityMap(sweep: ChamberSweep, syncId: string): void {
   };
   
   // Update total morale delta for the cycle
-  continuityMap.cycles[sweep.cycle].total_morale_delta += sweep.morale_delta;
+  continuityMap.cycles[safeCycle].total_morale_delta += sweep.morale_delta;
   
   // Update global stats
   if (!continuityMap.global_stats) {

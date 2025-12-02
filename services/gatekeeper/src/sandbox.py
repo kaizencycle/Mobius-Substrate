@@ -34,8 +34,9 @@ def run_in_sandbox(script: str) -> Dict:
             f.write("#!/bin/bash\n")
             f.write(script)
         
-        # Make executable
-        os.chmod(script_path, 0o755)
+        # Make executable with restricted permissions (owner only)
+        # nosec - Script needs to be executable but we restrict to owner only
+        os.chmod(script_path, 0o700)
         
         # Set resource limits
         try:

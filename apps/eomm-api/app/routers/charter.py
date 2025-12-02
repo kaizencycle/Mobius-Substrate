@@ -205,7 +205,9 @@ def get_clause(clause_id: str):
     except HTTPException:
         raise
     except Exception as e:
-        log.error(f"Error loading clause {clause_id}: {e}")
+        # Sanitize user input before logging to prevent log injection
+        safe_clause_id = clause_id.replace('\n', '').replace('\r', '')[:50]
+        log.error(f"Error loading clause {safe_clause_id}: {e}")
         raise HTTPException(status_code=500, detail=f"Failed to load clause: {str(e)}")
 
 @router.get("/governance")
