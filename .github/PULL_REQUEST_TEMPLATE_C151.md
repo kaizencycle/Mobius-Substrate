@@ -89,4 +89,4 @@ Attach the JSON to the PR or paste relevant excerpts if needed.
 
 ---
 
-*"We heal as we walk." — Kaizen OS*
+*"We heal as we walk." — Mobius Systems*
