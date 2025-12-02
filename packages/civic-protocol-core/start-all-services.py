@@ -14,8 +14,6 @@ import subprocess
 import time
 import signal
 import sys
-import os
-from threading import Thread
 
 class ServiceManager:
     def __init__(self):

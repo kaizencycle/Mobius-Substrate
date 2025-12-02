@@ -93,7 +93,7 @@ class VIPValidator:
         
         return {
             "constitutional_score": constitutional_score,
-            "mii": mii,
+            "mii": gi,
             "integrity_score": integrity_score,
             "approved": approved,
             "violations": charter_data.get("clause_violations", []),

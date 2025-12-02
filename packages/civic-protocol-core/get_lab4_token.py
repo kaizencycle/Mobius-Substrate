@@ -11,7 +11,6 @@ import hmac
 import hashlib
 import time
 import json
-from datetime import datetime, timezone
 
 # Lab4 API configuration
 LAB4_BASE = "https://hive-api-2le8.onrender.com"
@@ -29,7 +28,7 @@ def register_app(app_id: str) -> str:
     if response.status_code == 200:
         result = response.json()
         secret = result.get("secret")
-        print(f"✅ App registered successfully")
+        print("✅ App registered successfully")
         print(f"📋 Secret: {secret}")
         return secret
     else:
@@ -77,7 +76,7 @@ def issue_token(app_id: str, secret: str) -> str:
     if response.status_code == 200:
         result = response.json()
         token = result.get("token")
-        print(f"✅ Token issued successfully")
+        print("✅ Token issued successfully")
         print(f"🎫 Token: {token}")
         return token
     else:
@@ -87,7 +86,7 @@ def issue_token(app_id: str, secret: str) -> str:
 
 def verify_token(token: str) -> bool:
     """Verify the token with Lab4"""
-    print(f"🔍 Verifying token...")
+    print("🔍 Verifying token...")
     
     response = requests.get(
         f"{LAB4_BASE}/auth/status",
@@ -96,7 +95,7 @@ def verify_token(token: str) -> bool:
     
     if response.status_code == 200:
         result = response.json()
-        print(f"✅ Token verified successfully")
+        print("✅ Token verified successfully")
         print(f"📋 Token info: {json.dumps(result, indent=2)}")
         return True
     else:
@@ -106,7 +105,7 @@ def verify_token(token: str) -> bool:
 
 def test_ledger_with_token(token: str):
     """Test the ledger API with the token"""
-    print(f"🏛️ Testing ledger API with token...")
+    print("🏛️ Testing ledger API with token...")
     
     # Create Genesis Custodian payload
     payload = {
@@ -139,7 +138,7 @@ def test_ledger_with_token(token: str):
     
     if response.status_code == 200:
         result = response.json()
-        print(f"✅ Genesis Custodian Event posted successfully!")
+        print("✅ Genesis Custodian Event posted successfully!")
         print(f"📋 Event ID: {result.get('event_id')}")
         print(f"📋 Event Hash: {result.get('event_hash')}")
         print(f"📋 Full Response: {json.dumps(result, indent=2)}")

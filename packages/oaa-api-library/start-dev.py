@@ -6,8 +6,6 @@ Starts both FastAPI backend and provides instructions for frontend
 
 import subprocess
 import sys
-import os
-from pathlib import Path
 
 def check_python_version():
     """Check if Python version is 3.11+"""
