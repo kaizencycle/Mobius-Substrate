@@ -38,6 +38,63 @@ function validatePropertyName(name: string): string {
   return sanitized;
 }
 
+/**
+ * Validate and return safe EnergySource, preventing prototype pollution
+ * First checks against valid enum values, then validates property name for safety
+ */
+function validateEnergySource(source: string | EnergySource): EnergySource {
+  // First check if it's a valid EnergySource (before sanitization)
+  const validSources: readonly EnergySource[] = [
+    "solar", "wind", "hydro", "geothermal", "nuclear", 
+    "grid", "battery", "hydrogen", "natural_gas", "other"
+  ] as const;
+  
+  // Check if input matches a valid source (case-insensitive for robustness)
+  const normalized = String(source).toLowerCase().trim();
+  const matchedSource = validSources.find(s => s.toLowerCase() === normalized);
+  
+  if (matchedSource) {
+    // Validate property name to prevent prototype pollution (should pass for valid enums)
+    validatePropertyName(matchedSource);
+    return matchedSource;
+  }
+  
+  // If not a valid source, check for dangerous property names before defaulting
+  validatePropertyName(String(source));
+  
+  // Default to "other" for invalid sources rather than throwing
+  console.warn(`Invalid energy source: ${source}, defaulting to "other"`);
+  return "other";
+}
+
+/**
+ * Validate and return safe GridRegion, preventing prototype pollution
+ * First checks against valid enum values, then validates property name for safety
+ */
+function validateGridRegion(region: string | GridRegion): GridRegion {
+  // First check if it's a valid GridRegion (before sanitization)
+  const validRegions: readonly GridRegion[] = [
+    "CAISO", "ERCOT", "PJM", "MISO", "SPP", "NYISO", "ISONE", "OTHER"
+  ] as const;
+  
+  // Check if input matches a valid region (case-insensitive for robustness)
+  const normalized = String(region).toUpperCase().trim();
+  const matchedRegion = validRegions.find(r => r.toUpperCase() === normalized);
+  
+  if (matchedRegion) {
+    // Validate property name to prevent prototype pollution (should pass for valid enums)
+    validatePropertyName(matchedRegion);
+    return matchedRegion;
+  }
+  
+  // If not a valid region, check for dangerous property names before defaulting
+  validatePropertyName(String(region));
+  
+  // Default to "OTHER" for invalid regions
+  console.warn(`Invalid grid region: ${region}, defaulting to "OTHER"`);
+  return "OTHER";
+}
+
 // ============================================================================
 // Default Configuration
 // ============================================================================
@@ -230,7 +287,16 @@ export class EnergyTelemetryService {
     let weightedEfficiencySum = 0;
     let weightedCarbonSum = 0;
 
-    const sourceBreakdown: AggregatedTelemetry["sourceBreakdown"] = {} as any;
+    // Initialize all required EnergySource keys to prevent type errors
+    const allSources: EnergySource[] = [
+      "solar", "wind", "hydro", "geothermal", "nuclear", 
+      "grid", "battery", "hydrogen", "natural_gas", "other"
+    ];
+    const sourceBreakdown = {} as AggregatedTelemetry["sourceBreakdown"];
+    // Initialize all sources with zero values
+    for (const source of allSources) {
+      sourceBreakdown[source] = { count: 0, capacityMwh: 0, outputMw: 0 };
+    }
 
     for (const node of nodes) {
       totalCapacityKwh += node.capacityKwh;
@@ -240,10 +306,8 @@ export class EnergyTelemetryService {
       weightedCarbonSum += node.carbonIntensity * node.currentOutputKw;
 
       // Source breakdown - validate property name to prevent prototype pollution
-      const safeSource = validatePropertyName(node.source);
-      if (!sourceBreakdown[safeSource]) {
-        sourceBreakdown[safeSource] = { count: 0, capacityMwh: 0, outputMw: 0 };
-      }
+      const safeSource: EnergySource = validateEnergySource(node.source);
+      // All keys are initialized, so indexing is safe
       sourceBreakdown[safeSource].count++;
       sourceBreakdown[safeSource].capacityMwh += node.capacityKwh / 1000;
       sourceBreakdown[safeSource].outputMw += node.currentOutputKw / 1000;

@@ -142,7 +142,7 @@ export async function fetchDoc(url: string): Promise<FetchedDoc> {
     const sha256 = crypto.createHash("sha256").update(text).digest("hex");
 
     return {
-      url: safeUrl.toString(),
+      url: safeUrlString, // Use the reconstructed URL string that was actually used for fetch
       status: res.status,
       contentType: res.headers.get("content-type") ?? undefined,
       text,
