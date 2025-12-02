@@ -1,6 +1,5 @@
 'use client'
 
-import { useEffect, useState } from 'react'
 import OpsSummary from '@/components/OpsSummary'
 import MetricsView from '@/components/MetricsView'
 import AlertsView from '@/components/AlertsView'
