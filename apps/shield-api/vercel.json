@@ -1,0 +1,14 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "cd citizen-shield-app && npm install && npm run build",
+  "devCommand": "cd citizen-shield-app && npm run dev",
+  "installCommand": "npm install",
+  "framework": "vite",
+  "outputDirectory": "citizen-shield-app/dist",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
