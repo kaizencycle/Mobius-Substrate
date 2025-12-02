@@ -6,11 +6,14 @@ Constitutional enforcement at the API layer.
 Every agent request flows through Sentinel checks, permission validation,
 tier routing, GI attestation, and ledger commit.
 
-CRITICAL SAFEGUARDS:
-- DAEDALUS cannot trigger executors (v1.1.1 constraint)
-- Only Tier 3 can modify code
-- All actions are ledger-attested
-- DVA enforces GI >= 0.999
+CRITICAL SAFEGUARDS (v1.1.2 Constitutional Amendments):
+- C-001: DAEDALUS cannot trigger executors
+- C-002: ZEUS split into Coordinator (T2) and Sentinel (T4)
+- C-003: MIC terminology (not GIC)
+- C-004: HERMES classified as System Agent
+- C-005: Only Tier 3 can modify code
+
+DVA enforces GI >= 0.999
 """
 
 from typing import Dict, Any, Optional, Callable
@@ -125,7 +128,7 @@ class ThoughtBrokerKernelIntegration:
     5. Ledger Commit
     
     Usage:
-        kernel = MobiusKernel("config/agents/mobius_agent_stack.v1.1.1.json")
+        kernel = MobiusKernel("config/agents/mobius_agent_stack.v1.1.2.json")
         broker = ThoughtBrokerKernelIntegration(kernel)
         
         request = BrokeredRequest(
@@ -253,9 +256,9 @@ class ThoughtBrokerKernelIntegration:
     
     def _validate_constitutional_permissions(self, request: BrokeredRequest) -> bool:
         """
-        Enforce v1.1.1 permission matrix.
+        Enforce v1.1.2 permission matrix.
         
-        CRITICAL: DAEDALUS cannot trigger executors.
+        CRITICAL: DAEDALUS cannot trigger executors (C-001).
         """
         
         # DAEDALUS special case - HARDCODED in both kernel AND broker
@@ -475,7 +478,7 @@ if __name__ == "__main__":
     from pathlib import Path
     
     # Initialize kernel
-    manifest_path = Path(__file__).parent.parent.parent.parent / "config/agents/mobius_agent_stack.v1.1.1.json"
+    manifest_path = Path(__file__).parent.parent.parent.parent / "config/agents/mobius_agent_stack.v1.1.2.json"
     
     try:
         kernel = MobiusKernel(str(manifest_path))

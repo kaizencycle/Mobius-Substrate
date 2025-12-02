@@ -1,5 +1,5 @@
 """
-Mobius Kernel v1.1.1
+Mobius Kernel v1.1.2
 ====================
 
 Constitutional enforcement layer for Kaizen OS / Mobius Systems.
@@ -7,12 +7,18 @@ Loads agent stack manifest and enforces tier-based permissions.
 
 Core principle: "Mind above Hands, Sentinels around all"
 
-Changes in v1.1.1:
+Changes in v1.1.2 (C-152):
+- 5 Constitutional Amendments codified (C-001 through C-005)
+- C-001: DAEDALUS cannot trigger executors (HARDCODED)
+- C-002: ZEUS split into ZEUS_COORDINATOR (Tier 2) and ZEUS_SENTINEL (Tier 4)
+- C-003: MIC terminology standardization (GIC → MIC)
+- C-004: HERMES normalized to System Agent type
+- C-005: Tier-based permission enforcement (code edit Tier 3 exclusive)
+
+Previous changes (v1.1.1):
 - schema_version added for kernel compatibility
-- DAEDALUS cannot trigger executors (HARDCODED)
-- ZEUS split into ZEUS_COORDINATOR (Tier 2) and ZEUS_SENTINEL (Tier 4)
-- INDEXER updated from GIC to MIC terminology
-- HERMES normalized to System Agent type
+- DAEDALUS constraint first introduced
+- ZEUS split preparation
 """
 
 import json
@@ -61,9 +67,9 @@ class MobiusKernel:
         kernel.can_agent_trigger_executors("DAEDALUS")  # Always False
     """
     
-    MINIMUM_SCHEMA_VERSION = "1.1.1"
+    MINIMUM_SCHEMA_VERSION = "1.1.2"
     
-    def __init__(self, manifest_path: str = "config/agents/mobius_agent_stack.v1.1.1.json"):
+    def __init__(self, manifest_path: str = "config/agents/mobius_agent_stack.v1.1.2.json"):
         """
         Initialize the Mobius Kernel.
         
@@ -177,12 +183,15 @@ class MobiusKernel:
         """
         Check if agent can trigger execution engines.
         
-        CRITICAL: DAEDALUS is explicitly blocked per v1.1.1 amendment.
+        CRITICAL: DAEDALUS is explicitly blocked per Constitutional Amendment C-001.
         This is HARDCODED and cannot be overridden by manifest changes.
+        
+        Reference: v1.1.2 Amendment C-001 - DAEDALUS Executor Constraint
         """
-        # DAEDALUS CONSTRAINT - HARDCODED
+        # DAEDALUS CONSTRAINT - HARDCODED (C-001)
         # This prevents circular authority loops where the consensus mediator
         # could directly trigger execution without Architect approval.
+        # "Mediator produces DelibProofs; Architects approve execution."
         if agent_id == "DAEDALUS":
             return False
         
@@ -331,13 +340,13 @@ if __name__ == "__main__":
     import sys
     
     # Allow custom manifest path from command line
-    manifest_path = sys.argv[1] if len(sys.argv) > 1 else "config/agents/mobius_agent_stack.v1.1.1.json"
+    manifest_path = sys.argv[1] if len(sys.argv) > 1 else "config/agents/mobius_agent_stack.v1.1.2.json"
     
     try:
         kernel = MobiusKernel(manifest_path)
     except FileNotFoundError:
         # Try relative to current file for testing
-        kernel = MobiusKernel(str(Path(__file__).parent.parent.parent.parent / "config/agents/mobius_agent_stack.v1.1.1.json"))
+        kernel = MobiusKernel(str(Path(__file__).parent.parent.parent.parent / "config/agents/mobius_agent_stack.v1.1.2.json"))
     
     print("\n" + "=" * 70)
     print("MOBIUS KERNEL TEST SUITE")

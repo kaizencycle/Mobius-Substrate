@@ -1,0 +1,38 @@
+{
+  "name": "@mobius/zeus-coordinator",
+  "version": "1.1.2",
+  "description": "ZEUS_COORDINATOR - Tier 2 Strategist for operational stability and load balancing",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "lint": "eslint src/",
+    "dev": "ts-node src/index.ts"
+  },
+  "keywords": [
+    "mobius",
+    "sentinel",
+    "zeus",
+    "coordinator",
+    "stabilizer",
+    "tier-2"
+  ],
+  "author": "Mobius Systems Foundation",
+  "license": "Apache-2.0",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kaizencycle/Mobius-Systems.git",
+    "directory": "sentinels/zeus-coordinator"
+  },
+  "constitutional": {
+    "amendment": "C-002",
+    "tier": 2,
+    "manifest_version": "1.1.2"
+  }
+}

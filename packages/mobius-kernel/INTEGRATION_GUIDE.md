@@ -1,8 +1,19 @@
 # Mobius Kernel Integration Guide
 
+**Version**: 1.1.2  
+**Cycle**: C-152  
+**Constitutional Amendments**: C-001, C-002, C-003, C-004, C-005
+
 ## 🎯 Overview
 
 This guide explains how to integrate the Mobius Kernel into your existing services. The kernel provides constitutional governance for all agent actions in the Kaizen OS / Mobius Systems stack.
+
+### Constitutional Amendments (v1.1.2)
+- **C-001**: DAEDALUS cannot trigger executors (HARDCODED)
+- **C-002**: ZEUS split into Coordinator (T2) and Sentinel (T4)
+- **C-003**: MIC terminology (GIC → MIC migration)
+- **C-004**: HERMES classified as System Agent
+- **C-005**: Only Tier 3 can modify code
 
 ## Architecture
 
@@ -13,7 +24,7 @@ API Endpoint
      ↓
 ThoughtBrokerKernelIntegration
      ↓
-├── 1. Sentinel Precheck (DVA, ZEUS, INDEXER)
+├── 1. Sentinel Precheck (DVA, ZEUS_SENTINEL, INDEXER)
 │   └── GI threshold, system load, MIC balance
 ├── 2. Constitutional Validation (MobiusKernel)
 │   └── Load manifest, check permissions
@@ -54,7 +65,7 @@ from thought_broker_integration import (
 )
 
 # Initialize kernel with manifest
-kernel = MobiusKernel("config/agents/mobius_agent_stack.v1.1.1.json")
+kernel = MobiusKernel("config/agents/mobius_agent_stack.v1.1.2.json")
 
 # Initialize broker (uses MockLedgerClient by default)
 broker = ThoughtBrokerKernelIntegration(kernel)
@@ -100,7 +111,7 @@ from thought_broker_integration import (
 app = FastAPI(title="Mobius Agent API")
 
 # Initialize on startup
-kernel = MobiusKernel("config/agents/mobius_agent_stack.v1.1.1.json")
+kernel = MobiusKernel("config/agents/mobius_agent_stack.v1.1.2.json")
 broker = ThoughtBrokerKernelIntegration(kernel)
 
 class AgentActionRequest(BaseModel):
@@ -178,7 +189,7 @@ from mobius_kernel import MobiusKernel
 from thought_broker_integration import ThoughtBrokerKernelIntegration, BrokeredRequest, RequestType
 import json
 
-kernel = MobiusKernel('config/agents/mobius_agent_stack.v1.1.1.json')
+kernel = MobiusKernel('config/agents/mobius_agent_stack.v1.1.2.json')
 broker = ThoughtBrokerKernelIntegration(kernel)
 
 request = BrokeredRequest(
@@ -352,14 +363,14 @@ from thought_broker_integration import (
 
 @pytest.fixture
 def kernel():
-    return MobiusKernel("config/agents/mobius_agent_stack.v1.1.1.json")
+    return MobiusKernel("config/agents/mobius_agent_stack.v1.1.2.json")
 
 @pytest.fixture
 def broker(kernel):
     return ThoughtBrokerKernelIntegration(kernel)
 
 def test_daedalus_cannot_execute(broker):
-    """DAEDALUS must be blocked from execution."""
+    """DAEDALUS must be blocked from execution (C-001)."""
     request = BrokeredRequest(
         request_id="test-001",
         agent_id="DAEDALUS",

@@ -3,6 +3,27 @@
   "role": "Overseer / Arbiter",
   "governance_domain": "Governance & Decision Making",
   "version": "1.0.0",
+  "status": "DEPRECATED",
+  "deprecation": {
+    "date": "2025-12-02",
+    "cycle": "C-152",
+    "constitutional_reference": "C-002",
+    "reason": "ZEUS Split Codification - separated into ZEUS_COORDINATOR and ZEUS_SENTINEL",
+    "successors": [
+      {
+        "agent": "ZEUS_COORDINATOR",
+        "tier": 2,
+        "role": "Stabilizer & Load Balancer",
+        "path": "../zeus-coordinator/"
+      },
+      {
+        "agent": "ZEUS_SENTINEL",
+        "tier": 4,
+        "role": "Stabilizer Sentinel",
+        "path": "../zeus-sentinel/"
+      }
+    ]
+  },
   "temperament": {
     "rationality": 0.88,
     "empathy": 0.68,
@@ -14,6 +35,6 @@
     "oversee_companion_operations",
     "maintain_quorum_consensus"
   ],
-  "status": "placeholder"
+  "migration_note": "All new integrations should use ZEUS_COORDINATOR (Tier 2) or ZEUS_SENTINEL (Tier 4). Legacy 'ZEUS' alias is preserved for backward compatibility in the v1.1.2 manifest."
 }
 

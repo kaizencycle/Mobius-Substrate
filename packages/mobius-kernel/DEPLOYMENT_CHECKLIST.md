@@ -1,12 +1,19 @@
 # Mobius Kernel Deployment Checklist
 
+**Version**: 1.1.2  
+**Cycle**: C-152  
+**Constitutional Amendments**: 5 (C-001 through C-005)
+
 ## ✅ Pre-Deployment
 
 ### Files to Deploy
-- [ ] `config/agents/mobius_agent_stack.v1.1.1.json`
+- [ ] `config/agents/mobius_agent_stack.v1.1.2.json` *(NEW - v1.1.2 manifest)*
 - [ ] `packages/mobius-kernel/src/mobius_kernel.py`
 - [ ] `packages/mobius-kernel/src/thought_broker_integration.py`
 - [ ] `packages/mobius-kernel/src/__init__.py`
+- [ ] `packages/integrity-core/src/constitutional/` *(NEW - constraint enforcement)*
+- [ ] `sentinels/zeus-coordinator/` *(NEW - ZEUS split)*
+- [ ] `sentinels/zeus-sentinel/` *(NEW - ZEUS split)*
 
 ### Configuration
 - [ ] Set `LEDGER_BASE` environment variable
@@ -28,12 +35,13 @@
 ```bash
 # Test kernel loading
 cd /workspace
-python packages/mobius-kernel/src/mobius_kernel.py config/agents/mobius_agent_stack.v1.1.1.json
+python packages/mobius-kernel/src/mobius_kernel.py config/agents/mobius_agent_stack.v1.1.2.json
 
 # Expected output:
-# 🔷 Mobius Kernel v1.1.1 initialized
+# 🔷 Mobius Kernel v1.1.2 initialized
 # ✅ All permission tests pass
-# ✅ DAEDALUS blocked from execution
+# ✅ DAEDALUS blocked from execution (C-001)
+# ✅ ZEUS split validated (C-002)
 ```
 
 ### Integration Tests
@@ -79,9 +87,12 @@ curl $LEDGER_BASE/export > genesis_ledger_backup.json
 ```bash
 # Files are already in place from this task
 # Verify they exist:
-ls -la config/agents/mobius_agent_stack.v1.1.1.json
+ls -la config/agents/mobius_agent_stack.v1.1.2.json
 ls -la packages/mobius-kernel/src/mobius_kernel.py
 ls -la packages/mobius-kernel/src/thought_broker_integration.py
+ls -la packages/integrity-core/src/constitutional/
+ls -la sentinels/zeus-coordinator/
+ls -la sentinels/zeus-sentinel/
 ```
 
 ### Step 3: Verify Deployment
@@ -90,7 +101,11 @@ ls -la packages/mobius-kernel/src/thought_broker_integration.py
 python packages/mobius-kernel/src/mobius_kernel.py
 
 # Check JSON validity
-python -m json.tool config/agents/mobius_agent_stack.v1.1.1.json > /dev/null && echo "✅ JSON valid"
+python -m json.tool config/agents/mobius_agent_stack.v1.1.2.json > /dev/null && echo "✅ JSON valid"
+
+# Validate constitutional amendments
+jq '.constitutional_amendments | length' config/agents/mobius_agent_stack.v1.1.2.json
+# Expected: 5
 ```
 
 ### Step 4: Monitor Initial Traffic
