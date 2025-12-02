@@ -29,7 +29,9 @@ def register_app(app_id: str) -> str:
         result = response.json()
         secret = result.get("secret")
         print("✅ App registered successfully")
-        print(f"📋 Secret: {secret}")
+        # nosec - Avoid logging full secret, only indicate it was received
+        secret_preview = secret[:4] + "***" if secret and len(secret) >= 4 else "***"
+        print(f"📋 Secret received: {secret_preview}")
         return secret
     else:
         print(f"❌ Failed to register app: {response.status_code}")
@@ -77,7 +79,9 @@ def issue_token(app_id: str, secret: str) -> str:
         result = response.json()
         token = result.get("token")
         print("✅ Token issued successfully")
-        print(f"🎫 Token: {token}")
+        # nosec - Avoid logging full token, only indicate it was received
+        token_preview = token[:8] + "***" if token and len(token) >= 8 else "***"
+        print(f"🎫 Token received: {token_preview}")
         return token
     else:
         print(f"❌ Failed to issue token: {response.status_code}")
