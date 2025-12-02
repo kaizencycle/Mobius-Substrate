@@ -765,5 +765,5 @@ Your **proof-of-evolution**: collectible milestones for cycles, reflections, and
 
 ---
 
-*Cycle C-150 | Mobius-main-tree | MIC + Kaizen Shards + Mobius Habits*
+*Cycle C-151 | Mobius-main-tree | Repo Hygiene & Pulse Foundations*
 
