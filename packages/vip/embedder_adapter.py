@@ -2,10 +2,9 @@
 VIP Embedder Adapter - Validate, Embed, Attest
 """
 
-import json
 import hashlib
 import time
-from typing import Dict, Any, Optional
+from typing import Dict, Any
 from .validator import VIPValidator
 
 

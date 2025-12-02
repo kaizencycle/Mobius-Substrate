@@ -9,7 +9,6 @@ to be used in the Genesis Custodian Event.
 import hashlib
 import sys
 import os
-from pathlib import Path
 
 def generate_sha256_checksum(file_path: str) -> str:
     """Generate SHA-256 checksum for a file"""
@@ -78,10 +77,10 @@ def main():
         
         # Show the updated payload
         print("\n📋 Updated integrity section:")
-        print(f'  "integrity": {{')
+        print('  "integrity": {')
         print(f'    "checksum": "sha256:{checksum}",')
-        print(f'    "verified": true')
-        print(f'  }}')
+        print('    "verified": true')
+        print('  }')
         
     else:
         print("❌ Failed to generate checksum")

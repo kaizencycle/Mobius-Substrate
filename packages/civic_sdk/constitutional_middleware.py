@@ -3,7 +3,6 @@ ATLAS Constitutional Middleware
 Enforces AI Integrity Constitution at the gateway layer
 """
 import httpx
-import json
 from typing import Dict, Any
 
 
