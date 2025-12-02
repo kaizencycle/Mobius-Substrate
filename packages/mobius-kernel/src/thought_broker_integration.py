@@ -68,7 +68,7 @@ class LedgerClient:
     Implement this for your actual Genesis Ledger integration.
     """
     
-    def get_mic_balance(self, agent_id: str) -> float:
+    async def get_mic_balance(self, agent_id: str) -> float:
         """Get MIC balance for an agent."""
         raise NotImplementedError
     
@@ -76,7 +76,7 @@ class LedgerClient:
         """Sign an attestation cryptographically."""
         raise NotImplementedError
     
-    def commit(self, entry: Dict[str, Any], ledger: str) -> Dict[str, Any]:
+    async def commit(self, entry: Dict[str, Any], ledger: str) -> Dict[str, Any]:
         """Commit an entry to a ledger."""
         raise NotImplementedError
 
@@ -88,7 +88,7 @@ class MockLedgerClient(LedgerClient):
         self._balances: Dict[str, float] = {}
         self._entries: list = []
     
-    def get_mic_balance(self, agent_id: str) -> float:
+    async def get_mic_balance(self, agent_id: str) -> float:
         """Return default balance of 100.0 for all agents."""
         return self._balances.get(agent_id, 100.0)
     
@@ -100,7 +100,7 @@ class MockLedgerClient(LedgerClient):
         """Generate SHA256 hash of attestation data."""
         return hashlib.sha256(json.dumps(data, sort_keys=True).encode()).hexdigest()
     
-    def commit(self, entry: Dict[str, Any], ledger: str) -> Dict[str, Any]:
+    async def commit(self, entry: Dict[str, Any], ledger: str) -> Dict[str, Any]:
         """Commit entry and return hash."""
         entry_hash = hashlib.sha256(json.dumps(entry, sort_keys=True).encode()).hexdigest()
         self._entries.append({
@@ -169,7 +169,7 @@ class ThoughtBrokerKernelIntegration:
             4: self._enforce_guards,
         }
     
-    def broker_request(self, request: BrokeredRequest) -> BrokeredResponse:
+    async def broker_request(self, request: BrokeredRequest) -> BrokeredResponse:
         """
         Main API entry point - constitutional enforcement for all actions.
         
@@ -184,7 +184,7 @@ class ThoughtBrokerKernelIntegration:
         """
         
         # Step 1: Sentinel Precheck
-        sentinel_check = self._sentinel_precheck(request)
+        sentinel_check = await self._sentinel_precheck(request)
         if not sentinel_check["approved"]:
             return self._create_denial(request, sentinel_check["reason"])
         
@@ -201,7 +201,7 @@ class ThoughtBrokerKernelIntegration:
             gi_proof = self._generate_gi_attestation(request, result)
             
             # Step 5: Ledger Commit
-            ledger_entry = self._commit_to_ledger(request, result, gi_proof)
+            ledger_entry = await self._commit_to_ledger(request, result, gi_proof)
             
             # Log success
             self._log_success(request, result, gi_proof, ledger_entry["hash"])
@@ -220,7 +220,7 @@ class ThoughtBrokerKernelIntegration:
             self._log_failure(request, str(e))
             return self._create_denial(request, f"Execution error: {str(e)}")
     
-    def _sentinel_precheck(self, request: BrokeredRequest) -> Dict[str, Any]:
+    async def _sentinel_precheck(self, request: BrokeredRequest) -> Dict[str, Any]:
         """
         DVA & ZEUS_SENTINEL enforce GI thresholds and safety checks.
         
@@ -245,7 +245,7 @@ class ThoughtBrokerKernelIntegration:
             }
         
         # INDEXER: MIC balance check
-        mic_balance = self.ledger.get_mic_balance(request.agent_id)
+        mic_balance = await self.ledger.get_mic_balance(request.agent_id)
         if mic_balance < 0:
             return {
                 "approved": False,
@@ -329,7 +329,7 @@ class ThoughtBrokerKernelIntegration:
         
         return self.ledger.sign_attestation(attestation_data)
     
-    def _commit_to_ledger(self, request: BrokeredRequest, 
+    async def _commit_to_ledger(self, request: BrokeredRequest, 
                          result: Dict[str, Any], 
                          gi_proof: str) -> Dict[str, Any]:
         """Commit attested action to GENESIS_LEDGER."""
@@ -344,7 +344,7 @@ class ThoughtBrokerKernelIntegration:
             "result_snapshot": result,
         }
         
-        return self.ledger.commit(ledger_entry, ledger="GENESIS_LEDGER")
+        return await self.ledger.commit(ledger_entry, ledger="GENESIS_LEDGER")
     
     # =========================================================================
     # Tier Handlers (Override these for actual implementations)
@@ -476,6 +476,7 @@ class ThoughtBrokerKernelIntegration:
 
 if __name__ == "__main__":
     from pathlib import Path
+    import asyncio
     
     # Initialize kernel
     manifest_path = Path(__file__).parent.parent.parent.parent / "config/agents/mobius_agent_stack.v1.1.2.json"
@@ -493,79 +494,83 @@ if __name__ == "__main__":
     print("THOUGHT BROKER + KERNEL INTEGRATION TEST")
     print("=" * 70)
     
-    # Test 1: AUREA (Architect) - should work
-    print("\n✅ Test 1: AUREA architectural design")
-    request = BrokeredRequest(
-        request_id="req-001",
-        agent_id="AUREA",
-        request_type=RequestType.ARCHITECT,
-        payload={"task": "Design new consensus protocol"}
-    )
-    response = broker.broker_request(request)
-    print(f"   Status: {response.status}")
-    print(f"   Ledger Hash: {response.ledger_hash[:16]}..." if response.ledger_hash else "   No ledger hash")
+    async def run_tests():
+        # Test 1: AUREA (Architect) - should work
+        print("\n✅ Test 1: AUREA architectural design")
+        request = BrokeredRequest(
+            request_id="req-001",
+            agent_id="AUREA",
+            request_type=RequestType.ARCHITECT,
+            payload={"task": "Design new consensus protocol"}
+        )
+        response = await broker.broker_request(request)
+        print(f"   Status: {response.status}")
+        print(f"   Ledger Hash: {response.ledger_hash[:16]}..." if response.ledger_hash else "   No ledger hash")
+        
+        # Test 2: DAEDALUS trying to execute - SHOULD FAIL
+        print("\n❌ Test 2: DAEDALUS attempting execution (BLOCKED)")
+        request = BrokeredRequest(
+            request_id="req-002",
+            agent_id="DAEDALUS",
+            request_type=RequestType.EXECUTE,
+            payload={"task": "Modify code"}
+        )
+        response = await broker.broker_request(request)
+        print(f"   Status: {response.status}")
+        print(f"   Reason: {response.denial_reason}")
+        
+        # Test 3: CURSOR (Executor) - should work
+        print("\n✅ Test 3: CURSOR code execution")
+        request = BrokeredRequest(
+            request_id="req-003",
+            agent_id="CURSOR",
+            request_type=RequestType.EXECUTE,
+            payload={"task": "Refactor router.py"}
+        )
+        response = await broker.broker_request(request)
+        print(f"   Status: {response.status}")
+        print(f"   Ledger Hash: {response.ledger_hash[:16]}..." if response.ledger_hash else "   No ledger hash")
+        
+        # Test 4: ATLAS querying (should work)
+        print("\n✅ Test 4: ATLAS query")
+        request = BrokeredRequest(
+            request_id="req-004",
+            agent_id="ATLAS",
+            request_type=RequestType.QUERY,
+            payload={"query": "Get system status"}
+        )
+        response = await broker.broker_request(request)
+        print(f"   Status: {response.status}")
+        
+        # Test 5: System overload blocking execution
+        print("\n❌ Test 5: System overload blocks execution")
+        broker.set_system_load(0.90)  # Simulate high load
+        request = BrokeredRequest(
+            request_id="req-005",
+            agent_id="CURSOR",
+            request_type=RequestType.EXECUTE,
+            payload={"task": "Critical fix"}
+        )
+        response = await broker.broker_request(request)
+        print(f"   Status: {response.status}")
+        print(f"   Reason: {response.denial_reason}")
+        broker.set_system_load(0.3)  # Reset
+        
+        # Test 6: Negative MIC balance
+        print("\n❌ Test 6: Negative MIC balance blocks action")
+        broker.ledger.set_mic_balance("AUREA", -10.0)
+        request = BrokeredRequest(
+            request_id="req-006",
+            agent_id="AUREA",
+            request_type=RequestType.ARCHITECT,
+            payload={"task": "Design feature"}
+        )
+        response = await broker.broker_request(request)
+        print(f"   Status: {response.status}")
+        print(f"   Reason: {response.denial_reason}")
     
-    # Test 2: DAEDALUS trying to execute - SHOULD FAIL
-    print("\n❌ Test 2: DAEDALUS attempting execution (BLOCKED)")
-    request = BrokeredRequest(
-        request_id="req-002",
-        agent_id="DAEDALUS",
-        request_type=RequestType.EXECUTE,
-        payload={"task": "Modify code"}
-    )
-    response = broker.broker_request(request)
-    print(f"   Status: {response.status}")
-    print(f"   Reason: {response.denial_reason}")
-    
-    # Test 3: CURSOR (Executor) - should work
-    print("\n✅ Test 3: CURSOR code execution")
-    request = BrokeredRequest(
-        request_id="req-003",
-        agent_id="CURSOR",
-        request_type=RequestType.EXECUTE,
-        payload={"task": "Refactor router.py"}
-    )
-    response = broker.broker_request(request)
-    print(f"   Status: {response.status}")
-    print(f"   Ledger Hash: {response.ledger_hash[:16]}..." if response.ledger_hash else "   No ledger hash")
-    
-    # Test 4: ATLAS querying (should work)
-    print("\n✅ Test 4: ATLAS query")
-    request = BrokeredRequest(
-        request_id="req-004",
-        agent_id="ATLAS",
-        request_type=RequestType.QUERY,
-        payload={"query": "Get system status"}
-    )
-    response = broker.broker_request(request)
-    print(f"   Status: {response.status}")
-    
-    # Test 5: System overload blocking execution
-    print("\n❌ Test 5: System overload blocks execution")
-    broker.set_system_load(0.90)  # Simulate high load
-    request = BrokeredRequest(
-        request_id="req-005",
-        agent_id="CURSOR",
-        request_type=RequestType.EXECUTE,
-        payload={"task": "Critical fix"}
-    )
-    response = broker.broker_request(request)
-    print(f"   Status: {response.status}")
-    print(f"   Reason: {response.denial_reason}")
-    broker.set_system_load(0.3)  # Reset
-    
-    # Test 6: Negative MIC balance
-    print("\n❌ Test 6: Negative MIC balance blocks action")
-    broker.ledger.set_mic_balance("AUREA", -10.0)
-    request = BrokeredRequest(
-        request_id="req-006",
-        agent_id="AUREA",
-        request_type=RequestType.ARCHITECT,
-        payload={"task": "Design feature"}
-    )
-    response = broker.broker_request(request)
-    print(f"   Status: {response.status}")
-    print(f"   Reason: {response.denial_reason}")
+    import asyncio
+    asyncio.run(run_tests())
     
     # Print audit log
     print("\n" + "=" * 70)

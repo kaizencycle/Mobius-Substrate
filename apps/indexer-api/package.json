@@ -4,10 +4,12 @@
   "description": "MIC Indexer - MIC economy indexing and attestation storage",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && npm run build:frontend",
+    "build:frontend": "cd frontend && npm install && npm run build",
     "dev": "tsc --watch && node dist/index.js",
+    "dev:frontend": "cd frontend && npm run dev",
     "start": "node dist/index.js",
-    "clean": "rm -rf dist",
+    "clean": "rm -rf dist frontend/.next",
     "type-check": "tsc --noEmit",
     "lint": "eslint src --ext .ts",
     "test": "jest --passWithNoTests"

@@ -5,9 +5,12 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsc -p tsconfig.json",
+    "build": "tsc -p tsconfig.json && npm run build:frontend",
+    "build:frontend": "cd frontend && npm install && npm run build",
     "start": "node dist/index.js",
     "dev": "ts-node-dev src/index.ts",
+    "dev:frontend": "cd frontend && npm run dev",
+    "clean": "rm -rf dist frontend/.next",
     "lint": "eslint src --ext .ts"
   },
   "dependencies": {

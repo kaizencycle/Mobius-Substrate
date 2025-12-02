@@ -1,0 +1,5 @@
+body{margin:0;background:#0b0d10;color:#eaeff2;font-family:system-ui}
+#hud{position:fixed;left:8px;top:8px;background:#12161b;padding:8px 10px;border-radius:8px;border:1px solid #1d232a;font-size:14px;z-index:5}
+.btn{padding:6px 10px;margin:4px;border-radius:6px;border:1px solid #1d232a;cursor:pointer}
+.btn.primary{background:#1b263b;color:#fff}
+canvas{display:block;margin:0 auto}

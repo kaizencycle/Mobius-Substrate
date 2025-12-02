@@ -4,10 +4,13 @@
   "description": "Thought Broker - Multi-LLM consensus engine for Mobius Systems",
   "main": "dist/server.js",
   "scripts": {
-    "build": "node ../../scripts/build-broker-deps.js && tsc",
-    "dev": "tsc --watch && node dist/server.js",
+    "build": "node ../../scripts/build-broker-deps.js && tsc && npm run build:frontend",
+    "build:frontend": "cd frontend && npm run build",
+    "build:server": "node ../../scripts/build-broker-deps.js && tsc",
+    "dev": "tsc --watch & node dist/server.js",
+    "dev:frontend": "cd frontend && npm run dev",
     "start": "node dist/server.js",
-    "clean": "rm -rf dist",
+    "clean": "rm -rf dist frontend/.next",
     "type-check": "tsc --noEmit",
     "lint": "eslint src --ext .ts",
     "test": "jest --passWithNoTests"
@@ -64,5 +67,3 @@
     "typescript": "^5.0.0"
   }
 }
-
-
