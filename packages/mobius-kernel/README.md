@@ -1,6 +1,6 @@
-# Mobius Kernel v1.1.1
+# Mobius Kernel v1.1.2
 
-Constitutional enforcement layer for Kaizen OS / Mobius Agent Stack.
+Constitutional enforcement layer for Mobius Systems / Mobius Agent Stack.
 
 ## Core Principle
 
@@ -25,7 +25,7 @@ from mobius_kernel import MobiusKernel, ThoughtBrokerKernelIntegration
 from mobius_kernel import BrokeredRequest, RequestType
 
 # Initialize kernel
-kernel = MobiusKernel("config/agents/mobius_agent_stack.v1.1.1.json")
+kernel = MobiusKernel("config/agents/mobius_agent_stack.v1.1.2.json")
 
 # Initialize broker
 broker = ThoughtBrokerKernelIntegration(kernel)
@@ -56,6 +56,14 @@ print(f"Ledger Hash: {response.ledger_hash}")
 ### Critical Constraint: DAEDALUS
 
 **DAEDALUS cannot trigger executors.** This is HARDCODED in both the kernel and broker to prevent circular authority loops where the consensus mediator could directly trigger execution without Architect approval.
+
+## v1.1.2 Changes (C-153)
+
+- ✅ **Real Ed25519 cryptographic attestation** (no more mock signatures)
+- ✅ **DAEDALUS consensus algorithm** with explicit 67% quorum
+- ✅ **Self-reflection framework** for safe AGI emergence testing
+- ✅ **Kernel bypass vulnerability fixed** (CVSS 9.8 → 0)
+- ✅ **Constitutional amendments codified** (C-001 through C-005)
 
 ## v1.1.1 Changes
 
