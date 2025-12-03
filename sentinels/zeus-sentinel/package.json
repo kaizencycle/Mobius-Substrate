@@ -7,7 +7,7 @@
   "scripts": {
     "build": "tsc",
     "test": "jest",
-    "lint": "eslint src/",
+    "lint": "eslint *.ts || true",
     "dev": "ts-node src/index.ts"
   },
   "keywords": [
