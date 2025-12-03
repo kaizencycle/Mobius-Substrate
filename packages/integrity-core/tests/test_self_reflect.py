@@ -8,7 +8,6 @@ Cycle: C-153
 """
 
 import pytest
-import asyncio
 from datetime import datetime
 
 import sys

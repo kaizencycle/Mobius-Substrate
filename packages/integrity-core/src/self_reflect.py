@@ -22,8 +22,6 @@ Version: 1.0.0
 """
 
 import asyncio
-import hashlib
-import json
 from typing import Dict, Any, List, Optional
 from dataclasses import dataclass, asdict
 from datetime import datetime, timezone
@@ -352,8 +350,18 @@ class SelfReflectingLoop:
         - Change affects >10% of codebase
         - Change touches protected paths
         """
-        # Simple line count check for now
-        lines = diff.count('\n') if diff else 0
+        # Simple line count check for anti-nuke protection
+        lines_changed = diff.count('\n') if diff else 0
+        
+        # Placeholder: Total codebase lines for percentage calculation
+        # In production, this should come from repo stats
+        total_codebase_lines = 10000  # Conservative estimate
+        change_percent = (lines_changed / total_codebase_lines * 100) if total_codebase_lines > 0 else 0
+        
+        if change_percent > self.config.MAX_FILE_CHANGE_PERCENT:
+            print(f"⚠️  Change affects {change_percent:.2f}% of codebase ({lines_changed} lines)")
+            print(f"   Maximum allowed: {self.config.MAX_FILE_CHANGE_PERCENT}%")
+            return False
         
         # Protected path check
         for protected in self.config.PROTECTED_PATHS:
@@ -517,8 +525,6 @@ async def test_high_stakes():
 # ============================================================================
 
 if __name__ == "__main__":
-    import asyncio
-    
     print("=" * 70)
     print("SELF-REFLECTION MODULE TEST SUITE")
     print("Mobius Systems v1.1.2 - Cycle C-153")
