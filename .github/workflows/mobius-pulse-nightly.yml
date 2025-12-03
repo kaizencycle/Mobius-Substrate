@@ -1,6 +1,8 @@
 name: Mobius Pulse Nightly
 
 on:
+  push:
+    branches: [ main ]
   schedule:
     # 04:00 UTC every day (tweak as you like)
     - cron: "0 4 * * *"
@@ -9,6 +11,7 @@ on:
 jobs:
   mobius-pulse:
     runs-on: ubuntu-latest
+    continue-on-error: true  # Telemetry must not block PRs or main branch
 
     env:
       # You can keep these as defaults or override in the script

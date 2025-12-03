@@ -10,8 +10,26 @@ name: CI (Unified)
 on:
   push:
     branches: [main, dev]
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+      - 'design/**'
+      - '.github/ISSUE_TEMPLATE/**'
+      - '**.png'
+      - '**.jpg'
+      - '**.jpeg'
+      - '**.svg'
   pull_request:
     branches: [main, dev]
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+      - 'design/**'
+      - '.github/ISSUE_TEMPLATE/**'
+      - '**.png'
+      - '**.jpg'
+      - '**.jpeg'
+      - '**.svg'
 
 jobs:
   # ============================================
