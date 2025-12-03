@@ -1,0 +1,106 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mobius.systems/schemas/citystate-gdp-response.json",
+  "title": "City-State GDP Response",
+  "description": "Response schema for City-State GDP calculation in the Mobius HIVE system",
+  "type": "object",
+  "properties": {
+    "citystate_name": {
+      "type": "string",
+      "description": "Name or unique identifier of the City-State",
+      "examples": ["Aurora", "Helix", "Solace"]
+    },
+    "v_ks_usd": {
+      "type": "number",
+      "description": "Total KS transaction value in USD (V_KS component)",
+      "minimum": 0,
+      "examples": [100000000, 60000000, 67500000]
+    },
+    "v_mic_inflows_usd": {
+      "type": "number",
+      "description": "Total MIC inflow value in USD (V_MIC component)",
+      "minimum": 0,
+      "examples": [30000000, 45600000, 22800000]
+    },
+    "gdp_state_usd": {
+      "type": "number",
+      "description": "Total digital GDP of the City-State in USD (V_KS + V_MIC_inflows)",
+      "minimum": 0,
+      "examples": [130000000, 105600000, 90300000]
+    },
+    "ks_share_percent": {
+      "type": "number",
+      "description": "Percentage of GDP from KS transactions",
+      "minimum": 0,
+      "maximum": 100,
+      "examples": [76.92, 56.82, 74.75]
+    },
+    "mic_share_percent": {
+      "type": "number",
+      "description": "Percentage of GDP from MIC inflows",
+      "minimum": 0,
+      "maximum": 100,
+      "examples": [23.08, 43.18, 25.25]
+    },
+    "economy_type": {
+      "type": "string",
+      "description": "Classification of the City-State's economic structure",
+      "enum": [
+        "participation-heavy",
+        "infrastructure-heavy",
+        "balanced"
+      ],
+      "examples": ["participation-heavy", "balanced", "infrastructure-heavy"]
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when the GDP calculation was performed",
+      "examples": ["2025-12-03T13:00:00Z"]
+    },
+    "calculation_metadata": {
+      "type": "object",
+      "description": "Additional metadata about the calculation",
+      "properties": {
+        "period": {
+          "type": "string",
+          "enum": ["annual", "quarterly", "monthly"]
+        },
+        "epoch": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "formula_version": {
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+\\.\\d+$",
+          "default": "1.0.0"
+        }
+      }
+    }
+  },
+  "required": [
+    "citystate_name",
+    "v_ks_usd",
+    "v_mic_inflows_usd",
+    "gdp_state_usd",
+    "timestamp"
+  ],
+  "additionalProperties": false,
+  "examples": [
+    {
+      "citystate_name": "Aurora",
+      "v_ks_usd": 100000000.0,
+      "v_mic_inflows_usd": 30000000.0,
+      "gdp_state_usd": 130000000.0,
+      "ks_share_percent": 76.92,
+      "mic_share_percent": 23.08,
+      "economy_type": "participation-heavy",
+      "timestamp": "2025-12-03T13:00:00Z",
+      "calculation_metadata": {
+        "period": "annual",
+        "epoch": 27,
+        "formula_version": "1.0.0"
+      }
+    }
+  ]
+}

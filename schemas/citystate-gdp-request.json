@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mobius.systems/schemas/citystate-gdp-request.json",
+  "title": "City-State GDP Request",
+  "description": "Request schema for calculating City-State GDP in the Mobius HIVE system",
+  "type": "object",
+  "properties": {
+    "citystate_name": {
+      "type": "string",
+      "description": "Name or unique identifier of the City-State",
+      "minLength": 1,
+      "maxLength": 100,
+      "examples": ["Aurora", "Helix", "Solace"]
+    },
+    "mic_price_usd": {
+      "type": "number",
+      "description": "Current MIC (Mobius Integrity Credits) price in USD",
+      "minimum": 0,
+      "exclusiveMinimum": true,
+      "examples": [120000, 60000, 20000]
+    },
+    "ks_price_usd": {
+      "type": "number",
+      "description": "Current KS (Kaizen Shards) price in USD",
+      "minimum": 0,
+      "exclusiveMinimum": true,
+      "examples": [100, 60, 12]
+    },
+    "n_tx": {
+      "type": "integer",
+      "description": "Number of KS transactions in the measurement period (typically annual)",
+      "minimum": 0,
+      "examples": [5000000, 3000000, 1000000]
+    },
+    "avg_ks_per_tx": {
+      "type": "number",
+      "description": "Average KS amount per transaction",
+      "minimum": 0,
+      "examples": [0.2, 0.25, 0.15]
+    },
+    "mic_grants_per_year": {
+      "type": "number",
+      "description": "MIC allocated to this City-State as grants per year",
+      "minimum": 0,
+      "examples": [200, 300, 150]
+    },
+    "mic_staking_per_year": {
+      "type": "number",
+      "description": "MIC earned from staking rewards attributed to this City-State per year",
+      "minimum": 0,
+      "examples": [50, 80, 40]
+    },
+    "mic_other_per_year": {
+      "type": "number",
+      "description": "Other MIC inflows per year (optional)",
+      "minimum": 0,
+      "default": 0,
+      "examples": [0, 25, 100]
+    },
+    "period": {
+      "type": "string",
+      "description": "Time period for the calculation (optional metadata)",
+      "enum": ["annual", "quarterly", "monthly"],
+      "default": "annual"
+    },
+    "epoch": {
+      "type": "integer",
+      "description": "Epoch number for historical tracking (optional)",
+      "minimum": 1,
+      "examples": [27, 28, 29]
+    }
+  },
+  "required": [
+    "citystate_name",
+    "mic_price_usd",
+    "ks_price_usd",
+    "n_tx",
+    "avg_ks_per_tx",
+    "mic_grants_per_year",
+    "mic_staking_per_year"
+  ],
+  "additionalProperties": false,
+  "examples": [
+    {
+      "citystate_name": "Aurora",
+      "mic_price_usd": 120000,
+      "ks_price_usd": 100,
+      "n_tx": 5000000,
+      "avg_ks_per_tx": 0.2,
+      "mic_grants_per_year": 200,
+      "mic_staking_per_year": 50,
+      "mic_other_per_year": 0,
+      "period": "annual",
+      "epoch": 27
+    }
+  ]
+}
