@@ -34,14 +34,26 @@ Defines Elder compensation, GI obligations, governance parameters.
 Predictive integrity engine for evaluating proposed actions and changes.  
 *Status: Draft*
 
+### RFC-0007 — Citizen Identity & Reputation  
+Human identity, reputation system, civic progression, privacy preservation.  
+*Status: Draft*
+
+### RFC-0008 — Agent Sovereignty Levels  
+AI agent classification, autonomy levels, promotion/demotion mechanics.  
+*Status: Draft*
+
+### RFC-0009 — HIVE City-State Protocol  
+City-state governance, economic model, Elder Trials, inter-state diplomacy.  
+*Status: Draft*
+
 ---
 
 ## 📘 Upcoming RFCs (Planned)
 
-- RFC-0007 — Citizen Identity & Reputation Model  
-- RFC-0008 — Agent Sovereignty Levels  
-- RFC-0009 — HIVE City-State Economic Protocol  
 - RFC-0010 — Emergency Integrity Overrides  
+- RFC-0011 — Citizen Reputation Graph  
+- RFC-0012 — Cathedral Constitution  
+- RFC-0013 — Cross-Chain Integration  
 
 ---
 
