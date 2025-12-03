@@ -6,12 +6,23 @@ on:
   pull_request:
     branches: [ main, dev ]
   schedule:
-    - cron: '0 0 * * 0' # Weekly on Sunday
+    - cron: '0 4 * * 1' # Weekly Monday at 04:00 UTC
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  contents: read
+  security-events: write
 
 jobs:
   analyze:
     name: Analyze
     runs-on: ubuntu-latest
+    timeout-minutes: 45
+    # Only run CodeQL on PRs from this repo, not forks
+    if: |
+      github.event_name != 'pull_request' ||
+      github.event.pull_request.head.repo.full_name == github.repository
     permissions:
       actions: read
       contents: read

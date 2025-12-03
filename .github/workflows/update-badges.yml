@@ -1,5 +1,7 @@
 name: update-badges
 on:
+  push:
+    branches: [ main ]
   schedule:
     - cron: "*/15 * * * *"   # every 15 minutes
   workflow_dispatch: {}
@@ -10,6 +12,7 @@ permissions:
 jobs:
   refresh:
     runs-on: ubuntu-latest
+    continue-on-error: true  # Badges are nice-to-have, never a gate
     steps:
       - name: Checkout
         uses: actions/checkout@v4

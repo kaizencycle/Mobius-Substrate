@@ -10,8 +10,26 @@ name: CI (Unified)
 on:
   push:
     branches: [main, dev]
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+      - 'design/**'
+      - '.github/ISSUE_TEMPLATE/**'
+      - '**.png'
+      - '**.jpg'
+      - '**.jpeg'
+      - '**.svg'
   pull_request:
     branches: [main, dev]
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+      - 'design/**'
+      - '.github/ISSUE_TEMPLATE/**'
+      - '**.png'
+      - '**.jpg'
+      - '**.jpeg'
+      - '**.svg'
 
 jobs:
   # ============================================
@@ -78,15 +96,9 @@ jobs:
   portal-validation:
     name: Portal Validation
     runs-on: ubuntu-latest
+    # Check if portal files were changed using GitHub API
     if: |
-      github.event_name == 'pull_request' && (
-        contains(github.event.pull_request.changed_files, 'apps/portal/') ||
-        contains(github.event.pull_request.changed_files, '.github/workflows/portal-ci.yml')
-      ) || 
-      github.event_name == 'push' && (
-        contains(github.event.head_commit.modified, 'apps/portal/') ||
-        contains(github.event.head_commit.modified, '.github/workflows/portal-ci.yml')
-      )
+      github.event_name == 'pull_request' || github.event_name == 'push'
     
     defaults:
       run:
@@ -95,6 +107,25 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Need full history for diff
+      
+      - name: Check if portal files changed
+        id: check-portal
+        run: |
+          if [ "${{ github.event_name }}" == "pull_request" ]; then
+            # For PRs, fetch base branch and check files in the PR
+            git fetch origin ${{ github.base_ref }}:${{ github.base_ref }} || true
+            CHANGED=$(git diff --name-only ${{ github.base_ref }}...HEAD | grep -E '^(apps/portal/|\.github/workflows/portal-ci\.yml)' || true)
+          else
+            # For pushes, check files in the last commit
+            CHANGED=$(git diff --name-only HEAD~1...HEAD | grep -E '^(apps/portal/|\.github/workflows/portal-ci\.yml)' || true)
+          fi
+          if [ -n "$CHANGED" ]; then
+            echo "changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "changed=false" >> $GITHUB_OUTPUT
+          fi
       
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -104,15 +135,19 @@ jobs:
           cache-dependency-path: 'apps/portal/package-lock.json'
       
       - name: Install dependencies
+        if: steps.check-portal.outputs.changed == 'true'
         run: npm ci
       
       - name: Run type check
+        if: steps.check-portal.outputs.changed == 'true'
         run: npx tsc --noEmit
       
       - name: Run linting
+        if: steps.check-portal.outputs.changed == 'true'
         run: npm run lint
       
       - name: Build application
+        if: steps.check-portal.outputs.changed == 'true'
         run: npm run build
         env:
           NEXT_PUBLIC_API_BASE: https://api.kaizen.os
@@ -135,32 +170,46 @@ jobs:
   spec-validation:
     name: Spec Validation
     runs-on: ubuntu-latest
+    # Check if spec files were changed using git diff
     if: |
-      github.event_name == 'pull_request' && (
-        contains(github.event.pull_request.changed_files, 'docs/schemas/') ||
-        contains(github.event.pull_request.changed_files, 'apps/') && contains(github.event.pull_request.changed_files, 'openapi.yaml') ||
-        contains(github.event.pull_request.changed_files, 'docs/specs/')
-      ) ||
-      github.event_name == 'push' && (
-        contains(github.event.head_commit.modified, 'docs/schemas/') ||
-        contains(github.event.head_commit.modified, 'openapi.yaml') ||
-        contains(github.event.head_commit.modified, 'docs/specs/')
-      )
+      github.event_name == 'pull_request' || github.event_name == 'push'
     
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Need full history for diff
+
+      - name: Check if spec files changed
+        id: check-spec
+        run: |
+          if [ "${{ github.event_name }}" == "pull_request" ]; then
+            # For PRs, fetch base branch and check files in the PR
+            git fetch origin ${{ github.base_ref }}:${{ github.base_ref }} || true
+            CHANGED=$(git diff --name-only ${{ github.base_ref }}...HEAD | grep -E '^(docs/schemas/|docs/specs/|.*openapi\.yaml)' || true)
+          else
+            # For pushes, check files in the last commit
+            CHANGED=$(git diff --name-only HEAD~1...HEAD | grep -E '^(docs/schemas/|docs/specs/|.*openapi\.yaml)' || true)
+          fi
+          if [ -n "$CHANGED" ]; then
+            echo "changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "changed=false" >> $GITHUB_OUTPUT
+          fi
 
       - name: Setup Node.js
+        if: steps.check-spec.outputs.changed == 'true'
         uses: actions/setup-node@v4
         with:
           node-version: '20'
 
       - name: Install validators
+        if: steps.check-spec.outputs.changed == 'true'
         run: |
           npm i -g ajv-cli@5 @redocly/cli@1
 
       - name: Validate JSON Schemas
+        if: steps.check-spec.outputs.changed == 'true'
         run: |
           if [ -f "docs/schemas/attestation.schema.json" ]; then
             ajv compile -s docs/schemas/attestation.schema.json
@@ -179,6 +228,7 @@ jobs:
           fi
 
       - name: Lint OpenAPI
+        if: steps.check-spec.outputs.changed == 'true'
         run: |
           if [ -f "apps/ledger-api/openapi.yaml" ]; then
             redocly lint apps/ledger-api/openapi.yaml
