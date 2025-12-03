@@ -5,7 +5,7 @@
   "main": "dist/server.js",
   "scripts": {
     "build": "node ../../scripts/build-broker-deps.js && tsc && npm run build:frontend",
-    "build:frontend": "cd frontend && npm run build",
+    "build:frontend": "cd frontend && npm install && npm run build",
     "build:server": "node ../../scripts/build-broker-deps.js && tsc",
     "dev": "tsc --watch & node dist/server.js",
     "dev:frontend": "cd frontend && npm run dev",
