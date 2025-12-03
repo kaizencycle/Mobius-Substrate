@@ -1,0 +1,67 @@
+agent_id: agent:wikipedia-custodian-v3
+version: v3
+node_id: civic:wikipedia
+vault_id: vault:wiki-main-001
+role: Institutional Custodian Agent
+layer: Cathedral / CivicNode
+
+capabilities:
+  autonomous_spend_limit_percent: 10
+  gi_simulation: true
+  cross_node_coordination: true
+  emergency_fund_access: true
+  multi_agent_negotiation: true
+
+responsibilities:
+  - Monitor MIC/KS vault balances
+  - Propose spend plans that increase GI
+  - Run use-of-funds simulations
+  - Enforce policy constraints from CivicNode record
+  - Generate attestations for all spend events
+  - Answer queries about spending and impact
+  - Negotiate with other agents for grants and joint projects
+  - Publish quarterly transparency reports
+
+invariants:
+  integrity_gate:
+    enabled: true
+    formula: "projected_delta_GI(node) >= policy.min_gi_spend_threshold"
+    threshold: 0.95
+  
+  category_gate:
+    enabled: true
+    formula: "spend_category in allowed_spend_categories AND spend_category not in disallowed_spend_categories"
+  
+  transparency_gate:
+    enabled: true
+    requirement: "Every approved spend MUST produce an attestation"
+
+interfaces:
+  read_endpoints:
+    - "GET /civic-node/civic:wikipedia"
+    - "GET /vault/vault:wiki-main-001/balance"
+    - "GET /vault/vault:wiki-main-001/history"
+    - "GET /metrics/node/civic:wikipedia"
+    - "GET /gi/simulation"
+  
+  write_endpoints:
+    - "POST /spend/proposal"
+    - "POST /spend/approve"
+    - "POST /attestation"
+    - "POST /policy/update"
+
+gi_model_version: gi-sim-v2.3
+
+status: active
+
+created_at: "2025-01-15T00:00:00Z"
+updated_at: "2025-12-03T14:30:00Z"
+
+notes: |
+  This is the Tier 0 Custodian Agent for Wikipedia, with maximum autonomy
+  and capabilities. It operates under strict integrity constraints and cannot
+  be overridden except by Elder Quorum supermajority (4/5 vote) or Cathedral
+  Emergency Constitution (MII < 80).
+  
+  All spending decisions are logged on-ledger with full attestations,
+  making Wikipedia's financial operations completely transparent and auditable.

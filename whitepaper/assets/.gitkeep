@@ -1,0 +1,5 @@
+# Assets Directory
+
+This directory will contain exported PNG versions of diagrams for use in publications and presentations.
+
+Diagram sources are in `/whitepaper/diagrams/` (ASCII format).

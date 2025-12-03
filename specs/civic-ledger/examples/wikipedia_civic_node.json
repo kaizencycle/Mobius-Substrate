@@ -1,0 +1,46 @@
+{
+  "node_id": "civic:wikipedia",
+  "display_name": "Wikipedia Foundation",
+  "domain": "wikipedia.org",
+  "vault_id": "vault:wiki-main-001",
+  "custodian_agent_id": "agent:wikipedia-custodian-v3",
+  "gi_score": 0.992,
+  "category": "knowledge",
+  "tier": 0,
+  "weight": 2.0,
+  "jurisdiction": "Global",
+  "contact": {
+    "website": "https://wikimediafoundation.org",
+    "email": "contact@wikimedia.org",
+    "public_key": "ed25519:ABC123DEF456..."
+  },
+  "policy": {
+    "min_gi_spend_threshold": 0.95,
+    "allowed_spend_categories": [
+      "infrastructure",
+      "moderation",
+      "archival",
+      "translator_stipends",
+      "community_support",
+      "open_source_maintenance",
+      "security"
+    ],
+    "disallowed_spend_categories": [
+      "lobbying",
+      "political_campaigns",
+      "advertising",
+      "executive_bonuses"
+    ]
+  },
+  "metrics": {
+    "epoch_usage_events": 8750000,
+    "lifetime_usage_events": 125000000000,
+    "epoch_dividend_received_mic": 45000,
+    "lifetime_dividend_received_mic": 2500000,
+    "epoch_dividend_received_ks": 1200000,
+    "lifetime_dividend_received_ks": 85000000
+  },
+  "status": "active",
+  "created_at": "2025-01-15T00:00:00Z",
+  "updated_at": "2025-12-03T14:30:00Z"
+}
