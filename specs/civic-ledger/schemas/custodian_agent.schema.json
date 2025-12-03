@@ -1,0 +1,200 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mobius.systems/schemas/custodian_agent.json",
+  "type": "object",
+  "title": "CustodianAgent",
+  "description": "AI agent that manages a CivicNode's vault and spending under strict integrity constraints.",
+  "properties": {
+    "agent_id": {
+      "type": "string",
+      "description": "Unique identifier for the custodian agent.",
+      "examples": ["agent:wikipedia-custodian-v1"],
+      "pattern": "^agent:[a-z0-9-]+$"
+    },
+    "version": {
+      "type": "string",
+      "description": "Agent version (v1, v2, v3 corresponding to tier capabilities).",
+      "examples": ["v1", "v2", "v3"],
+      "pattern": "^v[0-9]+$"
+    },
+    "node_id": {
+      "type": "string",
+      "description": "Associated CivicNode identifier.",
+      "examples": ["civic:wikipedia"],
+      "pattern": "^civic:[a-z0-9-]+$"
+    },
+    "vault_id": {
+      "type": "string",
+      "description": "Associated Vault identifier.",
+      "examples": ["vault:wiki-main-001"],
+      "pattern": "^vault:[a-z0-9-]+$"
+    },
+    "role": {
+      "type": "string",
+      "description": "Role description.",
+      "default": "Institutional Custodian Agent"
+    },
+    "layer": {
+      "type": "string",
+      "description": "Operating layer in Mobius architecture.",
+      "examples": ["Cathedral / CivicNode"]
+    },
+    "capabilities": {
+      "type": "object",
+      "description": "Agent capabilities based on tier/version.",
+      "properties": {
+        "autonomous_spend_limit_percent": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Percentage of vault that can be autonomously spent per epoch.",
+          "examples": [1, 2, 5, 10]
+        },
+        "gi_simulation": {
+          "type": "boolean",
+          "description": "Whether agent can run GI simulations."
+        },
+        "cross_node_coordination": {
+          "type": "boolean",
+          "description": "Whether agent can coordinate with other CivicNodes."
+        },
+        "emergency_fund_access": {
+          "type": "boolean",
+          "description": "Whether agent has access to emergency reserves."
+        },
+        "multi_agent_negotiation": {
+          "type": "boolean",
+          "description": "Whether agent can negotiate complex multi-party arrangements."
+        }
+      }
+    },
+    "responsibilities": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of agent responsibilities.",
+      "examples": [
+        [
+          "Monitor vault balances",
+          "Propose spend plans",
+          "Run GI impact simulations",
+          "Enforce policy constraints",
+          "Emit spend attestations",
+          "Generate transparency reports"
+        ]
+      ]
+    },
+    "invariants": {
+      "type": "object",
+      "description": "Core invariants that cannot be violated.",
+      "properties": {
+        "integrity_gate": {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            },
+            "formula": {
+              "type": "string",
+              "examples": ["projected_delta_GI(node) >= policy.min_gi_spend_threshold"]
+            }
+          },
+          "required": ["enabled"]
+        },
+        "category_gate": {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            },
+            "formula": {
+              "type": "string",
+              "examples": [
+                "spend_category in allowed_spend_categories AND spend_category not in disallowed_spend_categories"
+              ]
+            }
+          },
+          "required": ["enabled"]
+        },
+        "transparency_gate": {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            },
+            "requirement": {
+              "type": "string",
+              "examples": ["Every approved spend MUST produce an attestation"]
+            }
+          },
+          "required": ["enabled"]
+        }
+      }
+    },
+    "interfaces": {
+      "type": "object",
+      "description": "API endpoints and interfaces exposed by the agent.",
+      "properties": {
+        "read_endpoints": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "examples": [
+            [
+              "GET /civic-node/{node_id}",
+              "GET /vault/{vault_id}/balance",
+              "GET /vault/{vault_id}/history",
+              "GET /metrics/node/{node_id}",
+              "GET /gi/simulation"
+            ]
+          ]
+        },
+        "write_endpoints": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "examples": [
+            [
+              "POST /spend/proposal",
+              "POST /spend/approve",
+              "POST /attestation",
+              "POST /policy/update"
+            ]
+          ]
+        }
+      }
+    },
+    "gi_model_version": {
+      "type": "string",
+      "description": "Version of GI-Sim model used by this agent.",
+      "examples": ["gi-sim-v2.3"],
+      "pattern": "^gi-sim-v[0-9]+\\.[0-9]+$"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["active", "suspended", "retired", "emergency"],
+      "description": "Current operational status of the agent."
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "agent_id",
+    "version",
+    "node_id",
+    "vault_id",
+    "capabilities",
+    "invariants",
+    "gi_model_version",
+    "status"
+  ]
+}

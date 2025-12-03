@@ -1,0 +1,176 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mobius.systems/schemas/vault.json",
+  "type": "object",
+  "title": "Vault",
+  "description": "Institutional treasury for a CivicNode, holding MIC and KS balances.",
+  "properties": {
+    "vault_id": {
+      "type": "string",
+      "description": "Unique identifier for the vault.",
+      "examples": ["vault:wiki-main-001"],
+      "pattern": "^vault:[a-z0-9-]+$"
+    },
+    "node_id": {
+      "type": "string",
+      "description": "Associated CivicNode identifier.",
+      "examples": ["civic:wikipedia"],
+      "pattern": "^civic:[a-z0-9-]+$"
+    },
+    "balances": {
+      "type": "object",
+      "description": "Current token balances.",
+      "properties": {
+        "mic": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Mobius Integrity Credits balance."
+        },
+        "ks": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Kaizen Shards balance."
+        }
+      },
+      "required": ["mic", "ks"]
+    },
+    "limits": {
+      "type": "object",
+      "description": "Vault capacity limits based on tier.",
+      "properties": {
+        "max_mic": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Maximum MIC capacity (null = unlimited for Tier 0)."
+        },
+        "max_ks": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Maximum KS capacity."
+        }
+      }
+    },
+    "access_control": {
+      "type": "object",
+      "description": "Who/what can access this vault.",
+      "properties": {
+        "custodian_agent_id": {
+          "type": "string",
+          "description": "Primary Custodian Agent with spending authority.",
+          "pattern": "^agent:[a-z0-9-]+$"
+        },
+        "authorized_elders": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "List of Elder IDs with oversight access."
+        },
+        "emergency_access": {
+          "type": "boolean",
+          "description": "Whether Cathedral emergency access is enabled."
+        }
+      },
+      "required": ["custodian_agent_id"]
+    },
+    "transaction_history": {
+      "type": "array",
+      "description": "Recent transaction history (full history on-ledger).",
+      "items": {
+        "type": "object",
+        "properties": {
+          "tx_id": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["deposit", "withdrawal", "transfer", "burn"]
+          },
+          "amount_mic": {
+            "type": "number"
+          },
+          "amount_ks": {
+            "type": "number"
+          },
+          "category": {
+            "type": "string"
+          },
+          "attestation_id": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": ["tx_id", "type", "timestamp"]
+      }
+    },
+    "metrics": {
+      "type": "object",
+      "description": "Vault operational metrics.",
+      "properties": {
+        "total_received_mic": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Lifetime MIC received."
+        },
+        "total_received_ks": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Lifetime KS received."
+        },
+        "total_spent_mic": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Lifetime MIC spent."
+        },
+        "total_spent_ks": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Lifetime KS spent."
+        },
+        "epoch_inflows_mic": {
+          "type": "number",
+          "minimum": 0,
+          "description": "MIC received this epoch."
+        },
+        "epoch_inflows_ks": {
+          "type": "number",
+          "minimum": 0,
+          "description": "KS received this epoch."
+        },
+        "epoch_outflows_mic": {
+          "type": "number",
+          "minimum": 0,
+          "description": "MIC spent this epoch."
+        },
+        "epoch_outflows_ks": {
+          "type": "number",
+          "minimum": 0,
+          "description": "KS spent this epoch."
+        }
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": ["active", "frozen", "emergency", "retired"],
+      "description": "Current vault operational status."
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "vault_id",
+    "node_id",
+    "balances",
+    "access_control",
+    "status"
+  ]
+}

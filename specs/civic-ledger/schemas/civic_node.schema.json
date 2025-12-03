@@ -1,0 +1,200 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mobius.systems/schemas/civic_node.json",
+  "type": "object",
+  "title": "CivicNode",
+  "description": "Registered institutional node in the Mobius Cathedral (e.g., Wikipedia, NASA, open-source foundations).",
+  "properties": {
+    "node_id": {
+      "type": "string",
+      "description": "Unique identifier for the civic node (on-ledger).",
+      "examples": ["civic:wikipedia", "civic:nasa", "civic:unesco"],
+      "pattern": "^civic:[a-z0-9-]+$"
+    },
+    "display_name": {
+      "type": "string",
+      "description": "Human-readable name of the institution.",
+      "examples": ["Wikipedia Foundation", "NASA", "Wikimedia Deutschland"],
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "domain": {
+      "type": "string",
+      "description": "Primary web domain for source attribution and validation.",
+      "examples": ["wikipedia.org", "nasa.gov"],
+      "format": "hostname"
+    },
+    "vault_id": {
+      "type": "string",
+      "description": "Treasury wallet ID for MIC/KS flows.",
+      "examples": ["vault:wiki-main-001"],
+      "pattern": "^vault:[a-z0-9-]+$"
+    },
+    "custodian_agent_id": {
+      "type": "string",
+      "description": "ID of the AI Custodian Agent that acts on behalf of this node.",
+      "examples": ["agent:wikipedia-custodian-v1"],
+      "pattern": "^agent:[a-z0-9-]+$"
+    },
+    "gi_score": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Global Integrity score (0–1) for this node, updated periodically.",
+      "examples": [0.992]
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "knowledge",
+        "research",
+        "education",
+        "civic",
+        "infrastructure",
+        "governance",
+        "media",
+        "other"
+      ],
+      "description": "Primary role of the institution in the Cathedral."
+    },
+    "tier": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 3,
+      "description": "Governance tier (0=highest, 3=lowest). See RFC-0004.",
+      "examples": [0, 1, 2, 3]
+    },
+    "weight": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Weight multiplier used in the Integrity Dividend Mechanism (IDM).",
+      "examples": [1.2, 1.5, 2.0]
+    },
+    "jurisdiction": {
+      "type": "string",
+      "description": "Country/region or legal umbrella the institution operates under.",
+      "examples": ["US", "EU", "Global"]
+    },
+    "contact": {
+      "type": "object",
+      "properties": {
+        "website": {
+          "type": "string",
+          "format": "uri"
+        },
+        "email": {
+          "type": "string",
+          "format": "email"
+        },
+        "public_key": {
+          "type": "string",
+          "description": "Optional public key for signed attestations / off-chain coordination."
+        }
+      },
+      "required": ["website"]
+    },
+    "policy": {
+      "type": "object",
+      "description": "Node-specific policy for how funds may be used.",
+      "properties": {
+        "min_gi_spend_threshold": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Minimum projected GI uplift required for spend approvals.",
+          "examples": [0.95],
+          "default": 0.95
+        },
+        "allowed_spend_categories": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "infrastructure",
+              "moderation",
+              "research",
+              "education_outreach",
+              "archival",
+              "translator_stipends",
+              "community_support",
+              "open_source_maintenance",
+              "security",
+              "emergency_response"
+            ]
+          },
+          "description": "Whitelisted categories for Custodian Agent spend proposals."
+        },
+        "disallowed_spend_categories": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Negative filter for spending (e.g., lobbying, political campaigns).",
+          "examples": [["lobbying", "political_campaigns", "advertising"]]
+        }
+      },
+      "required": ["min_gi_spend_threshold"]
+    },
+    "metrics": {
+      "type": "object",
+      "description": "Operational / usage metrics relevant for IDM and governance.",
+      "properties": {
+        "epoch_usage_events": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of AI attribution events referencing this node in the current epoch."
+        },
+        "lifetime_usage_events": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Total attribution events over lifetime."
+        },
+        "epoch_dividend_received_mic": {
+          "type": "number",
+          "minimum": 0,
+          "description": "MIC received in the current epoch."
+        },
+        "lifetime_dividend_received_mic": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Cumulative MIC received by this node."
+        },
+        "epoch_dividend_received_ks": {
+          "type": "number",
+          "minimum": 0,
+          "description": "KS received in the current epoch."
+        },
+        "lifetime_dividend_received_ks": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Cumulative KS received by this node."
+        }
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": ["active", "suspended", "retired", "probationary"],
+      "description": "Whether the civic node is currently eligible to receive dividends."
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "node_id",
+    "display_name",
+    "domain",
+    "vault_id",
+    "custodian_agent_id",
+    "gi_score",
+    "category",
+    "weight",
+    "policy",
+    "status"
+  ]
+}
