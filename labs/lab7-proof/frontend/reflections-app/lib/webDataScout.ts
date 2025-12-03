@@ -103,16 +103,24 @@ const cache: CacheInterface = new MemoryCache();
 /**
  * Calculate layout hash for drift detection
  * Uses secure multi-line regex patterns for HTML sanitization
+ * Note: This is for layout hashing only, not security sanitization
  */
 function calculateLayoutHash(html: string): string {
   // Simple hash based on DOM structure (can be enhanced)
-  // Using [\s\S] instead of . to properly match across line boundaries
-  // nosec - These regex patterns are for layout hashing, not security sanitization
-  const cleanHtml = html
-    .replace(/[\s\r\n]+/g, ' ')
-    .replace(/<!--[\s\S]*?-->/g, '')
-    .replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '')
-    .replace(/<style[^>]*>[\s\S]*?<\/style>/gi, '');
+  // Normalize whitespace first
+  let cleanHtml = html.replace(/[\s\r\n]+/g, ' ');
+  
+  // Remove HTML comments - use anchored pattern to prevent incomplete matches
+  // Match from <!-- to --> with proper boundaries
+  cleanHtml = cleanHtml.replace(/<!--(?:[^-]|-(?!->))*-->/g, '');
+  
+  // Remove script tags - improved regex to handle edge cases
+  // Match <script with optional attributes, then content, then closing tag
+  // Use non-greedy matching with proper boundaries
+  cleanHtml = cleanHtml.replace(/<script\b[^>]*>[\s\S]*?<\/script\s*>/gi, '');
+  
+  // Remove style tags - same approach as script tags
+  cleanHtml = cleanHtml.replace(/<style\b[^>]*>[\s\S]*?<\/style\s*>/gi, '');
   
   // Simple hash function (in production, use crypto.subtle.digest)
   let hash = 0;

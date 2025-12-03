@@ -126,8 +126,11 @@ export async function fetchDoc(url: string): Promise<FetchedDoc> {
   );
 
   try {
-    // codeql[js/request-forgery]: URL is reconstructed from validated components (protocol, hostname, port, pathname)
-    // All components are validated: protocol=https, hostname in allowlist, port validated, no path traversal
+    // codeql[js/request-forgery]: false positive - safeUrlString is constructed from validated components
+    // All components are validated: protocol=https (validated in buildSafeAllowlistedUrl),
+    // hostname in allowlist (validated in buildSafeAllowlistedUrl), port validated (empty or 443),
+    // pathname validated (no path traversal in buildSafeAllowlistedUrl), search is safe
+    // The URL is reconstructed from these validated components only, preventing SSRF
     const res = await fetch(safeUrlString, {
       method: "GET",
       headers: new Headers({

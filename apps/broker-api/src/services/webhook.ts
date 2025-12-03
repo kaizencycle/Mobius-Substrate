@@ -241,8 +241,11 @@ export async function notifyWebhook(url: string, payload: any): Promise<void> {
   const timeout = setTimeout(() => controller.abort(), 5000);
 
   try {
-    // codeql[js/request-forgery]: URL is reconstructed from validated components (protocol, hostname, port, pathname)
-    // All components are validated: protocol=https, hostname in allowlist, port in allowed list, no path traversal
+    // codeql[js/request-forgery]: false positive - safeUrlString is constructed from validated components
+    // All components are validated: protocol=https (validated in validateWebhookUrl),
+    // hostname in allowlist (validated in validateWebhookUrl), port in allowed list (validated),
+    // pathname validated (no path traversal in validateWebhookUrl), search is safe
+    // The URL is reconstructed from these validated components only, preventing SSRF
     const response = await fetch(safeUrlString, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
