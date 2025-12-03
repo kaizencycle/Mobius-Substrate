@@ -8,7 +8,7 @@
     "test": "python src/mobius_kernel.py && python src/thought_broker_integration.py",
     "test:kernel": "python src/mobius_kernel.py",
     "test:broker": "python src/thought_broker_integration.py",
-    "lint": "ruff check src/",
+    "lint": "python3 -m ruff check src/",
     "typecheck": "mypy src/"
   },
   "keywords": [

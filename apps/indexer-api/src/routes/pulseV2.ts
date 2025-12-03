@@ -44,6 +44,25 @@ interface StoredPulse {
   createdAt: string;
 }
 
+interface PulseResponsePayload {
+  id: string;
+  hash: string;
+  cycle: string;
+  branch: string;
+  generatedAt: string;
+  giScore: number;
+  miiScore: number;
+  stats: {
+    totalFiles: number;
+    totalLines: number;
+    appsCount: number;
+    packagesCount: number;
+    workflowsCount: number;
+  };
+  summary: unknown;
+  raw?: MobiusPulse;
+}
+
 const pulseStore: StoredPulse[] = [];
 let pulseIdCounter = 1;
 
@@ -178,7 +197,7 @@ router.get("/v1/pulse/latest", async (req: Request, res: Response): Promise<void
       workflowsCount: latest.workflowsCount,
     });
 
-    const payload: any = {
+    const payload: PulseResponsePayload = {
       id: latest.id,
       hash: latest.hash,
       cycle: latest.cycle,
@@ -264,12 +283,13 @@ router.get("/v1/pulse/badge", async (req: Request, res: Response): Promise<void>
     const metric = metricRaw.toLowerCase();
 
     if (pulseStore.length === 0) {
-      return res.json({
+      res.json({
         schemaVersion: 1,
         label: "Mobius",
         message: "no data",
         color: "lightgrey",
       });
+      return;
     }
 
     const latest = pulseStore[pulseStore.length - 1];
@@ -297,25 +317,27 @@ router.get("/v1/pulse/badge", async (req: Request, res: Response): Promise<void>
     })();
 
     if (metric === "gi") {
-      return res.json({
+      res.json({
         schemaVersion: 1,
         label: "Mobius GI",
         message: `${giPct}%`,
         color: colorFor(gi),
       });
+      return;
     }
 
     if (metric === "mii") {
-      return res.json({
+      res.json({
         schemaVersion: 1,
         label: "Mobius MII",
         message: `${miiPct}%`,
         color: colorFor(mii),
       });
+      return;
     }
 
     // Default: combined
-    return res.json({
+    res.json({
       schemaVersion: 1,
       label: "Mobius GI/MII",
       message: `${giPct}% / ${miiPct}%`,

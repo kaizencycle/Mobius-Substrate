@@ -569,7 +569,6 @@ if __name__ == "__main__":
         print(f"   Status: {response.status}")
         print(f"   Reason: {response.denial_reason}")
     
-    import asyncio
     asyncio.run(run_tests())
     
     # Print audit log
