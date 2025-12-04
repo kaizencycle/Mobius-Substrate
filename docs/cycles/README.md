@@ -9,6 +9,7 @@
 | Cycle | Date | Focus | Summary |
 |-------|------|-------|---------|
 | **C-151** | 2025-12-01 | Maintenance / Foundations | Repo hygiene, Git maintenance, and Mobius Pulse foundations |
+| **C-153** | 2025-12-04 | Doctrine & Civic Core | Complete doctrine, laws, and principles — Lotus Cycle, Ascension Ladder, Hall of Ancestors |
 
 ---
 

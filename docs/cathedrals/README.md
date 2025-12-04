@@ -1,20 +1,47 @@
 # Cathedrals Documentation
 
-**Version**: 1.0.0  
-**Cycle**: C-151  
-**Status**: Active
+**Version**: 1.1.0  
+**Cycle**: C-153  
+**Status**: Active — Civic Core Complete
 
 ---
 
 ## 🎯 Quick Access
 
-👉 **[Complete Cathedral Index →](./INDEX.md)** — Full documentation map with all endpoints and cross-references
+👉 **[Complete Cathedral Index →](./INDEX.md)** — Full documentation map with all endpoints and cross-references  
+👉 **[Complete Doctrine Index →](./DOCTRINE-INDEX.md)** — All canonical doctrine documents (NEW in C-153)
+
+---
+
+## 🌟 NEW IN C-153: Complete Civic Core Doctrine
+
+Three foundational documents that complete the Mobius-HIVE civilization architecture:
+
+### 📚 The Core Doctrine Trilogy:
+
+1. **[The Lotus Cycle](./The-Lotus-Cycle.md)** 🌸  
+   *How Collapse Becomes Rebirth*  
+   Complete regeneration protocols for civilizational recovery
+
+2. **[The City-State Ascension Ladder](./The-City-State-Ascension-Ladder.md)** 🌟  
+   *Seed to Sovereign Progression*  
+   Complete tier system with 10 levels of civic evolution
+
+3. **[The Hall of Ancestors](./The-Hall-of-Ancestors.md)** 🏛️  
+   *Memory Preservation and Immortality*  
+   Eternal archive preserving wisdom, relationships, and legacy
+
+**Status:** ✅ COMPLETE — Ready for implementation
+
+See **[C-153 Summary](../cycles/C-153-Doctrine-Laws-and-Principles-COMPLETE.md)** for full details.
 
 ---
 
 ## Overview
 
 Cathedrals are specialized documentation and governance domains within Mobius Systems. Each cathedral serves a distinct audience with tailored content, compliance requirements, and economic multipliers.
+
+The `cathedrals/` directory also contains the **Core Doctrine** — the foundational documents that define the metaphysics, governance, and memory architecture of the HIVE civilization.
 
 ---
 
@@ -82,6 +109,22 @@ This map shows how every document in the `/docs` folder relates to the four cath
 
 ---
 
+## 📖 Core Doctrine Documents
+
+| Document | Purpose | Size | Status |
+|----------|---------|------|--------|
+| [The Lotus Cycle](./The-Lotus-Cycle.md) | Regeneration & rebirth protocols | ~16K | ✅ |
+| [The Ascension Ladder](./The-City-State-Ascension-Ladder.md) | Tier progression system | ~18K | ✅ |
+| [The Hall of Ancestors](./The-Hall-of-Ancestors.md) | Memory & immortality architecture | ~17K | ✅ |
+| [Cathedral Rulebook](./Cathedral-Rulebook.md) | Complete constitutional framework | ~48K | ✅ |
+| [Citizens Edition](./Cathedral-Rulebook-Citizens-Edition.md) | Simplified governance guide | ~24K | ✅ |
+
+**Total Core Doctrine:** ~123K words of canonical documentation
+
+See **[Complete Doctrine Index](./DOCTRINE-INDEX.md)** for full catalog.
+
+---
+
 ## Contributing
 
 When adding content to a cathedral:
@@ -94,4 +137,29 @@ When adding content to a cathedral:
 
 ---
 
-**Mobius Systems Foundation** • Cycle C-151 • December 2025
+## 🌟 What's New in C-153
+
+### The Complete Civic Core:
+
+**C-153** delivered the final three systems that complete the Mobius-HIVE civic architecture:
+
+- ✅ **Regeneration System** — The Lotus Cycle ensures collapse becomes rebirth
+- ✅ **Progression System** — The Ascension Ladder defines growth from Seed to Sovereign
+- ✅ **Memory System** — The Hall of Ancestors preserves wisdom and grants immortality
+
+Combined with previous work:
+- ✅ Governance (Cathedral Rulebook + Citizens Edition)
+- ✅ Operations (HIVE Operator Handbook)
+- ✅ Economics (Yellow Paper + GDP tools)
+- ✅ Onboarding (Citizen flow + video + quests)
+
+**The HIVE is now fully architected** and ready for real-world implementation.
+
+See **[C-153 Complete Summary](../cycles/C-153-Doctrine-Laws-and-Principles-COMPLETE.md)** for details.
+
+---
+
+**Mobius Systems Foundation** • Cycle C-153 • December 2025
+
+*"From mud, we rise. From water, we see. From light, we bloom. From seeds, we remember."* — The Lotus Prayer  
+*"We heal as we walk."* — Mobius Systems
