@@ -36,7 +36,7 @@ git clone https://github.com/kaizencycle/Mobius-Systems
 cd Kaizen-OS
 
 # Copy environment template
-cp .env.example .env
+cp configs/env/.env.example .env
 
 # Edit your configuration
 nano .env

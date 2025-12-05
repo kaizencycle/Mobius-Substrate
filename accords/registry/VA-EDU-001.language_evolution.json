@@ -18,7 +18,7 @@
   "integration": {
     "cross_refs": ["Lab4-Proof", "Lab6-Proof"],
     "manifest_ref": "kaizen_manifest.yaml",
-    "telemetry_ref": "config/gi/thresholds.yaml"
+    "telemetry_ref": "configs/telemetry/thresholds.yaml"
   },
   "seal": "We heal as we walk. Scars remind us we also heal. Grief is love persevering.",
   "ritual": "I sweep this chamber full of resonance. Memory holds steady."
