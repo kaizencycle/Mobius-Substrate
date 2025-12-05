@@ -84,10 +84,8 @@ docs/
 │   ├── archive/                      General archive
 │   └── legacy/                       Archived duplicate folders
 ├── 11-SUPPLEMENTARY/                 Topic-specific supplementary content
-├── assets/                           Static assets (logos, CSS)
-├── badges/                           SVG badges
-├── diagrams/                         Diagram images
-└── figures/                          Figure images
+├── 12-COMMUNITY/                     Community & education
+└── assets/                           Static assets (logos, CSS, badges)
 ```
 
 ---
@@ -124,20 +122,20 @@ docs/
 
 #### Path 3: Philosophy & Theory (2 hours)
 1. [Mobius Philosophy](./11-SUPPLEMENTARY/philosophy/MOBIUS_PHILOSOPHY.md)
-2. [Kaizen Theorems](./02-THEORETICAL-FOUNDATIONS/theory/kaizen_theorems.md)
-3. [Triad of Healing](./11-SUPPLEMENTARY/manifesto/triad_of_healing.md)
+2. [Cathedrals](./02-THEORETICAL-FOUNDATIONS/cathedrals/)
+3. [Triad of Healing](./02-THEORETICAL-FOUNDATIONS/manifesto/triad_of_healing.md)
 4. [Haymarket to AI](./11-SUPPLEMENTARY/labor/HAYMARKET_TO_AI.md)
 
 #### Path 4: Technical Implementation (3 hours)
 1. [Architecture Overview](./04-TECHNICAL-ARCHITECTURE/overview/ARCHITECTURE.md)
 2. [DVA Overview](./04-TECHNICAL-ARCHITECTURE/dva/)
-3. [Labs Master Architecture](./04-TECHNICAL-ARCHITECTURE/overview/LABS_MASTER_ARCHITECTURE.md)
+3. [Labs Master Architecture](./04-TECHNICAL-ARCHITECTURE/overview/technical/LABS_MASTER_ARCHITECTURE.md)
 4. [Deployment Guide](./05-IMPLEMENTATION/guides/deployment/DEPLOYMENT_GUIDE.md)
 
 #### Path 5: Governance & Policy (2 hours)
 1. [Foundation Charter](../FOUNDATION/CHARTER.md)
 2. [Governance Overview](./03-GOVERNANCE-AND-POLICY/governance/overview.md)
-3. [Sentinel Constitution](./03-GOVERNANCE-AND-POLICY/constitution/SENTINEL_CONSTITUTION.md)
+3. [Sentinel Constitution](./03-GOVERNANCE-AND-POLICY/governance/SENTINEL_CONSTITUTION.md)
 4. [Anti-Capture Policy](../FOUNDATION/POLICIES/ANTI_CAPTURE_POLICY.md)
 
 ---
@@ -220,7 +218,7 @@ All documents follow a Dewey Decimal-inspired classification:
 
 ### 🏛️ Governance Participants
 - **Start**: [Governance Overview](./03-GOVERNANCE-AND-POLICY/governance/overview.md)
-- **Constitution**: [Sentinel Constitution](./03-GOVERNANCE-AND-POLICY/constitution/SENTINEL_CONSTITUTION.md)
+- **Constitution**: [Sentinel Constitution](./03-GOVERNANCE-AND-POLICY/governance/SENTINEL_CONSTITUTION.md)
 - **Policies**: [Policy Documents](./03-GOVERNANCE-AND-POLICY/policy/)
 - **Foundation**: [Foundation Documents](../FOUNDATION/)
 

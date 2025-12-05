@@ -32,15 +32,15 @@ This directory contains all introductory and onboarding materials for Mobius Sys
 
 **Start Here**:
 1. Read [START-HERE.md](../00-START-HERE.md) - 15-minute overview
-2. Explore [handbook/](./handbook/) - Comprehensive guide
-3. Review [about/](./about/) - System overview and structure
+2. Explore [handbook](../11-SUPPLEMENTARY/handbook/) - Comprehensive guide
+3. Review [About Mobius](../11-SUPPLEMENTARY/about/) - System overview and structure
 
 ### 👤 By Role
 
-- **Users**: [handbook/getting-started.md](./handbook/getting-started.md)
-- **Developers**: [handbook/developer-guide.md](./handbook/developer-guide.md)
-- **Researchers**: [handbook/research-guide.md](./handbook/research-guide.md)
-- **Operators**: [handbook/operator-guide.md](./handbook/operator-guide.md)
+- **Users**: [Quickstart Guide](../05-IMPLEMENTATION/guides/quickstart/START_HERE.md)
+- **Developers**: [Development Guides](../05-IMPLEMENTATION/guides/development/)
+- **Researchers**: [Research Portal](../07-RESEARCH-AND-PUBLICATIONS/)
+- **Operators**: [Operations Hub](../06-OPERATIONS/)
 
 ## Contents
 
@@ -49,21 +49,11 @@ This directory contains all introductory and onboarding materials for Mobius Sys
 ```
 01-INTRODUCTION/
 ├── README.md                    (this file)
-├── handbook/                    Comprehensive handbooks
-│   ├── index.md                Master handbook index
-│   ├── part-i-foundations.md   Conceptual foundations
-│   ├── part-ii-architecture.md Technical architecture
-│   ├── part-iii-implementation.md Implementation guide
-│   └── part-iv-future-vision.md Vision and roadmap
-├── about/                       About Mobius Systems
-│   ├── overview.md             System overview
-│   ├── principles.md           Core principles
-│   ├── history.md              Development history
-│   └── REPOSITORY_STRUCTURE.md Repository organization
-└── quickstart/                  Quick start guides
-    ├── users.md                For end users
-    ├── developers.md           For developers
-    └── operators.md            For operators
+├── 00-START-HERE.md            Quick navigation guide
+└── Related content in:
+    ├── ../11-SUPPLEMENTARY/handbook/   Comprehensive handbooks
+    ├── ../11-SUPPLEMENTARY/about/      About Mobius Systems
+    └── ../05-IMPLEMENTATION/guides/    Quick start guides
 ```
 
 ## What is Mobius Systems?
@@ -92,7 +82,7 @@ This directory contains all introductory and onboarding materials for Mobius Sys
 3. Governance structure
 4. Architecture basics
 
-**Start**: [handbook/part-i-foundations.md](./handbook/part-i-foundations.md)
+**Start**: [Handbook - Part I Foundations](../11-SUPPLEMENTARY/handbook/part-i-foundations.md)
 
 ### Path 2: Technical Deep Dive (2 hours)
 1. Architecture overview
@@ -100,7 +90,7 @@ This directory contains all introductory and onboarding materials for Mobius Sys
 3. Implementation guides
 4. API references
 
-**Start**: [handbook/part-ii-architecture.md](./handbook/part-ii-architecture.md)
+**Start**: [Handbook - Part II Architecture](../11-SUPPLEMENTARY/handbook/part-ii-technical-architecture.md)
 
 ### Path 3: Economic & Governance (1 hour)
 1. MIC tokenomics
@@ -163,4 +153,4 @@ This directory contains all introductory and onboarding materials for Mobius Sys
 **Status**: Published  
 **License**: CC-BY-SA-4.0
 
-**Ready to start?** Choose your role above or begin with the [handbook](./handbook/).
+**Ready to start?** Choose your role above or begin with the [handbook](../11-SUPPLEMENTARY/handbook/).

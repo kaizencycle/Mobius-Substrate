@@ -168,7 +168,7 @@ DVA is the core verification mechanism that ensures integrity across all operati
 - Cross-datacenter coordination
 - SLA: 99.95%
 
-See: [dva/dva-overview.md](./dva/dva-overview.md)
+See: [dva/DVA_MEMT_INTEGRATION.md](./dva/DVA_MEMT_INTEGRATION.md)
 
 ## MEMT (Multi-Engine Model Taxonomy)
 
@@ -194,7 +194,7 @@ MEMT orchestrates multiple AI models to achieve consensus on critical decisions:
 - Integrity track record
 - Updated continuously
 
-See: [memt/memt-overview.md](./memt/memt-overview.md)
+See: [memt/](./memt/) for MEMT documentation
 
 ## Integrity Ledger
 
@@ -231,7 +231,7 @@ Each lab implements:
 - **Lab ↔ DVA**: Event-driven
 - **Lab ↔ MEMT**: Request/response with streaming
 
-See: [labs/labs-master.md](./labs/labs-master.md)
+See: [overview/technical/LABS_MASTER_ARCHITECTURE.md](./overview/technical/LABS_MASTER_ARCHITECTURE.md)
 
 ## Security Architecture
 
@@ -250,7 +250,7 @@ See: [labs/labs-master.md](./labs/labs-master.md)
 - **Data breaches**: Protected by encryption + anonymization
 - **System compromise**: Detected by DVA + monitoring
 
-See: [specifications/security-model.md](./specifications/security-model.md)
+See: [../06-OPERATIONS/security/](../06-OPERATIONS/security/) for security documentation
 
 ## Scalability
 
@@ -275,7 +275,7 @@ See: [specifications/security-model.md](./specifications/security-model.md)
 - DVA verification: < 500ms (p95)
 - MEMT consensus: < 2s (p95)
 
-See: [specifications/scalability.md](./specifications/scalability.md)
+See: [overview/ARCHITECTURE.md](./overview/ARCHITECTURE.md) for architecture details
 
 ## Architecture Decision Records (ADRs)
 
@@ -288,7 +288,7 @@ ADRs document significant architectural decisions:
 | 003 | Database Choice (PostgreSQL) | Accepted | 2025-03 |
 | 004 | API Design (REST + GraphQL) | Accepted | 2025-04 |
 
-See: [adr/](./adr/)
+See: [overview/adr/](./overview/adr/) for Architecture Decision Records
 
 ## Related Documentation
 
@@ -305,10 +305,10 @@ See: [adr/](./adr/)
 
 ### Getting Started
 
-1. Read [overview/system-overview.md](./overview/system-overview.md)
-2. Understand [dva/dva-overview.md](./dva/dva-overview.md)
-3. Review [labs/labs-master.md](./labs/labs-master.md)
-4. Check [adr/](./adr/) for decision context
+1. Read [overview/ARCHITECTURE.md](./overview/ARCHITECTURE.md)
+2. Understand [dva/DVA_MEMT_INTEGRATION.md](./dva/DVA_MEMT_INTEGRATION.md)
+3. Review [overview/technical/LABS_MASTER_ARCHITECTURE.md](./overview/technical/LABS_MASTER_ARCHITECTURE.md)
+4. Check [overview/adr/](./overview/adr/) for decision context
 
 ### Contributing
 

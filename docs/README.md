@@ -75,7 +75,8 @@ The INDEX.md file provides comprehensive navigation for:
 **Path:** `02-THEORETICAL-FOUNDATIONS/`  
 **For:** Philosophers, theorists, academics
 
-- **[Kaizen Theorems](./02-THEORETICAL-FOUNDATIONS/theory/kaizen_theorems.md)** *Mathematical axioms (KZ-Θ series)*
+- **[Cathedrals](./02-THEORETICAL-FOUNDATIONS/cathedrals/)** *Philosophical architecture*
+- **[Manifesto](./02-THEORETICAL-FOUNDATIONS/manifesto/)** *Foundational ethos*
 - Philosophy, theory, and manifestos
 
 ---
@@ -85,7 +86,7 @@ The INDEX.md file provides comprehensive navigation for:
 **For:** Governance participants, community members
 
 - **[Governance Overview](./03-GOVERNANCE-AND-POLICY/governance/overview.md)** ⭐ *Two-house model (Council + TSC)*
-- **[Sentinel Constitution](./03-GOVERNANCE-AND-POLICY/constitution/SENTINEL_CONSTITUTION.md)** *Ratified framework*
+- **[Sentinel Constitution](./03-GOVERNANCE-AND-POLICY/governance/SENTINEL_CONSTITUTION.md)** *Ratified framework*
 - Constitution, policies, and procedures
 
 ---
@@ -174,7 +175,7 @@ The INDEX.md file provides comprehensive navigation for:
 ### Founding Agents
 - **[Founding Agents](./11-SUPPLEMENTARY/agents/FOUNDING_AGENTS.md)** *Core persona bios*
 - **[Founders Config](./11-SUPPLEMENTARY/founding-agents/founders-config.json)** *Network seed data*
-- **[Founders DNS Guide](./founders-agents.gic.md)** *`.gic` onboarding*
+- **[Founders DNS Guide](./03-GOVERNANCE-AND-POLICY/founders-agents.gic.md)** *`.gic` onboarding*
 
 ### Sentinels & Companions
 - **[Companion Profiles](./11-SUPPLEMENTARY/companions/README.md)** *SOLARA, ZENITH, URIEL, ATLAS*
@@ -186,7 +187,7 @@ The INDEX.md file provides comprehensive navigation for:
 ## 🛡️ Security & Assurance
 
 ### Threat Models & Audits
-- **[Security Threat Models](./11-SUPPLEMENTARY/security/threat_model_v0.1.md)**
+- **[Security Threat Models](./06-OPERATIONS/security/threat_model_v0.1.md)**
 - **[Audit Reports](./11-SUPPLEMENTARY/audits/)** *Frontend, backend, remediation summaries*
 
 ### Drift Control & Policy
@@ -203,14 +204,14 @@ The INDEX.md file provides comprehensive navigation for:
 - **[Manifesto](./11-SUPPLEMENTARY/manifesto/triad_of_healing.md)** *Foundational ethos*
 - **[Consensus Chamber](./11-SUPPLEMENTARY/consensus-chamber/)** *Templates & live sessions*
 - **[Genesis Manifest](./11-SUPPLEMENTARY/genesis/chapter-iv-one-window-console-manifest.md)** *Product arc*
-- **[THE INTERNET BREATHES AGAIN](./THE_INTERNET_BREATHES_AGAIN.md)** *Restoration report*
+- **[THE INTERNET BREATHES AGAIN](./02-THEORETICAL-FOUNDATIONS/THE_INTERNET_BREATHES_AGAIN.md)** *Restoration report*
 
 ---
 
 ## 🧰 Supporting Resources
 
 - **[Assets](./assets/)** *Logos, CSS, JS, badges*
-- **[Figures & Diagrams](./figures/)** *High-res exports*
+- **[Diagrams](./09-APPENDICES/diagrams/)** *Architecture diagrams*
 - **[Design Prompts](./11-SUPPLEMENTARY/design/figma_prompts/)** *Visual systems*
 - **[Document Index](./document-index.json)** *Machine-readable catalog*
 

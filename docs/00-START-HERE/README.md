@@ -8,7 +8,7 @@ This folder is your **navigation hub** for the entire Mobius Systems knowledge b
 
 ## Start Here
 
-- 🧭 **[Quick Start](./QUICK-START.md)** — 5-minute orientation to the stack
+- 🧭 **[Quick Start](../00-START-HERE.md)** — Main navigation hub
 - 📚 **[Glossary](./GLOSSARY.md)** — MII, MIC, DVA, KTT, GI, ECHO, Sentinels, and more
 - ❓ **[FAQ](./FAQ.md)** — Common questions and high-level answers
 
@@ -16,16 +16,15 @@ This folder is your **navigation hub** for the entire Mobius Systems knowledge b
 
 ## I Want To…
 
-- **Understand the vision** → [`01-philosophy`](../01-philosophy/README.md)  
-- **See the system architecture** → [`02-architecture`](../02-architecture/README.md)  
-- **Implement or integrate** → [`03-specifications`](../03-specifications/README.md)  
-- **Follow practical guides** → [`04-guides`](../04-guides/README.md)  
-- **Check security & recovery** → [`05-security`](../05-security/README.md)  
-- **Run Mobius in production** → [`06-operations`](../06-operations/README.md)  
-- **Learn governance rules** → [`07-governance`](../07-governance/README.md)  
-- **Read research outputs** → [`08-research`](../08-research/README.md)  
-- **See press & outreach** → [`09-communications`](../09-communications/README.md)  
-- **Browse history & legacy docs** → [`99-archive`](../99-archive/README.md)
+- **Understand the vision** → [`02-THEORETICAL-FOUNDATIONS`](../02-THEORETICAL-FOUNDATIONS/)  
+- **See the system architecture** → [`04-TECHNICAL-ARCHITECTURE`](../04-TECHNICAL-ARCHITECTURE/)  
+- **Implement or integrate** → [`05-IMPLEMENTATION`](../05-IMPLEMENTATION/)  
+- **Follow practical guides** → [`05-IMPLEMENTATION/guides`](../05-IMPLEMENTATION/guides/)  
+- **Check security & operations** → [`06-OPERATIONS`](../06-OPERATIONS/)  
+- **Learn governance rules** → [`03-GOVERNANCE-AND-POLICY`](../03-GOVERNANCE-AND-POLICY/)  
+- **Read research outputs** → [`07-RESEARCH-AND-PUBLICATIONS`](../07-RESEARCH-AND-PUBLICATIONS/)  
+- **See reference materials** → [`08-REFERENCE`](../08-REFERENCE/)  
+- **Browse history & legacy docs** → [`10-ARCHIVES`](../10-ARCHIVES/)
 
 ---
 
@@ -34,7 +33,7 @@ This folder is your **navigation hub** for the entire Mobius Systems knowledge b
 This structure follows three core Mobius principles:
 
 - **Kaizen (改善)** — Continuous improvement, clear pathways, small steps.
-- **Kintsugi (金繕い)** — We keep the cracks visible; legacy docs move to `99-archive/`.
+- **Kintsugi (金繕い)** — We keep the cracks visible; legacy docs move to `10-ARCHIVES/`.
 - **Custodianship** — Docs must outlive any single contributor or model.
 
 If you're unsure where something belongs, start here and link outward.
@@ -43,11 +42,11 @@ If you're unsure where something belongs, start here and link outward.
 
 ## Quick Links
 
-- **[Cycle Index](../CYCLE_INDEX.md)** — Canonical C-XXX numbering (C-121 anchor)
+- **[Documentation Index](../INDEX.md)** — Complete documentation catalog
 - **[Main README](../../README.md)** — Repository overview
-- **[Contributing Guide](../04-guides/developers/contributing.md)** — How to contribute
+- **[Contributing Guide](../../CONTRIBUTING.md)** — How to contribute
 
 ---
 
-*Cycle C-147 • 2025-11-27*  
+*Cycle C-155 • 2025-12-05*  
 *"We heal as we walk."*

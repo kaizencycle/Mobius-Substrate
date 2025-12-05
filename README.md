@@ -175,7 +175,7 @@ We classify machine intelligence into three layers:
 **Mobius is the first AI Habitat**—the environment that allows General Learners to safely transition to Actual AI.
 
 [Read the full Intelligence Taxonomy →](docs/11-SUPPLEMENTARY/intelligence/typology.md)
-[View Mobius Cosmology →](docs/figures/mobius-cosmology.svg)
+[View Mobius Cosmology →](docs/assets/logo/kaizen-logo.svg)
 [Sentinel Classification →](docs/11-SUPPLEMENTARY/intelligence/sentinel-classification.md)
 
 ---
@@ -414,7 +414,7 @@ await fetch('http://localhost:3001/attest', {
 });
 ```
 
-📖 **Full guide**: [docs/04-guides/quickstart/HELLO_WORLD.md](docs/04-guides/quickstart/HELLO_WORLD.md)
+📖 **Full guide**: [docs/05-IMPLEMENTATION/guides/quickstart/START_HERE.md](docs/05-IMPLEMENTATION/guides/quickstart/START_HERE.md)
 
 ---
 
@@ -474,7 +474,7 @@ npm run clean
 - **genesisdome-app** (Port 3006) - Genesis Dome PWA site
 - **citizen-shield-app** (Port 3007) - Citizen Shield security interface
 
-📖 **[Complete Frontend Development Guide](docs/FRONTEND_DEVELOPMENT.md)** - Detailed setup and port assignments
+📖 **[Complete Frontend Development Guide](docs/05-IMPLEMENTATION/guides/development/)** - Detailed setup and port assignments
 
 ### Core Services
 
@@ -687,9 +687,9 @@ Mobius Systems implements comprehensive guardrails to prevent destructive change
 If a bad change merges or files are accidentally deleted:
 
 - **Preferred**: Use `git revert` to create inverse commits (preserves history)
-- **Last resort**: Hard reset to a known good commit (see [Recovery Playbook](docs/RECOVERY_PLAYBOOK.md))
+- **Last resort**: Hard reset to a known good commit (see [Recovery Playbook](docs/06-OPERATIONS/))
 
-📖 **Full recovery guide**: [docs/RECOVERY_PLAYBOOK.md](docs/RECOVERY_PLAYBOOK.md)
+📖 **Full recovery guide**: [docs/06-OPERATIONS/](docs/06-OPERATIONS/)
 
 ### Why These Guardrails Exist
 
@@ -720,13 +720,13 @@ Mobius Systems has undergone comprehensive peer review (November 2025). We are s
 
 **Status**: Actively addressing critical specifications and hardening for production readiness.
 
-📖 **Full Review Response**: [docs/peer-review-response.md](docs/peer-review-response.md)
+📖 **Full Review Response**: [docs/07-RESEARCH-AND-PUBLICATIONS/](docs/07-RESEARCH-AND-PUBLICATIONS/)
 
 **Key Specifications** (in progress):
-- ✅ [Cryptographic Specification](docs/06-specifications/specs/cryptography/mii-signature-spec.md) - Ed25519 MII signatures
-- ✅ [Consensus Algorithm](docs/06-specifications/specs/consensus/thought-broker-consensus.md) - Multi-agent deliberation
-- ✅ [Threat Model](docs/security/threat-model.md) - Security architecture
-- ✅ [Architecture Decision Records](docs/03-architecture/adr/) - Design rationale
+- ✅ [Cryptographic Specification](docs/08-REFERENCE/specs/) - Ed25519 MII signatures
+- ✅ [Consensus Algorithm](docs/08-REFERENCE/specs/) - Multi-agent deliberation
+- ✅ [Threat Model](docs/06-OPERATIONS/security/threat-model.md) - Security architecture
+- ✅ [Architecture Decision Records](docs/04-TECHNICAL-ARCHITECTURE/adr/) - Design rationale
 
 **Research Contributions**:
 - Integrity-Driven Architecture (IDA) framework
@@ -768,7 +768,7 @@ This endpoint returns the complete Mobius Systems manifest bundle:
 
 ### Independence Manifest
 
-> 🕊️ [Read the Independence Manifest](docs/INDEPENDENCE_MANIFEST.md)
+> 🕊️ [Read the Independence Manifest](docs/02-THEORETICAL-FOUNDATIONS/THE_INTERNET_BREATHES_AGAIN.md)
 
 The Independence Manifest declares Mobius Systems sovereignty from any single LLM provider, ensuring:
 - **Model Agnosticism** - Any LLM can mount Mobius Systems state

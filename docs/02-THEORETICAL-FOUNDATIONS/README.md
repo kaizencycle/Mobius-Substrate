@@ -32,22 +32,19 @@ This directory contains the theoretical and philosophical foundations that under
 
 ```
 02-THEORETICAL-FOUNDATIONS/
-├── README.md                 (this file)
-├── philosophy/               Philosophical frameworks
-│   ├── mobius-philosophy.md Core philosophical principles
-│   ├── integrity-theory.md  Theory of integrity-based systems
-│   └── healing-paradigm.md  "We heal as we walk" framework
-├── theory/                   Theoretical models
-│   ├── kaizen-theorems.md   Mathematical theorems (KZ-Θ series)
-│   ├── ktt-theory.md        Kaizen Turing Test theory
-│   └── economic-theory.md   Integrity economy foundations
-├── manifesto/                Foundational manifestos
-│   ├── triad-of-healing.md  Core manifesto
-│   ├── independence.md      Independence manifest
-│   └── ai-integrity.md      AI integrity constitution
-└── labor-theory/             Labor and value theory
-    ├── haymarket-to-ai.md   Historical context
-    └── integrity-labor.md   Integrity-based labor theory
+├── README.md                           (this file)
+├── THE_INTERNET_BREATHES_AGAIN.md     Restoration narrative
+├── philosophy/                         Philosophical frameworks
+│   └── MOBIUS_PHILOSOPHY.md           Core philosophical principles
+├── theory/                             Theoretical models
+│   └── cognitive-cycle-theory.md      Cognitive cycle theory
+├── manifesto/                          Foundational manifestos
+│   └── triad_of_healing.md            Core manifesto
+├── labor-theory/                       Labor and value theory
+│   └── HAYMARKET_TO_AI.md             Historical context
+└── cathedrals/                         Cathedral documentation
+    ├── Cathedral-Rulebook.md          Cathedral rulebook
+    └── The-Lotus-Cycle.md             Lotus cycle documentation
 ```
 
 ## Core Philosophical Principles
@@ -84,7 +81,7 @@ Mathematical axioms that formalize integrity-based systems:
 - **KZ-Θ4**: Governance Stability Theorem
 - **KZ-Θ5**: Adaptive Evolution Theorem
 
-See: [theory/kaizen-theorems.md](./theory/kaizen-theorems.md)
+See: [Cathedrals Documentation](./cathedrals/) for detailed theoretical frameworks
 
 ### Kaizen Turing Test (KTT)
 
@@ -95,7 +92,7 @@ An evaluation framework for systems that must demonstrate:
 4. Sustainable economics
 5. Distributed governance
 
-See: [theory/ktt-theory.md](./theory/ktt-theory.md)
+See: [Cognitive Cycle Theory](./theory/cognitive-cycle-theory.md) for theoretical foundations
 
 ### Integrity Economy
 
@@ -104,7 +101,7 @@ A post-speculative economic model where:
 - Distribution via UBI ensures baseline participation
 - Rewards scale with contribution quality, not just quantity
 
-See: [theory/economic-theory.md](./theory/economic-theory.md)
+See: [MIC Economics](../07-RESEARCH-AND-PUBLICATIONS/economics/) for detailed economic theory
 
 ## Academic Context
 
@@ -146,7 +143,7 @@ The three healing modalities:
 2. **Collective**: Community resilience and mutual support
 3. **Systemic**: Infrastructure that enables healing at scale
 
-See: [manifesto/triad-of-healing.md](./manifesto/triad-of-healing.md)
+See: [manifesto/triad_of_healing.md](./manifesto/triad_of_healing.md)
 
 ### Independence Manifest
 
@@ -156,7 +153,7 @@ Declaration of technological sovereignty:
 - Participation rights for all stakeholders
 - Integrity as the supreme organizational principle
 
-See: [manifesto/independence.md](./manifesto/independence.md)
+See: [THE_INTERNET_BREATHES_AGAIN.md](./THE_INTERNET_BREATHES_AGAIN.md) for the restoration narrative
 
 ## Labor Theory
 
@@ -168,7 +165,7 @@ Tracing the evolution of labor theory from the 19th century labor movement to AI
 - AI as labor partner, not replacement
 - Integrity-based compensation models
 
-See: [labor-theory/haymarket-to-ai.md](./labor-theory/haymarket-to-ai.md)
+See: [labor-theory/HAYMARKET_TO_AI.md](./labor-theory/HAYMARKET_TO_AI.md)
 
 ## Related Documentation
 
@@ -187,8 +184,8 @@ See: [labor-theory/haymarket-to-ai.md](./labor-theory/haymarket-to-ai.md)
 
 We welcome academic collaboration and peer review. See:
 - [Outreach Materials](../07-RESEARCH-AND-PUBLICATIONS/outreach/)
-- [Research Collaboration Guide](../07-RESEARCH-AND-PUBLICATIONS/collaboration.md)
-- [Peer Review Process](../00-META/PEER_REVIEW.md)
+- [Research Publications](../07-RESEARCH-AND-PUBLICATIONS/)
+- [Whitepapers](../07-RESEARCH-AND-PUBLICATIONS/whitepapers/)
 
 ### Citation
 
