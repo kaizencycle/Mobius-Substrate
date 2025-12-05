@@ -73,16 +73,46 @@ where:
 
 [Currency Model →](./ECONOMIC-MODELS/mic-currency-model/)
 
-#### 📄 MIC Whitepaper v2.0 (C-155) — Production Specification
+#### 📄 MIC Whitepaper v2.1 (C-155) — Production Specification
 
 The comprehensive MIC specification covering:
 - **Proof-of-Integrity (PoI) consensus** — Security purchased with aligned action
-- **Kaizen Shards framework** — Seven shard types for micro-attestations
+- **Mobius Fractal Shards (MFS)** — Seven fractal archetypes for micro-attestations
+- **Dual-Track MII model** — Absolute threshold (MIC) + Annual growth rewards (MIA)
 - **Distribution model** — 60% contributors, 25% treasury, 10% sentinels, 5% reserve
 - **Anti-plutocratic governance** — Voting power = sqrt(MIC) × Civic Reputation
-- **Wicksellian cumulative process** — Civilizational stability as policy target
 
 [**Read Full Whitepaper →**](../docs/07-RESEARCH-AND-PUBLICATIONS/whitepapers/MIC_Whitepaper_v2.0.md)
+
+#### 💰 MIC Valuation Package (C-155) — NEW
+
+**What gives MIC value?** Not scarcity — **civilizational efficiency**.
+
+```
+Value(MIC) = Σ(Coordination Efficiency Gains) + Σ(Integrity-Linked Economic Surplus)
+```
+
+**The Four Dimensions of MIC Value:**
+
+| Dimension | Mechanism | Economic Impact |
+|-----------|-----------|-----------------|
+| **Coordination Value** | Eliminates corruption, bureaucracy | Saves $20-40T globally |
+| **Efficiency Dividend** | MII ↑ = economic output ↑ | Cities self-improve |
+| **Regenerative Economics** | More integrity = more MIC | Positive externalities |
+| **Civilizational Demand** | Required for governance | Organic, non-speculative |
+
+**30-Year Price Projection:**
+
+| Phase | Years | Price Range |
+|-------|-------|-------------|
+| NYC Pilot | 1-3 | $50 - $200 |
+| Regional | 4-10 | $500 - $3,500 |
+| National | 10-20 | $10,000 - $75,000 |
+| Global | 20-30 | $100,000 - $350,000 |
+
+> **"Bitcoin monetized scarcity. Mobius monetizes integrity."**
+
+[**Read Full Valuation Package →**](../docs/07-RESEARCH-AND-PUBLICATIONS/economics/MIC_VALUATION_PACKAGE.md)
 
 #### NEW — Deflationary Sinks (Cycle C-150)
 
