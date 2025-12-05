@@ -1,2 +1,3 @@
-# Legacy pointer: moved to mobius_manifest.yaml
+# Legacy pointer: moved to configs/manifests/mobius_manifest.yaml (C-155)
 # Kept for compatibility with old tooling
+# See: configs/manifests/mobius_manifest.yaml

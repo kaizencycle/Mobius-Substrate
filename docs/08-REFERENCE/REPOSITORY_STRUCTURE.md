@@ -493,14 +493,15 @@ npm run test --filter civic-sdk
 - [ ] Rename `apps/shield-api/` → `citizen-shield/`
 - [ ] Rename `apps/hub-web/` → `oaa-hub/`
 
-### Phase 4: Infrastructure Standardization (📋 FUTURE)
+### Phase 4: Infrastructure Standardization (✅ C-155)
 
-- [ ] Rename `infra/` → `infrastructure/`
-- [ ] Add `infrastructure/kubernetes/`
-- [ ] Add `infrastructure/terraform/`
-- [ ] Consolidate monitoring configs
+- [x] Consolidated `infrastructure/` → `infra/` (C-155)
+- [x] Organized `infra/docker/` for Docker Compose files
+- [ ] Add `infra/kubernetes/` (future)
+- [ ] Add `infra/terraform/` (future)
+- [x] Configuration consolidated under `configs/` (C-155)
 
-**Note:** Migrations will be done gradually to avoid breaking deployments. Current structure remains stable.
+**Note:** C-155 standardized on `infra/` as the canonical infrastructure directory. See `MIGRATION_C155.md` for details.
 
 ---
 
