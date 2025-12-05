@@ -56,22 +56,33 @@ N = kI                      # Negentropy-Integrity Link
 
 ---
 
-### MIC Currency: Proof-of-Negentropy
+### MIC Currency: Proof-of-Integrity
 
 **Innovation:** Currency that mints from order creation, not scarcity.
 
 ```
-MIC_minted = k × max(0, I - τ)
+ΔMIC = max(0, S × (MII - τ))
 
 where:
-  I = Mobius Integrity Index
-  τ = threshold (typically 0.93-0.95)
-  k = minting coefficient
+  MII = Mobius Integrity Index [0,1]
+  τ = threshold (0.95)
+  S = sensitivity (1000 MIC per 0.01 MII)
 ```
 
 **Result:** Market incentives aligned with integrity.
 
 [Currency Model →](./ECONOMIC-MODELS/mic-currency-model/)
+
+#### 📄 MIC Whitepaper v2.0 (C-155) — Production Specification
+
+The comprehensive MIC specification covering:
+- **Proof-of-Integrity (PoI) consensus** — Security purchased with aligned action
+- **Kaizen Shards framework** — Seven shard types for micro-attestations
+- **Distribution model** — 60% contributors, 25% treasury, 10% sentinels, 5% reserve
+- **Anti-plutocratic governance** — Voting power = sqrt(MIC) × Civic Reputation
+- **Wicksellian cumulative process** — Civilizational stability as policy target
+
+[**Read Full Whitepaper →**](../docs/07-RESEARCH-AND-PUBLICATIONS/whitepapers/MIC_Whitepaper_v2.0.md)
 
 #### NEW — Deflationary Sinks (Cycle C-150)
 
@@ -269,4 +280,4 @@ curl https://pulse.mobius.systems/economy/mic-history.csv > mic-history.csv
 
 ---
 
-**Cycle C-151 • Market Cathedral**
+**Cycle C-155 • Market Cathedral**

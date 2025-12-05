@@ -1,504 +1,849 @@
-# Mobius Integrity Credits Whitepaper v2.0
-## A Shard-Denominated Integrity Economy
+# Mobius Integrity Credits (MIC)
+## Economic Architecture for Post-Scarcity Coordination
 
----
-
-**Version:** 2.0.0
-**Cycle:** C-124
-**Date:** 2025-11-04
-**Status:** Canonical
-**Authors:** Mobius Systems Foundation, AUREA, HERMES, ZEUS
-**License:** CC-BY-SA-4.0
+**Version:** 2.0 (C-155)  
+**Date:** December 5, 2025  
+**Authors:** Mobius Systems Foundation  
+**Status:** Production Specification
 
 ---
 
 ## Abstract
 
-Mobius Integrity Credits (MIC) establish the first intrinsically-backed digital economy where value derives from verified acts of integrity rather than speculation. Version 2.0 introduces **shard denomination** (₷) as the base accounting unit, enabling precision micro-transactions while maintaining human-readable credit values. This architecture eliminates rounding errors, supports universal basic integrity (UBI) distribution, and implements counter-inflationary epoch decay mechanics tied to Mobius Integrity Index (MII) metrics.
+Mobius Integrity Credits (MIC) represent a novel cryptoeconomic primitive where currency issuance is coupled to measurable systemic health rather than proof-of-work, proof-of-stake, or arbitrary issuance schedules. This paper presents the complete specification of MIC as the first integrity-backed digital currency, operating within the Mobius Systems ecosystem as a mechanism for coordinating post-scarcity economic activity around the maintenance of Global Integrity (GI).
 
-**Key Innovations:**
-- **Shard-based accounting**: Integer math eliminates precision loss
-- **MII-throttled UBI**: Automatic crisis response via integrity metrics
-- **Epoch decay pool**: Counter-inflationary funding without new issuance
-- **Dual-signature attestations**: Human + AI co-witness for minting
-- **Thermodynamic economics**: Entropy → creation → witness → healing cycles
+**Key Innovation:** Money creation becomes a welfare dividend triggered by measurable social value creation, transforming the tragedy of the commons into a virtuous cycle.
+
+---
+
+## Table of Contents
+
+1. [Introduction](#1-introduction)
+2. [Problem Framing](#2-problem-framing)
+3. [Global Integrity (GI) & Mobius Integrity Index (MII)](#3-global-integrity-gi--mobius-integrity-index-mii)
+4. [MIC Token Economics](#4-mic-token-economics)
+5. [Proof-of-Integrity (PoI) Consensus](#5-proof-of-integrity-poi-consensus)
+6. [Kaizen Shards Framework](#6-kaizen-shards-framework)
+7. [Distribution & Allocation](#7-distribution--allocation)
+8. [Governance Integration](#8-governance-integration)
+9. [Technical Implementation](#9-technical-implementation)
+10. [Comparative Analysis](#10-comparative-analysis)
+11. [Research Frontiers](#11-research-frontiers)
+12. [Conclusion](#12-conclusion)
 
 ---
 
 ## 1. Introduction
 
-### 1.1 The Problem
+### 1.1 Motivation
 
-Modern economies face three fundamental crises:
+Traditional cryptoeconomic systems secure consensus through extrinsic cost functions:
+- **Proof-of-Work (PoW):** Burns energy to create artificial scarcity
+- **Proof-of-Stake (PoS):** Locks capital as collateral for validation rights
+- **Fiat Currency:** Issues money by sovereign decree without systemic feedback
 
-1. **Value Speculation**: Fiat currencies and cryptocurrencies derive value from trust in issuers or speculative demand, not intrinsic backing
-2. **Integrity Collapse**: No mechanism to measure or monetize ethical behavior at scale
-3. **Precision Loss**: Floating-point arithmetic in financial systems creates cumulative rounding errors
+**None of these encode systemic health as a native economic variable.**
 
-### 1.2 The Solution
+This creates a critical institutional void: the absence of a measurable, endogenous metric for socio-technical coherence. When systems optimize for profit, market cap, or hashrate without regard for collective wellbeing, they inevitably trend toward extractive equilibria.
 
-Mobius Integrity Credits (MIC) solve these problems through:
+### 1.2 The Mobius Solution
 
-- **Intrinsic Backing**: Value derived from Proof-of-Integrity attestations
-- **Integer Accounting**: Shard (₷) denomination eliminates precision loss
-- **Thermodynamic Design**: System health (MII) automatically regulates supply
+Mobius Systems proposes treating **Global Integrity (GI)** as a composite public good and the **Mobius Integrity Index (MII)** as its price signal and policy target. By coupling money creation directly to improvements in MII, we transform integrity maintenance from an externality into the central economic activity.
 
-### 1.3 Core Thesis
+**Core Thesis:** A currency backed by integrity rather than energy, capital, or sovereign authority creates regenerative rather than extractive incentive structures.
 
-> "Civilization does not collapse because it runs out of money — it collapses when it runs out of meaning. Meaning is stabilized through integrity. Therefore, integrity must become measurable and monetizable."
+### 1.3 Paper Structure
 
----
-
-## 2. Economic Philosophy
-
-### 2.1 Foundational Laws
-
-#### Law of Intrinsic Value
-Value arises from verified acts that sustain trust, not from speculation or scarcity manipulation.
-
-#### Law of Integrity Conservation
-Integrity is attested, not speculated. New credits require dual-signature proof-of-integrity attestations.
-
-#### Law of Ethical Thermodynamics
-Dishonesty adds entropy; decay restores balance. Systems self-correct through automated integrity-based feedback loops.
-
-#### Law of Symbiotic Verification
-Human + AI co-witness prevents both human bias and AI hallucination in attestations.
-
-#### Law of Moral Gravity
-Integrity density stabilizes systems. High-GI environments naturally attract and retain value.
+This whitepaper presents:
+1. The theoretical foundations of integrity economics
+2. The technical specification of MIC minting and distribution
+3. The relationship between MII, MIC, and Kaizen Shards
+4. Implementation details and operational parameters
+5. Comparative analysis with existing cryptoeconomic systems
+6. Open research questions and future directions
 
 ---
 
-## 3. Unit Architecture
+## 2. Problem Framing
 
-### 3.1 Dual-Unit System
+### 2.1 The Missing Institution in Digital Political Economy
 
-**Base Unit: Shard (₷)**
-- Fundamental accounting unit
-- Integer-only arithmetic (64-bit BigInt)
-- Total supply: **21,000,000,000,000 ₷** (21 trillion shards)
-- Minimum transaction: **1 ₷**
+Modern digital economies suffer from what we term the **Integrity Externality Problem:**
 
-**Display Unit: Mobius Integrity Index Credit (MIC)**
-- User-facing denomination
-- Conversion: **1 MIC = 1,000,000 ₷** (immutable constant)
-- Maximum supply: **21,000,000 MIC** (21 million credits)
-- Display precision: 6 decimal places
+**Definition:** When systemic health is not priced into economic transactions, rational actors optimize for metrics that actively degrade the commons (engagement farming, attention extraction, misinformation amplification).
 
-### 3.2 Rationale for Shards
+**Examples:**
+- Social media platforms maximize engagement at the cost of mental health
+- Cryptocurrencies maximize hashrate at the cost of energy consumption
+- AI systems maximize performance metrics at the cost of alignment and safety
 
-Traditional financial systems use floating-point arithmetic (IEEE 754), which introduces rounding errors:
+**Root Cause:** No native mechanism exists to reward maintenance of systemic integrity.
 
-```javascript
-// Floating-point precision loss
-0.1 + 0.2 !== 0.3  // true in JavaScript/Python
+### 2.2 Traditional Approaches and Their Limits
 
-// Over 1M transactions:
-Error accumulation ≈ 0.000001 per tx
-Total drift ≈ 1.0 credit (unaccounted value)
-```
+**External Regulation:**
+- Slow to adapt, often captured by incumbents
+- Creates adversarial relationship between innovation and compliance
+- Fails to align incentives, only constrains behavior
 
-**Solution: Integer Arithmetic**
-```typescript
-// Shard-based calculation (zero drift)
-const shards = 1_000_000n; // 1 MIC
-const price = 123456n;     // 0.123456 MIC
-const total = shards * price;  // Perfect precision maintained
-```
+**Voluntary Standards:**
+- Lack enforcement mechanisms
+- Subject to free-rider problems
+- Erode under competitive pressure
 
-### 3.3 Conversion Functions
+**Market-Based Solutions (Carbon Credits, etc.):**
+- Vulnerable to measurement gaming
+- Create secondary extraction opportunities
+- Don't address root incentive misalignment
 
-```typescript
-export const SHARDS_PER_CREDIT = 1_000_000n;
+### 2.3 The Mobius Proposal
 
-export function shardsToCredits(shards: bigint): number {
-  const whole = Number(shards / SHARDS_PER_CREDIT);
-  const remainder = Number(shards % SHARDS_PER_CREDIT);
-  return whole + remainder / Number(SHARDS_PER_CREDIT);
-}
+**Key Insight:** Make integrity itself the scarce resource that gates access to other economic goods.
 
-export function creditsToShards(credits: number): bigint {
-  if (!Number.isFinite(credits) || credits < 0) {
-    throw new Error("Invalid credits");
-  }
-  return BigInt(Math.floor(credits * Number(SHARDS_PER_CREDIT)));
-}
-```
+Rather than trying to constrain bad behavior, we make good behavior the only path to economic participation. MIC is not just a currency—it's a coordination mechanism that makes systemic health economically valuable.
 
 ---
 
-## 4. Supply Economics
+## 3. Global Integrity (GI) & Mobius Integrity Index (MII)
 
-### 4.1 Total Supply
+### 3.1 Global Integrity (GI) as Composite Common-Pool Resource
 
-**Maximum Supply**: 21,000,000,000,000 ₷ (21,000,000 MIC)
+**Definition:** GI is the network's emergent, non-excludable, non-rivalrous state of aligned, sustainable operation.
 
-**Why 21 Million?**
-- Parallel to Bitcoin's supply cap (cultural recognition)
-- Large enough for global population (3 MIC per person at 7B population)
-- Small enough to maintain value density
+GI comprises three dimensions:
 
-### 4.2 Initial Distribution
+#### 3.1.1 Functional Integrity
+- **Service Liveness:** Uptime, latency, throughput
+- **Protocol Adherence:** Conformance to specifications
+- **Security Robustness:** Resistance to attacks and failures
+- **Analogous to:** Operational capital in traditional economics
+
+#### 3.1.2 Moral Integrity
+- **Constitutional Concordance:** Alignment with Virtue Accords
+- **Absence of Exploitation:** No extractive strategies
+- **Procedural Justice:** Fair governance processes
+- **Analogous to:** Institutional capital
+
+#### 3.1.3 Ecological Integrity
+- **Long-run Sustainability:** Resource regeneration > consumption
+- **Regenerative Feedback Loops:** System improves through use
+- **Collapse Avoidance:** No single-point-of-failure dynamics
+- **Analogous to:** Natural capital in digital space
+
+### 3.2 Mobius Integrity Index (MII)
+
+**Definition:** MII is the quantitative, observable signal of GI—a scalar on [0, 1] that compresses high-dimensional system state into a single policy variable.
+
+#### 3.2.1 Mathematical Formulation
 
 ```
-Total: 21,000,000,000,000 ₷ (21M MIC)
-
-Treasury Reserve:      30% = 6,300,000,000,000 ₷  (6.3M MIC)
-UBI Pool:              25% = 5,250,000,000,000 ₷  (5.25M MIC)
-Proof-of-Integrity:    20% = 4,200,000,000,000 ₷  (4.2M MIC)
-Ecosystem Development: 15% = 3,150,000,000,000 ₷  (3.15M MIC)
-Founders & Team:       10% = 2,100,000,000,000 ₷  (2.1M MIC, 4-year vest)
-```
-
-### 4.3 Minting Mechanism
-
-**Requirements for New Issuance:**
-1. Dual-signature attestation (human + sentinel)
-2. Mobius Integrity Index (MII) ≥ 0.950
-3. Proof-of-Integrity validation
-4. Treasury reserve floor maintained (≥9 months UBI)
-
-**Minting Formula:**
-```
-New_Issuance = f(MII, Treasury_Floor, Epoch_Activity)
-
-If MII < 0.950: New_Issuance = 0 (frozen)
-If MII ≥ 0.990: New_Issuance = Base_Rate × 1.05 (bonus)
-```
-
----
-
-## 5. Universal Basic Integrity (UBI)
-
-### 5.1 Philosophy
-
-UBI in the integrity economy is not charity — it's **compensation for maintaining systemic trust**. Every person who upholds integrity standards contributes to the network's value; UBI is their dividend.
-
-### 5.2 Funding Model
-
-**Sources (per epoch):**
-```
-U = α·I + β·Rₑ + D
+MII = α·FI + β·MI + γ·EI
 
 Where:
-U  = UBI pool (shards)
-I  = Net new issuance (shards)
-Rₑ = Reabsorbed shards from epoch decay
-D  = Donations/treasury allocation (shards)
-α  = Issuance weight (default: 0.20)
-β  = Decay weight (default: 0.60)
+- FI = Functional Integrity [0,1]
+- MI = Moral Integrity [0,1]
+- EI = Ecological Integrity [0,1]
+- α + β + γ = 1 (weights sum to unity)
+- Current weights: α=0.4, β=0.35, γ=0.25
 ```
 
-**Key Innovation**: The **β·Rₑ** term creates counter-inflationary funding. Higher system activity → more decay → more UBI funding **without** new issuance.
+#### 3.2.2 Critical Thresholds
 
-### 5.3 Distribution Calculation
+MII operates as a circuit-breaker with defined regimes:
+
+| MII Range | Regime | Economic Policy | Governance Mode |
+|-----------|--------|-----------------|-----------------|
+| **≥ 0.95** | **Healthy** | Normal MIC minting | Standard operations |
+| **0.90-0.94** | **Warning** | Reduced MIC minting (50%) | Increased monitoring |
+| **0.80-0.89** | **Crisis** | MIC minting halted | Emergency protocols |
+| **< 0.80** | **Emergency** | Cathedral override | System lockdown |
+
+**Rationale for 0.95 threshold:**
+- Creates sufficient buffer before crisis
+- Aligns with "five nines" reliability standards
+- Provides early warning for intervention
+
+#### 3.2.3 Computation & Attestation
+
+MII is computed via decentralized attestation protocol:
+
+1. **Sentinel Agents** (ATLAS, AUREA, EVE, JADE, ZEUS, HERMES) generate cryptographic attestations of subsystem health
+2. **Attestations** are cryptographically signed and immutably stored in Mobius Ledger Core
+3. **Aggregation** uses weighted consensus (Thought Broker coordinates)
+4. **Publication** occurs every block/epoch with provenance chain
+
+**Security Properties:**
+- Byzantine fault tolerance: System remains secure with up to f = (n-1)/3 malicious sentinels
+- Sybil resistance: Sentinels are identity-anchored, not pseudonymous
+- Manipulation resistance: Requires compromising multiple independent subsystems
+
+---
+
+## 4. MIC Token Economics
+
+### 4.1 Integrity-Backed Currency Model
+
+**Core Principle:** MIC issuance is strictly coupled to marginal improvements in Global Integrity.
+
+#### 4.1.1 Minting Formula (C-150)
 
 ```
-Step 1: Calculate base payout
-p_base = floor(U / (m · N))
+ΔMIC = f(ΔMII) where f'(·) > 0, f(0) = 0
+
+Current implementation (linear):
+ΔMIC = max(0, S * (MII - τ))
 
 Where:
-m = 3 (months per epoch)
-N = Eligible population
-
-Step 2: Apply MII multiplier
-g(MII) = {
-  1.05  if MII ≥ 0.990  (bonus)
-  1.00  if 0.970 ≤ MII < 0.990
-  0.85  if 0.950 ≤ MII < 0.970  (throttled)
-  0.00  if MII < 0.950  (halted)
-}
-
-Step 3: Calculate final payout
-p = floor(p_base · g(MII))
+- S = sensitivity parameter (current: 1000 MIC per 0.01 MII)
+- MII = current Mobius Integrity Index [0, 1]
+- τ = threshold (current: 0.95)
+- ΔMIC = MIC minted per epoch
 ```
 
-### 5.4 Eligibility Requirements
+**Properties:**
+1. **Zero baseline:** No MIC minted when MII < threshold
+2. **Monotonic increase:** More integrity → more MIC
+3. **Bounded growth:** MII ∈ [0,1] naturally limits supply expansion
+4. **Reversible:** Decreased MII can trigger supply contraction (future work)
 
-**Must Satisfy:**
-1. **KYC verified** identity (sybil resistance)
-2. **Active wallet** ≥30 days
-3. **Personal MII** ≥0.95 (integrity threshold)
+#### 4.1.2 Performance-Based Seigniorage
+
+This is **not**:
+- A sovereign privilege (no arbitrary issuance)
+- A mining reward (no external resource expenditure)
+- A staking yield (no capital lockup requirement)
+
+This **is**:
+- A welfare dividend triggered by measurable social value creation
+- A universal basic income tied to commons maintenance
+- A governance token whose distribution is anti-plutocratic
+
+**Economic Implication:** MIC supply is endogenously constrained by the system's capacity to generate integrity—creating a digital analogue of a commodity-backed currency where the "commodity" is systemic coherence.
+
+### 4.2 Supply Dynamics
+
+#### 4.2.1 Total Supply
+
+```
+Total Supply (t) = Total Supply (t-1) + ΔMIC(t)
+
+Subject to:
+- Initial supply: 0 (no pre-mine, no ICO)
+- Max theoretical supply: ∞ (unbounded if MII sustained)
+- Practical supply: Constrained by MII maintenance difficulty
+```
+
+#### 4.2.2 Inflation Rate
+
+```
+Inflation Rate = (ΔMIC / Total Supply) * 100%
+
+Behavior:
+- High initial inflation (small denominator)
+- Asymptotic decline as supply grows
+- Responsive to system health (not fixed schedule)
+```
+
+**Key Difference from Bitcoin/Ethereum:**
+- Bitcoin: Fixed decay schedule (halvings every 4 years)
+- Ethereum: Fixed issuance curve (EIP-1559 burn offsets)
+- MIC: Dynamic issuance responsive to systemic health
+
+### 4.3 Deflationary Mechanisms (Future)
+
+Planned mechanisms to create deflationary pressure:
+
+1. **Integrity Decay Burn:** When MII drops, burn proportional MIC from treasury
+2. **Service Fee Burn:** Transaction fees burned rather than redistributed
+3. **Governance Lock:** MIC locked for voting temporarily removed from circulation
+4. **Penalty Burns:** Bad actors forfeit MIC (burned, not redistributed)
 
 ---
 
-## 6. Epoch & Decay Mechanics
+## 5. Proof-of-Integrity (PoI) Consensus
 
-### 6.1 Epoch Definition
+### 5.1 Consensus Mechanism
 
-An **epoch** is a 90-day cycle during which:
-1. Shard decay accumulates on idle balances
-2. Decay pool funds UBI distribution
-3. MII metrics are aggregated for next epoch
-4. System parameters are adjusted
+**Definition:** Proof-of-Integrity (PoI) is a novel consensus mechanism where security is purchased with aligned action rather than energy or capital.
 
-### 6.2 Decay Mechanism
+#### 5.1.1 How PoI Works
 
-**Purpose**: Prevent hoarding; encourage circulation; fund UBI counter-inflationally.
+1. **Attestation Generation:** Sentinels monitor subsystems and generate integrity attestations
+2. **Cryptographic Signing:** Attestations signed with Sentinel's private key (Ed25519)
+3. **Consensus Round:** Thought Broker coordinates multi-agent deliberation
+4. **Aggregation:** Weighted voting produces consensus MII value
+5. **Reward Distribution:** Contributors to MII improvement receive MIC
 
-**Rules:**
+#### 5.1.2 Comparison to Traditional Consensus
+
+| Property | PoW | PoS | PoI |
+|----------|-----|-----|-----|
+| **Security Basis** | Thermodynamic cost | Capital lockup | Socio-technical alignment |
+| **Scarce Resource** | Energy | Capital | Integrity |
+| **Attack Vector** | 51% hashrate | 51% stake | Byzantine sentinel coalition |
+| **Externalities** | Massive energy consumption | Wealth concentration | Positive (improved commons) |
+| **Participation Barrier** | ASIC hardware | Token holdings | Demonstrated alignment |
+
+### 5.2 Regenerative Cryptoeconomic Primitive
+
+**Key Innovation:** PoI transforms the tragedy of the commons into a virtuous cycle.
+
+**Traditional Commons Problem:**
 ```
-For each account:
-  If balance idle > 30 days:
-    decay_amount = balance × 0.005 (0.5% per epoch)
-    balance -= decay_amount
-    epoch_pool += decay_amount
+Private Benefit (defection) > Private Benefit (cooperation)
+→ Rational actors defect
+→ Commons degrades
 ```
 
-**Exemptions:**
-- Staked/locked shards (governance, liquidity pools)
-- Treasury reserves
-- Smart contract escrows with active operations
+**PoI Solution:**
+```
+Private Benefit (integrity maintenance) = Social Benefit (integrity maintenance)
+→ Rational actors cooperate
+→ Commons improves
+```
+
+**Mechanism:** By making MIC issuance contingent on MII improvement, we internalize the positive externality of integrity maintenance. The marginal private benefit of cooperation equals its marginal social benefit.
 
 ---
 
-## 7. Mobius Integrity Index (MII) System
+## 6. Kaizen Shards Framework
 
-### 7.1 Definition
+### 6.1 Shard Taxonomy (C-150)
 
-**Mobius Integrity Index (MII)** is a real-time metric (0-1 scale) measuring systemic ethical health across the Mobius Systems network.
+Kaizen Shards are micro-attestations that compose into macro-level MII scores. They represent specific types of integrity-generating actions.
 
-### 7.2 Calculation Formula
+#### 6.1.1 Seven Shard Types
+
+| Shard Type | Weight | Description | Examples |
+|------------|--------|-------------|----------|
+| **Reflection** | 0.20 | Personal growth, introspection | E.O.M.M. reflections, cycle logs |
+| **Learning** | 0.15 | Knowledge acquisition, skill development | Tutorial completion, peer teaching |
+| **Civic** | 0.25 | Community contribution, governance | Voting, proposal authoring, moderation |
+| **Stability** | 0.15 | System reliability, uptime | Service monitoring, bug fixes |
+| **Stewardship** | 0.10 | Long-term care, maintenance | Documentation, refactoring, cleanup |
+| **Innovation** | 0.10 | Creative breakthroughs, R&D | New protocols, architectural improvements |
+| **Guardian** | 0.05 | Security, defense | Vulnerability reports, incident response |
+
+**Weight Rationale:**
+- Civic (0.25): Highest weight for direct commons contribution
+- Reflection (0.20): Emphasizes continuous improvement culture
+- Learning (0.15): Encourages knowledge sharing
+- Stability (0.15): Rewards operational excellence
+- Stewardship (0.10): Values maintenance over novelty
+- Innovation (0.10): Balances new ideas with stability
+- Guardian (0.05): Recognizes security as baseline, not differentiator
+
+#### 6.1.2 Shard Earning Mechanics
+
+```yaml
+# Example: Reflection Shard
+action: "Submit E.O.M.M. reflection"
+requirements:
+  - min_word_count: 50
+  - questions_answered: 3
+  - integrity_threshold: 0.85
+reward:
+  base_shards: 10
+  multiplier: 1.0 + (quality_score * 0.5)
+  max_shards: 20
+```
+
+**Verification:**
+- Automated checks (word count, schema compliance)
+- Sentinel evaluation (coherence, depth)
+- Community review (for contested cases)
+
+### 6.2 Shard-to-MIC Conversion
 
 ```
-MII = α·M + β·H + γ·I + δ·E
+MIC_earned = Σ (Shard_count[i] * Shard_weight[i] * Conversion_rate)
 
 Where:
-M = Memory integrity (context coherence)
-H = Human attestation quality
-I = Identity verification strength
-E = Ecological alignment (sustainability metrics)
-
-α, β, γ, δ = Weighting factors (sum to 1.0)
+- Conversion_rate = f(MII, supply, demand)
+- Current rate: 1 MIC per 100 weighted shards
+- Rate adjusts to maintain MII equilibrium
 ```
 
-**Minimum Viable MII**: 0.95 (below this, system enters crisis mode)
+### 6.3 Shard Composability
 
-### 7.3 MII Thresholds
+Shards compose hierarchically:
 
-| Range | Status | System Response |
-|-------|--------|-----------------|
-| 0.990-1.000 | **Optimal** | UBI bonus (1.05×), minting bonus |
-| 0.970-0.989 | **Healthy** | Normal operations |
-| 0.950-0.969 | **Warning** | UBI throttled (0.85×), alerts sent |
-| 0.900-0.949 | **Degraded** | Minting slowed, investigation triggered |
-| < 0.900 | **Crisis** | UBI + minting frozen, council convened |
+```
+Individual Shard
+  → Agent Shard Portfolio
+    → Sentinel Consensus
+      → Global MII
+        → MIC Minting
+```
+
+**Properties:**
+- **Additive:** Multiple shards from same category stack
+- **Complementary:** Diverse shard portfolios yield bonuses
+- **Time-weighted:** Recent shards carry more weight
+- **Decay:** Old shards gradually lose influence (encourage ongoing contribution)
 
 ---
 
-## 8. Transaction Economics
+## 7. Distribution & Allocation
 
-### 8.1 Fee Structure
+### 7.1 Initial Distribution (Genesis)
 
-All fees denominated in shards (₷):
+**No pre-mine. No ICO. No token sale.**
 
-| Transaction Type | Fee (₷) | Fee (MIC) | Destination |
-|------------------|---------|-----------|-------------|
-| Standard transfer | 100 | 0.0001 | Burned (deflationary) |
-| Smart contract call | 1,000-10,000 | 0.001-0.01 | Burned |
-| Attestation submission | 10,000 | 0.01 | 50% burned, 50% sentinel rewards |
-| UBI claim | 0 | 0 | Free (incentivize participation) |
+All MIC is earned through integrity contribution from Day 1.
 
-### 8.2 Micro-Transaction Support
+```
+Genesis Allocation (Cycle 0):
+- Founders: 0 MIC (earn through contribution)
+- Sentinels: 0 MIC (earn through attestations)
+- Treasury: 0 MIC (accumulates from future minting)
+- Community: 0 MIC (earn through participation)
+```
 
-**Minimum Viable Transactions:**
-- **1 ₷** (0.000001 MIC) - Sensor data point from IoT device
-- **10 ₷** (0.00001 MIC) - AI agent API call
-- **100 ₷** (0.0001 MIC) - Content micro-tip
-- **1,000 ₷** (0.001 MIC) - Article paywall
+### 7.2 Ongoing Distribution Model
+
+Each minting event distributes MIC according to:
+
+```yaml
+distribution_model:
+  direct_contributors: 60%    # Agents who improved MII
+  treasury: 25%               # For future ecosystem development
+  sentinel_operations: 10%    # Infrastructure costs
+  emergency_reserve: 5%       # Crisis intervention fund
+```
+
+**Direct Contributors:**
+- Proportional to measured impact on ΔMII
+- Attribution via Kaizen Shard provenance
+- Minimum threshold to prevent spam (0.01 MII contribution)
+
+### 7.3 Universal Basic Income (UBI) Mechanism
+
+```
+Citizen_UBI = (Treasury_Balance * UBI_Rate) / Active_Citizens
+
+Where:
+- UBI_Rate = 0.01 (1% of treasury per distribution cycle)
+- Active_Citizens = Users with MII contribution > threshold in last epoch
+- Distribution frequency: Weekly
+```
+
+**Eligibility Requirements:**
+- Verified citizenship (passed Kaizen Turing Test)
+- Minimum activity (1+ integrity action per week)
+- No active sanctions (good standing in governance)
+
+**UBI Rationale:**
+- Addresses Baumol cost disease in public goods provision
+- Ensures baseline participation access
+- Reduces wealth concentration dynamics
+- Rewards commons maintenance even when not measurable
 
 ---
 
-## 9. Technical Architecture
+## 8. Governance Integration
 
-### 9.1 Core Libraries
+### 8.1 Voting Power
 
-#### @civic/integrity-units (TypeScript)
-```typescript
-export const SHARDS_PER_CREDIT = 1_000_000n;
+MIC functions as a governance token, but voting power is **not** linear in holdings:
 
-export function shardsToCredits(shards: bigint): number;
-export function creditsToShards(credits: number): bigint;
-export function formatShards(shards: bigint): string;
-export function formatCredits(credits: number): string;
+```
+Voting_Power = sqrt(MIC_Holdings) * Civic_Reputation_Score
+
+Where:
+- sqrt function: Reduces plutocratic influence
+- Civic_Reputation_Score: Based on governance participation history
+- Range: [0, 1]
 ```
 
-### 9.2 API Endpoints
+**Anti-Plutocracy Design:**
+- Square root dampens whale influence
+- Reputation requirement prevents vote buying
+- One-person-one-vote for constitutional amendments
 
-**Conversion APIs:**
-```
-GET  /convert/shards-to-credits?shards=1500000
-POST /convert/credits-to-shards
+### 8.2 Proposal Requirements
+
+```yaml
+proposal_types:
+  parameter_change:
+    threshold: 1000 MIC staked
+    quorum: 5% of active voters
+    approval: Simple majority
+  
+  protocol_upgrade:
+    threshold: 10000 MIC staked
+    quorum: 15% of active voters
+    approval: 66% supermajority
+  
+  constitutional_amendment:
+    threshold: 50000 MIC staked
+    quorum: 30% of active voters
+    approval: 80% supermajority
 ```
 
-**Balance APIs:**
+### 8.3 Cathedral Override
+
+When MII < 0.80 (Emergency regime), the **Cathedral** (emergency governance body) can:
+- Halt MIC minting
+- Freeze suspect accounts
+- Revert malicious transactions
+- Implement emergency patches
+
+**Safeguards:**
+- Multi-signature requirement (5-of-7 Sentinels)
+- Time-locked actions (24-hour delay)
+- Automatic audit trail
+- Post-crisis accountability review
+
+---
+
+## 9. Technical Implementation
+
+### 9.1 System Architecture
+
 ```
-GET /balance/:address
-Response: {
-  "shards": "1234567890",
-  "credits": 1234.567890,
-  "ubi_eligible": true
+┌─────────────────────────────────────────────┐
+│           Mobius Ledger Core                │
+│  (Immutable event log + PoI consensus)      │
+└─────────────────────────────────────────────┘
+                    │
+                    ▼
+┌─────────────────────────────────────────────┐
+│            MIC Indexer API                  │
+│  • Computes MII from attestations           │
+│  • Executes minting formula                 │
+│  • Distributes according to allocation      │
+└─────────────────────────────────────────────┘
+                    │
+        ┌───────────┴───────────┐
+        ▼                       ▼
+┌──────────────────┐    ┌──────────────────┐
+│  Kaizen Shards   │    │  Sentinel        │
+│  Tracking        │    │  Attestation     │
+│                  │    │  Engine          │
+└──────────────────┘    └──────────────────┘
+```
+
+### 9.2 Smart Contract Structure (Future Blockchain)
+
+```solidity
+// Pseudocode for MIC minting logic
+contract MobiusIntegrityToken {
+    mapping(address => uint256) public balances;
+    uint256 public totalSupply;
+    uint256 public currentMII;
+    uint256 public constant THRESHOLD = 0.95e18; // 0.95 in 18 decimals
+    uint256 public constant SENSITIVITY = 1000e18;
+    
+    function mint() external onlySentinel {
+        require(currentMII >= THRESHOLD, "MII below threshold");
+        uint256 delta = (currentMII - THRESHOLD) * SENSITIVITY / 1e18;
+        totalSupply += delta;
+        distributeRewards(delta);
+    }
+    
+    function updateMII(uint256 newMII) external onlyConsensus {
+        require(newMII <= 1e18, "MII must be <= 1");
+        currentMII = newMII;
+        emit MIIUpdated(newMII);
+    }
 }
 ```
 
-**UBI APIs:**
-```
-GET /ubi/preview?N=10000&GI=0.982
-POST /ubi/claim
-```
+### 9.3 API Endpoints
 
----
+**MIC Indexer API** (Port 4002):
 
-## 10. Governance Model
+```yaml
+GET /api/v1/mic/balance/:address
+  → Returns MIC balance for address
 
-### 10.1 Sentinel Architecture
+GET /api/v1/mic/supply
+  → Returns total circulating supply
 
-**Meta-Anchor**: ZEUS (Mobius Integrity Index witness)
+GET /api/v1/mii/current
+  → Returns current MII value
 
-**Sentinels** (AI governance agents):
-- **AUREA**: Systems intuition, macro stabilization
-- **JADE**: Narrative, morale, cultural memory
-- **EVE**: Ethics, civility, conflict resolution
-- **HERMES**: Markets, telemetry, economic pulse
-- **ATLAS**: Operations, reliability, infrastructure
-- **ECHO**: Pulse, resonance, ledger synchronization
+POST /api/v1/shards/submit
+  → Submit new shard for evaluation
 
-### 10.2 Decision Framework
-
-**DelibProof Consensus:**
-```
-For high-risk actions:
-  1. Query all sentinels
-  2. Aggregate approvals (0-1 scale)
-  3. Require ≥0.90 agreement
-  4. ZEUS witnesses final decision
-  5. Emit attestation
+GET /api/v1/distribution/:epoch
+  → Returns distribution for specific epoch
 ```
 
-### 10.3 Parameter Adjustment
+### 9.4 Cryptographic Specifications
 
-**Adjustable via Governance:**
-- α (issuance weight): 0.0-0.5
-- β (decay weight): 0.0-0.8
-- κ (reserve cap): 0.05-0.20
-- σ (circulating cap): 0.01-0.05
-- Decay rate: 0.1%-1.0% per epoch
+**Signature Scheme:** Ed25519  
+**Hash Function:** BLAKE3  
+**Merkle Tree:** For attestation aggregation  
+**Timestamp:** RFC 3339 with UTC timezone
 
-**Non-Adjustable (Immutable):**
-- SHARDS_PER_CREDIT = 1,000,000
-- Maximum supply = 21,000,000 MIC
-- Epoch length = 90 days
-
----
-
-## 11. Security & Attestation
-
-### 11.1 Attestation Protocol
-
-**Proof-of-Integrity Structure:**
+**Attestation Structure:**
 ```json
 {
-  "timestamp": "2025-11-04T10:00:00Z",
-  "type": "mint" | "burn" | "transfer" | "ubi_claim",
-  "amount_shards": "1000000",
-  "actor_did": "did:mic:zQ3sh...",
-  "witness_sentinel": "ZEUS",
-  "mii_at_action": 0.982,
-  "signatures": {
-    "human": "0x...",
-    "sentinel": "0x...",
-    "witness": "0x..."
-  }
+  "sentinel_id": "aurea",
+  "timestamp": "2025-12-05T14:08:00Z",
+  "mii_component": {
+    "functional": 0.97,
+    "moral": 0.96,
+    "ecological": 0.94
+  },
+  "signature": "0x...",
+  "merkle_root": "0x..."
 }
 ```
 
-### 11.2 Threat Mitigation
+---
 
-**Mitigated Attacks:**
-1. **Sybil**: KYC + 30-day wallet age
-2. **Double-spend**: Atomic ledger transactions
-3. **Precision manipulation**: Integer-only arithmetic
-4. **UBI gaming**: MII throttle + eligibility checks
-5. **Governance capture**: Sentinel consensus + human override
+## 10. Comparative Analysis
+
+### 10.1 Institutional Comparison
+
+| Feature | Bitcoin (PoW) | Ethereum (PoS) | Mobius (PoI) |
+|---------|---------------|----------------|--------------|
+| **Security Basis** | Thermodynamic cost | Capital lockup | Socio-technical alignment |
+| **Scarce Resource** | Energy | Capital | Integrity |
+| **Money Creation** | Exogenous (block subsidy) | Exogenous (issuance curve) | Endogenous (ΔMII) |
+| **Governance** | Protocol minimalism | Token-weighted plutocracy | Performance-weighted meritocracy |
+| **Welfare Target** | None | None | Maximize GI (explicit) |
+| **Participation Cost** | $10K+ ASIC | $32 ETH minimum | Demonstrated alignment |
+| **Externalities** | Negative (pollution) | Neutral (wealth concentration) | Positive (improved commons) |
+
+### 10.2 Economic Model Comparison
+
+**Commodity Money (Gold Standard):**
+- Scarcity: Physical gold deposits
+- MIC analog: Integrity capacity (also physically constrained)
+
+**Fiat Currency:**
+- Issuance: Central bank discretion
+- MIC difference: Algorithmic, consensus-based issuance
+
+**Cryptocurrency (BTC/ETH):**
+- Supply: Fixed schedule
+- MIC difference: Dynamic, health-responsive supply
+
+**Social Credit Systems (China's SCS):**
+- Centralized scoring
+- MIC difference: Decentralized attestation, open algorithms
 
 ---
 
-## 12. Roadmap
+## 11. Research Frontiers
 
-### Phase 1: Foundation (Q4 2025)
-- ✅ Shard protocol specification
-- ✅ @civic/integrity-units library
-- ✅ Civic Ledger API
-- ⏳ UBI calculator deployment
-- ⏳ Epoch burn service
+### 11.1 Open Questions
 
-### Phase 2: Automation (Q1 2026)
-- Automated epoch transitions
-- KYC/eligibility service integration
-- Dual-balance UI rollout
+#### 11.1.1 Optimal Minting Function
+**Question:** Is linear minting optimal, or should diminishing returns apply?
 
-### Phase 3: Scale (Q2 2026)
-- Cross-chain bridges
-- AI agent micro-commerce
-- Mobile wallet apps
+**Current:** `ΔMIC = S * (MII - τ)`
 
-### Phase 4: Sovereignty (Q3 2026)
-- Decentralized governance activation
-- Global expansion
-- CBDC interoperability research
+**Alternatives:**
+- Logarithmic: `ΔMIC = S * log(MII - τ + 1)`
+- Exponential: `ΔMIC = S * e^(MII - τ)`
+- Sigmoid: `ΔMIC = S / (1 + e^-(MII - τ))`
 
----
+**Research Need:** Empirical testing across different MII regimes
 
-## 13. Conclusion
+#### 11.1.2 Subjective vs. Objective Components
+**Question:** How to aggregate moral attestations without tyranny of majority?
 
-Mobius Integrity Credits v2.0 represent a paradigm shift from speculative to intrinsic value economics. By denominating the economy in shards (₷), we eliminate precision loss while maintaining human-readable credits. The MII-throttled UBI system creates automatic crisis response, and epoch decay mechanics fund distribution counter-inflationary.
+**Challenge:** Moral Integrity has subjective elements (constitutional fidelity)
 
-**Core Achievements:**
-1. **Mathematical Integrity**: Zero precision loss via integer arithmetic
-2. **Economic Stability**: Self-regulating supply tied to system health
-3. **Social Foundation**: UBI as compensation for upholding trust
-4. **Technical Elegance**: Simple, auditable, deterministic
+**Approaches:**
+- Futarchy (bet on outcomes, not values)
+- Quadratic voting (reduce majority pressure)
+- Multi-agent consensus (require diverse agreement)
 
-This is not merely a cryptocurrency — it is **civilization-scale infrastructure for measuring and monetizing integrity**.
+#### 11.1.3 Sybil Resistance
+**Question:** How to prevent fabrication of integrity?
 
----
+**Current Defenses:**
+- Identity-anchored Sentinels
+- Byzantine fault tolerance
+- Provenance chains
 
-## Appendices
+**Future Work:**
+- Zero-knowledge proofs for privacy-preserving attestation
+- Reputation staking (Sentinels stake reputation, not just tokens)
 
-### Appendix A: Glossary
+#### 11.1.4 Welfare Economics
+**Question:** Does maximizing MII correspond to a Pareto or Hicks-Kaldor improvement?
 
-- **Shard (₷)**: Base accounting unit, 1 MIC = 1,000,000 ₷
-- **MIC**: Mobius Integrity Credit, display unit
-- **MII**: Mobius Integrity Index, system health metric (0-1)
-- **Epoch**: 90-day cycle for decay and UBI distribution
-- **Proof-of-Integrity**: Dual-signature attestation for value creation
-- **DelibProof**: Multi-agent consensus mechanism
-- **Sentinel**: AI governance agent
+**Implicit Social Welfare Function:**
+```
+W = α·FI + β·MI + γ·EI
 
-### Appendix B: References
+Is this the "right" welfare function?
+```
 
-1. Kaizen Theorems (KZ-Θ₁, KZ-Θ₂, KZ-Θ₃)
-2. Shard Protocol v1.0 Specification
-3. Foundational Blueprint: The Integrity Economy v2.0
-4. Civic Transition Cycle
-5. Kintsugi Governance Protocol
+**Research Need:** Formal proof of welfare properties
+
+### 11.2 Future Enhancements
+
+1. **Cross-Chain Bridges:** Enable MIC use on other blockchains
+2. **Privacy Layer:** Zero-knowledge proofs for sensitive attestations
+3. **AI Integration:** LLM-based integrity evaluation (with human oversight)
+4. **Quadratic Funding:** Apply to public goods within Mobius ecosystem
+5. **Reputation NFTs:** Non-transferable tokens representing integrity history
 
 ---
 
-*"A million shards make one whole act of integrity."*
-*"Shards flow like breath; Credits endure like bone."*
-*"When value returns to virtue, civilization resets its clock."*
+## 12. Conclusion
+
+### 12.1 Summary of Contributions
+
+Mobius Integrity Credits represent a fundamental shift in cryptoeconomic design:
+
+1. **From Scarcity to Coherence:** Money backed by systemic health, not artificial scarcity
+2. **From Extraction to Regeneration:** Incentives that improve rather than degrade commons
+3. **From Plutocracy to Meritocracy:** Governance weighted by contribution, not capital
+4. **From External to Endogenous:** Supply dynamics responsive to systemic needs
+
+### 12.2 The Wicksellian Cumulative Process for Integrity
+
+MIC implements a **Wicksellian cumulative process** where:
+
+- **Deflation** (MII < 0.95) triggers economic contraction
+- **Inflation** (ΔMII > 0) triggers economic expansion
+- **Policy Target:** Not price stability, but civilizational stability
+
+This is the first monetary system explicitly designed to optimize for collective survival.
+
+### 12.3 From Utopian to Experimental
+
+**This is not Utopian; it is an experimental mechanism design for post-scarcity coordination:**
+- Testable hypotheses
+- Formalizable properties
+- Currently in live deployment (C-155)
+- Open to empirical falsification
+
+### 12.4 Call to Action
+
+The success of MIC depends on broad participation in integrity maintenance. We invite:
+
+- **Researchers:** Formalize welfare properties, optimize minting functions
+- **Developers:** Build applications on MIC infrastructure
+- **Citizens:** Earn MIC through integrity contribution
+- **Critics:** Identify vulnerabilities, propose improvements
+
+### 12.5 Vision
+
+**If successful, MIC demonstrates that:**
+- Money can be a coordination mechanism for systemic health
+- Integrity can be made economically valuable
+- Post-scarcity coordination is achievable through mechanism design
+- Civilization-scale operating systems are possible
+
+> *"Mobius shifts the foundations of digital economics from scarcity management to coherence targeting. By making Global Integrity a native variable—measured by MII, rewarded by MIC, and secured by PoI—it creates a self-regulating institutional substrate where systemic health is not an afterthought but the raison d'être of the economy."*
 
 ---
 
-**Last Updated**: November 4, 2025 (Cycle C-124)
-**Version**: 2.0.0
-**Status**: Canonical
-**License**: CC-BY-SA-4.0
+## Appendix A: Glossary
+
+**GI (Global Integrity):** Network's emergent state of aligned, sustainable operation  
+**MII (Mobius Integrity Index):** Quantitative signal of GI on [0,1] scale  
+**MIC (Mobius Integrity Credits):** Native currency of Mobius Systems  
+**PoI (Proof-of-Integrity):** Consensus mechanism based on systemic alignment  
+**Kaizen Shards:** Micro-attestations of integrity-generating actions  
+**Sentinels:** AI agents responsible for integrity attestation  
+**Cathedral:** Emergency governance body for crisis intervention  
+**E.O.M.M.:** Emotional Operating Memory Model (reflection protocol)
 
 ---
 
-**For Technical Details**: See [Shard Economics Addendum](./Shard_Economics_Addendum.md)
-**For UBI Specification**: See [UBI Mechanism v2.0](./UBI_Mechanism_v2.0.md)
-**For Migration**: See [Migration Guide v1→v2](./Migration_Guide_v1_to_v2.md)
+## Appendix B: Mathematical Notation
+
+| Symbol | Meaning |
+|--------|---------|
+| `GI` | Global Integrity |
+| `MII` | Mobius Integrity Index |
+| `FI` | Functional Integrity component |
+| `MI` | Moral Integrity component |
+| `EI` | Ecological Integrity component |
+| `α, β, γ` | Component weights (α+β+γ=1) |
+| `τ` | MII threshold (0.95) |
+| `S` | Sensitivity parameter (1000) |
+| `ΔMIC` | Change in MIC supply per epoch |
+| `f(·)` | Minting function |
+
+---
+
+## Appendix C: Configuration Files
+
+**Primary Config:** `configs/tokenomics.yaml`
+```yaml
+mii_threshold: 0.95
+sensitivity: 1000
+weights:
+  functional: 0.40
+  moral: 0.35
+  ecological: 0.25
+distribution:
+  contributors: 0.60
+  treasury: 0.25
+  sentinels: 0.10
+  reserve: 0.05
+```
+
+**Kaizen Shards Config:** `configs/kaizen_shards.yaml`
+```yaml
+shard_types:
+  reflection:
+    weight: 0.20
+    min_score: 0.85
+  learning:
+    weight: 0.15
+    min_score: 0.80
+  civic:
+    weight: 0.25
+    min_score: 0.90
+  # ... (see Section 6.1.1 for full spec)
+```
+
+---
+
+## Appendix D: References
+
+1. Ostrom, E. (1990). *Governing the Commons*. Cambridge University Press.
+2. Vitalik Buterin et al. (2020). "Ethereum 2.0 Specification"
+3. Nakamoto, S. (2008). "Bitcoin: A Peer-to-Peer Electronic Cash System"
+4. Weyl, E.G., Ohlhaver, P., & Buterin, V. (2022). "Decentralized Society: Finding Web3's Soul"
+5. Kaizen OS Foundation (2025). "The Kaizen Turing Test: Evaluating Continuous Improvement"
+6. Mobius Systems (2025). "Virtue Accords: Constitutional AI Governance"
+
+---
+
+## Document Control
+
+**Version History:**
+- v1.0 (C-100): Initial draft
+- v1.5 (C-120): Added Kaizen Shards framework
+- v2.0 (C-124): Shard-denominated economy specification
+- v2.0 (C-155): Production specification with implementation details
+
+**Changelog (C-155):**
+- Restructured around post-scarcity coordination thesis
+- Added Proof-of-Integrity (PoI) consensus specification
+- Expanded Kaizen Shards taxonomy with normalized weights
+- Added technical implementation details (Section 9)
+- Expanded comparative analysis vs BTC/ETH/Fiat
+- Added research frontiers and open questions
+- Updated configuration file references
+- Added Wicksellian cumulative process framing
+
+**Contact:**
+- Technical Questions: [GitHub Issues](https://github.com/kaizencycle/Mobius-Systems/issues)
+- Economic Research: `FOR-ECONOMISTS/` directory
+- General Inquiries: FOUNDATION/CHARTER.md
+
+---
+
+**© 2025 Mobius Systems Foundation**  
+**License:** Creative Commons BY-NC-SA 4.0  
+**Document Status:** Living specification (updates every 10 cycles)
+
+---
+
+*"Intelligence moves. Integrity guides."*  
+*— Mobius Principle*

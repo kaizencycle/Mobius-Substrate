@@ -1,6 +1,7 @@
 # MIC/KS Tokenomics Configuration
-# Cycle: C-151
-# Updated: December 1, 2025
+# Cycle: C-155
+# Updated: December 5, 2025
+# Reference: MIC_Whitepaper_v2.0.md (Post-Scarcity Coordination)
 
 # Core Currency Definition
 currency:
@@ -20,9 +21,31 @@ currency:
       ratio: 1000000    # 1 MIC = 1,000,000 KS
       precision: 0      # Integer only
 
+# Global Integrity Index (MII) Components
+# MII = α·FI + β·MI + γ·EI where α+β+γ=1
+mii:
+  weights:
+    functional: 0.40    # FI - Service liveness, protocol adherence, security
+    moral: 0.35         # MI - Constitutional concordance, no exploitation
+    ecological: 0.25    # EI - Long-run sustainability, regenerative loops
+  
+  thresholds:
+    healthy: 0.95       # Normal operations
+    warning: 0.90       # Reduced minting (50%)
+    crisis: 0.80        # Minting halted
+    emergency: 0.80     # Cathedral override (< this value)
+
+# MIC Distribution Model (per minting event)
+distribution:
+  direct_contributors: 0.60   # Agents who improved MII
+  treasury: 0.25              # Future ecosystem development
+  sentinel_operations: 0.10   # Infrastructure costs
+  emergency_reserve: 0.05     # Crisis intervention fund
+
 # Minting Configuration
 minting:
   threshold_mii: 0.95       # τ - minimum MII for minting
+  sensitivity: 1000         # S - MIC per 0.01 MII above threshold
   base_coefficient: 1.0     # α - base mint multiplier
   
   # Quality multipliers based on EOMM evaluation
@@ -60,6 +83,17 @@ burning:
     - policy_violation
 
 # Shard Weights (imported from kaizen_shards.yaml)
+# Normalized weights for MII composition (sum to 1.0)
+shard_weights_normalized:
+  reflection: 0.20
+  learning: 0.15
+  civic: 0.25
+  stability: 0.15
+  stewardship: 0.10
+  innovation: 0.10
+  guardian: 0.05
+
+# Multiplier weights for reward scaling (legacy compatibility)
 shard_weights:
   reflection: 1.0
   learning: 1.0
