@@ -204,8 +204,11 @@ function calculateFileHash(filePath: string): string {
     const content = fs.readFileSync(filePath);
     return createHash('sha256').update(content).digest('hex');
   } catch (error) {
-    // Use separate arguments to avoid format string injection
-    console.error('Error calculating hash for %s:', String(filePath), error);
+    // Sanitize log inputs to prevent log injection
+    const safeFilePath = String(filePath).replace(/\n/g, '').replace(/\r/g, '');
+    const errorMsg = error instanceof Error ? error.message : String(error);
+    const safeError = errorMsg.replace(/\n/g, '').replace(/\r/g, '');
+    console.error('Error calculating hash for %s:', safeFilePath, safeError);
     return '';
   }
 }
@@ -216,8 +219,11 @@ function getFileSize(filePath: string): number {
     const stats = fs.statSync(filePath);
     return stats.size;
   } catch (error) {
-    // Use separate arguments to avoid format string injection
-    console.error('Error getting size for %s:', String(filePath), error);
+    // Sanitize log inputs to prevent log injection
+    const safeFilePath = String(filePath).replace(/\n/g, '').replace(/\r/g, '');
+    const errorMsg = error instanceof Error ? error.message : String(error);
+    const safeError = errorMsg.replace(/\n/g, '').replace(/\r/g, '');
+    console.error('Error getting size for %s:', safeFilePath, safeError);
     return 0;
   }
 }
@@ -510,7 +516,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     // Update release registry
     updateReleaseRegistry(attestation);
     
-    console.log(`Release attestation created: ${attestation.attestation_id} for ${request.release_version}`);
+    // Sanitize log inputs to prevent log injection
+    const safeAttestationId = String(attestation.attestation_id || '').replace(/\n/g, '').replace(/\r/g, '');
+    const safeVersion = String(request.release_version || '').replace(/\n/g, '').replace(/\r/g, '');
+    console.log(`Release attestation created: ${safeAttestationId} for ${safeVersion}`);
     
     return res.status(200).json({
       success: true,

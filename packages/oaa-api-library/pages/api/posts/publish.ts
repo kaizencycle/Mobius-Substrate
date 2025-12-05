@@ -35,10 +35,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         
         if (enqueueRes.ok) {
           const enqueueData = await enqueueRes.json();
-          // Use separate arguments to avoid format string injection
-          console.log('Enqueued publish job for %s:', label, enqueueData.id);
+          // Sanitize log inputs to prevent log injection (label already sanitized, but be defensive)
+          const safeLabel = label.replace(/\n/g, '').replace(/\r/g, '');
+          const safeId = String(enqueueData.id || '').replace(/\n/g, '').replace(/\r/g, '');
+          console.log('Enqueued publish job for %s:', safeLabel, safeId);
         } else {
-          console.error("Failed to enqueue publish job:", await enqueueRes.text());
+          const errorText = await enqueueRes.text();
+          const safeError = errorText.replace(/\n/g, '').replace(/\r/g, '');
+          console.error("Failed to enqueue publish job:", safeError);
         }
       }
     } catch (enqueueError) {

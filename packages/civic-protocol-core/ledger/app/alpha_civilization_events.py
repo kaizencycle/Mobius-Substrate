@@ -19,6 +19,13 @@ log = logging.getLogger("alpha_civilization_events")
 router = APIRouter(prefix="/ledger", tags=["AlphaCivilization"])
 
 
+def _sanitize_log_value(value: Any) -> str:
+    """Sanitize potentially unsafe strings for log output (strip CR/LF)."""
+    if not isinstance(value, str):
+        value = str(value)
+    return value.replace("\n", "").replace("\r", "")
+
+
 # ---- Incoming (thin) event from frontends ----
 
 class CitySummary(BaseModel):
@@ -137,9 +144,13 @@ def record_event(thin: AlphaCivilizationRunThin) -> Dict[str, Any]:
 
     ALPHA_CIV_EVENTS.append(event)
     
+    # Sanitize log inputs to avoid log injection
+    clean_event_id = _sanitize_log_value(event.event_id)
+    clean_sim_id = _sanitize_log_value(thin.sim_id)
+    clean_steps = _sanitize_log_value(thin.steps)
     log.info(
-        f"Recorded AlphaCivilization event: {event.event_id} "
-        f"(sim={thin.sim_id}, steps={thin.steps}, gi_final={gi_final})"
+        f"Recorded AlphaCivilization event: {clean_event_id} "
+        f"(sim={clean_sim_id}, steps={clean_steps}, gi_final={gi_final})"
     )
 
     return {

@@ -405,8 +405,11 @@ async function invokeEnginePlan(engineIds: EngineId[], opts: EngineInvocationOpt
     if (entry.status === 'fulfilled') {
       successful.push(entry.result);
     } else {
-      // Use separate arguments to avoid format string injection
-      console.warn('[BROKER] Engine %s failed:', String(engineIds[index]), entry.error);
+      // Sanitize log inputs to prevent log injection
+      const safeEngineId = String(engineIds[index] || '').replace(/\n/g, '').replace(/\r/g, '');
+      const errorMsg = entry.error instanceof Error ? entry.error.message : String(entry.error || '');
+      const safeError = errorMsg.replace(/\n/g, '').replace(/\r/g, '');
+      console.warn('[BROKER] Engine %s failed:', safeEngineId, safeError);
     }
   });
 

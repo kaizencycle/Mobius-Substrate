@@ -222,7 +222,10 @@ export async function notifyWebhook(url: string, payload: any): Promise<void> {
   try {
     safeUrl = await validateWebhookUrl(url);
   } catch (error) {
-    console.error('Webhook URL validation failed:', error);
+    // Sanitize error message to prevent log injection
+    const errorMsg = error instanceof Error ? error.message : String(error);
+    const sanitized = errorMsg.replace(/\n/g, '').replace(/\r/g, '');
+    console.error('Webhook URL validation failed:', sanitized);
     return;
   }
 

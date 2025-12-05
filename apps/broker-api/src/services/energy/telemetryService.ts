@@ -32,7 +32,10 @@ function validatePropertyName(name: string): string {
   // Sanitize: remove any non-alphanumeric characters except dash, underscore, and dot
   const sanitized = name.replace(/[^a-zA-Z0-9._-]/g, '_');
   if (sanitized !== name) {
-    console.warn(`Property name sanitized: ${name} -> ${sanitized}`);
+    // Sanitize log inputs to prevent log injection
+    const safeName = name.replace(/\n/g, '').replace(/\r/g, '');
+    const safeSanitized = sanitized.replace(/\n/g, '').replace(/\r/g, '');
+    console.warn(`Property name sanitized: ${safeName} -> ${safeSanitized}`);
   }
   
   return sanitized;
@@ -63,7 +66,9 @@ function validateEnergySource(source: string | EnergySource): EnergySource {
   validatePropertyName(String(source));
   
   // Default to "other" for invalid sources rather than throwing
-  console.warn(`Invalid energy source: ${source}, defaulting to "other"`);
+  // Sanitize log input to prevent log injection
+  const safeSource = String(source).replace(/\n/g, '').replace(/\r/g, '');
+  console.warn(`Invalid energy source: ${safeSource}, defaulting to "other"`);
   return "other";
 }
 
@@ -159,7 +164,10 @@ export class EnergyTelemetryService {
     // Validate telemetry
     const validation = this.validateTelemetry(telemetry);
     if (!validation.valid) {
-      console.warn(`[Energy] Invalid telemetry from ${telemetry.nodeId}: ${validation.reason}`);
+      // Sanitize log inputs to prevent log injection
+      const safeNodeId = String(telemetry.nodeId).replace(/\n/g, '').replace(/\r/g, '');
+      const safeReason = String(validation.reason).replace(/\n/g, '').replace(/\r/g, '');
+      console.warn(`[Energy] Invalid telemetry from ${safeNodeId}: ${safeReason}`);
       return { stored: false, alerts: [] };
     }
 
@@ -173,7 +181,10 @@ export class EnergyTelemetryService {
       store.alerts.push(...alerts);
     }
 
-    console.log(`[Energy] Ingested telemetry from ${telemetry.nodeId} (${telemetry.source})`);
+    // Sanitize log inputs to prevent log injection
+    const safeNodeId = String(telemetry.nodeId).replace(/\n/g, '').replace(/\r/g, '');
+    const safeSource = String(telemetry.source).replace(/\n/g, '').replace(/\r/g, '');
+    console.log(`[Energy] Ingested telemetry from ${safeNodeId} (${safeSource})`);
 
     return { stored: true, alerts };
   }

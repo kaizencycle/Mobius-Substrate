@@ -110,16 +110,21 @@ function calculateLayoutHash(html: string): string {
   // Normalize whitespace first
   let cleanHtml = html.replace(/[\s\r\n]+/g, ' ');
   
-  // Remove HTML comments - use anchored pattern to prevent incomplete matches
-  // Match from <!-- to --> with proper boundaries
+  // Remove HTML comments - precise pattern to match <!-- ... --> with proper boundaries
+  // Pattern: <!-- followed by any chars except -->, then -->
+  // The (?:[^-]|-(?!->))* pattern ensures we don't match partial comment sequences
+  // This prevents false matches while handling nested dashes correctly
   cleanHtml = cleanHtml.replace(/<!--(?:[^-]|-(?!->))*-->/g, '');
   
-  // Remove script tags - improved regex to handle edge cases
-  // Match <script with optional attributes, then content, then closing tag
-  // Use non-greedy matching with proper boundaries
+  // Remove script tags - precise pattern with word boundary to prevent false matches
+  // \b ensures we match <script> but not <scriptfoo> or <scripting>
+  // [^>]* matches attributes (anything except >) before the closing >
+  // [\s\S]*? non-greedily matches content until </script>
   cleanHtml = cleanHtml.replace(/<script\b[^>]*>[\s\S]*?<\/script\s*>/gi, '');
   
-  // Remove style tags - same approach as script tags
+  // Remove style tags - same precise approach as script tags
+  // Word boundary prevents false matches like <styleguide>
+  // [^>]* ensures we only match within the opening tag
   cleanHtml = cleanHtml.replace(/<style\b[^>]*>[\s\S]*?<\/style\s*>/gi, '');
   
   // Simple hash function (in production, use crypto.subtle.digest)
