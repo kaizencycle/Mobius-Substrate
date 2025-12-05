@@ -1,0 +1,316 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage[margin=1in]{geometry}
+
+\title{\textbf{AlphaCivilization: Reinforcement Learning for Constitutional Civic Governance}}
+\author{Michael Judan \\ Mobius Systems / Kaizen OS \\ \texttt{michael@mobiussystems.io}}
+\date{December 2025}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Modern reinforcement learning systems such as AlphaGo, AlphaZero, and MuZero demonstrate that self-play can uncover superhuman strategies in closed domains. Yet no analogous framework exists for civic governance, where stability, integrity, and social welfare depend on dynamic, interdependent systems rather than fixed rule sets. This paper introduces \textbf{AlphaCivilization}, a constitutional RL architecture for testing policy interventions in multi-city environments under a formally encoded integrity metric.
+
+Building on the Mobius Systems ecosystem --- including Global Integrity (GI), the Mobius Integrity Index (MII), and Proof-of-Integrity (PoI) --- we define a simulation environment where city-states execute policy actions, Sentinel agents perform constitutional, ethical, economic, and structural evaluation, and rewards are based on improvements in systemic integrity rather than GDP-like metrics. The system logs each simulation into an immutable Civic Ledger, enabling audit, training data collection, and analysis of cross-policy effects.
+
+The result is a blueprint for ``AlphaGo for civilization'': a tractable, simulation-first method for exploring governance strategies, stability regimes, and post-scarcity coordination mechanisms, under transparent, non-plutocratic constraints.
+\end{abstract}
+
+\section{Introduction}
+
+AlphaGo and its successors demonstrate that reinforcement learning (RL) can exceed human experts in domains with fixed rules and perfect information. Civic governance, however, is an open system: noisy, multi-objective, ethically constrained, and historically path-dependent. Traditional RL cannot simply be applied directly because it lacks constitutional guardrails and oversight mechanisms.
+
+We introduce \textbf{AlphaCivilization}, a reinforcement-learning-compatible environment for constitutional policy experimentation. Each timestep models multi-city dynamics, policy actions, integrity effects, inequality propagation, trust erosion, and environmental risk. A Sentinel Council (AUREA, EVE, ATLAS, JADE, HERMES, ECHO) evaluates actions using a formal voting protocol with weighted scores and vetoes.
+
+\subsection{Contributions}
+
+\begin{enumerate}[noitemsep]
+    \item A formal state/action/reward specification for civic governance RL
+    \item The Sentinel Voting Protocol with weighted scores, hard vetoes, and quorum rules
+    \item Integration with Civic Ledger for transparent, auditable decision logging
+    \item The Proof-of-Integrity (PoI) mechanism linking currency issuance to integrity improvements
+\end{enumerate}
+
+\section{Background \& Related Work}
+
+\subsection{Game RL}
+
+AlphaGo \cite{silver2016mastering}, AlphaZero \cite{silver2017mastering}, and MuZero \cite{schrittwieser2020mastering} demonstrate superhuman performance in well-defined games with perfect information and a single performance scalar (win probability).
+
+\subsection{Computational Social Science}
+
+Prior work on agent-based modeling explores toy economies and network cascades, but often lacks constitutional constraints or explicit integrity metrics \cite{epstein1996growing}.
+
+\subsection{Constitutional AI}
+
+Anthropic's Constitutional AI \cite{bai2022constitutional} constrains models by natural language principles. Mobius extends this into institutional, multi-agent form where multiple specialized agents enforce different constitutional dimensions.
+
+\subsection{Cryptoeconomics}
+
+Bitcoin, Ethereum, and related systems use Proof-of-Work (PoW) or Proof-of-Stake (PoS) for consensus. We propose Proof-of-Integrity (PoI), where integrity improvements---not computational work or capital stake---gate currency issuance.
+
+\section{The Mobius Integrity Framework}
+
+\subsection{Global Integrity (GI) as a Public Good}
+
+GI is defined as an emergent state of socio-technical coherence, comprising:
+\begin{itemize}[noitemsep]
+    \item \textbf{Functional integrity}: Systems operate as designed
+    \item \textbf{Moral integrity}: Actions align with ethical principles
+    \item \textbf{Ecological integrity}: Sustainable resource use
+\end{itemize}
+
+GI is non-rivalrous and non-excludable---a classic common-pool resource requiring careful governance.
+
+\subsection{Mobius Integrity Index (MII)}
+
+MII is a scalar $\in [0,1]$ summarizing systemic health. We define operational thresholds:
+
+\begin{table}[h]
+\centering
+\begin{tabular}{@{}ll@{}}
+\toprule
+MII Range & Regime \\
+\midrule
+$\geq 0.95$ & Healthy; expansionary; MIC issuance permitted \\
+$[0.90, 0.95)$ & Warning; reduced issuance \\
+$[0.80, 0.90)$ & Crisis; mint halted \\
+$< 0.80$ & Emergency; Cathedral override \\
+\bottomrule
+\end{tabular}
+\caption{MII threshold regimes}
+\end{table}
+
+We treat MII as the reward signal to be optimized by AlphaCivilization.
+
+\subsection{Proof-of-Integrity (PoI) \& MIC}
+
+Mobius Integrity Credits (MIC) are minted only when $\Delta MII > 0$. PoI is a consensus mechanism where attestations that raise MII are rewarded, turning pro-social contributions into the analog of ``hash power'' or ``stake.''
+
+\section{AlphaCivilization Environment}
+
+\subsection{State Space}
+
+For each city-state $c \in \{A, B, C\}$, the state vector is:
+\[
+s_c = (\text{integrity}, \text{trust}, \text{inequality}, \text{unemployment}, \text{life\_exp}, \text{corruption}, \text{climate\_risk})
+\]
+
+All components are normalized to $[0, 100]$. Higher values are better for integrity, trust, and life expectancy; lower is better for inequality, unemployment, corruption, and climate risk.
+
+\subsection{Action Space}
+
+Discrete governance moves $a \in \mathcal{A}$:
+
+\begin{table}[h]
+\centering
+\begin{tabular}{@{}ll@{}}
+\toprule
+Action & Primary Effects \\
+\midrule
+\texttt{ubi\_pilot} & $\downarrow$ unemployment, $\uparrow$ trust, $\downarrow$ inequality \\
+\texttt{progressive\_tax\_shift} & $\downarrow$ inequality, $\uparrow$ integrity \\
+\texttt{austerity\_program} & $\uparrow$ unemployment, $\downarrow$ trust (harmful) \\
+\texttt{green\_investment} & $\downarrow$ climate\_risk, $\uparrow$ integrity \\
+\texttt{education\_boost} & $\uparrow$ life\_exp, $\uparrow$ trust \\
+\texttt{corruption\_crackdown} & $\downarrow$ corruption, $\uparrow$ trust \\
+\texttt{policing\_militarization} & $\downarrow$ trust, $\downarrow$ integrity (harmful) \\
+\texttt{infrastructure\_spend} & $\uparrow$ integrity, $\downarrow$ unemployment \\
+\bottomrule
+\end{tabular}
+\caption{Action space with primary effects}
+\end{table}
+
+\subsection{Transition Dynamics}
+
+In v0.1, transitions are hand-crafted and interpretable:
+\[
+s_{t+1} = T(s_t, a_t) + \epsilon
+\]
+where $T$ applies deterministic deltas and $\epsilon$ is small Gaussian noise.
+
+Future versions will incorporate learned world models (MuZero-style), always constrained by constitutional filters.
+
+\subsection{Reward Function}
+
+For city $c$ at time $t$:
+\[
+r_t(c) = MII(s_{t+1}^c) - MII(s_t^c) = \Delta MII
+\]
+
+Global reward can aggregate across cities:
+\[
+R_t = \sum_c r_t(c) \quad \text{or} \quad R_t = \frac{1}{|C|} \sum_c r_t(c)
+\]
+
+This aligns local and global performance with improving integrity.
+
+\section{Sentinel Council \& Voting Protocol}
+
+\subsection{Sentinel Roles}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{@{}lll@{}}
+\toprule
+Sentinel & Domain & Weight \\
+\midrule
+AUREA & Constitutional / legal & 0.25 \\
+EVE & Ethics / Virtue Accords & 0.25 \\
+ATLAS & Structural feasibility & 0.20 \\
+HERMES & Economic stability & 0.15 \\
+JADE & Social cohesion & 0.10 \\
+ECHO & Observability / audit & 0.05 \\
+\bottomrule
+\end{tabular}
+\caption{Sentinel weights (sum = 1.0)}
+\end{table}
+
+\subsection{Voting Model}
+
+For each candidate action $a$, Sentinel $i$ returns:
+\[
+(score_i, verdict_i, notes_i)
+\]
+with $score_i \in [-1, 1]$ and $verdict_i \in \{\text{approve}, \text{reject}, \text{veto}, \text{abstain}, \text{log}\}$.
+
+\subsection{Hard Vetoes}
+
+If EVE or AUREA return \texttt{veto}, action $a$ is disqualified:
+\[
+\text{valid}(a) = \mathbf{1}[verdict_{EVE}(a) \neq \text{veto} \land verdict_{AUREA}(a) \neq \text{veto}]
+\]
+
+\subsection{Score Aggregation}
+
+Weighted global score:
+\[
+G(a) = \sum_i w_i \cdot score_i(a)
+\]
+
+With penalty for strong structural/economic rejections:
+\[
+\hat{G}(a) = G(a) \cdot \text{penalty}(a)
+\]
+
+\subsection{Confidence \& Quorum}
+
+\[
+\text{confidence}(a) = \frac{N_{participating}}{N_{total}} \cdot f(\text{approval\_ratio})
+\]
+
+where $f$ maps unanimous approval to 1, ties to 0.5, and unanimous rejection to 0.
+
+\section{Civic Ledger Integration}
+
+\subsection{Event Types}
+
+All simulation runs produce \texttt{alpha\_civilization.run.v0} events containing:
+\begin{itemize}[noitemsep]
+    \item Simulation ID, version, steps, policy mode
+    \item Per-city initial/final state, MII series, action summaries
+    \item GI series and final GI
+    \item Meta fields: simulation flag, notes, Trinity seal
+\end{itemize}
+
+\subsection{Uses}
+
+\begin{enumerate}[noitemsep]
+    \item \textbf{Auditing}: Understanding which policies led to collapse or resilience
+    \item \textbf{Training data}: Feeding into future RL or world-model training
+    \item \textbf{Governance research}: Comparing strategies across configurations
+\end{enumerate}
+
+\section{Experiments (Conceptual)}
+
+\subsection{Random vs. Sentinel Policy}
+
+Compare distributions of final MII over many runs under random policy vs. Sentinel-guided policy.
+
+\subsection{Austerity Trap}
+
+Start cities with high inequality and debt; compare austerity vs. education/UBI responses.
+
+\subsection{Inequality Shock}
+
+Inject exogenous inequality increase; measure recovery trajectories under different policies.
+
+\subsection{Multi-City Coordination}
+
+Allow trade and subsidy actions; measure global GI under cooperative vs. competitive regimes.
+
+\section{Discussion}
+
+\subsection{Benefits}
+
+\begin{itemize}[noitemsep]
+    \item Moves RL into institutionally-aware space
+    \item Introduces explicit constitutional/ethical constraints via Sentinels
+    \item Makes integrity, not GDP, the optimized quantity
+    \item Full transparency via Civic Ledger
+\end{itemize}
+
+\subsection{Limitations}
+
+\begin{itemize}[noitemsep]
+    \item v0.1 dynamics are toy and hand-crafted
+    \item Real-world data mapping is non-trivial
+    \item Risk of ``metric gaming'' if MII is poorly monitored
+\end{itemize}
+
+\subsection{Ethical Considerations}
+
+\begin{itemize}[noitemsep]
+    \item Simulated governance does not equal real consent
+    \item AlphaCivilization is decision support, not autopilot
+    \item Human override, ledger visibility, and pluralist input are essential
+\end{itemize}
+
+\section{Future Work}
+
+\begin{itemize}[noitemsep]
+    \item Learn world models from historical political-economic data
+    \item Expand action space and state granularity
+    \item Integrate MIC minting logic with sustained MII $\geq 0.95$ thresholds
+    \item Build interactive dashboards for municipal ``what-if'' scenarios
+\end{itemize}
+
+\section{Conclusion}
+
+AlphaCivilization is not a blueprint for technocratic rule, but a proposal for \textbf{constitutional reinforcement learning}: a way to train and test policy search under explicit integrity constraints, with multi-agent oversight and full ledger transparency.
+
+It connects:
+\begin{itemize}[noitemsep]
+    \item AlphaZero-style self-play
+    \item Constitutional AI
+    \item Integrity-backed economics (PoI, MIC)
+    \item Civic ledgering
+\end{itemize}
+
+into a unified experimental platform. In doing so, it opens a path toward AI that doesn't simply optimize for local objectives, but learns the patterns that keep civilizations from collapsing.
+
+\begin{thebibliography}{9}
+
+\bibitem{silver2016mastering}
+Silver, D., et al. (2016). Mastering the game of Go with deep neural networks and tree search. \textit{Nature}, 529(7587), 484-489.
+
+\bibitem{silver2017mastering}
+Silver, D., et al. (2017). Mastering chess and shogi by self-play with a general reinforcement learning algorithm. \textit{arXiv preprint arXiv:1712.01815}.
+
+\bibitem{schrittwieser2020mastering}
+Schrittwieser, J., et al. (2020). Mastering Atari, Go, chess and shogi by planning with a learned model. \textit{Nature}, 588(7839), 604-609.
+
+\bibitem{bai2022constitutional}
+Bai, Y., et al. (2022). Constitutional AI: Harmlessness from AI Feedback. \textit{arXiv preprint arXiv:2212.08073}.
+
+\bibitem{epstein1996growing}
+Epstein, J. M., \& Axtell, R. (1996). \textit{Growing artificial societies: social science from the bottom up}. Brookings Institution Press.
+
+\end{thebibliography}
+
+\end{document}
