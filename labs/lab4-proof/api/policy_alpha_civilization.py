@@ -366,8 +366,19 @@ def choose_policy(req: PolicyRequest) -> PolicyResponse:
     else:
         notes = "No valid actions to recommend."
     
+    # Sanitize log inputs to avoid log injection
+    def _sanitize_log_value(value: Any) -> str:
+        # Remove CR, LF
+        if isinstance(value, str):
+            return value.replace('\r', '').replace('\n', '')
+        return str(value)
+    
+    sim_id_log = _sanitize_log_value(req.sim_id)
+    t_log = _sanitize_log_value(req.t)
+    city_id_log = _sanitize_log_value(req.city_id)
+    
     log.info(
-        f"Policy recommendation for {req.sim_id}/t={req.t}/{req.city_id}: "
+        f"Policy recommendation for {sim_id_log}/t={t_log}/{city_id_log}: "
         f"{chosen_action} (confidence={confidence:.2f})"
     )
     

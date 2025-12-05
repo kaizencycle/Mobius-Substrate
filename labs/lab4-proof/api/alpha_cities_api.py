@@ -23,6 +23,13 @@ log = logging.getLogger("alpha_cities_api")
 
 router = APIRouter(prefix="/sim/alpha_v0", tags=["AlphaCivilization"])
 
+
+def _sanitize_log_value(value: Any) -> str:
+    """Sanitize potentially unsafe strings for log output (strip CR/LF)."""
+    if not isinstance(value, str):
+        value = str(value)
+    return value.replace("\n", "").replace("\r", "")
+
 # In-memory store for simulation results (v0.1)
 # In production, this would be persisted to Civic Ledger
 SIM_STORE: Dict[str, AlphaCitiesSim] = {}
@@ -97,7 +104,9 @@ def init_sim(req: InitRequest) -> InitResponse:
     )
     SIM_STORE[sim.sim_id] = sim
     
-    log.info(f"Initialized simulation {sim.sim_id} with {req.steps} steps")
+    log.info(
+        f"Initialized simulation {_sanitize_log_value(sim.sim_id)} with {int(req.steps)} steps"
+    )
     
     return InitResponse(
         sim_id=sim.sim_id,
@@ -137,9 +146,12 @@ def run_full(req: RunRequest) -> RunResponse:
     
     payload = sim.to_dict()
     
+    # Sanitize sim_id and steps for log safety
+    clean_sim_id = _sanitize_log_value(sim.sim_id)
+    clean_steps = _sanitize_log_value(req.steps)
     log.info(
-        f"Completed simulation {sim.sim_id}: "
-        f"GI={payload['gi_final']:.3f}, steps={req.steps}"
+        f"Completed simulation {clean_sim_id}: "
+        f"GI={payload['gi_final']:.3f}, steps={clean_steps}"
     )
     
     return RunResponse(

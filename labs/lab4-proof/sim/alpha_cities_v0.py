@@ -6,13 +6,21 @@
 #  Mobius is building machine intelligence for civilizations."
 
 from __future__ import annotations
-from dataclasses import dataclass, asdict, field
-from typing import Dict, List, Literal, Tuple, Optional, Any
+from dataclasses import dataclass, asdict
+from typing import Dict, List, Literal, Optional, Any
 import uuid
 import random
 import logging
 
 log = logging.getLogger("alpha_cities")
+
+
+def _sanitize_log_str(value: Any) -> str:
+    """Sanitize potentially unsafe strings for log output (strip CR/LF)."""
+    if not isinstance(value, str):
+        value = str(value)
+    return value.replace("\n", "").replace("\r", "")
+
 
 # Type aliases
 CityId = Literal["A", "B", "C"]
@@ -360,7 +368,9 @@ class AlphaCitiesSim:
             self.cities = next_states
             prev_mii = mii
 
-        log.info(f"Simulation {self.sim_id} completed: {self.steps} steps")
+        log.info(
+            f"Simulation {_sanitize_log_str(self.sim_id)} completed: {_sanitize_log_str(self.steps)} steps"
+        )
 
     def get_global_integrity(self) -> float:
         """
@@ -431,8 +441,6 @@ class AlphaCitiesSim:
 # ---- CLI entry point ----
 
 if __name__ == "__main__":
-    import json
-    
     print("=" * 60)
     print("AlphaCivilization v0.1 - 3-City Civic Self-Play")
     print("Mobius Systems - Cycle C-154")
