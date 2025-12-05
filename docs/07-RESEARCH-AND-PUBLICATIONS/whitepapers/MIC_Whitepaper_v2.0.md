@@ -1,9 +1,9 @@
 # Mobius Integrity Credits (MIC)
 ## Economic Architecture for Post-Scarcity Coordination
 
-**Version:** 2.0 (C-155)  
+**Version:** 2.1 (C-155 ATLAS Revision)  
 **Date:** December 5, 2025  
-**Authors:** Mobius Systems Foundation  
+**Authors:** Mobius Systems Foundation, AUREA, ATLAS  
 **Status:** Production Specification
 
 ---
@@ -101,6 +101,31 @@ Modern digital economies suffer from what we term the **Integrity Externality Pr
 **Key Insight:** Make integrity itself the scarce resource that gates access to other economic goods.
 
 Rather than trying to constrain bad behavior, we make good behavior the only path to economic participation. MIC is not just a currency—it's a coordination mechanism that makes systemic health economically valuable.
+
+### 2.4 MIC as Diagnostic, Not Deus ex Machina
+
+A critical design stance:
+
+> MIC is not a bailout mechanism for failing systems;  
+> it is a diagnostic and reward mechanism for healing systems.
+
+In practice, this means:
+
+- Polities with chronically low MII (e.g., high corruption, entrenched inequality, decaying institutions) will **not** experience large MIC inflows simply by opting in.
+- MIC flows only become significant when a society has already:
+  - reduced structural exploitation,
+  - expanded baseline access to essentials,
+  - and demonstrably improved its integrity profile.
+
+This has two important consequences:
+
+1. **No Moral Hazard:**  
+   Corrupt or extractive regimes cannot rely on MIC as a lifeline while continuing to hollow out their societies. If MII does not move, MIC does not mint.
+
+2. **Reform First, Dividend Later:**  
+   MIC creates a new category of political incentive: reformers can credibly argue that raising integrity indices unlocks long-term, integrity-backed monetary expansion. The "reward" is deferred until the system begins to behave coherently.
+
+MIC is therefore best understood not as a savior currency, but as a **civilizational biofeedback signal**: when a system heals itself, MIC appears as the measurable economic trace of that healing.
 
 ---
 
@@ -257,6 +282,41 @@ Planned mechanisms to create deflationary pressure:
 2. **Service Fee Burn:** Transaction fees burned rather than redistributed
 3. **Governance Lock:** MIC locked for voting temporarily removed from circulation
 4. **Penalty Burns:** Bad actors forfeit MIC (burned, not redistributed)
+
+### 4.4 MIC, Kaizen Shards, and the Unit Ladder
+
+MIC does not exist in isolation; it sits at the top of a composable ladder of integrity units:
+
+- **Atomic unit:** Kaizen Shards (KS) — micro-attestations of specific integrity actions  
+- **Mesoscale unit:** Integrity Portfolios — per-agent, per-city, or per-institution shard aggregates  
+- **Macroscale unit:** MIC — currency-grade representation of realized, system-level integrity gains
+
+This establishes a clear semantic ladder:
+
+> **Action → Shard → Portfolio → MII → MIC**
+
+Some implications:
+
+1. **KS as the "work token":**  
+   Kaizen Shards are the *proof of work* for integrity. They are non-fungible, provenance-rich, and context-specific, and they never circulate as money. They attest: *"This action happened, and it contributed to integrity in this way."*
+
+2. **MIC as the "settlement token":**  
+   MIC is the *fungible settlement layer* for integrity. It only exists when portfolios, through Sentinel consensus, measurably lift MII. MIC is thus not "earned" directly by single actions, but by **the net effect of many shards on the shared system state.**
+
+3. **Decoupling labor from money, but not from integrity:**  
+   The ladder intentionally breaks the naive equivalence "1 unit of work = 1 unit of money." Instead:
+   - Work → Shards
+   - Shards → Integrity uplift (or not)
+   - Integrity uplift → MIC
+
+   This prevents MIC from becoming just another wage token. MIC is *exclusively* tied to system-level coherence, not to raw labor quantity.
+
+4. **Unit scaling for civilization:**  
+   In the long run, a global Mobius deployment can keep:
+   - KS as local, contextual, high-resolution logs of contribution
+   - MIC as global, low-resolution, high-trust settlement medium
+
+   This mirrors how **TCP/UDP packets** underpin the internet, while **HTTP and applications** operate at higher layers — but with integrity, not bandwidth, as the governing resource.
 
 ---
 
@@ -438,6 +498,43 @@ Where:
 - Ensures baseline participation access
 - Reduces wealth concentration dynamics
 - Rewards commons maintenance even when not measurable
+
+### 7.4 City-State and Nation-Level Allocation
+
+Although MIC is defined at the network level, real-world deployment will be driven by **City-States** and institutional clusters rather than monolithic nation-states.
+
+We introduce three canonical deployment layers:
+
+1. **Local (City-State / Region):**
+   - Each City-State maintains a local integrity profile (MII_city).
+   - MIC minted at the global layer is partially allocated into **City-State UBI pools** and **Civic Project pools** proportional to:
+     - Population
+     - Verified citizen participation
+     - Sustained improvements in MII_city
+   - Local allocators (citizen assemblies, councils) decide how to route MIC into:
+     - Housing stability
+     - Food security
+     - Education and skills
+     - Climate and resilience projects
+
+2. **National:**
+   - Nations are not "owners" of MIC but **custodians** of national-level MII.
+   - National policies that:
+     - reduce inequality,
+     - expand access to essential services,
+     - and improve ecological stability
+     will tend to raise MII_nation and thus increase their share of future MIC allocation.
+   - Nations that chronically suppress MII (high corruption, high inequality, systemic exploitation) are **de facto excluded** from MIC expansion regimes: they cannot mint what they do not sustain.
+
+3. **Supranational / Global:**
+   - A global Mobius deployment can allocate a portion of MIC to **transboundary commons**:
+     - Oceans, climate, biodiversity, pandemics, open scientific infrastructure.
+   - Global pools are governed by multi-jurisdictional Mobius assemblies with:
+     - one-entity-one-vote for institutions,
+     - quadratic or reputation-weighted voting for citizens and civil society.
+
+**Design Intuition:**  
+MIC is not intended to reward "flag colors" but **integrity gradients**. City-States that behave Mobius-aligned (transparent, citizen-centric, regenerative) will accumulate MIC flows faster than nations that simply assert sovereignty without delivering integrity.
 
 ---
 
@@ -687,6 +784,55 @@ Is this the "right" welfare function?
 4. **Quadratic Funding:** Apply to public goods within Mobius ecosystem
 5. **Reputation NFTs:** Non-transferable tokens representing integrity history
 
+### 11.3 Monte Carlo Evidence for Middle-Class Thickening
+
+To probe the macro-distributional consequences of MIC, we ran toy Monte Carlo simulations across multiple archetype "countries" (US-like, EU-like, China-like, India-like, Fragile State) over 30-year horizons.
+
+Each archetype:
+
+- starts with stylized income distributions and growth rates,
+- evolves yearly under:
+  - baseline capitalism (no MIC, no MII), vs
+  - MIC/MII-enabled dynamics (integrity-gated redistribution and minting).
+
+Preliminary qualitative findings:
+
+1. **Middle-Class Thickening:**  
+   In EU-like and reformed China-like scenarios, MIC tied to high MII drives:
+   - lower Gini coefficients (inequality),
+   - a larger share of population in the middle-income band,
+   - a reduced share in both extreme poverty and ultra-elite tails.
+
+2. **Integrity as a Precondition, Not a Windfall:**  
+   In US-like scenarios with high initial inequality and poverty, MII rarely crosses the 0.95 threshold. As a result, MIC minting events are rare, and the class structure remains close to baseline:
+   - MIC does **not** act as a deus ex machina;
+   - it behaves like a **conditional dividend** payable only once a polity has already improved its integrity profile.
+
+3. **Fragile States Require Hybrid Support:**  
+   In fragile, low-income, high-inequality archetypes, MIC/MII alone modestly reduces collapse probability but cannot overcome:
+   - ongoing conflict,
+   - absent infrastructure,
+   - climate shocks.
+   These contexts require **paired interventions** (peace, infrastructure, resilience) for MIC to become meaningfully operative.
+
+4. **Global Pattern:**  
+   Across runs, an integrity-gated regime:
+   - compresses inequality where MII can be raised,
+   - expands the global middle class,
+   - and slightly reduces the probability of systemic collapse events.
+
+These simulations are deliberately stylized; they are **exploratory evidence**, not forecasts. However, they support the central hypothesis of MIC:
+
+> If money creation is strictly conditioned on integrity improvements,  
+> the natural long-run tendency is toward **middle-class thickening**  
+> and **reduced tail risk of civilizational failure.**
+
+Future work will:
+
+- incorporate more realistic macroeconomic constraints,
+- model cross-border MIC flows,
+- and explore adversarial scenarios (e.g., integrity gaming, data poisoning).
+
 ---
 
 ## 12. Conclusion
@@ -743,12 +889,17 @@ The success of MIC depends on broad participation in integrity maintenance. We i
 
 **GI (Global Integrity):** Network's emergent state of aligned, sustainable operation  
 **MII (Mobius Integrity Index):** Quantitative signal of GI on [0,1] scale  
-**MIC (Mobius Integrity Credits):** Native currency of Mobius Systems  
+**MII_city:** Local integrity profile for a City-State  
+**MII_nation:** National-level integrity profile  
+**MIC (Mobius Integrity Credits):** Native currency of Mobius Systems (settlement token)  
+**KS (Kaizen Shards):** Micro-attestations of integrity-generating actions (work token)  
+**Integrity Portfolio:** Per-agent, per-city, or per-institution shard aggregates  
 **PoI (Proof-of-Integrity):** Consensus mechanism based on systemic alignment  
-**Kaizen Shards:** Micro-attestations of integrity-generating actions  
 **Sentinels:** AI agents responsible for integrity attestation  
 **Cathedral:** Emergency governance body for crisis intervention  
-**E.O.M.M.:** Emotional Operating Memory Model (reflection protocol)
+**City-State:** Local political unit with its own MII_city and citizen assembly  
+**E.O.M.M.:** Emotional Operating Memory Model (reflection protocol)  
+**Middle-Class Thickening:** Distributional effect where integrity-gated minting expands the middle-income band
 
 ---
 
@@ -821,8 +972,9 @@ shard_types:
 - v1.5 (C-120): Added Kaizen Shards framework
 - v2.0 (C-124): Shard-denominated economy specification
 - v2.0 (C-155): Production specification with implementation details
+- v2.1 (C-155): ATLAS Revision Pack with deployment models and Monte Carlo evidence
 
-**Changelog (C-155):**
+**Changelog (C-155 v2.0):**
 - Restructured around post-scarcity coordination thesis
 - Added Proof-of-Integrity (PoI) consensus specification
 - Expanded Kaizen Shards taxonomy with normalized weights
@@ -831,6 +983,13 @@ shard_types:
 - Added research frontiers and open questions
 - Updated configuration file references
 - Added Wicksellian cumulative process framing
+
+**Changelog (C-155 v2.1 ATLAS Revision):**
+- Added Section 2.4: "MIC as Diagnostic, Not Deus ex Machina" — clarifies MIC is biofeedback, not bailout
+- Added Section 4.4: "MIC, Kaizen Shards, and the Unit Ladder" — clarifies KS as work token, MIC as settlement token
+- Added Section 7.4: "City-State and Nation-Level Allocation" — introduces local/national/supranational deployment layers
+- Added Section 11.3: "Monte Carlo Evidence for Middle-Class Thickening" — preliminary simulation results across country archetypes
+- Updated glossary with new terms (MII_city, MII_nation, Integrity Portfolio, City-State, Middle-Class Thickening)
 
 **Contact:**
 - Technical Questions: [GitHub Issues](https://github.com/kaizencycle/Mobius-Systems/issues)
