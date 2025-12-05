@@ -70,6 +70,9 @@ LEDGER_DB_PATH = os.path.join(DATA_DIR, "ledger.db")
 LAB4_API_BASE = os.getenv("LAB4_API_BASE", "https://hive-api-2le8.onrender.com")
 LAB6_API_BASE = os.getenv("LAB6_API_BASE", "")
 
+# Configuration logging - runs during module import (FastAPI initialization)
+# These are non-sensitive configuration values, safe to log at module level
+# codeql[py/print-statement]: Configuration logging is intentional and safe
 print(f"Using data directory: {DATA_DIR}")
 print(f"Database path: {LEDGER_DB_PATH}")
 

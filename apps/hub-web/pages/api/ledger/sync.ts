@@ -109,6 +109,15 @@ function validatePathComponent(component: string, name: string): string {
   if (!component || typeof component !== 'string') {
     throw new Error(`Invalid ${name}: must be a non-empty string`);
   }
+  
+  // Reject dangerous property names that could lead to prototype pollution
+  // Use lowercase for comparison since we normalize the input
+  const dangerousProps = ['__proto__', 'constructor', 'prototype', 'hasownproperty', 'tostring', 'valueof'];
+  const normalized = component.toLowerCase();
+  if (dangerousProps.includes(normalized)) {
+    throw new Error(`Invalid ${name}: dangerous property name rejected`);
+  }
+  
   // Only allow alphanumeric, dash, underscore, dot
   const sanitized = component.replace(/[^a-zA-Z0-9._-]/g, '_');
   if (sanitized.includes('..') || sanitized.startsWith('.') || sanitized.includes('/') || sanitized.includes('\\')) {
