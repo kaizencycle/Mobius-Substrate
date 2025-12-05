@@ -1,0 +1,199 @@
+# Mobius Fractal Shards (MFS) Configuration
+# Version: 1.0 (C-155)
+# Reference: docs/07-RESEARCH-AND-PUBLICATIONS/specs/MFS_SPEC_v1.md
+
+# The Seven Fractal Archetypes (MFS-7)
+# These map to the Seven HIVE Shards, Seven Elder Thrones, and Seven Constitutional Pillars
+archetypes:
+  REF:
+    name: reflection
+    weight: 0.20
+    description: "Self-similarity — E.O.M.M. logs, cycle reflections, introspection"
+    min_quality_score: 0.85
+    examples:
+      - "E.O.M.M. daily reflection"
+      - "Cycle retrospective"
+      - "Personal growth journal"
+  
+  LRN:
+    name: learning
+    weight: 0.15
+    description: "Knowledge recursion — Courses, research, skill acquisition"
+    min_quality_score: 0.80
+    examples:
+      - "Course completion"
+      - "Study session log"
+      - "Peer teaching"
+      - "Research contribution"
+  
+  CIV:
+    name: civic
+    weight: 0.25
+    description: "Social coherence — Voting, proposals, moderation, governance"
+    min_quality_score: 0.90
+    examples:
+      - "Participatory voting"
+      - "Proposal authoring"
+      - "Community moderation"
+      - "Dispute resolution"
+  
+  STB:
+    name: stability
+    weight: 0.15
+    description: "Homeostasis — Uptime, incident response, bug fixes"
+    min_quality_score: 0.85
+    examples:
+      - "Service monitoring"
+      - "Bug fix contribution"
+      - "Incident response"
+      - "System health maintenance"
+  
+  STW:
+    name: stewardship
+    weight: 0.10
+    description: "Entropy reduction — Documentation, cleanup, refactoring"
+    min_quality_score: 0.80
+    examples:
+      - "Documentation update"
+      - "Code refactoring"
+      - "Data cleanup"
+      - "Legacy maintenance"
+  
+  INV:
+    name: innovation
+    weight: 0.10
+    description: "Boundary expansion — New protocols, R&D, novel designs"
+    min_quality_score: 0.75
+    examples:
+      - "New protocol design"
+      - "Architectural improvement"
+      - "Research breakthrough"
+      - "Creative solution"
+  
+  GRD:
+    name: guardian
+    weight: 0.05
+    description: "Security integrity — Vulnerability reports, audits, defense"
+    min_quality_score: 0.95
+    examples:
+      - "Vulnerability report"
+      - "Security audit"
+      - "Abuse prevention"
+      - "Threat response"
+
+# Quality score parameters
+quality:
+  min_score: 0.5
+  max_score: 2.0
+  default_score: 1.0
+  
+  # Quality score interpretation
+  bands:
+    minimal:
+      range: [0.5, 0.7]
+      description: "Minimal effort, low quality"
+    standard:
+      range: [0.8, 1.0]
+      description: "Standard contribution"
+    above_average:
+      range: [1.1, 1.4]
+      description: "Above average, thoughtful"
+    exceptional:
+      range: [1.5, 1.7]
+      description: "Exceptional contribution"
+    transformative:
+      range: [1.8, 2.0]
+      description: "Transformative impact"
+
+# Integrity coefficient configuration
+integrity_coefficient:
+  # Starting coefficient; tuned by MIC Indexer per epoch
+  base_value: 0.000001
+  
+  # Domain scaling factors
+  domain_scaling:
+    default: 1.0
+    city_state: 1.0
+    nation: 0.8
+    global: 0.5
+  
+  # Recalibration frequency
+  recalibration_epoch: "weekly"
+
+# Rate limits and caps
+limits:
+  max_mfs_per_day_per_citizen: 50
+  max_pending_mfs_per_citizen: 100
+  min_time_between_mfs_seconds: 60
+  
+  # Per-archetype caps per cycle (prevents spam)
+  per_cycle_caps:
+    REF: 10
+    LRN: 5
+    CIV: 10
+    STB: 10
+    STW: 10
+    INV: 5
+    GRD: 3
+
+# MFS → MII contribution settings
+mii_contribution:
+  # Formula: MFS_weighted = weight × quality_score
+  # ΔMII = Σ (MFS_weighted × integrity_coefficient)
+  aggregation_method: "sum"
+  
+  # Minimum MFS impact to count toward ΔMII
+  min_impact_threshold: 0.0000001
+  
+  # Decay settings (optional - for future implementation)
+  decay:
+    enabled: false
+    half_life_days: 365
+    min_weight_floor: 0.1
+
+# Shard-to-MIC conversion (when MII ≥ 0.95)
+mic_conversion:
+  # Citizens receive MIC proportional to their MFS impact
+  # Citizen_MIC_Reward = (MFS_Impact / Σ Global_MFS_Impact) × MIC_Minted
+  enabled: true
+  min_mfs_for_eligibility: 10
+  
+# Feature flags
+flags:
+  enable_sentinel_verification: true
+  enable_community_review: true
+  enable_fractal_visualization: true
+  enable_quality_appeals: true
+  enable_cross_city_portability: false  # Future feature
+
+# API configuration
+api:
+  endpoints:
+    submit: "/api/mfs/submit"
+    citizen_portfolio: "/api/mfs/citizen/:id"
+    stats: "/api/mfs/stats"
+    archetype: "/api/mfs/archetype/:key"
+    epoch: "/api/mfs/epoch/:id"
+  
+  rate_limits:
+    submit_per_minute: 10
+    read_per_minute: 60
+
+# Fractal wallet visualization
+fractal_wallet:
+  enabled: true
+  
+  # Visual generation parameters
+  visualization:
+    type: "recursive_tree"  # or "mandelbrot", "julia", "custom"
+    color_scheme: "archetype_based"
+    growth_animation: true
+  
+  # Displayed metrics
+  metrics:
+    - "total_mfs"
+    - "weighted_sum"
+    - "delta_mii_contribution"
+    - "archetype_distribution"
+    - "quality_trend"
+    - "governance_power"

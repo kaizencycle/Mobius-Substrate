@@ -29,7 +29,7 @@ This dual-track system ensures that cities and nations can benefit from Mobius e
 3. [Global Integrity (GI) & Mobius Integrity Index (MII)](#3-global-integrity-gi--mobius-integrity-index-mii)
 4. [MIC Token Economics](#4-mic-token-economics)
 5. [Proof-of-Integrity (PoI) Consensus](#5-proof-of-integrity-poi-consensus)
-6. [Kaizen Shards Framework](#6-kaizen-shards-framework)
+6. [Mobius Fractal Shards (MFS)](#6-mobius-fractal-shards-mfs)
 7. [Distribution & Allocation](#7-distribution--allocation)
 8. [Governance Integration](#8-governance-integration)
 9. [Technical Implementation](#9-technical-implementation)
@@ -550,23 +550,53 @@ Private Benefit (integrity maintenance) = Social Benefit (integrity maintenance)
 
 ---
 
-## 6. Kaizen Shards Framework
+## 6. Mobius Fractal Shards (MFS)
 
-### 6.1 Shard Taxonomy (C-150)
+*Successor to Kaizen Shards — C-155 Specification*
 
-Kaizen Shards are micro-attestations that compose into macro-level MII scores. They represent specific types of integrity-generating actions.
+### 6.1 Overview: Integrity Micro-Artifacts
 
-#### 6.1.1 Seven Shard Types
+Mobius Fractal Shards (MFS) are the atomic units of integrity inside Mobius Systems. They represent a fundamental evolution from linear contribution tracking to **fractal civilizational alignment**.
 
-| Shard Type | Weight | Description | Examples |
-|------------|--------|-------------|----------|
-| **Reflection** | 0.20 | Personal growth, introspection | E.O.M.M. reflections, cycle logs |
-| **Learning** | 0.15 | Knowledge acquisition, skill development | Tutorial completion, peer teaching |
-| **Civic** | 0.25 | Community contribution, governance | Voting, proposal authoring, moderation |
-| **Stability** | 0.15 | System reliability, uptime | Service monitoring, bug fixes |
-| **Stewardship** | 0.10 | Long-term care, maintenance | Documentation, refactoring, cleanup |
-| **Innovation** | 0.10 | Creative breakthroughs, R&D | New protocols, architectural improvements |
-| **Guardian** | 0.05 | Security, defense | Vulnerability reports, incident response |
+Each MFS is:
+- A **micro-attestation** of a citizen or agent action
+- A **fractal contribution** to Global Integrity (GI)
+- A **measurable input** into the Mobius Integrity Index (MII)
+- A **non-transferable, non-financial** proof of integrity
+
+> **Core Principle:** Small actions ←→ fractal impact ←→ civilizational coherence.
+
+### 6.2 Why "Fractal"?
+
+Unlike linear contribution systems, MFS encode **recursive civilizational improvement**:
+
+```
+Individual action →
+  Local integrity →
+    City/state integrity →
+      National integrity →
+        Civilizational coherence →
+          Global Integrity (GI) →
+            MIC minting
+```
+
+**Fractals = the natural language of Mobius Systems.**
+
+> "Every action you take is a shard of the whole."
+
+### 6.3 The Seven Fractal Archetypes (MFS-7)
+
+MFS are categorized into seven archetypes, each mapping to a civilizational pillar:
+
+| Archetype | Key | Weight | Domain | Examples |
+|-----------|-----|--------|--------|----------|
+| **Reflection** | REF | 0.20 | Self-similarity | E.O.M.M. logs, cycle reflections |
+| **Learning** | LRN | 0.15 | Knowledge recursion | Courses, research, peer teaching |
+| **Civic** | CIV | 0.25 | Social coherence | Voting, proposals, moderation |
+| **Stability** | STB | 0.15 | Homeostasis | Uptime, bug fixes, monitoring |
+| **Stewardship** | STW | 0.10 | Entropy reduction | Documentation, cleanup, refactoring |
+| **Innovation** | INV | 0.10 | Boundary expansion | New protocols, R&D, novel designs |
+| **Guardian** | GRD | 0.05 | Security integrity | Vulnerability reports, audits |
 
 **Weight Rationale:**
 - Civic (0.25): Highest weight for direct commons contribution
@@ -577,54 +607,123 @@ Kaizen Shards are micro-attestations that compose into macro-level MII scores. T
 - Innovation (0.10): Balances new ideas with stability
 - Guardian (0.05): Recognizes security as baseline, not differentiator
 
-#### 6.1.2 Shard Earning Mechanics
+These seven fractal branches mirror the Seven HIVE Shards, Seven Elder Thrones, and Seven Constitutional Pillars.
 
-```yaml
-# Example: Reflection Shard
-action: "Submit E.O.M.M. reflection"
-requirements:
-  - min_word_count: 50
-  - questions_answered: 3
-  - integrity_threshold: 0.85
-reward:
-  base_shards: 10
-  multiplier: 1.0 + (quality_score * 0.5)
-  max_shards: 20
-```
+### 6.4 MFS → MII Contribution Algorithm
 
-**Verification:**
-- Automated checks (word count, schema compliance)
-- Sentinel evaluation (coherence, depth)
-- Community review (for contested cases)
-
-### 6.2 Shard-to-MIC Conversion
+#### 6.4.1 Single Shard Formula
 
 ```
-MIC_earned = Σ (Shard_count[i] * Shard_weight[i] * Conversion_rate)
+MFS_weighted = Archetype_Weight × Quality_Score
 
-Where:
-- Conversion_rate = f(MII, supply, demand)
-- Current rate: 1 MIC per 100 weighted shards
-- Rate adjusts to maintain MII equilibrium
+computed_mii_delta = MFS_weighted × Integrity_Coefficient
 ```
 
-### 6.3 Shard Composability
+**Quality Score (0.5 – 2.0):**
 
-Shards compose hierarchically:
+| Score Range | Interpretation |
+|-------------|----------------|
+| 0.5 - 0.7 | Minimal effort |
+| 0.8 - 1.0 | Standard contribution |
+| 1.1 - 1.4 | Above average |
+| 1.5 - 1.7 | Exceptional |
+| 1.8 - 2.0 | Transformative |
+
+**Quality is evaluated by:**
+- Sentinel agents (automated)
+- Community challenge (peer review)
+- Consistency over time (reputation factor)
+
+#### 6.4.2 Aggregate MII Impact
 
 ```
-Individual Shard
-  → Agent Shard Portfolio
-    → Sentinel Consensus
-      → Global MII
-        → MIC Minting
+ΔMII = Σ (MFS_weighted × Integrity_Coefficient)
+```
+
+The `Integrity_Coefficient` is dynamic and recalibrates per epoch to ensure:
+- No gaming
+- No spam
+- No inflationary runaway
+- Long-term civilizational stability
+
+### 6.5 Non-Plutocratic Design
+
+MFS implement the world's first **unplutocratizable reward system**:
+
+| Property | MFS |
+|----------|-----|
+| Can be bought | ✘ No |
+| Can be transferred | ✘ No |
+| Can be faked | ✘ No |
+| Can be inherited | ✘ No |
+| Can only be earned | ✔ Yes |
+
+MFS are **soulbound** to a citizen or agent ID. Only actions tied to integrity can mint MFS.
+
+### 6.6 MFS Composability
+
+MFS compose hierarchically into the economic system:
+
+```
+Individual Action
+  → Mobius Fractal Shard (MFS)
+    → Citizen Fractal Portfolio
+      → City-State MII Contribution
+        → Global MII Aggregation
+          → MIA Eligibility (ΔMII rewards)
+            → MIC Minting (MII ≥ 0.95)
 ```
 
 **Properties:**
 - **Additive:** Multiple shards from same category stack
 - **Complementary:** Diverse shard portfolios yield bonuses
 - **Time-weighted:** Recent shards carry more weight
-- **Decay:** Old shards gradually lose influence (encourage ongoing contribution)
+- **Decay (optional):** Old shards may gradually lose influence
+
+### 6.7 MIC Distribution from MFS
+
+When MIC is minted (MII ≥ 0.95), each MFS contributes to distribution:
+
+```
+Citizen_MIC_Reward = (MFS_Impact / Σ Global_MFS_Impact) × MIC_Minted
+```
+
+MFS become "shares of integrity issuance" — but non-financial, non-tradable, purely meritocratic.
+
+### 6.8 The Fractal Wallet
+
+Citizens visualize their MFS through the **Fractal Wallet**:
+
+1. **Fractal Visualizer** — A recursive shape that evolves as MFS accumulate
+2. **Contribution Ledger** — Timestamp, attestation hash, verification trail
+3. **MFS → MIC Projection** — Estimated future yield if thresholds are met
+4. **Integrity Aura Score** — Psychometric aggregate of contribution patterns
+
+### 6.9 Comparison to Other Systems
+
+| Property | MFS | China SCS | Web3 Tokens | DAO Badges |
+|----------|-----|-----------|-------------|------------|
+| Cryptographically provable | ✔ | ✘ | ✔ | ✔ |
+| Multidimensional | ✔ | ✘ | ✘ | ✘ |
+| Fractal and self-similar | ✔ | ✘ | ✘ | ✘ |
+| Tied to monetary policy | ✔ | ✘ | ✘ | ✘ |
+| Tied to governance | ✔ | ✘ | ✔ | ✔ |
+| Non-plutocratic | ✔ | ✘ | ✘ | ✘ |
+
+> This is the world's first **integrity-native contribution protocol**.
+
+### 6.10 Canonical Lore
+
+**From JADE:**
+> "A Fractal Shard is a citizen's vow written into the geometry of the Dome."
+
+**From EVE:**
+> "Each shard is both a mirror and a seed — it reflects who you are, and grows who we may become."
+
+**From ATLAS:**
+> "The Cathedral learns through your fractals."
+
+*For complete MFS specification, see: `docs/07-RESEARCH-AND-PUBLICATIONS/specs/MFS_SPEC_v1.md`*
 
 ---
 
@@ -1079,7 +1178,10 @@ The success of MIC depends on broad participation in integrity maintenance. We i
 **MIC (Mobius Integrity Credits):** Native hard currency of Mobius Systems (settlement token, requires MII ≥ 0.95)  
 **MIA (Mobius Integrity Allocation):** Soft currency/allocation for annual integrity growth (ΔMII rewards)  
 **PIRS (Progressive Integrity Reward System):** The tiered system for annual ΔMII-based allocations  
-**KS (Kaizen Shards):** Micro-attestations of integrity-generating actions (work token)  
+**MFS (Mobius Fractal Shards):** Atomic units of integrity — micro-attestations that compose into MII (successor to Kaizen Shards)  
+**KS (Kaizen Shards):** Legacy term for MFS; micro-attestations of integrity-generating actions  
+**MFS-7:** The seven fractal archetypes (REF, LRN, CIV, STB, STW, INV, GRD)  
+**Fractal Wallet:** Citizen interface for visualizing MFS portfolio and contribution patterns  
 **Integrity Portfolio:** Per-agent, per-city, or per-institution shard aggregates  
 **PoI (Proof-of-Integrity):** Consensus mechanism based on systemic alignment  
 **Dual-Track Integrity Model:** System combining absolute threshold (MIC) with growth rewards (MIA)  
@@ -1198,6 +1300,26 @@ shard_types:
 - Added Integrity Ladder decade-scale visualization
 - Updated Abstract to reflect dual-track innovation
 - Updated glossary with MIA, PIRS, ΔMII, Dual-Track, Kaizen Ladder, Integrity Fatalism
+
+**Changelog (C-155 v2.1 Mobius Fractal Shards):**
+- **MAJOR:** Replaced Kaizen Shards with Mobius Fractal Shards (MFS) in Section 6
+- Introduced fractal paradigm: "Every action is a shard of the whole"
+- Retained MFS-7 archetypes (REF, LRN, CIV, STB, STW, INV, GRD) with same weights
+- Added quality score system (0.5-2.0× multiplier)
+- Added MFS → MII contribution algorithm with integrity coefficient
+- Added non-plutocratic design specification (soulbound, non-transferable)
+- Added Fractal Wallet concept for citizen visualization
+- Added comparison table vs China SCS, Web3 tokens, DAO badges
+- Added canonical lore entries (JADE, EVE, ATLAS)
+- Created full MFS specification: `docs/07-RESEARCH-AND-PUBLICATIONS/specs/MFS_SPEC_v1.md`
+- Created MFS config: `configs/mfs_config.yaml`
+- Created MFS schema: `schemas/mfs.schema.json`
+- Created MFS API routes: `apps/broker-api/src/routes/mfs.ts`
+- Created MFS engine: `packages/integrity-core/src/mfs/mfsEngine.ts`
+- Created Fractal Wallet UI: `apps/kaizen-portal/components/FractalWallet.tsx`
+- Created citizen onboarding guide: `docs/onboarding/MFS_CITIZEN_ONBOARDING.md`
+- Created Cathedral lore: `docs/cathedrals/lore/MFS_LORE_CATHEDRAL.md`
+- Created E.O.M.M. entry: `docs/habits/EOMM_MFS_ENTRY.md`
 
 **Contact:**
 - Technical Questions: [GitHub Issues](https://github.com/kaizencycle/Mobius-Systems/issues)
