@@ -12,23 +12,23 @@
 
 **New User**
 - 👉 [Quickstart Guide](./05-IMPLEMENTATION/guides/quickstart/START_HERE.md)
-- 📖 [System Overview](./03-architecture/)
-- 🎓 [Research Foundations](./05-research/)
+- 📖 [System Overview](./04-TECHNICAL-ARCHITECTURE/)
+- 🎓 [Research Foundations](./07-RESEARCH-AND-PUBLICATIONS/)
 
 **Developer**
 - 💻 [Development Guides](./05-IMPLEMENTATION/guides/development/)
-- 🏗️ [Architecture Docs](./03-architecture/)
-- ⚙️ [API Specifications](./06-specifications/)
+- 🏗️ [Architecture Docs](./04-TECHNICAL-ARCHITECTURE/)
+- ⚙️ [API Specifications](./08-REFERENCE/)
 
 **Researcher**
-- 📚 [Whitepapers](./01-whitepapers/)
-- 🔬 [Academic Research](./05-research/)
-- 🏛️ [Governance Model](./02-governance/)
+- 📚 [Whitepapers](./07-RESEARCH-AND-PUBLICATIONS/whitepapers/)
+- 🔬 [Academic Research](./07-RESEARCH-AND-PUBLICATIONS/)
+- 🏛️ [Governance Model](./03-GOVERNANCE-AND-POLICY/)
 
 **Operator**
 - 📦 [Deployment Guides](./05-IMPLEMENTATION/guides/deployment/)
 - ⚙️ [Operations Manual](./05-IMPLEMENTATION/guides/operations/)
-- 🔄 [Processes & Runbooks](./08-processes/)
+- 🔄 [Processes & Runbooks](./06-OPERATIONS/)
 
 </td>
 <td width="50%">
@@ -36,14 +36,14 @@
 ### 🔍 I want to...
 
 **Understand the Economics**
-- 📊 [MIC Whitepaper v2.0](./01-whitepapers/MIC_Whitepaper_v2.0.md)
-- 💰 [UBI Mechanism](./01-whitepapers/UBI_Mechanism_v2.0.md)
-- 🌱 [Foundation Economics](./01-whitepapers/MIC_Foundation_Up_Economics_Addendum.md)
+- 📊 [MIC Whitepaper v2.0](./07-RESEARCH-AND-PUBLICATIONS/whitepapers/MIC_Whitepaper_v2.0.md)
+- 💰 [UBI Mechanism](./07-RESEARCH-AND-PUBLICATIONS/whitepapers/UBI_Mechanism_v2.0.md)
+- 🌱 [Foundation Economics](./07-RESEARCH-AND-PUBLICATIONS/whitepapers/MIC_Foundation_Up_Economics_Addendum.md)
 
 **Learn the Governance**
-- 🏛️ [Governance Overview](./02-governance/overview.md)
+- 🏛️ [Governance Overview](./03-GOVERNANCE-AND-POLICY/overview.md)
 - 📜 [Foundation Charter](../FOUNDATION/CHARTER.md)
-- 🗳️ [Elections & Voting](./02-governance/elections.md)
+- 🗳️ [Elections & Voting](./03-GOVERNANCE-AND-POLICY/elections.md)
 
 **Deploy Mobius**
 - 🚀 [Deployment Guide](./05-IMPLEMENTATION/guides/deployment/DEPLOYMENT_GUIDE.md)
@@ -107,25 +107,25 @@ docs/
 
 ### Path 1: Quick Overview (15 minutes)
 1. Read this page
-2. Skim [MIC Whitepaper Abstract](./01-whitepapers/MIC_Whitepaper_v2.0.md)
-3. Review [Governance Overview](./02-governance/overview.md)
-4. Check [System Architecture](./03-architecture/)
+2. Skim [MIC Whitepaper Abstract](./07-RESEARCH-AND-PUBLICATIONS/whitepapers/MIC_Whitepaper_v2.0.md)
+3. Review [Governance Overview](./03-GOVERNANCE-AND-POLICY/overview.md)
+4. Check [System Architecture](./04-TECHNICAL-ARCHITECTURE/)
 
 ### Path 2: Deep Dive Economics (1 hour)
-1. [MIC Whitepaper v2.0](./01-whitepapers/MIC_Whitepaper_v2.0.md)
-2. [UBI Mechanism](./01-whitepapers/UBI_Mechanism_v2.0.md)
-3. [Foundation Economics](./01-whitepapers/MIC_Foundation_Up_Economics_Addendum.md)
-4. [Kaizen Theorems](./05-research/foundations/kaizen_theorems.md)
+1. [MIC Whitepaper v2.0](./07-RESEARCH-AND-PUBLICATIONS/whitepapers/MIC_Whitepaper_v2.0.md)
+2. [UBI Mechanism](./07-RESEARCH-AND-PUBLICATIONS/whitepapers/UBI_Mechanism_v2.0.md)
+3. [Foundation Economics](./07-RESEARCH-AND-PUBLICATIONS/whitepapers/MIC_Foundation_Up_Economics_Addendum.md)
+4. [Kaizen Theorems](./07-RESEARCH-AND-PUBLICATIONS/foundations/kaizen_theorems.md)
 
 ### Path 3: Technical Implementation (2 hours)
-1. [Labs Master Architecture](./03-architecture/technical/LABS_MASTER_ARCHITECTURE.md)
+1. [Labs Master Architecture](./04-TECHNICAL-ARCHITECTURE/technical/LABS_MASTER_ARCHITECTURE.md)
 2. [API Integration](./05-IMPLEMENTATION/guides/development/API_INTEGRATION.md)
 3. [Deployment Guide](./05-IMPLEMENTATION/guides/deployment/DEPLOYMENT_GUIDE.md)
-4. [Specifications](./06-specifications/)
+4. [Specifications](./08-REFERENCE/)
 
 ### Path 4: Governance & Policy (1 hour)
 1. [Foundation Charter](../FOUNDATION/CHARTER.md)
-2. [Governance Overview](./02-governance/overview.md)
+2. [Governance Overview](./03-GOVERNANCE-AND-POLICY/overview.md)
 3. [Anti-Capture Policy](../FOUNDATION/POLICIES/ANTI_CAPTURE_POLICY.md)
 4. [RFC Process](../FOUNDATION/PROCESS/RFC_PROCESS.md)
 
@@ -135,8 +135,8 @@ docs/
 
 | Document | Purpose | Audience |
 |----------|---------|----------|
-| [MIC Whitepaper v2.0](./01-whitepapers/MIC_Whitepaper_v2.0.md) | Complete economic specification | Economists, Researchers |
-| [Governance Overview](./02-governance/overview.md) | How Mobius is governed | Everyone |
+| [MIC Whitepaper v2.0](./07-RESEARCH-AND-PUBLICATIONS/whitepapers/MIC_Whitepaper_v2.0.md) | Complete economic specification | Economists, Researchers |
+| [Governance Overview](./03-GOVERNANCE-AND-POLICY/overview.md) | How Mobius is governed | Everyone |
 | [Foundation Charter](../FOUNDATION/CHARTER.md) | Legal foundation | Policy makers, Legal |
 | [START HERE Guide](./05-IMPLEMENTATION/guides/quickstart/START_HERE.md) | New user onboarding | New users |
 | [Deployment Guide](./05-IMPLEMENTATION/guides/deployment/DEPLOYMENT_GUIDE.md) | How to deploy | Operators, DevOps |
@@ -168,7 +168,7 @@ docs/
 
 - ⭐ **Star** this repository for updates
 - 📰 Subscribe to [communications](./09-reports/communications/)
-- 🗳️ Join [governance discussions](./02-governance/)
+- 🗳️ Join [governance discussions](./03-GOVERNANCE-AND-POLICY/)
 - 📊 Read [quarterly reports](./09-reports/)
 
 ---
