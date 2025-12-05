@@ -1,8 +1,23 @@
-# Kaizen Shard Weights — v1.0
-# Cycle: C-150
+# Kaizen Shard Weights — v2.0
+# Cycle: C-155
+# Reference: MIC_Whitepaper_v2.0.md Section 6.1
 
 threshold_mii: 0.95        # τ for MIC minting
 
+# Normalized weights (sum to 1.0) for MII composition
+# These represent the relative importance of each shard type
+# in contributing to Global Integrity
+shard_weights_normalized:
+  reflection: 0.20     # Personal growth, introspection, E.O.M.M.
+  learning: 0.15       # Knowledge acquisition, skill development
+  civic: 0.25          # Community contribution, governance (highest weight)
+  stability: 0.15      # System reliability, uptime
+  stewardship: 0.10    # Long-term care, maintenance
+  innovation: 0.10     # Creative breakthroughs, R&D
+  guardian: 0.05       # Security, defense
+
+# Multiplier weights for reward scaling (legacy compatibility)
+# Higher multipliers = harder to earn = higher reward per shard
 shard_weights:
   reflection: 1.0
   learning: 1.0
@@ -12,7 +27,17 @@ shard_weights:
   innovation: 2.5
   guardian: 3.0
 
-# Optional: caps per cycle to avoid abuse / spam
+# Minimum quality scores required for shard acceptance
+min_scores:
+  reflection: 0.85
+  learning: 0.80
+  civic: 0.90
+  stability: 0.85
+  stewardship: 0.80
+  innovation: 0.75
+  guardian: 0.95
+
+# Caps per cycle to avoid abuse / spam
 caps:
   per_cycle:
     reflection: 10          # max reflection shards per citizen per cycle
@@ -22,3 +47,17 @@ caps:
     stewardship: 10
     innovation: 5
     guardian: 3
+
+# Shard-to-MIC conversion
+conversion:
+  rate: 0.01                # 1 MIC per 100 weighted shards
+  min_shards_for_payout: 10 # Minimum shards before conversion eligible
+
+# Weight Rationale (from whitepaper):
+# - Civic (0.25): Highest weight for direct commons contribution
+# - Reflection (0.20): Emphasizes continuous improvement culture
+# - Learning (0.15): Encourages knowledge sharing
+# - Stability (0.15): Rewards operational excellence
+# - Stewardship (0.10): Values maintenance over novelty
+# - Innovation (0.10): Balances new ideas with stability
+# - Guardian (0.05): Recognizes security as baseline, not differentiator
