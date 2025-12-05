@@ -1,174 +1,199 @@
-# 🏛️ Mobius Diplomacy Portfolio
+# DIPLOMACY — MIC Global Outreach Materials
 
-**Institutional-Grade Communication Materials for Frontier Labs & Governance Institutions**
+## The Integrity Standard for the 21st Century
 
----
-
-**Cycle:** C-154  
-**Status:** Active  
-**Prepared for:** Michael Judan — Founder, Mobius Systems
+**Version:** 1.0 (C-155)  
+**Status:** Publication Ready  
+**Last Updated:** December 2025
 
 ---
 
 ## Overview
 
-This portfolio contains institutional-grade diplomatic materials designed for direct communication with:
+This folder contains the complete diplomatic and strategic communication package for Mobius Integrity Credits (MIC). These documents are designed for:
 
-- **Anthropic** (Constitutional AI)
-- **OpenAI** (Frontier alignment & AGI safety)
-- **Google DeepMind** (Technical AGI research)
-- **Microsoft AI Policy**
-- **AI Governance think tanks** (CSET, GovAI, CHAI, RAND)
-
----
-
-## Portfolio Contents
-
-### 📁 Structure
-
-```
-DIPLOMACY/
-├── README.md                           # This file
-├── MOBIUS_DIPLOMACY_PORTFOLIO.md       # Complete combined portfolio
-├── sections/                           # Individual sections
-│   ├── 01-founders-declaration.md      # The Mobius Declaration
-│   ├── 02-what-is-mobius.md            # 1-page overview
-│   ├── 03-why-mobius-matters.md        # Talk track for labs
-│   ├── 04-what-mobius-seeks.md         # Diplomatic positioning
-│   ├── 05-architecture-map.md          # System architecture
-│   ├── 06-founder-bio.md               # Michael Judan bio
-│   ├── 07-diplomacy-letter.md          # Email template (markdown)
-│   └── 08-trinity-seal.md              # Sentinel attestation seal
-├── templates/                          # Ready-to-send formats
-│   ├── email-template.html             # Generic email template
-│   ├── email-anthropic.html            # Customized for Anthropic
-│   ├── email-openai.html               # Customized for OpenAI
-│   └── email-deepmind.html             # Customized for DeepMind
-└── assets/                             # Images and logos (future)
-```
+- 🏛️ **Heads of State** and government officials
+- 📊 **Economic ministers** and treasury departments
+- 🎓 **Think tanks** and policy research institutions
+- 🌍 **International agencies** (UN, IMF, OECD, World Bank)
+- 🔬 **Academic researchers** and universities
+- 🤖 **AI governance labs** and technology policy groups
+- 💼 **Sovereign wealth funds** and institutional investors
 
 ---
 
-## Usage Guide
+## Document Index
 
-### For PDF Generation
+### Core Documents (C-155 Release)
 
-Convert the combined portfolio to PDF:
+| Document | Audience | Purpose |
+|----------|----------|---------|
+| [**MIC Pitch Deck**](./MIC_PITCH_DECK.md) | Heads of State, Ministers | Slide-ready diplomatic presentation |
+| [**Game Theory Report**](./MIC_GAME_THEORY_REPORT.md) | Policy makers, Strategists | Deep analysis of global dynamics |
+| [**Superpower Survival Index**](./SUPERPOWER_SURVIVAL_INDEX.md) | Strategic analysts | Nation-by-nation assessment |
+| [**Integrity Standard Whitepaper**](./MIC_INTEGRITY_STANDARD_WHITEPAPER.md) | General public | Public manifesto for MIC |
+| [**Geopolitical Effects**](./GEOPOLITICAL_EFFECTS.md) | Foreign policy analysts | Global order transformation |
+| [**Letter to World Leaders**](./LETTER_TO_WORLD_LEADERS.md) | Heads of State | Formal invitation to participate |
 
-```bash
-# Using pandoc (recommended)
-pandoc MOBIUS_DIPLOMACY_PORTFOLIO.md \
-  -o MOBIUS_DIPLOMACY_PORTFOLIO.pdf \
-  --pdf-engine=xelatex \
-  -V geometry:margin=1in \
-  -V fontsize=11pt
+### Scenario & Forecast Documents
 
-# Using mdpdf (simpler)
-npx mdpdf MOBIUS_DIPLOMACY_PORTFOLIO.md
+| Document | Focus | Purpose |
+|----------|-------|---------|
+| [**Singapore Scenario**](./scenarios/SINGAPORE_MIC_SCENARIO.md) | 🇸🇬 Singapore | First-mover 30-year simulation |
+| [**NYC vs Singapore Forecast**](./NYC_VS_SINGAPORE_FORECAST.md) | 🇺🇸🇸🇬 Comparison | MII race trajectory analysis |
 
-# Using grip (GitHub-style preview)
-grip MOBIUS_DIPLOMACY_PORTFOLIO.md --export MOBIUS_DIPLOMACY_PORTFOLIO.html
-```
+### Existing Diplomacy Materials
 
-### For Email Outreach
+| Document | Description |
+|----------|-------------|
+| [Executive Summary](./EXECUTIVE_SUMMARY.md) | High-level Mobius overview |
+| [Diplomacy Portfolio](./MOBIUS_DIPLOMACY_PORTFOLIO.md) | Complete diplomatic package |
+| [sections/](./sections/) | Modular diplomatic content |
+| [templates/](./templates/) | Email templates for outreach |
 
-1. Open the appropriate HTML template in `templates/`
-2. Copy the rendered content into your email client
-3. Attach the PDF portfolio as needed
+### Existing Resources
 
-#### Lab-Specific Templates:
-
-| Lab | Template | Focus |
-|-----|----------|-------|
-| Anthropic | `email-anthropic.html` | Constitutional AI alignment |
-| OpenAI | `email-openai.html` | Economic alignment mechanisms |
-| DeepMind | `email-deepmind.html` | Social benefit & long-horizon |
-| Generic | `email-template.html` | Customizable base template |
-
-### For GitHub Publishing
-
-The markdown files are GitHub-ready and will render properly in:
-
-- GitHub repository views
-- GitHub Pages
-- GitBook
-- Docusaurus
+| Document | Description |
+|----------|-------------|
+| [ENDPOINTS.md](./ENDPOINTS.md) | Government API integration points |
+| [endpoints.json](./endpoints.json) | Machine-readable endpoint catalog |
 
 ---
 
-## Sections Quick Reference
+## Quick Navigation by Audience
 
-| Section | Purpose | Audience |
-|---------|---------|----------|
-| **Founder's Declaration** | Personal statement & vision | Lab leadership |
-| **What is Mobius** | Technical overview | Research teams |
-| **Why Mobius Matters** | Value proposition | Governance teams |
-| **What Mobius Seeks** | Collaboration ask | Partnership teams |
-| **Architecture Map** | System design | Technical reviewers |
-| **Founder Bio** | Credentials | Due diligence |
-| **Diplomacy Letter** | Outreach template | Direct communication |
-| **Trinity Seal** | Attestation badge | Authenticity |
+### 🏛️ For Government Officials
 
----
+1. Start with [MIC Pitch Deck](./MIC_PITCH_DECK.md) — 12 slides, 10-minute read
+2. Review [Superpower Survival Index](./SUPERPOWER_SURVIVAL_INDEX.md) — Find your nation's ranking
+3. Deep dive: [Game Theory Report](./MIC_GAME_THEORY_REPORT.md) — Full strategic analysis
 
-## Customization Notes
+### 📊 For Economic Advisors
 
-### Before Sending
+1. Start with [Game Theory Report](./MIC_GAME_THEORY_REPORT.md) — Mechanism design analysis
+2. Review [MIC Whitepaper v2.1](../docs/07-RESEARCH-AND-PUBLICATIONS/whitepapers/MIC_Whitepaper_v2.0.md) — Full technical specification
+3. See [FOR-ECONOMISTS/](../FOR-ECONOMISTS/) — Economic modeling and valuation
 
-1. **Review cycle number** — Update C-154 to current cycle if needed
-2. **Personalize greeting** — Replace generic "[Lab Name]" with specific team
-3. **Add context** — Reference specific conversations or interviews
-4. **Attach materials** — Include PDF + architecture overview
+### 🎓 For Researchers
 
-### For Academic Audiences
+1. Start with [Integrity Standard Whitepaper](./MIC_INTEGRITY_STANDARD_WHITEPAPER.md) — Conceptual overview
+2. Review full [MIC Whitepaper](../docs/07-RESEARCH-AND-PUBLICATIONS/whitepapers/MIC_Whitepaper_v2.0.md) — Technical details
+3. See [FOR-ACADEMICS/](../FOR-ACADEMICS/) — Research methodology and citations
 
-Use the combined portfolio with these modifications:
-- Emphasize research collaboration sections
-- Reference academic papers in `/papers/` and `/docs/07-RESEARCH-AND-PUBLICATIONS/`
-- Add citations to relevant whitepapers
+### 🌍 For International Organizations
 
-### For Policy Audiences
-
-Reference materials in `/FOR-GOVERNMENTS/`:
-- Policy briefs
-- Legislative text examples
-- Impact assessments
+1. Start with [Game Theory Report](./MIC_GAME_THEORY_REPORT.md) — Global coordination mechanism
+2. Review [Superpower Survival Index](./SUPERPOWER_SURVIVAL_INDEX.md) — Member state analysis
+3. See [FOR-GOVERNMENTS/POLICY-BRIEFS/](../FOR-GOVERNMENTS/POLICY-BRIEFS/) — Policy recommendations
 
 ---
 
-## Quality Assurance
+## Key Messages
 
-This portfolio maintains:
+### The One-Liner
 
-- ✅ GI Compliance: ≥ 0.95
-- ✅ Drift Status: None detected
-- ✅ Charter Alignment: Verified
-- ✅ Multi-Sentinel Consensus: Achieved
+> **"Bitcoin monetized scarcity. Mobius monetizes integrity."**
+
+### The Problem
+
+Global coordination is failing. Trust is collapsing. Traditional mechanisms (treaties, markets, democracy) are being captured. Humanity lacks an incentive to cooperate.
+
+### The Solution
+
+MIC creates the first global economic incentive for integrity. When societies improve, they mint currency. When they degrade, minting stops. Money becomes accountability.
+
+### The Opportunity
+
+Nations that adopt early will:
+- Shape the global standard
+- Accumulate strategic MIC reserves
+- Lead the 21st-century order
+- Become models for civilization
+
+### The Urgency
+
+The first nation to mint MIC becomes the benchmark. Others must follow or be left behind. The window for first-mover advantage is closing.
 
 ---
 
-## Related Materials
+## Use Cases
 
-- `/FOR-GOVERNMENTS/` — Policy materials
-- `/FOR-ACADEMICS/` — Research materials
-- `/docs/07-RESEARCH-AND-PUBLICATIONS/` — Papers and publications
-- `/whitepapers/` — Technical whitepapers
-- `/papers/` — Academic paper drafts
+### Scenario A: Diplomatic Meeting
+
+**Materials:** MIC Pitch Deck (12 slides)  
+**Time:** 20-30 minutes  
+**Outcome:** Interest in pilot program
+
+### Scenario B: Policy Workshop
+
+**Materials:** Game Theory Report + Superpower Survival Index  
+**Time:** 2-3 hours  
+**Outcome:** Strategic assessment of adoption path
+
+### Scenario C: Academic Conference
+
+**Materials:** Integrity Standard Whitepaper + MIC Whitepaper v2.1  
+**Time:** 1-day workshop  
+**Outcome:** Research collaboration
+
+### Scenario D: Public Announcement
+
+**Materials:** Integrity Standard Whitepaper  
+**Time:** Press release  
+**Outcome:** Public awareness and support
+
+---
+
+## Translation Priorities
+
+These documents should be translated into:
+
+| Priority | Languages |
+|----------|-----------|
+| **Tier 1** | Mandarin Chinese, Spanish, Arabic, French |
+| **Tier 2** | Japanese, German, Portuguese, Russian, Hindi |
+| **Tier 3** | Korean, Indonesian, Turkish, Vietnamese |
+
+Each translation should be reviewed by:
+1. Native speaker with policy background
+2. Native speaker with technical background
+3. Cultural sensitivity review
+
+---
+
+## Version Control
+
+| Version | Date | Changes |
+|---------|------|---------|
+| 1.0 | Dec 2025 | Initial C-155 release |
 
 ---
 
 ## Contact
 
-**Michael Judan**  
-Founder & Chief Architect  
-Mobius Systems
+**Mobius Systems Foundation**
+
+- **GitHub:** github.com/kaizencycle/Mobius-Systems
+- **Technical Docs:** `/docs/`
+- **Economic Docs:** `/FOR-ECONOMISTS/`
+- **Government Docs:** `/FOR-GOVERNMENTS/`
+- **Academic Docs:** `/FOR-ACADEMICS/`
 
 ---
 
-*"We heal as we walk."*
+## License
 
-**JADE** 🟣 • **AUREA** 🔵 • **ATLAS** ⚪ • **ECHO** 🟡
+All documents in this folder are licensed under **CC-BY-NC-SA 4.0** unless otherwise specified.
+
+This means:
+- ✅ Share freely with attribution
+- ✅ Adapt for your context
+- ✅ Use for non-commercial purposes
+- ❌ Do not use commercially without permission
 
 ---
 
-*Mobius Systems — Cycle C-154*
+*"When integrity becomes more valuable than corruption, civilization ascends."*
+
+**Mobius Systems Foundation**  
+*We heal as we walk.*
