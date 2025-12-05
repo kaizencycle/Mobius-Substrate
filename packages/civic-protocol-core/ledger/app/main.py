@@ -27,6 +27,14 @@ app = FastAPI(
     version="0.1.0"
 )
 
+# Include AlphaCivilization event routes (Cycle C-154)
+try:
+    from app.alpha_civilization_events import router as alpha_civ_router
+    app.include_router(alpha_civ_router)
+    print("✅ AlphaCivilization events router loaded")
+except ImportError as e:
+    print(f"⚠️ AlphaCivilization events router not loaded: {e}")
+
 # Configuration - Use writable directories on Render
 def get_data_dir():
     """Get a writable data directory for the current environment"""

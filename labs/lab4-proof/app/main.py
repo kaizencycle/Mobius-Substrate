@@ -111,6 +111,21 @@ try:
 except Exception as e:
     log.error(f"❌ Failed to load genesis router: {e}")
 
+# AlphaCivilization routers (Cycle C-154)
+try:
+    from api.alpha_cities_api import router as alpha_cities_router
+    app.include_router(alpha_cities_router)
+    log.info("✅ AlphaCivilization Sim router loaded")
+except Exception as e:
+    log.error(f"❌ Failed to load AlphaCivilization Sim router: {e}")
+
+try:
+    from api.policy_alpha_civilization import router as policy_alpha_router
+    app.include_router(policy_alpha_router)
+    log.info("✅ AlphaCivilization Policy router loaded")
+except Exception as e:
+    log.error(f"❌ Failed to load AlphaCivilization Policy router: {e}")
+
 # Admin token configuration
 ADMIN_TOKEN = os.getenv("ADMIN_TOKEN", "")
 
