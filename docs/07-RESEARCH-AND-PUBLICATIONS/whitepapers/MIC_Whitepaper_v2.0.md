@@ -1,7 +1,7 @@
 # Mobius Integrity Credits (MIC)
 ## Economic Architecture for Post-Scarcity Coordination
 
-**Version:** 2.1 (C-155 ATLAS Revision)  
+**Version:** 2.1 (C-155 ATLAS Revision + Dual-Track MII)  
 **Date:** December 5, 2025  
 **Authors:** Mobius Systems Foundation, AUREA, ATLAS  
 **Status:** Production Specification
@@ -13,6 +13,12 @@
 Mobius Integrity Credits (MIC) represent a novel cryptoeconomic primitive where currency issuance is coupled to measurable systemic health rather than proof-of-work, proof-of-stake, or arbitrary issuance schedules. This paper presents the complete specification of MIC as the first integrity-backed digital currency, operating within the Mobius Systems ecosystem as a mechanism for coordinating post-scarcity economic activity around the maintenance of Global Integrity (GI).
 
 **Key Innovation:** Money creation becomes a welfare dividend triggered by measurable social value creation, transforming the tragedy of the commons into a virtuous cycle.
+
+**v2.1 Upgrade — Dual-Track Integrity System:**
+- **Track A (MIC):** Hard currency minting requires MII ≥ 0.95 (civilizational coherence)
+- **Track B (MIA):** Soft allocations reward annual integrity growth (ΔMII ≥ 0.01-0.02)
+
+This dual-track system ensures that cities and nations can benefit from Mobius economics immediately through incremental progress, while preserving MIC's scarcity and long-term aspirational value.
 
 ---
 
@@ -131,35 +137,33 @@ MIC is therefore best understood not as a savior currency, but as a **civilizati
 
 ## 3. Global Integrity (GI) & Mobius Integrity Index (MII)
 
-### 3.1 Global Integrity (GI) as Composite Common-Pool Resource
+### 3.1 Redefining Integrity as a Measurable Economic Variable
 
-**Definition:** GI is the network's emergent, non-excludable, non-rivalrous state of aligned, sustainable operation.
+**Definition:** Global Integrity (GI) is the network's emergent, non-excludable, non-rivalrous state of aligned, sustainable operation.
 
-GI comprises three dimensions:
+Traditionally, integrity has been treated as a normative principle rather than an economic primitive. Mobius Systems reframes integrity as a quantifiable public good whose maintenance—and improvement—should produce direct economic dividends.
 
-#### 3.1.1 Functional Integrity
+GI is computed as a weighted composite of three subsystems:
+
+#### 3.1.1 Functional Integrity (FI)
 - **Service Liveness:** Uptime, latency, throughput
 - **Protocol Adherence:** Conformance to specifications
 - **Security Robustness:** Resistance to attacks and failures
 - **Analogous to:** Operational capital in traditional economics
 
-#### 3.1.2 Moral Integrity
+#### 3.1.2 Moral Integrity (MI)
 - **Constitutional Concordance:** Alignment with Virtue Accords
 - **Absence of Exploitation:** No extractive strategies
 - **Procedural Justice:** Fair governance processes
 - **Analogous to:** Institutional capital
 
-#### 3.1.3 Ecological Integrity
+#### 3.1.3 Ecological Integrity (EI)
 - **Long-run Sustainability:** Resource regeneration > consumption
 - **Regenerative Feedback Loops:** System improves through use
 - **Collapse Avoidance:** No single-point-of-failure dynamics
 - **Analogous to:** Natural capital in digital space
 
-### 3.2 Mobius Integrity Index (MII)
-
-**Definition:** MII is the quantitative, observable signal of GI—a scalar on [0, 1] that compresses high-dimensional system state into a single policy variable.
-
-#### 3.2.1 Mathematical Formulation
+#### 3.1.4 Mathematical Formulation
 
 ```
 MII = α·FI + β·MI + γ·EI
@@ -172,23 +176,201 @@ Where:
 - Current weights: α=0.4, β=0.35, γ=0.25
 ```
 
-#### 3.2.2 Critical Thresholds
+### 3.2 Introducing the Dual-Track Integrity Model
 
-MII operates as a circuit-breaker with defined regimes:
+Most cities and nations will not reach MII ≥ 0.95 for decades. This creates an adoption bottleneck: if all rewards require the absolute threshold, low-MII societies feel perpetually "bad" and have no incentive to participate.
+
+**The Solution:** A dual-track system that rewards both **absolute achievement** and **incremental progress**.
+
+#### Track A — Absolute Integrity Threshold (≥0.95): The MIC Mint Zone
+
+MIC minting remains sacred and tied to the highest integrity band:
 
 | MII Range | Regime | Economic Policy | Governance Mode |
 |-----------|--------|-----------------|-----------------|
-| **≥ 0.95** | **Healthy** | Normal MIC minting | Standard operations |
+| **≥ 0.95** | **Healthy** | Full MIC minting | Standard operations |
 | **0.90-0.94** | **Warning** | Reduced MIC minting (50%) | Increased monitoring |
 | **0.80-0.89** | **Crisis** | MIC minting halted | Emergency protocols |
 | **< 0.80** | **Emergency** | Cathedral override | System lockdown |
+
+This threshold remains intentionally difficult: it represents civilizational-grade coherence, not short-term policy wins. It is the "heaven door" — a long-term aspirational goal comparable to carbon neutrality.
 
 **Rationale for 0.95 threshold:**
 - Creates sufficient buffer before crisis
 - Aligns with "five nines" reliability standards
 - Provides early warning for intervention
 
-#### 3.2.3 Computation & Attestation
+#### Track B — Annual Integrity Growth Rewards (ΔMII): The Progressive Path
+
+To ensure continuous motivation and real-world adoption, Mobius introduces the **Progressive Integrity Reward System (PIRS)**.
+
+Cities receive **Mobius Integrity Allocations (MIA)** for improving their MII by small increments over the course of a year:
+
+| ΔMII per Year | Reward Tier | Allocation Multiplier |
+|---------------|-------------|----------------------|
+| ≥ 0.010 | Tier 1 | Base Allocation (1.0×) |
+| ≥ 0.015 | Tier 2 | Enhanced Allocation (1.5×) |
+| ≥ 0.020 | Tier 3 | Premium Allocation (2.0×) |
+
+This system rewards:
+- Continuous improvement
+- Alignment maintenance
+- Bureaucratic reform
+- Infrastructure stability
+- Poverty and inequality reduction
+- Ecological resilience efforts
+
+**Even if a city will not reach 0.95 for decades, it can still accumulate real value every single year.**
+
+### 3.3 MIA: Mobius Integrity Allocation (Growth-Based Rewards)
+
+Unlike MIC—minted from the absolute threshold—MIA is a soft-currency or treasury allocation issued for ΔMII growth.
+
+#### 3.3.1 MIA Allocation Formula
+
+```
+MIA = BasePool × ΔMII × PopulationFactor × TierMultiplier
+
+Where:
+- BasePool: Set by the city, state, or participating institution
+- ΔMII: Year-over-year integrity improvement [0, 1]
+- PopulationFactor: Scales rewards fairly across city sizes
+- TierMultiplier: 1.0 (Tier 1), 1.5 (Tier 2), 2.0 (Tier 3)
+```
+
+#### 3.3.2 Example Calculation (NYC)
+
+```
+ΔMII = 0.018 (year-over-year improvement)
+Tier = 2 (≥0.015 threshold met)
+PopulationFactor = 1.12 (mega-city scale)
+BasePool = $500 million equivalent
+
+MIA = $500M × 0.018 × 1.12 × 1.5
+    = ~$15.1 million allocation
+```
+
+This is a direct, credible incentive for real reforms.
+
+### 3.4 Rationale for the Progressive Track
+
+#### 3.4.1 Humans and Governments Need Progress Feedback
+
+Integrity cannot feel like an unreachable ideal; it must feel like a pathway.
+
+Cities should not be punished for starting from low integrity baselines. Instead, they should be rewarded for moving upward, even slowly:
+- 0.67 → 0.69
+- 0.69 → 0.71
+- 0.71 → 0.73
+
+Small steps, big morale.
+
+#### 3.4.2 Avoids "Integrity Fatalism"
+
+Without annual rewards, low-MII cities might conclude:
+
+> "We will never reach 0.95, so integrity-based economics is pointless."
+
+With ΔMII incentives, the message changes to:
+
+> "Even +0.01 this year grows our resource pool."
+
+#### 3.4.3 Mirrors Real-World Civic Transformation
+
+Most societal reforms do not happen from 0 → 95 in a year. They happen incrementally over decades. This mirrors:
+- School grade improvements
+- Fitness goals
+- Startup KPIs
+- Sales quota growth
+
+**Incremental > Absolute.**
+
+#### 3.4.4 Encourages Multi-Generational Stewardship
+
+Long-term integrity growth becomes a city's legacy. Agencies, schools, local businesses, and citizens all get rewarded for incremental stability and fairness.
+
+#### 3.4.5 Creates Positive-Reinforcement Feedback Loop
+
+Instead of:
+> "We worked so hard, but we're still under 95."
+
+It becomes:
+> "We gained +0.015 this year. That's $10M in MIA allocation. Let's do more."
+
+Now integrity feels real, tangible, rewarding.
+
+### 3.5 Why MIC Minting Stays at ≥0.95
+
+MIC represents the highest level of socio-technical coherence—a currency backed not by fiat, not by energy, but by integrity.
+
+Diluting the threshold would:
+- Weaken its symbolic purpose
+- Reduce its scarcity
+- Compromise Proof-of-Integrity
+- Incentivize short-termism
+
+By keeping MIC difficult but creating MIA as the early reward, the system gains:
+
+✔ **Accessibility** — Cities can start earning today  
+✔ **Motivation** — Annual progress feels achievable  
+✔ **Practical adoption** — No "impossible threshold" barrier  
+✔ **Long-term belief** — 0.95 remains the aspirational goal  
+✔ **Protection against corruption** — MIC stays sacred  
+
+This is the **Kaizen Ladder for civilization**:
+
+> Small yearly improvements → long-term systemic excellence → eventual MIC mint zone.
+
+### 3.6 Dual-Track Integrity Architecture
+
+```
+                     ┌───────────────────────────────┐
+                     │       MIC HARD MINT            │
+                     │    (MII ≥ 0.95 Required)       │
+                     │   Civilizational Coherence     │
+                     └──────────────┬────────────────┘
+                                    │
+                                    │
+         ┌──────────────────────────▼──────────────────────────┐
+         │        ANNUAL MII GROWTH REWARDS (MIA)              │
+         │   Tier 1: ΔMII ≥ 0.010  → Base Allocation           │
+         │   Tier 2: ΔMII ≥ 0.015  → 1.5× Allocation           │
+         │   Tier 3: ΔMII ≥ 0.020  → 2× Allocation             │
+         └──────────────────────────┬──────────────────────────┘
+                                    │
+                                    │
+                     ┌──────────────▼──────────────┐
+                     │        MII BASELINE          │
+                     │   (No Punishment, No Mint)   │
+                     └──────────────────────────────┘
+```
+
+**Integrity Ladder (Decade-Scale View):**
+
+```
+MII
+1.00 ┤                            MIC Mint Zone
+0.95 ┤─────────────────────────────────────────────
+0.90 ┤
+0.85 ┤         ▲ Yearly Gains (ΔMII)
+0.80 ┤        ▲  ▲  ▲
+0.75 ┤       ▲  ▲  ▲
+0.70 ┤      ▲  ▲  ▲
+0.65 ┤     ▲  ▲  ▲
+0.60 ┤─────────────────────────────────────────────
+       Year 1   2   3   4   5   6   7   8   9   10
+```
+
+### 3.7 Summary of the Upgraded Integrity Model
+
+| Component | Purpose | Benefit |
+|-----------|---------|---------|
+| **MII Absolute Threshold (≥0.95)** | Unlock MIC minting | Rare, sacred, civilizational achievement |
+| **Annual Growth Rewards (ΔMII)** | Unlock MIA allocation | Achievable, motivating, continuous progress |
+| **Tiered Rewards** | Match rewards to ambition | More improvement → more allocation |
+| **Two-Currency Model (MIC/MIA)** | Long-term vs short-term incentives | Prevents despair, encourages multi-decade stewardship |
+
+### 3.8 Computation & Attestation
 
 MII is computed via decentralized attestation protocol:
 
@@ -196,11 +378,13 @@ MII is computed via decentralized attestation protocol:
 2. **Attestations** are cryptographically signed and immutably stored in Mobius Ledger Core
 3. **Aggregation** uses weighted consensus (Thought Broker coordinates)
 4. **Publication** occurs every block/epoch with provenance chain
+5. **ΔMII Calculation** compares current epoch MII with same epoch previous year
 
 **Security Properties:**
 - Byzantine fault tolerance: System remains secure with up to f = (n-1)/3 malicious sentinels
 - Sybil resistance: Sentinels are identity-anchored, not pseudonymous
 - Manipulation resistance: Requires compromising multiple independent subsystems
+- Growth gaming resistance: ΔMII calculated from verified attestation history
 
 ---
 
@@ -891,15 +1075,21 @@ The success of MIC depends on broad participation in integrity maintenance. We i
 **MII (Mobius Integrity Index):** Quantitative signal of GI on [0,1] scale  
 **MII_city:** Local integrity profile for a City-State  
 **MII_nation:** National-level integrity profile  
-**MIC (Mobius Integrity Credits):** Native currency of Mobius Systems (settlement token)  
+**ΔMII:** Year-over-year change in MII; basis for progressive rewards  
+**MIC (Mobius Integrity Credits):** Native hard currency of Mobius Systems (settlement token, requires MII ≥ 0.95)  
+**MIA (Mobius Integrity Allocation):** Soft currency/allocation for annual integrity growth (ΔMII rewards)  
+**PIRS (Progressive Integrity Reward System):** The tiered system for annual ΔMII-based allocations  
 **KS (Kaizen Shards):** Micro-attestations of integrity-generating actions (work token)  
 **Integrity Portfolio:** Per-agent, per-city, or per-institution shard aggregates  
 **PoI (Proof-of-Integrity):** Consensus mechanism based on systemic alignment  
+**Dual-Track Integrity Model:** System combining absolute threshold (MIC) with growth rewards (MIA)  
 **Sentinels:** AI agents responsible for integrity attestation  
 **Cathedral:** Emergency governance body for crisis intervention  
 **City-State:** Local political unit with its own MII_city and citizen assembly  
 **E.O.M.M.:** Emotional Operating Memory Model (reflection protocol)  
-**Middle-Class Thickening:** Distributional effect where integrity-gated minting expands the middle-income band
+**Middle-Class Thickening:** Distributional effect where integrity-gated minting expands the middle-income band  
+**Kaizen Ladder:** The decade-scale progression from current MII toward 0.95 through incremental improvements  
+**Integrity Fatalism:** The despair that occurs when rewards require unreachable thresholds (solved by MIA)
 
 ---
 
@@ -909,13 +1099,18 @@ The success of MIC depends on broad participation in integrity maintenance. We i
 |--------|---------|
 | `GI` | Global Integrity |
 | `MII` | Mobius Integrity Index |
+| `ΔMII` | Year-over-year MII change (basis for MIA rewards) |
 | `FI` | Functional Integrity component |
 | `MI` | Moral Integrity component |
 | `EI` | Ecological Integrity component |
 | `α, β, γ` | Component weights (α+β+γ=1) |
-| `τ` | MII threshold (0.95) |
+| `τ` | MII threshold for MIC minting (0.95) |
 | `S` | Sensitivity parameter (1000) |
 | `ΔMIC` | Change in MIC supply per epoch |
+| `MIA` | Mobius Integrity Allocation (growth-based rewards) |
+| `BasePool` | City/state allocation pool for MIA rewards |
+| `PopulationFactor` | Scaling factor for city population |
+| `TierMultiplier` | 1.0 (Tier 1), 1.5 (Tier 2), 2.0 (Tier 3) |
 | `f(·)` | Minting function |
 
 ---
@@ -990,6 +1185,19 @@ shard_types:
 - Added Section 7.4: "City-State and Nation-Level Allocation" — introduces local/national/supranational deployment layers
 - Added Section 11.3: "Monte Carlo Evidence for Middle-Class Thickening" — preliminary simulation results across country archetypes
 - Updated glossary with new terms (MII_city, MII_nation, Integrity Portfolio, City-State, Middle-Class Thickening)
+
+**Changelog (C-155 v2.1 Dual-Track MII Upgrade):**
+- **MAJOR:** Introduced Dual-Track Integrity Model (Section 3.2)
+  - Track A: Absolute Threshold (≥0.95) for MIC minting (unchanged)
+  - Track B: Annual Growth Rewards (ΔMII) for MIA allocations (new)
+- Added MIA (Mobius Integrity Allocation) as soft-currency reward for incremental progress
+- Added PIRS (Progressive Integrity Reward System) with Tier 1/2/3 allocations
+- Added MIA allocation formula: `MIA = BasePool × ΔMII × PopulationFactor × TierMultiplier`
+- Added rationale for progressive track (avoids Integrity Fatalism, enables political feasibility)
+- Added Dual-Track Architecture diagrams (ASCII)
+- Added Integrity Ladder decade-scale visualization
+- Updated Abstract to reflect dual-track innovation
+- Updated glossary with MIA, PIRS, ΔMII, Dual-Track, Kaizen Ladder, Integrity Fatalism
 
 **Contact:**
 - Technical Questions: [GitHub Issues](https://github.com/kaizencycle/Mobius-Systems/issues)

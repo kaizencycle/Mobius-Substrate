@@ -1,7 +1,7 @@
 # MIC/KS Tokenomics Configuration
 # Cycle: C-155
 # Updated: December 5, 2025
-# Reference: MIC_Whitepaper_v2.0.md (Post-Scarcity Coordination)
+# Reference: MIC_Whitepaper_v2.1.md (Dual-Track Integrity Model)
 
 # Core Currency Definition
 currency:
@@ -42,11 +42,33 @@ distribution:
   sentinel_operations: 0.10   # Infrastructure costs
   emergency_reserve: 0.05     # Crisis intervention fund
 
-# Minting Configuration
+# Dual-Track Integrity Model (C-155 v2.1)
+
+# Track A: MIC Minting (Hard Currency - Absolute Threshold)
 minting:
-  threshold_mii: 0.95       # τ - minimum MII for minting
+  threshold_mii: 0.95       # τ - minimum MII for MIC minting
   sensitivity: 1000         # S - MIC per 0.01 MII above threshold
   base_coefficient: 1.0     # α - base mint multiplier
+
+# Track B: MIA Allocation (Soft Currency - Annual Growth Rewards)
+# MIA = BasePool × ΔMII × PopulationFactor × TierMultiplier
+mia:
+  enabled: true
+  growth_thresholds:
+    tier_1: 0.010           # ΔMII ≥ 0.01 → Base Allocation
+    tier_2: 0.015           # ΔMII ≥ 0.015 → 1.5× Allocation
+    tier_3: 0.020           # ΔMII ≥ 0.02 → 2× Allocation
+  tier_multipliers:
+    tier_1: 1.0
+    tier_2: 1.5
+    tier_3: 2.0
+  population_factors:
+    small_city: 0.8         # < 100K population
+    medium_city: 1.0        # 100K - 1M population
+    large_city: 1.1         # 1M - 5M population
+    mega_city: 1.2          # > 5M population
+  evaluation_period: "annual"
+  min_improvement: 0.001    # Minimum ΔMII to be considered improvement
   
   # Quality multipliers based on EOMM evaluation
   quality_multipliers:
