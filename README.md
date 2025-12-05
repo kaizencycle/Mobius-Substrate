@@ -206,9 +206,22 @@ We classify machine intelligence into three layers:
 
 ---
 
-## 🌀 Cycle C-150 — MIC + Kaizen Shards + Mobius Habits
+## 🌀 Cycle C-155 — Root Organization & Repository Hygiene
 
-Cycle **C-150** introduces **MIC (Mobius Integrity Credits)** minting, **Kaizen Shards** taxonomy, and **Mobius Habits** (Reflections + Citizen Shield) as the first public surface of Mobius Systems.
+Cycle **C-155** focuses on **repository organization** and **structural clarity**.
+
+| Change | Before | After |
+|--------|--------|-------|
+| **Configuration** | Scattered at root (`.env.example`, `mobius_manifest.yaml`, `codexrule.yml`) | Consolidated under `configs/` with subdirs (`env/`, `manifests/`, `tooling/`) |
+| **Infrastructure** | Split across `infrastructure/` and `infra/` | Unified under `infra/` |
+| **Documentation** | Scattered across `whitepaper/`, `whitepapers/`, `papers/` | Consolidated under `docs/papers/` |
+
+📖 **Full migration notes**: [MIGRATION_C155.md](./MIGRATION_C155.md)
+
+### Previous Cycles
+
+<details>
+<summary><strong>C-150: MIC + Kaizen Shards + Mobius Habits</strong></summary>
 
 | Component | What changed | Where to read |
 |-----------|--------------|---------------|
@@ -216,7 +229,7 @@ Cycle **C-150** introduces **MIC (Mobius Integrity Credits)** minting, **Kaizen 
 | **Kaizen Shards** | 7 shard types (reflection, learning, civic, stability, stewardship, innovation, guardian) with configurable weights | `configs/kaizen_shards.yaml`, `packages/integrity-core/src/mic/README.md` |
 | **Mobius Habits** | Daily Reflections (SML loop) + Weekly Citizen Shield (cybersecurity checklist) | `apps/portal/app/reflections/`, `apps/portal/app/shield/`, `docs/11-SUPPLEMENTARY/implementation-summaries/C150_MOBIUS_HABITS_SUMMARY.md` |
 
-All components are integrated and ready for backend wiring. See `docs/11-SUPPLEMENTARY/implementation-summaries/C150_COMPLETE_IMPLEMENTATION.md` for full details.
+</details>
 
 ## 📜 Manifesto & Rituals
 
@@ -242,49 +255,79 @@ We honor the cracks; repair makes the story more beautiful.
 
 > *"We heal as we walk."*
 
-## 🏗️ Monorepo Structure
+## 🏗️ Monorepo Structure (C-155)
 
 ```
 mobius-systems/
-├─ apps/                          # Core Applications
-│  ├─ website-creator/            # .gic Website Creator (Next.js)
+├─ 00-START-HERE/                 # New contributor onboarding
+├─ DIPLOMACY/                     # External relations
+├─ FOR-ACADEMICS/                 # Academic resources
+├─ FOR-ECONOMISTS/                # Economic frameworks
+├─ FOR-GOVERNMENTS/               # Governance frameworks
+├─ FOR-PHILOSOPHERS/              # Philosophical foundations
+├─ FOUNDATION/                    # Core charters & licenses
+│
+├─ apps/                          # 🎯 Core Applications (16)
 │  ├─ ledger-api/                 # Mobius Ledger Core
 │  ├─ indexer-api/                # MIC Indexer
 │  ├─ eomm-api/                   # E.O.M.M. Reflections
 │  ├─ shield-api/                 # Citizen Shield
 │  ├─ broker-api/                 # Thought Broker
-│  ├─ hive-app/                   # Hive (Citizen interface)
-│  ├─ cathedral-app/              # Cathedral (Governance)
-│  ├─ genesisdome-app/            # Genesis Dome
-│  └─ api-gateway/                # API Gateway
-├─ packages/                      # Shared Packages & Libraries
-│  ├─ civic-sdk/                  # Shared API clients/types
-│  ├─ integrity-core/             # GI scoring, /integrity-check helpers
-│  ├─ oaa-memory/                 # .oaa parsers, schemas
-│  ├─ ui-kit/                     # Shared React UI components
-│  ├─ shield-policies/            # JSON schemas & request guards
-│  ├─ atlas-sentinel/             # Atlas Sentinel monitoring
-│  ├─ civic-protocol-core/        # ← INTEGRATED: Core blockchain protocols
-│  ├─ oaa-api-library/            # ← INTEGRATED: OAA API library
-│  └─ civic-ai-specs/             # ← INTEGRATED: AI specifications
-├─ labs/                          # ← NEW: Lab Proof Systems
-│  ├─ lab4-proof/                 # ← INTEGRATED: E.O.M.M. Reflections
-│  ├─ lab6-proof/                 # ← INTEGRATED: Citizen Shield App
-│  └─ lab7-proof/                 # ← INTEGRATED: OAA Hub & Shell
-├─ sentinels/                     # AI Sentinel Agents
-│  ├─ atlas/                      # Atlas Sentinel
-│  ├─ eve/                        # Eve Sentinel
-│  ├─ hermes/                     # Hermes Sentinel
-│  ├─ jade/                       # Jade Sentinel
-│  └─ zeus/                       # Zeus Sentinel
-├─ configs/                       # Configuration Files
-│  ├─ services.json               # Service manifest
-│  └─ schemas/                    # JSON schemas
-├─ infra/                         # Infrastructure
-│  ├─ docker/                     # Docker Compose for local dev
-│  └─ render.yaml                 # Multi-service deployment
-└─ .github/workflows/             # CI/CD pipeline
+│  ├─ portal/                     # Main Portal
+│  ├─ hive-app/                   # Citizen Hive
+│  └─ ...                         # (16 total apps)
+│
+├─ packages/                      # 📦 Shared Packages (7)
+│  ├─ civic-sdk/                  # API clients/types
+│  ├─ integrity-core/             # GI scoring
+│  ├─ oaa-memory/                 # OAA parsers
+│  ├─ ui-kit/                     # React components
+│  └─ ...                         # See packages/
+│
+├─ labs/                          # 🔬 Lab Proof Systems (7)
+│  ├─ lab4-proof/                 # E.O.M.M. Reflections
+│  ├─ lab6-proof/                 # Citizen Shield App
+│  └─ lab7-proof/                 # OAA Hub & Shell
+│
+├─ sentinels/                     # 🛡️ AI Sentinel Agents (13)
+│  ├─ atlas/                      # Context & Memory
+│  ├─ aurea/                      # Integrity Sentinel
+│  ├─ eve/                        # Ethics Engine
+│  ├─ hermes/                     # Market Signals
+│  ├─ jade/                       # Pattern Oracle
+│  └─ zeus/                       # Arbiter & Enforcement
+│
+├─ configs/                       # ⚙️ Configuration (C-155)
+│  ├─ env/                        # Environment templates
+│  │  ├─ .env.example            # Main env template
+│  │  └─ .env.mobius-services    # Service API keys
+│  ├─ manifests/                  # System manifests
+│  │  └─ mobius_manifest.yaml    # Canonical manifest
+│  ├─ tooling/                    # Dev tool configs
+│  │  └─ codexrule.yml           # Codex policy
+│  ├─ agents/                     # Agent configurations
+│  ├─ charters/                   # Charter definitions
+│  └─ telemetry/                  # Telemetry schemas
+│
+├─ infra/                         # 🏗️ Infrastructure (C-155)
+│  ├─ docker/                     # Docker Compose
+│  │  ├─ compose.yml             # Production compose
+│  │  └─ docker-compose.dev.yml  # Development compose
+│  ├─ cron/                       # Scheduled jobs
+│  ├─ db/                         # Database migrations
+│  ├─ dva/                        # DVA flows (n8n)
+│  ├─ observability/              # Monitoring & metrics
+│  └─ render.yaml                 # Render deployment
+│
+├─ docs/                          # 📚 Documentation
+│  ├─ papers/                     # Academic papers (C-155)
+│  └─ ...                         # Full documentation tree
+│
+└─ .github/                       # CI/CD & automation
+   └─ workflows/                  # GitHub Actions
 ```
+
+📖 **Full structure details**: [MIGRATION_C155.md](./MIGRATION_C155.md)
 
 ## Mobius Universal Orchestrator (n8n)
 
@@ -765,5 +808,5 @@ Your **proof-of-evolution**: collectible milestones for cycles, reflections, and
 
 ---
 
-*Cycle C-151 | Mobius-main-tree | Repo Hygiene & Pulse Foundations*
+*Cycle C-155 | Mobius-main-tree | Root Organization & Repository Hygiene*
 

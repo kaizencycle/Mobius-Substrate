@@ -4,10 +4,11 @@
 # =========================================================
 
 meta:
-  system_name: "Kaizen OS"            # formerly Civic OS
-  short_name: "KOS"
-  version: "1.0.0"
-  last_updated: "2025-01-27"
+  system_name: "Mobius Systems"       # formerly Kaizen OS, Civic OS
+  short_name: "MOS"
+  version: "1.0.1"
+  last_updated: "2025-12-05"
+  cycle: "C-155"
   owner: "Michael Judan"
   motto: "We heal as we walk."
   repository: "github.com/kaizencycle"
@@ -110,7 +111,7 @@ telemetry:
     thresholds:
       alert: 0.95
       target: 0.99
-    config_path: "config/gi/thresholds.yaml"
+    config_path: "configs/telemetry/thresholds.yaml"
     metrics:
       - "ΔGI"
       - "PPE (Public Perception Entropy)"
@@ -127,17 +128,23 @@ telemetry:
     # kaizen_export_token_env: "KAIZEN_OS_EXPORT_TOKEN"
 
 paths:
-  # Monorepo structure (updated 2025-10-30)
+  # Monorepo structure (updated C-155, 2025-12-05)
   apps_root: "apps/"
   packages_root: "packages/"
   labs_root: "labs/"
   sentinels_root: "sentinels/"
   docs_root: "docs/"
-  config_root: "config/"
+  infra_root: "infra/"
   configs_root: "configs/"
-  # Legacy paths (for backward compatibility)
-  # chambers_root: "chambers/"  # Deprecated - use apps/packages/labs
-  # inbox_root: "inbox/"          # Not currently used
+  # C-155 consolidated paths
+  configs_env: "configs/env/"
+  configs_manifests: "configs/manifests/"
+  configs_tooling: "configs/tooling/"
+  docs_papers: "docs/papers/"
+  # Legacy paths (deprecated - C-155)
+  # config_root: "config/"        # Merged into configs/
+  # infrastructure_root: "infrastructure/"  # Merged into infra/
+  # whitepaper_root: "whitepaper/"  # Moved to docs/papers/
   workflows:
     monorepo: ".github/workflows/monorepo.yml"
     guardian: ".github/workflows/guardian.yml"
