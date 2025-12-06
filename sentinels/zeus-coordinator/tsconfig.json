@@ -8,6 +8,6 @@
     "resolveJsonModule": true,
     "esModuleInterop": true
   },
-  "include": ["index.ts", "manifest.json"],
+  "include": ["index.ts", "index.test.ts", "manifest.json"],
   "exclude": ["node_modules", "dist"]
 }
