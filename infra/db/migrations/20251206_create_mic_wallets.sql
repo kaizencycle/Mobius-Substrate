@@ -274,7 +274,7 @@ CREATE TRIGGER protect_founders_reserve
     FOR EACH ROW
     EXECUTE FUNCTION prevent_reserve_modification();
 
--- Function to update wallet balance on transaction
+-- Function to update wallet balance on transaction confirmation
 CREATE OR REPLACE FUNCTION update_wallet_balance_on_transaction()
 RETURNS TRIGGER AS $$
 BEGIN
@@ -302,12 +302,22 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
--- Create trigger for balance updates
-DROP TRIGGER IF EXISTS update_balance_on_transaction ON mic_transactions;
-CREATE TRIGGER update_balance_on_transaction
+-- Trigger for transactions inserted as already confirmed
+DROP TRIGGER IF EXISTS update_balance_on_insert ON mic_transactions;
+CREATE TRIGGER update_balance_on_insert
     AFTER INSERT ON mic_transactions
     FOR EACH ROW
     WHEN (NEW.confirmed_at IS NOT NULL)
+    EXECUTE FUNCTION update_wallet_balance_on_transaction();
+
+-- Trigger for transactions confirmed via UPDATE (pending -> confirmed)
+-- This handles the typical flow where transactions are inserted as pending
+-- and later confirmed by setting confirmed_at
+DROP TRIGGER IF EXISTS update_balance_on_confirmation ON mic_transactions;
+CREATE TRIGGER update_balance_on_confirmation
+    AFTER UPDATE OF confirmed_at ON mic_transactions
+    FOR EACH ROW
+    WHEN (OLD.confirmed_at IS NULL AND NEW.confirmed_at IS NOT NULL)
     EXECUTE FUNCTION update_wallet_balance_on_transaction();
 
 -- ═══════════════════════════════════════════════════════════════════════════

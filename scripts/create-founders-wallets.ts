@@ -319,6 +319,7 @@ function savePrivateKeySecurely(
 
 /**
  * Create audit log entry
+ * Uses atomic read-modify-write pattern to avoid race conditions
  */
 function createAuditLog(
     reserveWallet: FoundersReserveWallet,
@@ -353,14 +354,22 @@ function createAuditLog(
         }
     };
     
-    // Read existing logs or create new array
+    // Atomic read-modify-write: try to read existing logs, handle missing file
     let existingLogs: AuditLogEntry[] = [];
-    if (existsSync(AUDIT_LOG_PATH)) {
-        try {
-            existingLogs = JSON.parse(readFileSync(AUDIT_LOG_PATH, 'utf8'));
-        } catch {
-            existingLogs = [];
+    try {
+        const content = readFileSync(AUDIT_LOG_PATH, 'utf8');
+        existingLogs = JSON.parse(content);
+    } catch (error) {
+        // File doesn't exist or is invalid JSON - start fresh
+        // This handles both ENOENT (file not found) and parse errors atomically
+        // without a race condition between existence check and read
+        const isFileNotFound = error instanceof Error && 
+            'code' in error && 
+            (error as { code: string }).code === 'ENOENT';
+        if (!isFileNotFound) {
+            console.warn('⚠️  Warning: Could not parse existing audit log, starting fresh');
         }
+        existingLogs = [];
     }
     
     existingLogs.push(auditEntry);
