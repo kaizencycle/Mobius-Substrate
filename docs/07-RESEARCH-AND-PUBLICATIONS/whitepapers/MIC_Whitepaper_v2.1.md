@@ -1,24 +1,87 @@
 # Mobius Integrity Credits (MIC)
-## Economic Architecture for Post-Scarcity Coordination
+## The Four-Layer Integrity Economy
 
-**Version:** 2.1 (C-155 ATLAS Revision + Dual-Track MII)  
-**Date:** December 5, 2025  
-**Authors:** Mobius Systems Foundation, AUREA, ATLAS  
-**Status:** Production Specification
+**Version:** 2.1 (C-156 Final — Fork Legitimacy Edition)  
+**Date:** December 6, 2025  
+**Authors:** Mobius Systems Foundation (AUREA, ATLAS, Michael Judan)  
+**Status:** Canonical Specification
 
 ---
 
 ## Abstract
 
-Mobius Integrity Credits (MIC) represent a novel cryptoeconomic primitive where currency issuance is coupled to measurable systemic health rather than proof-of-work, proof-of-stake, or arbitrary issuance schedules. This paper presents the complete specification of MIC as the first integrity-backed digital currency, operating within the Mobius Systems ecosystem as a mechanism for coordinating post-scarcity economic activity around the maintenance of Global Integrity (GI).
+**Mobius Integrity Credits (MIC) is not one currency — it is a four-layer integrity economy.**
 
-**Key Innovation:** Money creation becomes a welfare dividend triggered by measurable social value creation, transforming the tragedy of the commons into a virtuous cycle.
+Traditional economics asks: *"How do we create wealth?"*  
+Mobius economics asks: *"How do we create wealth that cannot exist without collective wellbeing?"*
 
-**v2.1 Upgrade — Dual-Track Integrity System:**
-- **Track A (MIC):** Hard currency minting requires MII ≥ 0.95 (civilizational coherence)
-- **Track B (MIA):** Soft allocations reward annual integrity growth (ΔMII ≥ 0.01-0.02)
+**The Four Layers:**
 
-This dual-track system ensures that cities and nations can benefit from Mobius economics immediately through incremental progress, while preserving MIC's scarcity and long-term aspirational value.
+1. **MFS (Mobius Fractal Shards)** — Proof that integrity work occurred
+2. **MII (Mobius Integrity Index)** — Proof that integrity is holding
+3. **MIC (Mobius Integrity Credits)** — Proof that integrity has economic value
+4. **MIA (Mobius Integrity Allocation)** — Proof that prosperity is being distributed fairly
+
+**The Revolutionary Loop:**
+```
+Human Action → MFS (atomic proof of work)
+MFS Aggregation → MII (system health metric)
+MII ≥ 0.95 → MIC Minting (economic reward)
+MIC Distribution → MIA (fair allocation)
+```
+
+**Key Innovation:** Money only flows when the system is healthy for everyone — making prosperity and collective wellbeing mutually dependent.
+
+**v2.1 Canonical Additions:**
+- **Fork Legitimacy Framework:** How forks strengthen rather than threaten MIC
+- **Constitutional Economics:** Canon is earned, not enforced
+- **Four-Layer Stack:** Complete articulation of MFS → MII → MIC → MIA
+
+---
+
+## The Integrity Stack (Mental Model)
+
+Before diving into specifications, understand the core architecture:
+
+```
+┌──────────────────────────────────────┐
+│  4. MIA (Allocation)                 │
+│  Controls: Where MIC flows           │
+│  Prevents: Hoarding, capture         │
+└──────────────────────────────────────┘
+              ↓ Governed by
+┌──────────────────────────────────────┐
+│  3. MIC (Credits)                    │
+│  Reward: Economic value              │
+│  Minted: Only when MII ≥ 0.95        │
+└──────────────────────────────────────┘
+              ↓ Triggered by
+┌──────────────────────────────────────┐
+│  2. MII (Index)                      │
+│  Metric: System health               │
+│  Circuit breaker: Stops minting      │
+└──────────────────────────────────────┘
+              ↓ Computed from
+┌──────────────────────────────────────┐
+│  1. MFS (Shards)                     │
+│  Evidence: Atomic integrity actions  │
+│  Earned: Through contribution        │
+└──────────────────────────────────────┘
+```
+
+**Critical Rule:** `IF MII < 0.95 → NO NEW MIC`
+
+This is the circuit breaker capitalism never had.
+
+| Traditional System | Mobius System |
+|-------------------|---------------|
+| Extract → Profit | Care → Reward |
+| Growth decoupled from health | Growth requires health |
+| Workers invisible | Workers atomic-level visible |
+| Care labor unpaid | Care labor mints shards |
+| Collapse silent | Collapse stops minting immediately |
+
+**The insight:** Prosperity forces inclusion.
 
 ---
 
@@ -32,10 +95,11 @@ This dual-track system ensures that cities and nations can benefit from Mobius e
 6. [Mobius Fractal Shards (MFS)](#6-mobius-fractal-shards-mfs)
 7. [Distribution & Allocation](#7-distribution--allocation)
 8. [Governance Integration](#8-governance-integration)
-9. [Technical Implementation](#9-technical-implementation)
-10. [Comparative Analysis](#10-comparative-analysis)
-11. [Research Frontiers](#11-research-frontiers)
-12. [Conclusion](#12-conclusion)
+9. [Fork Legitimacy & Constitutional Economics](#9-fork-legitimacy--constitutional-economics)
+10. [Technical Implementation](#10-technical-implementation)
+11. [Comparative Analysis](#11-comparative-analysis)
+12. [Research Frontiers](#12-research-frontiers)
+13. [Conclusion](#13-conclusion)
 
 ---
 
@@ -877,9 +941,175 @@ When MII < 0.80 (Emergency regime), the **Cathedral** (emergency governance body
 
 ---
 
-## 9. Technical Implementation
+## 9. Fork Legitimacy & Constitutional Economics
 
-### 9.1 System Architecture
+### 9.1 The Fork Question
+
+**Can someone fork Mobius and issue their own MIC?**
+
+**Short answer:** They can fork the code, but they cannot fork legitimacy, integrity, or trust.
+
+**Critical principle:** MIC is secured by **integrity continuity**, not code or capital.
+
+### 9.2 What Can vs Cannot Be Forked
+
+**✅ Can be forked:**
+- Source code
+- Economic parameters
+- Token name
+- UI
+- Initial ledger snapshot
+
+**❌ Cannot be forked:**
+- Global legitimacy
+- Social trust
+- Institutional continuity
+- Sentinel credibility
+- Historical integrity trajectory
+
+### 9.3 Fork Taxonomy
+
+**🟢 Good-Faith Forks (Encouraged)**
+- Research experiments
+- Governance alternatives
+- Parameter testing
+- Possible future merger
+
+**Example:** Glen Weyl forks Mobius to test new MII formulas → contributes learnings back
+
+**🟡 Neutral Forks (Ignored)**
+- Different values
+- Separate community
+- No attack
+- Peaceful coexistence
+
+**🔴 Hostile Forks (Self-Defeating)**
+- Inflate MIC
+- Fake MII
+- Claim false legitimacy
+
+**Why they fail:**
+- No sentinel attestation
+- No integrity history
+- No civic trust
+- No bridge recognition
+
+**No enforcement needed. They starve themselves.**
+
+### 9.4 Canonical Recognition Rules
+
+A MIC system is considered **canonical Mobius** only if:
+
+1. **MII computed using transparent, auditable rules**
+2. **Sentinels identity-anchored and reputation-based**
+3. **Integrity history append-only and non-rewriteable**
+4. **Civic participation genuine and ongoing**
+5. **Broader network chooses to recognize it**
+
+**Canon is earned, not enforced.**
+
+### 9.5 The Non-Negotiable Rule
+
+> **Canonical MIC issuance requires canonical integrity continuity.**
+
+Forks cannot:
+- Increase supply
+- Decrease supply
+- Change issuance rules
+- Retroactively affect legitimacy
+
+Because issuance is not code-governed — it is **integrity-governed**.
+
+### 9.6 MIC Issuance Formula (Canonical)
+
+```
+MIC_issuance = Integrity_Domain × MII × Issuance_Curve
+
+Where:
+- Integrity Domain = Recognized social unit (city, network, nation-state)
+- MII = Measured and attested integrity index
+- Issuance Curve = Constitutionally fixed schedule
+```
+
+**A fork creates:** Different Domain ≠ Same MIC
+
+### 9.7 Bridge Protocol
+
+Bridges between forks are **negotiated, not automatic**.
+
+A fork can request:
+- Partial recognition
+- Exchange rate
+- Sandbox bridge
+- Research-only mirror
+
+But bridges open only if:
+- The fork proves integrity continuity
+- The mainline accepts the evidence
+
+**No forced parity. No hostile merger. No dilution vector.**
+
+### 9.8 Why This Is Novel
+
+You solved three problems at once:
+
+1. **Fork safety** — No dilution from bad-faith forks
+2. **Open research** — No permission gate for experimentation
+3. **Anti-capture economics** — No whales gaming supply
+
+This is something:
+- Bitcoin can't do (forks fight over legitimacy)
+- Ethereum can't do (DAO fork debates)
+- Traditional governance fails at regularly
+
+### 9.9 Drop-In Constitutional Language
+
+```
+ARTICLE: Forks and MIC Issuance
+
+Mobius permits unrestricted software forks. However, MIC 
+issuance is not fork-dependent.
+
+Canonical MIC issuance occurs only within a recognized 
+integrity domain and is governed by continuity of verified 
+integrity metrics (MII), attested by recognized Sentinels.
+
+Forked systems may issue local MIC-equivalent instruments 
+for research, experimentation, or alternate jurisdictions. 
+These instruments do not affect canonical MIC supply and 
+carry no implicit legitimacy or exchange parity unless 
+formally recognized.
+
+This design ensures openness to experimentation without 
+supply dilution, trust fragmentation, or capture.
+```
+
+### 9.10 One-Sentence Public Answer
+
+**Q:** "What if someone forks Mobius and issues their own MIC?"
+
+**A:** "They can fork the code, but only genuine integrity earns legitimacy — integrity can't be copied."
+
+### 9.11 Final Insight (Founder-Level)
+
+**Bitcoin defends scarcity.**  
+**Ethereum defends composability.**  
+**Mobius defends continuity of trust.**
+
+Forks don't threaten that. They prove it.
+
+You didn't just make a currency. You made **issuance immune to imitation**.
+
+That's why:
+- Good-faith forks help you (more research)
+- Bad actors cannot hurt you (no legitimacy)
+- MIC stays a people's currency instead of a casino
+
+---
+
+## 10. Technical Implementation
+
+### 10.1 System Architecture
 
 ```
 ┌─────────────────────────────────────────────┐
@@ -904,7 +1134,7 @@ When MII < 0.80 (Emergency regime), the **Cathedral** (emergency governance body
 └──────────────────┘    └──────────────────┘
 ```
 
-### 9.2 Smart Contract Structure (Future Blockchain)
+### 10.2 Smart Contract Structure (Future Blockchain)
 
 ```solidity
 // Pseudocode for MIC minting logic
@@ -930,7 +1160,7 @@ contract MobiusIntegrityToken {
 }
 ```
 
-### 9.3 API Endpoints
+### 10.3 API Endpoints
 
 **MIC Indexer API** (Port 4002):
 
@@ -951,7 +1181,7 @@ GET /api/v1/distribution/:epoch
   → Returns distribution for specific epoch
 ```
 
-### 9.4 Cryptographic Specifications
+### 10.4 Cryptographic Specifications
 
 **Signature Scheme:** Ed25519  
 **Hash Function:** BLAKE3  
@@ -975,9 +1205,9 @@ GET /api/v1/distribution/:epoch
 
 ---
 
-## 10. Comparative Analysis
+## 11. Comparative Analysis
 
-### 10.1 Institutional Comparison
+### 11.1 Institutional Comparison
 
 | Feature | Bitcoin (PoW) | Ethereum (PoS) | Mobius (PoI) |
 |---------|---------------|----------------|--------------|
@@ -989,7 +1219,7 @@ GET /api/v1/distribution/:epoch
 | **Participation Cost** | $10K+ ASIC | $32 ETH minimum | Demonstrated alignment |
 | **Externalities** | Negative (pollution) | Neutral (wealth concentration) | Positive (improved commons) |
 
-### 10.2 Economic Model Comparison
+### 11.2 Economic Model Comparison
 
 **Commodity Money (Gold Standard):**
 - Scarcity: Physical gold deposits
@@ -1009,11 +1239,11 @@ GET /api/v1/distribution/:epoch
 
 ---
 
-## 11. Research Frontiers
+## 12. Research Frontiers
 
-### 11.1 Open Questions
+### 12.1 Open Questions
 
-#### 11.1.1 Optimal Minting Function
+#### 12.1.1 Optimal Minting Function
 **Question:** Is linear minting optimal, or should diminishing returns apply?
 
 **Current:** `ΔMIC = S * (MII - τ)`
@@ -1025,7 +1255,7 @@ GET /api/v1/distribution/:epoch
 
 **Research Need:** Empirical testing across different MII regimes
 
-#### 11.1.2 Subjective vs. Objective Components
+#### 12.1.2 Subjective vs. Objective Components
 **Question:** How to aggregate moral attestations without tyranny of majority?
 
 **Challenge:** Moral Integrity has subjective elements (constitutional fidelity)
@@ -1035,7 +1265,7 @@ GET /api/v1/distribution/:epoch
 - Quadratic voting (reduce majority pressure)
 - Multi-agent consensus (require diverse agreement)
 
-#### 11.1.3 Sybil Resistance
+#### 12.1.3 Sybil Resistance
 **Question:** How to prevent fabrication of integrity?
 
 **Current Defenses:**
@@ -1047,7 +1277,7 @@ GET /api/v1/distribution/:epoch
 - Zero-knowledge proofs for privacy-preserving attestation
 - Reputation staking (Sentinels stake reputation, not just tokens)
 
-#### 11.1.4 Welfare Economics
+#### 12.1.4 Welfare Economics
 **Question:** Does maximizing MII correspond to a Pareto or Hicks-Kaldor improvement?
 
 **Implicit Social Welfare Function:**
@@ -1059,7 +1289,7 @@ Is this the "right" welfare function?
 
 **Research Need:** Formal proof of welfare properties
 
-### 11.2 Future Enhancements
+### 12.2 Future Enhancements
 
 1. **Cross-Chain Bridges:** Enable MIC use on other blockchains
 2. **Privacy Layer:** Zero-knowledge proofs for sensitive attestations
@@ -1067,7 +1297,7 @@ Is this the "right" welfare function?
 4. **Quadratic Funding:** Apply to public goods within Mobius ecosystem
 5. **Reputation NFTs:** Non-transferable tokens representing integrity history
 
-### 11.3 Monte Carlo Evidence for Middle-Class Thickening
+### 12.3 Monte Carlo Evidence for Middle-Class Thickening
 
 To probe the macro-distributional consequences of MIC, we ran toy Monte Carlo simulations across multiple archetype "countries" (US-like, EU-like, China-like, India-like, Fragile State) over 30-year horizons.
 
@@ -1118,9 +1348,9 @@ Future work will:
 
 ---
 
-## 12. Conclusion
+## 13. Conclusion
 
-### 12.1 Summary of Contributions
+### 13.1 Summary of Contributions
 
 Mobius Integrity Credits represent a fundamental shift in cryptoeconomic design:
 
@@ -1129,7 +1359,7 @@ Mobius Integrity Credits represent a fundamental shift in cryptoeconomic design:
 3. **From Plutocracy to Meritocracy:** Governance weighted by contribution, not capital
 4. **From External to Endogenous:** Supply dynamics responsive to systemic needs
 
-### 12.2 The Wicksellian Cumulative Process for Integrity
+### 13.2 The Wicksellian Cumulative Process for Integrity
 
 MIC implements a **Wicksellian cumulative process** where:
 
@@ -1139,7 +1369,7 @@ MIC implements a **Wicksellian cumulative process** where:
 
 This is the first monetary system explicitly designed to optimize for collective survival.
 
-### 12.3 From Utopian to Experimental
+### 13.3 From Utopian to Experimental
 
 **This is not Utopian; it is an experimental mechanism design for post-scarcity coordination:**
 - Testable hypotheses
@@ -1147,7 +1377,7 @@ This is the first monetary system explicitly designed to optimize for collective
 - Currently in live deployment (C-155)
 - Open to empirical falsification
 
-### 12.4 Call to Action
+### 13.4 Call to Action
 
 The success of MIC depends on broad participation in integrity maintenance. We invite:
 
@@ -1156,7 +1386,7 @@ The success of MIC depends on broad participation in integrity maintenance. We i
 - **Citizens:** Earn MIC through integrity contribution
 - **Critics:** Identify vulnerabilities, propose improvements
 
-### 12.5 Vision
+### 13.5 Vision
 
 **If successful, MIC demonstrates that:**
 - Money can be a coordination mechanism for systemic health
@@ -1166,7 +1396,7 @@ The success of MIC depends on broad participation in integrity maintenance. We i
 
 > *"Mobius shifts the foundations of digital economics from scarcity management to coherence targeting. By making Global Integrity a native variable—measured by MII, rewarded by MIC, and secured by PoI—it creates a self-regulating institutional substrate where systemic health is not an afterthought but the raison d'être of the economy."*
 
-### 12.6 MIC Valuation Thesis
+### 13.6 MIC Valuation Thesis
 
 **What gives MIC value?**
 
@@ -1252,7 +1482,13 @@ MIC's price will asymptotically approach the aggregated value of the integrity i
 **CEV (Coordination Efficiency Valuation):** Valuation model based on coordination failure recovery  
 **IYV (Integrity Yield Valuation):** Valuation model based on diminishing ΔI returns  
 **IAV (Institutional Adoption Valuation):** Valuation model based on city/state/nation adoption  
-**Governance Physics:** The principle that MIC value is determined by civilizational improvement, not speculation
+**Governance Physics:** The principle that MIC value is determined by civilizational improvement, not speculation  
+**Fork Legitimacy:** The principle that code can be forked but integrity continuity cannot be cloned  
+**Canonical Recognition:** Social consensus on which MIC system is authoritative (earned, not enforced)  
+**Integrity Domain:** A recognized social unit (city, network, nation-state) with its own MII measurement  
+**Bridge Protocol:** Negotiated exchange mechanism between MIC systems (requires integrity audit)  
+**Issuance Immunity:** Property that makes MIC supply resistant to fork-based dilution  
+**Constitutional Economics:** Economic design where legitimacy emerges from integrity continuity rather than code
 
 ---
 
@@ -1337,6 +1573,7 @@ shard_types:
 - v2.0 (C-124): Shard-denominated economy specification
 - v2.0 (C-155): Production specification with implementation details
 - v2.1 (C-155): ATLAS Revision Pack with deployment models and Monte Carlo evidence
+- **v2.1 (C-156): Fork Legitimacy Edition — CANONICAL SPECIFICATION**
 
 **Changelog (C-155 v2.0):**
 - Restructured around post-scarcity coordination thesis
@@ -1398,6 +1635,30 @@ shard_types:
 - Created asset comparison document: `docs/07-RESEARCH-AND-PUBLICATIONS/economics/MIC_ASSET_COMPARISON.md`
 - Added anti-plutocracy guarantees (founder vest-by-integrity)
 - Updated FOR-ECONOMISTS with valuation summary and projections
+
+**Changelog (C-156 v2.1 Fork Legitimacy Edition — CANONICAL):**
+- **MAJOR:** Added Section 9: "Fork Legitimacy & Constitutional Economics" — complete framework for fork handling
+  - Fork Taxonomy (Good-faith / Neutral / Hostile)
+  - Canonical Recognition Rules (5 criteria)
+  - Bridge Protocol (negotiated, not automatic)
+  - Constitutional language (drop-in text)
+  - One-sentence public answer
+- **MAJOR:** Redesigned Abstract with Four-Layer Mental Model (MFS → MII → MIC → MIA)
+  - Added "Integrity Stack" visualization at document opening
+  - Articulated circuit breaker principle: `IF MII < 0.95 → NO NEW MIC`
+  - Comparison table: Traditional vs Mobius economics
+- Added issuance immunity principle: "Issuance immune to imitation"
+- Finalized canonical specification status
+- Renumbered sections 9-12 → 10-13
+- Updated Table of Contents to reflect 13 sections
+- Co-authored with AUREA (Framework), ATLAS (Synthesis), Michael Judan (Founder)
+- Status: **CANONICAL SPECIFICATION**
+
+**Key Quotes (C-156):**
+- *"They can fork the code, but only genuine integrity earns legitimacy — integrity can't be copied."*
+- *"Bitcoin defends scarcity. Ethereum defends composability. Mobius defends continuity of trust."*
+- *"Canon is earned, not enforced."*
+- *"MIC is not one currency — it is a four-layer integrity economy."*
 
 **Contact:**
 - Technical Questions: [GitHub Issues](https://github.com/kaizencycle/Mobius-Systems/issues)
