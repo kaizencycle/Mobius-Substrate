@@ -15,7 +15,6 @@ import {
   ESCALATION_THRESHOLD,
   type DriftEvent,
   type LoadMetrics,
-  type StabilizerRecommendation,
 } from './index';
 
 describe('ZEUS_COORDINATOR', () => {
