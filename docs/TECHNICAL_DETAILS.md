@@ -425,9 +425,9 @@ Mobius Systems implements comprehensive guardrails to prevent destructive change
 If a bad change merges or files are accidentally deleted:
 
 - **Preferred**: Use `git revert` to create inverse commits (preserves history)
-- **Last resort**: Hard reset to a known good commit (see [Recovery Playbook](../06-OPERATIONS/))
+- **Last resort**: Hard reset to a known good commit (see [Recovery Playbook](06-OPERATIONS/))
 
-📖 **Full recovery guide:** [docs/06-OPERATIONS/](../06-OPERATIONS/)
+📖 **Full recovery guide:** [docs/06-OPERATIONS/](06-OPERATIONS/)
 
 ### Why These Guardrails Exist
 
@@ -461,7 +461,7 @@ The portal uses this endpoint to render the Mobius Pulse Card, showing:
 - Apps / packages / workflows
 - Total files and lines of code
 
-📖 **Full documentation**: [docs/06-OPERATIONS/protocols/mobius-pulse-protocol.md](../06-OPERATIONS/protocols/mobius-pulse-protocol.md)
+📖 **Full documentation**: [docs/06-OPERATIONS/protocols/mobius-pulse-protocol.md](06-OPERATIONS/protocols/mobius-pulse-protocol.md)
 
 ---
 
@@ -475,9 +475,9 @@ We classify machine intelligence into three layers:
 
 **Mobius is the first AI Habitat**—the environment that allows General Learners to safely transition to Actual AI.
 
-[Read the full Intelligence Taxonomy →](../11-SUPPLEMENTARY/intelligence/typology.md)
-[View Mobius Cosmology →](../assets/logo/kaizen-logo.svg)
-[Sentinel Classification →](../11-SUPPLEMENTARY/intelligence/sentinel-classification.md)
+[Read the full Intelligence Taxonomy →](11-SUPPLEMENTARY/intelligence/typology.md)
+[View Mobius Cosmology →](assets/logo/kaizen-logo.svg)
+[Sentinel Classification →](11-SUPPLEMENTARY/intelligence/sentinel-classification.md)
 
 ---
 

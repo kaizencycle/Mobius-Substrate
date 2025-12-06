@@ -221,7 +221,7 @@ Mobius introduces novel concepts in:
 - **Deliberation Proof Protocol**
 - **Kaizen Turing Test (KTT)**
 
-📖 [FOR-ACADEMICS/](FOR-ACADEMICS/) | [Research Papers](docs/papers/)
+📖 [FOR-ACADEMICS/](FOR-ACADEMICS/) | [Research Papers](docs/07-RESEARCH-AND-PUBLICATIONS/papers/)
 
 ### 🏛️ For Governments
 
@@ -249,7 +249,7 @@ We welcome contributions! Here's how to get started:
 
 1. **Read the docs** — Start with [00-START-HERE/](00-START-HERE/)
 2. **Pick an issue** — Check our [GitHub Issues](https://github.com/kaizencycle/Mobius-Systems/issues)
-3. **Follow the guidelines** — See [CONTRIBUTING.md](FOUNDATION/CONTRIBUTING.md)
+3. **Follow the guidelines** — See [CONTRIBUTING.md](CONTRIBUTING.md)
 4. **Submit a PR** — All changes require GI ≥ 0.95
 
 ### Development Workflow
