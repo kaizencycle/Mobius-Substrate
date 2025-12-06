@@ -108,9 +108,9 @@ all converge into an **Internet 2.0** that is:
 
 These docs are architecture-level only. Implementation is happening in:
 
-- `apps/broker-api/` (Thought Broker + routing)
-- `apps/indexer-api/` (GI + metrics)
-- `apps/ledger-api/` (Civic Ledger)
+- `apps/broker-/api/` (Thought Broker + routing)
+- `apps/indexer-/api/` (GI + metrics)
+- `apps/ledger-/api/` (Civic Ledger)
 - `docs/governance/` (Constitution & rules)
 
 When you wire in Gemini 3 / Antigravity:

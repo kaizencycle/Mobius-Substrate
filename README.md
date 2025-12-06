@@ -189,8 +189,8 @@ This is a **Turborepo monorepo** with 43 packages organized by function:
 mobius-systems/
 ├── 00-START-HERE/          # 👋 New contributor onboarding
 ├── apps/                   # 🎯 16 core applications
-│   ├── ledger-api/         # Mobius Ledger Core
-│   ├── indexer-api/        # MIC Indexer
+│   ├── ledger-/api/         # Mobius Ledger Core
+│   ├── indexer-/api/        # MIC Indexer
 │   ├── portal/             # Main Portal
 │   └── ...
 ├── packages/               # 📦 7 shared packages

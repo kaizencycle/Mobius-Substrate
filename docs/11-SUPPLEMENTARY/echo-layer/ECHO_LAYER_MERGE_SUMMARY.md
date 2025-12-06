@@ -2,7 +2,7 @@
 
 ## Files Merged from `mobius-sys.edit/v1/mobius-echo-layer/`
 
-### ✅ Service Files (apps/broker-api/src/services/echo/)
+### ✅ Service Files (apps/broker-/api/src/services/echo/)
 - [x] `config.ts` - Configuration and thresholds
 - [ ] `integrityCache.ts` - Cache CRUD operations (needs merge with existing cache.ts)
 - [ ] `echoConsensus.ts` - Consensus engine (needs merge with existing consensus.ts)
@@ -13,7 +13,7 @@
 - [ ] `index.ts` - Module exports
 - [ ] `utils/textCanonicalization.ts` - Text utilities
 
-### ✅ Routes (apps/broker-api/src/routes/v1/echo/)
+### ✅ Routes (apps/broker-/api/src/routes/v1/echo/)
 - [ ] `deliberateRouter.ts` - Main deliberation endpoint
 - [ ] `statsRouter.ts` - Statistics endpoints
 - [ ] `humanReviewRouter.ts` - Human review queue endpoints

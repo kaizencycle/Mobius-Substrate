@@ -40,17 +40,17 @@ All deliverables from Cycle C-148 have been implemented and are production-ready
 - **Content:** JSON schema, validation rules, and ledger integration spec
 
 ### 6. Cycle Index API
-- **File:** `apps/indexer-api/src/routes/cycles.ts`
+- **File:** `apps/indexer-/api/src/routes/cycles.ts`
 - **Status:** ✅ Complete
-- **Content:** REST API endpoints for cycle attestations (GET /api/cycles, POST /api/cycles/attest, GET /api/cycles/stats)
-- **Integration:** Updated `apps/indexer-api/src/index.ts` to include cycles router
+- **Content:** REST API endpoints for cycle attestations (GET //api/cycles, POST //api/cycles/attest, GET //api/cycles/stats)
+- **Integration:** Updated `apps/indexer-/api/src/index.ts` to include cycles router
 - **Dependencies:** Added `zod` for validation
 
 ### 7. Mermaid Diagrams
 - **Files:**
-  - `docs/02-architecture/echo/diagrams/sml-diagrams.md` (SML)
-  - `docs/02-architecture/applications/global/diagrams/daedalus-diagrams.md` (Daedalus)
-  - `docs/02-architecture/economics/diagrams/negentropic-diagrams.md` (Economics)
+  - `docs/04-TECHNICAL-ARCHITECTURE/echo/diagrams/sml-diagrams.md` (SML)
+  - `docs/04-TECHNICAL-ARCHITECTURE/applications/global/diagrams/daedalus-diagrams.md` (Daedalus)
+  - `docs/04-TECHNICAL-ARCHITECTURE/economics/diagrams/negentropic-diagrams.md` (Economics)
   - `docs/06-OPERATIONS/protocols/diagrams/mcp-diagrams.md` (MCP)
   - `docs/99-meta/diagrams/MERMAID_DIAGRAMS_COMPLETE.md` (Master collection)
 - **Status:** ✅ Complete
@@ -71,7 +71,7 @@ All deliverables from Cycle C-148 have been implemented and are production-ready
 - Blocks merge if requirements not met
 
 ### Indexer API
-- New `/api/cycles` endpoints available
+- New `//api/cycles` endpoints available
 - Supports cycle attestation creation and retrieval
 - Includes statistics endpoint
 
@@ -114,7 +114,7 @@ docs/
     └── mcp-enforcer.yml (NEW)
 
 apps/
-└── indexer-api/
+└── indexer-/api/
     ├── src/
     │   ├── index.ts (updated)
     │   └── routes/
@@ -151,7 +151,7 @@ apps/
 ### Creating a Cycle Attestation
 
 ```bash
-curl -X POST http://localhost:4002/api/cycles/attest \
+curl -X POST http://localhost:4002//api/cycles/attest \
   -H "Content-Type: application/json" \
   -d '{
     "cycle": "C-148",
@@ -170,13 +170,13 @@ curl -X POST http://localhost:4002/api/cycles/attest \
 
 ```bash
 # Get all cycles
-curl http://localhost:4002/api/cycles
+curl http://localhost:4002//api/cycles
 
 # Get specific cycle
-curl http://localhost:4002/api/cycles/C-148
+curl http://localhost:4002//api/cycles/C-148
 
 # Get cycle statistics
-curl http://localhost:4002/api/cycles/stats
+curl http://localhost:4002//api/cycles/stats
 ```
 
 ---

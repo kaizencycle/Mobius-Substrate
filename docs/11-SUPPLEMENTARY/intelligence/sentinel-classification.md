@@ -110,7 +110,7 @@ interface SentinelValues {
 ### **Agency Augmentation**
 
 ```typescript
-// From sentinel-api/src/actions.ts
+// From sentinel-/api/src/actions.ts
 interface SentinelActionSpace {
   api: RestfulEndpoints;
   lab: ExperimentalEnvironment;

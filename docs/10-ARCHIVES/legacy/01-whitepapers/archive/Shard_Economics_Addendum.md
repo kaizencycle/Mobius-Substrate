@@ -369,7 +369,7 @@ function BalanceDisplay({ shards }: { shards: string }) {
 import express from 'express';
 import { creditsToShards, validateAmount } from '@civic/integrity-units';
 
-app.post('/api/transfer', async (req, res) => {
+app.post('//api/transfer', async (req, res) => {
   try {
     const { amount_shards, recipient } = req.body;
     const shards = BigInt(amount_shards);

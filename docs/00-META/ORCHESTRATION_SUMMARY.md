@@ -102,7 +102,7 @@ docs/
 ├── 07-RESEARCH-AND-PUBLICATIONS/    📚 ORGANIZED — Academic
 │   ├── README.md                    Research overview
 │   ├── whitepapers/                 Core whitepapers ⭐
-│   │   ├── MIC_Whitepaper_v2.0.md   Flagship publication
+│   │   ├── MIC_Whitepaper_v2.1.md   Flagship publication
 │   │   └── UBI_Mechanism_v2.0.md    UBI specification
 │   ├── mic-economics/               MIC research
 │   ├── tokenomics/                  Economic modeling
@@ -112,7 +112,7 @@ docs/
 │
 ├── 08-REFERENCE/                    📋 ORGANIZED — Technical Refs
 │   ├── README.md                    Reference overview
-│   ├── api/                         API documentation
+│   ├── /api/                         API documentation
 │   ├── schemas/                     Data schemas
 │   ├── intelligence-classification/ AI classification
 │   └── quick-reference/             Quick guides

@@ -15,7 +15,7 @@ The Civic Mount Boarding Protocol enables **LLM-agnostic continuity** by externa
                               ▼
 ┌─────────────────────────────────────────────────────────────┐
 │              Civic Mount Endpoint                          │
-│              GET /api/civic/mount                          │
+│              GET //api/civic/mount                          │
 └─────────────────────────────────────────────────────────────┘
                               │
                               ▼
@@ -32,10 +32,10 @@ The Civic Mount Boarding Protocol enables **LLM-agnostic continuity** by externa
 
 ### 1. Server Endpoint (Lab7-Proof)
 
-The `/api/civic/mount` endpoint is implemented in `labs/lab7-proof/app/routers/civic_mount.py`:
+The `//api/civic/mount` endpoint is implemented in `labs/lab7-proof/app/routers/civic_mount.py`:
 
 ```python
-@router.get("/api/civic/mount")
+@router.get("//api/civic/mount")
 def civic_mount(request: Request):
     """The Civic Mount endpoint for LLM boarding."""
     manifests = [
@@ -135,7 +135,7 @@ import hashlib
 
 def board_civic_os(base_url="http://localhost:8000"):
     # Fetch mount endpoint
-    mount_response = requests.get(f"{base_url}/api/civic/mount")
+    mount_response = requests.get(f"{base_url}//api/civic/mount")
     mount_data = mount_response.json()
     
     # Verify GI signature
@@ -163,7 +163,7 @@ def board_civic_os(base_url="http://localhost:8000"):
 ```javascript
 async function boardCivicOS(baseUrl = 'http://localhost:8000') {
   // Fetch mount endpoint
-  const mountResponse = await fetch(`${baseUrl}/api/civic/mount`);
+  const mountResponse = await fetch(`${baseUrl}//api/civic/mount`);
   const mountData = await mountResponse.json();
   
   // Verify GI signature
@@ -191,7 +191,7 @@ async function boardCivicOS(baseUrl = 'http://localhost:8000') {
 
 ```bash
 # Board Kaizen OS
-curl -X GET "http://localhost:8000/api/civic/mount" | jq
+curl -X GET "http://localhost:8000//api/civic/mount" | jq
 
 # Expected response:
 {
@@ -225,7 +225,7 @@ The Independence Manifest is available at `/docs/INDEPENDENCE_MANIFEST.md` and d
 ### 3. Cross-LLM Continuity
 
 Any LLM can now:
-1. Call `/api/civic/mount` to retrieve manifests
+1. Call `//api/civic/mount` to retrieve manifests
 2. Verify the GI signature for integrity
 3. Parse the manifests to reconstruct Kaizen OS context
 4. Operate as a verified node in the Civic AI Collective

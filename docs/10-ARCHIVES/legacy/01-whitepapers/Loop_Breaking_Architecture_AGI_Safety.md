@@ -341,7 +341,7 @@ Where:
 The Thought Broker intercepts every reasoning transition:
 
 ```typescript
-// apps/broker-api/src/deliberation/engine.ts
+// apps/broker-/api/src/deliberation/engine.ts
 
 function breakLoop(
   currentThought: ThoughtState,
@@ -378,7 +378,7 @@ function breakLoop(
 Multi-agent consensus prevents single-agent capture:
 
 ```typescript
-// apps/broker-api/src/consensus/protocol.ts
+// apps/broker-/api/src/consensus/protocol.ts
 
 async function evaluateSentinels(
   thought: ThoughtState,
@@ -596,7 +596,7 @@ Therefore, `T_n` remains bounded for all `n`. ∎
 
 ### B.1 Thought Broker API
 
-See `/apps/broker-api/README.md` for full API documentation.
+See `/apps/broker-/api/README.md` for full API documentation.
 
 ### B.2 Sentinel Constitution
 

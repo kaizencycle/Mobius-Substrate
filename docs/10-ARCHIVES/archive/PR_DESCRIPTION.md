@@ -213,7 +213,7 @@ export DEEPSEEK_LAB_ENDPOINT="https://your-solara-api.onrender.com"
 export CIVIC_LEDGER_ENDPOINT="https://your-ledger-api.onrender.com"
 
 # Discord webhook for notifications (optional)
-export DISCORD_WEBHOOK_URL="https://discord.com/api/webhooks/..."
+export DISCORD_WEBHOOK_URL="https://discord.com//api/webhooks/..."
 ```
 
 ### GitHub Repository Secrets

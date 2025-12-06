@@ -174,7 +174,7 @@ ATLAS configuration is defined in `configs/bio-dna/companions/atlas.json`:
 
 ### With Civic Ledger
 
-- Posts attestations to `/api/attestations`
+- Posts attestations to `//api/attestations`
 - Provides cryptographic proof chain
 - Enables independent verification
 

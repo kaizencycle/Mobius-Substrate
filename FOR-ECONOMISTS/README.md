@@ -82,7 +82,7 @@ The comprehensive MIC specification covering:
 - **Distribution model** — 60% contributors, 25% treasury, 10% sentinels, 5% reserve
 - **Anti-plutocratic governance** — Voting power = sqrt(MIC) × Civic Reputation
 
-[**Read Full Whitepaper →**](../docs/07-RESEARCH-AND-PUBLICATIONS/whitepapers/MIC_Whitepaper_v2.0.md)
+[**Read Full Whitepaper →**](../docs/07-RESEARCH-AND-PUBLICATIONS/whitepapers/MIC_Whitepaper_v2.1.md)
 
 #### 💰 MIC Valuation Package (C-155) — NEW
 

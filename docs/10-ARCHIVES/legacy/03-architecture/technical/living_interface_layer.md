@@ -256,11 +256,11 @@ Kaizen-OS/
 │   └── reflections-ui/                     # Reflections App frontend
 │
 ├── services/
-│   ├── civic-ledger-api/                   # MIC mint + attestation endpoints
-│   ├── citizen-shield-api/                 # Moderation and audit relay
-│   ├── lil-render-api/                     # WebGPU/Unreal avatar rendering
+│   ├── civic-ledger-/api/                   # MIC mint + attestation endpoints
+│   ├── citizen-shield-/api/                 # Moderation and audit relay
+│   ├── lil-render-/api/                     # WebGPU/Unreal avatar rendering
 │   ├── lil-mind-bridge/                    # Multi-LLM router for avatars
-│   └── holo-room-api/                      # 3D environment builder
+│   └── holo-room-/api/                      # 3D environment builder
 │
 ├── public/
 │   ├── assets/avatars/                     # Founding Agent 3D models, textures

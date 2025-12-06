@@ -119,13 +119,13 @@ This document summarizes the completion of **production-ready implementation cod
 
 | Endpoint | Method | Purpose |
 |----------|--------|---------|
-| `/api/v1/auth/token` | POST | Generate JWT token |
-| `/api/v1/gi/score` | POST | Calculate GI score (Lab1) |
-| `/api/v1/ledger/transaction` | POST | Submit transaction (Lab1) |
-| `/api/v1/token/balance` | GET | Check GIC balance (Lab1) |
-| `/api/v1/deliberation` | POST | Create deliberation (Lab2) |
-| `/api/v1/deliberation/{id}` | GET | Get deliberation status (Lab2) |
-| `/api/v1/oaa/parse` | POST | Parse natural language (Lab7) |
+| `/v1/auth/token` | POST | Generate JWT token |
+| `/v1/gi/score` | POST | Calculate GI score (Lab1) |
+| `/v1/ledger/transaction` | POST | Submit transaction (Lab1) |
+| `/v1/token/balance` | GET | Check GIC balance (Lab1) |
+| `/v1/deliberation` | POST | Create deliberation (Lab2) |
+| `/v1/deliberation/{id}` | GET | Get deliberation status (Lab2) |
+| `/v1/oaa/parse` | POST | Parse natural language (Lab7) |
 | `/health` | GET | System health check |
 
 **Key Features:**
@@ -239,7 +239,7 @@ session = orchestrator.create_session(
 
 ```bash
 # Example: Test API Gateway
-curl -X POST http://localhost:8000/api/v1/auth/token \
+curl -X POST http://localhost:8000/v1/auth/token \
   -H "Content-Type: application/json" \
   -d '{"username": "test", "password": "test123"}'
 
@@ -440,7 +440,7 @@ All modules include:
 **Integration Points:**
 - Stores DelibProofs from Lab2 as E.O.M.M. artifacts
 - Uses Lab1 ledger for E.O.M.M. timestamping
-- Lab3 API provides `/api/v1/eomm/save` endpoint
+- Lab3 API provides `/v1/eomm/save` endpoint
 
 ### Lab7: OAA Hub (Orchestrator Agent Architecture)
 

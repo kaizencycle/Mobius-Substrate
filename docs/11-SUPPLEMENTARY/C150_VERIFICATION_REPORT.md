@@ -43,8 +43,8 @@ All C-150 implementation and repository cleanup tasks have been completed and ve
 - `apps/portal/app/habits/page.tsx`: ✓ (New landing page)
 
 ### API Routes
-- `apps/portal/app/api/shield/checklist/route.ts`: ✓
-- `apps/portal/app/api/habits/cycle/route.ts`: ✓
+- `apps/portal/app//api/shield/checklist/route.ts`: ✓
+- `apps/portal/app//api/habits/cycle/route.ts`: ✓
 
 ### Navigation
 - `apps/portal/components/Nav.tsx`: ✓ (Added Reflections and Shield links)
@@ -82,7 +82,7 @@ These are pre-existing issues in files not modified for C-150:
 **Impact**: None on C-150 functionality. MIC code compiles correctly.
 
 ### TODOs (Expected)
-- `apps/portal/app/api/habits/cycle/route.ts`: TODO for ledger integration (expected)
+- `apps/portal/app//api/habits/cycle/route.ts`: TODO for ledger integration (expected)
 - `apps/portal/app/reflections/page.tsx`: TODO for auth integration (expected)
 - `apps/portal/app/shield/page.tsx`: TODO for auth integration (expected)
 
@@ -103,8 +103,8 @@ These are pre-existing issues in files not modified for C-150:
 ✓ apps/portal/app/reflections/              - Page exists
 ✓ apps/portal/app/shield/                   - Page exists
 ✓ apps/portal/app/habits/                   - Page exists
-✓ apps/portal/app/api/shield/               - API route exists
-✓ apps/portal/app/api/habits/               - API route exists
+✓ apps/portal/app//api/shield/               - API route exists
+✓ apps/portal/app//api/habits/               - API route exists
 ✓ docs/11-SUPPLEMENTARY/echo-layer/        - 7 files
 ✓ docs/11-SUPPLEMENTARY/implementation-summaries/ - 3 files
 ✓ docs/11-SUPPLEMENTARY/root-docs/         - 2 files

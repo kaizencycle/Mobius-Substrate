@@ -121,7 +121,7 @@ docs/
 | Current Location | New Location | Document ID |
 |-----------------|--------------|-------------|
 | `01-whitepapers/Loop_Breaking_Architecture_AGI_Safety.md` | `01-THEORY/whitepapers/` | MS-DOC-001 |
-| `01-whitepapers/MIC_Whitepaper_v2.0.md` | `01-THEORY/whitepapers/` | MS-DOC-002 |
+| `01-whitepapers/MIC_Whitepaper_v2.1.md` | `01-THEORY/whitepapers/` | MS-DOC-002 |
 | `05-research/foundations/foundational_blueprint_integrity_economy_v2.md` | `01-THEORY/foundations/` | MS-DOC-003 |
 | `05-research/foundations/kaizen_theorems.md` | `01-THEORY/theorems/` | MS-DOC-004 |
 | `05-research/ktt/` | `01-THEORY/ktt/` | MS-DOC-005 |
@@ -157,7 +157,7 @@ docs/
 
 | Current Location | New Location | Document ID |
 |-----------------|--------------|-------------|
-| `01-whitepapers/MIC_Whitepaper_v2.0.md` | `06-ECONOMICS/mic/` | MS-DOC-002 |
+| `01-whitepapers/MIC_Whitepaper_v2.1.md` | `06-ECONOMICS/mic/` | MS-DOC-002 |
 | `01-whitepapers/UBI_Mechanism_v2.0.md` | `06-ECONOMICS/ubi/` | MS-DOC-026 |
 | `01-whitepapers/MIC_Foundation_Up_Economics_Addendum.md` | `06-ECONOMICS/incentives/` | MS-DOC-027 |
 | `tokenomics/` | `06-ECONOMICS/tokenomics/` | Various |

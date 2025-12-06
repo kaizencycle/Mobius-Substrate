@@ -9,7 +9,7 @@
 
 ## Overview
 
-This document specifies the `/api/citystate/gdp` endpoint for calculating City-State digital GDP in the Mobius HIVE system.
+This document specifies the `//api/citystate/gdp` endpoint for calculating City-State digital GDP in the Mobius HIVE system.
 
 The endpoint implements the canonical Yellow Paper formula:
 
@@ -25,7 +25,7 @@ Where:
 
 ## Endpoint
 
-### POST `/api/citystate/gdp`
+### POST `//api/citystate/gdp`
 
 Calculates the digital GDP for a City-State based on provided economic parameters.
 
@@ -214,7 +214,7 @@ mic_share_percent = (V_MIC_inflows / GDP_state) × 100
 
 ## Next.js Implementation Example
 
-### Route Handler: `app/api/citystate/gdp/route.ts`
+### Route Handler: `app//api/citystate/gdp/route.ts`
 
 ```typescript
 import { NextRequest, NextResponse } from 'next/server';
@@ -320,7 +320,7 @@ export async function POST(req: NextRequest) {
     const result = calculateGDP(payload);
     return NextResponse.json(result, { status: 200 });
   } catch (err) {
-    console.error('Error in /api/citystate/gdp:', err);
+    console.error('Error in //api/citystate/gdp:', err);
     return NextResponse.json(
       { error: 'Invalid request payload or internal error' },
       { status: 500 }
@@ -372,7 +372,7 @@ export async function POST(req: NextRequest) {
 ### Unit Test Example
 
 ```typescript
-describe('/api/citystate/gdp', () => {
+describe('//api/citystate/gdp', () => {
   it('should calculate GDP correctly for Aurora example', async () => {
     const request = {
       citystate_name: "Aurora",
@@ -384,7 +384,7 @@ describe('/api/citystate/gdp', () => {
       mic_staking_per_year: 50,
     };
 
-    const response = await fetch('/api/citystate/gdp', {
+    const response = await fetch('//api/citystate/gdp', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(request),
@@ -405,7 +405,7 @@ describe('/api/citystate/gdp', () => {
       // Missing other required fields
     };
 
-    const response = await fetch('/api/citystate/gdp', {
+    const response = await fetch('//api/citystate/gdp', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(request),

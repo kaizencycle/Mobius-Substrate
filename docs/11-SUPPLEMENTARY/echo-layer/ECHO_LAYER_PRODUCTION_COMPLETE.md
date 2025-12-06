@@ -9,15 +9,15 @@ All core production files have been integrated into the Mobius Systems codebase.
 ## 📦 Files Created
 
 ### **Core Services**
-- ✅ `apps/broker-api/src/services/sentinels/client.ts` - Sentinel orchestration with multi-provider support
-- ✅ `apps/broker-api/src/services/sentinels/health.ts` - Circuit breaker and health monitoring
-- ✅ `apps/broker-api/src/services/human/review.ts` - Human review queue management
-- ✅ `apps/broker-api/src/services/notifications/email.ts` - Email notification service
-- ✅ `apps/broker-api/src/services/security/logger.ts` - Security event logging
-- ✅ `apps/broker-api/src/services/dva/client.ts` - DVA.LITE telemetry integration
+- ✅ `apps/broker-/api/src/services/sentinels/client.ts` - Sentinel orchestration with multi-provider support
+- ✅ `apps/broker-/api/src/services/sentinels/health.ts` - Circuit breaker and health monitoring
+- ✅ `apps/broker-/api/src/services/human/review.ts` - Human review queue management
+- ✅ `apps/broker-/api/src/services/notifications/email.ts` - Email notification service
+- ✅ `apps/broker-/api/src/services/security/logger.ts` - Security event logging
+- ✅ `apps/broker-/api/src/services/dva/client.ts` - DVA.LITE telemetry integration
 
 ### **Configuration**
-- ✅ `apps/broker-api/src/config/echo.ts` - ECHO Layer configuration with thresholds and feature flags
+- ✅ `apps/broker-/api/src/config/echo.ts` - ECHO Layer configuration with thresholds and feature flags
 
 ### **Database**
 - ✅ `infra/db/migrations/001_create_echo_layer.sql` - Complete database schema with:
@@ -29,7 +29,7 @@ All core production files have been integrated into the Mobius Systems codebase.
   - All indexes and triggers
 
 ### **Routes**
-- ✅ `apps/broker-api/src/routes/health.ts` - Health check endpoints with Prometheus metrics
+- ✅ `apps/broker-/api/src/routes/health.ts` - Health check endpoints with Prometheus metrics
 
 ### **Documentation**
 - ✅ `docs/protocols/MLLP.md` - Mobius Learning Loop Protocol v1.0 specification

@@ -29,7 +29,7 @@ components/
 ├── IntegrityBeacon.tsx # React component for runtime JSON-LD
 └── SeoBeacon.tsx      # Alternative component with meta tags
 
-pages/api/seo/
+pages//api/seo/
 ├── index.ts           # Main SEO feed endpoint
 └── beacon.ts          # Individual beacon lookup endpoint
 
@@ -86,10 +86,10 @@ Fetch individual beacon JSON-LD via API:
 
 ```bash
 # Get beacon for specific page
-curl "https://your-domain.com/api/seo/beacon?id=home"
+curl "https://your-domain.com//api/seo/beacon?id=home"
 
 # Get beacon by path
-curl "https://your-domain.com/api/seo/beacon?id=/dev/memory"
+curl "https://your-domain.com//api/seo/beacon?id=/dev/memory"
 ```
 
 ### 3. Static Beacons
@@ -105,9 +105,9 @@ Pre-generated beacon files are available at:
 ```json
 {
   "sources": {
-    "pulses": "/api/dev/sentinel/vitals",
-    "ledgerRecent": "/api/dev/ledger/recent",
-    "memory": "/api/oaa/memory"
+    "pulses": "//api/dev/sentinel/vitals",
+    "ledgerRecent": "//api/dev/ledger/recent",
+    "memory": "//api/oaa/memory"
   },
   "baseUrlVar": "HUB_BASE_URL",
   "minIntegrity": 0.4,
@@ -198,7 +198,7 @@ Each beacon follows this structure:
 - Rich snippets with trust signals
 
 ### For AEO (Agentic Engine Optimization)
-- Agents can call `/api/seo/beacon?id=...` for precise metadata
+- Agents can call `//api/seo/beacon?id=...` for precise metadata
 - Self-indexing and self-ranking capabilities
 - Semantic relationship learning
 
@@ -211,8 +211,8 @@ Each beacon follows this structure:
 
 ### Dev Tools
 - `/dev/seo` - Interactive feed and beacon viewer
-- `/api/seo/index` - Raw feed JSON-LD
-- `/api/seo/beacon?id=X` - Individual beacon lookup
+- `//api/seo/index` - Raw feed JSON-LD
+- `//api/seo/beacon?id=X` - Individual beacon lookup
 
 ### Validation
 - All beacons validated against schema before publishing

@@ -14,7 +14,7 @@ The AI Integrity Constitution is a cryptographic framework that prevents AI drif
    - SHA-256 content integrity hash
    - Ledger attestation support
 
-2. **Verification API** (`apps/eomm-api/app/routers/charter.py`)
+2. **Verification API** (`apps/eomm-/api/app/routers/charter.py`)
    - Charter loading and validation
    - Signature verification
    - Integrity checking

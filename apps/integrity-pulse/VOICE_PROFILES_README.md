@@ -61,7 +61,7 @@ apps/integrity-pulse/
 │   │   ├── GeometryCanvas.tsx              # New golden field viz
 │   │   └── AgentVoiceSelector.tsx         # Voice test component
 │   └── app/
-│       └── api/
+│       └── /api/
 │           └── agents/
 │               └── telemetry/
 │                   └── route.ts            # Telemetry API

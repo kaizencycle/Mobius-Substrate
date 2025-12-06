@@ -29,45 +29,45 @@ Completed documents: 21
 - [KAIZEN GUARDIAN SYSTEM](../../apps/aurea-site/GUARDIAN_SYSTEM.md) — doc
 - [AUREA Site - Founding Agent (Integrity & Reasoning)](../../apps/aurea-site/README.md) — readme
 - [Civic Stack — Outage-Resilient Starter (PWA + Edge + NATS)](../../apps/civic-stack/README.md) — readme
-- [🧪 API Testing Guide](../../apps/eomm-api/API-TESTING-GUIDE.md) — doc
-- [fastapi>=0.115.0](../../apps/eomm-api/app/requirements.txt) — doc
-- [📦 Archive API - Complete Implementation](../../apps/eomm-api/ARCHIVE-API-GUIDE.md) — doc
-- [HIVE-PAW API Examples (Using Preflight Proxy)](../../apps/eomm-api/curl-examples-proxy.md) — doc
-- [🚀 Daily Cycle Setup Guide](../../apps/eomm-api/DAILY-CYCLE-SETUP.md) — doc
-- [🧪 FastAPI Smoke-Test Ledger Entry](../../apps/eomm-api/data/2025-09-22/smoke-test.md) — doc
-- [🧪 FastAPI Smoke-Test Ledger Entry](../../apps/eomm-api/data/2025-09-25/smoke-test.md) — doc
-- [🧪 FastAPI Smoke-Test Ledger Entry](../../apps/eomm-api/data/2025-09-26/smoke-test.md) — doc
-- [Smoke Test](../../apps/eomm-api/data/2025-09-27/smoke-test.md) — doc
-- [Smoke Test](../../apps/eomm-api/data/2025-09-28/smoke-test.md) — doc
-- [Smoke Test](../../apps/eomm-api/data/2025-09-29/smoke-test.md) — doc
-- [Smoke Test](../../apps/eomm-api/data/2025-09-30/smoke-test.md) — doc
-- [Smoke Test](../../apps/eomm-api/data/2025-10-01/smoke-test.md) — doc
-- [Smoke Test](../../apps/eomm-api/data/2025-10-02/smoke-test.md) — doc
-- [Data Directory](../../apps/eomm-api/data/README.md) — readme
-- [🧪 FastAPI Smoke-Test Ledger Entry](../../apps/eomm-api/data/string/smoke-test.md) — doc
-- [Deployment Guide](../../apps/eomm-api/DEPLOYMENT.md) — doc
-- [🧪 Dual Writer System - Lab4 Research & Study](../../apps/eomm-api/DUAL-WRITER-GUIDE.md) — doc
-- [🫀 DVA Heartbeat - Complete Setup Guide](../../apps/eomm-api/DVA-HEARTBEAT-SETUP.md) — doc
-- [🎯 Feature Tier Implementation - Complete!](../../apps/eomm-api/FEATURE-TIER-IMPLEMENTATION.md) — doc
-- [🔐 GPG Integration Setup Guide](../../apps/eomm-api/GPG-SETUP-GUIDE.md) — doc
-- [Version 1 - Human-in-the-Loop Workflow](../../apps/eomm-api/lab4-edits/v1/README.md) — readme
-- [Version 2 - Human-in-the-Loop Workflow](../../apps/eomm-api/lab4-edits/v2/README.md) — readme
-- [Version 3 - Human-in-the-Loop Workflow](../../apps/eomm-api/lab4-edits/v3/README.md) — readme
-- [MCP Recipes — Reflections Ledger](../../apps/eomm-api/mcp_recipes.md) — doc
-- [MCP Setup for Reflections Ledger](../../apps/eomm-api/MCP-SETUP.md) — doc
-- [MCP (Model Context Protocol) Usage Guide](../../apps/eomm-api/MCP-USAGE-GUIDE.md) — doc
-- [🔌 Plug-and-Play Dual-Writer System](../../apps/eomm-api/PLUG-AND-PLAY-GUIDE.md) — doc
-- [Cursor Agent Prompt for HIVE-PAW Preflight Proxy](../../apps/eomm-api/preflight/CURSOR_AGENT_PROMPT.md) — doc
-- [HIVE-PAW Preflight Proxy](../../apps/eomm-api/preflight/README.md) — readme
-- [fastapi](../../apps/eomm-api/preflight/requirements.txt) — doc
-- [Quick Start Guide](../../apps/eomm-api/QUICKSTART.md) — doc
-- [Lab4-Proof 🚀](../../apps/eomm-api/README.md) — readme
-- [Lab4 — Reflections (Onboarding)](../../apps/eomm-api/reflections/README.md) — readme
-- [fastapi>=0.115.0](../../apps/eomm-api/requirements_simple.txt) — doc
-- [fastapi>=0.115.0](../../apps/eomm-api/requirements.txt) — doc
-- [🛠 Engineer’s Roadmap (HIVE-PAW Path)](../../apps/eomm-api/roadmap.md) — doc
-- [Auto-Commit System](../../apps/eomm-api/scripts/README.md) — readme
-- [Security Policy](../../apps/eomm-api/SECURITY.md) — doc
+- [🧪 API Testing Guide](../../apps/eomm-/api/API-TESTING-GUIDE.md) — doc
+- [fastapi>=0.115.0](../../apps/eomm-/api/app/requirements.txt) — doc
+- [📦 Archive API - Complete Implementation](../../apps/eomm-/api/ARCHIVE-API-GUIDE.md) — doc
+- [HIVE-PAW API Examples (Using Preflight Proxy)](../../apps/eomm-/api/curl-examples-proxy.md) — doc
+- [🚀 Daily Cycle Setup Guide](../../apps/eomm-/api/DAILY-CYCLE-SETUP.md) — doc
+- [🧪 FastAPI Smoke-Test Ledger Entry](../../apps/eomm-/api/data/2025-09-22/smoke-test.md) — doc
+- [🧪 FastAPI Smoke-Test Ledger Entry](../../apps/eomm-/api/data/2025-09-25/smoke-test.md) — doc
+- [🧪 FastAPI Smoke-Test Ledger Entry](../../apps/eomm-/api/data/2025-09-26/smoke-test.md) — doc
+- [Smoke Test](../../apps/eomm-/api/data/2025-09-27/smoke-test.md) — doc
+- [Smoke Test](../../apps/eomm-/api/data/2025-09-28/smoke-test.md) — doc
+- [Smoke Test](../../apps/eomm-/api/data/2025-09-29/smoke-test.md) — doc
+- [Smoke Test](../../apps/eomm-/api/data/2025-09-30/smoke-test.md) — doc
+- [Smoke Test](../../apps/eomm-/api/data/2025-10-01/smoke-test.md) — doc
+- [Smoke Test](../../apps/eomm-/api/data/2025-10-02/smoke-test.md) — doc
+- [Data Directory](../../apps/eomm-/api/data/README.md) — readme
+- [🧪 FastAPI Smoke-Test Ledger Entry](../../apps/eomm-/api/data/string/smoke-test.md) — doc
+- [Deployment Guide](../../apps/eomm-/api/DEPLOYMENT.md) — doc
+- [🧪 Dual Writer System - Lab4 Research & Study](../../apps/eomm-/api/DUAL-WRITER-GUIDE.md) — doc
+- [🫀 DVA Heartbeat - Complete Setup Guide](../../apps/eomm-/api/DVA-HEARTBEAT-SETUP.md) — doc
+- [🎯 Feature Tier Implementation - Complete!](../../apps/eomm-/api/FEATURE-TIER-IMPLEMENTATION.md) — doc
+- [🔐 GPG Integration Setup Guide](../../apps/eomm-/api/GPG-SETUP-GUIDE.md) — doc
+- [Version 1 - Human-in-the-Loop Workflow](../../apps/eomm-/api/lab4-edits/v1/README.md) — readme
+- [Version 2 - Human-in-the-Loop Workflow](../../apps/eomm-/api/lab4-edits/v2/README.md) — readme
+- [Version 3 - Human-in-the-Loop Workflow](../../apps/eomm-/api/lab4-edits/v3/README.md) — readme
+- [MCP Recipes — Reflections Ledger](../../apps/eomm-/api/mcp_recipes.md) — doc
+- [MCP Setup for Reflections Ledger](../../apps/eomm-/api/MCP-SETUP.md) — doc
+- [MCP (Model Context Protocol) Usage Guide](../../apps/eomm-/api/MCP-USAGE-GUIDE.md) — doc
+- [🔌 Plug-and-Play Dual-Writer System](../../apps/eomm-/api/PLUG-AND-PLAY-GUIDE.md) — doc
+- [Cursor Agent Prompt for HIVE-PAW Preflight Proxy](../../apps/eomm-/api/preflight/CURSOR_AGENT_PROMPT.md) — doc
+- [HIVE-PAW Preflight Proxy](../../apps/eomm-/api/preflight/README.md) — readme
+- [fastapi](../../apps/eomm-/api/preflight/requirements.txt) — doc
+- [Quick Start Guide](../../apps/eomm-/api/QUICKSTART.md) — doc
+- [Lab4-Proof 🚀](../../apps/eomm-/api/README.md) — readme
+- [Lab4 — Reflections (Onboarding)](../../apps/eomm-/api/reflections/README.md) — readme
+- [fastapi>=0.115.0](../../apps/eomm-/api/requirements_simple.txt) — doc
+- [fastapi>=0.115.0](../../apps/eomm-/api/requirements.txt) — doc
+- [🛠 Engineer’s Roadmap (HIVE-PAW Path)](../../apps/eomm-/api/roadmap.md) — doc
+- [Auto-Commit System](../../apps/eomm-/api/scripts/README.md) — readme
+- [Security Policy](../../apps/eomm-/api/SECURITY.md) — doc
 - [fastapi>=0.104.0](../../apps/gateway/requirements.txt) — doc
 - [GenesisDome.org — Site Starter](../../apps/genesisdome-app/README.md) — readme
 - [User-agent: *](../../apps/genesisdome-app/robots.txt) — doc
@@ -142,27 +142,27 @@ Completed documents: 21
 - [10 -+ Yautja Cultural Accord](../../apps/hub-web/src/specs/10-yautja-cultural-accord.md) — doc
 - [Put public PDFs and briefs here (executive summary, deck, whitepapers).](../../apps/kaizencycle-hub/docs/README.md) — readme
 - [KaizenCycle Hub (kaizencycle.org / kaizencycle.gic)](../../apps/kaizencycle-hub/README.md) — readme
-- [Code of Conduct](../../apps/ledger-api/civic-protocol-core/CODE_OF_CONDUCT.md) — doc
-- [Contributing to Civic Protocol Core](../../apps/ledger-api/civic-protocol-core/CONTRIBUTING.md) — doc
-- [Civic Protocol Core - Deployment Guide](../../apps/ledger-api/civic-protocol-core/DEPLOYMENT.md) — doc
-- [CIP-0001: Civic Improvement Proposal Template](../../apps/ledger-api/civic-protocol-core/docs/CIP-0001-template.md) — doc
-- [CIP-0002: Add Webhooks Support](../../apps/ledger-api/civic-protocol-core/docs/CIP-0002-webhooks.md) — doc
-- [Copilot Verification System](../../apps/ledger-api/civic-protocol-core/docs/copilot-verification.md) — doc
-- [Hello Reflection App](../../apps/ledger-api/civic-protocol-core/examples/hello-reflection-app/README.md) — readme
-- [fastapi](../../apps/ledger-api/civic-protocol-core/gic-indexer/requirements.txt) — doc
-- [fastapi](../../apps/ledger-api/civic-protocol-core/lab6-proof/requirements.txt) — doc
-- [Civic Ledger API - The Blockchain Kernel](../../apps/ledger-api/civic-protocol-core/ledger/README.md) — readme
-- [fastapi>=0.100.0](../../apps/ledger-api/civic-protocol-core/ledger/requirements.txt) — doc
-- [Civic Protocol Core](../../apps/ledger-api/civic-protocol-core/README.md) — readme
-- [Civic Protocol Core - Python Dependencies](../../apps/ledger-api/civic-protocol-core/requirements.txt) — doc
-- [Civic Protocol Core](../../apps/ledger-api/README.md) — readme
+- [Code of Conduct](../../apps/ledger-/api/civic-protocol-core/CODE_OF_CONDUCT.md) — doc
+- [Contributing to Civic Protocol Core](../../apps/ledger-/api/civic-protocol-core/CONTRIBUTING.md) — doc
+- [Civic Protocol Core - Deployment Guide](../../apps/ledger-/api/civic-protocol-core/DEPLOYMENT.md) — doc
+- [CIP-0001: Civic Improvement Proposal Template](../../apps/ledger-/api/civic-protocol-core/docs/CIP-0001-template.md) — doc
+- [CIP-0002: Add Webhooks Support](../../apps/ledger-/api/civic-protocol-core/docs/CIP-0002-webhooks.md) — doc
+- [Copilot Verification System](../../apps/ledger-/api/civic-protocol-core/docs/copilot-verification.md) — doc
+- [Hello Reflection App](../../apps/ledger-/api/civic-protocol-core/examples/hello-reflection-app/README.md) — readme
+- [fastapi](../../apps/ledger-/api/civic-protocol-core/gic-indexer/requirements.txt) — doc
+- [fastapi](../../apps/ledger-/api/civic-protocol-core/lab6-proof/requirements.txt) — doc
+- [Civic Ledger API - The Blockchain Kernel](../../apps/ledger-/api/civic-protocol-core/ledger/README.md) — readme
+- [fastapi>=0.100.0](../../apps/ledger-/api/civic-protocol-core/ledger/requirements.txt) — doc
+- [Civic Protocol Core](../../apps/ledger-/api/civic-protocol-core/README.md) — readme
+- [Civic Protocol Core - Python Dependencies](../../apps/ledger-/api/civic-protocol-core/requirements.txt) — doc
+- [Civic Protocol Core](../../apps/ledger-/api/README.md) — readme
 - [Kaizen OS MCP Server](../../apps/mcp-server/README.md) — readme
 - [🎼 Kaizen OS Orchestrator](../../apps/orchestrator/README.md) — readme
 - [Kaizen OS Portal](../../apps/portal/README.md) — readme
-- [Citizen Shield — Lab6 App (Front-end)](../../apps/shield-api/citizen-shield-app/README.md) — readme
-- [Citizen Shield Integration (Lab6-proof)](../../apps/shield-api/docs/README_UPDATE.md) — doc
-- [Lab6-proof — Citizen Shield (MVP)](../../apps/shield-api/README.md) — readme
-- [fastapi](../../apps/shield-api/requirements.txt) — doc
+- [Citizen Shield — Lab6 App (Front-end)](../../apps/shield-/api/citizen-shield-app/README.md) — readme
+- [Citizen Shield Integration (Lab6-proof)](../../apps/shield-/api/docs/README_UPDATE.md) — doc
+- [Lab6-proof — Citizen Shield (MVP)](../../apps/shield-/api/README.md) — readme
+- [fastapi](../../apps/shield-/api/requirements.txt) — doc
 - [🌐 Website Creator — Civic .gic Domain Builder](../../apps/website-creator/README.md) — readme
 
 ## docs
@@ -177,8 +177,8 @@ Completed documents: 21
 - [Civic-OS Architecture Overview](architecture/overview.md) — doc
 - [🚀 AUREA + ATLAS Merge - COMPLETE!](archive/AUREA_ATLAS_MERGE_COMPLETE.md) — doc ✅ Completed
 - [🚀 CivicOS-Edits Reorganization Complete!](archive/CIVICOS_EDITS_ANALYSIS.md) — doc
-- [🚀 HIVE-PAW API - Complete Implementation](archive/completed/apps/eomm-api/README-COMPLETE.md) — doc ✅ Completed
-- [🎉 Reflections App - Complete Implementation](archive/completed/apps/eomm-api/REFLECTIONS-COMPLETE.md) — doc ✅ Completed
+- [🚀 HIVE-PAW API - Complete Implementation](archive/completed/apps/eomm-/api/README-COMPLETE.md) — doc ✅ Completed
+- [🎉 Reflections App - Complete Implementation](archive/completed/apps/eomm-/api/REFLECTIONS-COMPLETE.md) — doc ✅ Completed
 - [🤖 ATLAS SENTINEL MCP AGENT - COMPLETE!](archive/completed/ATLAS_MCP_COMPLETE.md) — doc ✅ Completed
 - [🚀 Kaizen OS SDK - COMPLETE!](archive/completed/CIVIC_SDK_COMPLETE.md) — doc ✅ Completed
 - [🚀 Kaizen OS Hub - INTEGRATION COMPLETE!](archive/completed/CIVICOS_HUB_COMPLETE.md) — doc ✅ Completed

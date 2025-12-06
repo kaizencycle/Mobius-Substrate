@@ -14,7 +14,7 @@ This monorepo contains multiple frontend applications that can be run end-to-end
 | Hub Web | 3004 | Next.js | `apps/hub-web` |
 | HIVE App | 3005 | Static HTML/JS | `apps/hive-app` |
 | Genesis Dome | 3006 | Static HTML/JS | `apps/genesisdome-app` |
-| Citizen Shield | 3007 | Vite + React | `apps/shield-api/citizen-shield-app` |
+| Citizen Shield | 3007 | Vite + React | `apps/shield-/api/citizen-shield-app` |
 
 ## Quick Start
 
@@ -38,7 +38,7 @@ cd apps/hub-web && npm run dev
 cd apps/website-creator && npm run dev
 cd apps/hive-app && npm run dev
 cd apps/genesisdome-app && npm run dev
-cd apps/shield-api/citizen-shield-app && npm run dev
+cd apps/shield-/api/citizen-shield-app && npm run dev
 ```
 
 ## Application Details
@@ -82,7 +82,7 @@ cd apps/shield-api/citizen-shield-app && npm run dev
 - **Dev**: `npm run dev` (serves static files on port 3006)
 - **Features**: Service worker, PWA manifest, offline-first
 
-### 7. Citizen Shield App (`apps/shield-api/citizen-shield-app`)
+### 7. Citizen Shield App (`apps/shield-/api/citizen-shield-app`)
 - **Port**: 3007
 - **Framework**: Vite + React
 - **Purpose**: Citizen Shield security interface

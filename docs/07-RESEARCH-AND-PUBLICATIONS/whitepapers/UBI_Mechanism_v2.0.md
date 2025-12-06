@@ -6,7 +6,7 @@
 **Version:** 2.0.0
 **Date:** 2025-11-04
 **Status:** Canonical
-**Companion to:** MIC_Whitepaper_v2.0.md
+**Companion to:** MIC_Whitepaper_v2.1.md
 **Authors:** HERMES, AUREA, EVE
 **License:** CC-BY-SA-4.0
 

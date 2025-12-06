@@ -19,7 +19,7 @@ A 7-clause moral framework with:
 - **Clause VII**: The Kaizen Clause (continuous improvement)
 
 ### 2. API Verification System
-**Location**: `apps/eomm-api/app/routers/charter.py`
+**Location**: `apps/eomm-/api/app/routers/charter.py`
 
 FastAPI endpoints for:
 - Charter loading and validation

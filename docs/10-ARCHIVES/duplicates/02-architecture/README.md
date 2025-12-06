@@ -99,7 +99,7 @@ The Mobius architecture consists of 8 primary layers:
 
 **ECHO Layer** — Validates answers, compares multiple models, writes high-integrity results to ledger for reuse.
 
-**Model-Agnostic Sovereignty Layer (MASL)** — Any LLM can "board" Mobius via `/api/mobius/mount`.
+**Model-Agnostic Sovereignty Layer (MASL)** — Any LLM can "board" Mobius via `//api/mobius/mount`.
 
 ---
 

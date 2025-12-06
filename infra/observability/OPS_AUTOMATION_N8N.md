@@ -27,7 +27,7 @@ Also calculate moving averages to avoid flapping (e.g., require 2 consecutive sa
 ## 3. 🔥 Lockdown Path (SEV-1)
 
 1. **Set Routing Mode**
-   - `PATCH https://broker/api/routing`
+   - `PATCH https://broker//api/routing`
    - Body: `{"routingMode":"local","allowedTools":[]}`
 2. **Pause Tool Integrations**
    - Disable Claude/Gemini/DeepSeek code-exec toggles via their APIs or feature flags.

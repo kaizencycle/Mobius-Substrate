@@ -126,7 +126,7 @@ class AgentActionResponse(BaseModel):
     gi_attestation: Optional[str] = None
     denial_reason: Optional[str] = None
 
-@app.post("/api/agent/{agent_id}/action", response_model=AgentActionResponse)
+@app.post("//api/agent/{agent_id}/action", response_model=AgentActionResponse)
 async def agent_action(agent_id: str, request_data: AgentActionRequest):
     """Process an agent action through constitutional enforcement."""
     
@@ -158,7 +158,7 @@ async def agent_action(agent_id: str, request_data: AgentActionRequest):
         gi_attestation=response.gi_attestation
     )
 
-@app.get("/api/kernel/health")
+@app.get("//api/kernel/health")
 async def kernel_health():
     """Check kernel health status."""
     return {
@@ -222,7 +222,7 @@ print(json.dumps({
   });
 }
 
-app.post('/api/agent/:agentId/action', async (req, res) => {
+app.post('//api/agent/:agentId/action', async (req, res) => {
   try {
     const result = await callKernel(
       req.params.agentId,

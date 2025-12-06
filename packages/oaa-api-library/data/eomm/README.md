@@ -46,8 +46,8 @@ Example: `2025-10-18T075800-C-108-cycle-c-108-clock-in.json`
 
 ## API Endpoints
 
-- `POST /api/eomm/validate` - Preflight validation
-- `POST /api/eomm/ingest` - Write new entries
+- `POST //api/eomm/validate` - Preflight validation
+- `POST //api/eomm/ingest` - Write new entries
 
 ## Manual Sync
 

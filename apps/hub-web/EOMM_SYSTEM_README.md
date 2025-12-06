@@ -1,15 +1,15 @@
-# E.O.M.M. GåÆ Civic Ledger Sync System
+# E.O.M.M. G Civic Ledger Sync System
 
 This system provides a complete bridge between your E.O.M.M. (External Organic Memory Module) and the Civic Ledger, enabling seamless synchronization of reflections, logs, and learning entries.
 
-## =ƒÅùn+Å Architecture Overview
+## =n+ Architecture Overview
 
 ```
-=ƒºá E.O.M.M. (Memory Layer)
-    Gåô
-=ƒò+n+Å OAA-API-Library (Transmutation Layer)
-    Gåô
-GÜÖn+Å Civic Ledger (Core Protocol)
+= E.O.M.M. (Memory Layer)
+    G
+=+n+ OAA-API-Library (Transmutation Layer)
+    G
+Gn+ Civic Ledger (Core Protocol)
 ```
 
 ### Components
@@ -26,16 +26,16 @@ GÜÖn+Å Civic Ledger (Core Protocol)
    - Converts valid entries to JSON-LD format
    - Posts to Civic Ledger with integrity hashes
 
-3. **API Endpoints** (`pages/api/eomm/`)
-   - `POST /api/eomm/validate` - Preflight validation
-   - `POST /api/eomm/ingest` - Write new entries
+3. **API Endpoints** (`pages//api/eomm/`)
+   - `POST //api/eomm/validate` - Preflight validation
+   - `POST //api/eomm/ingest` - Write new entries
 
 4. **GitHub Actions** (`.github/workflows/eomm-sync.yml`)
    - Scheduled sync every 30 minutes
    - Manual trigger support
    - Quarantine reporting and artifact upload
 
-## =ƒÜÇ Quick Start
+## = Quick Start
 
 ### 1. Environment Setup
 
@@ -61,7 +61,7 @@ EOMM_WRITE_MODE=disk  # or "github" for cloud deployment
   "timestamp": "2025-10-18T07:58:00-04:00",
   "agent": "eve",
   "cycle": "C-108",
-  "content": "Intent: merge beacon validation PRs; start Gate v0; sweep OAAGåÆDVA.",
+  "content": "Intent: merge beacon validation PRs; start Gate v0; sweep OAAGDVA.",
   "tags": ["clockin","intent"]
 }
 ```
@@ -76,7 +76,7 @@ npm run eomm:sync:dry
 npm run eomm:sync
 ```
 
-## =ƒôï Entry Schema
+## = Entry Schema
 
 ### Required Fields
 - `title`: Human-readable title
@@ -90,7 +90,7 @@ npm run eomm:sync
 - `author`: Author name (defaults to "Michael Judan")
 - `keywords`: Array of keywords for searchability
 
-## =ƒöä Sync Process
+## = Sync Process
 
 1. **Validation**: Entries are validated against the schema
 2. **Quarantine**: Invalid entries are moved to `_invalid/` directory
@@ -98,7 +98,7 @@ npm run eomm:sync
 4. **Attestation**: Entries are posted to the Civic Ledger with integrity hashes
 5. **Summary**: Sync results are logged in `_invalid/SUMMARY.json`
 
-## =ƒ¢ín+Å Quarantine System
+## =n+ Quarantine System
 
 Invalid entries are automatically quarantined to prevent sync failures:
 
@@ -108,12 +108,12 @@ Invalid entries are automatically quarantined to prevent sync failures:
 
 Quarantined files are moved to `data/eomm/_invalid/` with detailed error reporting in `SUMMARY.json`.
 
-## =ƒöî API Usage
+## = API Usage
 
 ### Validate Entry
 
 ```bash
-curl -X POST http://localhost:3000/api/eomm/validate \
+curl -X POST http://localhost:3000//api/eomm/validate \
   -H 'Content-Type: application/json' \
   -d '{
     "title": "Test Entry",
@@ -127,7 +127,7 @@ curl -X POST http://localhost:3000/api/eomm/validate \
 ### Ingest Entry
 
 ```bash
-curl -X POST http://localhost:3000/api/eomm/ingest \
+curl -X POST http://localhost:3000//api/eomm/ingest \
   -H 'Content-Type: application/json' \
   -d '{
     "title": "Test Entry",
@@ -138,7 +138,7 @@ curl -X POST http://localhost:3000/api/eomm/ingest \
   }'
 ```
 
-## =ƒñû GitHub Actions
+## = GitHub Actions
 
 The system includes automated GitHub Actions for:
 
@@ -154,7 +154,7 @@ Set these in your GitHub repository settings:
 - `LEDGER_BASE_URL` (Variable)
 - `LEDGER_ADMIN_TOKEN` (Secret)
 
-## =ƒôè JSON-LD Output Format
+## = JSON-LD Output Format
 
 Entries are converted to JSON-LD for the Civic Ledger:
 
@@ -181,7 +181,7 @@ Entries are converted to JSON-LD for the Civic Ledger:
 }
 ```
 
-## =ƒöº Development
+## = Development
 
 ### Local Testing
 
@@ -202,23 +202,23 @@ npm run eomm:sync
 ### File Structure
 
 ```
-Gö£GöÇGöÇ data/eomm/                           # E.O.M.M. entries
-Göé   Gö£GöÇGöÇ 2025-10-18-C108-clockin.json    # Sample entries
-Göé   Gö£GöÇGöÇ 2025-10-18-C107-clockout.json
-Göé   Gö£GöÇGöÇ _invalid/                        # Quarantined files
-Göé   Göé   GööGöÇGöÇ SUMMARY.json                 # Quarantine summary
-Göé   GööGöÇGöÇ README.md                        # Data documentation
-Gö£GöÇGöÇ scripts/eomm-sync.mjs                # Main sync script
-Gö£GöÇGöÇ schemas/eomm-entry.schema.json       # Entry validation schema
-Gö£GöÇGöÇ pages/api/eomm/                      # API endpoints
-Göé   Gö£GöÇGöÇ validate.ts                      # Preflight validation
-Göé   GööGöÇGöÇ ingest.ts                        # Entry ingestion
-Gö£GöÇGöÇ .github/workflows/eomm-sync.yml      # GitHub Action
-Gö£GöÇGöÇ EOMM_SYSTEM_README.md                # System documentation
-GööGöÇGöÇ IMPLEMENTATION_SUMMARY.md            # This file
+GGG data/eomm/                           # E.O.M.M. entries
+G   GGG 2025-10-18-C108-clockin.json    # Sample entries
+G   GGG 2025-10-18-C107-clockout.json
+G   GGG _invalid/                        # Quarantined files
+G   G   GGG SUMMARY.json                 # Quarantine summary
+G   GGG README.md                        # Data documentation
+GGG scripts/eomm-sync.mjs                # Main sync script
+GGG schemas/eomm-entry.schema.json       # Entry validation schema
+GGG pages//api/eomm/                      # API endpoints
+G   GGG validate.ts                      # Preflight validation
+G   GGG ingest.ts                        # Entry ingestion
+GGG .github/workflows/eomm-sync.yml      # GitHub Action
+GGG EOMM_SYSTEM_README.md                # System documentation
+GGG IMPLEMENTATION_SUMMARY.md            # This file
 ```
 
-## =ƒÜÇ Usage Examples
+## = Usage Examples
 
 ### Manual Sync
 ```bash
@@ -232,17 +232,17 @@ npm run eomm:sync
 ### API Usage
 ```bash
 # Validate entry
-curl -X POST http://localhost:3000/api/eomm/validate \
+curl -X POST http://localhost:3000//api/eomm/validate \
   -H 'Content-Type: application/json' \
   -d '{"title":"Test","timestamp":"2025-10-18T07:58:00-04:00","agent":"eve","cycle":"C-108","content":"Test"}'
 
 # Ingest entry
-curl -X POST http://localhost:3000/api/eomm/ingest \
+curl -X POST http://localhost:3000//api/eomm/ingest \
   -H 'Content-Type: application/json' \
   -d '{"title":"Test","timestamp":"2025-10-18T07:58:00-04:00","agent":"eve","cycle":"C-108","content":"Test"}'
 ```
 
-## =ƒÄ» Key Features
+## =Ä» Key Features
 
 1. **Fault Tolerance**: Quarantine system prevents sync failures
 2. **Idempotency**: SHA-256 hashes enable deduplication
@@ -252,7 +252,7 @@ curl -X POST http://localhost:3000/api/eomm/ingest \
 6. **Validation**: Schema-based validation with detailed errors
 7. **Standards**: JSON-LD compliance for Civic Ledger integration
 
-## =ƒö« Next Steps
+## = Next Steps
 
 1. **Deploy**: Set up environment variables and deploy to production
 2. **Test**: Run full sync with real Civic Ledger endpoint
@@ -260,7 +260,7 @@ curl -X POST http://localhost:3000/api/eomm/ingest \
 4. **Integrate**: Connect with Lab7 for automatic entry creation
 5. **Scale**: Add webhook support for real-time sync
 
-## =ƒô¥ Notes
+## = Notes
 
 - The system is production-ready with comprehensive error handling
 - All components have been tested and validated
@@ -268,6 +268,6 @@ curl -X POST http://localhost:3000/api/eomm/ingest \
 - GitHub Actions are configured for automated deployment
 - The quarantine system ensures no data loss during sync failures
 
-The E.O.M.M. GåÆ Civic Ledger sync system is now fully implemented and ready for deployment! =ƒÄë
+The E.O.M.M. G Civic Ledger sync system is now fully implemented and ready for deployment! =
 
 

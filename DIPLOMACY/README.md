@@ -71,13 +71,13 @@ This folder contains the complete diplomatic and strategic communication package
 ### 📊 For Economic Advisors
 
 1. Start with [Game Theory Report](./MIC_GAME_THEORY_REPORT.md) — Mechanism design analysis
-2. Review [MIC Whitepaper v2.1](../docs/07-RESEARCH-AND-PUBLICATIONS/whitepapers/MIC_Whitepaper_v2.0.md) — Full technical specification
+2. Review [MIC Whitepaper v2.1](../docs/07-RESEARCH-AND-PUBLICATIONS/whitepapers/MIC_Whitepaper_v2.1.md) — Full technical specification
 3. See [FOR-ECONOMISTS/](../FOR-ECONOMISTS/) — Economic modeling and valuation
 
 ### 🎓 For Researchers
 
 1. Start with [Integrity Standard Whitepaper](./MIC_INTEGRITY_STANDARD_WHITEPAPER.md) — Conceptual overview
-2. Review full [MIC Whitepaper](../docs/07-RESEARCH-AND-PUBLICATIONS/whitepapers/MIC_Whitepaper_v2.0.md) — Technical details
+2. Review full [MIC Whitepaper](../docs/07-RESEARCH-AND-PUBLICATIONS/whitepapers/MIC_Whitepaper_v2.1.md) — Technical details
 3. See [FOR-ACADEMICS/](../FOR-ACADEMICS/) — Research methodology and citations
 
 ### 🌍 For International Organizations

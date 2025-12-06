@@ -85,9 +85,9 @@ All events sealed to Ledger for transparency.
 
 ## 8. API & Schema Notes
 
-- `POST /api/hr/register` → creates agent record (.gic ID + Charter hash)
-- `POST /api/hr/review` → updates GI + integrity
-- `GET /api/hr/agents/:id` → returns history, audits, current tier
+- `POST //api/hr/register` → creates agent record (.gic ID + Charter hash)
+- `POST //api/hr/review` → updates GI + integrity
+- `GET //api/hr/agents/:id` → returns history, audits, current tier
 
 Schema: `/schemas/hr_agent_record.json`
 

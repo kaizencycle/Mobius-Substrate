@@ -264,13 +264,13 @@ The following API routes are implemented:
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| `POST` | `/api/mfs/submit` | Submit a new MFS candidate |
-| `GET` | `/api/mfs/citizen/:id` | Get a citizen's MFS portfolio |
-| `GET` | `/api/mfs/stats` | Aggregate stats for dashboards |
-| `GET` | `/api/mfs/archetype/:key` | Get MFS by archetype |
-| `GET` | `/api/mfs/epoch/:id` | Get MFS aggregates for an epoch |
+| `POST` | `//api/mfs/submit` | Submit a new MFS candidate |
+| `GET` | `//api/mfs/citizen/:id` | Get a citizen's MFS portfolio |
+| `GET` | `//api/mfs/stats` | Aggregate stats for dashboards |
+| `GET` | `//api/mfs/archetype/:key` | Get MFS by archetype |
+| `GET` | `//api/mfs/epoch/:id` | Get MFS aggregates for an epoch |
 
-See `apps/broker-api/src/routes/mfs.ts` for full request/response schemas.
+See `apps/broker-/api/src/routes/mfs.ts` for full request/response schemas.
 
 ---
 

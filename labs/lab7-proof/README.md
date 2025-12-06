@@ -415,7 +415,7 @@ lab7-proof/
                                 ▼
  ┌─────────────────────────────────────────────────────────────────────┐
  │                          Frontend (Next.js)                         │
- │  Pages: /verify  /keys  /dashboard  /api/*                         │
+ │  Pages: /verify  /keys  /dashboard  //api/*                         │
  │  Env: NEXT_PUBLIC_OAA_API_BASE                                     │
  └───────────────┬─────────────────────────────────────────────────────┘
                  │

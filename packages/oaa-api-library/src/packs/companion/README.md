@@ -10,8 +10,8 @@ npm run dev
 ```
 
 ## Endpoints
-- `GET /api/tools/status` → basic health
-- `POST /api/tools/ping`   → echoes text (HMAC optional)
+- `GET //api/tools/status` → basic health
+- `POST //api/tools/ping`   → echoes text (HMAC optional)
 
 Include header `x-citizen-sig: <hex>` = HMAC-SHA256(body, GATEWAY_HMAC_SECRET).
 
@@ -30,5 +30,5 @@ GATEWAY_HMAC_SECRET=change-me
 
 ## Notes
 - Hologram lives at `/holo` and uses browser STT/TTS for a quick demo.
-- Swap in your real voice adapter (`/api/oaa/voice`) and Citizen Shield gateway when ready.
+- Swap in your real voice adapter (`//api/oaa/voice`) and Citizen Shield gateway when ready.
 

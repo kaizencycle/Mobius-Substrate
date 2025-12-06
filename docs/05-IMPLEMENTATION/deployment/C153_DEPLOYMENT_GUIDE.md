@@ -178,19 +178,19 @@ print("✅ Tier 3 execution verified")
 
 ```bash
 # 1. DAEDALUS cannot trigger executors
-curl -X POST localhost:8000/api/agent/DAEDALUS/action \
+curl -X POST localhost:8000//api/agent/DAEDALUS/action \
   -d '{"action_type": "EXECUTE", "payload": {}}' \
   -H "Content-Type: application/json"
 # Expected: 403 Forbidden
 
 # 2. CURSOR can execute (Tier 3)
-curl -X POST localhost:8000/api/agent/CURSOR/action \
+curl -X POST localhost:8000//api/agent/CURSOR/action \
   -d '{"action_type": "EXECUTE", "payload": {"task": "test"}}' \
   -H "Content-Type: application/json"
 # Expected: 200 OK with ledger_hash
 
 # 3. Constitutional status
-curl localhost:8000/api/constitutional-status
+curl localhost:8000//api/constitutional-status
 # Expected: manifest_version: "1.1.2", enforcement_active: true
 ```
 

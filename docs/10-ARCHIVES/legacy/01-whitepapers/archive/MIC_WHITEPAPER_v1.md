@@ -1082,7 +1082,7 @@ Within 12–18 months from whitepaper release comes the first Civic Pizza Day wh
 
 ### 11.2 MIC Indexer API
 
-**Base URL:** `https://civic-ledger.api/v1`
+**Base URL:** `https://civic-ledger./api/v1`
 
 **Endpoints:**
 

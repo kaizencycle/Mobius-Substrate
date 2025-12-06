@@ -150,7 +150,7 @@ When configured, proofs are automatically sealed to the Civic Ledger:
 - **Event Type**: `copilot_verification`
 - **Data**: Repository, commit, scores, timestamps
 - **Authentication**: Bearer token via `LEDGER_ADMIN_TOKEN`
-- **Endpoint**: `{LEDGER_BASE_URL}/api/events`
+- **Endpoint**: `{LEDGER_BASE_URL}//api/events`
 
 ## Troubleshooting
 

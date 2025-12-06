@@ -11,7 +11,7 @@ This integration adds a closed-loop learning layer to your Lab7-Proof stack:
 ## What's Included
 
 ### Services
-- `services/pal_api/app.py` — PAL microservice (FastAPI) tailored for Lab7-Proof
+- `services/pal_/api/app.py` — PAL microservice (FastAPI) tailored for Lab7-Proof
 - `pal_config/lab7.yaml` — routes & service names for quick wiring
 
 ### Scripts
@@ -72,7 +72,7 @@ This integration adds a closed-loop learning layer to your Lab7-Proof stack:
 ## Health Checks
 
 - Backend: `GET https://<backend-host>/v1/health` → 200 & `{"ok": true}`
-- Frontend: `GET https://<frontend-host>/api/health` or `GET /` → 200
+- Frontend: `GET https://<frontend-host>//api/health` or `GET /` → 200
 
 ## PAL API Endpoints
 

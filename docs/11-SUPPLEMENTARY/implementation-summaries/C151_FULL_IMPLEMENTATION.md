@@ -31,8 +31,8 @@ Cycle C-151 represents the largest single-cycle expansion in Mobius Systems hist
 
 | File | Status | Description |
 |------|--------|-------------|
-| `apps/indexer-api/src/routes/mic.ts` | ✅ New | MIC API routes |
-| `apps/indexer-api/src/index.ts` | ✅ Updated | Added MIC router |
+| `apps/indexer-/api/src/routes/mic.ts` | ✅ New | MIC API routes |
+| `apps/indexer-/api/src/index.ts` | ✅ Updated | Added MIC router |
 
 **New Endpoints:**
 - `GET /v1/mic/balance/:id`

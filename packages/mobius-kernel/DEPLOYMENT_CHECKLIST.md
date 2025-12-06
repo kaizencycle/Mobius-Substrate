@@ -58,13 +58,13 @@ PYTHONPATH=/workspace/packages/mobius-kernel/src python packages/mobius-kernel/s
 ### API Tests (when integrated)
 ```bash
 # Test 1: DAEDALUS constraint enforcement
-curl -X POST http://localhost:8000/api/agent/DAEDALUS/action \
+curl -X POST http://localhost:8000//api/agent/DAEDALUS/action \
   -H "Content-Type: application/json" \
   -d '{"type": "EXECUTE", "payload": {}}'
 # Expected: 403 Forbidden
 
 # Test 2: CURSOR execution (should succeed)
-curl -X POST http://localhost:8000/api/agent/CURSOR/action \
+curl -X POST http://localhost:8000//api/agent/CURSOR/action \
   -H "Content-Type: application/json" \
   -d '{"type": "EXECUTE", "payload": {"task": "refactor"}}'
 # Expected: 200 OK

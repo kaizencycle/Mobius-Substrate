@@ -88,7 +88,7 @@ Cycle C-153 delivered the **complete City-State Economic System** for Mobius HIV
 | 11 | `specs/api-citystate-gdp.md` | 11K | REST API documentation |
 
 **Contents:**
-- Endpoint: `POST /api/citystate/gdp`
+- Endpoint: `POST //api/citystate/gdp`
 - Request/response examples
 - TypeScript implementation
 - Testing guidance

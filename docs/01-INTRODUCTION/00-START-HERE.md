@@ -14,7 +14,7 @@
 ### 🎯 Get Started Fast
 - **[Quickstart Guide](../05-IMPLEMENTATION/guides/quickstart/START_HERE.md)** — New user onboarding
 - **[System Overview](../04-TECHNICAL-ARCHITECTURE/)** — Architecture overview
-- **[MIC Whitepaper](../07-RESEARCH-AND-PUBLICATIONS/whitepapers/MIC_Whitepaper_v2.0.md)** — Economic specification
+- **[MIC Whitepaper](../07-RESEARCH-AND-PUBLICATIONS/whitepapers/MIC_Whitepaper_v2.1.md)** — Economic specification
 
 ### 🔧 For Developers
 - **[Development Guides](../05-IMPLEMENTATION/guides/development/)** — Development documentation

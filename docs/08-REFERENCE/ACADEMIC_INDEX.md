@@ -81,7 +81,7 @@ This index provides a comprehensive, academically rigorous catalog of all docume
 
 | Document | Path | Classification | Status | Version | Keywords |
 |----------|------|----------------|--------|---------|----------|
-| MIC Whitepaper v2.0 | `01-whitepapers/MIC_Whitepaper_v2.0.md` | Peer-Reviewed | Stable | 2.0 | Shard-denominated, integrity credits |
+| MIC Whitepaper v2.0 | `01-whitepapers/MIC_Whitepaper_v2.1.md` | Peer-Reviewed | Stable | 2.0 | Shard-denominated, integrity credits |
 | UBI Mechanism v2.0 | `01-whitepapers/UBI_Mechanism_v2.0.md` | Specification | Active | 2.0 | MII-throttled distribution, UBI |
 | Foundation Economics | `01-whitepapers/MIC_Foundation_Up_Economics_Addendum.md` | Research | Active | 1.0 | Foundation-up philosophy |
 
@@ -97,7 +97,7 @@ This index provides a comprehensive, academically rigorous catalog of all docume
 **Cross-References:**
 - See: `ledger/gi-formula.md` (GI calculation)
 - See: `06-specifications/protocols/mic-protocol.md` (Protocol spec)
-- See: `apps/indexer-api/README.md` (Implementation)
+- See: `apps/indexer-/api/README.md` (Implementation)
 
 ---
 
@@ -518,7 +518,7 @@ FOUNDATION/CHARTER.md
   ├─> 05-research/constitution/AI_INTEGRITY_CONSTITUTION.md
   └─> FOUNDATION/BYLAWS.md
 
-01-whitepapers/MIC_Whitepaper_v2.0.md
+01-whitepapers/MIC_Whitepaper_v2.1.md
   ├─> tokenomics/MIC_reward_formula.md
   ├─> ledger/gi-formula.md
   └─> 06-specifications/protocols/mic-protocol.md
@@ -572,7 +572,7 @@ Documents that cite or reference each other:
 - `drift/DRIFT_CONTROL_CHARTER.md`
 
 **Economics:**
-- `01-whitepapers/MIC_Whitepaper_v2.0.md`
+- `01-whitepapers/MIC_Whitepaper_v2.1.md`
 - `tokenomics/`
 - `mic/01_MIC_SPEC.md`
 

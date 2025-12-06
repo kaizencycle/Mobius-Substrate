@@ -44,7 +44,7 @@ This integration connects BettaFish (a multi-agent public-opinion engine) to Kai
 - `apps/integrity-pulse/src/hooks/useSentiment.ts` - React hook for fetching sentiment data
 - `apps/integrity-pulse/src/components/SentimentWave.tsx` - Visual overlay component
 - `apps/integrity-pulse/src/styles/sentiment.css` - CSS for sentiment wave effect
-- `apps/integrity-pulse/src/app/api/sentiment/summary/route.ts` - Next.js API proxy route
+- `apps/integrity-pulse/src/app//api/sentiment/summary/route.ts` - Next.js API proxy route
 
 **Visual Features:**
 - Color-shifting glow (red→amber→green) based on IMI

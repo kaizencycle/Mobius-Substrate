@@ -32,11 +32,11 @@ The repository is a **modern monorepo** using Turborepo, **NOT** a chambers-base
 kaizen-os/
 ├── apps/                          # 21 applications
 │   ├── website-creator/           # .gic Website Creator
-│   ├── ledger-api/                # Kaizen Ledger Core
-│   ├── indexer-api/               # GIC Indexer
-│   ├── eomm-api/                  # E.O.M.M. Reflections
-│   ├── shield-api/                # Citizen Shield
-│   ├── broker-api/                # Thought Broker
+│   ├── ledger-/api/                # Kaizen Ledger Core
+│   ├── indexer-/api/               # GIC Indexer
+│   ├── eomm-/api/                  # E.O.M.M. Reflections
+│   ├── shield-/api/                # Citizen Shield
+│   ├── broker-/api/                # Thought Broker
 │   ├── hub-web/                   # OAA Hub (386 files!)
 │   ├── civic-stack/               # PWA Stack (still named "civic")
 │   ├── hive-app/                  # Citizen interface
@@ -372,7 +372,7 @@ docs/
 - `labs/lab7-proof/CONTRIBUTING.md`
 - `packages/civic-protocol-core/CONTRIBUTING.md`
 - `packages/civic-ai-specs/civic-ai-specs/CONTRIBUTING.md`
-- `apps/ledger-api/civic-protocol-core/CONTRIBUTING.md`
+- `apps/ledger-/api/civic-protocol-core/CONTRIBUTING.md`
 
 **Missing:** Root-level `CONTRIBUTING.md` for the monorepo
 
@@ -620,7 +620,7 @@ npx husky install
 
 If telemetry becomes complex, extract to dedicated service:
 ```
-apps/telemetry-api/
+apps/telemetry-/api/
 ├── schemas/           # All metric schemas
 ├── validators/        # Schema validators
 ├── exporters/         # Export adapters

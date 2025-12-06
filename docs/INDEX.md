@@ -48,7 +48,7 @@ license: CC-BY-SA-4.0
 | I want to... | Go To... |
 |--------------|----------|
 | **Understand the system** | [System Overview](./04-TECHNICAL-ARCHITECTURE/overview/ARCHITECTURE.md) |
-| **Learn economics** | [MIC Whitepaper v2.0](./07-RESEARCH-AND-PUBLICATIONS/whitepapers/MIC_Whitepaper_v2.0.md) ⭐ |
+| **Learn economics** | [MIC Whitepaper v2.1](./07-RESEARCH-AND-PUBLICATIONS/whitepapers/MIC_Whitepaper_v2.1.md) ⭐ |
 | **Deploy Mobius** | [Deployment Guide](./05-IMPLEMENTATION/guides/deployment/DEPLOYMENT_GUIDE.md) |
 | **Study philosophy** | [Mobius Philosophy](./11-SUPPLEMENTARY/philosophy/MOBIUS_PHILOSOPHY.md) |
 | **Read research** | [Research Portal](./07-RESEARCH-AND-PUBLICATIONS/) |
@@ -94,7 +94,7 @@ docs/
 
 ### 🏆 Flagship Publications
 
-1. **[MIC Whitepaper v2.0](./07-RESEARCH-AND-PUBLICATIONS/whitepapers/MIC_Whitepaper_v2.0.md)** ⭐  
+1. **[MIC Whitepaper v2.1](./07-RESEARCH-AND-PUBLICATIONS/whitepapers/MIC_Whitepaper_v2.1.md)** ⭐  
    Complete specification of the Mobius Integrity Credits economy
 
 2. **[Governance Overview](./03-GOVERNANCE-AND-POLICY/governance/overview.md)** ⭐  
@@ -110,12 +110,12 @@ docs/
 
 #### Path 1: Quick Overview (30 minutes)
 1. [00-START-HERE.md](./00-START-HERE.md)
-2. [MIC Whitepaper Abstract](./07-RESEARCH-AND-PUBLICATIONS/whitepapers/MIC_Whitepaper_v2.0.md#abstract)
+2. [MIC Whitepaper Abstract](./07-RESEARCH-AND-PUBLICATIONS/whitepapers/MIC_Whitepaper_v2.1.md#abstract)
 3. [Governance Overview](./03-GOVERNANCE-AND-POLICY/governance/overview.md)
 4. [Architecture Quick Reference](./04-TECHNICAL-ARCHITECTURE/overview/ARCHITECTURE_QUICK_REFERENCE.md)
 
 #### Path 2: Deep Dive Economics (2 hours)
-1. [MIC Whitepaper v2.0](./07-RESEARCH-AND-PUBLICATIONS/whitepapers/MIC_Whitepaper_v2.0.md)
+1. [MIC Whitepaper v2.1](./07-RESEARCH-AND-PUBLICATIONS/whitepapers/MIC_Whitepaper_v2.1.md)
 2. [UBI Mechanism v2.0](./07-RESEARCH-AND-PUBLICATIONS/whitepapers/UBI_Mechanism_v2.0.md)
 3. [Foundation Economics](./07-RESEARCH-AND-PUBLICATIONS/whitepapers/MIC_Foundation_Up_Economics_Addendum.md)
 4. [Tokenomics](./11-SUPPLEMENTARY/tokenomics/)

@@ -112,7 +112,7 @@ workspace/
 │   │   ├── __tests__/      # Jest/Vitest tests
 │   │   └── test_*.py       # pytest tests
 │   ├── integration/        # Integration tests
-│   │   ├── api/            # API integration tests
+│   │   ├── /api/            # API integration tests
 │   │   └── services/       # Service integration tests
 │   ├── e2e/                # End-to-end tests
 │   │   ├── flows/          # User flow tests
@@ -217,7 +217,7 @@ def test_mii_calculation_invalid():
 
 **Example:**
 ```typescript
-// tests/integration/api/ledger-api.test.ts
+// tests/integration//api/ledger-api.test.ts
 import request from 'supertest';
 import { app } from '../../src/app';
 
@@ -236,7 +236,7 @@ describe('Ledger API Integration', () => {
 
     // Create attestation
     const createRes = await request(app)
-      .post('/api/integrity/attest')
+      .post('//api/integrity/attest')
       .send(attestation)
       .expect(201);
 
@@ -244,7 +244,7 @@ describe('Ledger API Integration', () => {
 
     // Retrieve attestation
     const getRes = await request(app)
-      .get(`/api/integrity/attest/${id}`)
+      .get(`//api/integrity/attest/${id}`)
       .expect(200);
 
     expect(getRes.body.mii_smooth).toBe(0.96);
@@ -428,7 +428,7 @@ def test_xss_protection():
     """Test XSS protection in API endpoints"""
     malicious_payload = '<script>alert("XSS")</script>'
     
-    response = client.post('/api/reflection', json={
+    response = client.post('//api/reflection', json={
         'content': malicious_payload
     })
     

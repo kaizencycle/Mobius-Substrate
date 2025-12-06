@@ -452,7 +452,7 @@ The choice is yours.
 ## How to Get Involved
 
 ### Learn More
-- Full technical specification: `docs/07-RESEARCH-AND-PUBLICATIONS/whitepapers/MIC_Whitepaper_v2.0.md`
+- Full technical specification: `docs/07-RESEARCH-AND-PUBLICATIONS/whitepapers/MIC_Whitepaper_v2.1.md`
 - Economic analysis: `FOR-ECONOMISTS/`
 - Government guidance: `FOR-GOVERNMENTS/`
 

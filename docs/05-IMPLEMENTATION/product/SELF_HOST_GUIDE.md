@@ -261,7 +261,7 @@ kaizen rollback --version v1.1.5
 
 ### Health check
 ```bash
-curl http://localhost:3000/api/health
+curl http://localhost:3000//api/health
 ```
 
 ### Metrics dashboard
@@ -410,7 +410,7 @@ git push origin feat/self-host-improvement
 | Backup | `kaizen export --full > backup.tar.gz` |
 | Restore | `kaizen import --full backup.tar.gz` |
 | Upgrade | `kaizen upgrade` |
-| Health check | `curl localhost:3000/api/health` |
+| Health check | `curl localhost:3000//api/health` |
 | Federation status | `kaizen federate status` |
 
 ---

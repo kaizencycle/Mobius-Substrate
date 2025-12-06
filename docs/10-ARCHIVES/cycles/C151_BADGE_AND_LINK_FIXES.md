@@ -54,9 +54,9 @@
 ### 6. Endpoint Links Verification ✅
 
 **Verified Endpoints:**
-- Mobius Pulse API endpoints: `/api/v1/pulse/*` (referenced in README)
+- Mobius Pulse API endpoints: `/v1/pulse/*` (referenced in README)
 - Badge endpoints: All badge JSON endpoints are correctly referenced
-- OpenAPI specs: `apps/ledger-api/openapi.yaml` exists and is linked correctly
+- OpenAPI specs: `apps/ledger-/api/openapi.yaml` exists and is linked correctly
 
 ## Files Modified
 

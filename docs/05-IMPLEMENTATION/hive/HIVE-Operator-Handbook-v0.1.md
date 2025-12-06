@@ -211,7 +211,7 @@ This will calculate GDP for example City-States (Aurora, Helix, Solace).
 ### Option 2: API Endpoint
 
 ```bash
-curl -X POST https://mobius.systems/api/citystate/gdp \
+curl -X POST https://mobius.systems//api/citystate/gdp \
   -H "Content-Type: application/json" \
   -d '{
     "citystate_name": "Aurora",
@@ -507,7 +507,7 @@ The system is designed to support you, not worship you.
 ### Support Channels
 
 1. **Cathedral Advisors**
-   - Request through `/api/cathedral/support`
+   - Request through `//api/cathedral/support`
 
 2. **Elder City-States**
    - Mentorship program
@@ -666,7 +666,7 @@ KS_price = (v × MIC_price) / 1000
 
 **Cathedral Support:**  
 - Email: cathedral-support@mobius.systems
-- Emergency: /api/cathedral/emergency
+- Emergency: //api/cathedral/emergency
 
 **Technical Support:**  
 - GI-Sim: gi-sim-support@mobius.systems

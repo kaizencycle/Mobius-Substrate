@@ -96,7 +96,7 @@ docs/
 ├── 07-RESEARCH-AND-PUBLICATIONS/     # Academic research (NEW)
 │   ├── README.md
 │   ├── whitepapers/                  📄 Core whitepapers
-│   │   ├── MIC_Whitepaper_v2.0.md    ⭐ Flagship publication
+│   │   ├── MIC_Whitepaper_v2.1.md    ⭐ Flagship publication
 │   │   ├── UBI_Mechanism_v2.0.md     ⭐ UBI specification
 │   │   └── ...                       
 │   ├── mic-economics/                💰 MIC research
@@ -108,7 +108,7 @@ docs/
 │
 ├── 08-REFERENCE/                     # Technical references (CONSOLIDATED)
 │   ├── README.md
-│   ├── api/                          🔌 API documentation
+│   ├── /api/                          🔌 API documentation
 │   ├── schemas/                      📋 Data schemas
 │   ├── intelligence-classification/  🤖 AI classification
 │   ├── indices/                      📇 Master indices
@@ -316,7 +316,7 @@ license: CC-BY-SA-4.0
 - tokenomics/* → tokenomics/
 
 ✅ **Reference** → `08-REFERENCE/`
-- api/* → api/
+- /api/* → /api/
 - intelligence/* → intelligence-classification/
 - 06-specifications/schemas/* → schemas/
 

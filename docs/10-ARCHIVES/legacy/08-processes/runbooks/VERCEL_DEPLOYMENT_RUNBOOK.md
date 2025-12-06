@@ -133,14 +133,14 @@ vercel --prod
 **Special Configuration:**
 - Uses custom headers for SSE (Server-Sent Events) streaming
 - Requires guardian.config.json to be present
-- Depends on `/api/guardian/status` endpoint
+- Depends on `//api/guardian/status` endpoint
 
 **vercel.json highlights:**
 ```json
 {
   "headers": [
     {
-      "source": "/api/(.*)",
+      "source": "//api/(.*)",
       "headers": [
         { "key": "Cache-Control", "value": "no-cache" },
         { "key": "X-Accel-Buffering", "value": "no" }
@@ -156,10 +156,10 @@ vercel --prod
 curl https://aurea.kaizen.os/
 
 # Check API health
-curl https://aurea.kaizen.os/api/guardian/status
+curl https://aurea.kaizen.os//api/guardian/status
 
 # Check attestation endpoint
-curl https://aurea.kaizen.os/api/attest
+curl https://aurea.kaizen.os//api/attest
 ```
 
 ### Portal
@@ -186,7 +186,7 @@ curl https://aurea.kaizen.os/api/attest
 curl https://portal.kaizen.os/
 
 # Check health endpoint
-curl https://portal.kaizen.os/api/health
+curl https://portal.kaizen.os//api/health
 ```
 
 ### Website Creator
@@ -339,7 +339,7 @@ npm run build
 {
   "headers": [
     {
-      "source": "/api/(.*)",
+      "source": "//api/(.*)",
       "headers": [
         { "key": "X-Accel-Buffering", "value": "no" }
       ]
@@ -376,7 +376,7 @@ import Image from 'next/image'
 Use Edge Runtime for faster response times:
 
 ```tsx
-// app/api/health/route.ts
+// app//api/health/route.ts
 export const runtime = 'edge'
 
 export async function GET() {

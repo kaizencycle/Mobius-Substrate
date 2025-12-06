@@ -100,7 +100,7 @@ docs/
 │   │   └── tri-sentinel-review.md         # ECHO Layer
 │   ├── apis/
 │   │   ├── rest-api-reference.md
-│   │   ├── mobius-mount-endpoint.md       # GET /api/mobius/mount
+│   │   ├── mobius-mount-endpoint.md       # GET //api/mobius/mount
 │   │   └── integrity-check-endpoint.md
 │   └── schemas/
 │       ├── manifests.md                   # .mobius/ file formats

@@ -98,7 +98,7 @@ python tools/citystate_gdp_simulation.py --years 10 --plot
 **Purpose:** REST API documentation for GDP calculation endpoint.
 
 **Contents:**
-- Endpoint: `POST /api/citystate/gdp`
+- Endpoint: `POST //api/citystate/gdp`
 - Request/response examples
 - Error handling
 - TypeScript implementation

@@ -27,10 +27,10 @@ I've successfully analyzed and reorganized all files from the `CivicOS-Edits` fo
 #### 1. **Website Creator** (`apps/website-creator/`)
 - **Purpose**: Next.js app for claiming `.gic` domains
 - **Features**: 
-  - Domain registration API (`/api/names/register`)
-  - Domain commitment API (`/api/names/commit`)
-  - Domain resolution API (`/api/resolve/[name]`)
-  - Attestation submission (`/api/attestations/submit`)
+  - Domain registration API (`//api/names/register`)
+  - Domain commitment API (`//api/names/commit`)
+  - Domain resolution API (`//api/resolve/[name]`)
+  - Attestation submission (`//api/attestations/submit`)
 - **Tech Stack**: Next.js 14, TypeScript, React 18
 - **Integration**: Ready to connect to Civic Ledger
 

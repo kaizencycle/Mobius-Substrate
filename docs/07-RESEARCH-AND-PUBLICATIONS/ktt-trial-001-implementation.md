@@ -15,7 +15,7 @@ All requested endpoints have been implemented in the broker-api service:
 
 ### 1. Trial Initialization
 - **Endpoint**: `POST /v1/trials/init`
-- **Handler**: `initTrialHandler` in `apps/broker-api/src/routes/trialManagement.ts`
+- **Handler**: `initTrialHandler` in `apps/broker-/api/src/routes/trialManagement.ts`
 - **Status**: ✅ Implemented
 - **Functionality**: Creates a new trial with configuration (trial_id, name, hypothesis, duration, target participants, metrics)
 
@@ -62,13 +62,13 @@ All requested endpoints have been implemented in the broker-api service:
 ## 📁 Files Created/Modified
 
 ### New Files
-1. `apps/broker-api/src/routes/trialManagement.ts` - Trial management route handlers
+1. `apps/broker-/api/src/routes/trialManagement.ts` - Trial management route handlers
 2. `scripts/ktt-trial-001-launch.sh` - Launch sequence script
 3. `scripts/ktt-trial-001-analyze.sh` - Analysis script
 4. `docs/ktt-trial-001-implementation.md` - This document
 
 ### Modified Files
-1. `apps/broker-api/src/server.ts` - Added route registrations for new endpoints
+1. `apps/broker-/api/src/server.ts` - Added route registrations for new endpoints
 
 ---
 
@@ -230,9 +230,9 @@ curl -X POST https://mobius-systems.onrender.com/v1/trials/KTT-001-2025/analyze 
 
 ## 🔗 Related Documentation
 
-- Trial Analytics: `apps/broker-api/src/services/trialAnalyticsStore.ts`
-- Trial Routes: `apps/broker-api/src/routes/trials.ts`
-- Server Configuration: `apps/broker-api/src/server.ts`
+- Trial Analytics: `apps/broker-/api/src/services/trialAnalyticsStore.ts`
+- Trial Routes: `apps/broker-/api/src/routes/trials.ts`
+- Server Configuration: `apps/broker-/api/src/server.ts`
 
 ---
 

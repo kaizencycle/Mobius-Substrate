@@ -157,7 +157,7 @@ PROMETHEUS_URL=http://prometheus:9090
 
 # Loki
 LOKI_URL=http://loki:3100
-LOKI_PUSH_URL=http://loki:3100/loki/api/v1/push
+LOKI_PUSH_URL=http://loki:3100/loki/v1/push
 
 # Environment label
 ENV=prod
@@ -172,7 +172,7 @@ Expected JSON log format for Promtail parsing:
   "time": "2025-11-07T12:34:56Z",
   "level": "INFO",
   "message": "Request processed",
-  "route": "/api/mobius/mount",
+  "route": "//api/mobius/mount",
   "status": 200,
   "duration_ms": 45.2,
   "agent": "ATLAS",

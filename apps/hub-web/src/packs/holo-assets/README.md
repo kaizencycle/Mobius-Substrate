@@ -5,7 +5,7 @@ This pack adds a minimal hologram interface (like *The Time Machine* 2002 librar
 ## Files
 - `pages/holo.tsx` — Three.js hologram + STT → OAA → TTS loop
 - `ops/persona.oaa.yaml` — persona & safety cues
-- `pages/api/holo/ledger.ts` — stub to forward turns to Civic Ledger
+- `pages//api/holo/ledger.ts` — stub to forward turns to Civic Ledger
 - `public/sfx/` — place optional UI sound effects
 
 ## Use

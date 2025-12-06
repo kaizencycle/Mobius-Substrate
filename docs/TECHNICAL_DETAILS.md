@@ -33,7 +33,7 @@ This document contains advanced technical information extracted from the main RE
 [![KTT Native](https://img.shields.io/badge/KTT-Native-6E00FF)](#)
 [![Spec CI](https://img.shields.io/github/actions/workflow/status/kaizencycle/Mobius-Systems/ci.yml?label=spec-ci&logo=github)](.github/workflows/ci.yml)
 [![Schemas Valid](https://img.shields.io/badge/Schemas-Valid-brightgreen)](schemas)
-[![OpenAPI Linted](https://img.shields.io/badge/OpenAPI-Linted-0AA5FF)](apps/ledger-api/openapi.yaml)
+[![OpenAPI Linted](https://img.shields.io/badge/OpenAPI-Linted-0AA5FF)](apps/ledger-/api/openapi.yaml)
 
 <p align="left">
   <img alt="KTT" src="https://img.shields.io/badge/KTT-Integrity%20Gate%200.95-1f7a1f">
@@ -141,7 +141,7 @@ This document contains advanced technical information extracted from the main RE
 
 All services include:
 - `/healthz` - Basic health check
-- `/api/integrity-check` - Mobius Systems integrity verification
+- `//api/integrity-check` - Mobius Systems integrity verification
 - `/v1/loop/health` - Thought Broker specific health
 
 ---
@@ -159,11 +159,11 @@ mobius-systems/
 ├─ FOUNDATION/                    # Core charters & licenses
 │
 ├─ apps/                          # 🎯 Core Applications (16)
-│  ├─ ledger-api/                 # Mobius Ledger Core
-│  ├─ indexer-api/                # MIC Indexer
-│  ├─ eomm-api/                   # E.O.M.M. Reflections
-│  ├─ shield-api/                 # Citizen Shield
-│  ├─ broker-api/                 # Thought Broker
+│  ├─ ledger-/api/                 # Mobius Ledger Core
+│  ├─ indexer-/api/                # MIC Indexer
+│  ├─ eomm-/api/                   # E.O.M.M. Reflections
+│  ├─ shield-/api/                 # Citizen Shield
+│  ├─ broker-/api/                 # Thought Broker
 │  ├─ portal/                     # Main Portal
 │  ├─ hive-app/                   # Citizen Hive
 │  └─ ...                         # (16 total apps)
@@ -359,7 +359,7 @@ Mobius Systems implements a **Model-Agnostic Sovereignty Layer (MASL)** that ena
 Any reasoning engine (Claude, GPT, DeepSeek, Gemini, etc.) can join the Mobius Systems network by calling:
 
 ```bash
-GET /api/mobius/mount
+GET //api/mobius/mount
 ```
 
 This endpoint returns the complete Mobius Systems manifest bundle:
@@ -370,7 +370,7 @@ This endpoint returns the complete Mobius Systems manifest bundle:
 
 ### Independence Manifest
 
-> 🕊️ [Read the Independence Manifest](docs/02-THEORETICAL-FOUNDATIONS/THE_INTERNET_BREATHES_AGAIN.md)
+> 🕊️ [Read the Independence Manifest](./02-THEORETICAL-FOUNDATIONS/THE_INTERNET_BREATHES_AGAIN.md)
 
 The Independence Manifest declares Mobius Systems sovereignty from any single LLM provider, ensuring:
 - **Model Agnosticism** - Any LLM can mount Mobius Systems state
@@ -444,15 +444,15 @@ These guardrails were implemented after a near-nuke incident where a process bug
 
 A nightly integrity snapshot of the monorepo is published via:
 
-- `GET /api/v1/pulse/latest` — latest Mobius pulse
-- `GET /api/v1/pulse/history` — pulse history (last 90 days)
-- `GET /api/v1/pulse/badge` — Shields.io badge JSON
-- `POST /api/v1/pulse/ingest` — internal, used by CI
+- `GET /v1/pulse/latest` — latest Mobius pulse
+- `GET /v1/pulse/history` — pulse history (last 90 days)
+- `GET /v1/pulse/badge` — Shields.io badge JSON
+- `POST /v1/pulse/ingest` — internal, used by CI
 
 **Example:**
 
 ```bash
-curl "$MOBIUS_INDEXER_BASE_URL/api/v1/pulse/latest" | jq
+curl "$MOBIUS_INDEXER_BASE_URL/v1/pulse/latest" | jq
 ```
 
 The portal uses this endpoint to render the Mobius Pulse Card, showing:

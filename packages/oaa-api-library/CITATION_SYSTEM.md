@@ -17,7 +17,7 @@ This system implements first-class citations and verifiable provenance across E.
 
 ### 2. Ingest Endpoint
 
-The `/api/eomm/ingest` endpoint now:
+The `//api/eomm/ingest` endpoint now:
 - Validates `sources` field as array
 - Builds JSON-LD with proper citations from sources
 - Returns both the saved E.O.M.M. file and generated JSON-LD
@@ -32,7 +32,7 @@ The `scripts/eomm-sync.mjs` script:
 
 ### 4. Proof Proxy
 
-The `/api/proof/[id]` endpoint:
+The `//api/proof/[id]` endpoint:
 - Fetches proof details from Civic Ledger
 - Enriches with back-links to E.O.M.M. and beacon files
 - Provides cached, safe access to proof information
@@ -49,7 +49,7 @@ The `scripts/citation-hygiene.sh` script:
 
 ```json
 {
-  "title": "C-109 GÇô Gate v0 plan",
+  "title": "C-109 G Gate v0 plan",
   "timestamp": "2025-10-18T13:20:00Z",
   "agent": "eve",
   "cycle": "C-109",
@@ -63,7 +63,7 @@ The `scripts/citation-hygiene.sh` script:
     },
     {
       "type": "repo",
-      "name": "PR #42 GÇô Beacon writer",
+      "name": "PR #42 G Beacon writer",
       "url": "https://github.com/kaizencycle/OAA-API-Library/pull/42",
       "hash": "7fa92e8b5a9d6f4f0b"
     }
@@ -102,7 +102,7 @@ schemas/
   attestation.schema.json     # JSON-LD attestation schema
   eomm-entry.schema.json      # E.O.M.M. entry schema
 
-pages/api/
+pages//api/
   eomm/ingest.ts              # Enhanced ingest with citations
   proof/[id].ts               # Proof proxy endpoint
 

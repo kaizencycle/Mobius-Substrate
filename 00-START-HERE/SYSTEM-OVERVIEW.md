@@ -234,11 +234,11 @@ where I = Mobius Integrity Index
 ```
 Mobius-Systems/
 ├── apps/                    # 9 services (APIs + frontends)
-│   ├── ledger-api/          # Port 4001
-│   ├── indexer-api/         # Port 4002
-│   ├── eomm-api/            # Port 4003 (SML)
-│   ├── shield-api/          # Port 4004
-│   ├── broker-api/          # Port 4005 (Multi-LLM)
+│   ├── ledger-/api/          # Port 4001
+│   ├── indexer-/api/         # Port 4002
+│   ├── eomm-/api/            # Port 4003 (SML)
+│   ├── shield-/api/          # Port 4004
+│   ├── broker-/api/          # Port 4005 (Multi-LLM)
 │   ├── hive-app/            # Port 3001
 │   ├── cathedral-app/       # Port 3002
 │   ├── genesisdome-app/     # Port 3003
@@ -444,8 +444,8 @@ docker-compose -f infra/docker/compose.yml up
 - **Stakeholder Briefings:** [FOR-GOVERNMENTS/STAKEHOLDER-BRIEFINGS/](../FOR-GOVERNMENTS/STAKEHOLDER-BRIEFINGS/)
 
 ### Technical Path 🔧
-- **Architecture:** [docs/02-architecture/](../docs/02-architecture/)
-- **Operations:** [docs/06-operations/](../docs/06-operations/)
+- **Architecture:** [docs/04-TECHNICAL-ARCHITECTURE/](../docs/04-TECHNICAL-ARCHITECTURE/)
+- **Operations:** [docs/06-OPERATIONS/](../docs/06-OPERATIONS/)
 - **Workflows:** [.github/workflows/](../.github/workflows/)
 - **Services:** [apps/](../apps/)
 

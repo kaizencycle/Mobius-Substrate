@@ -47,7 +47,7 @@ CRITICAL_DECISION → ALL engines + consensus
 ├── MEMT_ENGINE_ROLES_IN_DVA.mermaid
 └── MEMT_FULL_TAXONOMY_ASCII.txt
 
-/apps/broker-api/src/
+/apps/broker-/api/src/
 ├── types/memt.ts             # MEMT type definitions
 └── services/memtRouter.ts    # MEMT routing logic
 ```

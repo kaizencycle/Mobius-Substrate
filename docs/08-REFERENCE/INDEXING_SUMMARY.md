@@ -149,7 +149,7 @@ FOUNDATION/CHARTER.md
   ├─> 05-research/constitution/AI_INTEGRITY_CONSTITUTION.md
   └─> FOUNDATION/BYLAWS.md
 
-01-whitepapers/MIC_Whitepaper_v2.0.md
+01-whitepapers/MIC_Whitepaper_v2.1.md
   ├─> tokenomics/MIC_reward_formula.md
   ├─> ledger/gi-formula.md
   └─> 06-specifications/protocols/mic-protocol.md

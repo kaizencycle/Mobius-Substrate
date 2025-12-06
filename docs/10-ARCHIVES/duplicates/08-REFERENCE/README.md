@@ -31,7 +31,7 @@ This directory contains all reference documentation, API specifications, data sc
 ```
 08-REFERENCE/
 ├── README.md                      (this file)
-├── api/                           API specifications
+├── /api/                           API specifications
 │   ├── rest-api.md               REST API reference
 │   ├── graphql-api.md            GraphQL schema & queries
 │   ├── websocket-api.md          WebSocket events
@@ -71,7 +71,7 @@ This directory contains all reference documentation, API specifications, data sc
 - `/dva` - DVA operations
 - `/memt` - MEMT consensus
 
-See: [api/rest-api.md](./api/rest-api.md)
+See: [/api/rest-api.md](.//api/rest-api.md)
 
 ### GraphQL API
 
@@ -85,7 +85,7 @@ See: [api/rest-api.md](./api/rest-api.md)
 - MIC operations
 - Lab data access
 
-See: [api/graphql-api.md](./api/graphql-api.md)
+See: [/api/graphql-api.md](.//api/graphql-api.md)
 
 ### WebSocket API
 
@@ -97,7 +97,7 @@ See: [api/graphql-api.md](./api/graphql-api.md)
 - DVA verification events
 - Lab activity streams
 
-See: [api/websocket-api.md](./api/websocket-api.md)
+See: [/api/websocket-api.md](.//api/websocket-api.md)
 
 ## Data Schemas
 

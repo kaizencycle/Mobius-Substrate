@@ -119,11 +119,11 @@ founding-agents/
   "service": [{
     "id": "#consensus",
     "type": "ConsensusService",
-    "serviceEndpoint": "https://[agent].gic/api/consensus"
+    "serviceEndpoint": "https://[agent].gic//api/consensus"
   }, {
     "id": "#ledger",
     "type": "LedgerService",
-    "serviceEndpoint": "https://civic-ledger/api/attest"
+    "serviceEndpoint": "https://civic-ledger//api/attest"
   }],
   "giBaseline": 0.993,
   "activation": "active"
@@ -187,7 +187,7 @@ _oaa._tcp        IN  SRV  0 5 443  hive-api.onrender.com.
 
 ### 2. OAA Learning Loop (Opt-in, Per Agent)
 
-- **Webhook**: `POST /api/oaa/learn` (validated by DID)
+- **Webhook**: `POST //api/oaa/learn` (validated by DID)
 - **Data**: Page diffs, FAQ updates, reflection posts
 - **Storage**: Publish signed "learning shards" to OAA Library (IPFS) with agent consent flag
 - **Control**: Agents can toggle learn/forget in `config/agent.config.json`
@@ -537,7 +537,7 @@ AGENT_ID=AUREA
 
 ### API Endpoints
 
-#### POST /api/codex/query
+#### POST //api/codex/query
 Execute a single agent deliberation.
 
 **Request:**
@@ -563,7 +563,7 @@ Execute a single agent deliberation.
 }
 ```
 
-#### POST /api/discourse/round
+#### POST //api/discourse/round
 Execute a council-wide deliberation.
 
 **Request:**
@@ -582,7 +582,7 @@ Execute a council-wide deliberation.
 }
 ```
 
-#### GET /api/gi/stream
+#### GET //api/gi/stream
 Server-Sent Events stream for real-time GI metrics.
 
 ---
@@ -604,7 +604,7 @@ Server-Sent Events stream for real-time GI metrics.
 
 ### Monitoring & Telemetry
 
-1. **Real-time Stream**: `/api/gi/stream` provides live GI metrics
+1. **Real-time Stream**: `//api/gi/stream` provides live GI metrics
 2. **Ledger Attestations**: Every deliberation logged immutably
 3. **Alert System**: Anomaly detection for reward-hacking or consensus failure
 4. **Quarantine Hook**: Can disable problematic agents via multisig

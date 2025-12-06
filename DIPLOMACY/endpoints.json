@@ -1,0 +1,27 @@
+{
+  "cathedral": "DIPLOMACY",
+  "version": "C-156",
+  "generated": "2025-12-06T00:00:00Z",
+  "description": "Diplomatic and international relations API",
+  "endpoints": {
+    "treaty_framework": {
+      "url": "https://pulse.mobius.systems/diplomacy/treaty-framework.json",
+      "format": "JSON",
+      "description": "Complete treaty framework documentation"
+    },
+    "standards": {
+      "url": "https://pulse.mobius.systems/diplomacy/standards.json",
+      "format": "JSON",
+      "description": "International integrity standards"
+    },
+    "protocols": {
+      "url": "https://pulse.mobius.systems/diplomacy/protocols.json",
+      "format": "JSON",
+      "description": "Diplomatic protocols and engagement guidelines"
+    }
+  },
+  "contact": {
+    "diplomacy": "diplomacy@mobius.systems",
+    "international": "international@mobius.systems"
+  }
+}

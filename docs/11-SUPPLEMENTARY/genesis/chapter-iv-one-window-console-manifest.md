@@ -203,8 +203,8 @@ When the system reaches this threshold:
 - Civic applications (Shield, Portal, Hub)
 
 ### Internal Services
-- Broker-API (`apps/broker-api/`)
-- Ledger Core (`apps/ledger-api/`)
+- Broker-API (`apps/broker-/api/`)
+- Ledger Core (`apps/ledger-/api/`)
 - Console (`apps/console/`)
 - Sentinels (`sentinels/`)
 

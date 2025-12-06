@@ -132,7 +132,7 @@ Required packages (already in `package.json`):
 ### **Environment Variables**
 
 ```bash
-NEXT_PUBLIC_PULSE_API=https://your-api/pulse
+NEXT_PUBLIC_PULSE_API=https://your-/api/pulse
 ```
 
 ---

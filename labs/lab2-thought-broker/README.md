@@ -43,12 +43,12 @@ Lab 2: Thought Broker
 │       └── src/types.ts               # TypeScript schemas
 │
 ├── API Gateway
-│   ├── apps/broker-api/
+│   ├── apps/broker-/api/
 │   │   ├── src/index.ts               # FastAPI/Express broker
 │   │   ├── src/consensus/uriel.ts     # Uriel Sentinel integration
 │   │   └── src/sentinels/uriel.ts     # Situational Report generation
 │   └── apps/api-gateway/
-│       ├── api/index.ts               # Unified API surface
+│       ├── /api/index.ts               # Unified API surface
 │       └── vercel.json                # Serverless deployment
 │
 ├── Consensus Proofs
@@ -281,7 +281,7 @@ console.log(`Average GI: ${councilResult.giAvg}`);
 import requests
 
 # Deliberate
-response = requests.post('https://broker.kaizen.os/api/deliberate', json={
+response = requests.post('https://broker.kaizen.os//api/deliberate', json={
     'agent': 'atlas',
     'input': 'Optimize database query performance',
     'context': {'current_qps': 450, 'target_qps': 1000}
@@ -380,7 +380,7 @@ npm test packages/codex-agentic/tests/router.test.ts
 npm test packages/codex-agentic/tests/gi-metrics.test.ts
 
 # Integration tests
-npm test apps/broker-api/tests/integration.test.ts
+npm test apps/broker-/api/tests/integration.test.ts
 
 # Load test (100 concurrent deliberations)
 npm run test:load
@@ -447,7 +447,7 @@ interface CodexVote {
 
 ```bash
 # Generate situational report (Jade + Uriel)
-curl https://broker.kaizen.os/api/sr/latest
+curl https://broker.kaizen.os//api/sr/latest
 ```
 
 **Key Metrics:**
@@ -490,7 +490,7 @@ curl https://broker.kaizen.os/api/sr/latest
 
 - **DelibProof Spec:** `packages/delibproof/README.md`
 - **Codex Agentic:** `packages/codex-agentic/README.md`
-- **Broker API:** `apps/broker-api/README.md`
+- **Broker API:** `apps/broker-/api/README.md`
 - **Uriel Sentinel:** `docs/companions/uriel.md`
 - **Complete Architecture:** `docs/03-architecture/technical/Kaizen_OS_Complete_Lab_Architecture.md`
 

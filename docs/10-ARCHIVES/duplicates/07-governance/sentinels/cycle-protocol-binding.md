@@ -220,7 +220,7 @@ No drift detected, integrity maintained.
 Architecture Issues:
 - Missing integration documentation
 - Inconsistent design pattern in `src/utils/helpers.ts`
-- Scalability concerns in `api/routes/cycles.ts`
+- Scalability concerns in `/api/routes/cycles.ts`
 
 Please address these issues before resubmission.
 ```

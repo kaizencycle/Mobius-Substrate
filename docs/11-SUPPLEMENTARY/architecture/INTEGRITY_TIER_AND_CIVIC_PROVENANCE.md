@@ -9,7 +9,7 @@ This service-level design wires integrity scoring and provenance tagging across 
 - **Scoring:** lightweight heuristics + pluggable cross-check stub; thresholds map to tiers (`CIVIC`, `STABLE`, `CAUTION`, `HAZARD`).
 
 ## Broker Integration
-- **Hook:** `apps/broker-api/src/routes/deliberate.ts`
+- **Hook:** `apps/broker-/api/src/routes/deliberate.ts`
 - **Behavior:**
   - Calls Integrity Tier once an answer is available.
   - Blocks auto-publication if `giScore < 0.95`.

@@ -98,7 +98,7 @@ NEXT_PUBLIC_MOCK_DATA=false
 NEXT_PUBLIC_WS_URL=wss://your-domain.com/ws/gi-stream
 
 # Optional: HTTP fallback
-NEXT_PUBLIC_POLL_URL=https://your-domain.com/api/sentinels/metrics
+NEXT_PUBLIC_POLL_URL=https://your-domain.com//api/sentinels/metrics
 NEXT_PUBLIC_POLL_INTERVAL=2000
 ```
 
@@ -592,7 +592,7 @@ export default function Page() {
 ### Health Check Endpoint
 
 ```typescript
-// apps/integrity-pulse/src/app/api/health/route.ts
+// apps/integrity-pulse/src/app//api/health/route.ts
 export async function GET() {
   return Response.json({
     status: 'healthy',
@@ -604,7 +604,7 @@ export async function GET() {
 
 **Test**:
 ```bash
-curl http://localhost:3010/api/health
+curl http://localhost:3010//api/health
 ```
 
 ### Metrics Collection

@@ -22,7 +22,7 @@
 **Path:** `01-whitepapers/`  
 **For:** Economists, researchers, policy makers
 
-- [MIC Whitepaper v2.0](./01-whitepapers/MIC_Whitepaper_v2.0.md) ⭐
+- [MIC Whitepaper v2.0](./01-whitepapers/MIC_Whitepaper_v2.1.md) ⭐
 - [UBI Mechanism v2.0](./01-whitepapers/UBI_Mechanism_v2.0.md)
 - [Foundation Economics](./01-whitepapers/MIC_Foundation_Up_Economics_Addendum.md)
 - [Tokenomics](./tokenomics/) (to be moved)
@@ -142,7 +142,7 @@
 **Related:**
 - [Specs](./specs/) (to be merged)
 - [Protocols](./protocols/) (to be moved)
-- [API](./api/) (to be moved)
+- [API](.//api/) (to be moved)
 - [Ledger](./ledger/) (to be moved)
 - [Mobius Kernel Spec](./mobius-kernel-spec-v0.1.md) (to be moved)
 
@@ -343,7 +343,7 @@
 - `drift/DRIFT_CONTROL_CHARTER.md`
 
 **Economics:**
-- `01-whitepapers/MIC_Whitepaper_v2.0.md`
+- `01-whitepapers/MIC_Whitepaper_v2.1.md`
 - `tokenomics/`
 - `mic/01_MIC_SPEC.md`
 

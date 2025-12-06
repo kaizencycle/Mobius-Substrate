@@ -45,11 +45,11 @@ docs/00-START-HERE/README.md             # Master navigation hub
 docs/00-START-HERE/GLOSSARY.md           # Term definitions
 docs/00-START-HERE/FAQ.md                # Common questions
 docs/01-philosophy/README.md             # Philosophy layer stub
-docs/02-architecture/README.md           # Architecture layer stub
+docs/04-TECHNICAL-ARCHITECTURE/README.md           # Architecture layer stub
 docs/03-specifications/README.md         # Specifications layer stub
 docs/04-guides/README.md                 # Guides layer stub
 docs/05-security/README.md               # Security layer stub
-docs/06-operations/README.md             # Operations layer stub
+docs/06-OPERATIONS/README.md             # Operations layer stub
 docs/07-governance/README.md             # Governance layer stub
 docs/08-research/README.md               # Research layer stub
 docs/09-communications/README.md         # Communications layer stub

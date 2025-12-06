@@ -50,7 +50,7 @@ Visit http://localhost:3006
 
 ```
 apps/
-  habits-api/          # Express API
+  habits-/api/          # Express API
   habits-web/          # Next.js frontend
 packages/
   integrity-core/      # MII/MIC/Shards logic

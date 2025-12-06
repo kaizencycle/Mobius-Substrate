@@ -165,7 +165,7 @@ This specification defines the format and requirements for cycle attestations wr
       "lines_removed": 0
     },
     {
-      "file": "apps/indexer-api/src/routes/cycles.ts",
+      "file": "apps/indexer-/api/src/routes/cycles.ts",
       "type": "added",
       "lines_added": 85,
       "lines_removed": 0
@@ -258,7 +258,7 @@ CREATE INDEX idx_cycle_attestations_gi_score ON cycle_attestations(gi_score DESC
 
 ### API Endpoint
 
-**POST** `/api/cycles/attest`
+**POST** `//api/cycles/attest`
 
 **Request Body:**
 ```json
@@ -346,11 +346,11 @@ All attestations must include:
 ### Cycle Index
 
 **API Endpoint:**
-- `/api/cycles` — List all cycles
-- `/api/cycles/:cycle` — Get specific cycle
-- `/api/cycles/attest` — Create new attestation
+- `//api/cycles` — List all cycles
+- `//api/cycles/:cycle` — Get specific cycle
+- `//api/cycles/attest` — Create new attestation
 
-See [`apps/indexer-api/src/routes/cycles.ts`](../../../apps/indexer-api/src/routes/cycles.ts) for implementation.
+See [`apps/indexer-/api/src/routes/cycles.ts`](../../../apps/indexer-/api/src/routes/cycles.ts) for implementation.
 
 ---
 
@@ -358,7 +358,7 @@ See [`apps/indexer-api/src/routes/cycles.ts`](../../../apps/indexer-api/src/rout
 
 - [`MCP_v1.0.md`](../../06-OPERATIONS/protocols/MCP_v1.0.md) — Full MCP specification
 - [`cycle-protocol-binding.md`](../../07-governance/sentinels/cycle-protocol-binding.md) — Sentinel rules
-- [`/cycles` API](../../../apps/indexer-api/src/routes/cycles.ts) — Cycle index endpoint
+- [`/cycles` API](../../../apps/indexer-/api/src/routes/cycles.ts) — Cycle index endpoint
 
 ---
 

@@ -16,7 +16,7 @@
 ### 🔍 Monitoring & Safety
 - **`.github/workflows/watchdog.yml`** - CI that detects excessive config churn
 - **Agent Status Banner** - Real-time display of guard status on `/dev/context`
-- **API endpoints** - `/api/dev/loop-guard` and `/api/dev/agent-cooldown`
+- **API endpoints** - `//api/dev/loop-guard` and `//api/dev/agent-cooldown`
 
 ## How It Works
 
@@ -83,8 +83,8 @@ docs/
 └── rules.json              # Agent configuration
 oaa_central_hub_starter/companion_site_starter/
 ├── components/AgentStatusBanner.tsx
-├── pages/api/dev/loop-guard.ts
-├── pages/api/dev/agent-cooldown.ts
+├── pages//api/dev/loop-guard.ts
+├── pages//api/dev/agent-cooldown.ts
 └── pages/dev/context.tsx   # Updated with banner
 ```
 

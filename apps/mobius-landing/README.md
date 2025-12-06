@@ -64,7 +64,7 @@ All components are registered with Builder.io and can be edited visually:
 
 ## API Routes
 
-### `/api/mii`
+### `//api/mii`
 Returns live Mobius Integrity Index data.
 
 **Query params:**
@@ -85,7 +85,7 @@ Returns live Mobius Integrity Index data.
 2. `PROM_URL` + `MII_PROMQL` - Prometheus query
 3. Mock value (dev fallback)
 
-### `/api/revalidate`
+### `//api/revalidate`
 Webhook endpoint for Builder.io to trigger cache revalidation.
 
 **Query params:**
@@ -98,7 +98,7 @@ To enable automatic cache revalidation when content is published:
 1. In Builder.io → Webhooks
 2. Add webhook:
    - Event: "Published Content"
-   - URL: `https://your-domain.com/api/revalidate?secret=your_secret`
+   - URL: `https://your-domain.com//api/revalidate?secret=your_secret`
    - Method: POST
 
 ## Environment Variables

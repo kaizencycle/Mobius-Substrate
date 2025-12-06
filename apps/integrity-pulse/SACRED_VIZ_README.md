@@ -69,7 +69,7 @@ Located in the top-left control panel:
 - `MultiAgentGrid.tsx`: Original grid-based visualization
 
 ### API
-- `/api/agents/telemetry`: Provides agent telemetry data
+- `//api/agents/telemetry`: Provides agent telemetry data
   - Returns: `{ agent: string, gi: number, throughput: number, errorRate: number }[]`
   - Currently uses mock data (sine wave variations)
   - Ready to wire to live telemetry sources
@@ -86,7 +86,7 @@ Located in the top-left control panel:
 Replace the mock API endpoint with your live source:
 
 ```typescript
-// apps/integrity-pulse/src/app/api/agents/telemetry/route.ts
+// apps/integrity-pulse/src/app//api/agents/telemetry/route.ts
 export async function GET() {
   // Replace with your telemetry source
   const data = await fetchTelemetryFromLab6Proof();

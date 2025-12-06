@@ -125,7 +125,7 @@ docs/
 ├── 11-SUPPLEMENTARY/                 [Supplementary] Topic-Specific Content
 │   ├── about/                        ← About information
 │   ├── agents/                       ← Agent documentation
-│   ├── api/                          ← API documentation
+│   ├── /api/                          ← API documentation
 │   ├── architecture/                 ← Additional architecture
 │   ├── attestations/                 ← Attestation records
 │   ├── audits/                       ← Audit reports

@@ -21,7 +21,7 @@ ZENITH is the fourth companion in the Kaizen OS Thought Broker, bringing advance
 
 ## 🏗️ Integration Points
 
-### 1. Thought Broker (`apps/broker-api/src/consensus/zenith.ts`)
+### 1. Thought Broker (`apps/broker-/api/src/consensus/zenith.ts`)
 - Multi-LLM consensus for complex reasoning
 - Chamber-aware deliberation
 - Constitutional validation

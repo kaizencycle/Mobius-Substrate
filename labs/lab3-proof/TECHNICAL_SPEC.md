@@ -87,7 +87,7 @@ Lab3 implements the **API Fabric** - a unified service mesh that provides a sing
 **REST API Configuration:**
 ```yaml
 rest_api:
-  base_path: "/api/v1"
+  base_path: "//api/v1"
   formats: ["json", "xml"]
   max_request_size: "10MB"
   timeout: 30s
@@ -214,7 +214,7 @@ enum DeliberationStatus {
 
 **gRPC Service Definition:**
 ```protobuf
-// lab3/api/kaizen.proto
+// lab3//api/kaizen.proto
 syntax = "proto3";
 
 package kaizen.api.v1;
@@ -331,21 +331,21 @@ versioning:
       deprecated: false
       sunset_date: null
       routes:
-        - /api/v1/gi/score
-        - /api/v1/ledger/blocks
+        - /v1/gi/score
+        - /v1/ledger/blocks
 
     v2:
       deprecated: false
       sunset_date: null
       routes:
-        - /api/v2/gi/score  # Enhanced with more fields
-        - /api/v2/ledger/blocks
+        - //api/v2/gi/score  # Enhanced with more fields
+        - //api/v2/ledger/blocks
 
     v3:
       deprecated: false
       sunset_date: null
       routes:
-        - /api/v3/gi/score  # Breaking change: different schema
+        - //api/v3/gi/score  # Breaking change: different schema
 ```
 
 ---
@@ -651,11 +651,11 @@ class RateLimiter:
         Get rate limit configuration for endpoint
         """
         configs = {
-            "/api/v1/gi/score": {
+            "/v1/gi/score": {
                 "max_requests": 100,
                 "window_seconds": 60
             },
-            "/api/v1/deliberation/create": {
+            "/v1/deliberation/create": {
                 "max_requests": 10,
                 "window_seconds": 60
             },

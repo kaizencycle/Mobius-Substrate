@@ -8,7 +8,7 @@ These inserts reference the Anthropic Interview and its validation of core Mobiu
 
 ## Insert for MII Documentation
 
-**File:** `/docs/07-RESEARCH-AND-PUBLICATIONS/whitepapers/MIC_Whitepaper_v2.0.md` or related MII docs
+**File:** `/docs/07-RESEARCH-AND-PUBLICATIONS/whitepapers/MIC_Whitepaper_v2.1.md` or related MII docs
 
 ```markdown
 > **Note (C-154 Update):**  

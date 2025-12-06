@@ -191,7 +191,7 @@ async def integrity_ritual_healthz():
 ### Integration with Existing Health Checks
 
 ```python
-# apps/ledger-api/main.py
+# apps/ledger-/api/main.py
 
 from daedalus import integrity_ritual_healthz
 

@@ -16,12 +16,12 @@
 
 **Before:**
 ```markdown
-- [MIC Whitepaper v2.0](../../../docs/07-RESEARCH-AND-PUBLICATIONS/whitepapers/MIC_Whitepaper_v2.0.md)
+- [MIC Whitepaper v2.0](../../../docs/07-RESEARCH-AND-PUBLICATIONS/whitepapers/MIC_Whitepaper_v2.1.md)
 ```
 
 **After:**
 ```markdown
-- [MIC Whitepaper v2.0](../../07-RESEARCH-AND-PUBLICATIONS/whitepapers/MIC_Whitepaper_v2.0.md)
+- [MIC Whitepaper v2.0](../../07-RESEARCH-AND-PUBLICATIONS/whitepapers/MIC_Whitepaper_v2.1.md)
 ```
 
 **Status:** ✅ Fixed and verified

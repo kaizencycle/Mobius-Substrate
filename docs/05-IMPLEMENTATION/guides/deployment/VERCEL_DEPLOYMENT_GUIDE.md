@@ -116,7 +116,7 @@ Deployments → (Latest deployment) → Redeploy
 
 ```bash
 # Check health
-curl https://your-app.vercel.app/api/cycle/current
+curl https://your-app.vercel.app//api/cycle/current
 # Expected: {"cycle":"C-118","gi":0.993,"room":"Consensus Chamber"}
 
 # Check Consensus Chamber
@@ -230,7 +230,7 @@ NEXT_PUBLIC_LEDGER_BASE=https://...
 - [ ] Vercel deployment successful (green checkmark)
 - [ ] Homepage loads at https://your-app.vercel.app
 - [ ] `/consensus` page loads
-- [ ] `/api/cycle/current` returns data
+- [ ] `//api/cycle/current` returns data
 - [ ] No console errors in browser
 
 ### Day 2 - Demo Pages

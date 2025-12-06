@@ -52,7 +52,7 @@ Memory, virtue, and intent are externalized as open manifests rather than trappe
 Any reasoning engine may "join" the Kaizen OS network by executing:
 
 ```json
-GET /api/civic/mount
+GET //api/civic/mount
 
 This endpoint returns:
 

@@ -21,7 +21,7 @@
 
 ### Unorganized (Root Level)
 - ⚠️ `agents/` → Move to `02-governance/agents/` or `10-agents/`
-- ⚠️ `api/` → Move to `06-specifications/api/`
+- ⚠️ `/api/` → Move to `06-specifications//api/`
 - ⚠️ `architecture/` → Merge into `03-architecture/`
 - ⚠️ `archive/` → Keep as-is (historical)
 - ⚠️ `attestations/` → Move to `09-reports/attestations/`
@@ -102,7 +102,7 @@ docs/
 │   ├── theory/
 │   └── ...
 ├── 06-specifications/
-│   ├── api/
+│   ├── /api/
 │   ├── kernel/
 │   ├── ledger/
 │   ├── protocols/

@@ -174,9 +174,9 @@ This is the equivalent of a constitutional convention for the AGI era.
 ```
 Mobius-Systems/
 ├── apps/
-│   ├── broker-api/        # Thought Broker (multi-agent engine)
+│   ├── broker-/api/        # Thought Broker (multi-agent engine)
 │   ├── indexer/           # Telemetry + GI indexing
-│   └── ledger-api/        # Attestations, governance logs
+│   └── ledger-/api/        # Attestations, governance logs
 ├── docs/
 │   ├── governance/        # Constitution, ratification, oversight
 │   ├── ktt/               # Kaizen Turing Test specs

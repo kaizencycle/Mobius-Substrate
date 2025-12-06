@@ -482,10 +482,10 @@ When clicking **[LEARN MORE]** on a city:
 
 ### API Calls:
 
-1. `POST /api/citizen/register` — Create citizen account
-2. `POST /api/companion/match` — Assign Companion Agent
-3. `POST /api/quest/complete` — Mark "Hello, HIVE" quest complete
-4. `POST /api/event/rsvp` — RSVP to first event (optional)
+1. `POST //api/citizen/register` — Create citizen account
+2. `POST //api/companion/match` — Assign Companion Agent
+3. `POST //api/quest/complete` — Mark "Hello, HIVE" quest complete
+4. `POST //api/event/rsvp` — RSVP to first event (optional)
 
 ### Tracking:
 

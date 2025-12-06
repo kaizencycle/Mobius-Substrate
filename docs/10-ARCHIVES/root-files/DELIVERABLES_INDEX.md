@@ -73,7 +73,7 @@ This package contains everything needed to establish Mobius Systems documentatio
 - Suggested content structure
 - Cross-references to other layers
 
-**📄 `docs/02-architecture/README.md`**
+**📄 `docs/04-TECHNICAL-ARCHITECTURE/README.md`**
 - The "what" — System design
 - 8-layer Mobius stack diagram
 - DVA flows, components, economics
@@ -97,7 +97,7 @@ This package contains everything needed to establish Mobius Systems documentatio
 - Threat model, recovery procedures
 - Current security status table
 
-**📄 `docs/06-operations/README.md`**
+**📄 `docs/06-OPERATIONS/README.md`**
 - Production operations
 - Service overview (ports, components)
 - Health checks, monitoring, scaling

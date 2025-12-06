@@ -40,11 +40,11 @@ All services now have Dockerfiles:
 
 | Service | Dockerfile Location | Status |
 |---------|-------------------|--------|
-| ledger-api | `apps/ledger-api/Dockerfile` | ✅ Created (Python/FastAPI) |
-| indexer-api | `apps/indexer-api/Dockerfile` | ✅ Created |
-| eomm-api | `apps/eomm-api/Dockerfile` | ✅ Created |
-| shield-api | `apps/shield-api/Dockerfile` | ✅ Created |
-| broker-api | `apps/broker-api/Dockerfile` | ✅ Created |
+| ledger-api | `apps/ledger-/api/Dockerfile` | ✅ Created (Python/FastAPI) |
+| indexer-api | `apps/indexer-/api/Dockerfile` | ✅ Created |
+| eomm-api | `apps/eomm-/api/Dockerfile` | ✅ Created |
+| shield-api | `apps/shield-/api/Dockerfile` | ✅ Created |
+| broker-api | `apps/broker-/api/Dockerfile` | ✅ Created |
 | hive-app | `apps/hive-app/Dockerfile` | ✅ Created |
 | cathedral-app | `apps/cathedral-app/Dockerfile` | ✅ Created |
 | genesisdome-app | `apps/genesisdome-app/Dockerfile` | ✅ Created |
@@ -106,7 +106,7 @@ curl http://localhost:4005/v1/loop/health  # broker-api
 curl http://localhost:3001/health   # hive-app
 curl http://localhost:3002/health    # cathedral-app
 curl http://localhost:3003/health    # genesisdome-app
-curl http://localhost:3004/api/integrity-check  # hub-web
+curl http://localhost:3004//api/integrity-check  # hub-web
 ```
 
 ## Next Steps
@@ -135,11 +135,11 @@ curl http://localhost:3004/api/integrity-check  # hub-web
 ### Created
 - `scripts/create-all-services.sh` - Service generator
 - `configs/services-complete.json` - Complete manifest
-- `apps/ledger-api/Dockerfile` - Python Dockerfile
-- `apps/indexer-api/Dockerfile` - Node Dockerfile
-- `apps/eomm-api/Dockerfile` - Node Dockerfile
-- `apps/shield-api/Dockerfile` - Node Dockerfile
-- `apps/broker-api/Dockerfile` - Node Dockerfile
+- `apps/ledger-/api/Dockerfile` - Python Dockerfile
+- `apps/indexer-/api/Dockerfile` - Node Dockerfile
+- `apps/eomm-/api/Dockerfile` - Node Dockerfile
+- `apps/shield-/api/Dockerfile` - Node Dockerfile
+- `apps/broker-/api/Dockerfile` - Node Dockerfile
 - `apps/hive-app/Dockerfile` - Node Dockerfile
 - `apps/cathedral-app/Dockerfile` - Node Dockerfile
 - `apps/genesisdome-app/Dockerfile` - Node Dockerfile

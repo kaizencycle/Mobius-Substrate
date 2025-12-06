@@ -261,7 +261,7 @@ See [`cycle-protocol-binding.md`](../../07-governance/sentinels/cycle-protocol-b
 
 ### Cycle Dashboard
 
-See [`/cycles` API endpoint](../../../apps/indexer-api/src/routes/cycles.ts) for cycle index.
+See [`/cycles` API endpoint](../../../apps/indexer-/api/src/routes/cycles.ts) for cycle index.
 
 ---
 
@@ -358,7 +358,7 @@ but through the integrity of the work we choose to finish."**
 - [`cycle-attestation.md`](../../03-specifications/protocols/cycle-attestation.md) — Attestation spec
 - [`cycle-protocol-binding.md`](../../07-governance/sentinels/cycle-protocol-binding.md) — Sentinel rules
 - [`.github/workflows/mcp-enforcer.yml`](../../../.github/workflows/mcp-enforcer.yml) — Enforcement workflow
-- [`/cycles` API](../../../apps/indexer-api/src/routes/cycles.ts) — Cycle index endpoint
+- [`/cycles` API](../../../apps/indexer-/api/src/routes/cycles.ts) — Cycle index endpoint
 
 ---
 

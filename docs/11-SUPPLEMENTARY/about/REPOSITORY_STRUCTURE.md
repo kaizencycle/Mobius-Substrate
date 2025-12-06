@@ -73,7 +73,7 @@ kaizen-cycle/
 │   │   ├── festival_of_echoes.md      ← Quarterly governance
 │   │   └── elder_thrones.md           ← Human oversight
 │   │
-│   └── api/                           ← API documentation
+│   └── /api/                           ← API documentation
 │       ├── civic_ledger_api.md
 │       ├── codex_router_api.md
 │       ├── eomm_api.md
@@ -119,7 +119,7 @@ kaizen-cycle/
 │   │   ├── tests/
 │   │   └── requirements.txt
 │   │
-│   ├── api/                           ← REST API
+│   ├── /api/                           ← REST API
 │   │   ├── src/
 │   │   │   ├── main.py                ← FastAPI app
 │   │   │   ├── routes/
@@ -675,7 +675,7 @@ humanities-healthcare/*/config/        ← Service-specific configs
    └─ civic-ledger/indexer/ → calculates GI
 
 3. If GI ≥ 0.95, citizen earns MIC
-   └─ civic-ledger/api/ → mints MIC via contracts/MIC.sol
+   └─ civic-ledger//api/ → mints MIC via contracts/MIC.sol
 
 4. Citizen spends MIC on AI query
    └─ codex-router/ → routes to cheapest LLM provider

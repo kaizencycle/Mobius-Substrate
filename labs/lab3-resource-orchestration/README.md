@@ -33,7 +33,7 @@ labs/lab3-resource-orchestration/
 │   └── manager.py               # MIC transfers & PublicGoodsPool
 ├── labor-market/                # Skills matching (planned)
 ├── maintenance/                 # Predictive maintenance (planned)
-├── api/
+├── /api/
 │   └── routes.py                # FastAPI endpoints
 ├── tests/
 │   └── test_orchestration.py   # Integration tests
