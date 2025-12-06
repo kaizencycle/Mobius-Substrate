@@ -2,8 +2,14 @@
 
 import { useEffect, useState } from 'react'
 
+interface AlertData {
+  message?: string;
+  timestamp?: string;
+  [key: string]: unknown;
+}
+
 export default function AlertsView() {
-  const [alerts, setAlerts] = useState<any[]>([])
+  const [alerts, setAlerts] = useState<AlertData[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -36,7 +42,7 @@ export default function AlertsView() {
         <p className="text-green-600">No active alerts</p>
       ) : (
         <div className="space-y-2">
-          {alerts.map((alert: any, index: number) => (
+          {alerts.map((alert, index) => (
             <div
               key={index}
               className="border-l-4 border-red-500 bg-red-50 dark:bg-red-900/20 p-3 rounded"

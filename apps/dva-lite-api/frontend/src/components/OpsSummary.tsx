@@ -2,8 +2,19 @@
 
 import { useEffect, useState } from 'react'
 
+interface OpsSummaryData {
+  miiCurrent?: number;
+  miiThreshold?: number;
+  safeModeEnabled?: boolean;
+  last24h?: {
+    eventCount?: number;
+    alertCount?: number;
+  };
+  [key: string]: unknown;
+}
+
 export default function OpsSummary() {
-  const [summary, setSummary] = useState<any>(null)
+  const [summary, setSummary] = useState<OpsSummaryData | null>(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -34,7 +45,7 @@ export default function OpsSummary() {
     )
   }
 
-  const miiStatus = summary?.miiCurrent >= (summary?.miiThreshold || 0.95) ? 'healthy' : 'warning'
+  const miiStatus = (summary?.miiCurrent ?? 0) >= (summary?.miiThreshold ?? 0.95) ? 'healthy' : 'warning'
 
   return (
     <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6">

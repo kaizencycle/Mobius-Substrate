@@ -2,8 +2,15 @@
 
 import { useEffect, useState } from 'react'
 
+interface TrialStatsData {
+  totalTrials?: number;
+  activeTrials?: number;
+  completedTrials?: number;
+  [key: string]: unknown;
+}
+
 export default function TrialStats() {
-  const [stats, setStats] = useState<any>(null)
+  const [stats, setStats] = useState<TrialStatsData | null>(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {

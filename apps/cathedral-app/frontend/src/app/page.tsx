@@ -1,9 +1,21 @@
 'use client'
 import { useEffect, useState } from 'react'
 
+interface GovernanceData {
+  activeProposals?: number;
+  totalProposals?: number;
+  votingPower?: number;
+  [key: string]: unknown;
+}
+
+interface Policy {
+  name?: string;
+  [key: string]: unknown;
+}
+
 export default function Home() {
-  const [governance, setGovernance] = useState<any>(null)
-  const [policies, setPolicies] = useState<any[]>([])
+  const [governance, setGovernance] = useState<GovernanceData | null>(null)
+  const [policies, setPolicies] = useState<Policy[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -56,7 +68,7 @@ export default function Home() {
                 <p className="text-gray-500">No policies available</p>
               ) : (
                 <ul className="space-y-2">
-                  {policies.map((policy: any, idx: number) => (
+                  {policies.map((policy, idx) => (
                     <li key={idx} className="border-b pb-2">{policy.name || `Policy ${idx + 1}`}</li>
                   ))}
                 </ul>

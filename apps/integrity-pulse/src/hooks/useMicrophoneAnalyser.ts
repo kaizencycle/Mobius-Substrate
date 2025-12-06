@@ -77,7 +77,8 @@ export function useMicrophoneAnalyser(opts: MicAnalyserOptions = {}): MicAnalyse
       start().catch(console.error);
     }
     return () => stop();
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [autoStart]);
 
   return {
     get ctx() { return ctxRef.current; },

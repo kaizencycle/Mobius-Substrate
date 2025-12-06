@@ -1,11 +1,24 @@
 'use client'
-export default function SearchResults({ results }: { results: any }) {
+
+interface SearchItem {
+  id: string;
+  title: string;
+  content: string;
+  topics?: string[];
+}
+
+interface SearchResultsData {
+  total?: number;
+  items?: SearchItem[];
+}
+
+export default function SearchResults({ results }: { results: SearchResultsData | null }) {
   if (!results) return null
   return (
     <div>
       <p className="text-gray-600 mb-4">Found {results.total || 0} results</p>
       <div className="space-y-4">
-        {results.items?.map((item: any) => (
+        {results.items?.map((item) => (
           <div key={item.id} className="border rounded-lg p-4">
             <h3 className="font-semibold text-lg">{item.title}</h3>
             <p className="text-gray-600 mt-2">{item.content}</p>
