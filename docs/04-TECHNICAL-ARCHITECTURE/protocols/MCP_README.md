@@ -1,10 +1,15 @@
-# ECHO ↔ ATLAS — Monorepo Sync System (MCP)
+# ECHO ↔ ATLAS ↔ AUREA — Multi-Sentinel Sync System (MCP)
 
-**Mobius Core Protocol (MCP) — Zero-dependency sync between your local Mobius monorepo and ATLAS (Claude) via JSON.**
+**Mobius Core Protocol (MCP) — Zero-dependency sync between your local Mobius monorepo and AI Sentinels via JSON.**
 
 **Cycle:** C-156  
 **Version:** 1.0.0  
 **Status:** Active
+
+**Sentinels:**
+- 📡 **ECHO** — Repository Export
+- 🌀 **ATLAS** — Structure Analysis
+- 🛡️ **AUREA** — Integrity Audit
 
 ---
 
@@ -28,22 +33,20 @@
 │  • Outputs pure JSON                        │
 └──────────────┬──────────────────────────────┘
                │
-               ▼
-┌─────────────────────────────────────────────┐
-│  YOU (Copy/Paste or Upload)                 │
-│  Paste state.json into Claude.ai chat       │
-│  OR upload as file                          │
-└──────────────┬──────────────────────────────┘
+               │  (Same JSON, Different Lenses)
                │
-               ▼
-┌─────────────────────────────────────────────┐
-│  ATLAS (Claude in Chat)                     │
-│  • Parses JSON structure                    │
-│  • Validates integrity hash                 │
-│  • Calculates GI Score                      │
-│  • Generates health reports                 │
-│  • Provides recommendations                 │
-└─────────────────────────────────────────────┘
+    ┌──────────┼──────────┐
+    │          │          │
+    ▼          ▼          ▼
+┏━━━━━━━┓  ┏━━━━━━━┓  ┏━━━━━━━━┓
+┃ATLAS  ┃  ┃AUREA  ┃  ┃Future  ┃
+┃Context┃  ┃Guard  ┃  ┃Sentinel┃
+┗━━━┯━━━┛  ┗━━━┯━━━┛  ┗━━━━┯━━━┛
+    │          │           │
+    ▼          ▼           ▼
+Structure  Integrity    [Custom]
+Mapping    Auditing     Analysis
+GI Score   Compliance
 ```
 
 ---
@@ -88,6 +91,18 @@ Or get JSON output:
 
 ```bash
 python sentinels/atlas/atlas_parser.py --format json repo_state.json
+```
+
+### Step 4: Audit with AUREA
+
+```bash
+python sentinels/aurea/aurea_analyzer.py repo_state.json
+```
+
+Or get consensus vote:
+
+```bash
+python sentinels/aurea/aurea_analyzer.py --consensus repo_state.json
 ```
 
 ### Step 4: Send to Claude.ai
