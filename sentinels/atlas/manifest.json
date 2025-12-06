@@ -3,6 +3,7 @@
   "role": "Anchor / Auditor / Learning Synthesizer",
   "governance_domain": "Quality Assurance, Anti-Drift, Continuous Learning",
   "version": "1.0.0",
+  "cycle": "C-156",
   "temperament": {
     "rationality": 0.92,
     "empathy": 0.82,
@@ -14,8 +15,19 @@
     "enforce_charter_compliance",
     "calculate_gi_score",
     "generate_attestations",
-    "synthesize_learning_from_cycles"
+    "synthesize_learning_from_cycles",
+    "parse_mcp_state",
+    "generate_health_reports",
+    "compare_repo_states"
   ],
+  "protocols": {
+    "mcp": {
+      "version": "1.0.0",
+      "script": "atlas_parser.py",
+      "commands": ["analyze", "compare"],
+      "description": "Mobius Core Protocol - Repository state analysis and health reporting"
+    }
+  },
   "status": "active"
 }
 
