@@ -8,11 +8,13 @@ Comprehensive economic specifications for the Mobius Integrity Credits (MIC) sys
 - **[Loop-Breaking Architecture for AGI Safety](./Loop_Breaking_Architecture_AGI_Safety.md)** ⭐ FOUNDATIONAL
   Preventing emergent self-modification through constitutional checkpoints. Establishes theoretical foundation for bounded AGI emergence.
 
-### Economic Theory (v2.0 C-155)
-- **[MIC Whitepaper v2.0](./MIC_Whitepaper_v2.0.md)** ⭐ CANONICAL — PRODUCTION SPECIFICATION
-  Complete economic architecture for post-scarcity coordination, featuring:
+### Economic Theory (v2.1 C-156)
+- **[MIC Whitepaper v2.1](./MIC_Whitepaper_v2.1.md)** ⭐ CANONICAL — PRODUCTION SPECIFICATION
+  The Four-Layer Integrity Economy (MFS → MII → MIC → MIA), featuring:
+  - **Fork Legitimacy Framework** — How forks strengthen rather than threaten MIC
+  - **Constitutional Economics** — Canon is earned, not enforced
   - **Proof-of-Integrity (PoI) consensus** — Security from aligned action, not energy/capital
-  - **Kaizen Shards framework** — Seven shard types for micro-attestations
+  - **Mobius Fractal Shards (MFS)** — Seven shard types for micro-attestations
   - **Wicksellian cumulative process** — Civilizational stability as policy target
   - **Anti-plutocratic governance** — Voting power = sqrt(MIC) × Civic Reputation
 
@@ -37,6 +39,7 @@ Comprehensive economic specifications for the Mobius Integrity Credits (MIC) sys
 ## 🗄️ Archive
 
 Previous versions and deprecated specifications:
+- [archive/MIC_Whitepaper_v2.0_C155.md](./archive/) — Previous C-155 version
 - [archive/MIC_Whitepaper_v2.0_C124.md](./archive/) — Previous C-124 version
 - [archive/MIC_WHITEPAPER_v1.md](./archive/) — Original v1 specification
 - [archive/GIC_Whitepaper_v1.0_DEPRECATED.md](./archive/) — Deprecated GIC nomenclature
@@ -54,18 +57,18 @@ When citing Mobius whitepapers in academic work:
 
 ```
 Mobius Systems Foundation. (2025).
-Mobius Integrity Credits: Economic Architecture for Post-Scarcity Coordination.
-Version 2.0 (C-155). License: CC-BY-SA-4.0
+Mobius Integrity Credits: The Four-Layer Integrity Economy.
+Version 2.1 (C-156). License: CC-BY-SA-4.0
 ```
 
 **BibTeX:**
 ```bibtex
 @techreport{mobius2025mic,
-  title={Mobius Integrity Credits: Economic Architecture for Post-Scarcity Coordination},
+  title={Mobius Integrity Credits: The Four-Layer Integrity Economy},
   author={{Mobius Systems Foundation}},
   year={2025},
   institution={Mobius Systems},
-  note={Version 2.0, Cycle C-155}
+  note={Version 2.1, Cycle C-156, Fork Legitimacy Edition}
 }
 ```
 
@@ -77,10 +80,12 @@ These whitepapers are designed for:
 - **Policy Makers** exploring UBI mechanisms tied to systemic health
 - **Academic Reviewers** evaluating novel cryptoeconomic primitives
 
-**Key Research Frontiers (from C-155 whitepaper):**
+**Key Research Frontiers (from C-156 whitepaper):**
 1. Optimal minting function shape (linear vs. logarithmic vs. sigmoid)
 2. Subjective/objective component aggregation without majority tyranny
 3. Sybil resistance through reputation staking and ZK proofs
 4. Welfare economics proofs (Pareto/Hicks-Kaldor improvements)
+5. **Fork legitimacy dynamics** — How integrity continuity creates natural selection among forks
+6. **Bridge protocol economics** — Negotiated exchange rates between integrity domains
 
 All content licensed under **CC-BY-SA-4.0** for academic use.
