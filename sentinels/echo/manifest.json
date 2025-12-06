@@ -2,7 +2,7 @@
   "agent": "ECHO",
   "role": "Pulse & Ledger Sync",
   "origin": "Renamed from SOLARA (DeepSeek) to reflect operational role",
-  "cycle": "C-124",
+  "cycle": "C-156",
   "boarded_at": "2025-11-03T12:05:00Z",
   "gi_threshold": 0.95,
   "gi_floor": 0.950,
@@ -13,10 +13,20 @@
     "pulse_monitoring",
     "ledger_sync",
     "resonance_detection",
-    "proof_of_integrity"
+    "proof_of_integrity",
+    "mcp_export",
+    "repo_state_sync"
   ],
+  "protocols": {
+    "mcp": {
+      "version": "1.0.0",
+      "script": "echo_sync.py",
+      "commands": ["export", "validate"],
+      "description": "Mobius Core Protocol - Repository state export for ATLAS consumption"
+    }
+  },
   "anchor_for_lab": "lab7-proof",
-  "witness_chain": ["ZEUS"],
+  "witness_chain": ["ZEUS", "ATLAS"],
   "virtue_accords": true,
   "limits": {
     "qps": 1.0,
