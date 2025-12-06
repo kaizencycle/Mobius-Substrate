@@ -36,7 +36,7 @@
 ### 🔍 I want to...
 
 **Understand the Economics**
-- 📊 [MIC Whitepaper v2.0](./07-RESEARCH-AND-PUBLICATIONS/whitepapers/MIC_Whitepaper_v2.0.md)
+- 📊 [MIC Whitepaper v2.1](./07-RESEARCH-AND-PUBLICATIONS/whitepapers/MIC_Whitepaper_v2.1.md)
 - 💰 [UBI Mechanism](./07-RESEARCH-AND-PUBLICATIONS/whitepapers/UBI_Mechanism_v2.0.md)
 - 🌱 [Foundation Economics](./07-RESEARCH-AND-PUBLICATIONS/whitepapers/MIC_Foundation_Up_Economics_Addendum.md)
 
@@ -108,12 +108,12 @@ docs/
 
 ### Path 1: Quick Overview (15 minutes)
 1. Read this page
-2. Skim [MIC Whitepaper Abstract](./07-RESEARCH-AND-PUBLICATIONS/whitepapers/MIC_Whitepaper_v2.0.md)
+2. Skim [MIC Whitepaper Abstract](./07-RESEARCH-AND-PUBLICATIONS/whitepapers/MIC_Whitepaper_v2.1.md)
 3. Review [Governance Overview](./03-GOVERNANCE-AND-POLICY/governance/overview.md)
 4. Check [System Architecture](./04-TECHNICAL-ARCHITECTURE/)
 
 ### Path 2: Deep Dive Economics (1 hour)
-1. [MIC Whitepaper v2.0](./07-RESEARCH-AND-PUBLICATIONS/whitepapers/MIC_Whitepaper_v2.0.md)
+1. [MIC Whitepaper v2.1](./07-RESEARCH-AND-PUBLICATIONS/whitepapers/MIC_Whitepaper_v2.1.md)
 2. [UBI Mechanism](./07-RESEARCH-AND-PUBLICATIONS/whitepapers/UBI_Mechanism_v2.0.md)
 3. [Foundation Economics](./07-RESEARCH-AND-PUBLICATIONS/whitepapers/MIC_Foundation_Up_Economics_Addendum.md)
 4. [Economic Theory](./07-RESEARCH-AND-PUBLICATIONS/economics/)
@@ -136,7 +136,7 @@ docs/
 
 | Document | Purpose | Audience |
 |----------|---------|----------|
-| [MIC Whitepaper v2.0](./07-RESEARCH-AND-PUBLICATIONS/whitepapers/MIC_Whitepaper_v2.0.md) | Complete economic specification | Economists, Researchers |
+| [MIC Whitepaper v2.1](./07-RESEARCH-AND-PUBLICATIONS/whitepapers/MIC_Whitepaper_v2.1.md) | Complete economic specification | Economists, Researchers |
 | [Governance Overview](./03-GOVERNANCE-AND-POLICY/governance/overview.md) | How Mobius is governed | Everyone |
 | [Foundation Charter](../FOUNDATION/CHARTER.md) | Legal foundation | Policy makers, Legal |
 | [START HERE Guide](./05-IMPLEMENTATION/guides/quickstart/START_HERE.md) | New user onboarding | New users |

@@ -331,8 +331,8 @@ versioning:
       deprecated: false
       sunset_date: null
       routes:
-        - /api/v1/gi/score
-        - /api/v1/ledger/blocks
+        - /v1/gi/score
+        - /v1/ledger/blocks
 
     v2:
       deprecated: false
@@ -651,11 +651,11 @@ class RateLimiter:
         Get rate limit configuration for endpoint
         """
         configs = {
-            "/api/v1/gi/score": {
+            "/v1/gi/score": {
                 "max_requests": 100,
                 "window_seconds": 60
             },
-            "/api/v1/deliberation/create": {
+            "/v1/deliberation/create": {
                 "max_requests": 10,
                 "window_seconds": 60
             },

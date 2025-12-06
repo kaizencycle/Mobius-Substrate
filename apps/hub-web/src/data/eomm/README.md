@@ -12,7 +12,7 @@ Each entry is a JSON file with the following required fields:
   "timestamp": "2025-10-18T07:58:00-04:00",
   "agent": "eve",
   "cycle": "C-108",
-  "content": "Intent: merge beacon validation PRs; start Gate v0; sweep OAAGÂ∆DVA.",
+  "content": "Intent: merge beacon validation PRs; start Gate v0; sweep OAAGDVA.",
   "tags": ["clockin","intent"]
 }
 ```

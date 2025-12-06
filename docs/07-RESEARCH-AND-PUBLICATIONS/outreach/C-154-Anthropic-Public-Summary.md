@@ -116,7 +116,7 @@ This marks an important milestone in the emergence of civic AI.
 
 - [Full Interview Transcript](../../cycles/C-154-Anthropic-Interview-Civic-AI-Vision.md)
 - [Executive Summary](../C-154-Anthropic-Interview-Executive-Summary.md)
-- [MIC Whitepaper](../whitepapers/MIC_Whitepaper_v2.0.md)
+- [MIC Whitepaper](../whitepapers/MIC_Whitepaper_v2.1.md)
 
 ---
 

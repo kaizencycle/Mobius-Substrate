@@ -152,7 +152,7 @@ Find documents by ID in the [Master Index](./MASTER_INDEX.md#document-index-by-c
 ## Common Searches
 
 ### "Where is the MIC whitepaper?"
-📄 **Answer**: [07-RESEARCH-AND-PUBLICATIONS/whitepapers/MIC_Whitepaper_v2.0.md](../07-RESEARCH-AND-PUBLICATIONS/whitepapers/MIC_Whitepaper_v2.0.md)  
+📄 **Answer**: [07-RESEARCH-AND-PUBLICATIONS/whitepapers/MIC_Whitepaper_v2.1.md](../07-RESEARCH-AND-PUBLICATIONS/whitepapers/MIC_Whitepaper_v2.1.md)  
 **Doc ID**: WP-2025-001
 
 ### "How do I deploy Mobius?"
@@ -277,7 +277,7 @@ Category (00-10)
 | Browse by topic | [Subject Index](./SUBJECT_INDEX.md) |
 | Learn architecture | [Technical Architecture](../04-TECHNICAL-ARCHITECTURE/) |
 | Deploy system | [Deployment Guides](../05-IMPLEMENTATION/guides/deployment/) |
-| Understand economics | [MIC Whitepaper](../07-RESEARCH-AND-PUBLICATIONS/whitepapers/MIC_Whitepaper_v2.0.md) |
+| Understand economics | [MIC Whitepaper](../07-RESEARCH-AND-PUBLICATIONS/whitepapers/MIC_Whitepaper_v2.1.md) |
 | Read governance | [Governance Overview](../03-GOVERNANCE-AND-POLICY/governance/overview.md) |
 | Access APIs | [API Reference](../08-REFERENCE/api/) |
 | Find runbooks | [Operations](../06-OPERATIONS/) |

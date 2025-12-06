@@ -73,7 +73,7 @@ kaizen-cycle/
 │   │   ├── festival_of_echoes.md      ← Quarterly governance
 │   │   └── elder_thrones.md           ← Human oversight
 │   │
-│   └── api/                           ← API documentation
+│   └── /api/                           ← API documentation
 │       ├── civic_ledger_api.md
 │       ├── codex_router_api.md
 │       ├── eomm_api.md
@@ -119,7 +119,7 @@ kaizen-cycle/
 │   │   ├── tests/
 │   │   └── requirements.txt
 │   │
-│   ├── api/                           ← REST API
+│   ├── /api/                           ← REST API
 │   │   ├── src/
 │   │   │   ├── main.py                ← FastAPI app
 │   │   │   ├── routes/

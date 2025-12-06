@@ -112,7 +112,7 @@ workspace/
 │   │   ├── __tests__/      # Jest/Vitest tests
 │   │   └── test_*.py       # pytest tests
 │   ├── integration/        # Integration tests
-│   │   ├── api/            # API integration tests
+│   │   ├── /api/            # API integration tests
 │   │   └── services/       # Service integration tests
 │   ├── e2e/                # End-to-end tests
 │   │   ├── flows/          # User flow tests

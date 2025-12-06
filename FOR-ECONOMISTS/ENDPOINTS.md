@@ -294,7 +294,7 @@ score = (0.4×apps + 0.3×packages + 0.2×workflows + 0.1×(10-drift)) × (1 + l
 threshold = 95 - 2*log10(total_MIC/1e6)
 ```
 
-**Full Documentation**: [MIC Coordination Economics](./MIC_COORDINATION.md)
+**Full Documentation**: [MIC Coordination Economics](../docs/02-THEORETICAL-FOUNDATIONS/cathedrals/FOR-ECONOMISTS/MIC_COORDINATION.md)
 
 ---
 
@@ -328,7 +328,7 @@ threshold = 95 - 2*log10(total_MIC/1e6)
 ## Related Documentation
 
 - [Market Cathedral Overview](./README.md)
-- [MIC Coordination Economics](./MIC_COORDINATION.md)
+- [MIC Coordination Economics](../docs/02-THEORETICAL-FOUNDATIONS/cathedrals/FOR-ECONOMISTS/MIC_COORDINATION.md)
 - [Economic Models](./ECONOMIC-MODELS/)
 - [Complete API Specification](./endpoints.json)
 

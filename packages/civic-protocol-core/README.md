@@ -36,7 +36,7 @@ civic-protocol-core/
 │       ├── src/
 │       │   ├── components/    # React components
 │       │   ├── pages/         # App pages
-│       │   └── api/           # API client
+│       │   └── /api/           # API client
 │       ├── package.json
 │       └── README.md
 ├── integrations/               # Integration Components

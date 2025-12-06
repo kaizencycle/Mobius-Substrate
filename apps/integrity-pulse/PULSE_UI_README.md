@@ -8,7 +8,7 @@ Two renderers:
 npm i three @react-three/fiber @react-three/drei @react-three/postprocessing
 
 ## Env
-NEXT_PUBLIC_PULSE_API=https://your-api/pulse
+NEXT_PUBLIC_PULSE_API=https://your-/api/pulse
 
 ## Files
 - components/IntegrityPulseSVG.tsx

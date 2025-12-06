@@ -25,7 +25,7 @@ MOBIUS_CYCLE="C-150" MOBIUS_MII="0.972" ./scripts/mobius_pulse_json.sh > infra/p
 ### Send a Pulse to the Indexer API
 
 ```bash
-curl -X POST https://your-api/api/v1/pulse/ingest?source=manual \
+curl -X POST https://your-/api/v1/pulse/ingest?source=manual \
   -H "Content-Type: application/json" \
   --data-binary @infra/pulses/mobius_pulse_latest.json
 ```

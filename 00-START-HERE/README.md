@@ -107,7 +107,7 @@ I need policy briefs, legislative text, and implementation roadmaps.
 
 Looking for the technical implementation?
 
-**[Enter Technical Cathedral →](../IMPLEMENTATION/)**
+**[Enter Technical Cathedral →](../docs/05-IMPLEMENTATION/)**
 
 Or browse directly:
 - [apps/](../apps/) — Core applications
@@ -120,7 +120,7 @@ Or browse directly:
 ## 📚 Documentation
 
 - **Full Documentation:** [docs/](../docs/)
-- **Architecture:** [ARCHITECTURE.md](../ARCHITECTURE.md)
+- **Architecture:** [ARCHITECTURE.md](../docs/04-TECHNICAL-ARCHITECTURE/overview/ARCHITECTURE.md)
 - **Foundation:** [FOUNDATION/](../FOUNDATION/)
 - **Contributing:** [FOUNDATION/PROCESS/](../FOUNDATION/PROCESS/)
 

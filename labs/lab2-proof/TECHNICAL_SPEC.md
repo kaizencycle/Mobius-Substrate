@@ -610,25 +610,25 @@ def calculate_gi_score(checks):
 
 ```yaml
 # Deliberation Management
-POST /api/v1/deliberation/create
-GET  /api/v1/deliberation/{delib_id}
-POST /api/v1/deliberation/{delib_id}/cancel
-GET  /api/v1/deliberation/{delib_id}/status
+POST /v1/deliberation/create
+GET  /v1/deliberation/{delib_id}
+POST /v1/deliberation/{delib_id}/cancel
+GET  /v1/deliberation/{delib_id}/status
 
 # Model Management
-GET  /api/v1/models/available
-POST /api/v1/models/register
-GET  /api/v1/models/{model_id}/health
+GET  /v1/models/available
+POST /v1/models/register
+GET  /v1/models/{model_id}/health
 
 # Consensus
-GET  /api/v1/consensus/{delib_id}
-POST /api/v1/consensus/validate
-GET  /api/v1/consensus/history
+GET  /v1/consensus/{delib_id}
+POST /v1/consensus/validate
+GET  /v1/consensus/history
 
 # DelibProofs
-GET  /api/v1/delibproof/{delib_id}
-POST /api/v1/delibproof/verify
-GET  /api/v1/delibproof/search
+GET  /v1/delibproof/{delib_id}
+POST /v1/delibproof/verify
+GET  /v1/delibproof/search
 ```
 
 ### WebSocket API (Real-time)

@@ -74,7 +74,7 @@ curl https://your-project.vercel.app/
 
 The API Gateway uses Vercel serverless functions:
 
-- **Entry Point**: `api/index.ts` - Handles all routes via Express middleware
+- **Entry Point**: `/api/index.ts` - Handles all routes via Express middleware
 - **Routing**: All requests are rewritten to `/api` which routes to the serverless function
 - **Proxy**: Proxies requests to backend services (ledger, lab4, lab6, etc.)
 - **Middleware**: Includes integrity checks, rate limiting, CORS, and security headers
@@ -99,7 +99,7 @@ These are automatically built during the Vercel build process via the `buildComm
 
 ### Issue: TypeScript compilation errors
 
-**Solution**: Vercel automatically compiles TypeScript in the `api/` directory. Ensure:
+**Solution**: Vercel automatically compiles TypeScript in the `/api/` directory. Ensure:
 - `@vercel/node` is installed as a dependency
 - TypeScript types are properly configured in `tsconfig.json`
 

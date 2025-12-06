@@ -21,7 +21,7 @@
 
 **Key Documents**:
 - `01-whitepapers/Loop_Breaking_Architecture_AGI_Safety.md` → MS-DOC-001
-- `01-whitepapers/MIC_Whitepaper_v2.0.md` → MS-DOC-002
+- `01-whitepapers/MIC_Whitepaper_v2.1.md` → MS-DOC-002
 - `05-research/foundations/foundational_blueprint_integrity_economy_v2.md` → MS-DOC-003
 - `05-research/foundations/kaizen_theorems.md` → MS-DOC-004
 - `05-research/ktt/` → MS-DOC-005

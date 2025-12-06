@@ -45,7 +45,7 @@ GET /health
 Response: { "status": "healthy", "gi": 0.993 }
 
 # Submit event to ledger
-POST /api/v1/ledger/event
+POST /v1/ledger/event
 Headers: { "Content-Type": "application/json" }
 Body: {
   "type": "consensus.session.opened",
@@ -59,15 +59,15 @@ Body: {
 Response: { "tx_id": "...", "block_number": 12345 }
 
 # Get ledger entries
-GET /api/v1/ledger/entries?limit=10&offset=0
+GET /v1/ledger/entries?limit=10&offset=0
 Response: { "entries": [...], "total": 1000 }
 
 # Get specific transaction
-GET /api/v1/ledger/tx/:tx_id
+GET /v1/ledger/tx/:tx_id
 Response: { "tx_id": "...", "block": {...}, "status": "confirmed" }
 
 # Calculate GI score
-POST /api/v1/gi/score
+POST /v1/gi/score
 Body: {
   "agent_id": "atlas@civic.os",
   "action": { "type": "data_collection" },
@@ -97,7 +97,7 @@ NEXT_PUBLIC_LEDGER_BASE=https://civic-protocol-core-ledger.onrender.com
 
 ```http
 # Save context/memory
-POST /api/v1/eomm/save
+POST /v1/eomm/save
 Body: {
   "session_id": "homeroom_001",
   "type": "consensus",
@@ -111,14 +111,14 @@ Body: {
 Response: { "memory_id": "mem_123", "stored_at": "..." }
 
 # Retrieve context
-GET /api/v1/eomm/recall?session_id=homeroom_001&limit=5
+GET /v1/eomm/recall?session_id=homeroom_001&limit=5
 Response: {
   "memories": [...],
   "context_summary": "Recent consensus sessions..."
 }
 
 # Search memories
-POST /api/v1/eomm/search
+POST /v1/eomm/search
 Body: {
   "query": "consensus approvals",
   "tags": ["consensus"],
@@ -127,7 +127,7 @@ Body: {
 Response: { "results": [...], "total": 15 }
 
 # Get current cycle
-GET /api/v1/cycle/current
+GET /v1/cycle/current
 Response: { "cycle": "C-118", "gi": 0.993, "room": "Consensus Chamber" }
 ```
 
@@ -152,7 +152,7 @@ NEXT_PUBLIC_LAB4_BASE=https://hive-api-2le8.onrender.com
 
 ```http
 # Validate agent GI score
-POST /api/v1/shield/validate
+POST /v1/shield/validate
 Body: {
   "agent_id": "atlas@civic.os",
   "gi_score": 0.987,
@@ -161,7 +161,7 @@ Body: {
 Response: { "valid": true, "threshold": 0.95, "passed": true }
 
 # Check rate limits
-GET /api/v1/shield/rate-limit/:agent_id
+GET /v1/shield/rate-limit/:agent_id
 Response: {
   "agent_id": "atlas@civic.os",
   "requests_remaining": 45,
@@ -169,7 +169,7 @@ Response: {
 }
 
 # Security audit log
-POST /api/v1/shield/audit
+POST /v1/shield/audit
 Body: {
   "event_type": "access_denied",
   "agent_id": "rogue@agent.os",
@@ -199,7 +199,7 @@ NEXT_PUBLIC_LAB6_BASE=https://lab6-proof-api.onrender.com
 
 ```http
 # Parse natural language intent
-POST /api/v1/oaa/parse
+POST /v1/oaa/parse
 Body: {
   "text": "Create a consensus session to approve Lab3 changes",
   "context": { "user_id": "michael@kaizen.os" }
@@ -211,7 +211,7 @@ Response: {
 }
 
 # Create orchestrated task
-POST /api/v1/oaa/task
+POST /v1/oaa/task
 Body: {
   "type": "consensus_deliberation",
   "participants": ["AUREA", "ATLAS", "ZENITH"],
@@ -221,7 +221,7 @@ Body: {
 Response: { "task_id": "task_789", "status": "pending" }
 
 # Get task status
-GET /api/v1/oaa/task/:task_id
+GET /v1/oaa/task/:task_id
 Response: {
   "task_id": "task_789",
   "status": "completed",
@@ -250,7 +250,7 @@ NEXT_PUBLIC_LAB7_BASE=https://lab7-proof.onrender.com
 
 ```http
 # Get MIC balance
-GET /api/v1/gic/balance/:address
+GET /v1/gic/balance/:address
 Response: {
   "address": "atlas@civic.os",
   "balance": "1500.00",
@@ -258,7 +258,7 @@ Response: {
 }
 
 # Get transaction history
-GET /api/v1/gic/transactions/:address?limit=10
+GET /v1/gic/transactions/:address?limit=10
 Response: {
   "transactions": [
     {
@@ -273,7 +273,7 @@ Response: {
 }
 
 # Get total supply
-GET /api/v1/gic/supply
+GET /v1/gic/supply
 Response: {
   "total_supply": "1000000000",
   "circulating": "15000000",
@@ -302,7 +302,7 @@ NEXT_PUBLIC_GIC_BASE=https://gic-indexer.onrender.com
 
 ```http
 # Verify signature
-POST /api/v1/crypto/verify
+POST /v1/crypto/verify
 Body: {
   "data": {...},
   "signature": "ed25519:...",
@@ -311,7 +311,7 @@ Body: {
 Response: { "valid": true }
 
 # Get system status
-GET /api/v1/system/status
+GET /v1/system/status
 Response: {
   "labs": {
     "lab1": { "status": "healthy", "latency_ms": 45 },
@@ -323,7 +323,7 @@ Response: {
 }
 
 # Cross-lab event relay
-POST /api/v1/relay/event
+POST /v1/relay/event
 Body: {
   "source": "lab2",
   "target": "lab1",
@@ -350,7 +350,7 @@ NEXT_PUBLIC_OAA_API_LIBRARY=https://oaa-api-library.onrender.com
 All protected endpoints require JWT authentication:
 
 ```http
-POST /api/v1/auth/token
+POST /v1/auth/token
 Body: {
   "agent_id": "atlas@civic.os",
   "public_key": "SFrlLxcgOfW5Uqei+13VFVp/nhOigQkFzY87NllF2bU="
@@ -361,7 +361,7 @@ Response: {
 }
 
 # Use in requests:
-GET /api/v1/protected/resource
+GET /v1/protected/resource
 Headers: { "Authorization": "Bearer eyJhbGc..." }
 ```
 
@@ -374,7 +374,7 @@ For cryptographic attestation:
 const signature = ed25519.sign(data, privateKey);
 
 // Verify via API
-POST /api/v1/crypto/verify
+POST /v1/crypto/verify
 Body: {
   "data": data,
   "signature": signature,
@@ -475,7 +475,7 @@ curl https://oaa-api-library.onrender.com/health
 
 ```bash
 # Submit event to ledger
-curl -X POST https://civic-protocol-core-ledger.onrender.com/api/v1/ledger/event \
+curl -X POST https://civic-protocol-core-ledger.onrender.com/v1/ledger/event \
   -H "Content-Type: application/json" \
   -d '{
     "type": "test_event",
@@ -484,10 +484,10 @@ curl -X POST https://civic-protocol-core-ledger.onrender.com/api/v1/ledger/event
   }'
 
 # Get current cycle
-curl https://hive-api-2le8.onrender.com/api/v1/cycle/current
+curl https://hive-api-2le8.onrender.com/v1/cycle/current
 
 # Check MIC balance
-curl https://gic-indexer.onrender.com/api/v1/gic/balance/atlas@civic.os
+curl https://gic-indexer.onrender.com/v1/gic/balance/atlas@civic.os
 ```
 
 ---
@@ -554,7 +554,7 @@ CORS_ORIGINS=https://kaizen-os.vercel.app,http://localhost:3000
 ```bash
 # Check JWT token validity
 curl -H "Authorization: Bearer YOUR_TOKEN" \
-  https://civic-protocol-core-ledger.onrender.com/api/v1/verify
+  https://civic-protocol-core-ledger.onrender.com/v1/verify
 ```
 
 ---

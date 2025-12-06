@@ -48,7 +48,7 @@ Lab 2: Thought Broker
 │   │   ├── src/consensus/uriel.ts     # Uriel Sentinel integration
 │   │   └── src/sentinels/uriel.ts     # Situational Report generation
 │   └── apps/api-gateway/
-│       ├── api/index.ts               # Unified API surface
+│       ├── /api/index.ts               # Unified API surface
 │       └── vercel.json                # Serverless deployment
 │
 ├── Consensus Proofs

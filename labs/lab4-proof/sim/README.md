@@ -93,7 +93,7 @@ sim/
 ├── alpha_cities_v0.py    # Core simulation engine
 └── README.md             # This file
 
-api/
+/api/
 ├── __init__.py
 ├── alpha_cities_api.py   # FastAPI simulation endpoints
 └── policy_alpha_civilization.py  # Sentinel Policy API

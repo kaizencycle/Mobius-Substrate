@@ -198,7 +198,7 @@ Each cycle generates:
 │   └── memory/
 │       └── fileStore.ts       # Memory persistence
 ├── pages/
-│   ├── api/
+│   ├── /api/
 │   │   ├── oaa/memory/        # Memory API
 │   │   ├── eve/               # Eve lifecycle
 │   │   └── dev/ledger/        # Ledger verification

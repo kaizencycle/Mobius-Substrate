@@ -62,7 +62,7 @@ This index provides a comprehensive, academically rigorous catalog of all docume
 - **Abstract**: Formal theoretical framework for preventing unbounded AI emergence through constitutional checkpoints.
 
 #### MS-DOC-002: MIC Whitepaper v2.0
-- **Path**: `docs/01-whitepapers/MIC_Whitepaper_v2.0.md`
+- **Path**: `docs/01-whitepapers/MIC_Whitepaper_v2.1.md`
 - **AR Level**: 5
 - **Category**: ECONOMICS
 - **Keywords**: Mobius Integrity Credits, tokenomics, UBI, incentive design

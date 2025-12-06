@@ -107,7 +107,7 @@ python scripts/generate_agent_keypairs.py --agent ATLAS
    - See `_request_deliberation()` TODO
 
 2. **Genesis Ledger API Deployment**
-   - Deploy endpoints: `/api/v1/commit`, `/api/v1/mic/balance/{agent_id}`
+   - Deploy endpoints: `/v1/commit`, `/v1/mic/balance/{agent_id}`
    - Register agent public keys
    - Implement Merkle tree generation
 

@@ -48,7 +48,7 @@ license: CC-BY-SA-4.0
 
 #### REST APIs
 - **Encyclopedia API** → `07-RESEARCH-AND-PUBLICATIONS/encyclopedia/API_SPEC.md` [ENC-2025-003]
-- **Ledger API** → See `specs/openapi/ledger.yaml`
+- **Ledger API** → See `specs/open/api/ledger.yaml`
 - **N8N Universal API** → `11-SUPPLEMENTARY/specs/N8N_UNIVERSAL_API.md`
 - **N8N Universal Flow API** → `11-SUPPLEMENTARY/specs/N8N_UNIVERSAL_FLOW_API.md`
 

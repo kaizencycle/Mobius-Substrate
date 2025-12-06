@@ -65,8 +65,8 @@ ledger = GenesisLedgerClient(
 ### Option B: Deploy Genesis Ledger API
 
 The Genesis Ledger API needs these endpoints:
-- `POST /api/v1/commit` - Commit attested entries
-- `GET /api/v1/mic/balance/{agent_id}` - Query MIC balances
+- `POST /v1/commit` - Commit attested entries
+- `GET /v1/mic/balance/{agent_id}` - Query MIC balances
 
 See `packages/ledger-api/` for reference implementation.
 

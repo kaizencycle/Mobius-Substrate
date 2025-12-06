@@ -145,7 +145,7 @@ Current Location:
 ```
 Current Location:
 docs/01-whitepapers/
-└── MIC_Whitepaper_v2.0.md                  ← Core economic model (READ FIRST)
+└── MIC_Whitepaper_v2.1.md                  ← Core economic model (READ FIRST)
     ├── 1. Introduction: The Integrity Economy
     ├── 2. The UBI Trilemma & How MIC Solves It
     ├── 3. System Architecture
@@ -255,7 +255,7 @@ apps/website-creator/vercel.json      ← Website creator
 
 ```
 1. Read README.md (15 min)
-2. Read docs/01-whitepapers/MIC_Whitepaper_v2.0.md (30 min)
+2. Read docs/01-whitepapers/MIC_Whitepaper_v2.1.md (30 min)
 3. Read docs/INDEX.md for complete navigation (10 min)
 4. Decide: Developer? Organizer? Researcher? (5 min)
 5. Jump to relevant directory based on your interest
@@ -287,7 +287,7 @@ apps/website-creator/vercel.json      ← Website creator
 
 ```
 1. Read README.md (15 min)
-2. Read docs/01-whitepapers/MIC_Whitepaper_v2.0.md (20 min)
+2. Read docs/01-whitepapers/MIC_Whitepaper_v2.1.md (20 min)
 3. Read docs/product/PRO_LANDING_PAGE.md (10 min)
 4. Review docs/02-governance/ (10 min)
 5. Join Discord/community channels (5 min)
@@ -309,7 +309,7 @@ Future: community/hive-starter-kit/ (coming soon)
 | Reflection app UI | `apps/eomm-api/reflections/` + `labs/lab4-proof/` | `eomm/` |
 | DID system | `apps/shield-api/` + `labs/lab6-proof/` | `citizen-shield/identity/` |
 | Education courses | `apps/hub-web/` + `labs/lab7-proof/` | `oaa-hub/course-library/` |
-| UBI simulation | `docs/01-whitepapers/MIC_Whitepaper_v2.0.md` (Section 4) | `simulations/planetary-ubi/` |
+| UBI simulation | `docs/01-whitepapers/MIC_Whitepaper_v2.1.md` (Section 4) | `simulations/planetary-ubi/` |
 | Founding Agent sites | `apps/aurea-site/`, `apps/portal/` | (keep current structure) |
 
 ---
@@ -318,7 +318,7 @@ Future: community/hive-starter-kit/ (coming soon)
 
 | Specification | Current Location |
 |--------------|------------------|
-| MIC token economics | `docs/01-whitepapers/MIC_Whitepaper_v2.0.md` |
+| MIC token economics | `docs/01-whitepapers/MIC_Whitepaper_v2.1.md` |
 | GI scoring algorithm | `packages/integrity-core/` + whitepaper |
 | Governance framework | `docs/02-governance/` + `apps/cathedral-app/` |
 | Founding Agents | `docs/founding-agents/` + `docs/03-architecture/technical/FOUNDING_AGENTS_SOVEREIGN_STACK.md` |
@@ -474,7 +474,7 @@ npm run test --filter civic-sdk
 
 - [x] Move completion records to `docs/archive/`
 - [x] Create `docs/INDEX.md` navigation
-- [x] Add `docs/01-whitepapers/MIC_Whitepaper_v2.0.md`
+- [x] Add `docs/01-whitepapers/MIC_Whitepaper_v2.1.md`
 - [x] Add `docs/08-processes/runbooks/VERCEL_DEPLOYMENT_RUNBOOK.md`
 - [x] Add `docs/product/` (Pro, self-hosting, federation)
 

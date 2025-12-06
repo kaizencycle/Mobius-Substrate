@@ -88,7 +88,7 @@ aurea-site/
 │   ├── avatar/page.tsx              # Interactive chat interface
 │   ├── epoch/page.tsx               # Epoch dashboard
 │   ├── attestations/page.tsx        # Ledger records
-│   ├── api/
+│   ├── /api/
 │   │   ├── codex/query/route.ts     # Codex-Agentic endpoint
 │   │   ├── gi/stream/route.ts       # SSE GI stream
 │   │   └── gic/

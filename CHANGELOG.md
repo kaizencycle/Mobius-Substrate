@@ -334,7 +334,7 @@ Early development under "Civic OS" branding:
 
 ### From 0.9.x to 1.0.0
 
-See [Migration Guide](docs/CIVIC_TO_KAIZEN_MIGRATION.md) *(to be created)*
+See [Migration Guide](MIGRATION_C155.md) for C-155 migration details
 
 Key changes:
 1. Update git remote to new monorepo

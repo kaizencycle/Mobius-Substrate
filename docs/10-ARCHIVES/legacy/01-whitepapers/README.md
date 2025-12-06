@@ -9,7 +9,7 @@ Comprehensive economic specifications for the Mobius Integrity Credits (MIC) sys
   Preventing emergent self-modification through constitutional checkpoints. Establishes theoretical foundation for bounded AGI emergence.
 
 ### Economic Theory (v2.0)
-- **[MIC Whitepaper v2.0](./MIC_Whitepaper_v2.0.md)** ⭐ CANONICAL
+- **[MIC Whitepaper v2.0](./MIC_Whitepaper_v2.1.md)** ⭐ CANONICAL
   Complete specification of shard-denominated integrity economy with MII-throttled UBI
 
 - **[UBI Mechanism v2.0](./UBI_Mechanism_v2.0.md)**

@@ -358,12 +358,12 @@ The Mobius Systems documentation follows a hierarchical classification system:
 
 | Doc ID | Title | Path | Status | Version |
 |--------|-------|------|--------|---------|
-| WP-2025-001 | MIC Whitepaper v2.0 | `07-RESEARCH-AND-PUBLICATIONS/whitepapers/MIC_Whitepaper_v2.0.md` | Published | 2.0.0 |
+| WP-2025-001 | MIC Whitepaper v2.0 | `07-RESEARCH-AND-PUBLICATIONS/whitepapers/MIC_Whitepaper_v2.1.md` | Published | 2.0.0 |
 | WP-2025-002 | UBI Mechanism v2.0 | `07-RESEARCH-AND-PUBLICATIONS/whitepapers/UBI_Mechanism_v2.0.md` | Published | 2.0.0 |
 | WP-2025-003 | Foundation Economics | `07-RESEARCH-AND-PUBLICATIONS/whitepapers/MIC_Foundation_Up_Economics_Addendum.md` | Published | 1.0.0 |
 | WP-2025-004 | Shard Economics | `07-RESEARCH-AND-PUBLICATIONS/whitepapers/Shard_Economics_Addendum.md` | Published | 1.0.0 |
 
-**🌟 Flagship Publication**: [MIC Whitepaper v2.0](../07-RESEARCH-AND-PUBLICATIONS/whitepapers/MIC_Whitepaper_v2.0.md)
+**🌟 Flagship Publication**: [MIC Whitepaper v2.0](../07-RESEARCH-AND-PUBLICATIONS/whitepapers/MIC_Whitepaper_v2.1.md)
 
 #### 720 - MIC Economics
 
@@ -517,7 +517,7 @@ Historical documents preserved in `10-ARCHIVES/`
 - **MEMT Overview** → `04-TECHNICAL-ARCHITECTURE/memt/MEMT_OVERVIEW.md` [MEMT-2025-001]
 - **MEMT Whitepaper** → `04-TECHNICAL-ARCHITECTURE/memt/MEMT_WHITEPAPER.md` [MEMT-2025-002]
 - **MIC Reward Formula** → `07-RESEARCH-AND-PUBLICATIONS/mic-economics/MIC_reward_formula.md` [MIC-2025-001]
-- **MIC Whitepaper v2.0** → `07-RESEARCH-AND-PUBLICATIONS/whitepapers/MIC_Whitepaper_v2.0.md` [WP-2025-001] ⭐
+- **MIC Whitepaper v2.0** → `07-RESEARCH-AND-PUBLICATIONS/whitepapers/MIC_Whitepaper_v2.1.md` [WP-2025-001] ⭐
 - **Mobius Philosophy** → `02-THEORETICAL-FOUNDATIONS/philosophy/MOBIUS_PHILOSOPHY.md` [PHIL-2025-001]
 - **Multi-Engine Broker** → `04-TECHNICAL-ARCHITECTURE/overview/MULTI_ENGINE_BROKER.md` [MEMT-2025-003]
 

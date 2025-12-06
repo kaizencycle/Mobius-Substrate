@@ -1165,19 +1165,19 @@ contract MobiusIntegrityToken {
 **MIC Indexer API** (Port 4002):
 
 ```yaml
-GET /api/v1/mic/balance/:address
+GET /v1/mic/balance/:address
   → Returns MIC balance for address
 
-GET /api/v1/mic/supply
+GET /v1/mic/supply
   → Returns total circulating supply
 
-GET /api/v1/mii/current
+GET /v1/mii/current
   → Returns current MII value
 
-POST /api/v1/shards/submit
+POST /v1/shards/submit
   → Submit new shard for evaluation
 
-GET /api/v1/distribution/:epoch
+GET /v1/distribution/:epoch
   → Returns distribution for specific epoch
 ```
 

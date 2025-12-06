@@ -142,13 +142,13 @@ Civilization Level (Daedalus Protocol)
 
 ### New Directories
 
-- `docs/02-architecture/economics/` — Negentropic economics framework
-- `docs/02-architecture/applications/global/` — Daedalus Protocol
+- `docs/04-TECHNICAL-ARCHITECTURE/economics/` — Negentropic economics framework
+- `docs/04-TECHNICAL-ARCHITECTURE/applications/global/` — Daedalus Protocol
 
 ### Updated Files
 
 - `docs/00-START-HERE/GLOSSARY.md` — Added negentropic terms
-- `docs/02-architecture/README.md` — Updated with new sections
+- `docs/04-TECHNICAL-ARCHITECTURE/README.md` — Updated with new sections
 - `docs/08-research/papers/negentropy-framework.md` — Academic paper
 
 ---

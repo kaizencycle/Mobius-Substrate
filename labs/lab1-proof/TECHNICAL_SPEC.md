@@ -350,34 +350,34 @@ class MerkleTree:
 
 ```yaml
 # GI Scoring
-GET  /api/v1/gi/score/{agent_id}
-POST /api/v1/gi/calculate
-GET  /api/v1/gi/history/{agent_id}
+GET  /v1/gi/score/{agent_id}
+POST /v1/gi/calculate
+GET  /v1/gi/history/{agent_id}
 
 # Civic Ledger
-GET  /api/v1/ledger/blocks/{block_number}
-GET  /api/v1/ledger/transactions/{tx_id}
-POST /api/v1/ledger/submit
-GET  /api/v1/ledger/state
+GET  /v1/ledger/blocks/{block_number}
+GET  /v1/ledger/transactions/{tx_id}
+POST /v1/ledger/submit
+GET  /v1/ledger/state
 
 # MIC Token
-GET  /api/v1/gic/balance/{address}
-POST /api/v1/gic/transfer
-GET  /api/v1/gic/history/{address}
-POST /api/v1/gic/mint  # Admin only
-POST /api/v1/gic/burn  # Admin only
+GET  /v1/gic/balance/{address}
+POST /v1/gic/transfer
+GET  /v1/gic/history/{address}
+POST /v1/gic/mint  # Admin only
+POST /v1/gic/burn  # Admin only
 
 # Attestation
-POST /api/v1/attest/sign
-POST /api/v1/attest/verify
-GET  /api/v1/attest/proof/{tx_id}
+POST /v1/attest/sign
+POST /v1/attest/verify
+GET  /v1/attest/proof/{tx_id}
 ```
 
 ### Example API Usage
 
 **Calculate GI Score:**
 ```bash
-curl -X POST http://localhost:5001/api/v1/gi/calculate \
+curl -X POST http://localhost:5001/v1/gi/calculate \
   -H "Content-Type: application/json" \
   -d '{
     "agent": "atlas@civic.os",
@@ -400,7 +400,7 @@ curl -X POST http://localhost:5001/api/v1/gi/calculate \
 
 **Submit Transaction to Ledger:**
 ```bash
-curl -X POST http://localhost:5001/api/v1/ledger/submit \
+curl -X POST http://localhost:5001/v1/ledger/submit \
   -H "Content-Type: application/json" \
   -d '{
     "type": "civic.reflection",

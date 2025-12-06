@@ -240,10 +240,10 @@ Unlike specialized sentinels who focus on specific domains, **Daedalus operates 
 
 ## Links
 
-- [Founding Agents Sovereign Stack](../docs/03-architecture/technical/FOUNDING_AGENTS_SOVEREIGN_STACK.md)
+- [Founding Agents Sovereign Stack](../docs/04-TECHNICAL-ARCHITECTURE/overview/technical/FOUNDING_AGENTS_SOVEREIGN_STACK.md)
 - [Consensus Configuration](../.github/consensus.yml)
 - [Sentinel Permissions](./permissions.json)
-- [MII Specification](../FORMAL_VERIFICATION.md)
+- [MII Specification](../docs/04-TECHNICAL-ARCHITECTURE/mii-spec.md)
 
 ---
 

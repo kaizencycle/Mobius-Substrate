@@ -116,7 +116,7 @@ GI_simulated = GI_current
 ## Linked Documents
 
 - [Full Interview Transcript](../cycles/C-154-Anthropic-Interview-Civic-AI-Vision.md)
-- [MIC Whitepaper v2.0](./whitepapers/MIC_Whitepaper_v2.0.md)
+- [MIC Whitepaper v2.0](./whitepapers/MIC_Whitepaper_v2.1.md)
 - [Sentinel Constitution](../03-GOVERNANCE-AND-POLICY/SENTINEL_CONSTITUTION.md)
 - [Public Summary](./outreach/C-154-Anthropic-Public-Summary.md)
 

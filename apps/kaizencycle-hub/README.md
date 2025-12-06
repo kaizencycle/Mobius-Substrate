@@ -6,7 +6,7 @@ Serves as the index hub for Lab4 (Reflections), Lab6 (Citizen Shield), Lab7 (OAA
 ## Structure
 - `index.html` — hero landing page (black–gold, modern serif)
 - `assets/styles.css` — site styles
-- `api/manifest.json` — machine-readable endpoints for agents
+- `/api/manifest.json` — machine-readable endpoints for agents
 - `docs/` — PDFs (executive summary, deck); add more papers here
 
 ## Deploy (GitHub Pages)

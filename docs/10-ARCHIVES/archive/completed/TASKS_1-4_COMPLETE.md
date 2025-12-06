@@ -157,24 +157,24 @@ for response in responses:
 **API Endpoints Defined:**
 ```yaml
 # Lab1 - Substrate
-GET  /api/v1/gi/score/{agentId}
-POST /api/v1/gi/calculate
-GET  /api/v1/ledger/blocks/{blockNumber}
+GET  /v1/gi/score/{agentId}
+POST /v1/gi/calculate
+GET  /v1/ledger/blocks/{blockNumber}
 
 # Lab2 - Thought Broker
-POST /api/v1/deliberation
-GET  /api/v1/deliberation/{id}
+POST /v1/deliberation
+GET  /v1/deliberation/{id}
 WS   /ws/deliberation/{id}
 
 # Lab4 - E.O.M.M.
-POST /api/v1/reflections
-GET  /api/v1/reflections
+POST /v1/reflections
+GET  /v1/reflections
 
 # Lab6 - Citizen Shield
-POST /api/v1/security/validate
+POST /v1/security/validate
 
 # Lab7 - OAA Hub
-POST /api/v1/oaa/parse
+POST /v1/oaa/parse
 ```
 
 ---

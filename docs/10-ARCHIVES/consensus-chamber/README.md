@@ -424,7 +424,7 @@ consensus_metrics:
 curl http://localhost:3000/api/cycle/current
 
 # Check active sessions
-curl http://localhost:8000/api/v1/consensus/sessions
+curl http://localhost:8000/v1/consensus/sessions
 ```
 
 ---

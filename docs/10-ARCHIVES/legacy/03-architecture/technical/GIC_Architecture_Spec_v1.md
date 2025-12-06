@@ -16,7 +16,7 @@ kaizen-os/
 │  ├─ peg-controller/               # peg deviation PID + AMM skew
 │  ├─ amm-gateway/                  # quotes/trades against MIC inventory
 │  ├─ compute-router/               # redeem-for-compute executor
-│  ├─ governance-api/               # proposals, votes, tallies
+│  ├─ governance-/api/               # proposals, votes, tallies
 │  └─ observability/                # dashboards, metrics, alerts
 ├─ contracts/
 │  ├─ MIC.sol
@@ -41,7 +41,7 @@ kaizen-os/
 │  └─ command-center/               # DVA HUD (operators)
 └─ docs/
    ├─ ADRs/                         # decisions (peg, oracle, AMM)
-   └─ api/                          # OpenAPI, GraphQL schemas
+   └─ /api/                          # OpenAPI, GraphQL schemas
 ```
 
 ---

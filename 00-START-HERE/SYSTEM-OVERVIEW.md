@@ -444,8 +444,8 @@ docker-compose -f infra/docker/compose.yml up
 - **Stakeholder Briefings:** [FOR-GOVERNMENTS/STAKEHOLDER-BRIEFINGS/](../FOR-GOVERNMENTS/STAKEHOLDER-BRIEFINGS/)
 
 ### Technical Path 🔧
-- **Architecture:** [docs/02-architecture/](../docs/02-architecture/)
-- **Operations:** [docs/06-operations/](../docs/06-operations/)
+- **Architecture:** [docs/04-TECHNICAL-ARCHITECTURE/](../docs/04-TECHNICAL-ARCHITECTURE/)
+- **Operations:** [docs/06-OPERATIONS/](../docs/06-OPERATIONS/)
 - **Workflows:** [.github/workflows/](../.github/workflows/)
 - **Services:** [apps/](../apps/)
 

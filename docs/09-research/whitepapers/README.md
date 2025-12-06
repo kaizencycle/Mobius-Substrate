@@ -26,7 +26,7 @@ This directory contains production-grade research papers and whitepapers documen
 ## Related Documentation
 
 - [Carrington Event Simulation](../../simulations/carrington-event-failure-model.md) - Empirical proof of resilience
-- [MIC Whitepaper v2.0](../../07-RESEARCH-AND-PUBLICATIONS/whitepapers/MIC_Whitepaper_v2.0.md) - Economic foundation
+- [MIC Whitepaper v2.0](../../07-RESEARCH-AND-PUBLICATIONS/whitepapers/MIC_Whitepaper_v2.1.md) - Economic foundation
 
 ## Contributing
 

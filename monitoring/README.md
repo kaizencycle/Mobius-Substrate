@@ -157,7 +157,7 @@ PROMETHEUS_URL=http://prometheus:9090
 
 # Loki
 LOKI_URL=http://loki:3100
-LOKI_PUSH_URL=http://loki:3100/loki/api/v1/push
+LOKI_PUSH_URL=http://loki:3100/loki/v1/push
 
 # Environment label
 ENV=prod

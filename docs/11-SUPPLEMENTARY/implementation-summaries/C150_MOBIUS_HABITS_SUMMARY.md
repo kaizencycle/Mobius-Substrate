@@ -129,7 +129,7 @@ apps/portal/
 │   │   └── page.tsx               # NEW: Citizen Shield page
 │   ├── habits/
 │   │   └── page.tsx               # NEW: Landing page
-│   └── api/
+│   └── /api/
 │       ├── shield/
 │       │   └── checklist/
 │       │       └── route.ts       # NEW: Shield API

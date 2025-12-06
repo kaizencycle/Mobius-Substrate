@@ -8,7 +8,7 @@ Mobius Habits v1 consists of two microservices:
 
 ```
 apps/
-  habits-api/        # Express API for reflections + shield
+  habits-/api/        # Express API for reflections + shield
   habits-web/        # Next.js frontend
 packages/
   integrity-core/    # MII/MIC/Shards calculation logic

@@ -244,7 +244,7 @@ kaizen-cycle/
 │
 ├── civic-ledger/                      ← Lab 1 implementation
 │   ├── indexer/                       ← GI score calculation
-│   ├── api/                           ← REST endpoints
+│   ├── /api/                           ← REST endpoints
 │   ├── schemas/                       ← JSON schemas for payloads
 │   └── README.md
 │

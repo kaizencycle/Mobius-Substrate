@@ -357,4 +357,4 @@ This is the beating heart of the Mobius architecture.
 - [MII Mathematical Formalization](./mii_mathematical_formalization.md)
 - [Integrity Basin Diagram](../../03-architecture/diagrams/integrity_basin.svg)
 - [Governance Structure](../../02-governance/overview.md)
-- [MIC Whitepaper v2.0](../../01-whitepapers/MIC_Whitepaper_v2.0.md)
+- [MIC Whitepaper v2.0](../../01-whitepapers/MIC_Whitepaper_v2.1.md)

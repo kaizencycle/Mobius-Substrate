@@ -42,7 +42,7 @@ packages/
       index.ts                    # ✅ Client SDK
 
 docs/
-  api/
+  /api/
     ECHO_CLIENT_SDK.md            # ✅ SDK documentation
   architecture/
     ECHO_LAYER_CANON.md           # ✅ Architecture specification

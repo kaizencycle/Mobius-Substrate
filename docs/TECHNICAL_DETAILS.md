@@ -370,7 +370,7 @@ This endpoint returns the complete Mobius Systems manifest bundle:
 
 ### Independence Manifest
 
-> 🕊️ [Read the Independence Manifest](docs/02-THEORETICAL-FOUNDATIONS/THE_INTERNET_BREATHES_AGAIN.md)
+> 🕊️ [Read the Independence Manifest](./02-THEORETICAL-FOUNDATIONS/THE_INTERNET_BREATHES_AGAIN.md)
 
 The Independence Manifest declares Mobius Systems sovereignty from any single LLM provider, ensuring:
 - **Model Agnosticism** - Any LLM can mount Mobius Systems state
@@ -444,15 +444,15 @@ These guardrails were implemented after a near-nuke incident where a process bug
 
 A nightly integrity snapshot of the monorepo is published via:
 
-- `GET /api/v1/pulse/latest` — latest Mobius pulse
-- `GET /api/v1/pulse/history` — pulse history (last 90 days)
-- `GET /api/v1/pulse/badge` — Shields.io badge JSON
-- `POST /api/v1/pulse/ingest` — internal, used by CI
+- `GET /v1/pulse/latest` — latest Mobius pulse
+- `GET /v1/pulse/history` — pulse history (last 90 days)
+- `GET /v1/pulse/badge` — Shields.io badge JSON
+- `POST /v1/pulse/ingest` — internal, used by CI
 
 **Example:**
 
 ```bash
-curl "$MOBIUS_INDEXER_BASE_URL/api/v1/pulse/latest" | jq
+curl "$MOBIUS_INDEXER_BASE_URL/v1/pulse/latest" | jq
 ```
 
 The portal uses this endpoint to render the Mobius Pulse Card, showing:

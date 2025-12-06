@@ -49,7 +49,7 @@ The `scripts/citation-hygiene.sh` script:
 
 ```json
 {
-  "title": "C-109 GÇô Gate v0 plan",
+  "title": "C-109 G Gate v0 plan",
   "timestamp": "2025-10-18T13:20:00Z",
   "agent": "eve",
   "cycle": "C-109",
@@ -63,7 +63,7 @@ The `scripts/citation-hygiene.sh` script:
     },
     {
       "type": "repo",
-      "name": "PR #42 GÇô Beacon writer",
+      "name": "PR #42 G Beacon writer",
       "url": "https://github.com/kaizencycle/OAA-API-Library/pull/42",
       "hash": "7fa92e8b5a9d6f4f0b"
     }

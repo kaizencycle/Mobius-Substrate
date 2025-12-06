@@ -370,7 +370,7 @@ The document now doubles as:
 - **Cycle:** C-154  
 - **Tags:** `external-interview`, `founder-philosophy`, `mobius-economics`, `civic-ai`  
 - **Linked Docs:**  
-  - [MIC Whitepaper v2.0](../07-RESEARCH-AND-PUBLICATIONS/whitepapers/MIC_Whitepaper_v2.0.md)
+  - [MIC Whitepaper v2.0](../07-RESEARCH-AND-PUBLICATIONS/whitepapers/MIC_Whitepaper_v2.1.md)
   - [Sentinel Constitution](../03-GOVERNANCE-AND-POLICY/SENTINEL_CONSTITUTION.md)
   - [Proof-of-Integrity Spec](../04-TECHNICAL-ARCHITECTURE/proof-of-integrity.md)
 

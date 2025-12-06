@@ -31,7 +31,7 @@ This directory contains all academic research, whitepapers, studies, blueprints,
 ```
 07-RESEARCH-AND-PUBLICATIONS/
 ├── whitepapers/               Core economic & technical papers
-│   ├── MIC_Whitepaper_v2.0.md         Complete MIC specification
+│   ├── MIC_Whitepaper_v2.1.md         Complete MIC specification
 │   ├── UBI_Mechanism_v2.0.md          UBI distribution mechanism
 │   ├── Foundation_Economics.md         Foundation-up economics
 │   └── Shard_Economics.md             Shard denomination theory

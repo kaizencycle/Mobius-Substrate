@@ -48,9 +48,9 @@ All deliverables from Cycle C-148 have been implemented and are production-ready
 
 ### 7. Mermaid Diagrams
 - **Files:**
-  - `docs/02-architecture/echo/diagrams/sml-diagrams.md` (SML)
-  - `docs/02-architecture/applications/global/diagrams/daedalus-diagrams.md` (Daedalus)
-  - `docs/02-architecture/economics/diagrams/negentropic-diagrams.md` (Economics)
+  - `docs/04-TECHNICAL-ARCHITECTURE/echo/diagrams/sml-diagrams.md` (SML)
+  - `docs/04-TECHNICAL-ARCHITECTURE/applications/global/diagrams/daedalus-diagrams.md` (Daedalus)
+  - `docs/04-TECHNICAL-ARCHITECTURE/economics/diagrams/negentropic-diagrams.md` (Economics)
   - `docs/06-OPERATIONS/protocols/diagrams/mcp-diagrams.md` (MCP)
   - `docs/99-meta/diagrams/MERMAID_DIAGRAMS_COMPLETE.md` (Master collection)
 - **Status:** ✅ Complete

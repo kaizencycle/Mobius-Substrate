@@ -44,7 +44,7 @@ citizen-shield-app/
 │   │   ├── GroupStatus.tsx # Group status monitoring
 │   │   ├── Onboard.tsx   # User onboarding
 │   │   └── Verify.tsx    # Verification workflows
-│   ├── api/              # API client
+│   ├── /api/              # API client
 │   │   └── client.ts     # HTTP client configuration
 │   ├── App.tsx           # Main application component
 │   ├── main.tsx          # Application entry point

@@ -210,8 +210,8 @@ The Oath is part of the **Constitutional invariants** of Mobius.
 
 ## Related Documents
 
-- [Cathedral Rulebook](../docs/cathedrals/Cathedral-Rulebook.md)
-- [HIVE Operator Handbook](../docs/HIVE-Operator-Handbook-v0.1.md)
+- [Cathedral Rulebook](../docs/02-THEORETICAL-FOUNDATIONS/cathedrals/Cathedral-Rulebook.md)
+- [HIVE Operator Handbook](../docs/05-IMPLEMENTATION/hive/HIVE-Operator-Handbook-v0.1.md)
 - [City-State Command Ledger Template](./City-State-Command-Ledger.md)
 
 ---

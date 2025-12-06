@@ -620,7 +620,7 @@ npx husky install
 
 If telemetry becomes complex, extract to dedicated service:
 ```
-apps/telemetry-api/
+apps/telemetry-/api/
 ├── schemas/           # All metric schemas
 ├── validators/        # Schema validators
 ├── exporters/         # Export adapters
