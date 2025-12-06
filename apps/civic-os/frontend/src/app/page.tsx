@@ -1,8 +1,15 @@
 'use client'
 import { useEffect, useState } from 'react'
 
+interface HealthStatus {
+  status: string;
+  timestamp?: string;
+  version?: string;
+  [key: string]: unknown;
+}
+
 export default function Home() {
-  const [health, setHealth] = useState<any>(null)
+  const [health, setHealth] = useState<HealthStatus | null>(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {

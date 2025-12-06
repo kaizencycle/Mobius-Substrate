@@ -2,8 +2,14 @@
 
 import { useEffect, useState } from 'react'
 
+interface Deliberation {
+  id: string;
+  status?: string;
+  [key: string]: unknown;
+}
+
 export default function DeliberationsList() {
-  const [deliberations, setDeliberations] = useState<any[]>([])
+  const [deliberations, setDeliberations] = useState<Deliberation[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -36,7 +42,7 @@ export default function DeliberationsList() {
         <p className="text-gray-500">No active deliberations</p>
       ) : (
         <div className="space-y-4">
-          {deliberations.map((delib: any) => (
+          {deliberations.map((delib) => (
             <div key={delib.id} className="border rounded p-4">
               <h3 className="font-semibold">{delib.id}</h3>
               <p className="text-sm text-gray-600 dark:text-gray-400">

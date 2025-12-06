@@ -2,9 +2,21 @@
 import { useState } from 'react'
 import SearchResults from '@/components/SearchResults'
 
+interface SearchItem {
+  id: string;
+  title: string;
+  content: string;
+  topics?: string[];
+}
+
+interface SearchResultsData {
+  total?: number;
+  items?: SearchItem[];
+}
+
 export default function Home() {
   const [query, setQuery] = useState('')
-  const [results, setResults] = useState<any>(null)
+  const [results, setResults] = useState<SearchResultsData | null>(null)
   const [loading, setLoading] = useState(false)
 
   const handleSearch = async (e: React.FormEvent) => {

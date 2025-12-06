@@ -13,4 +13,5 @@ export function verifyHash(data: string, hash: string): boolean {
   return hashData(data) === hash;
 }
 
-export default { hashData, shaHex, verifyHash };
+const hashUtils = { hashData, shaHex, verifyHash };
+export default hashUtils;

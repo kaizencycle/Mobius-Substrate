@@ -433,6 +433,9 @@ export default function SacredViz({ mockData = true }: SacredVizProps) {
     (window as any).__sacredVizUpdateBloom = updateBloom;
 
     /*** cleanup ***/
+    // Capture ref value to avoid stale closure in cleanup
+    const mountEl = mountRef.current;
+    
     return () => {
       window.removeEventListener('resize', onResize);
       delete (window as any).__sacredVizUpdatePreset;
@@ -460,8 +463,8 @@ export default function SacredViz({ mockData = true }: SacredVizProps) {
       }
       
       renderer.dispose();
-      if (mountRef.current?.contains(renderer.domElement)) {
-        mountRef.current.removeChild(renderer.domElement);
+      if (mountEl?.contains(renderer.domElement)) {
+        mountEl.removeChild(renderer.domElement);
       }
     };
   }, [preset, bloomEnabled, mockData, initAudioContext, startMic, startFile, useMic, audioFile]);

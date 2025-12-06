@@ -1,7 +1,15 @@
 'use client'
 
+interface HealthData {
+  status?: string;
+  service?: string;
+  version?: string;
+  activeDeliberations?: number;
+  [key: string]: unknown;
+}
+
 interface HealthStatusProps {
-  health: any
+  health: HealthData | null
   loading: boolean
 }
 
