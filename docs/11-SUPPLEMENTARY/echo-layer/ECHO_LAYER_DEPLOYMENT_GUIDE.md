@@ -60,7 +60,7 @@ npm run dev
 
 ### Sentinel Integration
 
-**File**: `apps/broker-/api/src/services/echo/reviewEngine.ts`
+**File**: `apps/broker-api/src/services/echo/reviewEngine.ts`
 
 Replace mock `callSentinel()` function with your actual sentinel client:
 
@@ -70,7 +70,7 @@ import { callSentinel } from "../sentinels/client"; // Your actual implementatio
 
 ### Embedding Service
 
-**File**: `apps/broker-/api/src/utils/embedding.ts`
+**File**: `apps/broker-api/src/utils/embedding.ts`
 
 Already configured for OpenAI. Ensure `OPENAI_API_KEY` is set.
 
@@ -79,8 +79,8 @@ For other providers, modify the `embedText()` function.
 ### DVA.LITE Integration
 
 **Files**: 
-- `apps/broker-/api/src/services/echo/driftGuard.ts`
-- `apps/broker-/api/src/services/echo/memoryValidator.ts`
+- `apps/broker-api/src/services/echo/driftGuard.ts`
+- `apps/broker-api/src/services/echo/memoryValidator.ts`
 
 Set `DVA_LITE_URL` and `DVA_LITE_API_KEY` environment variables.
 

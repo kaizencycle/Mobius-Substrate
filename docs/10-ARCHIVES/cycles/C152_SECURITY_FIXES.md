@@ -10,7 +10,7 @@
 ### 1. Server-Side Request Forgery (SSRF) - #1172, #1171
 
 **Files Fixed:**
-- `apps/broker-/api/src/services/webhook.ts` (line 237)
+- `apps/broker-api/src/services/webhook.ts` (line 237)
 - `packages/oaa-api-library/src/sentinel/fetcher.ts` (line 121)
 
 **Fix Applied:**
@@ -43,7 +43,7 @@ const response = await fetch(safeUrlString, {...});
 ### 3. Remote Property Injection - #1145, #1144, #1143
 
 **Files Fixed:**
-- `apps/broker-/api/src/services/energy/telemetryService.ts` (lines 219, 413, 414)
+- `apps/broker-api/src/services/energy/telemetryService.ts` (lines 219, 413, 414)
 
 **Fix Applied:**
 - Added `validatePropertyName()` function to prevent prototype pollution
@@ -94,7 +94,7 @@ regionBreakdown[safeRegion] = (regionBreakdown[safeRegion] ?? 0) + 1;
    - Action: Review source code, fix escaping in templates
 
 6. **Remote Property Injection** (High)
-   - Files: `apps/broker-/api/src/services/energy/telemetryService.ts`
+   - Files: `apps/broker-api/src/services/energy/telemetryService.ts`
    - Action: Validate and sanitize property names before use
 
 7. **User-Controlled Bypass of Security Check** (High)

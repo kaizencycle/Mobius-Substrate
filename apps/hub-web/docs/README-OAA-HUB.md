@@ -7,7 +7,7 @@ This pack makes **OAA** the control center of your Labs.
 - `oaa/registry.ts` — lists labs & wraps tools (WebDataScout stub included)
 - `oaa/hub.ts` — core plan/act functions with simple domain allowlist
 - `oaa/server.ts` — Express server (optional, if not using Next.js)
-- `pages//api/oaa/plan.ts`, `pages//api/oaa/act.ts` — Next.js API routes
+- `pages/api/oaa/plan.ts`, `pages/api/oaa/act.ts` — Next.js API routes
 - `components/OaaTab.tsx` — UI panel to trigger a plan & act, renders a live card
 - `scripts/install_oaa_routes.sh` — quick installer (copies files into your repo)
 

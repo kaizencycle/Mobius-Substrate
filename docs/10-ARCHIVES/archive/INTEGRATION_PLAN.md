@@ -24,11 +24,11 @@ Using `git subtree` to preserve individual repository histories while integratin
 civic-os/
 ├── apps/                          # Existing applications
 │   ├── hub-web/
-│   ├── ledger-/api/
-│   ├── indexer-/api/
-│   ├── eomm-/api/
-│   ├── shield-/api/
-│   ├── broker-/api/
+│   ├── ledger-api/
+│   ├── indexer-api/
+│   ├── eomm-api/
+│   ├── shield-api/
+│   ├── broker-api/
 │   ├── hive-app/
 │   ├── cathedral-app/
 │   ├── genesisdome-app/

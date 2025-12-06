@@ -26,7 +26,7 @@ This lab serves as the **trust anchor** for all other labs and ensures every act
 ```
 Lab 1: Civic Ledger Core
 ├── Blockchain Layer
-│   ├── apps/ledger-/api/civic-protocol-core/
+│   ├── apps/ledger-api/civic-protocol-core/
 │   │   ├── ledger/                    # Blockchain kernel
 │   │   │   ├── app/main.py           # FastAPI ledger service
 │   │   │   ├── app/ledger.py         # Core ledger logic (blocks, txs)
@@ -324,7 +324,7 @@ const tx = await client.transferGIC({
 ### Setup
 
 ```bash
-cd apps/ledger-/api/civic-protocol-core
+cd apps/ledger-api/civic-protocol-core
 
 # Install Python dependencies
 pip install -r ledger/requirements.txt
@@ -438,7 +438,7 @@ See `docs/08-processes/runbooks/incident_response_citizen_shield.md` for securit
 - **Foundation-Up Economics:** `docs/GIC_Foundation_Up_Economics_Addendum.md`
 - **Governance Charter:** `docs/constitution/custos-charter.md`
 - **Complete Architecture:** `docs/03-architecture/technical/Kaizen_OS_Complete_Lab_Architecture.md`
-- **API Documentation:** `apps/ledger-/api/README.md`
+- **API Documentation:** `apps/ledger-api/README.md`
 
 ---
 

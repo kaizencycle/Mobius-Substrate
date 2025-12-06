@@ -48,8 +48,8 @@ sequenceDiagram
 - **OAA Hub (`apps/oaa-hub/`)** — Intent parsing, charter enforcement, persona routing.  
 - **Thought Broker (`labs/lab2-ops/`)** — Coordinates deliberations, applies mentor/apprentice protocols.  
 - **Integrity Core (`packages/integrity-core/`)** — Implements MII calculation and telemetry export.  
-- **Genesis Ledger (`apps/ledger-/api/`)** — Stores attestations, applies safe-stop, manages finality proofs.  
-- **Citizen Shield (`apps/shield-/api/`)** — Runtime protection, IDS/IPS, API mediation.  
+- **Genesis Ledger (`apps/ledger-api/`)** — Stores attestations, applies safe-stop, manages finality proofs.  
+- **Citizen Shield (`apps/shield-api/`)** — Runtime protection, IDS/IPS, API mediation.  
 - **Atlas Status Hub (`apps/atlas-telemetry/`)** — Observability, integrity dashboards, alert fan-out.
 
 ---
@@ -69,11 +69,11 @@ sequenceDiagram
 
 | Surface | Path | Domain |
 |---------|------|--------|
-| Broker API | `apps/broker-/api/` | `aurea.mobius.city` |
-| Indexer API | `apps/indexer-/api/` | `hermes.mobius.city` |
-| Shield API | `apps/shield-/api/` | `eve.mobius.city` |
-| E.O.M.M. API | `apps/eomm-/api/` | `jade.mobius.city` |
-| Ledger API | `apps/ledger-/api/` | `zeus.mobius.city` |
+| Broker API | `apps/broker-api/` | `aurea.mobius.city` |
+| Indexer API | `apps/indexer-api/` | `hermes.mobius.city` |
+| Shield API | `apps/shield-api/` | `eve.mobius.city` |
+| E.O.M.M. API | `apps/eomm-api/` | `jade.mobius.city` |
+| Ledger API | `apps/ledger-api/` | `zeus.mobius.city` |
 | OAA Portal | `apps/oaa-hub/` | `uriel.mobius.city` |
 | Atlas Status | `apps/atlas-telemetry/` | `atlas.mobius.city` |
 

@@ -214,10 +214,10 @@ const summary = manifest ? guardianStatusSummary(manifest) : null
 ### API Endpoints
 
 Coming soon:
-- `GET //api/guardian/status` - Live guardian relationship status
-- `POST //api/fountain/attest` - Submit attestation
-- `GET //api/fountain/metrics` - Current fountain stats
-- `POST //api/fountain/pause` - Emergency pause (requires 2-of-5)
+- `GET /api/guardian/status` - Live guardian relationship status
+- `POST /api/fountain/attest` - Submit attestation
+- `GET /api/fountain/metrics` - Current fountain stats
+- `POST /api/fountain/pause` - Emergency pause (requires 2-of-5)
 
 ## Security Notes
 

@@ -47,13 +47,13 @@ Bug bounty: not yet formalised; good-faith researchers credited in release notes
 
 | Layer | Controls | References |
 |-------|----------|------------|
-| Identity & Auth | 2FA, RBAC, OAuth, least privilege | `apps/shield-/api/`, `docs/security/threat_model_v0.1.md` |
+| Identity & Auth | 2FA, RBAC, OAuth, least privilege | `apps/shield-api/`, `docs/security/threat_model_v0.1.md` |
 | Code & CI | Anti-nuke workflow, additive-only PRs, CODEOWNERS, `scripts/mii/compute.js` | `.github/workflows/anti-nuke.yml` |
-| Data Integrity | Ed25519 attestations, Merkle proofs, immutable ledger | `apps/ledger-/api/`, `docs/06-specifications/specs/mii_spec_v0.1.md` |
+| Data Integrity | Ed25519 attestations, Merkle proofs, immutable ledger | `apps/ledger-api/`, `docs/06-specifications/specs/mii_spec_v0.1.md` |
 | Environment | TLS 1.3, secret management, rate limiting, sandboxing | `docs/08-processes/operations/DEPLOYMENT_CHECKLIST.md` |
 | Monitoring | Atlas status hub, `/integrity` endpoints, SIEM exports | `status.mobius.city` |
 
-Citizen Shield (`apps/shield-/api/`) provides IDS/IPS, request sanitisation, service mesh policy enforcement, and rate limiting.
+Citizen Shield (`apps/shield-api/`) provides IDS/IPS, request sanitisation, service mesh policy enforcement, and rate limiting.
 
 ---
 

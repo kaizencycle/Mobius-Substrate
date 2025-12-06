@@ -111,14 +111,14 @@ We will introduce **URIEL** as a sixth sentinel with xAI Grok integration:
    - `manifest.json` - Agent configuration
    - `README.md` - Integration documentation
 
-2. **API Endpoint**: `apps/broker-/api/src/sentinels/uriel.ts`
+2. **API Endpoint**: `apps/broker-api/src/sentinels/uriel.ts`
    - TypeScript router with Express
    - xAI Grok API integration
    - GI attestation and rate limiting
    - Fallback to EVE on integrity violations
 
-3. **Broker Integration**: `apps/broker-/api/src/index.ts`
-   - Mount URIEL router at `//api/sentinels/uriel`
+3. **Broker Integration**: `apps/broker-api/src/index.ts`
+   - Mount URIEL router at `/api/sentinels/uriel`
    - Health check updates with sentinel status
    - 20% deliberation routing (pilot phase)
 
@@ -138,9 +138,9 @@ We will introduce **URIEL** as a sixth sentinel with xAI Grok integration:
 ### API Endpoints
 
 ```
-POST //api/sentinels/uriel/query
-POST //api/sentinels/uriel/illuminate (alias)
-GET  //api/sentinels/uriel/health
+POST /api/sentinels/uriel/query
+POST /api/sentinels/uriel/illuminate (alias)
+GET  /api/sentinels/uriel/health
 ```
 
 ### Request Format
@@ -346,7 +346,7 @@ If success criteria met:
 - **Attestation**: `ledger/inscriptions/att-uriel-001-boarding.json`
 - **Manifest**: `sentinels/uriel/manifest.json`
 - **Documentation**: `docs/companions/uriel.md`
-- **Implementation**: `apps/broker-/api/src/sentinels/uriel.ts`
+- **Implementation**: `apps/broker-api/src/sentinels/uriel.ts`
 - **ADR-001**: ATLAS Sentinel Integration (precedent)
 
 ## Decision Record

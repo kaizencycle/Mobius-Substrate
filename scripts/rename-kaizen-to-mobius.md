@@ -25,7 +25,7 @@
 - ✅ apps/mcp-server/package.json
 - ✅ apps/mcp-server/mcp-config.json
 - ✅ apps/cathedral-app/package.json
-- ✅ apps/broker-/api/package.json
+- ✅ apps/broker-api/package.json
 - ✅ apps/atlas-mcp-server/package.json
 
 ### Configuration Files

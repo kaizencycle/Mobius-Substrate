@@ -1,36 +1,40 @@
 #!/usr/bin/env python3
 """
-Bulk fix common broken link patterns.
-C-156: Fix all broken links and endpoints
+Fix incorrect endpoint changes made by the endpoint fixer.
+This fixes patterns like //api/ back to /api/ and broker-/api back to broker-api
 """
 
 import re
 from pathlib import Path
 
-# Common fixes mapping: (pattern, replacement)
+# Fixes for incorrect patterns
 FIXES = [
-    # MIC Whitepaper v2.0 -> v2.1
-    (r'MIC_Whitepaper_v2\.0\.md', 'MIC_Whitepaper_v2.1.md'),
-    (r'MIC_Whitepaper v2\.0', 'MIC Whitepaper v2.1'),
-    
-    # Fix relative path issues
-    (r'\.\./docs/02-architecture/', '../docs/04-TECHNICAL-ARCHITECTURE/'),
-    (r'\.\./docs/06-operations/', '../docs/06-OPERATIONS/'),
-    (r'docs/02-architecture/', 'docs/04-TECHNICAL-ARCHITECTURE/'),
-    (r'docs/06-operations/', 'docs/06-OPERATIONS/'),
-    
-    # Fix double docs/ path
-    (r'docs/docs/', 'docs/'),
+    # Fix double slashes in API paths
+    (r'//api/', '/api/'),
+    # Fix directory names with -/api
+    (r'broker-/api', 'broker-api'),
+    (r'ledger-/api', 'ledger-api'),
+    (r'indexer-/api', 'indexer-api'),
+    (r'eomm-/api', 'eomm-api'),
+    (r'shield-/api', 'shield-api'),
+    # Fix paths like pages//api/ back to pages/api/
+    (r'pages//api/', 'pages/api/'),
+    (r'app//api/', 'app/api/'),
+    # Fix URLs with //api
+    (r'https://[^/]+//api/', lambda m: m.group(0).replace('//api/', '/api/')),
 ]
 
 def fix_file(file_path: Path):
-    """Fix broken links in a single file."""
+    """Fix incorrect endpoint patterns in a file."""
     try:
         content = file_path.read_text(encoding='utf-8', errors='ignore')
         original = content
         
         for pattern, replacement in FIXES:
-            content = re.sub(pattern, replacement, content)
+            if callable(replacement):
+                content = re.sub(pattern, replacement, content)
+            else:
+                content = re.sub(pattern, replacement, content)
         
         if content != original:
             file_path.write_text(content, encoding='utf-8')

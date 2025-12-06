@@ -12,8 +12,9 @@ ENDPOINT_FIXES = [
     # Fix common API path issues
     (r'/api/v1/', '/v1/'),
     (r'/v1/api/', '/v1/'),
-    # Fix missing leading slashes
-    (r'api/([^/])', r'/api/\1'),
+    # Fix missing leading slashes (but not directory names like broker-api)
+    # Only match api/ at word boundaries or after slashes
+    (r'(?<!/)(?<!-)api/([^/])', r'/api/\1'),
 ]
 
 def fix_endpoints_in_file(file_path: Path):

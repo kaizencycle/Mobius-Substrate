@@ -44,8 +44,8 @@ The Thought Broker API has been upgraded from a placeholder implementation to a 
 - `GET /intents/:id` - Legacy intent retrieval
 - `POST /intents/:id/process` - Legacy deliberation routing
 - `GET /deliberations/:id` - Legacy deliberation status
-- `POST //api/consensus/run` - Legacy consensus endpoint
-- `POST //api/sentinels/uriel/query` - URIEL sentinel query
+- `POST /api/consensus/run` - Legacy consensus endpoint
+- `POST /api/sentinels/uriel/query` - URIEL sentinel query
 
 ---
 

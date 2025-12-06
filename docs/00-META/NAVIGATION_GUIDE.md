@@ -86,7 +86,7 @@ Use the classification number to navigate directly:
 #### I'm a Developer
 1. [Technical Architecture](../04-TECHNICAL-ARCHITECTURE/)
 2. [Implementation Guides](../05-IMPLEMENTATION/)
-3. [API Reference](../08-REFERENCE//api/)
+3. [API Reference](../08-REFERENCE/api/)
 
 #### I'm a Researcher
 1. [Whitepapers](../07-RESEARCH-AND-PUBLICATIONS/whitepapers/)
@@ -168,7 +168,7 @@ Find documents by ID in the [Master Index](./MASTER_INDEX.md#document-index-by-c
 **Doc ID**: GOV-2025-001
 
 ### "Where are the API docs?"
-🔌 **Answer**: [08-REFERENCE//api/](../08-REFERENCE//api/)  
+🔌 **Answer**: [08-REFERENCE/api/](../08-REFERENCE/api/)  
 **Doc ID**: API-2025-001
 
 ---
@@ -279,7 +279,7 @@ Category (00-10)
 | Deploy system | [Deployment Guides](../05-IMPLEMENTATION/guides/deployment/) |
 | Understand economics | [MIC Whitepaper](../07-RESEARCH-AND-PUBLICATIONS/whitepapers/MIC_Whitepaper_v2.1.md) |
 | Read governance | [Governance Overview](../03-GOVERNANCE-AND-POLICY/governance/overview.md) |
-| Access APIs | [API Reference](../08-REFERENCE//api/) |
+| Access APIs | [API Reference](../08-REFERENCE/api/) |
 | Find runbooks | [Operations](../06-OPERATIONS/) |
 | Read research | [Research & Publications](../07-RESEARCH-AND-PUBLICATIONS/) |
 

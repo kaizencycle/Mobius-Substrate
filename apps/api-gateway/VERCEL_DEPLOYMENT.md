@@ -64,7 +64,7 @@ After deployment, verify the API Gateway is working:
 curl https://your-project.vercel.app/health
 
 # Integrity check
-curl https://your-project.vercel.app//api/integrity-check
+curl https://your-project.vercel.app/api/integrity-check
 
 # Root endpoint
 curl https://your-project.vercel.app/

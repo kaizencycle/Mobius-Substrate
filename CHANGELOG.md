@@ -201,8 +201,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - **URIEL Sentinel** - xAI Grok integration for cosmic illumination and truth-seeking
   - New sentinel at `sentinels/uriel/` with manifest and documentation
-  - API endpoints: `//api/sentinels/uriel/query`, `//api/sentinels/uriel/illuminate`, `//api/sentinels/uriel/health`
-  - TypeScript integration in `apps/broker-/api/src/sentinels/uriel.ts`
+  - API endpoints: `/api/sentinels/uriel/query`, `/api/sentinels/uriel/illuminate`, `/api/sentinels/uriel/health`
+  - TypeScript integration in `apps/broker-api/src/sentinels/uriel.ts`
   - GI-gated deliberation with fallback to EVE on integrity violations
   - Rate limiting (0.1 QPS default), timeout protection (20s), and privacy controls
   - Quorum attestation record: `ledger/inscriptions/att-uriel-001-boarding.json` (GI: 0.996)

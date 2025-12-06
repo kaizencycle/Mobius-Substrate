@@ -370,7 +370,7 @@ If the HIVE system succeeds, it demonstrates:
 ### For Development Team
 
 1. **Implement API endpoints**
-   - Create Next.js routes for `//api/citystate/gdp`
+   - Create Next.js routes for `/api/citystate/gdp`
    - Connect to database for real metrics
 
 2. **Build dashboards**

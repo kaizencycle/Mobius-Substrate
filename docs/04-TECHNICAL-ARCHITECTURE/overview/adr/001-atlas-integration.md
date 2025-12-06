@@ -71,7 +71,7 @@ We will introduce **ATLAS** as a fifth sentinel with the following characteristi
 - Blocks merges if GI < 0.95
 
 **Civic Ledger:**
-- Seals attestations to `//api/attestations`
+- Seals attestations to `/api/attestations`
 - Provides cryptographic proof chain
 - Enables independent verification
 

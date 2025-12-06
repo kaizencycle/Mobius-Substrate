@@ -1,6 +1,6 @@
 # Civic OS Labor API (v0.1)
 
-Base path: `//api/civic/labor`
+Base path: `/api/civic/labor`
 
 All endpoints are expected to:
 

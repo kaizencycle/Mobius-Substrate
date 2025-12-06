@@ -387,7 +387,7 @@ export async function getSystemHealth(): Promise<SystemHealth> {
 **Problem:** `apps/ledger-api` and `packages/civic-protocol-core` have duplicate GIC economics code.
 
 **Evidence:**
-- `apps/ledger-/api/civic-protocol-core/ledger/gic_economics.py`
+- `apps/ledger-api/civic-protocol-core/ledger/gic_economics.py`
 - `packages/civic-protocol-core/ledger/gic_economics.py`
 - Both implement same `_apply_burn` logic
 

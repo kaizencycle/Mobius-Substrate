@@ -19,7 +19,7 @@ Successfully integrated **ZENITH (Google Gemini 2.0)** into **Kaizen OS Thought 
 ## 🏗️ **Files Created for Kaizen OS**
 
 ### **Thought Broker Integration:**
-1. `apps/broker-/api/src/consensus/zenith.ts` - ZENITH deliberation provider
+1. `apps/broker-api/src/consensus/zenith.ts` - ZENITH deliberation provider
    - Chamber-aware context loading
    - Kaizen OS system instructions
    - Constitutional validation
@@ -191,7 +191,7 @@ ZENITH_ALLOWED_TIERS="research,standard,high"
 - ✅ `KAIZEN_OS_ZENITH_COMPLETE.md` - This summary
 
 ### **Updated:**
-- ✅ `apps/broker-/api/src/consensus.ts` - Enhanced with ZENITH
+- ✅ `apps/broker-api/src/consensus.ts` - Enhanced with ZENITH
 - ✅ `packages/civic-sdk/src/consensus.ts` - 4-of-N consensus
 - ✅ `packages/oaa-api-library/` - ZENITH registration
 

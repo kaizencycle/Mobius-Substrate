@@ -113,14 +113,14 @@ curl https://gic-gateway.onrender.com/
 # Expected: { "ok": true, "name": "gic-gateway" }
 
 # Hub health  
-curl https://oaa-hub.onrender.com//api/tools/status
+curl https://oaa-hub.onrender.com/api/tools/status
 # Expected: { "ok": true, "status": "healthy" }
 ```
 
 #### Test Companion Features
 ```bash
 # Test companion feed
-curl "https://oaa-hub.onrender.com//api/companions/feed?companion=jade"
+curl "https://oaa-hub.onrender.com/api/companions/feed?companion=jade"
 
 # Test constitution viewer
 curl "https://oaa-hub.onrender.com/constitution"

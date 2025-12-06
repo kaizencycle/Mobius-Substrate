@@ -21,7 +21,7 @@
 ## Integration Points
 
 - GitHub Actions: `atlas-sentinel.yml`
-- Civic Ledger: `//api/attestations`
+- Civic Ledger: `/api/attestations`
 - Eve Cycles: Learning synthesis
 - All Companions: Cross-verification
 

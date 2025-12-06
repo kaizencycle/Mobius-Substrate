@@ -9,7 +9,7 @@ The ECHO Layer (Epistemically Cached Heuristic Outcomes) is now fully implemente
 ## 📁 File Structure
 
 ```
-apps/broker-/api/
+apps/broker-api/
   src/
     config/
       integrityCache.ts          # ECHO configuration (thresholds, freshness rules)
@@ -207,7 +207,7 @@ npm run test -- tests/integration/echo-client.test.ts
 
 ### Created
 
-- ✅ `docs//api/ECHO_CLIENT_SDK.md` - SDK usage guide
+- ✅ `docs/api/ECHO_CLIENT_SDK.md` - SDK usage guide
 - ✅ `docs/architecture/ECHO_LAYER_CANON.md` - Architecture specification
 - ✅ `docs/dva/ECHO_LAYER.md` - Design specification (updated)
 

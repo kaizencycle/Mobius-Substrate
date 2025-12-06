@@ -16,7 +16,7 @@ SCOUT_FALLBACK_ENDPOINT=https://backup-provider.com/api
 SCOUT_FALLBACK_API_KEY=your_backup_api_key
 
 # Ops Guard Integration
-OPS_GUARD_ENDPOINT=//api/ops-guard
+OPS_GUARD_ENDPOINT=/api/ops-guard
 ENABLE_PII_REDACTION=true
 ENABLE_CONTENT_SAFETY=true
 ```
@@ -168,7 +168,7 @@ const statusChecks = await extractBatch([
 // Feed to Echo Bridge Sentinel
 for (const check of statusChecks) {
   if (!check.ok) {
-    await fetch('//api/echo-bridge/incident', {
+    await fetch('/api/echo-bridge/incident', {
       method: 'POST',
       body: JSON.stringify({
         service: check.meta.url,
@@ -187,7 +187,7 @@ Pull city/open-data tables into MIC Indexer:
 
 ```typescript
 // Extract civic data
-const civicData = await extract('https://data.cityofchicago.org//api/views/example', [
+const civicData = await extract('https://data.cityofchicago.org/api/views/example', [
   { name: 'rows', type: 'array' },
   { name: 'columns', type: 'array' },
   { name: 'metadata', type: 'object' }
@@ -203,7 +203,7 @@ if (civicData.ok) {
     last_updated: new Date().toISOString()
   };
   
-  await fetch('//api/gic-indexer/ingest', {
+  await fetch('/api/gic-indexer/ingest', {
     method: 'POST',
     body: JSON.stringify(normalizedData)
   });
@@ -379,11 +379,11 @@ interface ScoutSchema {
 
 ### API Endpoints
 
-#### `GET //api/scout-test`
+#### `GET /api/scout-test`
 
 Health check and cache statistics.
 
-#### `POST //api/scout-test/extract`
+#### `POST /api/scout-test/extract`
 
 Single URL extraction.
 
@@ -398,7 +398,7 @@ Single URL extraction.
 }
 ```
 
-#### `PUT //api/scout-test/batch`
+#### `PUT /api/scout-test/batch`
 
 Batch extraction.
 
@@ -415,14 +415,14 @@ Batch extraction.
 }
 ```
 
-#### `DELETE //api/scout-test/cache`
+#### `DELETE /api/scout-test/cache`
 
 Clear cache.
 
 **Query Parameters:**
 - `url` (optional) - Specific URL to clear
 
-#### `PATCH //api/scout-test`
+#### `PATCH /api/scout-test`
 
 Test predefined scenarios.
 

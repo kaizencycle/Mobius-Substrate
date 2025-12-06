@@ -4,12 +4,10 @@ Check for broken links and endpoints in the Mobius Systems codebase.
 C-156: Fix all broken links and endpoints
 """
 
-import os
 import re
 import json
 from pathlib import Path
 from typing import List, Dict, Tuple, Set
-from urllib.parse import urlparse, unquote
 
 class LinkChecker:
     def __init__(self, root_dir: str = "/workspace"):

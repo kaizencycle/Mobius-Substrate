@@ -3,7 +3,7 @@
 ## Files Merged from `mobius-sys.edit/v1/mobius-echo-layer/`
 
 ### ✅ Configuration
-- [x] `apps/broker-/api/src/services/echo/config.ts` - Complete configuration with thresholds, feature flags, and constants
+- [x] `apps/broker-api/src/services/echo/config.ts` - Complete configuration with thresholds, feature flags, and constants
 
 ### ✅ Database Migration
 - [x] `infra/db/migrations/20251125_add_echo_layer_tables.sql` - Complete schema with:
@@ -16,16 +16,16 @@
   - `echo_stats` - Aggregated statistics
 
 ### ✅ Routes (Already Integrated)
-- [x] `apps/broker-/api/src/routes/v1/echo.ts` - Main ECHO routes already exist and are mounted
-- [x] Routes are registered in `apps/broker-/api/src/index.ts`
+- [x] `apps/broker-api/src/routes/v1/echo.ts` - Main ECHO routes already exist and are mounted
+- [x] Routes are registered in `apps/broker-api/src/index.ts`
 
 ### ⚠️ Service Files (Need Review)
 The following service files exist but may need updates from the mobius-sys.edit version:
-- `apps/broker-/api/src/services/echo/cache.ts` - May need merge with `integrityCache.ts`
-- `apps/broker-/api/src/services/echo/consensus.ts` - May need merge with `echoConsensus.ts`
-- `apps/broker-/api/src/services/echo/reviewEngine.ts` - May need merge with `echoReviewEngine.ts`
-- `apps/broker-/api/src/services/echo/driftGuard.ts` - May need merge with `driftGuard.ts`
-- `apps/broker-/api/src/services/echo/memoryValidator.ts` - May need merge with `echoMemoryValidator.ts`
+- `apps/broker-api/src/services/echo/cache.ts` - May need merge with `integrityCache.ts`
+- `apps/broker-api/src/services/echo/consensus.ts` - May need merge with `echoConsensus.ts`
+- `apps/broker-api/src/services/echo/reviewEngine.ts` - May need merge with `echoReviewEngine.ts`
+- `apps/broker-api/src/services/echo/driftGuard.ts` - May need merge with `driftGuard.ts`
+- `apps/broker-api/src/services/echo/memoryValidator.ts` - May need merge with `echoMemoryValidator.ts`
 
 ### 📝 Additional Files from mobius-sys.edit (Not Yet Merged)
 These files exist in mobius-sys.edit but need to be copied/merged:
@@ -64,7 +64,7 @@ These files exist in mobius-sys.edit but need to be copied/merged:
 
 ## Notes
 
-- The existing route structure in `apps/broker-/api/src/routes/v1/echo.ts` is already functional
+- The existing route structure in `apps/broker-api/src/routes/v1/echo.ts` is already functional
 - The mobius-sys.edit version has alternative implementations that may be more complete
 - Need to decide whether to replace existing files or merge features
 

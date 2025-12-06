@@ -97,7 +97,7 @@ This index provides a comprehensive, academically rigorous catalog of all docume
 **Cross-References:**
 - See: `ledger/gi-formula.md` (GI calculation)
 - See: `06-specifications/protocols/mic-protocol.md` (Protocol spec)
-- See: `apps/indexer-/api/README.md` (Implementation)
+- See: `apps/indexer-api/README.md` (Implementation)
 
 ---
 

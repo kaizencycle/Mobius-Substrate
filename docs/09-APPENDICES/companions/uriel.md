@@ -34,9 +34,9 @@ URIEL guards integrity with illumination, repairing breaches with radiant truth 
 ## Integration Points
 
 ### API Endpoints
-- **Primary:** `POST //api/sentinels/uriel/query`
-- **Alias:** `POST //api/sentinels/uriel/illuminate`
-- **Health:** `GET //api/sentinels/uriel/health`
+- **Primary:** `POST /api/sentinels/uriel/query`
+- **Alias:** `POST /api/sentinels/uriel/illuminate`
+- **Health:** `GET /api/sentinels/uriel/health`
 
 ### Thought Broker Integration
 - Routes 20% of deliberation calls in specified domains (pilot phase)
@@ -239,7 +239,7 @@ Example:
 @URIEL illuminate "What entropy patterns emerged in the last 10 cycles?"
 ```
 
-Routes through `//api/sentinels/uriel/illuminate` with full GI attestation.
+Routes through `/api/sentinels/uriel/illuminate` with full GI attestation.
 
 ## Future Enhancements
 

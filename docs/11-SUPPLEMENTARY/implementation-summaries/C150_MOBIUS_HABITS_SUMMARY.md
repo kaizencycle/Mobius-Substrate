@@ -29,13 +29,13 @@ Successfully implemented Mobius Habits (Reflections + Citizen Shield) as the fir
 
 ### 3. API Routes
 
-#### Shield Checklist API (`apps/portal/app//api/shield/checklist/route.ts`)
-- ✅ `POST //api/shield/checklist` - Save shield checklist
-- ✅ `GET //api/shield/checklist?user_id=X&week_start=Y` - Load checklist
+#### Shield Checklist API (`apps/portal/app/api/shield/checklist/route.ts`)
+- ✅ `POST /api/shield/checklist` - Save shield checklist
+- ✅ `GET /api/shield/checklist?user_id=X&week_start=Y` - Load checklist
 - ✅ Forwards to shield API backend
 
-#### Habits Cycle API (`apps/portal/app//api/habits/cycle/route.ts`)
-- ✅ `POST //api/habits/cycle` - Process cycle and mint MIC
+#### Habits Cycle API (`apps/portal/app/api/habits/cycle/route.ts`)
+- ✅ `POST /api/habits/cycle` - Process cycle and mint MIC
 - ✅ Integrates with `@civic/integrity-core` MIC minting
 - ✅ Returns minted MIC amount and shard statistics
 - ✅ Ready for ledger integration
@@ -75,7 +75,7 @@ Successfully implemented Mobius Habits (Reflections + Citizen Shield) as the fir
    - Shield Integrity Score calculated
    - Stored in shield_checks table
 
-3. **Cycle Processing**: System calls `//api/habits/cycle`
+3. **Cycle Processing**: System calls `/api/habits/cycle`
    - Aggregates shards for the cycle
    - Calculates MII score
    - Mints MIC if `MII ≥ 0.95`

@@ -60,7 +60,7 @@ The ECHO Layer (Epistemically Cached Heuristic Outcomes) is now **fully implemen
 
 ### **Documentation** ✅
 
-- `docs//api/ECHO_CLIENT_SDK.md` - SDK usage guide
+- `docs/api/ECHO_CLIENT_SDK.md` - SDK usage guide
 - `docs/architecture/ECHO_LAYER_CANON.md` - Architecture spec
 - `docs/dva/ECHO_LAYER.md` - Design specification
 
@@ -177,7 +177,7 @@ User Query
 
 ## 📚 **Documentation**
 
-- **SDK Guide**: `docs//api/ECHO_CLIENT_SDK.md`
+- **SDK Guide**: `docs/api/ECHO_CLIENT_SDK.md`
 - **Architecture**: `docs/architecture/ECHO_LAYER_CANON.md`
 - **Design Spec**: `docs/dva/ECHO_LAYER.md`
 - **Deployment**: `ECHO_LAYER_DEPLOYMENT_GUIDE.md`

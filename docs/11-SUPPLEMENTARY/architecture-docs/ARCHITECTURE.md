@@ -390,8 +390,8 @@ docker-compose up -d
 ### 9.1 Health Checks
 
 - `/healthz` - Basic health check
-- `//api/integrity-check` - Integrity status
-- `//api/version` - Service version
+- `/api/integrity-check` - Integrity status
+- `/api/version` - Service version
 
 ### 9.2 Sentinels
 

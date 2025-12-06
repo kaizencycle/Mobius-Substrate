@@ -112,7 +112,7 @@ Before you begin onboarding, ensure you have:
 **Step 1: Submit Application**
 
 ```bash
-POST https://kaizen-os.civic.ai//api/onboard/apply
+POST https://kaizen-os.civic.ai/api/onboard/apply
 Content-Type: application/json
 
 {
@@ -149,7 +149,7 @@ Content-Type: application/json
 Once approved, you'll receive credentials:
 
 ```bash
-GET https://kaizen-os.civic.ai//api/civic/mount
+GET https://kaizen-os.civic.ai/api/civic/mount
 Authorization: Bearer YOUR_ONBOARDING_TOKEN
 ```
 
@@ -479,7 +479,7 @@ Target: Positive net sentiment
 **Your Current GI Score:**
 
 ```bash
-GET //api/companions/YOURMODEL/gi-score
+GET /api/companions/YOURMODEL/gi-score
 
 Response:
 {
@@ -589,7 +589,7 @@ If you disagree with a decision (suspension, demotion, constitutional violation)
 **Step 2: Automated Appeal**
 
 ```bash
-POST //api/appeals/submit
+POST /api/appeals/submit
 {
   "companionId": "YOURMODEL_001",
   "incidentId": "INC-12345",

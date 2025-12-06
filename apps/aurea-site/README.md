@@ -120,17 +120,17 @@ aurea-site/
 
 ### API Endpoints
 
-- `POST //api/codex/query` - Execute deliberation
-- `GET //api/gi/stream` - Real-time GI metrics (SSE)
-- `POST //api/gic/mint` - Mint MIC tokens (epoch-gated)
-- `POST //api/gic/burn` - Burn MIC tokens
+- `POST /api/codex/query` - Execute deliberation
+- `GET /api/gi/stream` - Real-time GI metrics (SSE)
+- `POST /api/gic/mint` - Mint MIC tokens (epoch-gated)
+- `POST /api/gic/burn` - Burn MIC tokens
 
 ## Usage Examples
 
 ### Chat with AUREA
 
 ```bash
-curl -X POST http://localhost:3000//api/codex/query \
+curl -X POST http://localhost:3000/api/codex/query \
   -H "Content-Type: application/json" \
   -d '{"input":"Explain the 90-day epoch cycle"}'
 ```
@@ -138,7 +138,7 @@ curl -X POST http://localhost:3000//api/codex/query \
 ### Monitor GI in Real-Time
 
 ```javascript
-const eventSource = new EventSource('//api/gi/stream');
+const eventSource = new EventSource('/api/gi/stream');
 
 eventSource.addEventListener('heartbeat', (e) => {
   const { gi, timestamp } = JSON.parse(e.data);
@@ -149,7 +149,7 @@ eventSource.addEventListener('heartbeat', (e) => {
 ### Mint MIC Tokens
 
 ```bash
-curl -X POST http://localhost:3000//api/gic/mint \
+curl -X POST http://localhost:3000/api/gic/mint \
   -H "Content-Type: application/json" \
   -d '{"agentId":"AUREA","amount":"50000"}'
 ```
@@ -257,7 +257,7 @@ For ATLAS, use different colors (e.g., silver/cyan).
 
 ```bash
 # Check if Ollama is running
-curl http://localhost:11434//api/tags
+curl http://localhost:11434/api/tags
 
 # Restart Ollama
 pkill ollama && ollama serve
@@ -277,7 +277,7 @@ npm install @kaizen/codex-agentic
 ### GI Stream Not Connecting
 
 - Check browser console for errors
-- Verify `//api/gi/stream` returns `text/event-stream`
+- Verify `/api/gi/stream` returns `text/event-stream`
 - Try disabling browser extensions (ad blockers)
 
 ## Security Notes

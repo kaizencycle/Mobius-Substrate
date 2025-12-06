@@ -172,7 +172,7 @@ Expected JSON log format for Promtail parsing:
   "time": "2025-11-07T12:34:56Z",
   "level": "INFO",
   "message": "Request processed",
-  "route": "//api/mobius/mount",
+  "route": "/api/mobius/mount",
   "status": 200,
   "duration_ms": 45.2,
   "agent": "ATLAS",

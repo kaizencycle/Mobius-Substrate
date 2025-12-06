@@ -234,11 +234,11 @@ where I = Mobius Integrity Index
 ```
 Mobius-Systems/
 ├── apps/                    # 9 services (APIs + frontends)
-│   ├── ledger-/api/          # Port 4001
-│   ├── indexer-/api/         # Port 4002
-│   ├── eomm-/api/            # Port 4003 (SML)
-│   ├── shield-/api/          # Port 4004
-│   ├── broker-/api/          # Port 4005 (Multi-LLM)
+│   ├── ledger-api/          # Port 4001
+│   ├── indexer-api/         # Port 4002
+│   ├── eomm-api/            # Port 4003 (SML)
+│   ├── shield-api/          # Port 4004
+│   ├── broker-api/          # Port 4005 (Multi-LLM)
 │   ├── hive-app/            # Port 3001
 │   ├── cathedral-app/       # Port 3002
 │   ├── genesisdome-app/     # Port 3003

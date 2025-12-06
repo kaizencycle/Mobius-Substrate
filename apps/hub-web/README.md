@@ -64,17 +64,17 @@ export EVE_HMAC_SECRET=your-secret
 
 ## 📚 API Endpoints
 
-### Memory API (`//api/oaa/memory`)
+### Memory API (`/api/oaa/memory`)
 
 - **GET**: Retrieve memory notes (supports `?q=` query filter)
 - **POST**: Append new note (requires HMAC signature)
 
 ```bash
 # Read memory
-curl http://localhost:3000//api/oaa/memory
+curl http://localhost:3000/api/oaa/memory
 
 # Add note (requires HMAC)
-curl -X POST http://localhost:3000//api/oaa/memory \
+curl -X POST http://localhost:3000/api/oaa/memory \
   -H 'content-type: application/json' \
   -H "x-hmac-sha256: <signature>" \
   -d '{"note":"Test note","tag":"dev"}'
@@ -82,11 +82,11 @@ curl -X POST http://localhost:3000//api/oaa/memory \
 
 ### Eve Lifecycle API
 
-#### Clock-In (`//api/eve/clockin`)
+#### Clock-In (`/api/eve/clockin`)
 Starts a new work cycle with intent declaration.
 
 ```bash
-curl -X POST http://localhost:3000//api/eve/clockin \
+curl -X POST http://localhost:3000/api/eve/clockin \
   -H 'content-type: application/json' \
   -H "x-hmac-sha256: <signature>" \
   -d '{
@@ -97,11 +97,11 @@ curl -X POST http://localhost:3000//api/eve/clockin \
   }'
 ```
 
-#### Clock-Out (`//api/eve/clockout`)
+#### Clock-Out (`/api/eve/clockout`)
 Ends a work cycle with wins, blocks, and tomorrow's intent.
 
 ```bash
-curl -X POST http://localhost:3000//api/eve/clockout \
+curl -X POST http://localhost:3000/api/eve/clockout \
   -H 'content-type: application/json' \
   -H "x-hmac-sha256: <signature>" \
   -d '{
@@ -114,11 +114,11 @@ curl -X POST http://localhost:3000//api/eve/clockout \
   }'
 ```
 
-### Ledger Verification (`//api/dev/ledger/verify`)
+### Ledger Verification (`/api/dev/ledger/verify`)
 Verify cryptographic proofs against the Civic Ledger.
 
 ```bash
-curl "http://localhost:3000//api/dev/ledger/verify?sha=0x<sha256>"
+curl "http://localhost:3000/api/dev/ledger/verify?sha=0x<sha256>"
 ```
 
 ## 🧠 Memory System
@@ -213,7 +213,7 @@ Each cycle generates:
 
 ### Adding New Features
 
-1. **API Endpoints**: Add to `pages//api/`
+1. **API Endpoints**: Add to `pages/api/`
 2. **Dev UI**: Add to `pages/dev/`
 3. **Memory Integration**: Use `lib/memory/fileStore.ts`
 4. **Security**: Use `lib/crypto/` utilities

@@ -68,7 +68,7 @@ The Genesis Ledger API needs these endpoints:
 - `POST /v1/commit` - Commit attested entries
 - `GET /v1/mic/balance/{agent_id}` - Query MIC balances
 
-See `packages/ledger-/api/` for reference implementation.
+See `packages/ledger-api/` for reference implementation.
 
 ---
 
@@ -119,7 +119,7 @@ async def startup():
     # ... initialize kernel and ledger ...
     broker = ThoughtBrokerKernelIntegration(kernel, ledger)
 
-@app.post("//api/agent/{agent_id}/action")
+@app.post("/api/agent/{agent_id}/action")
 async def agent_action(agent_id: str, payload: dict):
     """Constitutional enforcement endpoint."""
     request = BrokeredRequest(

@@ -33,7 +33,7 @@ node scripts/quests-bulk-secret.mjs uuid --write --json
 
 ### API Endpoints
 
-#### GET //api/quests/{quest_id}/secret
+#### GET /api/quests/{quest_id}/secret
 Retrieve the secret for a specific quest.
 
 **Response:**
@@ -46,7 +46,7 @@ Retrieve the secret for a specific quest.
 }
 ```
 
-#### POST //api/quests/{quest_id}/verify
+#### POST /api/quests/{quest_id}/verify
 Verify a secret for a quest.
 
 **Request:**
@@ -72,7 +72,7 @@ Verify a secret for a quest.
 }
 ```
 
-#### GET //api/quests/secrets/status
+#### GET /api/quests/secrets/status
 Get status of all quest secrets.
 
 **Response:**
@@ -99,12 +99,12 @@ class QuestSecretAPI {
   }
 
   async getQuestSecret(questId) {
-    const response = await fetch(`${this.baseURL}//api/quests/${questId}/secret`);
+    const response = await fetch(`${this.baseURL}/api/quests/${questId}/secret`);
     return await response.json();
   }
 
   async verifyQuestSecret(questId, secretValue, userId) {
-    const response = await fetch(`${this.baseURL}//api/quests/${questId}/verify`, {
+    const response = await fetch(`${this.baseURL}/api/quests/${questId}/verify`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ secret_value: secretValue, user_id: userId })
@@ -113,7 +113,7 @@ class QuestSecretAPI {
   }
 
   async getSecretsStatus() {
-    const response = await fetch(`${this.baseURL}//api/quests/secrets/status`);
+    const response = await fetch(`${this.baseURL}/api/quests/secrets/status`);
     return await response.json();
   }
 }
@@ -135,7 +135,7 @@ class QuestSecretAPI:
         self.base_url = base_url
 
     def get_quest_secret(self, quest_id):
-        response = requests.get(f"{self.base_url}//api/quests/{quest_id}/secret")
+        response = requests.get(f"{self.base_url}/api/quests/{quest_id}/secret")
         return response.json()
 
     def verify_quest_secret(self, quest_id, secret_value, user_id):
@@ -144,13 +144,13 @@ class QuestSecretAPI:
             "user_id": user_id
         }
         response = requests.post(
-            f"{self.base_url}//api/quests/{quest_id}/verify",
+            f"{self.base_url}/api/quests/{quest_id}/verify",
             json=data
         )
         return response.json()
 
     def get_secrets_status(self):
-        response = requests.get(f"{self.base_url}//api/quests/secrets/status")
+        response = requests.get(f"{self.base_url}/api/quests/secrets/status")
         return response.json()
 
 # Usage
@@ -189,7 +189,7 @@ class QuestSecretAPI {
   }
 
   async getQuestSecret(questId: string): Promise<QuestSecret> {
-    const response = await fetch(`${this.baseURL}//api/quests/${questId}/secret`);
+    const response = await fetch(`${this.baseURL}/api/quests/${questId}/secret`);
     return await response.json();
   }
 
@@ -198,7 +198,7 @@ class QuestSecretAPI {
     secretValue: string, 
     userId: string
   ): Promise<VerificationResult> {
-    const response = await fetch(`${this.baseURL}//api/quests/${questId}/verify`, {
+    const response = await fetch(`${this.baseURL}/api/quests/${questId}/verify`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ secret_value: secretValue, user_id: userId })
@@ -207,7 +207,7 @@ class QuestSecretAPI {
   }
 
   async getSecretsStatus(): Promise<any> {
-    const response = await fetch(`${this.baseURL}//api/quests/secrets/status`);
+    const response = await fetch(`${this.baseURL}/api/quests/secrets/status`);
     return await response.json();
   }
 }

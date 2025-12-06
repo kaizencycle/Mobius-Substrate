@@ -79,7 +79,7 @@ Successfully upgraded Kaizen OS from 3-companion to **4-companion Thought Broker
 ## 🏗️ **Files Created**
 
 ### **Kaizen OS Integration:**
-1. `apps/broker-/api/src/consensus/zenith.ts` - Thought Broker integration
+1. `apps/broker-api/src/consensus/zenith.ts` - Thought Broker integration
 2. `sentinels/zenith/index.ts` - Sentinel monitoring
 3. `sentinels/zenith/README.md` - Sentinel docs
 4. `packages/oaa-api-library/lib/companions/zenith.ts` - OAA registration

@@ -142,7 +142,7 @@
 **Related:**
 - [Specs](./specs/) (to be merged)
 - [Protocols](./protocols/) (to be moved)
-- [API](.//api/) (to be moved)
+- [API](./api/) (to be moved)
 - [Ledger](./ledger/) (to be moved)
 - [Mobius Kernel Spec](./mobius-kernel-spec-v0.1.md) (to be moved)
 

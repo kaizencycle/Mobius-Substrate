@@ -74,11 +74,11 @@ KAIZEN_GI_BASELINE=0.993
 
 ```typescript
 // Get current cycle info
-GET //api/cycle/current
+GET /api/cycle/current
 Response: { cycle: "C-118", gi: 0.993, room: "Consensus Chamber" }
 
 // Update cycle (requires auth in production)
-POST //api/cycle/current
+POST /api/cycle/current
 Body: { cycle: "C-119", gi: 0.994 }
 ```
 
@@ -421,7 +421,7 @@ consensus_metrics:
 
 ```bash
 # Check if API is responding
-curl http://localhost:3000//api/cycle/current
+curl http://localhost:3000/api/cycle/current
 
 # Check active sessions
 curl http://localhost:8000/v1/consensus/sessions
@@ -435,7 +435,7 @@ curl http://localhost:8000/v1/consensus/sessions
 
 **Solution:**
 
-1. Check API route is accessible: `curl http://localhost:3000//api/cycle/current`
+1. Check API route is accessible: `curl http://localhost:3000/api/cycle/current`
 2. Verify environment variables are set
 3. Check browser console for errors
 4. Ensure `autoFetch` prop is not set to `false`

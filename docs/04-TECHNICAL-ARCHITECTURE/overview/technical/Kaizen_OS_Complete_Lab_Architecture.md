@@ -633,10 +633,10 @@ Shield monitors Lab 3 for:
 
 ```
 Lab 3 provides services via Lab 7 API:
-├─ //api/compute/allocate (request AI query)
-├─ //api/energy/status (check Hive power levels)
-├─ //api/jobs/match (get job recommendations)
-├─ //api/housing/apply (request co-housing unit)
+├─ /api/compute/allocate (request AI query)
+├─ /api/energy/status (check Hive power levels)
+├─ /api/jobs/match (get job recommendations)
+├─ /api/housing/apply (request co-housing unit)
 
 Lab 7 uses Lab 3 for:
 ├─ Resource quotas (rate limit API calls)

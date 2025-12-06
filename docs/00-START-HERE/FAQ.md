@@ -45,7 +45,7 @@ The tokenomics reward coordination & integrity, not speculation or extraction:
 - The governance comes from **Sentinel consensus, GI scoring, and Civic Ledger**, not from any single model.
 - MASL (Model-Agnostic Sovereignty Layer) ensures no vendor lock-in.
 
-Any LLM can "board" Mobius by calling `//api/mobius/mount`.
+Any LLM can "board" Mobius by calling `/api/mobius/mount`.
 
 ---
 

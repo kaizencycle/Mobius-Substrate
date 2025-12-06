@@ -35,7 +35,7 @@ Recommended structure (to be populated in Phase 2):
 
 ### `apis/`
 - `rest-api-reference.md` — Complete REST API documentation
-- `mobius-mount-endpoint.md` — `GET //api/mobius/mount` specification
+- `mobius-mount-endpoint.md` — `GET /api/mobius/mount` specification
 - `integrity-check-endpoint.md` — Health and GI verification
 - `attestation-api.md` — How to submit attestations
 - `websocket-events.md` — Real-time event streaming
@@ -64,7 +64,7 @@ All specifications in this section follow these rules:
 ## Key Specifications
 
 **MASL (Model-Agnostic Sovereignty Layer)**  
-Enables any LLM to board Mobius by calling `//api/mobius/mount`, which returns:
+Enables any LLM to board Mobius by calling `/api/mobius/mount`, which returns:
 - `.mobius/atlas.manifest.json` — System state & integrity
 - `.mobius/biodna.json` — Identity DNA
 - `.mobius/virtue_accords.yaml` — Moral & civic laws

@@ -1618,7 +1618,7 @@ shard_types:
 - Created full MFS specification: `docs/07-RESEARCH-AND-PUBLICATIONS/specs/MFS_SPEC_v1.md`
 - Created MFS config: `configs/mfs_config.yaml`
 - Created MFS schema: `schemas/mfs.schema.json`
-- Created MFS API routes: `apps/broker-/api/src/routes/mfs.ts`
+- Created MFS API routes: `apps/broker-api/src/routes/mfs.ts`
 - Created MFS engine: `packages/integrity-core/src/mfs/mfsEngine.ts`
 - Created Fractal Wallet UI: `apps/kaizen-portal/components/FractalWallet.tsx`
 - Created citizen onboarding guide: `docs/onboarding/MFS_CITIZEN_ONBOARDING.md`

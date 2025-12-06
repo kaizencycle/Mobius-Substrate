@@ -15,7 +15,7 @@ Dashboards & alerts for the Mobius Integrity Stack.
 ## Logs Expected (Loki)
 
 - Labels: `{env, app="mobius-api"}`; errors include the route
-- Example query: `{env="$env"} |= "ERROR" |= "//api/mobius"`
+- Example query: `{env="$env"} |= "ERROR" |= "/api/mobius"`
 
 ## Run Locally via Docker Compose
 

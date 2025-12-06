@@ -272,7 +272,7 @@ Expected: ⚠️ Charter compliance warning
 ### Civic Ledger Verification
 ```bash
 # Verify an attestation
-curl https://ledger-api.render.com//api/attestations/verify?hash=<attestation_hash>
+curl https://ledger-api.render.com/api/attestations/verify?hash=<attestation_hash>
 ```
 
 ### Local Quality Report

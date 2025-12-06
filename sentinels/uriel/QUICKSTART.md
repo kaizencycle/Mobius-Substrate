@@ -46,7 +46,7 @@ npm start
 ### 5. Verify Health
 
 ```bash
-curl http://localhost:4005//api/sentinels/uriel/health
+curl http://localhost:4005/api/sentinels/uriel/health
 ```
 
 Expected response:
@@ -66,7 +66,7 @@ Expected response:
 ### Basic Query
 
 ```bash
-curl -X POST http://localhost:4005//api/sentinels/uriel/query \
+curl -X POST http://localhost:4005/api/sentinels/uriel/query \
   -H "Content-Type: application/json" \
   -d '{
     "intent": "What is the relationship between entropy and information in thermodynamics?",
@@ -77,7 +77,7 @@ curl -X POST http://localhost:4005//api/sentinels/uriel/query \
 ### With Context
 
 ```bash
-curl -X POST http://localhost:4005//api/sentinels/uriel/query \
+curl -X POST http://localhost:4005/api/sentinels/uriel/query \
   -H "Content-Type: application/json" \
   -d '{
     "intent": "Map first three entropy reductions for C-122",
@@ -93,7 +93,7 @@ curl -X POST http://localhost:4005//api/sentinels/uriel/query \
 ### Using Illuminate Alias
 
 ```bash
-curl -X POST http://localhost:4005//api/sentinels/uriel/illuminate \
+curl -X POST http://localhost:4005/api/sentinels/uriel/illuminate \
   -H "Content-Type: application/json" \
   -d '{
     "intent": "Explain quantum entanglement in simple terms"
@@ -192,7 +192,7 @@ Response includes URIEL status:
   "sentinels": {
     "uriel": {
       "mounted": true,
-      "endpoint": "//api/sentinels/uriel",
+      "endpoint": "/api/sentinels/uriel",
       "status": "active"
     }
   }
@@ -285,9 +285,9 @@ See full documentation:
 Instant rollback available:
 
 ```typescript
-// In apps/broker-/api/src/index.ts
+// In apps/broker-api/src/index.ts
 // Comment out this line:
-// app.use('//api/sentinels/uriel', createUrielRouter());
+// app.use('/api/sentinels/uriel', createUrielRouter());
 ```
 
 Redeploy—all traffic reverts to ATLAS/EVE/HERMES. No data loss.

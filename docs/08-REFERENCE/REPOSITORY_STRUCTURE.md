@@ -17,8 +17,8 @@
 | **See architecture** | [`docs/03-architecture/`](./03-architecture/) |
 | **Deploy to Vercel** | [`docs/08-processes/runbooks/VERCEL_DEPLOYMENT_RUNBOOK.md`](./08-processes/runbooks/VERCEL_DEPLOYMENT_RUNBOOK.md) |
 | **Contribute code** | [`CONTRIBUTING.md`](../CONTRIBUTING.md) (coming soon) |
-| **Run AI services** | [`apps/broker-/api/`](../../apps/broker-/api/) (Thought Broker) |
-| **Build reflection app** | [`apps/eomm-/api/`](../../apps/eomm-/api/) (E.O.M.M.) |
+| **Run AI services** | [`apps/broker-api/`](../../apps/broker-api/) (Thought Broker) |
+| **Build reflection app** | [`apps/eomm-api/`](../../apps/eomm-api/) (E.O.M.M.) |
 | **Understand governance** | [`docs/02-governance/`](./02-governance/) |
 | **Join community** | Discord (link in main README) |
 
@@ -40,11 +40,11 @@ Kaizen-OS/
 │   ├── aurea-site/                   ← Founding Agent site (Vercel)
 │   ├── portal/                       ← Main portal (Vercel)
 │   ├── website-creator/              ← .gic site builder (Vercel-ready)
-│   ├── ledger-/api/                   ← Civic Ledger Core
-│   ├── indexer-/api/                  ← MIC Indexer
-│   ├── eomm-/api/                     ← E.O.M.M. Reflections
-│   ├── broker-/api/                   ← Thought Broker
-│   ├── shield-/api/                   ← Citizen Shield
+│   ├── ledger-api/                   ← Civic Ledger Core
+│   ├── indexer-api/                  ← MIC Indexer
+│   ├── eomm-api/                     ← E.O.M.M. Reflections
+│   ├── broker-api/                   ← Thought Broker
+│   ├── shield-api/                   ← Citizen Shield
 │   ├── hub-web/                      ← OAA Hub
 │   ├── hive-app/                     ← Hive (Community)
 │   ├── cathedral-app/                ← Governance
@@ -106,12 +106,12 @@ This table shows how our current structure maps to the ideal structure:
 | Ideal Structure | Current Location | Status | Notes |
 |----------------|------------------|--------|-------|
 | **contracts/** | `packages/civic-protocol-core/` | ✅ Implemented | Smart contracts + deployment |
-| **civic-ledger/** | `apps/ledger-/api/` | ✅ Implemented | GI scoring + MIC minting |
-| **codex-router/** | `apps/broker-/api/` + `packages/codex-agentic/` | ✅ Implemented | Multi-LLM orchestration |
+| **civic-ledger/** | `apps/ledger-api/` | ✅ Implemented | GI scoring + MIC minting |
+| **codex-router/** | `apps/broker-api/` + `packages/codex-agentic/` | ✅ Implemented | Multi-LLM orchestration |
 | **resource-orchestration/** | `apps/orchestrator/` | ⚠️ Partial | Compute allocation implemented |
-| **eomm/** | `apps/eomm-/api/` + `labs/lab4-proof/` | ✅ Implemented | Reflection app + backend |
+| **eomm/** | `apps/eomm-api/` + `labs/lab4-proof/` | ✅ Implemented | Reflection app + backend |
 | **humanities-healthcare/** | `labs/lab5-proof/` | 📋 Planned | Lab 5 specification exists |
-| **citizen-shield/** | `apps/shield-/api/` + `labs/lab6-proof/` | ✅ Implemented | Security + IDS/IPS |
+| **citizen-shield/** | `apps/shield-api/` + `labs/lab6-proof/` | ✅ Implemented | Security + IDS/IPS |
 | **oaa-hub/** | `apps/hub-web/` + `labs/lab7-proof/` | ✅ Implemented | Education + API gateway |
 | **simulations/** | `docs/01-whitepapers/` (in whitepaper) | ⚠️ Partial | Models documented, code TBD |
 | **community/** | Not yet created | 📋 Planned | Hive starter kit needed |
@@ -172,11 +172,11 @@ docs/03-architecture/technical/
 └── overview.md                         ← High-level overview
 
 apps/                                   ← Implementation of 7 Labs
-├── ledger-/api/                        ← Lab 1: Civic Ledger
-├── broker-/api/                        ← Lab 2: Thought Broker
+├── ledger-api/                        ← Lab 1: Civic Ledger
+├── broker-api/                        ← Lab 2: Thought Broker
 ├── orchestrator/                      ← Lab 3: Resource Orchestration
-├── eomm-/api/                          ← Lab 4: E.O.M.M. Reflections
-├── shield-/api/                        ← Lab 6: Citizen Shield
+├── eomm-api/                          ← Lab 4: E.O.M.M. Reflections
+├── shield-api/                        ← Lab 6: Citizen Shield
 └── hub-web/                           ← Lab 7: OAA Hub
 ```
 
@@ -232,10 +232,10 @@ contracts/                             ← Top-level contracts directory
 ```
 Current Location:
 
-apps/ledger-/api/                       ← Lab 1: GI scoring + MIC minting
-apps/broker-/api/                       ← Lab 2: Multi-LLM routing
-apps/eomm-/api/                         ← Lab 4: Reflection app
-apps/shield-/api/                       ← Lab 6: Security + identity
+apps/ledger-api/                       ← Lab 1: GI scoring + MIC minting
+apps/broker-api/                       ← Lab 2: Multi-LLM routing
+apps/eomm-api/                         ← Lab 4: Reflection app
+apps/shield-api/                       ← Lab 6: Security + identity
 apps/hub-web/                          ← Lab 7: Education + API gateway
 
 Render Deployment:
@@ -271,7 +271,7 @@ apps/website-creator/vercel.json      ← Website creator
    OR docs/04-guides/deployment/ guides for your target platform
 3. Choose a service to work on:
    - Frontend? → apps/aurea-site/, apps/portal/, apps/website-creator/
-   - Backend API? → apps/ledger-/api/, apps/broker-/api/, apps/eomm-/api/
+   - Backend API? → apps/ledger-api/, apps/broker-api/, apps/eomm-api/
    - Packages? → packages/civic-sdk/, packages/codex-agentic/
 4. Clone repo + install dependencies (30 min)
    npm install
@@ -304,10 +304,10 @@ Future: community/hive-starter-kit/ (coming soon)
 | Feature | Current Location | Future Location |
 |---------|------------------|-----------------|
 | Smart contracts | `packages/civic-protocol-core/` | `contracts/` |
-| GI score calculation | `apps/ledger-/api/` + `packages/integrity-core/` | `civic-ledger/indexer/` |
-| Multi-LLM routing | `apps/broker-/api/` + `packages/codex-agentic/` | `codex-router/` |
-| Reflection app UI | `apps/eomm-/api/reflections/` + `labs/lab4-proof/` | `eomm/` |
-| DID system | `apps/shield-/api/` + `labs/lab6-proof/` | `citizen-shield/identity/` |
+| GI score calculation | `apps/ledger-api/` + `packages/integrity-core/` | `civic-ledger/indexer/` |
+| Multi-LLM routing | `apps/broker-api/` + `packages/codex-agentic/` | `codex-router/` |
+| Reflection app UI | `apps/eomm-api/reflections/` + `labs/lab4-proof/` | `eomm/` |
+| DID system | `apps/shield-api/` + `labs/lab6-proof/` | `citizen-shield/identity/` |
 | Education courses | `apps/hub-web/` + `labs/lab7-proof/` | `oaa-hub/course-library/` |
 | UBI simulation | `docs/01-whitepapers/MIC_Whitepaper_v2.1.md` (Section 4) | `simulations/planetary-ubi/` |
 | Founding Agent sites | `apps/aurea-site/`, `apps/portal/` | (keep current structure) |
@@ -358,10 +358,10 @@ contracts/deployed/mainnet.json
 ### Backend Services
 
 ```
-apps/ledger-/api/.env.example
-apps/broker-/api/.env.example
-apps/eomm-/api/.env.example
-apps/shield-/api/.env.example
+apps/ledger-api/.env.example
+apps/broker-api/.env.example
+apps/eomm-api/.env.example
+apps/shield-api/.env.example
 apps/hub-web/.env.example
 
 infra/docker/docker-compose.yml
@@ -390,16 +390,16 @@ apps/website-creator/vercel.json
 
 ```
 1. Citizen writes reflection (E.O.M.M.)
-   └─ apps/eomm-/api/ → PostgreSQL
+   └─ apps/eomm-api/ → PostgreSQL
 
 2. Reflection analyzed for integrity (GI score)
-   └─ apps/ledger-/api/ (indexer) → calculates GI
+   └─ apps/ledger-api/ (indexer) → calculates GI
 
 3. If GI ≥ 0.95, citizen earns MIC
-   └─ apps/ledger-/api/ (API) → mints MIC via smart contracts
+   └─ apps/ledger-api/ (API) → mints MIC via smart contracts
 
 4. Citizen spends MIC on AI query
-   └─ apps/broker-/api/ (Codex Router) → routes to optimal LLM
+   └─ apps/broker-api/ (Codex Router) → routes to optimal LLM
 
 5. Query cost logged
    └─ apps/orchestrator/ → tracks resource usage
@@ -487,10 +487,10 @@ npm run test --filter civic-sdk
 
 ### Phase 3: Service Consolidation (📋 FUTURE)
 
-- [ ] Rename `apps/ledger-/api/` → `civic-ledger/`
-- [ ] Rename `apps/broker-/api/` → `codex-router/`
-- [ ] Rename `apps/eomm-/api/` → `eomm/`
-- [ ] Rename `apps/shield-/api/` → `citizen-shield/`
+- [ ] Rename `apps/ledger-api/` → `civic-ledger/`
+- [ ] Rename `apps/broker-api/` → `codex-router/`
+- [ ] Rename `apps/eomm-api/` → `eomm/`
+- [ ] Rename `apps/shield-api/` → `citizen-shield/`
 - [ ] Rename `apps/hub-web/` → `oaa-hub/`
 
 ### Phase 4: Infrastructure Standardization (✅ C-155)
@@ -611,10 +611,10 @@ docker-compose down
                    │
 ┌──────────────────▼──────────────────────────┐
 │  API Layer (Render)                         │
-│  • apps/ledger-/api/    (Civic Ledger)      │
-│  • apps/broker-/api/    (Thought Broker)    │
-│  • apps/eomm-/api/      (E.O.M.M.)          │
-│  • apps/shield-/api/    (Citizen Shield)    │
+│  • apps/ledger-api/    (Civic Ledger)      │
+│  • apps/broker-api/    (Thought Broker)    │
+│  • apps/eomm-api/      (E.O.M.M.)          │
+│  • apps/shield-api/    (Citizen Shield)    │
 │  • apps/hub-web/       (OAA Hub)           │
 └──────────────────┬──────────────────────────┘
                    │

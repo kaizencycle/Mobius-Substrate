@@ -17,7 +17,7 @@ This system implements first-class citations and verifiable provenance across E.
 
 ### 2. Ingest Endpoint
 
-The `//api/eomm/ingest` endpoint now:
+The `/api/eomm/ingest` endpoint now:
 - Validates `sources` field as array
 - Builds JSON-LD with proper citations from sources
 - Returns both the saved E.O.M.M. file and generated JSON-LD
@@ -32,7 +32,7 @@ The `scripts/eomm-sync.mjs` script:
 
 ### 4. Proof Proxy
 
-The `//api/proof/[id]` endpoint:
+The `/api/proof/[id]` endpoint:
 - Fetches proof details from Civic Ledger
 - Enriches with back-links to E.O.M.M. and beacon files
 - Provides cached, safe access to proof information
@@ -102,7 +102,7 @@ schemas/
   attestation.schema.json     # JSON-LD attestation schema
   eomm-entry.schema.json      # E.O.M.M. entry schema
 
-pages//api/
+pages/api/
   eomm/ingest.ts              # Enhanced ingest with citations
   proof/[id].ts               # Proof proxy endpoint
 

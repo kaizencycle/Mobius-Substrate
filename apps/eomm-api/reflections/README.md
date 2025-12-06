@@ -8,10 +8,10 @@ Mobile-friendly onboarding app with **companions** (Jade/Hermes/Eve/Zeus), a wor
 3) Type a reflection → you get a reply and **XP** is posted to the **MIC Indexer**.
 
 ## Endpoints (server)
-- `POST //api/reflect` → { user, text, companion } → { reply, xpGranted }
-- `POST //api/unlock` → { user, companion, costGIC } → burns MIC for companion unlock
-- `POST //api/auth/login` → { handle } → creates session
-- `GET //api/me` → returns current user handle
+- `POST /api/reflect` → { user, text, companion } → { reply, xpGranted }
+- `POST /api/unlock` → { user, companion, costGIC } → burns MIC for companion unlock
+- `POST /api/auth/login` → { handle } → creates session
+- `GET /api/me` → returns current user handle
 
 ## Env
 - `OPENAI_API_KEY` for LLM (uses `gpt-4o-mini` by default)

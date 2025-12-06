@@ -413,7 +413,7 @@ The Mobius Systems documentation follows a hierarchical classification system:
 
 | Doc ID | Title | Path | Status | Version |
 |--------|-------|------|--------|---------|
-| API-2025-001 | API Reference | `08-REFERENCE//api/` | Published | 1.0.0 |
+| API-2025-001 | API Reference | `08-REFERENCE/api/` | Published | 1.0.0 |
 
 #### 830 - Intelligence Classification
 
@@ -457,7 +457,7 @@ Historical documents preserved in `10-ARCHIVES/`
 ### A
 - **Agent CI** → `09-APPENDICES/agents/AGENT_CI.md` [AGENT-2025-002]
 - **API Integration** → `05-IMPLEMENTATION/guides/development/API_INTEGRATION.md` [DEV-2025-002]
-- **API Reference** → `08-REFERENCE//api/` [API-2025-001]
+- **API Reference** → `08-REFERENCE/api/` [API-2025-001]
 - **Architecture Overview** → `04-TECHNICAL-ARCHITECTURE/overview/ARCHITECTURE.md` [ARCH-2025-002]
 - **Architecture Quick Reference** → `04-TECHNICAL-ARCHITECTURE/overview/ARCHITECTURE_QUICK_REFERENCE.md` [ARCH-2025-003]
 

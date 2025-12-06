@@ -28,7 +28,7 @@ This migration guide helps you update your code, configurations, and deployments
 | **Package Namespace** | `@kaizen/*` | `@mobius/*` |
 | **Config Directories** | `.kaizen/` | `.mobius/` |
 | **Environment Variables** | `KAIZEN_OS_*` | `MOBIUS_*` |
-| **API Endpoints** | `//api/kaizen/*` | `//api/mobius/*` |
+| **API Endpoints** | `/api/kaizen/*` | `/api/mobius/*` |
 | **Root Package Name** | `kaizen-os` | `mobius-systems` |
 
 ### What Did NOT Change
@@ -90,8 +90,8 @@ Update any references to `.kaizen/` directories:
 - const manifestPath = '.kaizen/atlas.manifest.json';
 + const manifestPath = '.mobius/atlas.manifest.json';
 
-- GET //api/kaizen/mount
-+ GET //api/mobius/mount
+- GET /api/kaizen/mount
++ GET /api/mobius/mount
 ```
 
 ### 4. Update Environment Variables
@@ -115,10 +115,10 @@ Rename environment variables in your `.env` files and deployment configs:
 If you have custom API routes:
 
 ```diff
-// pages//api/deliberate.ts
+// pages/api/deliberate.ts
 export default async function handler(req, res) {
-- const response = await fetch('//api/kaizen/mount');
-+ const response = await fetch('//api/mobius/mount');
+- const response = await fetch('/api/kaizen/mount');
++ const response = await fetch('/api/mobius/mount');
 }
 ```
 
@@ -239,10 +239,10 @@ Warning: KAIZEN_OS_EXPORT_URL is undefined
 ### Issue: API 404 Errors
 
 ```
-Error: POST //api/kaizen/mount 404 Not Found
+Error: POST /api/kaizen/mount 404 Not Found
 ```
 
-**Solution**: Update API routes from `//api/kaizen/*` to `//api/mobius/*`.
+**Solution**: Update API routes from `/api/kaizen/*` to `/api/mobius/*`.
 
 ## Timeline
 

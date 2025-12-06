@@ -378,7 +378,7 @@ contract GICGovernor {
 
 **GI Indexer:** `GET /gi/index` → Returns current Mobius Integrity Index score  
 **MIC Minting:** `POST /gic/mint` → Mints MIC if GI ≥ 0.95  
-**Codex Router:** `POST //api/codex/query` → Multi-LLM deliberation with DelibProof
+**Codex Router:** `POST /api/codex/query` → Multi-LLM deliberation with DelibProof
 
 ---
 

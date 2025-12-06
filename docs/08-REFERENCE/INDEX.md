@@ -53,7 +53,7 @@ license: CC-BY-SA-4.0
 - **N8N Universal Flow API** → `11-SUPPLEMENTARY/specs/N8N_UNIVERSAL_FLOW_API.md`
 
 #### GraphQL APIs
-- **API Reference** → `11-SUPPLEMENTARY//api/` [API-2025-001]
+- **API Reference** → `11-SUPPLEMENTARY/api/` [API-2025-001]
 
 #### WebSocket APIs
 - **Real-time Protocols** → `06-OPERATIONS/protocols/`
@@ -152,7 +152,7 @@ license: CC-BY-SA-4.0
 
 | Type | Location | Count |
 |------|----------|-------|
-| **API Documentation** | `11-SUPPLEMENTARY//api/`, `specs/` | 10+ |
+| **API Documentation** | `11-SUPPLEMENTARY/api/`, `specs/` | 10+ |
 | **Schemas** | `config/telemetry/schemas/`, `08-REFERENCE/` | 15+ |
 | **Protocols** | `06-OPERATIONS/protocols/` | 5+ |
 | **Runbooks** | `06-OPERATIONS/processes/runbooks/` | 5+ |

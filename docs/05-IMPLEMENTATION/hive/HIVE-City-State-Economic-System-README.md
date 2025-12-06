@@ -306,7 +306,7 @@ The HIVE economic system is built on:
 
 #### 1. City-State GDP Calculation
 
-**Endpoint:** `POST //api/citystate/gdp`
+**Endpoint:** `POST /api/citystate/gdp`
 
 **Request:**
 ```json
@@ -387,7 +387,7 @@ python tools/citystate_gdp_simulation.py \
 import { CityStateGDPResult } from '@/types/citystate';
 
 export default async function CityStatePage({ params }) {
-  const gdp = await fetch('//api/citystate/gdp', {
+  const gdp = await fetch('/api/citystate/gdp', {
     method: 'POST',
     body: JSON.stringify({
       citystate_name: params.slug,
@@ -595,15 +595,15 @@ python tools/citystate_gdp_simulation.py --export-csv ./outputs
 
 ```bash
 # Calculate City-State GDP
-curl -X POST https://mobius.systems//api/citystate/gdp \
+curl -X POST https://mobius.systems/api/citystate/gdp \
   -H "Content-Type: application/json" \
   -d @request.json
 
 # Get City-State metrics
-curl https://mobius.systems//api/citystate/aurora/metrics
+curl https://mobius.systems/api/citystate/aurora/metrics
 
 # Get HIVE League Table
-curl https://mobius.systems//api/hive/league-table
+curl https://mobius.systems/api/hive/league-table
 ```
 
 ### Dashboards

@@ -40,7 +40,7 @@
 docs/06-OPERATIONS/protocols/MCP_v1.0.md (NEW)
 docs/04-guides/development/pr-cycle-template.md (NEW)
 .github/workflows/mcp-enforcer.yml (NEW)
-apps/indexer-/api/src/routes/cycles.ts (NEW)
+apps/indexer-api/src/routes/cycles.ts (NEW)
 ```
 
 ### Tests

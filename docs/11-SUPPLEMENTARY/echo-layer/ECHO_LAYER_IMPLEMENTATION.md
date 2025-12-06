@@ -11,10 +11,10 @@
 - ✅ Statistics view for DVA.LITE monitoring
 
 **Core Services:**
-- ✅ `apps/broker-/api/src/config/echo.ts` - Configuration and thresholds
-- ✅ `apps/broker-/api/src/services/echoLayer.ts` - CRUD operations
-- ✅ `apps/broker-/api/src/services/answerWithEcho.ts` - Main orchestration
-- ✅ `apps/broker-/api/src/utils/textCanonicalization.ts` - Text normalization
+- ✅ `apps/broker-api/src/config/echo.ts` - Configuration and thresholds
+- ✅ `apps/broker-api/src/services/echoLayer.ts` - CRUD operations
+- ✅ `apps/broker-api/src/services/answerWithEcho.ts` - Main orchestration
+- ✅ `apps/broker-api/src/utils/textCanonicalization.ts` - Text normalization
 
 **API Integration:**
 - ✅ Updated `/v1/deliberate` route to check ECHO Layer first
@@ -45,10 +45,10 @@
 
 Due to Windows PowerShell path issues, these files may need manual renaming:
 
-1. `apps/broker-/api/src/config/integrityCache.ts` → `echo.ts`
-2. `apps/broker-/api/src/services/integrityCache.ts` → `echoLayer.ts` (if exists)
-3. `apps/broker-/api/src/services/answerWithIntegrity.ts` → `answerWithEcho.ts` (if exists)
-4. `apps/broker-/api/src/routes/cacheStats.ts` → `echoStats.ts` (if exists)
+1. `apps/broker-api/src/config/integrityCache.ts` → `echo.ts`
+2. `apps/broker-api/src/services/integrityCache.ts` → `echoLayer.ts` (if exists)
+3. `apps/broker-api/src/services/answerWithIntegrity.ts` → `answerWithEcho.ts` (if exists)
+4. `apps/broker-api/src/routes/cacheStats.ts` → `echoStats.ts` (if exists)
 5. `docs/dva/INTEGRITY_CACHE.md` → `ECHO_LAYER.md`
 
 ## 📋 Next Steps

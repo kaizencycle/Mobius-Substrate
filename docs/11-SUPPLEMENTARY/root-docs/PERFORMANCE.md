@@ -25,10 +25,10 @@ Mobius Systems is designed for high-performance, scalable operation with targets
 | Endpoint | Target (p95) | Target (p99) | Current (p95) |
 |----------|--------------|--------------|---------------|
 | `/healthz` | < 50ms | < 100ms | ~30ms |
-| `//api/integrity/attest` | < 200ms | < 500ms | ~150ms |
-| `//api/deliberation/create` | < 500ms | < 1000ms | ~400ms |
-| `//api/deliberation/{id}` | < 100ms | < 200ms | ~80ms |
-| `//api/reflection/create` | < 300ms | < 600ms | ~250ms |
+| `/api/integrity/attest` | < 200ms | < 500ms | ~150ms |
+| `/api/deliberation/create` | < 500ms | < 1000ms | ~400ms |
+| `/api/deliberation/{id}` | < 100ms | < 200ms | ~80ms |
+| `/api/reflection/create` | < 300ms | < 600ms | ~250ms |
 
 ### 1.2 Throughput
 
@@ -71,10 +71,10 @@ Mobius Systems is designed for high-performance, scalable operation with targets
 Endpoint                          p50    p95    p99    Max
 ─────────────────────────────────────────────────────────
 GET  /healthz                      25ms   35ms   45ms   60ms
-POST //api/integrity/attest        120ms  180ms  250ms  400ms
-POST //api/deliberation/create     350ms  450ms  600ms  800ms
-GET  //api/deliberation/{id}       60ms   90ms   120ms  180ms
-POST //api/reflection/create       200ms  280ms  350ms  500ms
+POST /api/integrity/attest        120ms  180ms  250ms  400ms
+POST /api/deliberation/create     350ms  450ms  600ms  800ms
+GET  /api/deliberation/{id}       60ms   90ms   120ms  180ms
+POST /api/reflection/create       200ms  280ms  350ms  500ms
 ```
 
 ### 2.2 Throughput Benchmarks
@@ -380,9 +380,9 @@ SELECT (join, 3+ tables)       25ms   60ms   100ms
 
 | Endpoint | Target | Current |
 |----------|--------|---------|
-| `//api/integrity/attest` | < 2KB | ~1.5KB |
-| `//api/deliberation/{id}` | < 10KB | ~8KB |
-| `//api/reflection/list` | < 50KB | ~45KB |
+| `/api/integrity/attest` | < 2KB | ~1.5KB |
+| `/api/deliberation/{id}` | < 10KB | ~8KB |
+| `/api/reflection/list` | < 50KB | ~45KB |
 
 ---
 

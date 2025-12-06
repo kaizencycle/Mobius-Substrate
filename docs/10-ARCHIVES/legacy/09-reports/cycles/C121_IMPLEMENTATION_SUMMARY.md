@@ -27,27 +27,27 @@ This update implements comprehensive agent bios, ATLAS sync capabilities with re
   - **HERMES** - Founding Core (Markets • Telemetry • Sweep)
 
 ### 3. ATLAS Sync API Endpoints ✅
-Created sync endpoints under `//api/sync/`:
-- `GET //api/sync/get_cycle_status` - Current cycle and clock
-- `GET //api/sync/get_aurea_snapshot` - AUREA integrity snapshot
-- `GET //api/sync/get_recent_events` - Recent ledger events
-- `GET //api/sync/get_hvc_flags` - Open HVC alerts
-- `POST //api/sync/post_sync_ack` - Record sync heartbeat
-- `GET //api/sync/get_repo_digest` - Repository summary
-- `GET //api/sync/get_repo_changes_since` - Incremental repo changes
-- `POST //api/sync/post_repo_sync_ack` - Record repo sync
+Created sync endpoints under `/api/sync/`:
+- `GET /api/sync/get_cycle_status` - Current cycle and clock
+- `GET /api/sync/get_aurea_snapshot` - AUREA integrity snapshot
+- `GET /api/sync/get_recent_events` - Recent ledger events
+- `GET /api/sync/get_hvc_flags` - Open HVC alerts
+- `POST /api/sync/post_sync_ack` - Record sync heartbeat
+- `GET /api/sync/get_repo_digest` - Repository summary
+- `GET /api/sync/get_repo_changes_since` - Incremental repo changes
+- `POST /api/sync/post_repo_sync_ack` - Record repo sync
 
 ### 4. SR API Endpoints ✅
-Created SR endpoints under `//api/sr/`:
-- `GET //api/sr/latest` - Latest Situational Report
-- `GET //api/sr/badge` - SR badge endpoint (Shields.io compatible)
-- `POST //api/sr/emit` - Secure SR emission endpoint
-- `POST //api/sr/emit/dry-run` - Dry-run SR emission (no auth)
+Created SR endpoints under `/api/sr/`:
+- `GET /api/sr/latest` - Latest Situational Report
+- `GET /api/sr/badge` - SR badge endpoint (Shields.io compatible)
+- `POST /api/sr/emit` - Secure SR emission endpoint
+- `POST /api/sr/emit/dry-run` - Dry-run SR emission (no auth)
 
 ### 5. Repository API Endpoints ✅
 Created repo endpoints:
-- `GET //api/repo/digest` - Repository digest (PRs, issues, tags, releases)
-- `GET //api/repo/badge` - Repo badge endpoint (Shields.io compatible)
+- `GET /api/repo/digest` - Repository digest (PRs, issues, tags, releases)
+- `GET /api/repo/badge` - Repo badge endpoint (Shields.io compatible)
 
 ### 6. Repo Changes Reducer ✅
 Created `apps/portal/lib/repo-changes-reducer.ts`:
@@ -117,21 +117,21 @@ Created workflows:
 
 ### Created
 - `docs/agents/FOUNDING_AGENTS.md`
-- `apps/portal/app//api/sr/latest/route.ts`
-- `apps/portal/app//api/sr/badge/route.ts`
-- `apps/portal/app//api/sr/emit/route.ts`
-- `apps/portal/app//api/sr/emit/dry-run/route.ts`
-- `apps/portal/app//api/repo/digest/route.ts`
-- `apps/portal/app//api/repo/badge/route.ts`
+- `apps/portal/app/api/sr/latest/route.ts`
+- `apps/portal/app/api/sr/badge/route.ts`
+- `apps/portal/app/api/sr/emit/route.ts`
+- `apps/portal/app/api/sr/emit/dry-run/route.ts`
+- `apps/portal/app/api/repo/digest/route.ts`
+- `apps/portal/app/api/repo/badge/route.ts`
 - `apps/portal/lib/repo-changes-reducer.ts`
-- `apps/portal/app//api/sync/get_cycle_status/route.ts`
-- `apps/portal/app//api/sync/get_aurea_snapshot/route.ts`
-- `apps/portal/app//api/sync/get_recent_events/route.ts`
-- `apps/portal/app//api/sync/get_hvc_flags/route.ts`
-- `apps/portal/app//api/sync/post_sync_ack/route.ts`
-- `apps/portal/app//api/sync/get_repo_digest/route.ts`
-- `apps/portal/app//api/sync/get_repo_changes_since/route.ts`
-- `apps/portal/app//api/sync/post_repo_sync_ack/route.ts`
+- `apps/portal/app/api/sync/get_cycle_status/route.ts`
+- `apps/portal/app/api/sync/get_aurea_snapshot/route.ts`
+- `apps/portal/app/api/sync/get_recent_events/route.ts`
+- `apps/portal/app/api/sync/get_hvc_flags/route.ts`
+- `apps/portal/app/api/sync/post_sync_ack/route.ts`
+- `apps/portal/app/api/sync/get_repo_digest/route.ts`
+- `apps/portal/app/api/sync/get_repo_changes_since/route.ts`
+- `apps/portal/app/api/sync/post_repo_sync_ack/route.ts`
 - `.github/workflows/pr-sr-comment.yml`
 - `.github/workflows/publish-sr.yml`
 - `.github/workflows/ping-atlas.yml`
@@ -142,7 +142,7 @@ Created workflows:
 
 ### Modified
 - `README.md` - Added badges, updated cycle references
-- `apps/portal/app//api/cycle/current/route.ts` - Updated default cycle to C-121
+- `apps/portal/app/api/cycle/current/route.ts` - Updated default cycle to C-121
 - `docs/companions/README.md` - Added links to new documentation
 
 ---

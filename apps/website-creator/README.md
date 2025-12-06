@@ -19,9 +19,9 @@ npm run dev
 **Create your first .gic website in minutes!**
 
 ## Key routes
-- `POST //api/names/register` → reserve a name (mock reservation, returns reservation_id)
-- `POST //api/names/commit` → publish DID + content root (writes mock ledger hash)
-- `GET  //api/resolve/[name]` → resolve public profile bundle for SSR
+- `POST /api/names/register` → reserve a name (mock reservation, returns reservation_id)
+- `POST /api/names/commit` → publish DID + content root (writes mock ledger hash)
+- `GET  /api/resolve/[name]` → resolve public profile bundle for SSR
 
 After reserving + committing, visit `http://localhost:3000/<name>` to see the **Civic Home**.
 
@@ -42,7 +42,7 @@ Replace functions in `lib/ledger.ts` to call your real endpoints:
 ## Security notes
 - Add auth & rate-limits to `register/commit` before production.
 - Enforce **timelocks** and **multisig** for destructive ops on the ledger side.
-- Cache `//api/resolve` at the edge; purge on commit.
+- Cache `/api/resolve` at the edge; purge on commit.
 
 Generated 2025-10-19T21:09:49.333180Z
 

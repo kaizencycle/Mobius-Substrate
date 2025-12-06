@@ -75,7 +75,7 @@ Mobius Systems makes several novel contributions:
 
 **Key Innovation:** Protocol enabling any LLM to participate in shared governance without vendor lock-in.
 
-- "Boarding protocol" via `//api/mobius/mount`
+- "Boarding protocol" via `/api/mobius/mount`
 - External memory first (manifests, not chat sessions)
 - Cryptographic integrity proofs cross-model
 - Federated continuity across nodes

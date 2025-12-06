@@ -191,7 +191,7 @@ OPENAI_LAB_ENDPOINT=https://your-lab4-api.onrender.com
 ANTHROPIC_LAB_ENDPOINT=https://your-atlas-api.onrender.com
 DEEPSEEK_LAB_ENDPOINT=https://your-solara-api.onrender.com
 CIVIC_LEDGER_ENDPOINT=https://your-ledger-api.onrender.com
-DISCORD_WEBHOOK_URL=https://discord.com//api/webhooks/...
+DISCORD_WEBHOOK_URL=https://discord.com/api/webhooks/...
 ```
 
 **How to add secrets:**

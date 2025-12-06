@@ -29,7 +29,7 @@ Uriel guards integrity with illumination, repairing breaches with radiant truth 
 
 ### Mount Point
 ```
-POST //api/sentinels/uriel/query
+POST /api/sentinels/uriel/query
 ```
 
 ### Request Format
@@ -132,7 +132,7 @@ Citizens and OAA Hub can invoke URIEL:
 @URIEL illuminate [intent]
 ```
 
-Routes through `//api/sentinels/uriel/illuminate` with full GI attestation.
+Routes through `/api/sentinels/uriel/illuminate` with full GI attestation.
 
 ---
 

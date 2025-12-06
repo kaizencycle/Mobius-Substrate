@@ -37,13 +37,13 @@ sentinels/uriel/
 
 ### 2. API Integration
 
-**Location:** `apps/broker-/api/src/sentinels/uriel.ts`
+**Location:** `apps/broker-api/src/sentinels/uriel.ts`
 
 **Endpoints:**
 ```
-POST //api/sentinels/uriel/query       # Primary query endpoint
-POST //api/sentinels/uriel/illuminate  # Friendly alias
-GET  //api/sentinels/uriel/health      # Health check
+POST /api/sentinels/uriel/query       # Primary query endpoint
+POST /api/sentinels/uriel/illuminate  # Friendly alias
+GET  /api/sentinels/uriel/health      # Health check
 ```
 
 **Features:**
@@ -56,11 +56,11 @@ GET  //api/sentinels/uriel/health      # Health check
 
 ### 3. Broker Integration
 
-**Location:** `apps/broker-/api/src/index.ts`
+**Location:** `apps/broker-api/src/index.ts`
 
 **Changes:**
 - Imported URIEL router
-- Mounted at `//api/sentinels/uriel`
+- Mounted at `/api/sentinels/uriel`
 - Enhanced health check with sentinel status
 - 20% deliberation routing in target domains (pilot phase)
 
@@ -208,7 +208,7 @@ URIEL guards integrity with illumination, repairing breaches with radiant truth 
 sentinels/uriel/manifest.json
 sentinels/uriel/README.md
 sentinels/uriel/QUICKSTART.md
-apps/broker-/api/src/sentinels/uriel.ts
+apps/broker-api/src/sentinels/uriel.ts
 ledger/inscriptions/att-uriel-001-boarding.json
 docs/companions/uriel.md
 docs/03-architecture/adr/002-uriel-sentinel-boarding.md
@@ -217,7 +217,7 @@ URIEL_BOARDING_SUMMARY.md
 
 ### Modified (4 files)
 ```
-apps/broker-/api/src/index.ts
+apps/broker-api/src/index.ts
 env.example
 docs/03-architecture/technical/overview.md
 docs/INDEX.md
@@ -253,10 +253,10 @@ npm run dev
 
 ```bash
 # Health check
-curl http://localhost:4005//api/sentinels/uriel/health
+curl http://localhost:4005/api/sentinels/uriel/health
 
 # First query
-curl -X POST http://localhost:4005//api/sentinels/uriel/query \
+curl -X POST http://localhost:4005/api/sentinels/uriel/query \
   -H "Content-Type: application/json" \
   -d '{"intent": "What is entropy?", "gi": 0.993}'
 ```
@@ -272,7 +272,7 @@ URIEL Sentinel boarding complete - Cycle C-121
 
 Core Changes:
 - Add URIEL sentinel with xAI Grok integration (Grok-3, Grok-4)
-- Create API endpoints: //api/sentinels/uriel/query, /illuminate, /health
+- Create API endpoints: /api/sentinels/uriel/query, /illuminate, /health
 - Implement GI attestation (threshold: ≥ 0.95) with EVE fallback
 - Add rate limiting (0.1 QPS), timeout protection (20s), privacy controls
 - Mount in broker-api with 20% deliberation routing (pilot phase)
@@ -392,7 +392,7 @@ URIEL is walking. Light is on. Integrity holds.
 - **Documentation:** `docs/companions/uriel.md`
 - **ADR:** `docs/03-architecture/adr/002-uriel-sentinel-boarding.md`
 - **Quick Start:** `sentinels/uriel/QUICKSTART.md`
-- **Implementation:** `apps/broker-/api/src/sentinels/uriel.ts`
+- **Implementation:** `apps/broker-api/src/sentinels/uriel.ts`
 
 ---
 

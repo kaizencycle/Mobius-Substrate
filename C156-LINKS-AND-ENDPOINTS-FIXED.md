@@ -84,6 +84,10 @@ Fixed architecture documentation links:
    - API path standardization
    - URL format corrections
 
+4. **`scripts/fix-incorrect-endpoint-changes.py`** - Fixes incorrect changes:
+   - Corrects `//api/` back to `/api/`
+   - Fixes directory names like `broker-/api` back to `broker-api`
+
 ---
 
 ## Files Fixed
@@ -109,9 +113,11 @@ These can be addressed in future cycles as needed.
 ## Testing
 
 - ✅ Link checker script runs successfully
-- ✅ No linter errors in created scripts
+- ✅ No linter errors in created scripts (fixed unused imports)
 - ✅ All endpoint documentation files created
 - ✅ Major broken link patterns fixed
+- ✅ Fixed incorrect endpoint changes (`//api/` → `/api/`, `broker-/api` → `broker-api`)
+- ✅ All Python scripts have valid syntax
 
 ---
 

@@ -58,7 +58,7 @@ TELEGRAM_DVA_MONITOR_CHAT_ID=-1001234567890
 BROKER_URL=https://boulder-broker.gov
 LEDGER_URL=https://boulder-ledger.gov
 TELEGRAM_REVIEW_CHAT_ID=-1009876543210  # City Council channel
-DISCORD_WEBHOOK_URL=https://discord.com//api/webhooks/...  # Public channel
+DISCORD_WEBHOOK_URL=https://discord.com/api/webhooks/...  # Public channel
 ```
 
 **First Real Request**:

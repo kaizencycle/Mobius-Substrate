@@ -19,11 +19,11 @@ We acknowledge the peer review findings and are systematically addressing all id
 **Status**: In Progress  
 **Target**: Complete by 2025-12-01
 
-- [ ] `apps/ledger-/api/openapi.yaml` - Full specification
-- [ ] `apps/broker-/api/openapi.yaml` - Thought Broker API
+- [ ] `apps/ledger-api/openapi.yaml` - Full specification
+- [ ] `apps/broker-api/openapi.yaml` - Thought Broker API
 - [ ] `apps/gateway/openapi.yaml` - Gateway routing
-- [ ] `apps/indexer-/api/openapi.yaml` - MIC Indexer
-- [ ] `apps/eomm-/api/openapi.yaml` - E.O.M.M. Reflections
+- [ ] `apps/indexer-api/openapi.yaml` - MIC Indexer
+- [ ] `apps/eomm-api/openapi.yaml` - E.O.M.M. Reflections
 
 **Owner**: TSC  
 **Priority**: Critical

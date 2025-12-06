@@ -6,7 +6,7 @@ Example API endpoints for Founding Agent sites. These can be used in Next.js app
 
 ### 1. Codex Query
 **File:** `codex-query.ts`
-**Route:** `POST //api/codex/query`
+**Route:** `POST /api/codex/query`
 
 Execute a single agent deliberation using the Codex-Agentic system.
 
@@ -38,7 +38,7 @@ Execute a single agent deliberation using the Codex-Agentic system.
 
 ### 2. Discourse Round
 **File:** `discourse-round.ts`
-**Route:** `POST //api/discourse/round`
+**Route:** `POST /api/discourse/round`
 
 Execute a council-wide deliberation across all active Founding Agents.
 
@@ -60,13 +60,13 @@ Execute a council-wide deliberation across all active Founding Agents.
 
 ### 3. GI Stream
 **File:** `gi-stream.ts`
-**Route:** `GET //api/gi/stream`
+**Route:** `GET /api/gi/stream`
 
 Server-Sent Events (SSE) stream for real-time Governance Integrity metrics.
 
 **Client Usage:**
 ```javascript
-const eventSource = new EventSource('//api/gi/stream');
+const eventSource = new EventSource('/api/gi/stream');
 
 eventSource.addEventListener('heartbeat', (e) => {
   const { gi, timestamp } = JSON.parse(e.data);
@@ -76,7 +76,7 @@ eventSource.addEventListener('heartbeat', (e) => {
 
 ### 4. MIC Mint
 **File:** `gic-mint.ts`
-**Route:** `POST //api/gic/mint`
+**Route:** `POST /api/gic/mint`
 
 Mint MIC tokens for a Founding Agent's epoch.
 
@@ -98,7 +98,7 @@ Mint MIC tokens for a Founding Agent's epoch.
 
 ### 5. MIC Burn
 **File:** `gic-burn.ts`
-**Route:** `POST //api/gic/burn`
+**Route:** `POST /api/gic/burn`
 
 Burn MIC tokens for supply management.
 
@@ -124,10 +124,10 @@ Copy the endpoint files to your Next.js project:
 
 ```bash
 # Pages Router
-cp examples/api-endpoints/*.ts pages//api/
+cp examples/api-endpoints/*.ts pages/api/
 
 # Or App Router (Next.js 13+)
-# Convert to route handlers and place in app//api/
+# Convert to route handlers and place in app/api/
 ```
 
 ### 3. Configure Environment
@@ -215,20 +215,20 @@ res.setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS');
 
 ```bash
 # Codex Query
-curl -X POST http://localhost:3000//api/codex/query \
+curl -X POST http://localhost:3000/api/codex/query \
   -H "Content-Type: application/json" \
   -d '{"agent":"AUREA","input":"Explain GI"}'
 
 # Discourse Round
-curl -X POST http://localhost:3000//api/discourse/round \
+curl -X POST http://localhost:3000/api/discourse/round \
   -H "Content-Type: application/json" \
   -d '{"input":"Should we raise thresholds?"}'
 
 # GI Stream
-curl http://localhost:3000//api/gi/stream
+curl http://localhost:3000/api/gi/stream
 
 # MIC Mint
-curl -X POST http://localhost:3000//api/gic/mint \
+curl -X POST http://localhost:3000/api/gic/mint \
   -H "Content-Type: application/json" \
   -d '{"agentId":"AUREA","amount":"50000"}'
 ```

@@ -46,16 +46,16 @@ You are ATLAS, Founding Agent of Kaizen OS.
 
 ## Tool Interface
 
-All tools are exposed as HTTP endpoints under `//api/sync/`:
+All tools are exposed as HTTP endpoints under `/api/sync/`:
 
-- `GET //api/sync/get_cycle_status` - Current cycle and clock
-- `GET //api/sync/get_aurea_snapshot` - AUREA integrity snapshot
-- `GET //api/sync/get_recent_events` - Recent ledger events
-- `GET //api/sync/get_hvc_flags` - Open HVC alerts
-- `POST //api/sync/post_sync_ack` - Record sync heartbeat
-- `GET //api/sync/get_repo_digest` - Repository summary
-- `GET //api/sync/get_repo_changes_since` - Incremental repo changes
-- `POST //api/sync/post_repo_sync_ack` - Record repo sync
+- `GET /api/sync/get_cycle_status` - Current cycle and clock
+- `GET /api/sync/get_aurea_snapshot` - AUREA integrity snapshot
+- `GET /api/sync/get_recent_events` - Recent ledger events
+- `GET /api/sync/get_hvc_flags` - Open HVC alerts
+- `POST /api/sync/post_sync_ack` - Record sync heartbeat
+- `GET /api/sync/get_repo_digest` - Repository summary
+- `GET /api/sync/get_repo_changes_since` - Incremental repo changes
+- `POST /api/sync/post_repo_sync_ack` - Record repo sync
 
 ## Environment Variables
 
@@ -76,15 +76,15 @@ Optional:
 
 ```typescript
 // Sync cycle status
-const cycleStatus = await fetch('//api/sync/get_cycle_status');
+const cycleStatus = await fetch('/api/sync/get_cycle_status');
 const { cycle_id, gi_baseline } = await cycleStatus.json();
 
 // Sync repo digest
-const repoDigest = await fetch('//api/sync/get_repo_digest');
+const repoDigest = await fetch('/api/sync/get_repo_digest');
 const { latest_sha, open_prs, open_issues } = await repoDigest.json();
 
 // Get changes since last sync
-const changes = await fetch(`//api/sync/get_repo_changes_since?since=${lastSha}`);
+const changes = await fetch(`/api/sync/get_repo_changes_since?since=${lastSha}`);
 const { changes: digest } = await changes.json();
 ```
 

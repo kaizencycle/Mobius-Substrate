@@ -675,7 +675,7 @@ humanities-healthcare/*/config/        ← Service-specific configs
    └─ civic-ledger/indexer/ → calculates GI
 
 3. If GI ≥ 0.95, citizen earns MIC
-   └─ civic-ledger//api/ → mints MIC via contracts/MIC.sol
+   └─ civic-ledger/api/ → mints MIC via contracts/MIC.sol
 
 4. Citizen spends MIC on AI query
    └─ codex-router/ → routes to cheapest LLM provider

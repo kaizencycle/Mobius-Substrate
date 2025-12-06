@@ -61,8 +61,8 @@ Where:
 - ✅ Privacy-first messaging
 
 ### API Routes
-- ✅ `//api/shield/checklist` - Shield CRUD
-- ✅ `//api/habits/cycle` - Cycle processing with MIC minting
+- ✅ `/api/shield/checklist` - Shield CRUD
+- ✅ `/api/habits/cycle` - Cycle processing with MIC minting
 
 ---
 
@@ -87,7 +87,7 @@ User Action → Habit Completion → Shard Generation → Cycle Processing → M
    - Shard: `stability` shard (weight: 2.0) created if all 5 completed
 
 3. **Cycle processing**
-   - API: `POST //api/habits/cycle`
+   - API: `POST /api/habits/cycle`
    - Aggregates all shards for the cycle
    - Calculates total shard value (S)
    - Gets MII score for the cycle

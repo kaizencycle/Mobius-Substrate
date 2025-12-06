@@ -73,7 +73,7 @@ All services expose standard health endpoints:
 GET /healthz
 
 # Mobius integrity verification
-GET //api/integrity-check
+GET /api/integrity-check
 
 # Thought Broker specific
 GET /v1/loop/health

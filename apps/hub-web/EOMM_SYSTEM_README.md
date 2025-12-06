@@ -26,9 +26,9 @@ Gn+ Civic Ledger (Core Protocol)
    - Converts valid entries to JSON-LD format
    - Posts to Civic Ledger with integrity hashes
 
-3. **API Endpoints** (`pages//api/eomm/`)
-   - `POST //api/eomm/validate` - Preflight validation
-   - `POST //api/eomm/ingest` - Write new entries
+3. **API Endpoints** (`pages/api/eomm/`)
+   - `POST /api/eomm/validate` - Preflight validation
+   - `POST /api/eomm/ingest` - Write new entries
 
 4. **GitHub Actions** (`.github/workflows/eomm-sync.yml`)
    - Scheduled sync every 30 minutes
@@ -113,7 +113,7 @@ Quarantined files are moved to `data/eomm/_invalid/` with detailed error reporti
 ### Validate Entry
 
 ```bash
-curl -X POST http://localhost:3000//api/eomm/validate \
+curl -X POST http://localhost:3000/api/eomm/validate \
   -H 'Content-Type: application/json' \
   -d '{
     "title": "Test Entry",
@@ -127,7 +127,7 @@ curl -X POST http://localhost:3000//api/eomm/validate \
 ### Ingest Entry
 
 ```bash
-curl -X POST http://localhost:3000//api/eomm/ingest \
+curl -X POST http://localhost:3000/api/eomm/ingest \
   -H 'Content-Type: application/json' \
   -d '{
     "title": "Test Entry",
@@ -210,7 +210,7 @@ G   G   GGG SUMMARY.json                 # Quarantine summary
 G   GGG README.md                        # Data documentation
 GGG scripts/eomm-sync.mjs                # Main sync script
 GGG schemas/eomm-entry.schema.json       # Entry validation schema
-GGG pages//api/eomm/                      # API endpoints
+GGG pages/api/eomm/                      # API endpoints
 G   GGG validate.ts                      # Preflight validation
 G   GGG ingest.ts                        # Entry ingestion
 GGG .github/workflows/eomm-sync.yml      # GitHub Action
@@ -232,12 +232,12 @@ npm run eomm:sync
 ### API Usage
 ```bash
 # Validate entry
-curl -X POST http://localhost:3000//api/eomm/validate \
+curl -X POST http://localhost:3000/api/eomm/validate \
   -H 'Content-Type: application/json' \
   -d '{"title":"Test","timestamp":"2025-10-18T07:58:00-04:00","agent":"eve","cycle":"C-108","content":"Test"}'
 
 # Ingest entry
-curl -X POST http://localhost:3000//api/eomm/ingest \
+curl -X POST http://localhost:3000/api/eomm/ingest \
   -H 'Content-Type: application/json' \
   -d '{"title":"Test","timestamp":"2025-10-18T07:58:00-04:00","agent":"eve","cycle":"C-108","content":"Test"}'
 ```
