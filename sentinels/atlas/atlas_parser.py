@@ -12,11 +12,10 @@ Usage:
 """
 
 import json
-from typing import Dict, Any, List, Optional, Tuple
+from typing import Dict, Any, List
 from datetime import datetime, timezone
 import sys
 import argparse
-from pathlib import Path
 
 
 class ATLASParser:
@@ -309,8 +308,8 @@ class ATLASParser:
     def generate_markdown_report(self) -> str:
         """Generate markdown health report"""
         
-        # Run all analyses
-        git_health = self.analyze_git_health()
+        # Run all analyses (side effects populate self.scores)
+        self.analyze_git_health()
         dir_status = self.analyze_directory_structure()
         file_status = self.analyze_key_files()
         pkg_health = self.analyze_package_health()

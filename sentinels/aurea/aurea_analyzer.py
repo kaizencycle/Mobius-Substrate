@@ -15,7 +15,7 @@ Usage:
 """
 
 import json
-from typing import Dict, Any, List, Tuple, Optional
+from typing import Dict, Any, List
 from datetime import datetime, timezone
 import sys
 import argparse
