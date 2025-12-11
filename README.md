@@ -30,6 +30,25 @@ Think of it as the **immune system for the digital age**: a continuous integrity
 
 ---
 
+## 📚 Core Artifacts
+
+### 📖 Book: Integrity Before Intelligence
+The philosophical and architectural foundation for Mobius Systems. Establishes why optimization without structural integrity leads to drift, and how to design systems that remain answerable to their purpose.
+
+**→ [Read the book](book/Integrity_Before_Intelligence.pdf)** | **[Book README](book/README.md)**
+
+### 📄 Paper: The Kaizen Turing Test
+Technical framework for continuous integrity evaluation. Introduces the Mobius Integrity Score (MIS), Dynamic Virtual Architecture (DVA), and empirical validation via the Kaizen Simulation Arena.
+
+**→ [Read the paper](papers/KTT_arXiv_2025.pdf)** | **[Paper README](papers/README.md)** | **[arXiv](https://arxiv.org/abs/XXXX.XXXXX)** *(pending)*
+
+### 💻 Implementation
+Working codebase demonstrating integrity-gated decision flows, multi-agent consensus, and civic memory systems.
+
+**→ [Explore the code](src/)** | **[Documentation](docs/)**
+
+---
+
 ## Why Mobius Matters
 
 **Corporations build AI brains. Think tanks debate AI laws.**
