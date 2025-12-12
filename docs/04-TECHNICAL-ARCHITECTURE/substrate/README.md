@@ -24,12 +24,18 @@ This directory contains the canonical specifications for all substrate component
 
 ## Document Index
 
+### 📋 RFC & Protocol
+
+| Document | Description |
+|----------|-------------|
+| [rfc-0001-mobius-substrate-protocol.md](./rfc-0001-mobius-substrate-protocol.md) | **The canonical MSP v1.0 specification** |
+
 ### Core Architecture
 
 | Document | Description |
 |----------|-------------|
 | [mobius-substrate-architecture.md](./mobius-substrate-architecture.md) | Full architecture specification |
-| [substrate.md](./substrate.md) | Layer-by-layer substrate design |
+| [substrate.md](./substrate.md) | Layer-by-layer substrate design (L0-L7) |
 | [substrate-core.md](./substrate-core.md) | Runtime specification |
 | [substrate-flow.md](./substrate-flow.md) | Data flow pipeline |
 
@@ -53,10 +59,12 @@ This directory contains the canonical specifications for all substrate component
 
 | Document | Description |
 |----------|-------------|
-| [constitution.md](./constitution.md) | Mobius Constitution |
+| [constitution.md](./constitution.md) | Mobius Constitution (Founder's Edition) |
 | [constitution-supplement.md](./constitution-supplement.md) | Agent behavior enforcement |
+| [governance-kernel.md](./governance-kernel.md) | MGK - Constitutional control layer |
+| [constitution-attestations.md](./constitution-attestations.md) | MCAP - Attestation protocol |
 | [security-model.md](./security-model.md) | Threat model & drift containment |
-| [memory-model.md](./memory-model.md) | Memory architecture |
+| [memory-model.md](./memory-model.md) | Memory architecture (L0-L5)
 
 ---
 
