@@ -217,9 +217,39 @@ async function validateWebhookUrl(url: string): Promise<URL> {
   return parsedUrl;
 }
 
+/**
+ * Branded type for URLs that have passed webhook SSRF validation.
+ * This type cannot be constructed directly - only through createValidatedWebhookUrl.
+ */
+type ValidatedWebhookUrl = string & { readonly __brand: 'ValidatedWebhookUrl' };
+
+/**
+ * Create a validated webhook URL string from a URL object that has passed all security checks.
+ * This function is the ONLY way to create a ValidatedWebhookUrl.
+ */
+function createValidatedWebhookUrl(safeUrl: URL): ValidatedWebhookUrl {
+  // Reconstruct URL from validated components to prevent SSRF
+  // Protocol is guaranteed to be 'https:' by validateWebhookUrl
+  // Hostname is guaranteed to be in allowlist and not a private IP
+  // Port is guaranteed to be in allowedPorts set
+  // Pathname is guaranteed to not contain path traversal or double slashes
+  const portSuffix = safeUrl.port && safeUrl.port !== '443' ? `:${safeUrl.port}` : '';
+  return `${safeUrl.protocol}//${safeUrl.hostname}${portSuffix}${safeUrl.pathname}${safeUrl.search}` as ValidatedWebhookUrl;
+}
+
 export async function notifyWebhook(url: string, payload: any): Promise<void> {
   let safeUrl: URL;
   try {
+    // validateWebhookUrl performs comprehensive SSRF validation:
+    // 1. Non-empty string check
+    // 2. URL parsing validation
+    // 3. Protocol validation (HTTPS only)
+    // 4. Private IP/hostname check
+    // 5. Hostname allowlist validation
+    // 6. Port allowlist validation
+    // 7. Path traversal prevention
+    // 8. DNS rebinding protection
+    // 9. Credential stripping
     safeUrl = await validateWebhookUrl(url);
   } catch (error) {
     // Sanitize error message to prevent log injection
@@ -229,26 +259,18 @@ export async function notifyWebhook(url: string, payload: any): Promise<void> {
     return;
   }
 
-  // Reconstruct URL from validated components to prevent SSRF
-  // Only use validated protocol, hostname, port, and pathname
-  const validatedProtocol = safeUrl.protocol; // Already validated as 'https:'
-  const validatedHostname = safeUrl.hostname; // Already validated against allowlist
-  const validatedPort = safeUrl.port || '443'; // Already validated against allowed ports
-  const validatedPathname = safeUrl.pathname; // Already validated (no path traversal)
-  const validatedSearch = safeUrl.search; // Query string is safe (no sensitive data)
-  
-  // Reconstruct safe URL string from validated components only
-  const safeUrlString = `${validatedProtocol}//${validatedHostname}${validatedPort !== '443' ? `:${validatedPort}` : ''}${validatedPathname}${validatedSearch}`;
+  // Create validated URL string using branded type pattern
+  // This ensures the URL has passed all security validations
+  const safeUrlString: ValidatedWebhookUrl = createValidatedWebhookUrl(safeUrl);
   
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 5000);
 
   try {
-    // codeql[js/request-forgery]: false positive - safeUrlString is constructed from validated components
-    // All components are validated: protocol=https (validated in validateWebhookUrl),
-    // hostname in allowlist (validated in validateWebhookUrl), port in allowed list (validated),
-    // pathname validated (no path traversal in validateWebhookUrl), search is safe
-    // The URL is reconstructed from these validated components only, preventing SSRF
+    // Security: safeUrlString is a ValidatedWebhookUrl (branded type) that can only be
+    // created through createValidatedWebhookUrl after validateWebhookUrl validation.
+    // The validation ensures: HTTPS protocol, allowlisted hostname, no private IPs,
+    // allowed ports only, no path traversal, and DNS rebinding protection.
     const response = await fetch(safeUrlString, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
