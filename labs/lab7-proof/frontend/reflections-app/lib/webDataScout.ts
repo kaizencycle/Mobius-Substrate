@@ -107,9 +107,8 @@ const cache: CacheInterface = new MemoryCache();
  * It is NOT intended for security sanitization or XSS prevention.
  * For security-critical HTML sanitization, use a proper library like DOMPurify.
  * 
- * The stripping uses a unified iterative approach where all tag types are
- * processed together until no more changes occur, handling cases where
- * removing one type of tag exposes another.
+ * The function strips HTML tags and then removes ALL angle brackets as a
+ * defense-in-depth measure to prevent any HTML element injection.
  */
 function calculateLayoutHash(html: string): string {
   // Simple hash based on DOM structure (can be enhanced)
@@ -120,38 +119,27 @@ function calculateLayoutHash(html: string): string {
   let iterations = 0;
   let previousHtml: string;
   
-  // Unified iterative loop: process all tag types together until no changes
-  // This handles cases where removing one type exposes instances of another
+  // Iteratively remove complete HTML blocks until no changes occur
   do {
     previousHtml = cleanHtml;
     
     // Remove HTML comments (including --!> variant per HTML spec)
     cleanHtml = cleanHtml.replace(/<!--[\s\S]*?--!?>/g, '');
     
-    // Remove script tags with flexible closing tag matching
-    // [^>]* handles attributes, whitespace, and other characters in closing tags
+    // Remove script tags
     cleanHtml = cleanHtml.replace(/<script\b[^>]*>[\s\S]*?<\/script[^>]*>/gi, '');
     
-    // Remove style tags with flexible closing tag matching
+    // Remove style tags
     cleanHtml = cleanHtml.replace(/<style\b[^>]*>[\s\S]*?<\/style[^>]*>/gi, '');
     
     iterations++;
   } while (cleanHtml !== previousHtml && iterations < MAX_ITERATIONS);
   
-  // Final cleanup: remove any remaining partial/incomplete tag fragments
-  // This catches edge cases where malformed tags might slip through
-  
-  // Remove incomplete comment markers (handles nested/overlapping cases)
-  cleanHtml = cleanHtml.replace(/<!--/g, '');
-  cleanHtml = cleanHtml.replace(/--!?>/g, '');
-  
-  // Remove incomplete script tag fragments (opening and closing)
-  cleanHtml = cleanHtml.replace(/<\s*script\b[^>]*/gi, '');
-  cleanHtml = cleanHtml.replace(/<\s*\/\s*script[^>]*/gi, '');
-  
-  // Remove incomplete style tag fragments (opening and closing)  
-  cleanHtml = cleanHtml.replace(/<\s*style\b[^>]*/gi, '');
-  cleanHtml = cleanHtml.replace(/<\s*\/\s*style[^>]*/gi, '');
+  // Defense-in-depth: Remove ALL angle brackets to definitively prevent
+  // any HTML element injection from partial/malformed tags.
+  // Since this is for layout hashing only (not content extraction),
+  // removing angle brackets is acceptable and provides strong security.
+  cleanHtml = cleanHtml.replace(/[<>]/g, '');
   
   // Simple hash function (in production, use crypto.subtle.digest)
   let hash = 0;
