@@ -101,31 +101,56 @@ class MemoryCache implements CacheInterface {
 const cache: CacheInterface = new MemoryCache();
 
 /**
- * Calculate layout hash for drift detection
- * Uses secure multi-line regex patterns for HTML sanitization
- * Note: This is for layout hashing only, not security sanitization
+ * Calculate layout hash for drift detection.
+ * 
+ * IMPORTANT: This function is for layout fingerprinting/hashing ONLY.
+ * It is NOT intended for security sanitization or XSS prevention.
+ * For security-critical HTML sanitization, use a proper library like DOMPurify.
+ * 
+ * The stripping is done iteratively to handle incomplete multi-character
+ * sequences that could bypass single-pass regex replacements.
  */
 function calculateLayoutHash(html: string): string {
   // Simple hash based on DOM structure (can be enhanced)
   // Normalize whitespace first
   let cleanHtml = html.replace(/[\s\r\n]+/g, ' ');
   
-  // Remove HTML comments - precise pattern to match <!-- ... --> with proper boundaries
-  // Pattern: <!-- followed by any chars except -->, then -->
-  // The (?:[^-]|-(?!->))* pattern ensures we don't match partial comment sequences
-  // This prevents false matches while handling nested dashes correctly
-  cleanHtml = cleanHtml.replace(/<!--(?:[^-]|-(?!->))*-->/g, '');
+  // Iteratively remove HTML comments to handle nested/incomplete sequences
+  // Loop until no more comments are found (handles cases like <!----> or <!--<!---->>)
+  let previousLength: number;
+  const MAX_ITERATIONS = 10; // Prevent infinite loops
+  let iterations = 0;
   
-  // Remove script tags - precise pattern with word boundary to prevent false matches
-  // \b ensures we match <script> but not <scriptfoo> or <scripting>
-  // [^>]* matches attributes (anything except >) before the closing >
-  // [\s\S]*? non-greedily matches content until </script>
-  cleanHtml = cleanHtml.replace(/<script\b[^>]*>[\s\S]*?<\/script\s*>/gi, '');
+  do {
+    previousLength = cleanHtml.length;
+    // Remove complete HTML comments
+    cleanHtml = cleanHtml.replace(/<!--[\s\S]*?-->/g, '');
+    // Also remove incomplete comment markers that could bypass the above
+    cleanHtml = cleanHtml.replace(/<!--/g, '').replace(/-->/g, '');
+    iterations++;
+  } while (cleanHtml.length !== previousLength && iterations < MAX_ITERATIONS);
   
-  // Remove style tags - same precise approach as script tags
-  // Word boundary prevents false matches like <styleguide>
-  // [^>]* ensures we only match within the opening tag
-  cleanHtml = cleanHtml.replace(/<style\b[^>]*>[\s\S]*?<\/style\s*>/gi, '');
+  // Iteratively remove script tags to handle nested/incomplete sequences
+  iterations = 0;
+  do {
+    previousLength = cleanHtml.length;
+    // Remove complete script tags (case-insensitive)
+    cleanHtml = cleanHtml.replace(/<script\b[^>]*>[\s\S]*?<\/script\s*>/gi, '');
+    // Remove incomplete/orphaned script tags
+    cleanHtml = cleanHtml.replace(/<script\b[^>]*>/gi, '').replace(/<\/script\s*>/gi, '');
+    iterations++;
+  } while (cleanHtml.length !== previousLength && iterations < MAX_ITERATIONS);
+  
+  // Iteratively remove style tags to handle nested/incomplete sequences
+  iterations = 0;
+  do {
+    previousLength = cleanHtml.length;
+    // Remove complete style tags (case-insensitive)
+    cleanHtml = cleanHtml.replace(/<style\b[^>]*>[\s\S]*?<\/style\s*>/gi, '');
+    // Remove incomplete/orphaned style tags
+    cleanHtml = cleanHtml.replace(/<style\b[^>]*>/gi, '').replace(/<\/style\s*>/gi, '');
+    iterations++;
+  } while (cleanHtml.length !== previousLength && iterations < MAX_ITERATIONS);
   
   // Simple hash function (in production, use crypto.subtle.digest)
   let hash = 0;

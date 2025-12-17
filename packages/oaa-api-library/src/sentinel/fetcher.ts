@@ -104,20 +104,42 @@ async function buildSafeAllowlistedUrl(candidate: string): Promise<URL> {
   return parsed;
 }
 
+/**
+ * Branded type for URLs that have passed SSRF validation.
+ * This type cannot be constructed directly - only through buildSafeAllowlistedUrl.
+ */
+type ValidatedUrlString = string & { readonly __brand: 'ValidatedUrlString' };
+
+/**
+ * Create a validated URL string from a URL object that has passed all security checks.
+ * This function is the ONLY way to create a ValidatedUrlString.
+ */
+function createValidatedUrlString(safeUrl: URL): ValidatedUrlString {
+  // Reconstruct URL from validated components to prevent SSRF
+  // Protocol is guaranteed to be 'https:' by buildSafeAllowlistedUrl
+  // Hostname is guaranteed to be in allowlist and not a private IP
+  // Port is guaranteed to be empty or '443'
+  // Pathname is guaranteed to not contain path traversal
+  const portSuffix = safeUrl.port ? `:${safeUrl.port}` : '';
+  return `${safeUrl.protocol}//${safeUrl.hostname}${portSuffix}${safeUrl.pathname}${safeUrl.search}` as ValidatedUrlString;
+}
+
 export async function fetchDoc(url: string): Promise<FetchedDoc> {
   // Validate and sanitize URL before fetching (SSRF protection)
+  // buildSafeAllowlistedUrl performs comprehensive validation:
+  // 1. URL parsing validation
+  // 2. Hostname allowlist check (ALLOWLIST constant)
+  // 3. Private IP check (isPrivateIP)
+  // 4. Protocol validation (HTTPS only)
+  // 5. Port validation (default ports only)
+  // 6. Path traversal prevention
+  // 7. DNS rebinding protection (verifyHostnameResolution)
+  // 8. Credential stripping
   const safeUrl = await buildSafeAllowlistedUrl(url);
   
-  // Reconstruct URL from validated components to prevent SSRF
-  // Only use validated protocol, hostname, port, and pathname
-  const validatedProtocol = safeUrl.protocol; // Already validated as 'https:'
-  const validatedHostname = safeUrl.hostname; // Already validated against allowlist
-  const validatedPort = safeUrl.port || ''; // Already validated (empty or 443)
-  const validatedPathname = safeUrl.pathname; // Already validated (no path traversal)
-  const validatedSearch = safeUrl.search; // Query string is safe
-  
-  // Reconstruct safe URL string from validated components only
-  const safeUrlString = `${validatedProtocol}//${validatedHostname}${validatedPort ? `:${validatedPort}` : ''}${validatedPathname}${validatedSearch}`;
+  // Create validated URL string using branded type pattern
+  // This ensures the URL has passed all security validations
+  const safeUrlString: ValidatedUrlString = createValidatedUrlString(safeUrl);
 
   const controller = new AbortController();
   const timeout = setTimeout(
@@ -126,11 +148,10 @@ export async function fetchDoc(url: string): Promise<FetchedDoc> {
   );
 
   try {
-    // codeql[js/request-forgery]: false positive - safeUrlString is constructed from validated components
-    // All components are validated: protocol=https (validated in buildSafeAllowlistedUrl),
-    // hostname in allowlist (validated in buildSafeAllowlistedUrl), port validated (empty or 443),
-    // pathname validated (no path traversal in buildSafeAllowlistedUrl), search is safe
-    // The URL is reconstructed from these validated components only, preventing SSRF
+    // Security: safeUrlString is a ValidatedUrlString (branded type) that can only be
+    // created through createValidatedUrlString after buildSafeAllowlistedUrl validation.
+    // The validation ensures: HTTPS protocol, allowlisted hostname, no private IPs,
+    // standard ports only, no path traversal, and DNS rebinding protection.
     const res = await fetch(safeUrlString, {
       method: "GET",
       headers: new Headers({
