@@ -107,38 +107,17 @@ const cache: CacheInterface = new MemoryCache();
  * It is NOT intended for security sanitization or XSS prevention.
  * For security-critical HTML sanitization, use a proper library like DOMPurify.
  * 
- * The function strips HTML tags and then removes ALL angle brackets as a
- * defense-in-depth measure to prevent any HTML element injection.
+ * This function removes ALL angle brackets to create a tag-free string for hashing.
+ * This approach is safe because: (1) it's only used for layout fingerprinting,
+ * (2) removing all < and > characters definitively prevents any HTML injection.
  */
 function calculateLayoutHash(html: string): string {
-  // Simple hash based on DOM structure (can be enhanced)
-  // Normalize whitespace first
+  // Normalize whitespace
   let cleanHtml = html.replace(/[\s\r\n]+/g, ' ');
   
-  const MAX_ITERATIONS = 10; // Prevent infinite loops
-  let iterations = 0;
-  let previousHtml: string;
-  
-  // Iteratively remove complete HTML blocks until no changes occur
-  do {
-    previousHtml = cleanHtml;
-    
-    // Remove HTML comments (including --!> variant per HTML spec)
-    cleanHtml = cleanHtml.replace(/<!--[\s\S]*?--!?>/g, '');
-    
-    // Remove script tags
-    cleanHtml = cleanHtml.replace(/<script\b[^>]*>[\s\S]*?<\/script[^>]*>/gi, '');
-    
-    // Remove style tags
-    cleanHtml = cleanHtml.replace(/<style\b[^>]*>[\s\S]*?<\/style[^>]*>/gi, '');
-    
-    iterations++;
-  } while (cleanHtml !== previousHtml && iterations < MAX_ITERATIONS);
-  
-  // Defense-in-depth: Remove ALL angle brackets to definitively prevent
-  // any HTML element injection from partial/malformed tags.
-  // Since this is for layout hashing only (not content extraction),
-  // removing angle brackets is acceptable and provides strong security.
+  // Remove ALL angle brackets - this definitively prevents any HTML element
+  // injection since no tags can exist without < and > characters.
+  // This is acceptable for layout hashing where we only need text content.
   cleanHtml = cleanHtml.replace(/[<>]/g, '');
   
   // Simple hash function (in production, use crypto.subtle.digest)
