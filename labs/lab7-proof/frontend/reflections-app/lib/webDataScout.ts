@@ -107,50 +107,51 @@ const cache: CacheInterface = new MemoryCache();
  * It is NOT intended for security sanitization or XSS prevention.
  * For security-critical HTML sanitization, use a proper library like DOMPurify.
  * 
- * The stripping is done iteratively to handle incomplete multi-character
- * sequences that could bypass single-pass regex replacements.
+ * The stripping uses a unified iterative approach where all tag types are
+ * processed together until no more changes occur, handling cases where
+ * removing one type of tag exposes another.
  */
 function calculateLayoutHash(html: string): string {
   // Simple hash based on DOM structure (can be enhanced)
   // Normalize whitespace first
   let cleanHtml = html.replace(/[\s\r\n]+/g, ' ');
   
-  // Iteratively remove HTML comments to handle nested/incomplete sequences
-  // Loop until no more comments are found (handles cases like <!----> or <!--<!---->>)
-  let previousLength: number;
   const MAX_ITERATIONS = 10; // Prevent infinite loops
   let iterations = 0;
+  let previousHtml: string;
   
+  // Unified iterative loop: process all tag types together until no changes
+  // This handles cases where removing one type exposes instances of another
   do {
-    previousLength = cleanHtml.length;
-    // Remove complete HTML comments
-    cleanHtml = cleanHtml.replace(/<!--[\s\S]*?-->/g, '');
-    // Also remove incomplete comment markers that could bypass the above
-    cleanHtml = cleanHtml.replace(/<!--/g, '').replace(/-->/g, '');
+    previousHtml = cleanHtml;
+    
+    // Remove HTML comments (including --!> variant per HTML spec)
+    cleanHtml = cleanHtml.replace(/<!--[\s\S]*?--!?>/g, '');
+    
+    // Remove script tags with flexible closing tag matching
+    // [^>]* handles attributes, whitespace, and other characters in closing tags
+    cleanHtml = cleanHtml.replace(/<script\b[^>]*>[\s\S]*?<\/script[^>]*>/gi, '');
+    
+    // Remove style tags with flexible closing tag matching
+    cleanHtml = cleanHtml.replace(/<style\b[^>]*>[\s\S]*?<\/style[^>]*>/gi, '');
+    
     iterations++;
-  } while (cleanHtml.length !== previousLength && iterations < MAX_ITERATIONS);
+  } while (cleanHtml !== previousHtml && iterations < MAX_ITERATIONS);
   
-  // Iteratively remove script tags to handle nested/incomplete sequences
-  iterations = 0;
-  do {
-    previousLength = cleanHtml.length;
-    // Remove complete script tags (case-insensitive)
-    cleanHtml = cleanHtml.replace(/<script\b[^>]*>[\s\S]*?<\/script\s*>/gi, '');
-    // Remove incomplete/orphaned script tags
-    cleanHtml = cleanHtml.replace(/<script\b[^>]*>/gi, '').replace(/<\/script\s*>/gi, '');
-    iterations++;
-  } while (cleanHtml.length !== previousLength && iterations < MAX_ITERATIONS);
+  // Final cleanup: remove any remaining partial/incomplete tag fragments
+  // This catches edge cases where malformed tags might slip through
   
-  // Iteratively remove style tags to handle nested/incomplete sequences
-  iterations = 0;
-  do {
-    previousLength = cleanHtml.length;
-    // Remove complete style tags (case-insensitive)
-    cleanHtml = cleanHtml.replace(/<style\b[^>]*>[\s\S]*?<\/style\s*>/gi, '');
-    // Remove incomplete/orphaned style tags
-    cleanHtml = cleanHtml.replace(/<style\b[^>]*>/gi, '').replace(/<\/style\s*>/gi, '');
-    iterations++;
-  } while (cleanHtml.length !== previousLength && iterations < MAX_ITERATIONS);
+  // Remove incomplete comment markers (handles nested/overlapping cases)
+  cleanHtml = cleanHtml.replace(/<!--/g, '');
+  cleanHtml = cleanHtml.replace(/--!?>/g, '');
+  
+  // Remove incomplete script tag fragments (opening and closing)
+  cleanHtml = cleanHtml.replace(/<\s*script\b[^>]*/gi, '');
+  cleanHtml = cleanHtml.replace(/<\s*\/\s*script[^>]*/gi, '');
+  
+  // Remove incomplete style tag fragments (opening and closing)  
+  cleanHtml = cleanHtml.replace(/<\s*style\b[^>]*/gi, '');
+  cleanHtml = cleanHtml.replace(/<\s*\/\s*style[^>]*/gi, '');
   
   // Simple hash function (in production, use crypto.subtle.digest)
   let hash = 0;
