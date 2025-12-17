@@ -87,6 +87,10 @@ public
 # Allow broker dashboard assets to be tracked
 !/apps/broker-api/public/
 
+# Allow public documentation assets to be tracked
+!/docs/public/
+!/docs/public/**
+
 # Vuepress build output
 .vuepress/dist
 
