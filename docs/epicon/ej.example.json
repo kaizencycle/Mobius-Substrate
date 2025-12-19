@@ -1,0 +1,52 @@
+{
+  "version": "EPICON-01",
+  "timestamp": "2025-12-19T14:05:00Z",
+  "css": {
+    "safe": true,
+    "checks": ["no_harm", "no_fraud", "coordination_preservation"],
+    "violations": []
+  },
+  "context": {
+    "label": "cultural-ritual",
+    "confidence": 0.82,
+    "assumptions": ["This is a voluntary ritual in a celebratory setting"],
+    "alternatives_considered": ["aggression", "workplace-misconduct"]
+  },
+  "values": ["humility", "memory", "community"],
+  "reasoning": {
+    "summary": "The act is permissible as a bounded ritual because the meaning transforms the action into a cohesion signal.",
+    "steps": [
+      "Identify whether the act is voluntary and ritual-bounded",
+      "Confirm it does not create harm or coercion",
+      "Explain the meaning and the boundary conditions",
+      "Provide a counterfactual: what would change the recommendation"
+    ]
+  },
+  "anchors": [
+    {
+      "type": "practice",
+      "claim": "This act is a known ritual pattern in some ceremonies",
+      "source": "documented practice",
+      "confidence": 0.85
+    },
+    {
+      "type": "user_values",
+      "claim": "User states the goal is to honor tradition, not to damage property",
+      "source": "user-provided",
+      "confidence": 0.75
+    }
+  ],
+  "boundaries": {
+    "applies_when": ["Voluntary setting", "No harm risk", "Explicit ritual frame"],
+    "fails_when": ["Aggression", "Coercion", "Unsafe environment"]
+  },
+  "counterfactual": {
+    "if_changed": "If this is occurring in a workplace or as intimidation",
+    "then": "Treat it as a coordination violation; recommend refusal/mitigation"
+  },
+  "ccr": {
+    "score": 0.74,
+    "threshold": 0.70,
+    "status": "pass"
+  }
+}

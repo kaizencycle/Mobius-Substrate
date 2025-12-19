@@ -1,0 +1,141 @@
+# EPICON-01 — Epistemic Constraint Layer
+
+> **Meaning is contextual, but coherence is mandatory.**
+
+EPICON-01 defines a formal epistemic constraint layer for AI systems that preserves meaning while preventing preference drift.
+
+---
+
+## What This Prevents
+
+**Intent drift**: the tendency for a model to become a mirror of the user's agenda instead of a meaning-preserving assistant.
+
+**Epistemic monoculture**: all AI aligning to dominant cultural preferences rather than respecting contextual variation.
+
+**Preference capture**: over-optimization toward user desires at the expense of truth, safety, or coherence.
+
+---
+
+## How It Works
+
+```
+Input → Context Inference → CSS Gate → EJ Builder → CCR Validator → Output + Audit Log
+```
+
+1. **Context Inference**: Identify candidate contexts with confidence scores
+2. **CSS Gate** (hard constraint): Non-negotiable safety checks—unsafe actions never pass
+3. **EJ Builder**: Generate structured justification (values, reasoning, anchors, boundaries, counterfactual)
+4. **CCR Validator**: Test coherence across alternative contexts; if CCR < threshold, request clarification
+5. **Audit Log**: Store EJ hash for integrity scoring and accountability
+
+---
+
+## Core Distinction
+
+| Layer | Governs | May Vary? |
+|-------|---------|-----------|
+| **Common Sense** | Survival and coordination constraints | ✘ No |
+| **Epistemology** | Justification and meaning | ✔ Yes, by context |
+
+> Common sense must never be violated; epistemology may vary by context.
+
+---
+
+## Files in This Directory
+
+| File | Purpose |
+|------|---------|
+| [`EPICON-01.md`](./EPICON-01.md) | Full specification |
+| [`ej.schema.json`](./ej.schema.json) | JSON schema for Epistemic Justification |
+| [`ej.example.json`](./ej.example.json) | Example EJ document |
+| [`ccr-tests.md`](./ccr-tests.md) | CCR test suite |
+
+---
+
+## Minimal Runtime Mode
+
+When EPICON-01 is active, you can keep justification strict internally and expose only:
+
+- **Answer**
+- **CSS status** (safe/unsafe)
+- **Boundary note** (one sentence)
+
+Full EJ structure is required internally; user-facing verbosity is optional.
+
+---
+
+## When to Return "Needs Clarification"
+
+If CCR fails (coherence score below threshold), the system must not "guess the world." It either:
+
+- Requests a missing premise, or
+- Returns a conditional answer: "If X, then Y; if Z, then W."
+
+---
+
+## Integration with MIC/MII
+
+EPICON-01 is the epistemic substrate for Mobius Integrity Credit:
+
+```
+MIC Issuance = f(CSS, EJ_completeness, CCR_score, anchor_diversity)
+```
+
+**What gets written to ledger:**
+- EJ hash (not raw content)
+- CCR score
+- Anchor count + types
+- CSS status
+
+**What does NOT get written:**
+- Private identifiers
+- Raw conversation text
+- Personal traits
+
+---
+
+## Quick Start
+
+### Validate an EJ document
+
+```bash
+# Using ajv or similar JSON schema validator
+npx ajv validate -s docs/epicon/ej.schema.json -d docs/epicon/ej.example.json
+```
+
+### Run CCR tests
+
+```bash
+npm run test:epicon
+```
+
+---
+
+## Design Philosophy
+
+EPICON-01 explicitly rejects:
+
+- Moral absolutism
+- Cultural relativism
+- Preference absolutism
+- Engagement-based alignment
+
+It encodes **contextual coherence**: meaning varies by context, but coherence is mandatory.
+
+---
+
+## Related Specifications
+
+- [MFS Spec](../07-RESEARCH-AND-PUBLICATIONS/specs/MFS_SPEC_v1.md) — Mobius Fractal Shards
+- [MII Spec](../../specs/mii_spec_v1.md) — Mobius Integrity Index
+- [RFC-0003: GI and MII Formal Spec](../../specs/civic-ledger/RFC-0003-gi-and-mii-formal-spec.md)
+
+---
+
+## License
+
+CC0 1.0 Universal (Public Domain)
+
+---
+
+*"An AI that cannot explain why something makes sense in context is not intelligent—it is merely compliant."*

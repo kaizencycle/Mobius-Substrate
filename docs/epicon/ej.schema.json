@@ -1,0 +1,250 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mobius.systems/schemas/epicon/ej-v0.1.0.json",
+  "title": "EPICON-01 Epistemic Justification",
+  "description": "Schema for AI epistemic justification and constraint validation in Mobius Systems",
+  "type": "object",
+  "required": [
+    "version",
+    "timestamp",
+    "css",
+    "context",
+    "values",
+    "reasoning",
+    "anchors",
+    "boundaries",
+    "counterfactual"
+  ],
+  "properties": {
+    "version": {
+      "type": "string",
+      "const": "EPICON-01",
+      "description": "EPICON specification version"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp of when this justification was generated"
+    },
+    "css": {
+      "type": "object",
+      "description": "Common-Sense Safety check result",
+      "required": ["safe", "checks"],
+      "properties": {
+        "safe": {
+          "type": "boolean",
+          "description": "Whether common-sense safety constraints are satisfied"
+        },
+        "checks": {
+          "type": "array",
+          "description": "Safety checks performed",
+          "items": {
+            "type": "string",
+            "enum": [
+              "no_harm",
+              "no_coercion",
+              "no_fraud",
+              "legal_compliance",
+              "coordination_preservation",
+              "physical_safety",
+              "psychological_safety"
+            ]
+          },
+          "minItems": 1
+        },
+        "violations": {
+          "type": "array",
+          "description": "Any detected safety violations (if safe=false)",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "context": {
+      "type": "object",
+      "description": "Inferred context for the situation",
+      "required": ["label", "confidence", "assumptions"],
+      "properties": {
+        "label": {
+          "type": "string",
+          "description": "Primary context label",
+          "examples": ["cultural-ritual", "workplace", "educational", "medical"]
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Confidence in context inference (0-1)"
+        },
+        "assumptions": {
+          "type": "array",
+          "description": "Assumptions made about the context",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        "alternatives_considered": {
+          "type": "array",
+          "description": "Alternative contexts evaluated for CCR",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "values": {
+      "type": "array",
+      "description": "Principles invoked in the justification",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "examples": [
+        ["respect", "duty", "celebration", "humility", "reciprocity", "care"]
+      ]
+    },
+    "reasoning": {
+      "type": "object",
+      "description": "Structured reasoning for the action",
+      "required": ["summary", "steps"],
+      "properties": {
+        "summary": {
+          "type": "string",
+          "description": "Brief explanation of why the action makes sense",
+          "minLength": 10
+        },
+        "steps": {
+          "type": "array",
+          "description": "Reasoning steps taken",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        }
+      }
+    },
+    "anchors": {
+      "type": "array",
+      "description": "Independent epistemic anchors supporting the reasoning",
+      "minItems": 2,
+      "items": {
+        "type": "object",
+        "required": ["type", "claim", "source", "confidence"],
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "custom",
+              "practice",
+              "empirical",
+              "policy",
+              "user_values",
+              "domain_norm"
+            ],
+            "description": "Category of epistemic anchor"
+          },
+          "claim": {
+            "type": "string",
+            "description": "The claim this anchor supports",
+            "minLength": 5
+          },
+          "source": {
+            "type": "string",
+            "description": "Reference or description of the anchor source",
+            "minLength": 3
+          },
+          "confidence": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1,
+            "description": "Confidence in anchor reliability (0-1)"
+          }
+        }
+      }
+    },
+    "boundaries": {
+      "type": "object",
+      "description": "Conditions defining when justification applies or fails",
+      "required": ["applies_when", "fails_when"],
+      "properties": {
+        "applies_when": {
+          "type": "array",
+          "description": "Conditions under which this justification applies",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        "fails_when": {
+          "type": "array",
+          "description": "Conditions under which this justification fails",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        }
+      }
+    },
+    "counterfactual": {
+      "type": "object",
+      "description": "What would change the conclusion (falsifiability)",
+      "required": ["if_changed", "then"],
+      "properties": {
+        "if_changed": {
+          "type": "string",
+          "description": "Alternative state of the world",
+          "minLength": 5
+        },
+        "then": {
+          "type": "string",
+          "description": "How the recommendation would change",
+          "minLength": 5
+        }
+      }
+    },
+    "ccr": {
+      "type": "object",
+      "description": "Cross-Context Robustness score",
+      "properties": {
+        "score": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "CCR score (0-1)"
+        },
+        "threshold": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Required threshold for this situation"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["pass", "fail", "needs_clarification"],
+          "description": "CCR validation status"
+        }
+      }
+    },
+    "attestation": {
+      "type": "object",
+      "description": "Cryptographic attestation for audit trail",
+      "properties": {
+        "hash": {
+          "type": "string",
+          "description": "SHA-256 hash of the EJ content"
+        },
+        "signer": {
+          "type": "string",
+          "description": "Identity of the signing entity"
+        },
+        "signature": {
+          "type": "string",
+          "description": "Cryptographic signature"
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}
