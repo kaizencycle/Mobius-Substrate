@@ -142,6 +142,59 @@ See: [THREAT_MODEL_EPISTEMIC_ATTACKS.md](../../06-OPERATIONS/security/THREAT_MOD
 
 ---
 
+## On-Chain Analogy: How Mobius Mirrors Blockchain Invariants
+
+Mobius governance follows the same structural principles that make blockchains resilient—applied to authority instead of money.
+
+### Concept Mapping
+
+| Blockchain Concept | Mobius Equivalent |
+|--------------------|-------------------|
+| Wallet Address | Ledger ID |
+| Private Key | Wallet Signature |
+| Transaction | Attested Action |
+| Mempool | Pending Proposal |
+| Block Inclusion | Consensus Approval |
+| On-Chain History | Immutable Ledger Record |
+| Whale Movement | Authority Divergence |
+| Market Reaction | Community Revocation / Scope Collapse |
+
+### Key Parallel
+
+Blockchains do not prevent large actors from acting.  
+They make actions **visible, attributable, and irreversible**.
+
+Mobius does the same for governance:
+- **No anonymous authority**
+- **No silent escalation**
+- **No retroactive justification**
+
+### Critical Difference
+
+| System | What It Tracks |
+|--------|----------------|
+| **Bitcoin** | State change |
+| **Mobius** | State change **plus intent** |
+
+Every Mobius action is linked to:
+- a justification,
+- a scope,
+- a time limit,
+- and a responsible identity.
+
+This allows the community to **observe divergence in real time**, not after harm occurs.
+
+### Design Principle
+
+> **Transparency does not stop bad behavior.**  
+> **It removes the advantage of surprise.**
+
+Mobius inherits this principle and extends it to coordination, governance, and collective decision-making.
+
+See: [Mobius Is Blockchain for Intent](../../public/mobius_blockchain_for_intent.md)
+
+---
+
 ## Key Documents
 
 | Document | Purpose | Location |
@@ -151,7 +204,9 @@ See: [THREAT_MODEL_EPISTEMIC_ATTACKS.md](../../06-OPERATIONS/security/THREAT_MOD
 | AVM Specification | Authority Verification Module | [AVM.md](../../authority/AVM.md) |
 | Companion Attestation Schema | JSON Schema for attestations | [companion_attestation.schema.json](../../authority/companion_attestation.schema.json) |
 | EPICON-01 | Epistemic constraint specification | [EPICON-01.md](../../epicon/EPICON-01.md) |
+| EPICON-02 | Intent publication & divergence protocol | [EPICON-02.md](../../epicon/EPICON-02.md) |
 | Epistemic Threat Model | Security threat documentation | [THREAT_MODEL_EPISTEMIC_ATTACKS.md](../../06-OPERATIONS/security/THREAT_MODEL_EPISTEMIC_ATTACKS.md) |
+| Blockchain for Intent Essay | Conceptual foundation | [mobius_blockchain_for_intent.md](../../public/mobius_blockchain_for_intent.md) |
 
 ---
 
