@@ -2,17 +2,12 @@
 """
 Mobius Divergence Dashboard Generator
 
-Generates a JSON data file and markdown summary of open PRs with:
-- Divergence severity (from PR bot comments)
-- EPICON status
-- Merge gate status
-- Scope labels
-- Emergency mode flags
-- Transparency debt issues
-
-Output:
-- docs/divergence/data.json (machine-readable)
-- docs/divergence/dashboard.md (human-readable)
+Generates:
+- docs/divergence/data.json (current PR data)
+- docs/divergence/dashboard.md (markdown summary)
+- docs/divergence/history/index.json (timeline of snapshots)
+- docs/divergence/history/{timestamp}.json (individual snapshots)
+- docs/divergence/history/events.json (detected divergence events)
 """
 
 import os
@@ -25,6 +20,8 @@ REPO = os.environ["REPO"]
 OUT_DIR = os.environ.get("OUT_DIR", "docs/divergence")
 
 BOT_MARKER = "<!-- MOBIUS_PR_BOT -->"
+MAX_HISTORY_POINTS = 180  # ~45 days at 6hr cadence
+MAX_EVENTS = 200
 
 
 def gh(path):
@@ -52,6 +49,29 @@ def now_utc():
     return datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
+def count_severity(items):
+    """Count items by severity."""
+    c = {"high": 0, "medium": 0, "low": 0, "unknown": 0}
+    for it in items:
+        s = it.get("severity") or "unknown"
+        if s not in c:
+            s = "unknown"
+        c[s] += 1
+    return c
+
+
+def write_json(path, obj):
+    """Write JSON to file."""
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(obj, f, indent=2)
+
+
+def load_json(path):
+    """Load JSON from file."""
+    with open(path, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+
 def extract_severity_and_hash(comments):
     """Extract severity and justification hash from bot comments."""
     severity = None
@@ -65,7 +85,6 @@ def extract_severity_and_hash(comments):
         if BOT_MARKER in body:
             lines = body.splitlines()
             for line in lines:
-                # Look for severity: **HIGH**, **MEDIUM**, **LOW**
                 line_lower = line.lower()
                 if "**high**" in line_lower:
                     severity = "high"
@@ -74,11 +93,10 @@ def extract_severity_and_hash(comments):
                 elif "**low**" in line_lower:
                     severity = "low"
                 
-                # Look for justification_hash (sha256): `...`
                 if "justification_hash" in line and "`" in line:
                     parts = line.split("`")
                     for part in parts:
-                        if len(part) == 64 and all(c in "0123456789abcdef" for c in part):
+                        if len(part) == 64 and all(ch in "0123456789abcdef" for ch in part):
                             jhash = part
                             break
             break
@@ -97,8 +115,86 @@ def get_check_conclusions(pr):
     return {c["name"]: c.get("conclusion") for c in checks.get("check_runs", [])}
 
 
+def diff_events(prev, curr):
+    """Generate events from differences between two snapshots."""
+    events = []
+    prev_sig = (prev or {}).get("pr_sig") or {}
+    curr_sig = (curr or {}).get("pr_sig") or {}
+
+    prev_prs = set(prev_sig.keys())
+    curr_prs = set(curr_sig.keys())
+
+    # New PRs
+    for pr in sorted(curr_prs - prev_prs, key=lambda x: int(x)):
+        c = curr_sig[pr]
+        events.append({
+            "ts": curr["generated_at"],
+            "type": "pr_opened",
+            "pr": int(pr),
+            "url": c.get("url", ""),
+            "severity": c.get("severity", "unknown"),
+            "detail": f"PR opened (severity={c.get('severity')})"
+        })
+
+    # Closed PRs
+    for pr in sorted(prev_prs - curr_prs, key=lambda x: int(x)):
+        p = prev_sig[pr]
+        events.append({
+            "ts": curr["generated_at"],
+            "type": "pr_closed",
+            "pr": int(pr),
+            "url": p.get("url", ""),
+            "severity": p.get("severity", "unknown"),
+            "detail": "PR closed/merged"
+        })
+
+    # Changes
+    for pr in sorted(prev_prs & curr_prs, key=lambda x: int(x)):
+        p = prev_sig[pr]
+        c = curr_sig[pr]
+
+        if p.get("severity") != c.get("severity"):
+            events.append({
+                "ts": curr["generated_at"],
+                "type": "severity_flip",
+                "pr": int(pr),
+                "url": c.get("url", ""),
+                "severity": c.get("severity", "unknown"),
+                "prev_severity": p.get("severity", "unknown"),
+                "detail": f"severity: {p.get('severity')} → {c.get('severity')}"
+            })
+
+        if p.get("epicon") != c.get("epicon"):
+            events.append({
+                "ts": curr["generated_at"],
+                "type": "epicon_flip",
+                "pr": int(pr),
+                "url": c.get("url", ""),
+                "severity": c.get("severity", "unknown"),
+                "prev_epicon": p.get("epicon", "unknown"),
+                "epicon": c.get("epicon", "unknown"),
+                "detail": f"EPICON: {p.get('epicon')} → {c.get('epicon')}"
+            })
+
+        if p.get("gate") != c.get("gate"):
+            events.append({
+                "ts": curr["generated_at"],
+                "type": "gate_flip",
+                "pr": int(pr),
+                "url": c.get("url", ""),
+                "severity": c.get("severity", "unknown"),
+                "prev_gate": p.get("gate", "unknown"),
+                "gate": c.get("gate", "unknown"),
+                "detail": f"Gate: {p.get('gate')} → {c.get('gate')}"
+            })
+
+    return events
+
+
 def main():
     os.makedirs(OUT_DIR, exist_ok=True)
+    hist_dir = f"{OUT_DIR}/history"
+    os.makedirs(hist_dir, exist_ok=True)
 
     print(f"Fetching open PRs for {REPO}...")
     prs = gh(f"/repos/{REPO}/pulls?state=open&per_page=100")
@@ -118,14 +214,10 @@ def main():
         mode = "emergency" if "mode:emergency" in labels else "normal"
         has_debt = "transparency-debt" in labels
 
-        # Get bot comments
         comments = gh(f"/repos/{REPO}/issues/{number}/comments?per_page=100")
         severity, jhash = extract_severity_and_hash(comments)
 
-        # Get check conclusions
         check_map = get_check_conclusions(pr)
-        
-        # Map check names (job names in workflows)
         epicon = check_map.get("epicon_pr_bot", "unknown")
         gate = check_map.get("gate", "unknown")
 
@@ -147,13 +239,15 @@ def main():
             }
         })
 
-    # Sort by severity (high first), then PR number
+    # Sort by severity then PR number
     SEV_ORDER = {"high": 0, "medium": 1, "low": 2, "unknown": 3}
     rows.sort(key=lambda x: (SEV_ORDER.get(x["severity"], 3), x["pr"]))
 
+    generated_at = now_utc()
+
     data = {
         "repo": REPO,
-        "generated_at": now_utc(),
+        "generated_at": generated_at,
         "open_pr_count": len(rows),
         "by_severity": {
             "high": len([r for r in rows if r["severity"] == "high"]),
@@ -165,13 +259,92 @@ def main():
         "items": rows
     }
 
-    # Write JSON
+    # Write main data.json
     json_path = f"{OUT_DIR}/data.json"
-    with open(json_path, "w", encoding="utf-8") as f:
-        json.dump(data, f, indent=2)
+    write_json(json_path, data)
     print(f"Wrote {json_path}")
 
-    # Write Markdown dashboard
+    # --- Timeline / History ---
+    
+    # Build per-PR signature for event detection
+    pr_sig = {}
+    for it in data["items"]:
+        pr = str(it.get("pr"))
+        pr_sig[pr] = {
+            "severity": it.get("severity") or "unknown",
+            "mode": it.get("mode") or "normal",
+            "epicon": (it.get("checks") or {}).get("epicon") or "unknown",
+            "gate": (it.get("checks") or {}).get("merge_gate") or "unknown",
+            "url": it.get("url") or ""
+        }
+
+    counts = count_severity(data["items"])
+    snapshot = {
+        "repo": REPO,
+        "generated_at": generated_at,
+        "open_pr_count": data["open_pr_count"],
+        "counts": counts,
+        "emergency_count": data["emergency_count"],
+        "pr_sig": pr_sig
+    }
+
+    # Snapshot filename: YYYYMMDDTHHMMSSZ.json
+    ts = generated_at.replace(":", "").replace("-", "").replace("+00:00", "Z")
+    ts = ts.split(".")[0]
+    if not ts.endswith("Z"):
+        ts += "Z"
+    snap_path = f"{hist_dir}/{ts}.json"
+    write_json(snap_path, snapshot)
+    print(f"Wrote {snap_path}")
+
+    # Load and update timeline index
+    index_path = f"{hist_dir}/index.json"
+    timeline = []
+    if os.path.exists(index_path):
+        try:
+            timeline = load_json(index_path).get("timeline", [])
+        except Exception:
+            timeline = []
+
+    timeline.append(snapshot)
+    timeline = timeline[-MAX_HISTORY_POINTS:]
+
+    write_json(index_path, {
+        "repo": REPO,
+        "updated_at": generated_at,
+        "timeline": timeline
+    })
+    print(f"Wrote {index_path} ({len(timeline)} points)")
+
+    # --- Build events from timeline deltas ---
+    events_path = f"{hist_dir}/events.json"
+    
+    # Load existing events
+    existing_events = []
+    if os.path.exists(events_path):
+        try:
+            existing_events = load_json(events_path).get("events", [])
+        except Exception:
+            existing_events = []
+
+    # Generate events from last two snapshots
+    if len(timeline) >= 2:
+        new_events = diff_events(timeline[-2], timeline[-1])
+        existing_events.extend(new_events)
+        if new_events:
+            print(f"  Generated {len(new_events)} new events")
+
+    # Keep only last N events
+    existing_events = existing_events[-MAX_EVENTS:]
+
+    write_json(events_path, {
+        "repo": REPO,
+        "updated_at": generated_at,
+        "events": existing_events
+    })
+    print(f"Wrote {events_path} ({len(existing_events)} events)")
+
+    # --- Write Markdown dashboard ---
     md = []
     md.append("# Divergence Dashboard")
     md.append("")
@@ -204,11 +377,11 @@ def main():
             title = title.replace("|", "\\|")
             author = it["author"]
             ep = "✓" if it["checks"]["epicon"] == "success" else "✗" if it["checks"]["epicon"] == "failure" else "?"
-            gate = "✓" if it["checks"]["merge_gate"] == "success" else "✗" if it["checks"]["merge_gate"] == "failure" else "?"
-            mode = "🚨" if it["mode"] == "emergency" else "—"
+            gate_status = "✓" if it["checks"]["merge_gate"] == "success" else "✗" if it["checks"]["merge_gate"] == "failure" else "?"
+            mode_icon = "🚨" if it["mode"] == "emergency" else "—"
             upd = it["updated_at"][:10]
             
-            md.append(f"| {sev_icon} {sev} | {pr_link} | {title} | @{author} | {ep} | {gate} | {mode} | {upd} |")
+            md.append(f"| {sev_icon} {sev} | {pr_link} | {title} | @{author} | {ep} | {gate_status} | {mode_icon} | {upd} |")
     else:
         md.append("*No open PRs*")
 

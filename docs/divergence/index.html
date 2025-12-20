@@ -36,6 +36,7 @@
       line-height: 1.5;
     }
     h1 { margin: 0 0 8px 0; font-size: 1.75rem; }
+    h2 { margin: 24px 0 12px 0; font-size: 1.25rem; color: var(--text); }
     .meta { color: var(--muted); margin-bottom: 16px; font-size: 0.9rem; }
     .meta-badge {
       display: inline-block;
@@ -107,6 +108,14 @@
       border: 1px solid var(--border);
       border-radius: 12px;
     }
+    .chart-container {
+      overflow-x: auto;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
     table { width: 100%; border-collapse: collapse; }
     th, td {
       text-align: left;
@@ -165,6 +174,20 @@
     }
     .summary-card .number { font-size: 2rem; font-weight: 700; }
     .summary-card .label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; }
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 12px;
+    }
+    .legend-item { display: flex; align-items: center; gap: 6px; }
+    .legend-line {
+      width: 24px;
+      height: 3px;
+      border-radius: 2px;
+    }
   </style>
 </head>
 <body>
@@ -173,6 +196,56 @@
 
   <div class="summary-cards" id="summary"></div>
 
+  <!-- Timeline Section -->
+  <h2>📈 Timeline</h2>
+  <div class="small" id="timelineMeta">Loading timeline…</div>
+  <div class="chart-container">
+    <svg id="timelineChart" width="980" height="200" viewBox="0 0 980 200" role="img" aria-label="Divergence timeline chart"></svg>
+    <div class="legend" id="legend"></div>
+  </div>
+
+  <details style="margin-bottom: 16px;">
+    <summary style="cursor: pointer; color: var(--muted); font-size: 0.9rem;">📊 Timeline Data Table</summary>
+    <div class="table-container" style="margin-top: 8px;">
+      <table>
+        <thead>
+          <tr>
+            <th>Generated (UTC)</th>
+            <th class="right">Open</th>
+            <th class="right">High</th>
+            <th class="right">Med</th>
+            <th class="right">Low</th>
+            <th class="right">Unk</th>
+          </tr>
+        </thead>
+        <tbody id="timelineRows">
+          <tr><td colspan="6" class="empty">Loading…</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </details>
+
+  <!-- Events Section -->
+  <h2>⚡ Recent Events</h2>
+  <div class="small" id="eventsMeta">Loading events…</div>
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Time (UTC)</th>
+          <th>Type</th>
+          <th>PR</th>
+          <th>Detail</th>
+        </tr>
+      </thead>
+      <tbody id="eventsRows">
+        <tr><td colspan="4" class="empty">Loading…</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- PR Filters -->
+  <h2>📋 Open Pull Requests</h2>
   <div class="controls">
     <div class="control-group">
       <label for="severity">Severity</label>
@@ -271,7 +344,7 @@
 
   <div class="footer">
     <p>Divergence is not moral judgment. It is legibility: <em>does behavior match published intent?</em></p>
-    <p><a href="./dashboard.md">Markdown version</a> · <a href="./data.json">JSON data</a> · <a href="../epicon/EPICON-02.md">EPICON-02 Spec</a></p>
+    <p><a href="./dashboard.md">Markdown version</a> · <a href="./data.json">JSON data</a> · <a href="./history/index.json">Timeline data</a> · <a href="../epicon/EPICON-02.md">EPICON-02 Spec</a></p>
   </div>
 
   <script src="./ui.js"></script>
