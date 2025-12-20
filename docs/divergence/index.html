@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mobius — Divergence Dashboard</title>
+  <meta name="description" content="Mobius PR Divergence Dashboard (EPICON-02 / Merge Gate / Transparency Debt)" />
+  <style>
+    :root {
+      --bg: #fafafa;
+      --card: #fff;
+      --border: #e0e0e0;
+      --text: #1a1a1a;
+      --muted: #666;
+      --accent: #0066cc;
+      --ok: #16a34a;
+      --warn: #ca8a04;
+      --bad: #dc2626;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0a0a0a;
+        --card: #1a1a1a;
+        --border: #333;
+        --text: #f0f0f0;
+        --muted: #999;
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      margin: 0;
+      padding: 24px;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+    h1 { margin: 0 0 8px 0; font-size: 1.75rem; }
+    .meta { color: var(--muted); margin-bottom: 16px; font-size: 0.9rem; }
+    .meta-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      margin-right: 8px;
+      margin-bottom: 8px;
+    }
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: end;
+      margin: 20px 0;
+      padding: 16px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+    .control-group { display: flex; flex-direction: column; }
+    .control-group label {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    select, input {
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--bg);
+      color: var(--text);
+      min-width: 140px;
+      font-size: 0.9rem;
+    }
+    input[type="search"] { min-width: 240px; }
+    button {
+      padding: 10px 16px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--card);
+      color: var(--text);
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: background 0.15s;
+    }
+    button:hover { background: var(--bg); }
+    .pill {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+    .sev-high { border-color: var(--bad); color: var(--bad); background: rgba(220, 38, 38, 0.1); }
+    .sev-medium { border-color: var(--warn); color: var(--warn); background: rgba(202, 138, 4, 0.1); }
+    .sev-low { border-color: var(--ok); color: var(--ok); background: rgba(22, 163, 74, 0.1); }
+    .sev-unknown { border-color: var(--muted); color: var(--muted); }
+    .check-ok { color: var(--ok); }
+    .check-bad { color: var(--bad); }
+    .check-unknown { color: var(--muted); }
+    .table-container {
+      overflow-x: auto;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+    table { width: 100%; border-collapse: collapse; }
+    th, td {
+      text-align: left;
+      padding: 14px 12px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    th {
+      position: sticky;
+      top: 0;
+      background: var(--card);
+      font-weight: 600;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--muted);
+    }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: var(--bg); }
+    .nowrap { white-space: nowrap; }
+    .pr-title { font-weight: 600; margin-bottom: 2px; }
+    .pr-author { font-size: 0.8rem; color: var(--muted); }
+    .labels { display: flex; flex-wrap: wrap; gap: 4px; }
+    .label-pill {
+      font-size: 0.7rem;
+      padding: 2px 6px;
+      background: var(--bg);
+    }
+    .right { text-align: right; }
+    .small { font-size: 0.8rem; color: var(--muted); }
+    .footer {
+      margin-top: 24px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.85rem;
+      text-align: center;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .empty { text-align: center; padding: 40px; color: var(--muted); }
+    .counts { font-size: 0.85rem; color: var(--muted); margin-bottom: 12px; }
+    .summary-cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .summary-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 20px;
+      min-width: 120px;
+      text-align: center;
+    }
+    .summary-card .number { font-size: 2rem; font-weight: 700; }
+    .summary-card .label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; }
+  </style>
+</head>
+<body>
+  <h1>🌀 Divergence Dashboard</h1>
+  <div class="meta" id="meta">Loading…</div>
+
+  <div class="summary-cards" id="summary"></div>
+
+  <div class="controls">
+    <div class="control-group">
+      <label for="severity">Severity</label>
+      <select id="severity">
+        <option value="all">All</option>
+        <option value="high">🔴 High</option>
+        <option value="medium">🟡 Medium</option>
+        <option value="low">🟢 Low</option>
+        <option value="unknown">⚪ Unknown</option>
+      </select>
+    </div>
+
+    <div class="control-group">
+      <label for="mode">Mode</label>
+      <select id="mode">
+        <option value="all">All</option>
+        <option value="normal">Normal</option>
+        <option value="emergency">🚨 Emergency</option>
+      </select>
+    </div>
+
+    <div class="control-group">
+      <label for="scope">Scope</label>
+      <select id="scope">
+        <option value="all">All</option>
+        <option value="scope:docs">docs</option>
+        <option value="scope:ci">ci</option>
+        <option value="scope:core">core</option>
+        <option value="scope:infra">infra</option>
+        <option value="scope:sentinels">sentinels</option>
+        <option value="scope:labs">labs</option>
+        <option value="scope:specs">specs</option>
+      </select>
+    </div>
+
+    <div class="control-group">
+      <label for="epicon">EPICON</label>
+      <select id="epicon">
+        <option value="all">All</option>
+        <option value="success">✓ Success</option>
+        <option value="failure">✗ Failure</option>
+        <option value="unknown">? Unknown</option>
+      </select>
+    </div>
+
+    <div class="control-group">
+      <label for="gate">Merge Gate</label>
+      <select id="gate">
+        <option value="all">All</option>
+        <option value="success">✓ Success</option>
+        <option value="failure">✗ Failure</option>
+        <option value="unknown">? Unknown</option>
+      </select>
+    </div>
+
+    <div class="control-group">
+      <label for="q">Search</label>
+      <input id="q" type="search" placeholder="title, author, labels…" />
+    </div>
+
+    <div class="control-group">
+      <label for="sort">Sort</label>
+      <select id="sort">
+        <option value="sev_then_pr">Severity → PR #</option>
+        <option value="updated_desc">Updated (newest)</option>
+        <option value="updated_asc">Updated (oldest)</option>
+        <option value="pr_desc">PR # (desc)</option>
+        <option value="pr_asc">PR # (asc)</option>
+      </select>
+    </div>
+
+    <button id="reset">Reset</button>
+  </div>
+
+  <div class="counts" id="counts"></div>
+
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th class="nowrap">Severity</th>
+          <th>PR</th>
+          <th>Title</th>
+          <th class="nowrap">EPICON</th>
+          <th class="nowrap">Gate</th>
+          <th class="nowrap">Mode</th>
+          <th>Labels</th>
+          <th class="nowrap right">Updated</th>
+        </tr>
+      </thead>
+      <tbody id="rows">
+        <tr><td colspan="8" class="empty">Loading…</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="footer">
+    <p>Divergence is not moral judgment. It is legibility: <em>does behavior match published intent?</em></p>
+    <p><a href="./dashboard.md">Markdown version</a> · <a href="./data.json">JSON data</a> · <a href="../epicon/EPICON-02.md">EPICON-02 Spec</a></p>
+  </div>
+
+  <script src="./ui.js"></script>
+</body>
+</html>

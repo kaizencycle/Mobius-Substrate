@@ -1,0 +1,48 @@
+name: Mobius Divergence Dashboard
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 */6 * * *"   # Every 6 hours
+  push:
+    branches: [main]
+    paths:
+      - ".github/scripts/generate_divergence_dashboard.py"
+      - ".github/workflows/mobius-divergence-dashboard.yml"
+
+permissions:
+  contents: write
+  pull-requests: read
+
+jobs:
+  build:
+    name: Generate Dashboard
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Generate dashboard
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          OUT_DIR: docs/divergence
+        run: |
+          python .github/scripts/generate_divergence_dashboard.py
+
+      - name: Commit dashboard
+        run: |
+          git config user.name "mobius-bot"
+          git config user.email "mobius-bot@users.noreply.github.com"
+          git add docs/divergence/data.json docs/divergence/dashboard.md || true
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "chore(dashboard): update divergence dashboard [skip ci]"
+            git push
+          fi
