@@ -162,7 +162,7 @@ sequenceDiagram
 }
 ```
 
-See full schema: [`/docs/authority/companion_attestation.schema.json`](../../../authority/companion_attestation.schema.json)
+See full schema: [`/docs/authority/companion_attestation.schema.json`](../../authority/companion_attestation.schema.json)
 
 ---
 
