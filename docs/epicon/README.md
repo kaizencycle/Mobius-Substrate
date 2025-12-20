@@ -45,7 +45,9 @@ Input → Context Inference → CSS Gate → EJ Builder → CCR Validator → Ou
 
 | File | Purpose |
 |------|---------|
-| [`EPICON-01.md`](./EPICON-01.md) | Full specification |
+| [`EPICON-01.md`](./EPICON-01.md) | Epistemic constraint specification (coherence layer) |
+| [`EPICON-02.md`](./EPICON-02.md) | Intent publication & divergence protocol (visibility layer) |
+| [`EPICON-02-INVARIANTS.md`](./EPICON-02-INVARIANTS.md) | Formal invariants for EPICON-02 |
 | [`ej.schema.json`](./ej.schema.json) | JSON schema for Epistemic Justification |
 | [`ej.example.json`](./ej.example.json) | Example EJ document |
 | [`ccr-tests.md`](./ccr-tests.md) | CCR test suite |
@@ -124,11 +126,26 @@ It encodes **contextual coherence**: meaning varies by context, but coherence is
 
 ---
 
+## EPICON Specification Family
+
+| Spec | Purpose | Status |
+|------|---------|--------|
+| **EPICON-01** | Coherence layer (epistemic justification) | Canonical |
+| **EPICON-02** | Visibility layer (intent publication + divergence) | Canonical |
+| **EPICON-03** | Collective epistemic consensus (planned) | Future |
+| **EPICON-04** | Temporal drift analysis (planned) | Future |
+
+Together, EPICON-01 and EPICON-02 produce: **Epistemic Accountability by Default**
+
+---
+
 ## Related Specifications
 
 - [MFS Spec](../07-RESEARCH-AND-PUBLICATIONS/specs/MFS_SPEC_v1.md) — Mobius Fractal Shards
 - [MII Spec](../../specs/mii_spec_v1.md) — Mobius Integrity Index
 - [RFC-0003: GI and MII Formal Spec](../../specs/civic-ledger/RFC-0003-gi-and-mii-formal-spec.md)
+- [Governance Overview](../03-GOVERNANCE-AND-POLICY/governance/GOVERNANCE_OVERVIEW.md) — Authority model
+- [AVM Specification](../authority/AVM.md) — Authority Verification Module
 
 ---
 

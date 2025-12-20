@@ -1,0 +1,108 @@
+name: Mobius Merge Gate (Consensus)
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened, labeled, unlabeled, ready_for_review]
+  pull_request_review:
+    types: [submitted, dismissed]
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  gate:
+    name: Merge Gate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Evaluate merge gate
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          PR_NUMBER: ${{ github.event.pull_request.number || github.event.pull_request_review.pull_request.number }}
+        run: |
+          python3 - << 'PY'
+          import os, json, urllib.request, sys
+
+          token = os.environ["GITHUB_TOKEN"]
+          repo = os.environ["REPO"]
+          pr_number = os.environ["PR_NUMBER"]
+
+          def gh(method, path):
+              url = f"https://api.github.com{path}"
+              req = urllib.request.Request(
+                  url,
+                  headers={
+                      "Authorization": f"token {token}",
+                      "Accept": "application/vnd.github+json",
+                      "User-Agent": "mobius-merge-gate",
+                  },
+                  method=method,
+              )
+              try:
+                  with urllib.request.urlopen(req) as r:
+                      return json.loads(r.read().decode("utf-8"))
+              except urllib.error.HTTPError as e:
+                  print(f"API error: {e.code}")
+                  return None
+
+          pr = gh("GET", f"/repos/{repo}/pulls/{pr_number}")
+          if not pr:
+              print("Could not fetch PR")
+              sys.exit(1)
+
+          labels = {l["name"] for l in pr.get("labels", [])}
+
+          # 1) Require consensus label
+          NEED_LABEL = "consensus:approved"
+          has_label = NEED_LABEL in labels
+
+          # 2) Require at least 1 APPROVED review
+          reviews = gh("GET", f"/repos/{repo}/pulls/{pr_number}/reviews?per_page=100")
+          if reviews is None:
+              reviews = []
+
+          # Keep latest review state per user
+          latest = {}
+          for r in reviews:
+              user = r.get("user", {}).get("login")
+              if user:
+                  latest[user] = r["state"]
+
+          approvals = [u for u, st in latest.items() if st == "APPROVED"]
+          has_approval = len(approvals) >= 1
+
+          # Evaluate
+          failures = []
+          if not has_label:
+              failures.append(f"Missing required label: {NEED_LABEL}")
+          if not has_approval:
+              failures.append("Missing APPROVED review (at least 1 required)")
+
+          print("=" * 60)
+          print("MOBIUS MERGE GATE — CONSENSUS CHECK")
+          print("=" * 60)
+          print(f"PR: #{pr_number}")
+          print(f"Labels: {', '.join(sorted(labels)) or '(none)'}")
+          print(f"Approvals: {len(approvals)} ({', '.join(approvals) or 'none'})")
+          print()
+
+          if failures:
+              print("STATUS: ❌ FAIL")
+              print()
+              for f in failures:
+                  print(f"  - {f}")
+              print()
+              print("To pass this gate:")
+              print("  1. Get at least 1 APPROVED review from a CODEOWNER")
+              print("  2. Ensure the 'consensus:approved' label is present")
+              print()
+              sys.exit(1)
+
+          print("STATUS: ✅ PASS")
+          print()
+          print(f"  ✓ Label present: {NEED_LABEL}")
+          print(f"  ✓ Approvals: {len(approvals)}")
+          print()
+          sys.exit(0)
+          PY

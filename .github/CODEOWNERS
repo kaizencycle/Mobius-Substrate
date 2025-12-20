@@ -1,18 +1,24 @@
 # CODEOWNERS
-# Code ownership and review requirements for Kaizen OS
+# Code ownership and review requirements for Kaizen OS / Mobius Systems
 #
-# NOTE: Replace @SENTINEL_NAME with actual GitHub teams (e.g., @kaizencycle/aurea)
-# OR replace with individual maintainer usernames (e.g., @username)
-# GitHub teams must be created in: Settings > Teams > New team
+# EPICON-02 Integration: This file works with the Mobius PR Bot
+# which enforces scope containment and auto-requests reviewers.
 #
 # Required teams:
-# - kaizencycle/aurea (AUREA - Economic Architect)
-# - kaizencycle/atlas (ATLAS - Monitoring Sentinel)
-# - kaizencycle/zeus (ZEUS - System Coordinator)
-# - kaizencycle/hermes (HERMES - Distributed Systems)
+# - kaizencycle/aurea (AUREA - Economic Architect / Docs)
+# - kaizencycle/atlas (ATLAS - Monitoring Sentinel / CI)
+# - kaizencycle/zeus (ZEUS - System Coordinator / Sentinels)
+# - kaizencycle/hermes (HERMES - Distributed Systems / Infra)
 # - kaizencycle/eve (EVE - Safety Sentinel)
 # - kaizencycle/echo (ECHO - Pulse Monitor)
 # - kaizencycle/zenith (ZENITH - Integration Sentinel)
+
+# =============================================================================
+# EPICON / Governance / Authority Documentation
+# =============================================================================
+/docs/epicon/ @kaizencycle/aurea @kaizencycle/atlas
+/docs/authority/ @kaizencycle/aurea @kaizencycle/atlas
+/docs/03-GOVERNANCE-AND-POLICY/ @kaizencycle/aurea
 
 # Foundational documents require AUREA review
 /docs/foundational_*.md @kaizencycle/aurea

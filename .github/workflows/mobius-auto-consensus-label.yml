@@ -1,0 +1,141 @@
+name: Mobius Auto Consensus Label
+
+on:
+  pull_request_review:
+    types: [submitted, dismissed]
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+  check_run:
+    types: [completed]
+
+permissions:
+  pull-requests: write
+  issues: write
+  checks: read
+  contents: read
+
+jobs:
+  auto_label:
+    name: Auto Consensus Label
+    runs-on: ubuntu-latest
+    # Only run for PRs (check_run events need filtering)
+    if: github.event.pull_request || github.event.pull_request_review || (github.event.check_run && github.event.check_run.pull_requests[0])
+    steps:
+      - name: Auto-apply consensus label when gate conditions met
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          PR_NUMBER: ${{ github.event.pull_request.number || github.event.pull_request_review.pull_request.number || github.event.check_run.pull_requests[0].number }}
+          REQUIRED_LABEL: consensus:approved
+          REQUIRED_CHECK_EPICON: "epicon_pr_bot"
+        run: |
+          python3 - << 'PY'
+          import os, json, urllib.request, sys
+
+          token = os.environ["GITHUB_TOKEN"]
+          repo = os.environ["REPO"]
+          pr_number = os.environ.get("PR_NUMBER")
+          required_label = os.environ["REQUIRED_LABEL"]
+          required_check_epicon = os.environ["REQUIRED_CHECK_EPICON"]
+
+          if not pr_number:
+              print("No PR number found, skipping")
+              sys.exit(0)
+
+          def gh(method, path, data=None):
+              url = f"https://api.github.com{path}"
+              headers = {
+                  "Authorization": f"token {token}",
+                  "Accept": "application/vnd.github+json",
+                  "User-Agent": "mobius-auto-consensus",
+              }
+              body = None
+              if data is not None:
+                  body = json.dumps(data).encode("utf-8")
+                  headers["Content-Type"] = "application/json"
+              req = urllib.request.Request(url, data=body, headers=headers, method=method)
+              try:
+                  with urllib.request.urlopen(req) as resp:
+                      return json.loads(resp.read().decode("utf-8"))
+              except urllib.error.HTTPError as e:
+                  print(f"API error: {e.code} for {method} {path}")
+                  return None
+
+          # Fetch PR + labels
+          pr = gh("GET", f"/repos/{repo}/pulls/{pr_number}")
+          if not pr:
+              print("Could not fetch PR")
+              sys.exit(0)
+
+          labels = {l["name"] for l in pr.get("labels", [])}
+          head_sha = pr["head"]["sha"]
+
+          print(f"PR #{pr_number}, HEAD: {head_sha[:8]}")
+          print(f"Current labels: {', '.join(sorted(labels)) or '(none)'}")
+
+          # Latest review state per user (need at least 1 approval)
+          reviews = gh("GET", f"/repos/{repo}/pulls/{pr_number}/reviews?per_page=100")
+          if reviews is None:
+              reviews = []
+
+          latest = {}
+          for r in reviews:
+              user = r.get("user", {}).get("login")
+              if user:
+                  latest[user] = r["state"]
+
+          approvals = [u for u, st in latest.items() if st == "APPROVED"]
+          has_approval = len(approvals) >= 1
+          print(f"Approvals: {len(approvals)} ({', '.join(approvals) or 'none'})")
+
+          # Check required checks on head SHA
+          checks = gh("GET", f"/repos/{repo}/commits/{head_sha}/check-runs?per_page=100")
+          check_runs = checks.get("check_runs", []) if checks else []
+
+          check_map = {}
+          for c in check_runs:
+              name = c.get("name", "")
+              conclusion = c.get("conclusion")
+              check_map[name] = conclusion
+
+          print(f"Checks found: {len(check_map)}")
+          for name, concl in check_map.items():
+              print(f"  - {name}: {concl}")
+
+          # EPICON check (job name in workflow)
+          epicon_ok = check_map.get(required_check_epicon) == "success"
+          print(f"EPICON check ({required_check_epicon}): {'✓' if epicon_ok else '✗'}")
+
+          # Decision
+          conditions_met = has_approval and epicon_ok
+          print()
+          print(f"Conditions met: {conditions_met}")
+          print(f"  - has_approval: {has_approval}")
+          print(f"  - epicon_ok: {epicon_ok}")
+
+          # Apply or remove label
+          if conditions_met:
+              if required_label not in labels:
+                  result = gh("POST", f"/repos/{repo}/issues/{pr_number}/labels", {"labels": [required_label]})
+                  if result:
+                      print(f"✓ Applied label: {required_label}")
+                  else:
+                      print(f"Failed to apply label")
+              else:
+                  print(f"Label already present: {required_label}")
+              sys.exit(0)
+
+          # If conditions not met, remove label if present
+          if required_label in labels:
+              try:
+                  # URL-encode the label name
+                  import urllib.parse
+                  encoded_label = urllib.parse.quote(required_label, safe='')
+                  gh("DELETE", f"/repos/{repo}/issues/{pr_number}/labels/{encoded_label}")
+                  print(f"✗ Removed label: {required_label} (conditions not met)")
+              except Exception as e:
+                  print(f"Could not remove label: {e}")
+
+          print("Conditions not met, label not applied.")
+          sys.exit(0)
+          PY
