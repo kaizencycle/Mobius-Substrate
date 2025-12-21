@@ -1,0 +1,40 @@
+{
+  "title": "Mobius Weekly Governance Digest",
+  "period": {
+    "start": "2025-12-14",
+    "end": "2025-12-21",
+    "days": 7
+  },
+  "generated_at": "2025-12-21T23:10:11.676014+00:00Z",
+  "summary": {
+    "open_prs": 0,
+    "severity": {
+      "high": 0,
+      "medium": 0,
+      "low": 0
+    },
+    "events_this_period": 0,
+    "events_by_type": {},
+    "events_by_severity": {
+      "high": 0,
+      "medium": 0,
+      "low": 0
+    }
+  },
+  "top_events": [],
+  "top_contributors": [],
+  "action_items": [
+    "\ud83d\udccb Review and expire outdated intent publications",
+    "\ud83d\udd04 Re-run EPICON checks on pending PRs"
+  ],
+  "health_score": {
+    "score": 100,
+    "status": "healthy",
+    "emoji": "\ud83d\udfe2",
+    "factors": {
+      "high_severity_current": 0,
+      "high_severity_events": 0,
+      "open_prs": 0
+    }
+  }
+}
