@@ -9,6 +9,7 @@ This bot enforces:
 4. Intent evolution tracking (hash changes require explicit declaration)
 5. Divergence severity scoring (low/medium/high)
 6. Emergency transparency debt (auto-creates issue)
+7. Auto-generated intent templates on failure
 
 Reference: docs/epicon/EPICON-02.md
 """
@@ -21,6 +22,13 @@ import subprocess
 import sys
 import urllib.request
 from datetime import datetime, timezone, timedelta
+
+# Import template generator if available
+try:
+    from epicon_intent_template import generate_template, detect_scope
+    HAS_TEMPLATE_GEN = True
+except ImportError:
+    HAS_TEMPLATE_GEN = False
 
 # -----------------------------
 # Environment
@@ -642,6 +650,21 @@ def main():
             "",
             "\n".join([f"- ❌ {f}" for f in failures]),
             "",
+        ]
+        
+        # Add auto-generated template if available
+        if HAS_TEMPLATE_GEN and files:
+            template = generate_template(files)
+            comment_parts += [
+                "### 📝 Auto-Generated Template",
+                "",
+                "**Paste this template into your PR description and fill it out:**",
+                "",
+                template,
+                "",
+            ]
+        
+        comment_parts += [
             "### How to Fix",
             "",
             "1. Ensure the PR body includes the `EPICON-02 INTENT PUBLICATION` block",
@@ -650,6 +673,14 @@ def main():
             "4. Use ISO-8601 timestamps with `Z` suffix",
             "5. If justification changes, set `intent_evolution: true` with `supersedes_hash` and `evolution_reason`",
             "6. For emergency mode: set `mode: emergency` AND `emergency_scope` (≤72h window)",
+            "",
+            "### 🔎 Why This Failed",
+            "",
+            "- Authority was exercised without a published intent.",
+            "- Changed files affect governance control-plane.",
+            "- EPICON-02 requires time-bounded, auditable justification.",
+            "",
+            "👉 **Learn more:** [docs/epicon/EXPLAIN_FAILURE.md](../docs/epicon/EXPLAIN_FAILURE.md)",
             "",
         ]
 
