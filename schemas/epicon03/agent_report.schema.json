@@ -1,0 +1,114 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mobius.systems/schemas/epicon03/agent_report.schema.json",
+  "title": "EPICON-03 Agent Report",
+  "description": "Schema for individual agent evaluation report in EPICON-03 consensus",
+  "type": "object",
+  "required": [
+    "agent_id",
+    "provider",
+    "model",
+    "stance",
+    "confidence",
+    "ej",
+    "generated_at"
+  ],
+  "properties": {
+    "agent_id": {
+      "type": "string",
+      "description": "Unique identifier for the agent (e.g., aurea, atlas, eve)"
+    },
+    "provider": {
+      "type": "string",
+      "enum": ["openai", "anthropic", "google", "local", "deepseek", "mistral"],
+      "description": "AI provider"
+    },
+    "model": {
+      "type": "string",
+      "description": "Model identifier (e.g., gpt-4o, claude-opus-4, gemini-pro)"
+    },
+    "model_config": {
+      "type": "object",
+      "properties": {
+        "temperature": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 2
+        },
+        "seed": {
+          "type": "integer"
+        },
+        "system_prompt_hash": {
+          "type": "string"
+        }
+      },
+      "description": "Model configuration for independence verification"
+    },
+    "stance": {
+      "type": "string",
+      "enum": ["support", "conditional", "oppose"],
+      "description": "Agent's stance on the action"
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Agent's confidence in their evaluation (0-1)"
+    },
+    "ej": {
+      "$ref": "https://mobius.systems/schemas/epicon/ej-v0.1.0.json",
+      "description": "Full EPICON-01 Epistemic Justification object"
+    },
+    "ej_hash": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$",
+      "description": "SHA-256 hash of the EJ object"
+    },
+    "conditions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Conditions required for support (if stance is conditional)"
+    },
+    "objections": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Objections to the action (if stance is oppose)"
+    },
+    "questions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Clarifying questions the agent needs answered"
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO-8601 timestamp when this report was generated"
+    },
+    "evaluation_time_ms": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Time taken to generate this evaluation (milliseconds)"
+    },
+    "token_usage": {
+      "type": "object",
+      "properties": {
+        "input_tokens": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "output_tokens": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "description": "Token usage for this evaluation"
+    }
+  },
+  "additionalProperties": false
+}

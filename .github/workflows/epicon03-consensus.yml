@@ -1,0 +1,226 @@
+name: EPICON-03 Multi-Agent Consensus
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, edited]
+    paths:
+      # Governance-sensitive paths that require multi-agent consensus
+      - '.github/CODEOWNERS'
+      - '.github/PULL_REQUEST_TEMPLATE.md'
+      - '.github/workflows/*.yml'
+      - 'SECURITY.md'
+      - 'GOVERNANCE.md'
+      - 'CHARTER.md'
+      - 'BYLAWS.md'
+      - 'FOUNDATION/**'
+      - 'specs/**'
+      - 'schemas/**'
+  workflow_dispatch:
+    inputs:
+      pr_number:
+        description: 'PR number to run consensus on'
+        required: true
+        type: number
+
+permissions:
+  contents: read
+  pull-requests: write
+  issues: read
+
+jobs:
+  check-governance-scope:
+    name: Check Governance Scope
+    runs-on: ubuntu-latest
+    outputs:
+      requires_consensus: ${{ steps.check.outputs.requires_consensus }}
+      scope: ${{ steps.check.outputs.scope }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Get changed files
+        id: changed
+        uses: dorny/paths-filter@v3
+        with:
+          list-files: json
+          filters: |
+            governance:
+              - '.github/CODEOWNERS'
+              - '.github/PULL_REQUEST_TEMPLATE.md'
+              - 'SECURITY.md'
+              - 'GOVERNANCE.md'
+              - 'CHARTER.md'
+              - 'BYLAWS.md'
+              - 'FOUNDATION/**'
+            workflows:
+              - '.github/workflows/**'
+            specs:
+              - 'specs/**'
+              - 'schemas/**'
+
+      - name: Determine if consensus required
+        id: check
+        run: |
+          REQUIRES=false
+          SCOPE=""
+          
+          if [ "${{ steps.changed.outputs.governance }}" == "true" ]; then
+            REQUIRES=true
+            SCOPE="governance,code_ownership"
+          fi
+          
+          if [ "${{ steps.changed.outputs.workflows }}" == "true" ]; then
+            REQUIRES=true
+            SCOPE="${SCOPE:+$SCOPE,}ci"
+          fi
+          
+          if [ "${{ steps.changed.outputs.specs }}" == "true" ]; then
+            REQUIRES=true
+            SCOPE="${SCOPE:+$SCOPE,}specs"
+          fi
+          
+          echo "requires_consensus=$REQUIRES" >> $GITHUB_OUTPUT
+          echo "scope=$SCOPE" >> $GITHUB_OUTPUT
+          
+          echo "Requires consensus: $REQUIRES"
+          echo "Scope: $SCOPE"
+
+  run-consensus:
+    name: Run Multi-Agent Consensus
+    needs: check-governance-scope
+    if: needs.check-governance-scope.outputs.requires_consensus == 'true'
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      REPO: ${{ github.repository }}
+      PR_NUMBER: ${{ github.event.pull_request.number || github.event.inputs.pr_number }}
+      SCOPE: ${{ needs.check-governance-scope.outputs.scope }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Get PR details
+        id: pr
+        run: |
+          PR_DATA=$(gh pr view $PR_NUMBER --json title,body,author,headRefName,baseRefName,files)
+          echo "pr_title=$(echo $PR_DATA | jq -r '.title')" >> $GITHUB_OUTPUT
+          echo "pr_author=$(echo $PR_DATA | jq -r '.author.login')" >> $GITHUB_OUTPUT
+          echo "head_ref=$(echo $PR_DATA | jq -r '.headRefName')" >> $GITHUB_OUTPUT
+          echo "base_ref=$(echo $PR_DATA | jq -r '.baseRefName')" >> $GITHUB_OUTPUT
+          echo $PR_DATA | jq -r '.files[].path' > /tmp/changed_files.txt
+
+      - name: Run EPICON-03 Consensus Engine
+        id: consensus
+        run: |
+          python3 << 'EOF'
+          import json
+          import os
+          import sys
+          sys.path.insert(0, '.github/scripts')
+          
+          from epicon03_consensus import ConsensusEngine, ConsensusRequest, generate_pr_comment
+          
+          # Read changed files
+          with open('/tmp/changed_files.txt') as f:
+              changed_files = [line.strip() for line in f if line.strip()]
+          
+          # Parse scope
+          scope = os.environ.get('SCOPE', 'feature').split(',')
+          
+          # Create consensus request
+          request = ConsensusRequest(
+              request_id="",  # Will be auto-generated
+              repo=os.environ['REPO'],
+              pr=int(os.environ['PR_NUMBER']),
+              action="merge",
+              scope=scope,
+              changed_files=changed_files,
+              agents_required=5,
+              context={
+                  "pr_title": os.environ.get('PR_TITLE', ''),
+                  "author": os.environ.get('PR_AUTHOR', ''),
+              }
+          )
+          
+          # Run consensus
+          engine = ConsensusEngine(request)
+          attestation = engine.run_consensus()
+          
+          # Output results
+          print(f"::set-output name=status::{attestation.status.value}")
+          print(f"::set-output name=ecs::{attestation.ecs}")
+          
+          # Write attestation to file
+          with open('/tmp/attestation.json', 'w') as f:
+              f.write(engine.to_json(attestation))
+          
+          # Write comment to file
+          with open('/tmp/comment.md', 'w') as f:
+              f.write(generate_pr_comment(attestation))
+          
+          # Exit with appropriate code
+          if attestation.status.value == 'fail':
+              sys.exit(1)
+          EOF
+        env:
+          PR_TITLE: ${{ steps.pr.outputs.pr_title }}
+          PR_AUTHOR: ${{ steps.pr.outputs.pr_author }}
+        continue-on-error: true
+
+      - name: Post consensus comment
+        run: |
+          if [ -f /tmp/comment.md ]; then
+            # Find and update existing bot comment, or create new one
+            BOT_MARKER="<!-- EPICON-03-CONSENSUS -->"
+            COMMENT_BODY="$BOT_MARKER
+          $(cat /tmp/comment.md)"
+            
+            # Get existing comments
+            EXISTING=$(gh api repos/$REPO/issues/$PR_NUMBER/comments \
+              --jq '.[] | select(.body | contains("EPICON-03-CONSENSUS")) | .id' \
+              | head -1)
+            
+            if [ -n "$EXISTING" ]; then
+              gh api repos/$REPO/issues/comments/$EXISTING \
+                -X PATCH \
+                -f body="$COMMENT_BODY"
+            else
+              gh pr comment $PR_NUMBER --body "$COMMENT_BODY"
+            fi
+          fi
+
+      - name: Store attestation artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: epicon03-attestation
+          path: /tmp/attestation.json
+          retention-days: 90
+
+      - name: Set check status
+        if: always()
+        run: |
+          STATUS="${{ steps.consensus.outcome }}"
+          if [ "$STATUS" == "success" ]; then
+            echo "✅ EPICON-03 Consensus: PASS"
+          else
+            echo "❌ EPICON-03 Consensus: FAIL or NEEDS_CLARIFICATION"
+            exit 1
+          fi
+
+  skip-consensus:
+    name: Skip Consensus (Not Required)
+    needs: check-governance-scope
+    if: needs.check-governance-scope.outputs.requires_consensus != 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Skip message
+        run: |
+          echo "✅ EPICON-03 consensus not required for this PR"
+          echo "Changed files do not affect governance scope"

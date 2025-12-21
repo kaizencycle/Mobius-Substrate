@@ -1,0 +1,150 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mobius.systems/schemas/epicon03/consensus_request.schema.json",
+  "title": "EPICON-03 Consensus Request",
+  "description": "Schema for requesting multi-agent epistemic consensus in Mobius Systems",
+  "type": "object",
+  "required": [
+    "request_id",
+    "repo",
+    "action",
+    "scope",
+    "changed_files",
+    "agents_required"
+  ],
+  "properties": {
+    "request_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier for this consensus request"
+    },
+    "repo": {
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9_-]+/[a-zA-Z0-9_-]+$",
+      "description": "GitHub repository in owner/repo format"
+    },
+    "pr": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Pull request number (if applicable)"
+    },
+    "action": {
+      "type": "string",
+      "enum": ["merge", "approve", "deploy", "release", "governance_change"],
+      "description": "The action requiring consensus"
+    },
+    "scope": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "docs",
+          "ci",
+          "core",
+          "infra",
+          "sentinels",
+          "labs",
+          "specs",
+          "governance",
+          "code_ownership",
+          "process",
+          "security",
+          "feature"
+        ]
+      },
+      "minItems": 1,
+      "description": "Scope categories for the action"
+    },
+    "intent_hash": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$",
+      "description": "SHA-256 hash of the EPICON-02 intent publication"
+    },
+    "changed_files": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of files affected by this action"
+    },
+    "agents_required": {
+      "type": "integer",
+      "minimum": 3,
+      "maximum": 10,
+      "default": 5,
+      "description": "Number of agents required for consensus"
+    },
+    "thresholds": {
+      "type": "object",
+      "properties": {
+        "pass_ecs": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "default": 0.75,
+          "description": "Minimum ECS score for PASS status"
+        },
+        "clarify_ecs": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "default": 0.55,
+          "description": "Minimum ECS score for NEEDS_CLARIFICATION (below this is FAIL)"
+        },
+        "min_agents": {
+          "type": "integer",
+          "minimum": 3,
+          "default": 3,
+          "description": "Minimum agents required for valid consensus"
+        },
+        "agreement_ratio": {
+          "type": "number",
+          "minimum": 0.5,
+          "maximum": 1,
+          "default": 0.67,
+          "description": "Minimum ratio of support votes for PASS"
+        }
+      },
+      "description": "Custom thresholds for consensus evaluation"
+    },
+    "context": {
+      "type": "object",
+      "properties": {
+        "pr_title": {
+          "type": "string",
+          "description": "Pull request title"
+        },
+        "pr_body": {
+          "type": "string",
+          "description": "Pull request body/description"
+        },
+        "author": {
+          "type": "string",
+          "description": "PR author username"
+        },
+        "base_branch": {
+          "type": "string",
+          "description": "Target branch for merge"
+        },
+        "head_branch": {
+          "type": "string",
+          "description": "Source branch"
+        },
+        "labels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "PR labels"
+        }
+      },
+      "description": "Additional context for agents to evaluate"
+    },
+    "requested_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO-8601 timestamp when consensus was requested"
+    }
+  },
+  "additionalProperties": false
+}

@@ -48,6 +48,8 @@ Input → Context Inference → CSS Gate → EJ Builder → CCR Validator → Ou
 | [`EPICON-01.md`](./EPICON-01.md) | Epistemic constraint specification (coherence layer) |
 | [`EPICON-02.md`](./EPICON-02.md) | Intent publication & divergence protocol (visibility layer) |
 | [`EPICON-02-INVARIANTS.md`](./EPICON-02-INVARIANTS.md) | Formal invariants for EPICON-02 |
+| [`EPICON-03.md`](./EPICON-03.md) | Multi-agent collective epistemic consensus |
+| [`EXPLAIN_FAILURE.md`](./EXPLAIN_FAILURE.md) | Guide for understanding and fixing EPICON-02 failures |
 | [`ej.schema.json`](./ej.schema.json) | JSON schema for Epistemic Justification |
 | [`ej.example.json`](./ej.example.json) | Example EJ document |
 | [`ccr-tests.md`](./ccr-tests.md) | CCR test suite |
@@ -132,10 +134,21 @@ It encodes **contextual coherence**: meaning varies by context, but coherence is
 |------|---------|--------|
 | **EPICON-01** | Coherence layer (epistemic justification) | Canonical |
 | **EPICON-02** | Visibility layer (intent publication + divergence) | Canonical |
-| **EPICON-03** | Collective epistemic consensus (planned) | Future |
+| **EPICON-03** | Consensus layer (multi-agent verification) | Draft |
 | **EPICON-04** | Temporal drift analysis (planned) | Future |
+| **EPICON-05** | Integrity-weighted anchors (planned) | Future |
 
-Together, EPICON-01 and EPICON-02 produce: **Epistemic Accountability by Default**
+Together, EPICON-01, EPICON-02, and EPICON-03 produce: **Epistemic Accountability by Default**
+
+### EPICON-03: Multi-Agent Consensus
+
+EPICON-03 prevents single-model capture by requiring:
+
+- **N independent agents** produce EJ objects for the same action
+- **Consensus Engine** computes agreement, conflict, coverage, and robustness
+- **Attested Consensus** (PASS) or **Attested Dissent** (NEEDS_CLARIFICATION / FAIL)
+
+Result: The substrate becomes resistant to "one model convinced by one prompt."
 
 ---
 

@@ -1,0 +1,332 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mobius.systems/schemas/epicon03/consensus_attestation.schema.json",
+  "title": "EPICON-03 Consensus Attestation",
+  "description": "Schema for multi-agent epistemic consensus attestation in Mobius Systems",
+  "type": "object",
+  "required": [
+    "version",
+    "request_id",
+    "generated_at",
+    "status",
+    "ecs",
+    "quorum",
+    "vote",
+    "agent_reports"
+  ],
+  "properties": {
+    "version": {
+      "type": "string",
+      "const": "EPICON-03",
+      "description": "EPICON specification version"
+    },
+    "request_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Reference to the original consensus request"
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO-8601 timestamp when attestation was generated"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["pass", "needs_clarification", "fail"],
+      "description": "Consensus result status"
+    },
+    "ecs": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Epistemic Consensus Score (0-1)"
+    },
+    "ecs_components": {
+      "type": "object",
+      "properties": {
+        "agreement": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Agreement component (Support/N)"
+        },
+        "anchor_diversity": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Anchor diversity across agents"
+        },
+        "ccr_robustness": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Minimum CCR across agents"
+        },
+        "conflict_penalty": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Penalty for conflicting claims"
+        }
+      },
+      "description": "Breakdown of ECS score components"
+    },
+    "quorum": {
+      "type": "object",
+      "required": ["agents", "min_required", "independent_ok"],
+      "properties": {
+        "agents": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of agents that responded"
+        },
+        "min_required": {
+          "type": "integer",
+          "minimum": 3,
+          "description": "Minimum agents required"
+        },
+        "independent_ok": {
+          "type": "boolean",
+          "description": "Whether independence requirement was met"
+        },
+        "providers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "List of providers used"
+        }
+      },
+      "description": "Quorum status for the consensus"
+    },
+    "vote": {
+      "type": "object",
+      "required": ["support", "conditional", "oppose"],
+      "properties": {
+        "support": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of agents supporting the action"
+        },
+        "conditional": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of agents with conditional support"
+        },
+        "oppose": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of agents opposing the action"
+        }
+      },
+      "description": "Vote tally from agents"
+    },
+    "conflicts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["claim", "agents"],
+        "properties": {
+          "claim": {
+            "type": "string",
+            "description": "The conflicting claim or issue"
+          },
+          "agents": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Agents involved in this conflict"
+          },
+          "resolution": {
+            "type": "string",
+            "description": "Suggested resolution for the conflict"
+          },
+          "severity": {
+            "type": "string",
+            "enum": ["low", "medium", "high"],
+            "description": "Severity of the conflict"
+          }
+        }
+      },
+      "description": "Conflicts detected between agent evaluations"
+    },
+    "required_questions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Clarifying questions that need answers (for needs_clarification status)"
+    },
+    "css_status": {
+      "type": "object",
+      "properties": {
+        "all_pass": {
+          "type": "boolean",
+          "description": "Whether all agents passed CSS check"
+        },
+        "violations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "agent": {
+                "type": "string"
+              },
+              "violation": {
+                "type": "string"
+              }
+            }
+          },
+          "description": "CSS violations from agents (if any)"
+        }
+      },
+      "description": "Common-Sense Safety status across agents"
+    },
+    "agent_reports": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["agent", "stance", "confidence", "ej_hash"],
+        "properties": {
+          "agent": {
+            "type": "string",
+            "description": "Agent identifier"
+          },
+          "provider": {
+            "type": "string",
+            "description": "AI provider (openai, anthropic, google, etc.)"
+          },
+          "model": {
+            "type": "string",
+            "description": "Model identifier"
+          },
+          "stance": {
+            "type": "string",
+            "enum": ["support", "conditional", "oppose"],
+            "description": "Agent's stance on the action"
+          },
+          "confidence": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1,
+            "description": "Agent's confidence score (0-1)"
+          },
+          "ej_hash": {
+            "type": "string",
+            "pattern": "^sha256:[a-f0-9]{64}$",
+            "description": "SHA-256 hash of the agent's EJ"
+          },
+          "ccr_score": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1,
+            "description": "Agent's CCR score"
+          },
+          "anchor_count": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Number of anchors in agent's EJ"
+          },
+          "anchor_types": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Types of anchors used"
+          },
+          "reasoning_summary": {
+            "type": "string",
+            "description": "Brief summary of agent's reasoning"
+          },
+          "conditions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Conditions for conditional support"
+          },
+          "objections": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Objections for oppose stance"
+          }
+        }
+      },
+      "minItems": 1,
+      "description": "Individual agent evaluation reports"
+    },
+    "dissent_bundle": {
+      "type": "object",
+      "properties": {
+        "dissenters": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Agents that opposed"
+        },
+        "claims": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Dissenting claims"
+        },
+        "questions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Questions to resolve dissent"
+        }
+      },
+      "description": "Preserved dissent information (if any agents opposed)"
+    },
+    "attestation": {
+      "type": "object",
+      "properties": {
+        "merkle_root": {
+          "type": "string",
+          "pattern": "^sha256:[a-f0-9]{64}$",
+          "description": "Merkle root of all agent reports"
+        },
+        "signers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Keys that signed this attestation"
+        },
+        "signature": {
+          "type": "string",
+          "description": "Cryptographic signature (ed25519)"
+        }
+      },
+      "description": "Cryptographic attestation for audit trail"
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "duration_ms": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Time taken to complete consensus (milliseconds)"
+        },
+        "retry_count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of retries for agent failures"
+        },
+        "partial": {
+          "type": "boolean",
+          "description": "Whether this is a partial consensus (some agents failed)"
+        }
+      },
+      "description": "Metadata about the consensus process"
+    }
+  },
+  "additionalProperties": false
+}
