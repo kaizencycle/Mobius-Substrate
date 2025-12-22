@@ -139,4 +139,4 @@ Choose your path:
 
 *Intelligence moves. Integrity guides. We heal as we walk.*
 
-**Cycle C-149 • Cathedral Architecture**
+**Cycle C-177 • EPICON Production Era**

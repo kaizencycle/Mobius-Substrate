@@ -27,7 +27,7 @@
     "readme_v2": {
       "status": "complete",
       "description": "Streamlined README for 30-min newcomer onboarding",
-      "lines_reduced": "~450 lines (800→350)"
+      "lines_reduced": "~530 lines (800→270)"
     },
     "workflow_consolidation_plan": {
       "status": "complete",
@@ -85,7 +85,7 @@
   ],
   "meta": {
     "updated_by": "ATLAS",
-    "updated_at": "2025-12-22T12:00:00Z",
+    "updated_at": "2025-12-22T16:30:00Z",
     "review_status": "approved",
     "next_review": "C-180"
   }

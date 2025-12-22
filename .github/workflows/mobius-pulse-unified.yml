@@ -1,0 +1,324 @@
+# ═══════════════════════════════════════════════════════════════════════════════
+# Mobius Pulse (Unified Telemetry)
+# ═══════════════════════════════════════════════════════════════════════════════
+# Consolidates: mobius-pulse-nightly.yml, update-badges.yml, weekly-digest.yml
+# EPICON Layer: EPICON-2 (Memory Matrix)
+# Cycle: C-177
+# ═══════════════════════════════════════════════════════════════════════════════
+
+name: Mobius Pulse (Unified)
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    # Daily pulse at 04:00 UTC
+    - cron: "0 4 * * *"
+    # Badge refresh every 15 minutes
+    - cron: "*/15 * * * *"
+    # Weekly digest on Sunday at 23:00 UTC
+    - cron: "0 23 * * 0"
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'Pulse mode'
+        required: false
+        default: 'full'
+        type: choice
+        options:
+          - full
+          - pulse-only
+          - badges-only
+          - digest-only
+
+permissions:
+  contents: write
+  issues: write
+  actions: read
+  statuses: read
+
+env:
+  MOBIUS_CYCLE: "C-177"
+  GI_SCORE: "0.95"
+  MII_SCORE: "0.95"
+
+jobs:
+  # ═══════════════════════════════════════════════════════════════════════════
+  # DETERMINE MODE
+  # ═══════════════════════════════════════════════════════════════════════════
+  
+  determine-mode:
+    name: 🎯 Determine Mode
+    runs-on: ubuntu-latest
+    outputs:
+      run_pulse: ${{ steps.mode.outputs.run_pulse }}
+      run_badges: ${{ steps.mode.outputs.run_badges }}
+      run_digest: ${{ steps.mode.outputs.run_digest }}
+    
+    steps:
+      - name: Determine execution mode
+        id: mode
+        run: |
+          MODE="${{ github.event.inputs.mode || 'auto' }}"
+          CRON="${{ github.event.schedule }}"
+          
+          # Default to false
+          RUN_PULSE="false"
+          RUN_BADGES="false"
+          RUN_DIGEST="false"
+          
+          if [ "$MODE" = "full" ] || [ "$MODE" = "pulse-only" ]; then
+            RUN_PULSE="true"
+          fi
+          
+          if [ "$MODE" = "full" ] || [ "$MODE" = "badges-only" ]; then
+            RUN_BADGES="true"
+          fi
+          
+          if [ "$MODE" = "full" ] || [ "$MODE" = "digest-only" ]; then
+            RUN_DIGEST="true"
+          fi
+          
+          # Auto-detect from cron schedule
+          if [ "$MODE" = "auto" ]; then
+            case "$CRON" in
+              "0 4 * * *")  # Daily pulse
+                RUN_PULSE="true"
+                RUN_BADGES="true"
+                ;;
+              "*/15 * * * *")  # Badge refresh
+                RUN_BADGES="true"
+                ;;
+              "0 23 * * 0")  # Weekly digest
+                RUN_DIGEST="true"
+                ;;
+              *)  # Push event or manual
+                RUN_PULSE="true"
+                RUN_BADGES="true"
+                ;;
+            esac
+          fi
+          
+          echo "run_pulse=$RUN_PULSE" >> $GITHUB_OUTPUT
+          echo "run_badges=$RUN_BADGES" >> $GITHUB_OUTPUT
+          echo "run_digest=$RUN_DIGEST" >> $GITHUB_OUTPUT
+          
+          echo "Mode: pulse=$RUN_PULSE, badges=$RUN_BADGES, digest=$RUN_DIGEST"
+
+  # ═══════════════════════════════════════════════════════════════════════════
+  # MOBIUS PULSE
+  # ═══════════════════════════════════════════════════════════════════════════
+  
+  pulse:
+    name: 📡 Generate Pulse
+    runs-on: ubuntu-latest
+    needs: determine-mode
+    if: needs.determine-mode.outputs.run_pulse == 'true'
+    continue-on-error: true
+    
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: |
+          if [ -f "package.json" ]; then
+            npm ci || pnpm install || yarn install || true
+          fi
+
+      - name: Install cloc
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cloc
+
+      - name: Generate Mobius pulse
+        run: |
+          if [ -f "scripts/mobius_pulse_json_v2.sh" ]; then
+            chmod +x scripts/mobius_pulse_json_v2.sh
+            GI_SCORE="${GI_SCORE}" MII_SCORE="${MII_SCORE}" MOBIUS_CYCLE="${MOBIUS_CYCLE}" \
+              scripts/mobius_pulse_json_v2.sh > mobius-pulse.json
+            echo "Generated mobius-pulse.json:"
+            cat mobius-pulse.json | head -50
+          else
+            echo '{"cycle":"'$MOBIUS_CYCLE'","gi":'$GI_SCORE',"mii":'$MII_SCORE',"timestamp":"'$(date -u +%Y-%m-%dT%H:%M:%SZ)'"}' > mobius-pulse.json
+          fi
+
+      - name: Post pulse to indexer
+        env:
+          INDEXER_BASE_URL: ${{ secrets.MOBIUS_INDEXER_BASE_URL }}
+          PULSE_API_TOKEN: ${{ secrets.MOBIUS_PULSE_API_TOKEN }}
+        run: |
+          if [ -z "$INDEXER_BASE_URL" ]; then
+            echo "MOBIUS_INDEXER_BASE_URL not set, skipping ingestion"
+            exit 0
+          fi
+
+          URL="$INDEXER_BASE_URL/api/v1/pulse/ingest"
+          
+          if [ -n "$PULSE_API_TOKEN" ]; then
+            AUTH_ARGS=(-H "Authorization: Bearer $PULSE_API_TOKEN")
+          else
+            AUTH_ARGS=()
+          fi
+
+          HTTP_CODE=$(curl -sS -o response.json -w "%{http_code}" \
+            -X POST "$URL" \
+            -H "Content-Type: application/json" \
+            "${AUTH_ARGS[@]}" \
+            --data-binary @mobius-pulse.json)
+
+          echo "HTTP status: $HTTP_CODE"
+          if [ -f "response.json" ]; then
+            jq . response.json || cat response.json
+          fi
+
+  # ═══════════════════════════════════════════════════════════════════════════
+  # BADGE REFRESH
+  # ═══════════════════════════════════════════════════════════════════════════
+  
+  badges:
+    name: 🏷️ Update Badges
+    runs-on: ubuntu-latest
+    needs: determine-mode
+    if: needs.determine-mode.outputs.run_badges == 'true'
+    continue-on-error: true
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Fetch MII
+        id: mii
+        env:
+          MII_API_URL: ${{ secrets.MII_API_URL }}
+        run: |
+          MII_MSG="unknown"
+          COLOR="inactive"
+          if [ -n "$MII_API_URL" ]; then
+            RESP=$(curl -fsSL "$MII_API_URL" || true)
+            if [ -n "$RESP" ]; then
+              MII=$(echo "$RESP" | jq -r '.mii // empty')
+              if [ -n "$MII" ]; then
+                MII_MSG=$(printf "%.3f" "$MII")
+                if awk "BEGIN{exit !($MII >= 0.990)}"; then COLOR="brightgreen";
+                elif awk "BEGIN{exit !($MII >= 0.970)}"; then COLOR="green";
+                elif awk "BEGIN{exit !($MII >= 0.950)}"; then COLOR="yellowgreen";
+                else COLOR="orange"; fi
+              fi
+            fi
+          fi
+          mkdir -p badges .badges
+          echo "{\"schemaVersion\":1,\"label\":\"MII\",\"message\":\"$MII_MSG\",\"color\":\"$COLOR\"}" > badges/mii.json
+
+      - name: Update cycle badge
+        run: |
+          mkdir -p .badges
+          CYCLE="${{ secrets.MOBIUS_CYCLE || env.MOBIUS_CYCLE }}"
+          VERDICT=$(cat STATE/VERDICT.txt 2>/dev/null || echo "ADOPT")
+          
+          case "$VERDICT" in
+            ADOPT) COLOR="brightgreen" ;;
+            SHADOW) COLOR="orange" ;;
+            DEFER) COLOR="red" ;;
+            *) COLOR="lightgray" ;;
+          esac
+          
+          echo "{\"schemaVersion\":1,\"label\":\"SR • Cycle\",\"message\":\"${CYCLE}\",\"color\":\"blue\",\"labelColor\":\"black\"}" > .badges/cycle.json
+          echo "{\"schemaVersion\":1,\"label\":\"verdict\",\"message\":\"${VERDICT}\",\"color\":\"${COLOR}\"}" > .badges/verdict.json
+
+      - name: Commit badge updates
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore(badges): refresh MII + cycle badges [skip ci]"
+          file_pattern: badges/*.json .badges/*.json
+
+  # ═══════════════════════════════════════════════════════════════════════════
+  # WEEKLY DIGEST
+  # ═══════════════════════════════════════════════════════════════════════════
+  
+  digest:
+    name: 📊 Weekly Digest
+    runs-on: ubuntu-latest
+    needs: determine-mode
+    if: needs.determine-mode.outputs.run_digest == 'true'
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Generate digest
+        id: digest
+        run: |
+          if [ -f ".github/scripts/weekly_digest.py" ]; then
+            python .github/scripts/weekly_digest.py --days 7
+            
+            if [ -f "docs/divergence/weekly_digest.json" ]; then
+              HEALTH=$(python3 -c "
+              import json
+              with open('docs/divergence/weekly_digest.json') as f:
+                  d = json.load(f)
+              print(d.get('health_score', {}).get('score', 'N/A'))
+              ")
+              echo "health_score=$HEALTH" >> $GITHUB_OUTPUT
+            fi
+          else
+            echo "health_score=N/A" >> $GITHUB_OUTPUT
+            echo "Weekly digest script not found, skipping..."
+          fi
+
+      - name: Commit digest
+        run: |
+          git config user.name "mobius-bot"
+          git config user.email "mobius-bot@users.noreply.github.com"
+          
+          git add docs/divergence/weekly_digest.json docs/divergence/WEEKLY_DIGEST.md 2>/dev/null || true
+          
+          if git diff --staged --quiet; then
+            echo "No digest changes to commit"
+          else
+            git commit -m "chore(digest): weekly governance digest [skip ci]"
+            git push
+          fi
+
+      - name: Summary
+        run: |
+          echo "# 📊 Weekly Governance Digest" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Health Score:** ${{ steps.digest.outputs.health_score }}/100" >> $GITHUB_STEP_SUMMARY
+          echo "**Generated:** $(date -u +%Y-%m-%dT%H:%M:%SZ)" >> $GITHUB_STEP_SUMMARY
+
+  # ═══════════════════════════════════════════════════════════════════════════
+  # SUMMARY
+  # ═══════════════════════════════════════════════════════════════════════════
+  
+  summary:
+    name: 📋 Pulse Summary
+    runs-on: ubuntu-latest
+    needs: [determine-mode, pulse, badges, digest]
+    if: always()
+    
+    steps:
+      - name: Generate Summary
+        run: |
+          echo "# 📡 Mobius Pulse Complete" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Component | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "|-----------|--------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Pulse Generation | ${{ needs.pulse.result || 'skipped' }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Badge Update | ${{ needs.badges.result || 'skipped' }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Weekly Digest | ${{ needs.digest.result || 'skipped' }} |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Cycle:** ${{ env.MOBIUS_CYCLE }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "---" >> $GITHUB_STEP_SUMMARY
+          echo "*Mobius Pulse (Unified) · EPICON-2*" >> $GITHUB_STEP_SUMMARY
