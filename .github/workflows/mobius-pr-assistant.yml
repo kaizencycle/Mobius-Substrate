@@ -1,0 +1,211 @@
+# ═══════════════════════════════════════════════════════════════════════════════
+# Mobius PR Assistant (Unified)
+# ═══════════════════════════════════════════════════════════════════════════════
+# Consolidates: mobius-pr-bot.yml, pr-sr-comment.yml, sr-pr-footer.yml
+# EPICON Layer: EPICON-3 (Federation Bridge)
+# Cycle: C-177
+# ═══════════════════════════════════════════════════════════════════════════════
+
+name: Mobius PR Assistant (Unified)
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened, ready_for_review]
+
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+
+jobs:
+  # ═══════════════════════════════════════════════════════════════════════════
+  # EPICON PR BOT - Main PR Analysis
+  # ═══════════════════════════════════════════════════════════════════════════
+  
+  epicon-pr-bot:
+    name: 🤖 EPICON PR Analysis
+    runs-on: ubuntu-latest
+    outputs:
+      cycle: ${{ steps.parse.outputs.cycle }}
+      has_cycle: ${{ steps.parse.outputs.has_cycle }}
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Parse PR Metadata
+        id: parse
+        env:
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          PR_BODY: ${{ github.event.pull_request.body }}
+        run: |
+          # Extract cycle number
+          CYCLE=$(echo "$PR_TITLE $PR_BODY" | grep -oP 'C-\d+' | head -1 || echo "")
+          if [ -n "$CYCLE" ]; then
+            echo "cycle=$CYCLE" >> $GITHUB_OUTPUT
+            echo "has_cycle=true" >> $GITHUB_OUTPUT
+          else
+            echo "cycle=C-UNSPECIFIED" >> $GITHUB_OUTPUT
+            echo "has_cycle=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Run EPICON PR Bot
+        if: ${{ hashFiles('.github/scripts/mobius_pr_bot.py') != '' }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          REPO: ${{ github.repository }}
+          PR_BODY: ${{ github.event.pull_request.body }}
+          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          PR_USER: ${{ github.event.pull_request.user.login }}
+        run: |
+          python .github/scripts/mobius_pr_bot.py
+
+  # ═══════════════════════════════════════════════════════════════════════════
+  # SR FOOTER - Situational Report Integration
+  # ═══════════════════════════════════════════════════════════════════════════
+  
+  sr-footer:
+    name: 🧭 SR Footer
+    runs-on: ubuntu-latest
+    needs: epicon-pr-bot
+    if: ${{ vars.KAIZEN_PORTAL_BASE != '' || secrets.KAIZEN_PORTAL_BASE != '' }}
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Fetch and Post SR Footer
+        uses: actions/github-script@v7
+        env:
+          KAIZEN_PORTAL_BASE: ${{ secrets.KAIZEN_PORTAL_BASE }}
+          SR_KIND: situational_report
+          SR_LIMIT: "1"
+        with:
+          script: |
+            const portal = process.env.KAIZEN_PORTAL_BASE;
+            const kind = process.env.SR_KIND || "situational_report";
+            const limit = process.env.SR_LIMIT || "1";
+
+            if (!portal) {
+              core.info("KAIZEN_PORTAL_BASE not set, skipping SR footer");
+              return;
+            }
+
+            const listUrl = `${portal}/api/sr?kind=${encodeURIComponent(kind)}&limit=${encodeURIComponent(limit)}`;
+            core.info(`Fetching SR list: ${listUrl}`);
+
+            let items = [];
+            try {
+              const r = await fetch(listUrl, { headers: { 'Accept': 'application/json' }});
+              if (!r.ok) throw new Error(`SR list fetch failed: ${r.status}`);
+              const data = await r.json();
+              items = Array.isArray(data) ? data : (data.items || []);
+            } catch (e) {
+              core.warning(`Failed to fetch SRs: ${e.message}`);
+              return;
+            }
+
+            // Build markdown
+            let md;
+            const marker = "<!-- SR_FOOTER_MARKER -->";
+            
+            if (!items.length) {
+              md = [
+                marker,
+                "### 🧭 Situational Report",
+                "",
+                "> No situational reports found yet.",
+                "",
+                `_Source: ${portal}/api/sr_`
+              ].join("\n");
+            } else {
+              const sr = items[0];
+              const id = sr.event_id || "unknown";
+              const verdict = (sr.details?.verdict || "Unknown").toUpperCase();
+              const subject = sr.details?.subject || "Situational Report";
+              const cycle = sr.details?.cycle || "—";
+              const gi = typeof sr.gi === "number" ? sr.gi.toFixed(3) : "—";
+              const t = sr.timestamp ? new Date(sr.timestamp).toISOString() : "—";
+              const link = `${portal}/consensus/sr/${encodeURIComponent(id)}`;
+
+              const color =
+                verdict.includes("ADOPT") ? "brightgreen" :
+                verdict.includes("SHADOW") ? "orange" :
+                verdict.includes("DEFER") ? "red" : "blue";
+
+              md = [
+                marker,
+                "### 🧭 Situational Report",
+                "",
+                `**${subject}** · Cycle **${cycle}** · GI **${gi}** · ${t}`,
+                "",
+                `![verdict](https://img.shields.io/badge/Verdict-${encodeURIComponent(verdict)}-${color})`,
+                "",
+                `**[Read full SR →](${link})**`,
+                "",
+                "<sub>Auto-posted by Mobius PR Assistant</sub>"
+              ].join("\n");
+            }
+
+            // Idempotent update: find existing comment by marker
+            const { owner, repo } = context.repo;
+            const issue_number = context.payload.pull_request.number;
+
+            const comments = await github.rest.issues.listComments({
+              owner, repo, issue_number, per_page: 100
+            });
+
+            const existing = comments.data.find(c => 
+              (c.user?.type === "Bot" || c.user?.login.endsWith("[bot]")) && 
+              (c.body || "").includes(marker)
+            );
+
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner, repo,
+                comment_id: existing.id,
+                body: md
+              });
+              core.info(`Updated SR footer on comment ${existing.id}`);
+            } else {
+              await github.rest.issues.createComment({
+                owner, repo, issue_number, body: md
+              });
+              core.info("Posted new SR footer comment");
+            }
+
+  # ═══════════════════════════════════════════════════════════════════════════
+  # SUMMARY
+  # ═══════════════════════════════════════════════════════════════════════════
+  
+  summary:
+    name: 📋 PR Summary
+    runs-on: ubuntu-latest
+    needs: [epicon-pr-bot, sr-footer]
+    if: always()
+    
+    steps:
+      - name: Generate Summary
+        run: |
+          echo "# 🌀 Mobius PR Assistant Report" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Cycle:** ${{ needs.epicon-pr-bot.outputs.cycle }}" >> $GITHUB_STEP_SUMMARY
+          echo "**PR:** #${{ github.event.pull_request.number }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Author:** @${{ github.event.pull_request.user.login }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Job | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "|-----|--------|" >> $GITHUB_STEP_SUMMARY
+          echo "| EPICON PR Bot | ${{ needs.epicon-pr-bot.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| SR Footer | ${{ needs.sr-footer.result }} |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "---" >> $GITHUB_STEP_SUMMARY
+          echo "*Mobius PR Assistant (Unified) · EPICON-3*" >> $GITHUB_STEP_SUMMARY
