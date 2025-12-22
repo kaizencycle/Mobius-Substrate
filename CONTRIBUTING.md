@@ -31,7 +31,7 @@ Mobius-Systems/
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/kaizencycle/kaizen-os.git
+   git clone https://github.com/kaizencycle/Mobius-Systems.git
    cd kaizen-os
    ```
 
