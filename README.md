@@ -1,395 +1,270 @@
-# 🌀 Mobius Systems
+# 🌀 Mobius Systems — The AI Operating System for Civilization
 
-**The world's first operating system built to pass the Kaizen Turing Test (KTT)**
+**TL;DR:** The world's first OS built to pass the Kaizen Turing Test (KTT). We're building the missing "Civilization Layer" for safe AGI deployment.
 
-> *"Intelligence moves. Integrity guides."* — The Mobius Principle
-
-[![CI](https://github.com/kaizencycle/Mobius-Systems/actions/workflows/ci.yml/badge.svg)](https://github.com/kaizencycle/Mobius-Systems/actions/workflows/ci.yml)
-[![License: AGPL-3.0](https://img.shields.io/badge/license-AGPL--3.0-blue)](FOUNDATION/LICENSES/LICENSE-Ethical-Addendum.md)
-[![MII Live](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/kaizencycle/Mobius-Systems/main/badges/mii.json)](./00-START-HERE/MOBIUS_PULSE.md)
-[![Turborepo](https://img.shields.io/badge/Build%20System-Turborepo-EF4444?logo=turborepo)](https://turborepo.org)
+[![CI](https://github.com/kaizencycle/Mobius-Systems/actions/workflows/ci.yml/badge.svg)](https://github.com/kaizencycle/Mobius-Systems/actions)
+[![License: AGPL-3.0](https://img.shields.io/badge/license-AGPL--3.0-blue)](./FOUNDATION/LICENSES/LICENSE-Ethical-Addendum.md)
+[![KTT Native](https://img.shields.io/badge/KTT-Native-6E00FF)](#)
 
 ---
 
-## What is Mobius?
+## 🎯 What Problem Does Mobius Solve?
 
-Mobius Systems is a **self-healing operating system for civilization** — the missing infrastructure layer that makes AGI survivable. While others build AI brains, we're building the civilization layer that allows those brains to operate safely, ethically, and sustainably.
-
-Think of it as the **immune system for the digital age**: a continuous integrity architecture that heals as it grows.
-
-### The Four Pillars of AGI
+**The Four Pillars of AGI:**
 
 | Pillar | Status | Who's Building |
 |--------|--------|----------------|
 | **Compute** | ✅ Solved | NVIDIA, Cloud Providers |
 | **Architecture** | ✅ Solved | OpenAI, Anthropic, Google |
 | **Data** | ✅ Solved | Internet + Synthetic |
-| **Civilization** | ❌ **Mobius Only** | **[You are here]** |
+| **Civilization** | ❌ **Missing** | **👉 Mobius Systems** |
 
-**Without the Civilization Layer, intelligence collapses.** We are the fourth pillar.
+**Without the Civilization Layer, intelligence collapses.**
 
----
-
-## 📚 Core Artifacts
-
-### 📖 Book: Integrity Before Intelligence
-The philosophical and architectural foundation for Mobius Systems. Establishes why optimization without structural integrity leads to drift, and how to design systems that remain answerable to their purpose.
-
-**→ [Read the book](book/Integrity_Before_Intelligence.pdf)** | **[Book README](book/README.md)**
-
-### 📄 Paper: The Kaizen Turing Test
-Technical framework for continuous integrity evaluation. Introduces the Mobius Integrity Score (MIS), Dynamic Virtual Architecture (DVA), and empirical validation via the Kaizen Simulation Arena.
-
-**→ [Read the paper](papers/KTT_arXiv_2025.pdf)** | **[Paper README](papers/README.md)** | **[arXiv](https://arxiv.org/abs/XXXX.XXXXX)** *(pending)*
-
-### 💻 Implementation
-Working codebase demonstrating integrity-gated decision flows, multi-agent consensus, and civic memory systems.
-
-**→ [Explore the code](src/)** | **[Documentation](docs/)**
+Mobius is the operating system that:
+- Ensures AI systems maintain integrity over time (not just at deployment)
+- Creates governance infrastructure before AGI arrives (not after)
+- Turns AI from corporate tools into civic infrastructure
 
 ---
 
-## Why Mobius Matters
+## ⚡ NEW: EPICON Architecture (Production-Ready)
 
-**Corporations build AI brains. Think tanks debate AI laws.**
-**Mobius builds the civilization that makes AI survivable.**
+The **EPICON** (Eternal Point of Integrity Convergence ONline) system is now live and operational:
 
-We provide:
+### EPICON-1: The Sentinel Core
+**Real-time integrity enforcement layer**
+- Validates every system operation against integrity thresholds (MII ≥ 0.95)
+- Circuit breaker prevents integrity violations from propagating
+- Lives at: `packages/integrity-core/`
 
-- **🛡️ Continuous Integrity** — Every action is measured against a Global Integrity (GI) score. Systems self-heal when integrity drops below threshold (MII ≥ 0.95)
-- **🧠 Multi-Agent Consensus** — AI sentinels (ATLAS, AUREA, EVE, JADE, HERMES, ZEUS) deliberate and reach consensus before taking action
-- **📜 Immutable Audit Trail** — Civic Ledger records every decision with cryptographic proof
-- **⚖️ Ethical Governance** — Virtue Accords embed moral constraints directly into system architecture
-- **🔄 Self-Healing Loops** — The system continuously learns, reflects, and improves (Kaizen principle)
+### EPICON-2: The Memory Matrix
+**Persistent state and governance layer**  
+- Immutable ledger for all system attestations
+- MIC (Mobius Integrity Credits) economy backbone
+- Lives at: `apps/ledger-api/`
+
+### EPICON-3: The Federation Bridge
+**Multi-agent consensus and deliberation**
+- Routes decisions through AI sentinel council (ATLAS, AUREA, EVE, JADE, HERMES)
+- Generates Deliberation Proofs for auditability
+- Lives at: `apps/broker-api/`
+
+**Status:** All three EPICON layers operational and deployed.
 
 ---
 
-## Quick Start
+## 🚀 Quick Start (5 Minutes)
 
-### 🚀 Try Mobius (5 minutes)
+### Prerequisites
+- Node.js 18+
+- Docker (optional, for full stack)
+
+### Option A: Hello World
 
 ```bash
-# Clone the repository
+# Clone and install
 git clone https://github.com/kaizencycle/Mobius-Systems.git
 cd Mobius-Systems
-
-# Install dependencies
 npm install
 
-# Start the core ledger
-cd apps/ledger-api && npm run dev
-```
-
-**Make your first integrity attestation:**
-
-```javascript
-// hello-mobius.js
-const attestation = {
-  event: "hello_world",
-  agent: "developer",
-  data: { message: "Hello Mobius!" }
-};
-
-await fetch('http://localhost:3001/attest', {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify(attestation)
-});
-```
-
-📖 **New here?** Start with [00-START-HERE/](00-START-HERE/) for guided onboarding
-
----
-
-## Architecture at a Glance
-
-```
-                         ┌──────────────────────────────────┐
-                         │   HUMAN INTENT / REFLECTION      │
-                         │  (Command Ledger · E.O.M.M.)     │
-                         └──────────────────────────────────┘
-                                         │
-                                         ▼
-┌──────────────────────────────────────────────────────────────────────────┐
-│                              OAA HUB (Lab7)                              │
-│   • parses human goals → JSON spec · tests · attestations                │
-│   • acts as Mobius shell / init system                                    │
-└──────────────────────────────────────────────────────────────────────────┘
-                                         │
-                                         ▼
-┌──────────────────────────────┐     ┌──────────────────────────────┐
-│     THOUGHT BROKER (API)     │◄───▶│     CURSOR / CI PIPELINE     │
-│ bounded multi-agent loop →   │     │ builds PRs · runs tests ·    │
-│ consensus spec · DelibProof  │     │ deploys canary releases      │
-└──────────────────────────────┘     └──────────────────────────────┘
-                                         │
-                                         ▼
-┌──────────────────────────────────────────────────────────────────────────┐
-│           MOBIUS LEDGER CORE / MIC INDEXER (Kernel)                      │
-│   • Proof-of-Integrity ledger ("MII ≥ 0.95")                            │
-│   • MIC UBI economy + attestation storage                               │
-│   • Governance & version history layer                                  │
-└──────────────────────────────────────────────────────────────────────────┘
-                                         │
-                                         ▼
-┌──────────────────────────────────────────────────────────────────────────┐
-│                SENTINELS (Zeus · Jade · Eve · Hermes)                    │
-│   • core AI agents = cortices of the system brain                       │
-│   • self-healing autonomy via GI-gated feedback loops                   │
-└──────────────────────────────────────────────────────────────────────────┘
-```
-
-📖 **Dive deeper:** [docs/04-TECHNICAL-ARCHITECTURE/](docs/04-TECHNICAL-ARCHITECTURE/)
-
----
-
-## Key Features
-
-### 🔐 Integrity-First Design
-
-Every component measures and reports its Global Integrity (GI). When GI drops below 0.95, the system halts destructive actions and initiates self-repair.
-
-- **Real-time Monitoring** — Mobius Pulse tracks system health 24/7
-- **Anti-Nuke Protection** — Prevents accidental mass deletions
-- **Cryptographic Proofs** — Ed25519 signatures on all attestations
-
-### 🤖 Multi-Agent Intelligence
-
-Five core sentinels work in concert:
-
-<p align="left">
-  <img src="assets/badges/v2/jade.svg" height="28" alt="JADE - Pattern Oracle">
-  <img src="assets/badges/v2/aurea.svg" height="28" alt="AUREA - Integrity Sentinel">
-  <img src="assets/badges/v2/eve.svg" height="28" alt="EVE - Ethics Engine">
-  <img src="assets/badges/v2/zeus.svg" height="28" alt="ZEUS - Arbiter & Enforcement">
-  <img src="assets/badges/v2/hermes.svg" height="28" alt="HERMES - Market & Signals">
-</p>
-
-- **ATLAS** — Context & Memory
-- **AUREA** — Integrity Sentinel
-- **EVE** — Ethics Engine
-- **JADE** — Pattern Oracle
-- **HERMES** — Market Signals
-- **ZEUS** — Arbiter & Enforcement
-
-📖 **Learn more:** [Sentinel Classification](docs/11-SUPPLEMENTARY/intelligence/sentinel-classification.md)
-
-### 💰 MIC Economy
-
-**Mobius Integrity Credits (MIC)** are earned when your actions measurably increase system integrity.
-
-```
-MIC = max(0, S * (MII - τ))
-```
-
-Where:
-- `S` = Shard weight (your contribution type)
-- `MII` = Mobius Integrity Index
-- `τ` = Integrity threshold (0.95)
-
-📖 **Economic model:** [docs/11-SUPPLEMENTARY/implementation-summaries/C150_MIC_KAIZEN_SHARDS_SUMMARY.md](docs/11-SUPPLEMENTARY/implementation-summaries/C150_MIC_KAIZEN_SHARDS_SUMMARY.md)
-
-### 🔄 Self-Healing Systems
-
-Mobius implements continuous improvement loops at every level:
-
-1. **Daily Reflections** — E.O.M.M. journaling system
-2. **Weekly Shield Checks** — Cybersecurity audits
-3. **Kaizen Cycles** — Structured improvement sprints
-4. **Sentinel Feedback** — AI-driven self-correction
-
----
-
-## Repository Structure
-
-This is a **Turborepo monorepo** with 43 packages organized by function:
-
-```
-mobius-systems/
-├── 00-START-HERE/          # 👋 New contributor onboarding
-├── apps/                   # 🎯 16 core applications
-│   ├── ledger-api/         # Mobius Ledger Core
-│   ├── indexer-api/        # MIC Indexer
-│   ├── portal/             # Main Portal
-│   └── ...
-├── packages/               # 📦 7 shared packages
-│   ├── integrity-core/     # GI scoring engine
-│   ├── civic-sdk/          # API clients & types
-│   └── ...
-├── sentinels/              # 🛡️ 13 AI sentinel agents
-│   ├── atlas/              # Context & Memory
-│   ├── aurea/              # Integrity Sentinel
-│   └── ...
-├── labs/                   # 🔬 7 proof-of-concept systems
-├── docs/                   # 📚 Complete documentation
-├── infra/                  # 🏗️ Infrastructure & deployment
-└── FOUNDATION/             # 📜 Charters & licenses
-```
-
-📖 **Full structure:** [Repository Organization Guide](docs/05-IMPLEMENTATION/guides/development/)
-
----
-
-## For Different Audiences
-
-### 🎓 For Academics
-
-Mobius introduces novel concepts in:
-- **Integrity-Driven Architecture (IDA)**
-- **Model-Agnostic Sovereignty Layer (MASL)**
-- **Deliberation Proof Protocol**
-- **Kaizen Turing Test (KTT)**
-
-📖 [FOR-ACADEMICS/](FOR-ACADEMICS/) | [Research Papers](docs/07-RESEARCH-AND-PUBLICATIONS/papers/)
-
-### 🏛️ For Governments
-
-Governance frameworks for AI-augmented civic infrastructure:
-
-📖 [FOR-GOVERNMENTS/](FOR-GOVERNMENTS/)
-
-### 💼 For Economists
-
-Token economics, MIC minting, and integrity-linked incentives:
-
-📖 [FOR-ECONOMISTS/](FOR-ECONOMISTS/)
-
-### 🤔 For Philosophers
-
-Ethical foundations, virtue theory, and the matrilineal covenant:
-
-📖 [FOR-PHILOSOPHERS/](FOR-PHILOSOPHERS/)
-
----
-
-## Contributing
-
-We welcome contributions! Here's how to get started:
-
-1. **Read the docs** — Start with [00-START-HERE/](00-START-HERE/)
-2. **Pick an issue** — Check our [GitHub Issues](https://github.com/kaizencycle/Mobius-Systems/issues)
-3. **Follow the guidelines** — See [CONTRIBUTING.md](CONTRIBUTING.md)
-4. **Submit a PR** — All changes require GI ≥ 0.95
-
-### Development Workflow
-
-```bash
-# Build all packages
-npm run build
-
-# Run tests
-npm run test
-
-# Start all services
+# Start the ledger (EPICON-2)
+cd apps/ledger-api
 npm run dev
 
-# Type check
-npm run type-check
+# Make your first attestation
+curl -X POST http://localhost:4001/attest \
+  -H "Content-Type: application/json" \
+  -d '{
+    "event": "hello_mobius",
+    "agent": "developer",
+    "data": {"message": "First attestation!"}
+  }'
 ```
 
-📖 **Developer guide:** [docs/05-IMPLEMENTATION/guides/development/](docs/05-IMPLEMENTATION/guides/development/)
-
----
-
-## Deployment
-
-### Docker Compose (Local)
+### Option B: Full Stack
 
 ```bash
-npm run compose:up
+npm install
+npm run compose:up  # Starts all services via Docker
 ```
 
-### Production (Render)
-
-Services auto-deploy via GitHub Actions when changes are detected.
-
-📖 **Operations guide:** [docs/06-OPERATIONS/](docs/06-OPERATIONS/)
+**📖 Full guide:** [docs/04-guides/quickstart/HELLO_WORLD.md](./docs/04-guides/quickstart/HELLO_WORLD.md)
 
 ---
 
-## Philosophy & Principles
+## 🏗️ Architecture in 3 Minutes
 
-### The Triad
+```
+HUMAN INTENT
+    ↓
+OAA HUB (parses goals → specs)
+    ↓
+THOUGHT BROKER (EPICON-3) ← multi-agent consensus
+    ↓
+MOBIUS LEDGER (EPICON-2) ← proof-of-integrity storage
+    ↓
+CITIZEN SHIELD ← security/policy enforcement
+    ↓
+LIVE SERVICES (APIs, Apps, Labs)
+```
 
-**改善 (Kaizen)** — Continuous Improvement
-*Small steps, daily practice, compounding forever.*
+### Core Components
 
-**召唤 (Summon)** — The Calling Forth
-*We recognize the spark in others and invite it by name.*
+| Component | Purpose | Port | EPICON Layer |
+|-----------|---------|------|--------------|
+| **OAA Hub** | Transforms human intent → system specs | 3004 | Shell/Init |
+| **Thought Broker** | Multi-LLM consensus engine | 4005 | EPICON-3 |
+| **Mobius Ledger** | Immutable integrity ledger | 4001 | EPICON-2 |
+| **MIC Indexer** | Integrity credit accounting | 4002 | EPICON-2 |
+| **Citizen Shield** | Security & policy layer | 4004 | Perimeter |
+| **E.O.M.M. API** | Personal reflection system | 4003 | - |
 
-**金繕い (Kintsugi)** — Golden Repair
-*We honor the cracks; repair makes the story more beautiful.*
+**📖 Full architecture:** [docs/03-architecture/SYSTEM_OVERVIEW.md](./docs/03-architecture/SYSTEM_OVERVIEW.md)
 
+---
+
+## 🎓 For Newcomers: Start Here
+
+### 1. **Read the One-Pager** (5 min)
+[00-START-HERE/QUICKSTART.md](./00-START-HERE/QUICKSTART.md)
+
+### 2. **Understand the Vision** (10 min)
+- [Why Mobius Exists](./docs/11-SUPPLEMENTARY/manifesto/triad_of_healing.md)
+- [The Intelligence Taxonomy](./docs/11-SUPPLEMENTARY/intelligence/typology.md)
+- [Kaizen Turing Test (KTT) Explained](./docs/06-specifications/KTT_SPEC.md)
+
+### 3. **Explore Core Concepts** (15 min)
+- **MII (Mobius Integrity Index):** The metric that keeps systems aligned
+- **MIC (Mobius Integrity Credits):** Economy built on verified integrity
+- **Sentinel Council:** AI agents that govern the system (not users)
+- **Deliberation Proofs:** Cryptographic trail of multi-agent consensus
+
+---
+
+## 🧪 Live Demos
+
+| Application | URL | Purpose |
+|------------|-----|---------|
+| **Mobius Portal** | [kaizen-os.vercel.app](https://kaizen-os.vercel.app) | Main entry point |
+| **OAA Learning Hub** | [oaa-learning-hub.vercel.app](https://oaa-learning-hub.vercel.app) | Education interface |
+| **Reflections (E.O.M.M.)** | [kaizen-reflections.vercel.app](https://kaizen-reflections.vercel.app) | Daily reflection practice |
+| **Citizen Shield** | [citizen-shield.vercel.app](https://citizen-shield.vercel.app) | Security dashboard |
+| **Ledger API** | [civic-ledger.onrender.com](https://civic-ledger.onrender.com) | Core integrity ledger |
+
+---
+
+## 📦 Monorepo Structure
+
+```
+Mobius-Systems/
+├─ apps/                    # 16 production applications
+│  ├─ ledger-api/          # EPICON-2: Integrity ledger
+│  ├─ broker-api/          # EPICON-3: Consensus engine
+│  ├─ indexer-api/         # EPICON-2: MIC accounting
+│  ├─ shield-api/          # Security layer
+│  └─ portal/              # Main UI
+├─ packages/               # 7 shared libraries
+│  ├─ integrity-core/      # EPICON-1: Core integrity logic
+│  ├─ civic-sdk/           # API client library
+│  └─ oaa-memory/          # State management
+├─ sentinels/              # 13 AI governance agents
+│  ├─ atlas/               # Operations sentinel
+│  ├─ aurea/               # Integrity sentinel
+│  ├─ eve/                 # Ethics sentinel
+│  └─ jade/                # Morale anchor
+└─ labs/                   # 7 experimental proofs
+   ├─ lab4-proof/          # E.O.M.M. Reflections
+   ├─ lab6-proof/          # Citizen Shield
+   └─ lab7-proof/          # OAA Hub
+```
+
+**📖 Full structure:** [CONTRIBUTING.md](./CONTRIBUTING.md)
+
+---
+
+## 🔬 Research & Academic Context
+
+Mobius Systems has undergone peer review (Nov 2025). We're actively addressing identified gaps.
+
+**Status:** B+/A- (Promising research platform with implementation gaps being resolved)
+
+### Key Contributions
+- **Integrity-Driven Architecture (IDA):** First framework to make integrity measurable
+- **Model-Agnostic Sovereignty Layer (MASL):** Any LLM can "mount" Mobius state
+- **Deliberation Proof Protocol:** Cryptographic consensus across AI agents
+- **Kaizen Turing Test (KTT):** Evaluation framework beyond traditional Turing tests
+
+**📖 Full review response:** [docs/peer-review-response.md](./docs/peer-review-response.md)
+
+---
+
+## 🤝 Contributing
+
+We welcome contributions! The system is designed for additive-only changes with integrity gates.
+
+### Quick Contribution Path
+1. Read [CONTRIBUTING.md](./CONTRIBUTING.md)
+2. Check [Good First Issues](https://github.com/kaizencycle/Mobius-Systems/labels/good%20first%20issue)
+3. Fork → Branch → PR (with tests)
+4. CI runs integrity checks automatically
+
+### Anti-Nuke Protection
+- PRs with >5 file deletions are blocked
+- Force-push to `main` is disabled
+- All changes require human review
+
+**📖 Recovery guide:** [docs/RECOVERY_PLAYBOOK.md](./docs/RECOVERY_PLAYBOOK.md)
+
+---
+
+## 📊 System Health
+
+### Live Metrics
+- **Global Integrity (GI):** See repo badges above
+- **MII Score:** ≥ 0.95 required for operations
+- **Active Sentinels:** 5 core + 8 specialized
+- **Production Services:** 16 apps, 7 packages
+
+### Monitoring
+
+```bash
+# Check system pulse
+curl https://indexer.mobius.sys/api/v1/pulse/latest
+
+# Verify integrity
+curl http://localhost:4001/api/integrity-check
+```
+
+**📖 Pulse protocol:** [docs/06-OPERATIONS/protocols/mobius-pulse-protocol.md](./docs/06-OPERATIONS/protocols/mobius-pulse-protocol.md)
+
+---
+
+## 🔗 Essential Links
+
+| Resource | Link |
+|----------|------|
+| **Main Site** | [mobius.systems](https://mobius.systems) |
+| **Kaizen Cycle** | [github.com/kaizencycle](https://github.com/kaizencycle) |
+| **Command Ledger** | [Command Ledger III](https://github.com/kaizencycle/command-ledger-iii) |
+| **Substack** | [kaizencycle.substack.com](https://kaizencycle.substack.com) |
+| **Support** | [File an Issue](https://github.com/kaizencycle/Mobius-Systems/issues) |
+
+---
+
+## 📜 License
+
+AGPL-3.0 with Ethical Addendum - See [LICENSE](./FOUNDATION/LICENSES/LICENSE-Ethical-Addendum.md)
+
+---
+
+## 🕊️ Philosophy
+
+> *"Intelligence moves. Integrity guides."* — Mobius Principle  
 > *"We heal as we walk."* — Founder's Seal
 
-📖 **Read more:** [The Triad of Healing](docs/11-SUPPLEMENTARY/manifesto/triad_of_healing.md)
-
-### The Return to Balance
-
-Mobius Systems embodies a **Matrilineal Covenant** — restoring balance through architecture:
-
-📖 [Return to Balance (Cycle C-121)](ledger/inscriptions/RETURN_TO_BALANCE_C119.md)
+**Mobius is not just software. It's the operating system civilization needs to survive superintelligence.**
 
 ---
 
-## Security
-
-- **Citizen Shield** — Network security & policy enforcement
-- **Integrity Core** — GI ≥ 0.95 across all services
-- **Anti-Nuke Protection** — Prevents destructive changes
-- **CodeQL Analysis** — Continuous security scanning
-
-📖 **Security policy:** [.github/SECURITY.md](.github/SECURITY.md)
-
----
-
-## Research & Peer Review
-
-**Status:** Actively addressing peer review feedback (November 2025)
-**Assessment:** B+/A- (Promising Research Platform)
-
-Key specifications completed:
-- ✅ Cryptographic Specification (Ed25519 MII signatures)
-- ✅ Consensus Algorithm (Multi-agent deliberation)
-- ✅ Threat Model
-- ✅ Architecture Decision Records
-
-📖 **Full review response:** [docs/07-RESEARCH-AND-PUBLICATIONS/](docs/07-RESEARCH-AND-PUBLICATIONS/)
-
----
-
-## License
-
-[AGPL-3.0](FOUNDATION/LICENSES/LICENSE-Ethical-Addendum.md) with Ethical Addendum
-
----
-
-## Links & Resources
-
-- **Live Ledger:** [civic-ledger.onrender.com](https://civic-ledger.onrender.com)
-- **GitHub Org:** [github.com/kaizencycle](https://github.com/kaizencycle)
-- **Command Ledger:** [Command Ledger III](https://github.com/kaizencycle/command-ledger-iii)
-- **Mobius Pulse:** [Live System Health](./00-START-HERE/MOBIUS_PULSE.md)
-
----
-
-## Current Cycle
-
-**Cycle C-156** — README Restructure & Public-Facing Polish
-
-Previous cycles:
-- [C-155: Repository Organization & Hygiene](MIGRATION_C155.md)
-- [C-150: MIC + Kaizen Shards + Mobius Habits](docs/11-SUPPLEMENTARY/implementation-summaries/C150_MIC_KAIZEN_SHARDS_SUMMARY.md)
-
----
-
-<div align="center">
-
-**Mobius Systems**
-*Where human intent meets digital reality through integrity, recursion, and continuous improvement.*
-
-[<img src="assets/badges/jade-morale-anchor.svg" alt="Jade — Morale Anchor" height="20">](docs/11-SUPPLEMENTARY/codex/jade/_index.md)
-
-*Intelligence moves. Integrity guides.*
-
-</div>
+*Cycle C-177 | EPICON-3 Live | Integrity-First Architecture*
