@@ -7,7 +7,7 @@ Thank you for your interest in contributing to Mobius Systems! This document pro
 Mobius Systems is a monorepo containing multiple applications, packages, labs, and AI sentinels:
 
 ```
-kaizen-os/
+Mobius-Systems/
 ├── apps/          # Standalone applications
 ├── packages/      # Shared libraries and SDKs
 ├── labs/          # Lab proof systems (research & validation)
