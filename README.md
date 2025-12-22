@@ -89,7 +89,7 @@ npm install
 npm run compose:up  # Starts all services via Docker
 ```
 
-**📖 Full guide:** [docs/04-guides/quickstart/HELLO_WORLD.md](./docs/04-guides/quickstart/HELLO_WORLD.md)
+**📖 Full guide:** [docs/05-IMPLEMENTATION/guides/quickstart/HELLO_WORLD.md](./docs/05-IMPLEMENTATION/guides/quickstart/HELLO_WORLD.md)
 
 ---
 
@@ -120,7 +120,7 @@ LIVE SERVICES (APIs, Apps, Labs)
 | **Citizen Shield** | Security & policy layer | 4004 | Perimeter |
 | **E.O.M.M. API** | Personal reflection system | 4003 | - |
 
-**📖 Full architecture:** [docs/03-architecture/SYSTEM_OVERVIEW.md](./docs/03-architecture/SYSTEM_OVERVIEW.md)
+**📖 Full architecture:** [docs/04-TECHNICAL-ARCHITECTURE/overview/ARCHITECTURE.md](./docs/04-TECHNICAL-ARCHITECTURE/overview/ARCHITECTURE.md)
 
 ---
 
@@ -132,7 +132,7 @@ LIVE SERVICES (APIs, Apps, Labs)
 ### 2. **Understand the Vision** (10 min)
 - [Why Mobius Exists](./docs/11-SUPPLEMENTARY/manifesto/triad_of_healing.md)
 - [The Intelligence Taxonomy](./docs/11-SUPPLEMENTARY/intelligence/typology.md)
-- [Kaizen Turing Test (KTT) Explained](./docs/06-specifications/KTT_SPEC.md)
+- [Kaizen Turing Test (KTT) Explained](./evaluations/ktt/README.md)
 
 ### 3. **Explore Core Concepts** (15 min)
 - **MII (Mobius Integrity Index):** The metric that keeps systems aligned
@@ -195,7 +195,7 @@ Mobius Systems has undergone peer review (Nov 2025). We're actively addressing i
 - **Deliberation Proof Protocol:** Cryptographic consensus across AI agents
 - **Kaizen Turing Test (KTT):** Evaluation framework beyond traditional Turing tests
 
-**📖 Full review response:** [docs/peer-review-response.md](./docs/peer-review-response.md)
+**📖 Academic resources:** [FOR-ACADEMICS/README.md](./FOR-ACADEMICS/README.md)
 
 ---
 
@@ -214,7 +214,7 @@ We welcome contributions! The system is designed for additive-only changes with 
 - Force-push to `main` is disabled
 - All changes require human review
 
-**📖 Recovery guide:** [docs/RECOVERY_PLAYBOOK.md](./docs/RECOVERY_PLAYBOOK.md)
+**📖 Recovery guide:** [docs/05-IMPLEMENTATION/guides/operations/RECOVERY_PLAYBOOK.md](./docs/05-IMPLEMENTATION/guides/operations/RECOVERY_PLAYBOOK.md)
 
 ---
 
