@@ -1,10 +1,10 @@
-# Contributing to Mobius Systems
+# Contributing to Mobius Substrate
 
-Thank you for your interest in contributing to Mobius Systems! This document provides guidelines and instructions for contributing to this monorepo.
+Thank you for your interest in contributing to Mobius Substrate (formerly Mobius Systems)! This document provides guidelines and instructions for contributing to this monorepo.
 
 ## 🏗️ Repository Structure
 
-Mobius Systems is a monorepo containing multiple applications, packages, labs, and AI sentinels:
+Mobius Substrate is a monorepo containing multiple applications, packages, labs, and AI sentinels:
 
 ```
 Mobius-Systems/

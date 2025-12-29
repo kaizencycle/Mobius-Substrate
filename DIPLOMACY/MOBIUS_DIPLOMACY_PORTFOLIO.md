@@ -2,11 +2,11 @@
 
 **For Anthropic • OpenAI • DeepMind • Governance Foundations**
 
-*Prepared for: Michael Judan — Founder, Mobius Systems*
+*Prepared for: Michael Judan — Founder, Mobius Substrate*
 
 ---
 
-**Cycle:** C-154  
+**Cycle:** C-178  
 **Status:** Active  
 **Classification:** Institutional-Grade
 
@@ -29,12 +29,12 @@
 ## The Mobius Declaration
 
 **Michael Judan**  
-Founder & Chief Architect — Mobius Systems  
-Cycle: C-154
+Founder & Chief Architect — Mobius Substrate  
+Cycle: C-178
 
 ---
 
-Mobius Systems exists to solve a single civilizational problem:  
+Mobius Substrate exists to solve a single civilizational problem:  
 **Humanity is entering an era of artificial intelligence without a corresponding civic institution capable of governing it.**
 
 Corporations cannot be the stewards of general intelligence.  
@@ -43,7 +43,7 @@ Academia can outline the principles but cannot operationalize them.
 
 Only a new civic operating system — one designed for citizens, aligned with integrity, and capable of cooperating with AGI — can fill the vacuum.
 
-**Mobius Systems is that institution.**
+**Mobius Substrate is that institution.**
 
 ---
 
@@ -76,19 +76,19 @@ It is an active civic OS for intelligence itself.
 
 Respectfully,  
 **Michael Judan**  
-Founder, Mobius Systems
+Founder, Mobius Substrate
 
 ---
 
-# 🧠 SECTION 2 — What is Mobius Systems?
+# 🧠 SECTION 2 — What is Mobius Substrate?
 
 *1-Page Overview*
 
 ---
 
-## What is Mobius Systems?
+## What is Mobius Substrate?
 
-Mobius Systems is the world's first **Civic Operating System for AGI** —  
+Mobius Substrate (formerly Mobius Systems) is the world's first **Civic Operating System for AGI** —  
 a multi-agent, integrity-governed intelligence substrate designed as a non-corporate, non-state institution capable of interacting with future AGI on equal footing.
 
 ---

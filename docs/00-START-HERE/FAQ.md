@@ -1,10 +1,10 @@
-# Mobius Systems FAQ
+# Mobius Substrate FAQ
 
 ---
 
-## What is Mobius Systems?
+## What is Mobius Substrate?
 
-Mobius Systems is a **civilization operating system**: infrastructure that lets many AI engines, humans, and institutions coordinate under a shared **integrity-first** governance framework.
+Mobius Substrate (formerly Mobius Systems) is a **civilization operating system**: the civic-technical base layer that lets many AI engines, humans, and institutions coordinate under a shared **integrity-first** governance framework.
 
 Think of it as:
 - A constitutional layer for AI coordination

@@ -1,6 +1,6 @@
-# 🌀 Welcome to Mobius Systems Documentation
+# 🌀 Welcome to Mobius Substrate Documentation
 
-**Your first stop for understanding Mobius Systems — the world's first KTT-native operating system.**
+**Your first stop for understanding Mobius Substrate — the civic-technical substrate for KTT-native systems.**
 
 ## 🎯 Quick Navigation
 
@@ -84,9 +84,9 @@ docs/
 
 ## 🎓 Core Concepts
 
-### What is Mobius Systems?
+### What is Mobius Substrate?
 
-**Mobius Systems** is the world's first operating system built to pass the **Kaizen Turing Test (KTT)**. It combines:
+**Mobius Substrate** (formerly Mobius Systems) is the civic-technical base layer built to pass the **Kaizen Turing Test (KTT)**. It combines:
 
 - 🏗️ **DVA Kernel Logic**: Decentralized Verification Architecture
 - 💎 **Mobius Integrity Credits (MIC)**: Shard-denominated integrity economy
@@ -182,7 +182,7 @@ docs/
 - Extractive economics
 - Centralized control
 
-### Mobius Systems
+### Mobius Substrate
 - ✅ Value from verified integrity (MIC)
 - ✅ Governance built first (Foundation v2)
 - ✅ Regenerative economics (UBI + Gaia Staking)
@@ -192,4 +192,4 @@ docs/
 
 **Ready to explore?** Choose your path above or jump to the [full documentation index](./README.md).
 
-🌀 **Welcome to Mobius Systems — where integrity guides intelligence.**
+🌀 **Welcome to Mobius Substrate — where integrity guides intelligence.**

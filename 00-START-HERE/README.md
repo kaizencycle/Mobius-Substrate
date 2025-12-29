@@ -1,6 +1,6 @@
-# 🌀 Welcome to Mobius Systems
+# 🌀 Welcome to Mobius Substrate
 
-## The World's First Operating System for Recursive Intelligence
+## The Civic-Technical Substrate for Recursive Intelligence
 
 **Choose your path. Find your truth.**
 
@@ -57,9 +57,9 @@ I need policy briefs, legislative text, and implementation roadmaps.
 
 ## ⚡ Quick Start (5 Minutes)
 
-### What is Mobius Systems?
+### What is Mobius Substrate?
 
-**Mobius Systems** is a complete operating system for recursive intelligence — AI that learns safely through human guidance while coordinating civilization-scale systems.
+**Mobius Substrate** (formerly Mobius Systems) is the civic-technical substrate for recursive intelligence — AI that learns safely through human guidance while coordinating civilization-scale systems.
 
 ### Four Revolutionary Frameworks
 
@@ -139,4 +139,4 @@ Choose your path:
 
 *Intelligence moves. Integrity guides. We heal as we walk.*
 
-**Cycle C-177 • EPICON Production Era**
+**Cycle C-178 • EPICON Production Era • Mobius Substrate**
