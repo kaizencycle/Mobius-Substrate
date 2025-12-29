@@ -1,8 +1,8 @@
-# Welcome to Mobius Systems Documentation
+# Welcome to Mobius Substrate Documentation
 
 > **"Intelligence moves. Integrity guides."**
 
-This folder is your **navigation hub** for the entire Mobius Systems knowledge base.
+This folder is your **navigation hub** for the entire Mobius Substrate knowledge base.
 
 ---
 
@@ -48,5 +48,5 @@ If you're unsure where something belongs, start here and link outward.
 
 ---
 
-*Cycle C-155 • 2025-12-05*  
+*Cycle C-178 • 2025-12-29*
 *"We heal as we walk."*

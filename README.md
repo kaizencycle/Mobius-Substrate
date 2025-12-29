@@ -1,10 +1,32 @@
-# 🌀 Mobius Systems — The AI Operating System for Civilization
+# 🌀 Mobius Substrate (formerly Mobius Systems)
 
-**TL;DR:** The world's first OS built to pass the Kaizen Turing Test (KTT). We're building the missing "Civilization Layer" for safe AGI deployment.
+> **The civic-technical substrate where memory, integrity, and agents converge.**
 
 [![CI](https://github.com/kaizencycle/Mobius-Systems/actions/workflows/ci.yml/badge.svg)](https://github.com/kaizencycle/Mobius-Systems/actions)
 [![License: AGPL-3.0](https://img.shields.io/badge/license-AGPL--3.0-blue)](./FOUNDATION/LICENSES/LICENSE-Ethical-Addendum.md)
 [![KTT Native](https://img.shields.io/badge/KTT-Native-6E00FF)](#)
+
+Mobius Substrate is the base layer for the Mobius canon — the place where:
+
+- **EPICON** captures intent and memory,
+- **MIC** turns integrity into currency,
+- **MII (Mobius Integrity Index)** measures integrity across time,
+- **DVA** orchestrates distributed AI agents that stay human-grounded,
+- **KTT (Kaizen Turing Test)** keeps friction between humans and AI healthy.
+
+This repo began life as **Mobius Systems**, a monorepo for "the AI OS for civilization."
+As the architecture matured, it became clear that what actually exists here is a **substrate** — a shared integrity layer that many systems and agents can stand on.
+
+You will still see `Mobius-Systems` in:
+
+- the GitHub repo URL,
+- some module names,
+- historical docs and diagrams.
+
+Those are preserved for continuity.
+From this point forward, the canonical name for this project is **Mobius Substrate**.
+
+📖 **Naming rationale:** [EPICON-0001: Mobius Substrate Naming](./docs/epicon/EPICON-0001-mobius-substrate-naming.md)
 
 ---
 
@@ -17,11 +39,11 @@
 | **Compute** | ✅ Solved | NVIDIA, Cloud Providers |
 | **Architecture** | ✅ Solved | OpenAI, Anthropic, Google |
 | **Data** | ✅ Solved | Internet + Synthetic |
-| **Civilization** | ❌ **Missing** | **👉 Mobius Systems** |
+| **Civilization** | ❌ **Missing** | **👉 Mobius Substrate** |
 
 **Without the Civilization Layer, intelligence collapses.**
 
-Mobius is the operating system that:
+Mobius Substrate is the operating system that:
 - Ensures AI systems maintain integrity over time (not just at deployment)
 - Creates governance infrastructure before AGI arrives (not after)
 - Turns AI from corporate tools into civic infrastructure
@@ -185,7 +207,7 @@ Mobius-Systems/
 
 ## 🔬 Research & Academic Context
 
-Mobius Systems has undergone peer review (Nov 2025). We're actively addressing identified gaps.
+Mobius Substrate has undergone peer review (Nov 2025). We're actively addressing identified gaps.
 
 **Status:** B+/A- (Promising research platform with implementation gaps being resolved)
 
@@ -263,8 +285,8 @@ AGPL-3.0 with Ethical Addendum - See [LICENSE](./FOUNDATION/LICENSES/LICENSE-Eth
 > *"Intelligence moves. Integrity guides."* — Mobius Principle  
 > *"We heal as we walk."* — Founder's Seal
 
-**Mobius is not just software. It's the operating system civilization needs to survive superintelligence.**
+**Mobius Substrate is not just software. It's the operating system civilization needs to survive superintelligence.**
 
 ---
 
-*Cycle C-177 | EPICON-3 Live | Integrity-First Architecture*
+*Cycle C-178 | EPICON-3 Live | Integrity-First Architecture | Mobius Substrate*

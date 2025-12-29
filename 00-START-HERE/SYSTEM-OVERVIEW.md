@@ -1,6 +1,6 @@
-# 🌀 MOBIUS SYSTEMS: COMPLETE SYSTEM OVERVIEW
+# 🌀 MOBIUS SUBSTRATE: COMPLETE SYSTEM OVERVIEW
 
-**The World's First Operating System for Recursive Intelligence**
+**The Civic-Technical Substrate for Recursive Intelligence**
 
 **Version:** 1.0  
 **Date:** November 2025  
@@ -11,7 +11,7 @@
 
 ## ⚡ 60-Second Overview
 
-Mobius Systems is a complete operating system for AI that learns safely through human guidance while coordinating civilization-scale systems. Four revolutionary frameworks work together:
+Mobius Substrate (formerly Mobius Systems) is the civic-technical substrate for AI that learns safely through human guidance while coordinating civilization-scale systems. Four revolutionary frameworks work together:
 
 1. **🧠 SML** — AI learns daily from human reflections (97% drift prevention)
 2. **💰 Negentropic Economics** — Debt reduces via order creation ($1.16T/year US savings)
@@ -97,7 +97,7 @@ Mobius Systems is a complete operating system for AI that learns safely through 
 
 ```bibtex
 @software{mobius2025,
-  title={Mobius Systems: Operating System for Recursive Intelligence},
+  title={Mobius Substrate: Civic-Technical Substrate for Recursive Intelligence},
   author={Judan, Michael},
   year={2025},
   url={https://github.com/kaizencycle/Mobius-Systems},
@@ -495,6 +495,6 @@ docker-compose -f infra/docker/compose.yml up
 
 ---
 
-*Complete System Overview • Mobius Systems Foundation • 2025*  
-*"Intelligence moves. Integrity guides."*  
+*Complete System Overview • Mobius Substrate Foundation • 2025*
+*"Intelligence moves. Integrity guides."*
 *CC0 Public Domain*

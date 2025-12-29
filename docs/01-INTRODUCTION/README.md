@@ -14,17 +14,17 @@ keywords:
 abstract: >
   Entry point documentation for new users, developers, researchers, and operators.
   Contains comprehensive overviews, handbooks, and onboarding materials designed
-  to provide clear pathways into the Mobius Systems ecosystem.
+  to provide clear pathways into the Mobius Substrate ecosystem.
 license: CC-BY-SA-4.0
 ---
 
-# 01-INTRODUCTION: Getting Started with Mobius Systems
+# 01-INTRODUCTION: Getting Started with Mobius Substrate
 
-> **Your entry point to understanding Mobius Systems**
+> **Your entry point to understanding Mobius Substrate**
 
 ## Overview
 
-This directory contains all introductory and onboarding materials for Mobius Systems, the world's first KTT-native operating system. Whether you're a new user, developer, researcher, or operator, you'll find your starting point here.
+This directory contains all introductory and onboarding materials for Mobius Substrate (formerly Mobius Systems), the world's first KTT-native operating system. Whether you're a new user, developer, researcher, or operator, you'll find your starting point here.
 
 ## Quick Navigation
 
@@ -56,9 +56,9 @@ This directory contains all introductory and onboarding materials for Mobius Sys
     └── ../05-IMPLEMENTATION/guides/    Quick start guides
 ```
 
-## What is Mobius Systems?
+## What is Mobius Substrate?
 
-**Mobius Systems** is the world's first operating system built to pass the **Kaizen Turing Test (KTT)**. It combines:
+**Mobius Substrate** is the world's first operating system built to pass the **Kaizen Turing Test (KTT)**. It combines:
 
 - 🏗️ **DVA Kernel Logic**: Decentralized Verification Architecture
 - 💎 **Mobius Integrity Credits (MIC)**: Shard-denominated integrity economy
