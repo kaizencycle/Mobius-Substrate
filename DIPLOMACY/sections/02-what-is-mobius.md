@@ -1,6 +1,6 @@
-# What is Mobius Systems?
+# What is Mobius Substrate?
 
-Mobius Systems is the world's first **Civic Operating System for AGI** —  
+Mobius Substrate (formerly Mobius Systems) is the world's first **Civic Operating System for AGI** —  
 a multi-agent, integrity-governed intelligence substrate designed as a non-corporate, non-state institution capable of interacting with future AGI on equal footing.
 
 ---
@@ -76,4 +76,4 @@ built on **integrity**, **openness**, and **civic sovereignty**.
 
 ---
 
-*Mobius Systems • Cycle C-154*
+*Mobius Substrate • Cycle C-178*

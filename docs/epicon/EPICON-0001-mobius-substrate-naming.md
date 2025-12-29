@@ -7,6 +7,21 @@
 
 ---
 
+## EPICON Standard Fields
+
+| Field | Description |
+|-------|-------------|
+| **Epoch** | Calendar date and project stage when this EPICON was filed |
+| **Intent** | Why this change matters to the Mobius canon |
+| **Constraints** | What this change does *not* include |
+| **Operations / Changes** | What the PR actually modifies |
+| **Next / Rollout** | Future sequence steps for full implementation |
+| **Integrity Notes** | Why this alignment preserves the project's meaning |
+
+This document follows the EPICON format to ensure machine-readable parsing by future generative agents and human contributors alike.
+
+---
+
 ## 1. Summary
 
 Mobius began as **Mobius Systems** — a monorepo + operating stack for integrity-aligned AI systems.
@@ -161,6 +176,21 @@ Out of scope (will be separate EPICONs / PRs):
 | Date | Change | Author |
 |------|--------|--------|
 | 2025-12-29 | Initial filing | Michael Judan |
+
+---
+
+## 11. Versions / Trail
+
+This section tracks the evolution of the naming canon across EPICONs:
+
+| Version | Date | Description | Status |
+|---------|------|-------------|--------|
+| **v0.1** | 2025-12-29 | Initial draft — Canonical naming alignment (docs only) | ✅ Current |
+| **v0.2** | TBD | Repo rename (`Mobius-Systems` → `Mobius-Substrate`) | 🔜 Future EPICON |
+| **v0.3** | TBD | Module rename & API aliases | 🔜 Future EPICON |
+| **v0.4** | TBD | Domain migration & DNS changes | 🔜 Future EPICON |
+
+Each version corresponds to a separate EPICON + PR, ensuring atomic, reviewable, and reversible changes.
 
 ---
 
