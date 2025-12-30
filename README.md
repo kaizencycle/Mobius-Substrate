@@ -168,7 +168,7 @@ LIVE SERVICES (APIs, Apps, Labs)
 
 | Application | URL | Purpose |
 |------------|-----|---------|
-| **Mobius Portal** | [mobius-browser-shell.vercel.app](mobius-browser-shell.vercel.app) | Main entry point |
+| **Mobius Portal** | [https://mobius-browser-shell.vercel.app/](https://mobius-browser-shell.vercel.app/) | Main entry point |
 | **OAA Learning Hub** | [https://github.com/kaizencycle/lab7-proof](https://github.com/kaizencycle/lab7-proof) | Education interface |
 | **Reflections (E.O.M.M.)** | [https://github.com/kaizencycle/lab4-proof](https://github.com/kaizencycle/lab4-proof) | Daily reflection practice |
 | **Citizen Shield** | [https://github.com/kaizencycle/lab6-proof](https://github.com/kaizencycle/lab6-proof) | Security dashboard |
