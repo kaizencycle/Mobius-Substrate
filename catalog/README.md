@@ -1,5 +1,7 @@
 # Mobius Catalog
 
+> 📚 The card catalog for the Mobius knowledge substrate.
+
 This directory contains the **Mobius Catalog** - a structured manifest of knowledge artifacts in the Mobius-Substrate repository.
 
 ## Purpose
