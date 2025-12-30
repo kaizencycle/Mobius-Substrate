@@ -205,6 +205,76 @@ Mobius-Systems/
 
 ---
 
+## 🧠 EPICON & Catalog: How Mobius Remembers
+
+Mobius doesn't just store code – it stores **intent**.
+
+To make that legible (for humans and agents), the repo has two key layers:
+
+- `epicon/` — human-written intent, design, decision, and reflection records
+- `catalog/mobius_catalog.json` — a machine-friendly index over EPICONs and docs
+
+Together, they are the **Mobius Merkle Tree of Meaning**.
+
+### EPICON Files (`epicon/`)
+
+EPICONs live under the `epicon/` directory and use a simple Markdown + frontmatter format.
+
+To create a new EPICON:
+
+1. Copy the template:
+
+   ```bash
+   mkdir -p epicon/C-XXX
+   cp epicon/TEMPLATE_EPICON.md epicon/C-XXX/EPICON_C-XXX_DVA-LITE_your-topic_v1.md
+   ```
+
+2. Edit the frontmatter fields:
+   - `epicon_id` — unique identifier (pattern: `EPICON_C-XXX_TIER_slug_v1`)
+   - `cycle`, `epoch`, `tier` — where this EPICON lives
+   - `epicon_type` — `design` | `decision` | `reflection` | `incident` | `spec`
+   - `status` — `draft` | `active` | `deprecated` | `superseded`
+   - `tags` — help search and routing
+   - `summary` — 1–2 sentence explanation for fast routing
+
+3. Write the body: Context, Assumptions, Options, Decision, Risk, Links
+
+**📖 Full guide:** [epicon/README.md](./epicon/README.md)
+
+### Catalog (`catalog/mobius_catalog.json`)
+
+The catalog is an auto-generated index used by DVA / MCP agents.
+
+- **Source:** `epicon/` and `docs/`
+- **Output:** `catalog/mobius_catalog.json`
+- **Schema:** EPICONs and docs with metadata + content hashes
+
+To regenerate the catalog:
+
+```bash
+npm run export:catalog
+```
+
+**💡 Pro tip:** Run `npm run export:catalog` whenever you add/update EPICONs or docs, and commit the updated JSON so agents always have a current index.
+
+### Agent / MCP Access
+
+For agents and MCP-style tools, we expose helpers in:
+
+- `tools/mobiusCatalogTool.ts` — TypeScript API for catalog queries
+- `mcp/mobius-repo-scanner/` — Full MCP server with 6 tools
+
+```typescript
+import { listEpicons, getEpiconById, searchCatalog } from "./tools/mobiusCatalogTool";
+
+const epicons = await listEpicons({ tier: "DVA.LITE" });
+const results = await searchCatalog("routing");
+```
+
+This lets DVA agents index and reason over intent + docs without parsing the repo layout.
+
+---
+
 ## 🔬 Research & Academic Context
 
 Mobius Substrate has undergone peer review (Nov 2025). We're actively addressing identified gaps.
