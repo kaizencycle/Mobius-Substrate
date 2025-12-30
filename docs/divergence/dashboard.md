@@ -1,7 +1,7 @@
 # Divergence Dashboard
 
-**Repo:** `kaizencycle/Mobius-Systems`  
-**Generated:** `2025-12-30T01:15:45Z`  
+**Repo:** `kaizencycle/Mobius-Substrate`  
+**Generated:** `2025-12-30T06:25:43Z`  
 **Open PRs:** `0`
 
 ## Summary
