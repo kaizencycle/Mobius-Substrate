@@ -168,11 +168,11 @@ LIVE SERVICES (APIs, Apps, Labs)
 
 | Application | URL | Purpose |
 |------------|-----|---------|
-| **Mobius Portal** | [kaizen-os.vercel.app](https://kaizen-os.vercel.app) | Main entry point |
-| **OAA Learning Hub** | [oaa-learning-hub.vercel.app](https://oaa-learning-hub.vercel.app) | Education interface |
-| **Reflections (E.O.M.M.)** | [kaizen-reflections.vercel.app](https://kaizen-reflections.vercel.app) | Daily reflection practice |
-| **Citizen Shield** | [citizen-shield.vercel.app](https://citizen-shield.vercel.app) | Security dashboard |
-| **Ledger API** | [civic-ledger.onrender.com](https://civic-ledger.onrender.com) | Core integrity ledger |
+| **Mobius Portal** | [mobius-browser-shell.vercel.app](mobius-browser-shell.vercel.app) | Main entry point |
+| **OAA Learning Hub** | [https://github.com/kaizencycle/lab7-proof](https://github.com/kaizencycle/lab7-proof) | Education interface |
+| **Reflections (E.O.M.M.)** | [https://github.com/kaizencycle/lab4-proof](https://github.com/kaizencycle/lab4-proof) | Daily reflection practice |
+| **Citizen Shield** | [https://github.com/kaizencycle/lab6-proof](https://github.com/kaizencycle/lab6-proof) | Security dashboard |
+| **Ledger API** | [https://civic-protocol-core-ledger.onrender.com/](https://civic-protocol-core-ledger.onrender.com/) | Core integrity ledger |
 
 ---
 
@@ -266,10 +266,10 @@ curl http://localhost:4001/api/integrity-check
 
 | Resource | Link |
 |----------|------|
-| **Main Site** | [mobius.systems](https://mobius.systems) |
+| **Main Site** | [Mobius Substrate](https://kaizencycle.github.io/Mobius-Substrate/) |
 | **Kaizen Cycle** | [github.com/kaizencycle](https://github.com/kaizencycle) |
-| **Command Ledger** | [Command Ledger III](https://github.com/kaizencycle/command-ledger-iii) |
-| **Substack** | [kaizencycle.substack.com](https://kaizencycle.substack.com) |
+| **Command Ledger** | [Command Ledger](https://github.com/kaizencycle/Civic-Protocol-Core) |
+| **Substack** | [https://michaeljudan.substack.com/](https://michaeljudan.substack.com/) |
 | **Support** | [File an Issue](https://github.com/kaizencycle/Mobius-Systems/issues) |
 
 ---
