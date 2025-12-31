@@ -84,6 +84,22 @@ export const REPO_ZONES: RepoZoneRule[] = [
   },
   {
     zone: 'HOT',
+    pattern: 'GOVERNANCE/**',
+    maxDepth: 3,
+    maxFiles: 50,
+    allowBulkScan: true,
+    description: 'Participation framework, role definitions, and civic governance'
+  },
+  {
+    zone: 'HOT',
+    pattern: 'CIVIC/**',
+    maxDepth: 3,
+    maxFiles: 50,
+    allowBulkScan: true,
+    description: 'Validator Charter, Attestor Oath, and civic covenants'
+  },
+  {
+    zone: 'HOT',
     pattern: 'epicon/**',
     maxDepth: 6,
     maxFiles: 200,

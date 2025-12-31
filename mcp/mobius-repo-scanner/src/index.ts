@@ -808,7 +808,6 @@ server.tool(
   },
   async (args) => {
     const rule = classifyPath(args.path);
-    const validation = validateTraversal(args.path, { recursive: true });
 
     const zoneEmojis: Record<ZoneName, string> = {
       HOT: '🔥',

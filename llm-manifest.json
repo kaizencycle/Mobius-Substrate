@@ -8,7 +8,9 @@
     "digest": "REPO_DIGEST.md",
     "map": "REPO_MAP_TREE.md",
     "start_here": "00-START-HERE/README.md",
-    "manifest": "llm-manifest.json"
+    "manifest": "llm-manifest.json",
+    "roles": "GOVERNANCE/ROLES.md",
+    "integrity_thresholds": "schemas/integrity-thresholds.json"
   },
   "zones": {
     "HOT": {
@@ -19,6 +21,8 @@
         "llm-manifest.json",
         "00-START-HERE/**",
         "FOUNDATION/**",
+        "GOVERNANCE/**",
+        "CIVIC/**",
         "epicon/**",
         "apps/browser-shell/**",
         "apps/mobius-wallet/**",
@@ -124,7 +128,11 @@
     "GI": "Global Integrity - composite governance score",
     "EPICON": "Intent documentation protocol - semantic backbone",
     "DVA": "Dynamic Virtual Architecture - companion tier model",
-    "Sentinel": "Autonomous integrity guardian agent"
+    "Sentinel": "Autonomous integrity guardian agent",
+    "Citizen": "Foundation role (DVA.LITE) - field perception",
+    "Contributor": "Meaning builder role (DVA.ONE) - MII >= 0.65",
+    "Validator": "Friction provider role (DVA.FULL) - MII >= 0.78",
+    "Attestor": "Memory custodian role (DVA.HIVE) - MII >= 0.87"
   },
   "mcp_scanner": {
     "package": "mcp/mobius-repo-scanner",

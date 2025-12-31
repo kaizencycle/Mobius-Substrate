@@ -1,0 +1,139 @@
+{
+  "$schema": "../schemas/role-map.schema.json",
+  "version": "1.0.0",
+  "cycle": "C-178",
+  "lastUpdated": "2025-12-31",
+  "gradient": [
+    "citizen",
+    "contributor",
+    "validator",
+    "attestor"
+  ],
+  "progression_model": "responsibility_not_rank",
+  "governance_philosophy": "memory_over_power",
+  "roles": {
+    "citizen": {
+      "dva_tier": "LITE",
+      "integrity_min": null,
+      "scope": "field perception",
+      "description": "Foundation layer - explores, observes, reports early signals",
+      "contribution_types": [
+        "field_reflections",
+        "first_contact_experiences",
+        "ambiguity_notes",
+        "anomaly_awareness",
+        "usability_feedback"
+      ],
+      "responsibilities": [
+        "Report what they observe",
+        "Document confusion and friction",
+        "Surface early anomalies"
+      ]
+    },
+    "contributor": {
+      "dva_tier": "ONE",
+      "integrity_min": 0.65,
+      "scope": "meaning articulation",
+      "description": "Meaning builders - explain, document, create conceptual bridges",
+      "contribution_types": [
+        "epicon_reflections",
+        "documentation",
+        "concept_bridges",
+        "pattern_recognition",
+        "narrative_continuity"
+      ],
+      "responsibilities": [
+        "Transform observation into understanding",
+        "Maintain context across contributions",
+        "Acknowledge uncertainty explicitly"
+      ]
+    },
+    "validator": {
+      "dva_tier": "FULL",
+      "integrity_min": 0.78,
+      "scope": "risk + drift friction",
+      "description": "Friction as contribution - surface assumptions, test failure conditions",
+      "contribution_types": [
+        "assumption_surfacing",
+        "failure_testing",
+        "incentive_analysis",
+        "fragility_identification",
+        "dissent_protection"
+      ],
+      "responsibilities": [
+        "Challenge reasoning, not people",
+        "Preserve uncertainty where it exists",
+        "Surface harm before performance",
+        "Document risks and constraints"
+      ],
+      "charter": "CIVIC/VALIDATOR_CHARTER.md"
+    },
+    "attestor": {
+      "dva_tier": "HIVE",
+      "integrity_min": 0.87,
+      "scope": "continuity of memory",
+      "description": "Memory custodians - authenticate intent trails, preserve reasoning context",
+      "contribution_types": [
+        "intent_authentication",
+        "reasoning_preservation",
+        "constraint_memory",
+        "revisionism_prevention",
+        "divergence_mediation"
+      ],
+      "responsibilities": [
+        "Ensure future generations understand decisions",
+        "Protect historical constraint memory",
+        "Resist narrative seduction",
+        "Maintain long-arc coherence"
+      ],
+      "oath": "CIVIC/ATTESTOR_OATH.txt"
+    }
+  },
+  "dva_alignment": {
+    "LITE": "citizen",
+    "ONE": "contributor",
+    "FULL": "validator",
+    "HIVE": "attestor"
+  },
+  "transition_requirements": {
+    "citizen_to_contributor": {
+      "integrity_threshold": 0.65,
+      "requirements": [
+        "Multiple EPICON reflections submitted",
+        "Demonstrated humility under revision",
+        "Context continuity across contributions"
+      ]
+    },
+    "contributor_to_validator": {
+      "integrity_threshold": 0.78,
+      "requirements": [
+        "Demonstrated friction contribution",
+        "Evidence of assumption-surfacing",
+        "Pattern of constructive challenge"
+      ]
+    },
+    "validator_to_attestor": {
+      "integrity_threshold": 0.87,
+      "requirements": [
+        "Long-arc coherence demonstrated",
+        "Non-reactivity to status influence",
+        "Resistance to narrative seduction"
+      ]
+    }
+  },
+  "principles": [
+    "No authority is granted — only responsibility accepted",
+    "Friction is contribution, not obstruction",
+    "Reflection is safety, not delay",
+    "Integrity compounds through revision",
+    "Memory must survive authorship"
+  ],
+  "failure_modes_prevented": [
+    "charismatic_capture",
+    "revisionist_framing",
+    "institutional_amnesia",
+    "drift_toward_opacity",
+    "performative_governance",
+    "authority_without_responsibility"
+  ]
+}

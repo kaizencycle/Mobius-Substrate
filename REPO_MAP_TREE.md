@@ -28,6 +28,14 @@
 │   ├── POLICIES/           # Code of conduct, security, privacy
 │   └── PROCESS/            # RFC, versioning, release policy
 │
+├── GOVERNANCE/             # 🔥 HOT - Participation Framework
+│   ├── ROLES.md            # Role definitions + responsibility gradients
+│   └── ROLE_MAP.json       # DVA tier mapping + progression model
+│
+├── CIVIC/                  # 🔥 HOT - Civic Covenants
+│   ├── VALIDATOR_CHARTER.md # Ethics of friction
+│   └── ATTESTOR_OATH.txt   # Memory custodian covenant
+│
 ├── epicon/                 # 🔥 HOT - Intent Memory Layer
 │   ├── README.md           # EPICON overview
 │   ├── TEMPLATE_EPICON.md  # Template for new records
