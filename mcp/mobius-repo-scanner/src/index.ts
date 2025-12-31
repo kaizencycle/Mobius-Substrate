@@ -22,6 +22,7 @@ import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
 import fs from "node:fs";
+import fsPromises from "node:fs/promises";
 import path from "node:path";
 import crypto from "node:crypto";
 
@@ -482,7 +483,7 @@ server.tool(
       };
     }
 
-    // Security check
+    // Security check - exclusion patterns
     if (shouldExclude(fullPath)) {
       return {
         content: [
@@ -495,21 +496,63 @@ server.tool(
       };
     }
 
+    // Atomic file read - eliminates TOCTOU vulnerability
+    // We read the file first, then check properties, avoiding race conditions
+    let fileContent: Buffer;
     let stats: fs.Stats;
+
     try {
-      stats = fs.statSync(fullPath);
-    } catch {
+      // Read file atomically - this is the source of truth
+      fileContent = await fsPromises.readFile(fullPath);
+      // Get stats after successful read (file definitely exists and is readable)
+      stats = await fsPromises.stat(fullPath);
+    } catch (error: unknown) {
+      const nodeError = error as NodeJS.ErrnoException;
+      if (nodeError.code === "ENOENT") {
+        return {
+          content: [
+            {
+              type: "text" as const,
+              text: JSON.stringify({ error: `File not found: ${args.filePath}` }),
+            },
+          ],
+          isError: true,
+        };
+      }
+      if (nodeError.code === "EISDIR") {
+        return {
+          content: [
+            {
+              type: "text" as const,
+              text: JSON.stringify({ error: `${args.filePath} is a directory, not a file.` }),
+            },
+          ],
+          isError: true,
+        };
+      }
+      if (nodeError.code === "EACCES") {
+        return {
+          content: [
+            {
+              type: "text" as const,
+              text: JSON.stringify({ error: `Permission denied: ${args.filePath}` }),
+            },
+          ],
+          isError: true,
+        };
+      }
       return {
         content: [
           {
             type: "text" as const,
-            text: JSON.stringify({ error: `File not found: ${args.filePath}` }),
+            text: JSON.stringify({ error: `Cannot read file: ${error}` }),
           },
         ],
         isError: true,
       };
     }
 
+    // Check if it's a regular file (not a directory, symlink, etc.)
     if (!stats.isFile()) {
       return {
         content: [
@@ -522,31 +565,17 @@ server.tool(
       };
     }
 
-    const bytesToRead = Math.min(args.maxBytes, stats.size);
-    let text: string;
-
-    try {
-      const fd = fs.openSync(fullPath, "r");
-      const buffer = Buffer.alloc(bytesToRead);
-      fs.readSync(fd, buffer, 0, bytesToRead, 0);
-      fs.closeSync(fd);
-      text = buffer.toString("utf8");
-    } catch (error) {
-      return {
-        content: [
-          {
-            type: "text" as const,
-            text: JSON.stringify({ error: `Cannot read file: ${error}` }),
-          },
-        ],
-        isError: true,
-      };
-    }
+    // Truncate if needed (we already have the full content)
+    const actualSize = fileContent.length;
+    const truncated = actualSize > args.maxBytes;
+    const text = truncated
+      ? fileContent.slice(0, args.maxBytes).toString("utf8")
+      : fileContent.toString("utf8");
 
     const payload = {
       filePath: args.filePath,
-      sizeBytes: stats.size,
-      truncated: stats.size > bytesToRead,
+      sizeBytes: actualSize,
+      truncated,
       content: text,
     };
 

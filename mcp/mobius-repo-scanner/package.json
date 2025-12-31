@@ -12,7 +12,8 @@
     "start": "node build/index.js",
     "dev": "tsc --watch",
     "lint": "eslint src --ext .ts",
-    "test": "node --test",
+    "test": "node --import tsx --test tests/*.test.ts",
+    "test:security": "node --import tsx --test tests/security.test.ts",
     "export:catalog": "node build/index.js --export-catalog"
   },
   "keywords": [
@@ -38,6 +39,7 @@
   },
   "devDependencies": {
     "@types/node": "^22.0.0",
+    "tsx": "^4.21.0",
     "typescript": "^5.6.0"
   },
   "engines": {

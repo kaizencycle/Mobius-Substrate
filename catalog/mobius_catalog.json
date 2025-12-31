@@ -1,6 +1,6 @@
 {
   "mobius_catalog_version": "1.0.0",
-  "generated_at": "2025-12-31T00:03:46.760Z",
+  "generated_at": "2025-12-31T00:07:49.869Z",
   "repo": {
     "name": "Mobius-Substrate",
     "url": "https://github.com/kaizencycle/Mobius-Substrate",
@@ -78,7 +78,7 @@
       "risk_level": "low",
       "created_at": "2025-12-30T12:00:00-05:00",
       "updated_at": "2025-12-30T12:00:00-05:00",
-      "content_hash": "sha256:03583477f0841826d15c093c88316fe9e28dde58ff84b23dcd082b2e08e8bde5",
+      "content_hash": "sha256:fccef1e58eb8c05d4f40fbfb9c52aa70791a58bbf3f3f81794068134c11afbcf",
       "summary": "MCP server that exposes Mobius-Substrate as a queryable knowledge substrate for DVA agents."
     },
     {

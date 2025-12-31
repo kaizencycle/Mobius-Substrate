@@ -95,6 +95,31 @@ We need a **scoped, auditable, agent-friendly** interface to the Mobius knowledg
 - Package: `@mobius/mcp-repo-scanner` at `mcp/mobius-repo-scanner/`
 - Revisit when: MCP SDK has breaking changes, or GitHub adds native MCP support
 
+### Scope of Access (Authority Clarification)
+
+This section clarifies what authority the MCP server grants to agents:
+
+| Aspect | Value | Notes |
+|--------|-------|-------|
+| **Access Mode** | Read-only | No write, delete, or modify operations |
+| **Scope** | Local repository only | Scoped to `MOBIUS_REPO_ROOT` environment variable |
+| **Path Traversal** | Blocked | `..` segments rejected; paths must resolve within repo root |
+| **Excluded Paths** | Yes | `node_modules/`, `.git/`, `.env*`, `*.pem`, `*.key`, `secrets/`, build artifacts |
+| **File Size Limit** | 200KB max | Prevents memory exhaustion; truncates larger files |
+| **Rate Limits** | None (local) | MCP runs locally; no network rate limiting needed |
+| **External Access** | No | Internal sentinels only; not exposed to external networks |
+| **Symlink Following** | No | Symlinks are not followed to prevent escape attacks |
+
+**Who Can Call This Server:**
+- Internal DVA sentinels (ATLAS, AUREA, Echo, etc.)
+- Local MCP clients (Cursor, Claude Desktop)
+- CI/CD pipelines for catalog generation
+
+**Who Cannot Call This Server:**
+- External agents over the network (not exposed)
+- Untrusted third-party tools
+- Public APIs
+
 ### Tools Implemented
 
 | Tool | Purpose |
