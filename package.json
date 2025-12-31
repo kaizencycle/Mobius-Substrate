@@ -37,14 +37,20 @@
     "oc:login": "opencode login",
     "oc:index": "opencode index",
     "oc:dev": "opencode dev --port 4317",
-    "oc:review": "opencode review --config opencode.config.yaml"
+    "oc:review": "opencode review --config opencode.config.yaml",
+    "export:catalog": "tsx scripts/exportCatalog.ts",
+    "mcp:build": "cd mcp/mobius-repo-scanner && npm run build",
+    "mcp:start": "cd mcp/mobius-repo-scanner && npm start"
+  },
+  "dependencies": {
+    "gray-matter": "4.0.3"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.1",
     "@types/node": "^20.0.0",
+    "tsx": "^4.7.0",
     "turbo": "^2.6.0",
-    "typescript": "^5.0.0",
-    "tsx": "^4.7.0"
+    "typescript": "^5.0.0"
   },
   "engines": {
     "node": ">=18.0.0",

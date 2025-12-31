@@ -1,0 +1,48 @@
+{
+  "name": "@mobius/mcp-repo-scanner",
+  "version": "0.1.0",
+  "description": "MCP server that exposes Mobius-Substrate repo summaries, file views, and EPICON catalogs as structured JSON tools for DVA agents.",
+  "main": "build/index.js",
+  "type": "module",
+  "bin": {
+    "mobius-repo-scanner": "./build/index.js"
+  },
+  "scripts": {
+    "build": "tsc && chmod 755 build/index.js",
+    "start": "node build/index.js",
+    "dev": "tsc --watch",
+    "lint": "eslint src --ext .ts",
+    "test": "node --import tsx --test tests/*.test.ts",
+    "test:security": "node --import tsx --test tests/security.test.ts",
+    "export:catalog": "node build/index.js --export-catalog"
+  },
+  "keywords": [
+    "mcp",
+    "mobius",
+    "repo-scanner",
+    "model-context-protocol",
+    "dva",
+    "epicon",
+    "civic-os",
+    "kaizen"
+  ],
+  "author": "Michael Judan <kaizencycle>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kaizencycle/Mobius-Substrate"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.13.0",
+    "gray-matter": "^4.0.3",
+    "zod": "^3.25.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5.6.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

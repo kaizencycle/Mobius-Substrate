@@ -1,0 +1,101 @@
+# .github/workflows/catalog-check.yml
+#
+# Mobius Catalog Integrity Check
+#
+# Ensures catalog/mobius_catalog.json is always in sync with EPICONs and docs.
+# Fails PRs if the catalog is stale, with a clear message on how to fix it.
+#
+# This is the "archivist at the door" — you can rearrange the library all you want,
+# but you must update the catalog before you leave.
+#
+# Author: Michael Judan
+# License: MIT
+
+name: Mobius Catalog Integrity Check
+
+on:
+  push:
+    branches:
+      - main
+      - master
+      - develop
+  pull_request:
+    branches:
+      - main
+      - master
+      - develop
+
+jobs:
+  catalog-check:
+    name: Check Catalog Freshness
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Regenerate Mobius catalog
+        run: npm run export:catalog
+        env:
+          GIT_COMMIT: ${{ github.sha }}
+
+      - name: Check for catalog drift
+        run: |
+          if git diff --quiet --exit-code catalog/mobius_catalog.json; then
+            echo ""
+            echo "╔══════════════════════════════════════════════════════════════╗"
+            echo "║  ✅ CATALOG IS UP TO DATE                                    ║"
+            echo "╚══════════════════════════════════════════════════════════════╝"
+            echo ""
+          else
+            echo ""
+            echo "╔══════════════════════════════════════════════════════════════╗"
+            echo "║  ❌ CATALOG IS OUT OF DATE                                   ║"
+            echo "╠══════════════════════════════════════════════════════════════╣"
+            echo "║                                                              ║"
+            echo "║  The catalog/mobius_catalog.json file has drifted.           ║"
+            echo "║                                                              ║"
+            echo "║  To fix, run:                                                ║"
+            echo "║                                                              ║"
+            echo "║    npm run export:catalog                                    ║"
+            echo "║    git add catalog/mobius_catalog.json                       ║"
+            echo "║    git commit --amend --no-edit                              ║"
+            echo "║                                                              ║"
+            echo "║  Or simply:                                                  ║"
+            echo "║                                                              ║"
+            echo "║    npm run export:catalog && git add -A && git commit -m ... ║"
+            echo "║                                                              ║"
+            echo "╚══════════════════════════════════════════════════════════════╝"
+            echo ""
+            echo "Diff:"
+            git diff -- catalog/mobius_catalog.json | head -100
+            exit 1
+          fi
+
+      - name: Catalog Summary
+        if: success()
+        run: |
+          echo "## 📚 Mobius Catalog Status" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          EPICON_COUNT=$(node -e "console.log(JSON.parse(require('fs').readFileSync('catalog/mobius_catalog.json')).stats.epiconCount)")
+          DOC_COUNT=$(node -e "console.log(JSON.parse(require('fs').readFileSync('catalog/mobius_catalog.json')).stats.docCount)")
+          VERSION=$(node -e "console.log(JSON.parse(require('fs').readFileSync('catalog/mobius_catalog.json')).mobius_catalog_version)")
+          
+          echo "| Metric | Value |" >> $GITHUB_STEP_SUMMARY
+          echo "|--------|-------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Catalog Version | \`$VERSION\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| EPICONs | $EPICON_COUNT |" >> $GITHUB_STEP_SUMMARY
+          echo "| Docs | $DOC_COUNT |" >> $GITHUB_STEP_SUMMARY
+          echo "| Status | ✅ In Sync |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "*\"We heal as we walk.\" — Mobius Systems*" >> $GITHUB_STEP_SUMMARY

@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "mobius-repo-scanner": {
+      "command": "node",
+      "args": [
+        "./mcp/mobius-repo-scanner/build/index.js"
+      ],
+      "env": {
+        "MOBIUS_REPO_ROOT": "${workspaceFolder}"
+      }
+    }
+  }
+}
