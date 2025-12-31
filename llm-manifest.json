@@ -10,6 +10,7 @@
     "start_here": "00-START-HERE/README.md",
     "manifest": "llm-manifest.json",
     "roles": "GOVERNANCE/ROLES.md",
+    "authority_policy": "GOVERNANCE/REPO_AUTHORITY_POLICY.md",
     "integrity_thresholds": "schemas/integrity-thresholds.json"
   },
   "zones": {
@@ -145,6 +146,20 @@
       "list_epicons",
       "export_catalog"
     ]
+  },
+  "authority_policy": {
+    "principle": "descriptive_not_prescriptive",
+    "human_sovereignty": true,
+    "anti_capture_guarantees": [
+      "No canonical source of truth",
+      "No privileged directories",
+      "No forced funneling away from forks",
+      "No selective visibility",
+      "No redirection that invalidates divergence"
+    ],
+    "plurality_rule": "When conflicts arise, expose all valid interpretations rather than selecting a winner",
+    "fallback_behavior": "When in doubt, preserve plurality",
+    "policy_reference": "GOVERNANCE/REPO_AUTHORITY_POLICY.md"
   },
   "contact": {
     "maintainer": "Michael (Kaizen)",

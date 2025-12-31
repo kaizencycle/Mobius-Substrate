@@ -30,7 +30,8 @@
 │
 ├── GOVERNANCE/             # 🔥 HOT - Participation Framework
 │   ├── ROLES.md            # Role definitions + responsibility gradients
-│   └── ROLE_MAP.json       # DVA tier mapping + progression model
+│   ├── ROLE_MAP.json       # DVA tier mapping + progression model
+│   └── REPO_AUTHORITY_POLICY.md  # Anti-capture + plurality guarantees
 │
 ├── CIVIC/                  # 🔥 HOT - Civic Covenants
 │   ├── VALIDATOR_CHARTER.md # Ethics of friction
