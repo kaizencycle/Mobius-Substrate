@@ -120,6 +120,72 @@ This section clarifies what authority the MCP server grants to agents:
 - Untrusted third-party tools
 - Public APIs
 
+---
+
+### Authority Surface Justification & Safety Boundaries
+
+This MCP scanner does not introduce new execution authority or mutation capability. It operates strictly as a **read-only introspection tool** for indexing, archive consistency, and DVA agent context retrieval.
+
+#### Intent & Purpose
+
+- **Improve continuity and context recall** across modules
+- **Support DVA agents** in non-destructive indexing and archive lookup
+- **Reduce drift** by strengthening repo-level semantic mapping
+- **Convert implicit knowledge** into inspectable civic memory
+
+#### Authority Boundaries
+
+| Capability | Status | Notes |
+|------------|--------|-------|
+| Read repository structure | ✅ Allowed | Directory trees, file metadata |
+| Read file contents | ✅ Allowed | With size limits (200KB max) |
+| Search file contents | ✅ Allowed | Text-based, case-insensitive |
+| Write to repository | ❌ Blocked | No mutation capability |
+| Delete files | ❌ Blocked | No deletion capability |
+| Execute code | ❌ Blocked | No eval, spawn, or exec |
+| Network exfiltration | ❌ Blocked | No outbound network calls |
+| Cross-repo traversal | ❌ Blocked | Scoped to single REPO_ROOT |
+| Symlink following | ❌ Blocked | Prevents escape attacks |
+| Privileged escalation | ❌ Blocked | Runs with invoker's permissions |
+
+#### Non-Enumerated Constraints
+
+- Scanner **cannot mutate** repos — only read + index
+- Scanner **cannot persist state** outside designated catalog output
+- Scanner **cannot invoke** other tools or chain commands
+- Scanner **cannot access** paths outside `MOBIUS_REPO_ROOT`
+- Scanner **cannot bypass** exclusion patterns programmatically
+
+#### Risk Envelope & Safeguards
+
+| Risk | Mitigation |
+|------|------------|
+| Path traversal attack | `resolveScopedPath()` rejects `..` escapes |
+| Sensitive file exposure | `EXCLUDE_PATTERNS` blocks `.env`, `.pem`, `secrets/`, etc. |
+| Memory exhaustion | Hard cap of 200KB per file read |
+| Denial of service | `maxFiles`, `maxMatches`, `maxDepth` limits |
+| TOCTOU race condition | Atomic `fs.promises.readFile()` pattern |
+
+#### Failure / Rollback Conditions
+
+- **Disable:** Remove MCP config from `.cursor/mcp.json` or stop the server
+- **Sandbox:** Run with restricted `MOBIUS_REPO_ROOT` pointing to safe subset
+- **Audit:** All tool invocations can be logged via MCP transport layer
+- **Rollback:** Delete `mcp/mobius-repo-scanner/` directory; no persistent state
+
+#### Why This Change Improves Integrity (Not Fragility)
+
+1. **Strengthens historical traceability** — EPICONs become first-class queryable artifacts
+2. **Supports reproducible agent reasoning** — Agents query structured data, not ad-hoc scraping
+3. **Reduces ambiguity** — Module ownership and lineage become explicit
+4. **Converts implicit knowledge** — Repo structure becomes inspectable civic memory
+5. **Improves auditability** — All catalog changes are Git-tracked and diffable
+6. **Prevents drift** — CI gate ensures catalog stays synchronized with source
+
+**This is a capability contraction, not expansion** — agents that previously scraped GitHub ad-hoc now use a constrained, auditable, read-only interface.
+
+---
+
 ### Tools Implemented
 
 | Tool | Purpose |
