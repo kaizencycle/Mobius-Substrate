@@ -6,16 +6,24 @@
  * knowledge substrate for DVA agents. Turns the monorepo into a digital
  * library with structured JSON tools.
  *
+ * Now with zone-aware traversal (see routes.config.ts):
+ * - HOT: Stable, high-signal, bulk traversal allowed
+ * - WARM: Valuable but heavier, targeted traversal only
+ * - COLD: Experimental & infra, explicit opt-in
+ * - FROZEN: Historical memory, read-only
+ *
  * Tools:
  * - repo_summary: High-level snapshot of the repo
- * - list_tree: Directory tree as JSON
+ * - list_tree: Directory tree as JSON (zone-aware)
  * - read_file: Safe, bounded file retrieval
- * - search_files: Grep-like search across files
+ * - search_files: Grep-like search across files (zone-aware)
+ * - get_zone_info: Traversal zone classification
  * - list_epicons: Discover EPICON documents
  * - export_catalog: Generate a manifest for DVA agents
  *
  * @author Michael Judan <kaizencycle>
  * @license MIT
+ * @cycle C-178
  */
 
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
@@ -25,6 +33,13 @@ import fs from "node:fs";
 import fsPromises from "node:fs/promises";
 import path from "node:path";
 import crypto from "node:crypto";
+import {
+  classifyPath,
+  validateTraversal,
+  formatZoneInfo,
+  type ZoneName,
+  type RepoZoneRule,
+} from "./routes.config.js";
 
 // Root of the repo to scan. Override via env if needed.
 const REPO_ROOT = process.env.MOBIUS_REPO_ROOT || process.cwd();
@@ -384,10 +399,11 @@ server.tool(
 /**
  * Tool 2: list_tree
  * Returns a directory tree starting at a subpath.
+ * Now with zone-aware traversal limits.
  */
 server.tool(
   "list_tree",
-  "List a directory tree of the repo as JSON (dirs + files) for a given subpath.",
+  "List a directory tree of the repo as JSON (dirs + files) for a given subpath. Respects zone-based traversal limits.",
   {
     subpath: z
       .string()
@@ -399,7 +415,7 @@ server.tool(
       .min(0)
       .max(10)
       .default(3)
-      .describe("Maximum directory depth to traverse (0 = only that directory)."),
+      .describe("Maximum directory depth to traverse (0 = only that directory). May be capped by zone rules."),
     includeExtensions: z
       .array(z.string())
       .optional()
@@ -423,15 +439,32 @@ server.tool(
       };
     }
 
+    // Zone-aware traversal validation
+    const validation = validateTraversal(args.subpath, {
+      recursive: args.maxDepth > 0,
+      requestedDepth: args.maxDepth,
+    });
+
+    // Log zone classification for observability
+    console.error(`[MCP-REPO-SCANNER] ${formatZoneInfo(args.subpath)}`);
+
+    // Apply zone limits (cap depth if needed)
+    const effectiveDepth = Math.min(args.maxDepth, validation.rule.maxDepth);
+
     const normalizedExts = normalizeExtensions(args.includeExtensions);
-    const tree = walkDir(rootForScan, args.maxDepth, 0, normalizedExts);
+    const tree = walkDir(rootForScan, effectiveDepth, 0, normalizedExts);
 
     const payload = {
       repoRoot: REPO_ROOT,
       subpath: args.subpath,
-      maxDepth: args.maxDepth,
+      zone: validation.zone,
+      requestedDepth: args.maxDepth,
+      effectiveDepth,
+      maxFiles: validation.rule.maxFiles,
+      allowBulkScan: validation.rule.allowBulkScan,
       includeExtensions: args.includeExtensions ?? null,
       tree,
+      zoneNote: validation.rule.description,
     };
 
     return {
@@ -593,10 +626,11 @@ server.tool(
 /**
  * Tool 4: search_files
  * Grep-like search for a text query in files.
+ * Now with zone-aware traversal limits.
  */
 server.tool(
   "search_files",
-  "Search for a text query in files under a subpath of the Mobius-Substrate repo.",
+  "Search for a text query in files under a subpath of the Mobius-Substrate repo. Respects zone-based traversal limits.",
   {
     subpath: z
       .string()
@@ -612,7 +646,7 @@ server.tool(
       .min(0)
       .max(10)
       .default(5)
-      .describe("Maximum directory depth to traverse from subpath."),
+      .describe("Maximum directory depth to traverse from subpath. May be capped by zone rules."),
     includeExtensions: z
       .array(z.string())
       .optional()
@@ -625,7 +659,7 @@ server.tool(
       .min(1)
       .max(500)
       .default(100)
-      .describe("Maximum number of files to scan."),
+      .describe("Maximum number of files to scan. May be capped by zone rules."),
     maxMatches: z
       .number()
       .int()
@@ -657,6 +691,26 @@ server.tool(
       };
     }
 
+    // Zone-aware traversal validation
+    const validation = validateTraversal(args.subpath, {
+      recursive: args.maxDepth > 0,
+      requestedDepth: args.maxDepth,
+      requestedFiles: args.maxFiles,
+    });
+
+    // Log zone classification for observability
+    console.error(`[MCP-REPO-SCANNER] search ${formatZoneInfo(args.subpath)}`);
+
+    // Check if bulk scan is blocked for this zone
+    if (args.subpath === '.' && !validation.rule.allowBulkScan) {
+      // Root-level search on non-HOT zone - warn but allow with limits
+      console.error(`[MCP-REPO-SCANNER] WARNING: Root-level search in zone=${validation.zone}. Results may be limited.`);
+    }
+
+    // Apply zone limits
+    const effectiveDepth = Math.min(args.maxDepth, validation.rule.maxDepth);
+    const effectiveMaxFiles = Math.min(args.maxFiles, validation.rule.maxFiles);
+
     const normalizedExts = normalizeExtensions(args.includeExtensions);
 
     let filesScanned = 0;
@@ -664,8 +718,8 @@ server.tool(
     const matches: FileMatch[] = [];
 
     function walkForSearch(currentPath: string, depth: number): void {
-      if (depth > args.maxDepth) return;
-      if (filesScanned >= args.maxFiles || totalMatches >= args.maxMatches) return;
+      if (depth > effectiveDepth) return;
+      if (filesScanned >= effectiveMaxFiles || totalMatches >= args.maxMatches) return;
 
       let entries: fs.Dirent[];
       try {
@@ -675,7 +729,7 @@ server.tool(
       }
 
       for (const entry of entries) {
-        if (filesScanned >= args.maxFiles || totalMatches >= args.maxMatches) break;
+        if (filesScanned >= effectiveMaxFiles || totalMatches >= args.maxMatches) break;
 
         const fullPath = path.join(currentPath, entry.name);
         const relPath = path.relative(REPO_ROOT, fullPath);
@@ -715,12 +769,17 @@ server.tool(
     const payload = {
       repoRoot: REPO_ROOT,
       subpath: args.subpath,
+      zone: validation.zone,
       query: args.query,
-      maxDepth: args.maxDepth,
+      requestedDepth: args.maxDepth,
+      effectiveDepth,
+      requestedMaxFiles: args.maxFiles,
+      effectiveMaxFiles,
       includeExtensions: args.includeExtensions ?? null,
       filesScanned,
       totalMatches,
       matches,
+      zoneNote: validation.rule.description,
     };
 
     return {
@@ -735,7 +794,58 @@ server.tool(
 );
 
 /**
- * Tool 5: list_epicons
+ * Tool 5: get_zone_info
+ * Get traversal zone information for a path.
+ */
+server.tool(
+  "get_zone_info",
+  "Get traversal zone classification and limits for a given path. Use this to understand access rules before scanning.",
+  {
+    path: z
+      .string()
+      .default(".")
+      .describe("Path to classify (e.g. '.', 'docs', 'labs', 'docs/10-ARCHIVES')."),
+  },
+  async (args) => {
+    const rule = classifyPath(args.path);
+
+    const zoneEmojis: Record<ZoneName, string> = {
+      HOT: '🔥',
+      WARM: '🌡️',
+      COLD: '❄️',
+      FROZEN: '🧊',
+    };
+
+    const payload = {
+      path: args.path,
+      zone: rule.zone,
+      zoneEmoji: zoneEmojis[rule.zone],
+      maxDepth: rule.maxDepth,
+      maxFiles: rule.maxFiles,
+      allowBulkScan: rule.allowBulkScan,
+      description: rule.description,
+      guidance: {
+        HOT: 'Safe for bulk traversal. High-signal, stable content.',
+        WARM: 'Traverse selectively with targeted queries. Avoid bulk scans.',
+        COLD: 'Explicit opt-in required. Experimental or infrastructure content.',
+        FROZEN: 'Read-only historical content. Never treat as current truth.',
+      }[rule.zone],
+      policyReference: 'docs/03-GOVERNANCE-AND-POLICY/governance/REPO_TRAVERSAL_POLICY.epicon.md',
+    };
+
+    return {
+      content: [
+        {
+          type: "text" as const,
+          text: JSON.stringify(payload, null, 2),
+        },
+      ],
+    };
+  }
+);
+
+/**
+ * Tool 7: list_epicons
  * List EPICON documents in the repo (manuscript shelf).
  */
 server.tool(
@@ -845,7 +955,7 @@ server.tool(
 );
 
 /**
- * Tool 6: export_catalog
+ * Tool 8: export_catalog
  * Generate a mobius_catalog.json manifest for DVA agents.
  */
 server.tool(
@@ -1086,16 +1196,18 @@ async function main(): Promise<void> {
   console.error(`
 ╔══════════════════════════════════════════════════════════════════╗
 ║                   MOBIUS REPO SCANNER MCP                       ║
-║                     DVA Agent Library                           ║
+║              DVA Agent Library + Zone-Aware Traversal            ║
 ╠══════════════════════════════════════════════════════════════════╣
 ║  Tools:                                                          ║
 ║    • repo_summary   - High-level repo overview                   ║
-║    • list_tree      - Directory tree as JSON                     ║
+║    • list_tree      - Directory tree (zone-aware)                ║
 ║    • read_file      - Safe, bounded file retrieval               ║
-║    • search_files   - Grep-like search across files              ║
+║    • search_files   - Search files (zone-aware)                  ║
+║    • get_zone_info  - Traversal zone classification              ║
 ║    • list_epicons   - Discover EPICON documents                  ║
 ║    • export_catalog - Generate DVA agent manifest                ║
 ╠══════════════════════════════════════════════════════════════════╣
+║  Zones: 🔥 HOT | 🌡️  WARM | ❄️  COLD | 🧊 FROZEN                   ║
 ║  Root: ${REPO_ROOT.padEnd(52)}║
 ╚══════════════════════════════════════════════════════════════════╝
 

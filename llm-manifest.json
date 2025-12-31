@@ -1,0 +1,169 @@
+{
+  "name": "Mobius Substrate Monorepo",
+  "version": "1.0.0",
+  "description": "Civic substrate, EPICON intent layer, DVA tiered intelligence, integrity economics, and companion ecosystem.",
+  "cycle": "C-178",
+  "lastUpdated": "2025-12-31",
+  "entrypoints": {
+    "digest": "REPO_DIGEST.md",
+    "map": "REPO_MAP_TREE.md",
+    "start_here": "00-START-HERE/README.md",
+    "manifest": "llm-manifest.json",
+    "roles": "GOVERNANCE/ROLES.md",
+    "authority_policy": "GOVERNANCE/REPO_AUTHORITY_POLICY.md",
+    "integrity_thresholds": "schemas/integrity-thresholds.json"
+  },
+  "zones": {
+    "HOT": {
+      "purpose": "High-signal, stable, and safe to traverse with agents. Core conceptual + operational entrypoints.",
+      "paths": [
+        "REPO_DIGEST.md",
+        "REPO_MAP_TREE.md",
+        "llm-manifest.json",
+        "00-START-HERE/**",
+        "FOUNDATION/**",
+        "GOVERNANCE/**",
+        "CIVIC/**",
+        "epicon/**",
+        "apps/browser-shell/**",
+        "apps/mobius-wallet/**",
+        "docs/04-TECHNICAL-ARCHITECTURE/overview/**"
+      ],
+      "maxDepth": 6,
+      "maxFiles": 200,
+      "allowBulkScan": true
+    },
+    "WARM": {
+      "purpose": "Rich but higher-volume zones. Traverse selectively. Prefer targeted queries.",
+      "paths": [
+        "docs/00-START-HERE/**",
+        "docs/01-INTRODUCTION/**",
+        "docs/02-THEORETICAL-FOUNDATIONS/**",
+        "docs/03-GOVERNANCE-AND-POLICY/**",
+        "docs/04-TECHNICAL-ARCHITECTURE/**",
+        "docs/05-IMPLEMENTATION/**",
+        "docs/06-OPERATIONS/**",
+        "docs/08-REFERENCE/**",
+        "docs/epicon/**",
+        "packages/**",
+        "sentinels/**",
+        "services/**",
+        "specs/**",
+        "schemas/**",
+        "mcp/**",
+        "FOR-ACADEMICS/**",
+        "FOR-ECONOMISTS/**",
+        "FOR-GOVERNMENTS/**",
+        "FOR-PHILOSOPHERS/**"
+      ],
+      "maxDepth": 5,
+      "maxFiles": 250,
+      "allowBulkScan": false
+    },
+    "COLD": {
+      "purpose": "Experimental, infra, and research areas. Opt-in only. Do not traverse automatically.",
+      "paths": [
+        "labs/**",
+        "infra/**",
+        "configs/**",
+        "scripts/**",
+        "tests/**",
+        "docs/07-RESEARCH-AND-PUBLICATIONS/**",
+        "docs/09-APPENDICES/**",
+        "docs/11-SUPPLEMENTARY/**"
+      ],
+      "maxDepth": 4,
+      "maxFiles": 150,
+      "allowBulkScan": false
+    },
+    "FROZEN": {
+      "purpose": "Historical & retired material. Read-only. Never used as current truth.",
+      "paths": [
+        "docs/10-ARCHIVES/**"
+      ],
+      "maxDepth": 3,
+      "maxFiles": 100,
+      "allowBulkScan": false
+    }
+  },
+  "agent_guidance": {
+    "priority_order": [
+      "REPO_DIGEST.md",
+      "llm-manifest.json",
+      "00-START-HERE/README.md",
+      "FOUNDATION/CHARTER.md",
+      "epicon/README.md",
+      "apps/browser-shell/README.md",
+      "docs/04-TECHNICAL-ARCHITECTURE/overview/ARCHITECTURE.md"
+    ],
+    "do_not": [
+      "recursively crawl repo without depth limits",
+      "scan all directories at once",
+      "treat docs/10-ARCHIVES/ as current state",
+      "infer governance from experimental code in labs/",
+      "attempt full-repo ingestion"
+    ],
+    "recommended_strategy": "Query specific paths or modules by intent. Traverse HOT first, then WARM selectively. Request COLD zones explicitly when needed."
+  },
+  "dva_tiers": {
+    "LITE": {
+      "description": "Local & frontline context",
+      "flows_path": "infra/dva/flows/lite/"
+    },
+    "ONE": {
+      "description": "Team-scale reasoning",
+      "flows_path": "infra/dva/flows/one/"
+    },
+    "FULL": {
+      "description": "System-stability modeling",
+      "flows_path": "infra/dva/flows/full/"
+    },
+    "HIVE": {
+      "description": "Institutional & civic lenses",
+      "flows_path": "infra/dva/flows/hive/"
+    }
+  },
+  "core_concepts": {
+    "MIC": "Mobius Integrity Credits - contribution-backed currency",
+    "MII": "Mobius Integrity Index - real-time integrity signal",
+    "GI": "Global Integrity - composite governance score",
+    "EPICON": "Intent documentation protocol - semantic backbone",
+    "DVA": "Dynamic Virtual Architecture - companion tier model",
+    "Sentinel": "Autonomous integrity guardian agent",
+    "Citizen": "Foundation role (DVA.LITE) - field perception",
+    "Contributor": "Meaning builder role (DVA.ONE) - MII >= 0.65",
+    "Validator": "Friction provider role (DVA.FULL) - MII >= 0.78",
+    "Attestor": "Memory custodian role (DVA.HIVE) - MII >= 0.87"
+  },
+  "mcp_scanner": {
+    "package": "mcp/mobius-repo-scanner",
+    "routes_config": "mcp/mobius-repo-scanner/src/routes.config.ts",
+    "tools": [
+      "repo_summary",
+      "list_tree",
+      "read_file",
+      "search_files",
+      "list_epicons",
+      "export_catalog"
+    ]
+  },
+  "authority_policy": {
+    "principle": "descriptive_not_prescriptive",
+    "human_sovereignty": true,
+    "anti_capture_guarantees": [
+      "No canonical source of truth",
+      "No privileged directories",
+      "No forced funneling away from forks",
+      "No selective visibility",
+      "No redirection that invalidates divergence"
+    ],
+    "plurality_rule": "When conflicts arise, expose all valid interpretations rather than selecting a winner",
+    "fallback_behavior": "When in doubt, preserve plurality",
+    "policy_reference": "GOVERNANCE/REPO_AUTHORITY_POLICY.md"
+  },
+  "contact": {
+    "maintainer": "Michael (Kaizen)",
+    "org": "github.com/kaizencycle",
+    "email": "dev@mobius.systems"
+  }
+}

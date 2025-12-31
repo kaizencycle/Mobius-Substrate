@@ -1,0 +1,121 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://mobius.systems/schemas/integrity-thresholds.json",
+  "title": "Mobius Integrity Thresholds",
+  "description": "Defines role thresholds and integrity signals for the Mobius Participation Framework",
+  "version": "1.0.0",
+  "cycle": "C-178",
+  "lastUpdated": "2025-12-31",
+  "roles": {
+    "citizen": {
+      "dva_tier": "LITE",
+      "integrity_min": null,
+      "scope": "field perception",
+      "description": "Foundation layer - no integrity threshold required",
+      "entry_requirements": [
+        "Create MIC wallet",
+        "Accept participation terms"
+      ]
+    },
+    "contributor": {
+      "dva_tier": "ONE",
+      "integrity_min": 0.65,
+      "scope": "meaning articulation",
+      "description": "Meaning builders with demonstrated context continuity",
+      "entry_requirements": [
+        "MII >= 0.65",
+        "Multiple EPICON reflections",
+        "Demonstrated humility under revision"
+      ]
+    },
+    "validator": {
+      "dva_tier": "FULL",
+      "integrity_min": 0.78,
+      "scope": "risk + drift friction",
+      "description": "Structured friction providers with documented reasoning",
+      "entry_requirements": [
+        "MII >= 0.78",
+        "Sign Validator Charter",
+        "Demonstrated friction contribution",
+        "Pattern of constructive challenge"
+      ]
+    },
+    "attestor": {
+      "dva_tier": "HIVE",
+      "integrity_min": 0.87,
+      "scope": "continuity of memory",
+      "description": "Memory custodians with long-arc coherence",
+      "entry_requirements": [
+        "MII >= 0.87",
+        "Sign Attestor Oath",
+        "Long-arc coherence demonstrated",
+        "Non-reactivity to status influence"
+      ]
+    }
+  },
+  "signals": {
+    "revision_under_challenge": {
+      "description": "Updates beliefs when presented with evidence",
+      "weight": 0.20,
+      "measurement": "ratio of belief updates to challenges received"
+    },
+    "uncertainty_acknowledgement": {
+      "description": "Explicitly marks uncertain claims",
+      "weight": 0.20,
+      "measurement": "presence of uncertainty markers in contributions"
+    },
+    "tradeoff_clarity": {
+      "description": "Documents what was given up and why",
+      "weight": 0.20,
+      "measurement": "explicit tradeoff documentation in decisions"
+    },
+    "ethical_boundary_awareness": {
+      "description": "Recognizes when actions touch sensitive domains",
+      "weight": 0.20,
+      "measurement": "flagging of ethically relevant decisions"
+    },
+    "longitudinal_reflection": {
+      "description": "Maintains coherent reasoning across time",
+      "weight": 0.20,
+      "measurement": "consistency of reasoning across contribution history"
+    }
+  },
+  "integrity_formula": {
+    "description": "MII = weighted sum of signal scores",
+    "formula": "MII = Σ(signal_weight × signal_score)",
+    "range": {
+      "min": 0.0,
+      "max": 1.0
+    },
+    "thresholds": {
+      "contributor": 0.65,
+      "validator": 0.78,
+      "attestor": 0.87
+    }
+  },
+  "evaluation_period": {
+    "minimum_contributions": 5,
+    "lookback_window_days": 90,
+    "recalculation_frequency": "per_contribution"
+  },
+  "notes": [
+    "Roles do not grant authority — they expand responsibility.",
+    "Integrity is measured through time, not confidence.",
+    "Friction is contribution when documented in good faith.",
+    "No one is granted legitimacy — they earn it across time.",
+    "The substrate remembers."
+  ],
+  "failure_modes_prevented": [
+    "charismatic_capture",
+    "revisionist_framing", 
+    "institutional_amnesia",
+    "drift_toward_opacity",
+    "performative_governance"
+  ],
+  "related_documents": [
+    "GOVERNANCE/ROLES.md",
+    "GOVERNANCE/ROLE_MAP.json",
+    "CIVIC/VALIDATOR_CHARTER.md",
+    "CIVIC/ATTESTOR_OATH.txt"
+  ]
+}
