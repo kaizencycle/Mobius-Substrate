@@ -1,6 +1,6 @@
 {
   "mobius_catalog_version": "1.0.0",
-  "generated_at": "2025-12-30T23:38:21.192Z",
+  "generated_at": "2025-12-31T00:03:46.760Z",
   "repo": {
     "name": "Mobius-Substrate",
     "url": "https://github.com/kaizencycle/Mobius-Substrate",
@@ -8,10 +8,46 @@
     "commit": ""
   },
   "stats": {
-    "epiconCount": 2,
+    "epiconCount": 3,
     "docCount": 741
   },
   "epicons": [
+    {
+      "epicon_id": "EPICON_C-151_DVA-FULL_mcp-repo-catalog_v1",
+      "path": "epicon/C-151/EPICON_C-151_DVA-FULL_mcp-repo-catalog_v1.md",
+      "title": "MCP Repo Catalog & Integrity Gate for Mobius Substrate",
+      "cycle": "C-151",
+      "epoch": null,
+      "tier": "DVA.FULL",
+      "epicon_type": "design",
+      "status": "active",
+      "author_name": "Michael Judan",
+      "author_wallet": null,
+      "tags": [
+        "catalog",
+        "mcp",
+        "epicon",
+        "integrity",
+        "dva",
+        "agents",
+        "repo-index",
+        "mobius-substrate",
+        "ci",
+        "github-actions"
+      ],
+      "related_prs": [],
+      "related_commits": [],
+      "related_epicons": [
+        "EPICON_C-151_SUBSTRATE_mcp-repo-scanner_v1",
+        "EPICON-01"
+      ],
+      "integrity_index_baseline": 0.97,
+      "risk_level": "low",
+      "created_at": "2025-12-30T12:00:00-05:00",
+      "updated_at": "2025-12-30T12:00:00-05:00",
+      "content_hash": "sha256:1e9ffb5157733d3a2c9f14d2d7c14ca3653751c5abd849a1eaf59572159819a2",
+      "summary": "Introduces a machine-readable catalog (catalog/mobius_catalog.json) plus a CI gate to keep it fresh, so DVA/MCP agents can treat the Mobius Substrate as a stable library with an always-up-to-date index of EPICONs and docs."
+    },
     {
       "epicon_id": "EPICON_C-151_SUBSTRATE_mcp-repo-scanner_v1",
       "path": "epicon/C-151/EPICON_C-151_SUBSTRATE_mcp-repo-scanner_v1.md",
@@ -48,7 +84,7 @@
     {
       "epicon_id": "README",
       "path": "epicon/README.md",
-      "title": "EPICON - Epistemic Constraint Documents",
+      "title": "EPICON: Intent & Decision Records",
       "cycle": null,
       "epoch": null,
       "tier": null,
@@ -64,7 +100,7 @@
       "risk_level": null,
       "created_at": null,
       "updated_at": null,
-      "content_hash": "sha256:efa69a9a4679bcfd0e8c2fd8bc8365d4dde096acb406c8314e8f8e0c94db58f2",
+      "content_hash": "sha256:22559a0f80d9b905fc52f9815293adc094b63f36f183feefcced48438ba4f323",
       "summary": ""
     }
   ],
