@@ -86,8 +86,8 @@ The **EPICON** (Eternal Point of Integrity Convergence ONline) system is now liv
 
 ```bash
 # Clone and install
-git clone https://github.com/kaizencycle/Mobius-Systems.git
-cd Mobius-Systems
+git clone https://github.com/kaizencycle/Mobius-Substrate.git
+cd Mobius-Substrate
 npm install
 
 # Start the ledger (EPICON-2)
@@ -179,7 +179,7 @@ LIVE SERVICES (APIs, Apps, Labs)
 ## 📦 Monorepo Structure
 
 ```
-Mobius-Systems/
+Mobius-Substrate/
 ├─ apps/                    # 16 production applications
 │  ├─ ledger-api/          # EPICON-2: Integrity ledger
 │  ├─ broker-api/          # EPICON-3: Consensus engine
