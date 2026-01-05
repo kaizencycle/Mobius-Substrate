@@ -1,3 +1,10 @@
+# MOBIUS-CLASS: drift-control
+# OWNER: @kaizencycle
+# INTRODUCED: C-148
+# LAST-REVIEWED: 2026-01-05
+# STATUS: active
+# PURPOSE: Validates drift control test vectors against GI thresholds
+
 name: Drift Compliance
 
 on:
