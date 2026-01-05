@@ -11,16 +11,19 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
+    "@modelcontextprotocol/sdk": "1.25.1",
     "crypto": "^1.0.1",
-    "tweetnacl": "^1.0.3",
+    "eslint-config-next": "16.1.1",
+    "ethers": "6.16.0",
     "js-yaml": "^4.1.0",
-    "zod": "^3.22.0",
-    "ethers": "^6.13.0"
+    "next": "14.2.35",
+    "tweetnacl": "^1.0.3",
+    "zod": "^3.22.0"
   },
   "devDependencies": {
-    "typescript": "^5.0.0",
+    "@types/js-yaml": "^4.0.9",
     "@types/node": "^20.0.0",
-    "@types/js-yaml": "^4.0.9"
+    "typescript": "^5.0.0"
   },
   "exports": {
     ".": {

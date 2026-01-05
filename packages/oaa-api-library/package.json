@@ -51,19 +51,21 @@
   },
   "homepage": "https://github.com/kaizencycle/OAA-API-Library#readme",
   "dependencies": {
-    "dotenv": "^16.4.5",
-    "express": "^4.19.2",
-    "next": "^14.0.0",
-    "node-fetch": "^3.3.2",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
-    "typescript": "^5.0.0",
+    "@modelcontextprotocol/sdk": "1.25.1",
     "@types/node": "^20.0.0",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "aws-sdk": "^2.1500.0",
     "crypto": "^1.0.1",
+    "dotenv": "^16.4.5",
+    "ethers": "6.16.0",
+    "express": "^4.19.2",
+    "next": "14.2.35",
+    "node-fetch": "^3.3.2",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
     "tweetnacl": "^1.0.3",
+    "typescript": "^5.0.0",
     "yaml": "^2.3.4"
   },
   "devDependencies": {
@@ -72,7 +74,7 @@
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
     "eslint": "^8.0.0",
-    "eslint-config-next": "^14.0.0",
+    "eslint-config-next": "16.1.1",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.0",
     "husky": "^8.0.0",
@@ -86,4 +88,3 @@
     "npm": ">=8.0.0"
   }
 }
-

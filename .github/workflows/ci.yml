@@ -51,15 +51,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'pnpm'
-
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 9
+          cache: 'npm'
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: npm ci
 
       - name: Restore turbo cache
         uses: actions/cache@v4
@@ -70,15 +65,15 @@ jobs:
             turbo-
 
       - name: Build (affected only)
-        run: pnpm turbo run build --filter=...[HEAD^]
+        run: npm run turbo run build --filter=...[HEAD^]
 
       - name: Lint & Typecheck
         run: |
-          pnpm turbo run lint --filter=...[HEAD^]
-          pnpm turbo run type-check --filter=...[HEAD^]
+          npm run turbo run lint --filter=...[HEAD^]
+          npm run turbo run type-check --filter=...[HEAD^]
 
       - name: Test
-        run: pnpm turbo run test --filter=...[HEAD^]
+        run: npm run turbo run test --filter=...[HEAD^]
 
       - name: Upload build artifacts
         if: always()
@@ -271,21 +266,16 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'pnpm'
-
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 9
+          cache: 'npm'
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: npm ci
 
       - name: Run integration tests
         env:
           DATABASE_URL: postgresql://postgres:postgres@localhost:5432/mobius_test
         run: |
-          pnpm turbo run test:integration --filter=...[HEAD^] || echo "No integration tests found"
+          npm run turbo run test:integration --filter=...[HEAD^] || echo "No integration tests found"
 
   # ============================================
   # CI Summary

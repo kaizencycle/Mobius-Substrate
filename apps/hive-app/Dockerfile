@@ -3,16 +3,16 @@ FROM node:20-alpine
 WORKDIR /app
 
 # Copy package files
-COPY package.json package-lock.json* pnpm-lock.yaml* ./
+COPY package.json package-lock.json* ./
 
-# Install pnpm and dependencies
-RUN npm install -g pnpm && (pnpm install --frozen-lockfile || npm install)
+# Install dependencies
+RUN npm ci || npm install
 
 # Copy source
 COPY . .
 
 # Build (if needed)
-RUN pnpm build || npm run build || true
+RUN npm run build || true
 
 # Expose port
 EXPOSE 3001
@@ -22,4 +22,4 @@ HEALTHCHECK --interval=30s --timeout=10s --retries=3 \
   CMD node -e "require('http').get('http://localhost:3001/health', (r) => {process.exit(r.statusCode === 200 ? 0 : 1)})" || true
 
 # Start
-CMD ["pnpm", "start"] || ["npm", "start"]
+CMD ["npm", "start"]

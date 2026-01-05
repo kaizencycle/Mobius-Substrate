@@ -1,0 +1,82 @@
+# ==============================================================================
+# Multi-Stage Dockerfile Template for Mobius Substrate Apps
+# ==============================================================================
+# Cycle: C-180
+# Purpose: Optimized multi-stage build for Node.js applications
+# Expected size reduction: 70% (1.2GB → 350MB)
+# ==============================================================================
+
+# ==============================================================================
+# Stage 1: Dependencies
+# ==============================================================================
+FROM node:20-alpine AS deps
+
+WORKDIR /app
+
+# Copy package files
+COPY package.json package-lock.json* ./
+
+# Install production dependencies only
+RUN npm ci --omit=dev || npm install --omit=dev
+
+# ==============================================================================
+# Stage 2: Builder
+# ==============================================================================
+FROM node:20-alpine AS builder
+
+WORKDIR /app
+
+# Copy package files
+COPY package.json package-lock.json* ./
+
+# Install all dependencies (including dev dependencies for build)
+RUN npm ci || npm install
+
+# Copy source code
+COPY . .
+
+# Build the application
+RUN npm run build
+
+# ==============================================================================
+# Stage 3: Runner (Final Stage)
+# ==============================================================================
+FROM node:20-alpine AS runner
+
+WORKDIR /app
+
+# Set production environment
+ENV NODE_ENV=production
+
+# Create non-root user for security
+RUN addgroup --system --gid 1001 nodejs && \
+    adduser --system --uid 1001 nodejs
+
+# Copy production dependencies from deps stage
+COPY --from=deps --chown=nodejs:nodejs /app/node_modules ./node_modules
+
+# Copy built application from builder stage
+COPY --from=builder --chown=nodejs:nodejs /app/dist ./dist
+COPY --from=builder --chown=nodejs:nodejs /app/package.json ./
+
+# Switch to non-root user
+USER nodejs
+
+# Expose port (update for specific app)
+EXPOSE 3000
+
+# Health check (update endpoint for specific app)
+HEALTHCHECK --interval=30s --timeout=10s --retries=3 \
+  CMD node -e "require('http').get('http://localhost:3000/health', (r) => {process.exit(r.statusCode === 200 ? 0 : 1)})"
+
+# Start application
+CMD ["npm", "start"]
+
+# ==============================================================================
+# Usage Notes:
+# ==============================================================================
+# 1. Update EXPOSE port for specific app
+# 2. Update HEALTHCHECK endpoint for specific app
+# 3. Adjust build output directory if not 'dist'
+# 4. Create corresponding .dockerignore file
+# ==============================================================================
