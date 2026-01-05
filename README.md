@@ -342,7 +342,7 @@ curl http://localhost:4001/api/integrity-check
 | **Main Site** | [Mobius Substrate](https://kaizencycle.github.io/Mobius-Substrate/) |
 | **Kaizen Cycle** | [github.com/kaizencycle](https://github.com/kaizencycle) |
 | **Command Ledger** | [Command Ledger](https://github.com/kaizencycle/Civic-Protocol-Core) |
-| **Substack** | [https://michaeljudan.substack.com/](https://michaeljudan.substack.com/) |
+| **Substack** | [https://kaizencycle.substack.com/](https://kaizencycle.substack.com/) |
 | **Support** | [File an Issue](https://github.com/kaizencycle/Mobius-Systems/issues) |
 
 ---
