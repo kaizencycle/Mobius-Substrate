@@ -15,6 +15,7 @@ on:
       - 'FOUNDATION/**'
       - 'specs/**'
       - 'schemas/**'
+      - 'docs/03-GOVERNANCE-AND-POLICY/**'
   workflow_dispatch:
     inputs:
       pr_number:

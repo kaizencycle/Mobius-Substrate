@@ -1,15 +1,12 @@
-# .github/workflows/catalog-check.yml
-#
-# Mobius Catalog Integrity Check
-#
-# Ensures catalog/mobius_catalog.json is always in sync with EPICONs and docs.
-# Fails PRs if the catalog is stale, with a clear message on how to fix it.
+# MOBIUS-CLASS: catalog-integrity
+# OWNER: @kaizencycle
+# INTRODUCED: C-150
+# LAST-REVIEWED: 2026-01-05
+# STATUS: active
+# PURPOSE: Ensures catalog/mobius_catalog.json stays in sync with EPICONs and docs
 #
 # This is the "archivist at the door" — you can rearrange the library all you want,
 # but you must update the catalog before you leave.
-#
-# Author: Michael Judan
-# License: MIT
 
 name: Mobius Catalog Integrity Check
 

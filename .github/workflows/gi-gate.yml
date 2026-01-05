@@ -1,4 +1,11 @@
-name: codex-ci
+# MOBIUS-CLASS: integrity-gate
+# OWNER: @kaizencycle
+# INTRODUCED: C-148
+# LAST-REVIEWED: 2026-01-05
+# STATUS: active
+# PURPOSE: Enforces Global Integrity (GI) baseline threshold
+
+name: GI Gate (Integrity Threshold)
 
 on:
   pull_request:
