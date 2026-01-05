@@ -115,7 +115,7 @@
   "related_documents": [
     "GOVERNANCE/ROLES.md",
     "GOVERNANCE/ROLE_MAP.json",
-    "CIVIC/VALIDATOR_CHARTER.md",
-    "CIVIC/ATTESTOR_OATH.txt"
+    "docs/03-GOVERNANCE-AND-POLICY/civic/VALIDATOR_CHARTER.md",
+    "docs/03-GOVERNANCE-AND-POLICY/civic/ATTESTOR_OATH.txt"
   ]
 }

@@ -66,7 +66,7 @@
         "Surface harm before performance",
         "Document risks and constraints"
       ],
-      "charter": "CIVIC/VALIDATOR_CHARTER.md"
+      "charter": "docs/03-GOVERNANCE-AND-POLICY/civic/VALIDATOR_CHARTER.md"
     },
     "attestor": {
       "dva_tier": "HIVE",
@@ -86,7 +86,7 @@
         "Resist narrative seduction",
         "Maintain long-arc coherence"
       ],
-      "oath": "CIVIC/ATTESTOR_OATH.txt"
+      "oath": "docs/03-GOVERNANCE-AND-POLICY/civic/ATTESTOR_OATH.txt"
     }
   },
   "dva_alignment": {
