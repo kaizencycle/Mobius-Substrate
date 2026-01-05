@@ -10,6 +10,7 @@ This cathedral contains policy briefs, legislative text, and implementation road
 
 | Looking for... | Go to... |
 |----------------|----------|
+| 🌍 Diplomatic materials | [DIPLOMACY/](./DIPLOMACY/) |
 | 📝 Executive summaries | [POLICY-BRIEFS/](./POLICY-BRIEFS/) |
 | 📜 Ready-to-introduce bills | [LEGISLATIVE-TEXT/](./LEGISLATIVE-TEXT/) |
 | ⚖️ Regulatory alignment | [REGULATORY-COMPLIANCE/](./REGULATORY-COMPLIANCE/) |
@@ -18,6 +19,24 @@ This cathedral contains policy briefs, legislative text, and implementation road
 | 🗳️ Public consultation | [DEMOCRATIC-LEGITIMACY/](./DEMOCRATIC-LEGITIMACY/) |
 | 🔌 API endpoints | [ENDPOINTS.md](./ENDPOINTS.md) |
 | 📋 Machine-readable API | [endpoints.json](./endpoints.json) |
+
+---
+
+## 🌍 Diplomatic Materials
+
+**Path:** [DIPLOMACY/](./DIPLOMACY/)
+
+Materials for engaging world leaders, international organizations, and diplomatic channels:
+
+| Document | Purpose |
+|----------|---------|
+| **Letter to World Leaders** | High-level introduction to Mobius for heads of state |
+| **Diplomatic Portfolio** | Comprehensive overview for diplomatic missions |
+| **MIC Game Theory Report** | Strategic implications for nation-states |
+| **Superpower Survival Index** | Geopolitical risk analysis |
+| **Executive Summary** | Quick overview for busy officials |
+
+[Browse Diplomatic Materials →](./DIPLOMACY/)
 
 ---
 

@@ -92,7 +92,7 @@ export const REPO_ZONES: RepoZoneRule[] = [
   },
   {
     zone: 'HOT',
-    pattern: 'CIVIC/**',
+    pattern: 'docs/03-GOVERNANCE-AND-POLICY/civic/**',
     maxDepth: 3,
     maxFiles: 50,
     allowBulkScan: true,

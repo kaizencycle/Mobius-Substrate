@@ -33,10 +33,6 @@
 │   ├── ROLE_MAP.json       # DVA tier mapping + progression model
 │   └── REPO_AUTHORITY_POLICY.md  # Anti-capture + plurality guarantees
 │
-├── CIVIC/                  # 🔥 HOT - Civic Covenants
-│   ├── VALIDATOR_CHARTER.md # Ethics of friction
-│   └── ATTESTOR_OATH.txt   # Memory custodian covenant
-│
 ├── epicon/                 # 🔥 HOT - Intent Memory Layer
 │   ├── README.md           # EPICON overview
 │   ├── TEMPLATE_EPICON.md  # Template for new records
@@ -85,6 +81,7 @@
 │   ├── 01-INTRODUCTION/    # System introduction
 │   ├── 02-THEORETICAL-FOUNDATIONS/
 │   ├── 03-GOVERNANCE-AND-POLICY/
+│   │   ├── civic/          # 🔥 HOT - Civic Covenants (VALIDATOR_CHARTER.md, ATTESTOR_OATH.txt)
 │   │   ├── governance/
 │   │   │   └── REPO_TRAVERSAL_POLICY.epicon.md
 │   │   └── (other governance docs)
@@ -135,6 +132,7 @@
 ├── FOR-ACADEMICS/          # 🌡️ WARM - Academic Path
 ├── FOR-ECONOMISTS/         # 🌡️ WARM - Economic Path
 ├── FOR-GOVERNMENTS/        # 🌡️ WARM - Policy Path
+│   └── DIPLOMACY/          # Diplomatic materials & world leader letters
 ├── FOR-PHILOSOPHERS/       # 🌡️ WARM - Ethics Path
 │
 └── (other directories…)

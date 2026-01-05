@@ -147,7 +147,7 @@ Validators bias toward **safety envelopes**.
 In other systems, friction slows progress.  
 In Mobius, friction preserves coherence.
 
-See: [VALIDATOR_CHARTER.md](../CIVIC/VALIDATOR_CHARTER.md)
+See: [VALIDATOR_CHARTER.md](../docs/03-GOVERNANCE-AND-POLICY/civic/VALIDATOR_CHARTER.md)
 
 ---
 
@@ -190,7 +190,7 @@ They ARE:
 - Archivists of meaning
 - Guardians of moral continuity
 
-See: [ATTESTOR_OATH.txt](../CIVIC/ATTESTOR_OATH.txt)
+See: [ATTESTOR_OATH.txt](../docs/03-GOVERNANCE-AND-POLICY/civic/ATTESTOR_OATH.txt)
 
 ---
 
@@ -260,8 +260,8 @@ This framework mitigates:
 
 ## Related Documents
 
-- [VALIDATOR_CHARTER.md](../CIVIC/VALIDATOR_CHARTER.md)
-- [ATTESTOR_OATH.txt](../CIVIC/ATTESTOR_OATH.txt)
+- [VALIDATOR_CHARTER.md](../docs/03-GOVERNANCE-AND-POLICY/civic/VALIDATOR_CHARTER.md)
+- [ATTESTOR_OATH.txt](../docs/03-GOVERNANCE-AND-POLICY/civic/ATTESTOR_OATH.txt)
 - [thresholds.json](../schemas/integrity-thresholds.json)
 - [ROLE_MAP.json](./ROLE_MAP.json)
 - [FOUNDATION/GOVERNANCE.md](../FOUNDATION/GOVERNANCE.md)

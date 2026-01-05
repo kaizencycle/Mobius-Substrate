@@ -148,8 +148,11 @@ LIVE SERVICES (APIs, Apps, Labs)
 
 ## 🎓 For Newcomers: Start Here
 
+### 📖 **Master Navigation Hub**
+**[DOCS.md](./DOCS.md)** — Complete documentation navigator for all user types
+
 ### 1. **Read the One-Pager** (5 min)
-[00-START-HERE/QUICKSTART.md](./00-START-HERE/QUICKSTART.md)
+[00-START-HERE/README.md](./00-START-HERE/README.md)
 
 ### 2. **Understand the Vision** (10 min)
 - [Why Mobius Exists](./docs/11-SUPPLEMENTARY/manifesto/triad_of_healing.md)

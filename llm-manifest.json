@@ -23,7 +23,7 @@
         "00-START-HERE/**",
         "FOUNDATION/**",
         "GOVERNANCE/**",
-        "CIVIC/**",
+        "docs/03-GOVERNANCE-AND-POLICY/civic/**",
         "epicon/**",
         "apps/browser-shell/**",
         "apps/mobius-wallet/**",
