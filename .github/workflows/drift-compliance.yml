@@ -20,7 +20,7 @@ jobs:
 
       - name: Run Drift Check
         run: |
-          python tools/drift_check.py docs/drift/drift_test_vectors.json
+          python tools/drift_check.py docs/06-OPERATIONS/drift-control/drift_test_vectors.json
 
       - name: Verify GI Thresholds
         run: |

@@ -1,6 +1,6 @@
 {
   "mobius_catalog_version": "1.0.0",
-  "generated_at": "2025-12-31T00:13:34.662Z",
+  "generated_at": "2026-01-05T00:54:53.538Z",
   "repo": {
     "name": "Mobius-Substrate",
     "url": "https://github.com/kaizencycle/Mobius-Substrate",
@@ -9,7 +9,7 @@
   },
   "stats": {
     "epiconCount": 3,
-    "docCount": 741
+    "docCount": 743
   },
   "epicons": [
     {
@@ -370,6 +370,14 @@
       "summary": ""
     },
     {
+      "path": "docs/03-GOVERNANCE-AND-POLICY/civic/VALIDATOR_CHARTER.md",
+      "title": "Validator Charter",
+      "category": "03-GOVERNANCE-AND-POLICY",
+      "tags": [],
+      "content_hash": "sha256:fc661fdf317e706e77b7b94f806ffd2f709f0e38b18faa98fc6273fbc2bcdb72",
+      "summary": ""
+    },
+    {
       "path": "docs/03-GOVERNANCE-AND-POLICY/civic-core/README.md",
       "title": "🏛️ CIVIC CORE — The Complete Blueprint of Mobius Civilization",
       "category": "03-GOVERNANCE-AND-POLICY",
@@ -607,6 +615,14 @@
       "category": "03-GOVERNANCE-AND-POLICY",
       "tags": [],
       "content_hash": "sha256:d6c75eec02c6159899872e2aaec45aabd36a04ede55c2ae9d4ac8e3904637f3d",
+      "summary": ""
+    },
+    {
+      "path": "docs/03-GOVERNANCE-AND-POLICY/governance/REPO_TRAVERSAL_POLICY.epicon.md",
+      "title": "EPICON — Repo Traversal Policy v1",
+      "category": "03-GOVERNANCE-AND-POLICY",
+      "tags": [],
+      "content_hash": "sha256:ee35a6108db359eabb52be4b96d65717a25bf8a5d71a853119fcb5e83d1a13bb",
       "summary": ""
     },
     {
@@ -5854,7 +5870,7 @@
       "title": "Divergence Dashboard",
       "category": "divergence",
       "tags": [],
-      "content_hash": "sha256:ed8de84aebe3bef96d4b68ef04c46289cf2ee15b55fc6377ba54b6035dea0332",
+      "content_hash": "sha256:81b4972d37badf39ed43d1eb81185605653231e92b136c2dcddb0df08a93b206",
       "summary": ""
     },
     {
