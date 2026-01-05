@@ -14,5 +14,11 @@
     "consensus"
   ],
   "author": "Kaizen Cycle",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.25.1",
+    "eslint-config-next": "16.1.1",
+    "ethers": "6.16.0",
+    "next": "14.2.35"
+  }
 }
