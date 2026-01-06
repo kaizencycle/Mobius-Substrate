@@ -32,16 +32,16 @@ jobs:
           GI_BASELINE: ${{ vars.KAIZEN_GI_BASELINE || '0.993' }}
         run: |
           python3 - <<'PY'
-import os
-import sys
+          import os
+          import sys
 
-gi = float(os.environ.get('GI_BASELINE', '0.0'))
-print(f"GI baseline = {gi}")
+          gi = float(os.environ.get('GI_BASELINE', '0.0'))
+          print(f"GI baseline = {gi}")
 
-if gi < 0.95:
-    print(f"::error::GI baseline ({gi}) is below minimum threshold (0.95)")
-    sys.exit(1)
-else:
-    print(f"✅ GI baseline ({gi}) meets minimum threshold (0.95)")
-    sys.exit(0)
-PY
+          if gi < 0.95:
+              print(f"::error::GI baseline ({gi}) is below minimum threshold (0.95)")
+              sys.exit(1)
+          else:
+              print(f"✅ GI baseline ({gi}) meets minimum threshold (0.95)")
+              sys.exit(0)
+          PY

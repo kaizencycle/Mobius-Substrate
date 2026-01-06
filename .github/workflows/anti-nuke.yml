@@ -45,14 +45,14 @@ jobs:
           # Compute ratio (avoid div by zero)
           if [ "$TOTAL" -eq 0 ]; then 
             RATIO=0
-          else 
-            RATIO=$(python3 - <<'PY'
-import sys
-deletes = int(sys.argv[1])
-total = int(sys.argv[2])
-print(round(deletes / max(1, total), 3))
-PY
- "$DELETES" "$TOTAL")
+          else
+            RATIO=$(python3 - "$DELETES" "$TOTAL" <<'PY'
+          import sys
+          deletes = int(sys.argv[1])
+          total = int(sys.argv[2])
+          print(round(deletes / max(1, total), 3))
+          PY
+          )
           fi
           
           echo "Deletions: $DELETES / $TOTAL (ratio $RATIO) • Protected deletions: $PROTECTED"
