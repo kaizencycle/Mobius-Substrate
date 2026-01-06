@@ -65,15 +65,15 @@ jobs:
             turbo-
 
       - name: Build (affected only)
-        run: npm run turbo run build --filter=...[HEAD^]
+        run: npx turbo run build --filter=...[HEAD^]
 
       - name: Lint & Typecheck
         run: |
-          npm run turbo run lint --filter=...[HEAD^]
-          npm run turbo run type-check --filter=...[HEAD^]
+          npx turbo run lint --filter=...[HEAD^]
+          npx turbo run type-check --filter=...[HEAD^]
 
       - name: Test
-        run: npm run turbo run test --filter=...[HEAD^]
+        run: npx turbo run test --filter=...[HEAD^]
 
       - name: Upload build artifacts
         if: always()
@@ -275,7 +275,7 @@ jobs:
         env:
           DATABASE_URL: postgresql://postgres:postgres@localhost:5432/mobius_test
         run: |
-          npm run turbo run test:integration --filter=...[HEAD^] || echo "No integration tests found"
+          npx turbo run test:integration --filter=...[HEAD^] || echo "No integration tests found"
 
   # ============================================
   # CI Summary
