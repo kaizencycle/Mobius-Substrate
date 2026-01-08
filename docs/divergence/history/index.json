@@ -1,6 +1,6 @@
 {
   "repo": "kaizencycle/Mobius-Substrate",
-  "updated_at": "2026-01-08T06:27:01Z",
+  "updated_at": "2026-01-08T12:35:29Z",
   "timeline": [
     {
       "repo": "kaizencycle/Mobius-Systems",
@@ -975,6 +975,19 @@
     {
       "repo": "kaizencycle/Mobius-Substrate",
       "generated_at": "2026-01-08T06:27:01Z",
+      "open_pr_count": 0,
+      "counts": {
+        "high": 0,
+        "medium": 0,
+        "low": 0,
+        "unknown": 0
+      },
+      "emergency_count": 0,
+      "pr_sig": {}
+    },
+    {
+      "repo": "kaizencycle/Mobius-Substrate",
+      "generated_at": "2026-01-08T12:35:29Z",
       "open_pr_count": 0,
       "counts": {
         "high": 0,
