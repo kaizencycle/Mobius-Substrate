@@ -47,7 +47,61 @@ jobs:
 
       - name: Check for catalog drift
         run: |
-          if git diff --quiet --exit-code catalog/mobius_catalog.json; then
+          # Compare catalogs ignoring volatile fields (generated_at, commit)
+          # These fields change on every regeneration and should not cause drift failures
+          
+          # Extract the committed catalog (before regeneration)
+          git show HEAD:catalog/mobius_catalog.json > /tmp/committed_catalog.json 2>/dev/null || echo '{}' > /tmp/committed_catalog.json
+          
+          # Create normalized versions without volatile fields
+          node -e "
+            const fs = require('fs');
+            const normalize = (obj) => {
+              const copy = JSON.parse(JSON.stringify(obj));
+              delete copy.generated_at;
+              if (copy.repo) delete copy.repo.commit;
+              return copy;
+            };
+            
+            const committed = JSON.parse(fs.readFileSync('/tmp/committed_catalog.json', 'utf8'));
+            const regenerated = JSON.parse(fs.readFileSync('catalog/mobius_catalog.json', 'utf8'));
+            
+            const committedNorm = normalize(committed);
+            const regeneratedNorm = normalize(regenerated);
+            
+            // Compare normalized versions
+            const match = JSON.stringify(committedNorm) === JSON.stringify(regeneratedNorm);
+            
+            if (match) {
+              console.log('CATALOG_STATUS=up_to_date');
+            } else {
+              console.log('CATALOG_STATUS=drifted');
+              
+              // Show what actually changed (excluding volatile fields)
+              const findDiffs = (a, b, path = '') => {
+                if (typeof a !== typeof b) return [path + ': type mismatch'];
+                if (Array.isArray(a) && Array.isArray(b)) {
+                  if (a.length !== b.length) return [path + ': array length ' + a.length + ' vs ' + b.length];
+                  return a.flatMap((_, i) => findDiffs(a[i], b[i], path + '[' + i + ']'));
+                }
+                if (typeof a === 'object' && a !== null) {
+                  const keys = new Set([...Object.keys(a), ...Object.keys(b)]);
+                  return [...keys].flatMap(k => findDiffs(a[k], b[k], path ? path + '.' + k : k));
+                }
+                if (a !== b) return [path + ': ' + JSON.stringify(a) + ' → ' + JSON.stringify(b)];
+                return [];
+              };
+              
+              const diffs = findDiffs(committedNorm, regeneratedNorm).slice(0, 20);
+              if (diffs.length > 0) {
+                console.log('DIFFS=' + JSON.stringify(diffs));
+              }
+            }
+          " > /tmp/catalog_check_result.txt
+          
+          source /tmp/catalog_check_result.txt
+          
+          if [ "$CATALOG_STATUS" = "up_to_date" ]; then
             echo ""
             echo "╔══════════════════════════════════════════════════════════════╗"
             echo "║  ✅ CATALOG IS UP TO DATE                                    ║"
@@ -60,6 +114,7 @@ jobs:
             echo "╠══════════════════════════════════════════════════════════════╣"
             echo "║                                                              ║"
             echo "║  The catalog/mobius_catalog.json file has drifted.           ║"
+            echo "║  (Ignoring volatile fields: generated_at, repo.commit)       ║"
             echo "║                                                              ║"
             echo "║  To fix, run:                                                ║"
             echo "║                                                              ║"
@@ -67,14 +122,10 @@ jobs:
             echo "║    git add catalog/mobius_catalog.json                       ║"
             echo "║    git commit --amend --no-edit                              ║"
             echo "║                                                              ║"
-            echo "║  Or simply:                                                  ║"
-            echo "║                                                              ║"
-            echo "║    npm run export:catalog && git add -A && git commit -m ... ║"
-            echo "║                                                              ║"
             echo "╚══════════════════════════════════════════════════════════════╝"
             echo ""
-            echo "Diff:"
-            git diff -- catalog/mobius_catalog.json | head -100
+            echo "Meaningful changes detected:"
+            echo "$DIFFS" | node -e "const d=require('fs').readFileSync(0,'utf8');try{JSON.parse(d).forEach(x=>console.log('  - '+x))}catch{console.log(d)}"
             exit 1
           fi
 
