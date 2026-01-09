@@ -234,11 +234,19 @@ class ConsensusEngine:
         
         # Simulate varied responses based on scope
         is_governance = "governance" in self.request.scope or "code_ownership" in self.request.scope
+        is_specs = "specs" in self.request.scope
+        is_ci_only = self.request.scope == ["ci"] or (
+            len(self.request.scope) == 1 and "ci" in self.request.scope
+        )
         
-        # Governance changes get more scrutiny
-        if is_governance:
+        # Governance and spec changes get more scrutiny
+        if is_governance or is_specs:
             stance_weights = [0.5, 0.35, 0.15]  # More conditionals/opposes
             base_confidence = 0.70
+        elif is_ci_only:
+            # Pure CI/workflow fixes are lower risk - more lenient
+            stance_weights = [0.85, 0.12, 0.03]  # Mostly supports
+            base_confidence = 0.85
         else:
             stance_weights = [0.75, 0.20, 0.05]  # More supports
             base_confidence = 0.80
