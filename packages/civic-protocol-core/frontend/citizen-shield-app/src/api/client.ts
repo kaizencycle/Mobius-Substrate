@@ -1,4 +1,4 @@
-export const BASE_URL = import.meta.env.VITE_LAB6_API || 'https://lab6-proof-api.onrender.com'
+export const BASE_URL = import.meta.env.VITE_LAB6_API || 'https://lab6-proof-api.onrender.com';
 
 async function http<T>(path: string, opts: RequestInit = {}): Promise<T> {
   const res = await fetch(`${BASE_URL}${path}`, {
