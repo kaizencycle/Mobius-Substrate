@@ -42,10 +42,12 @@ jobs:
     permissions:
       contents: read
       id-token: write
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 2  # Need parent commit for turbo --filter=...[HEAD^]
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -259,6 +261,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 2  # Need parent commit for turbo --filter=...[HEAD^]
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
