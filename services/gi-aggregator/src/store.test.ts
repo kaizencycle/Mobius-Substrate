@@ -5,7 +5,7 @@
  * 
  * @module gi-aggregator/tests/store
  */
-import { describe, it, beforeEach } from 'node:test';
+import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
 
 // We need to test the store module, but it has internal state

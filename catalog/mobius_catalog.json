@@ -1,6 +1,6 @@
 {
   "mobius_catalog_version": "1.0.0",
-  "generated_at": "2026-01-10T20:31:30.663Z",
+  "generated_at": "2026-01-10T22:17:15.204Z",
   "repo": {
     "name": "Mobius-Substrate",
     "url": "https://github.com/kaizencycle/Mobius-Substrate",
@@ -9,7 +9,7 @@
   },
   "stats": {
     "epiconCount": 3,
-    "docCount": 745
+    "docCount": 746
   },
   "epicons": [
     {
@@ -591,6 +591,14 @@
       "category": "03-GOVERNANCE-AND-POLICY",
       "tags": [],
       "content_hash": "sha256:79991418430b30a5035e890c74cefdc30e08efdedf1fee2c4777d86d5e43c6e4",
+      "summary": ""
+    },
+    {
+      "path": "docs/03-GOVERNANCE-AND-POLICY/governance/CONSENSUS_SCOPE_RULES.md",
+      "title": "EPICON-03 Consensus Scope Rules",
+      "category": "03-GOVERNANCE-AND-POLICY",
+      "tags": [],
+      "content_hash": "sha256:cd06787b954b482ed7bd99273e03084f122c93ddf2d7687ffca601b41beceb80",
       "summary": ""
     },
     {
