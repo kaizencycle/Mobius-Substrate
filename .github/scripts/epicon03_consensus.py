@@ -243,24 +243,25 @@ class ConsensusEngine:
             len(self.request.scope) == 1 and "docs" in self.request.scope
         )
         
-        # Governance changes get most scrutiny
+        # Governance changes get most scrutiny (highest priority)
         if is_governance:
             stance_weights = [0.5, 0.35, 0.15]  # More conditionals/opposes
             base_confidence = 0.70
-        # Specs without governance get moderate scrutiny
-        elif is_specs and not is_docs_only:
-            stance_weights = [0.65, 0.25, 0.10]  # Moderate scrutiny
-            base_confidence = 0.75
-        # CI-only or docs-only changes are lower risk
-        elif is_ci_only or is_docs_only:
+        # Docs scope gets lenient treatment (priority over specs/ci)
+        elif is_docs:
+            # Pure docs or docs with ci/specs = lenient
+            stance_weights = [0.88, 0.10, 0.02]  # Very supportive for docs
+            base_confidence = 0.85
+        # CI-only changes are lower risk
+        elif is_ci_only:
             stance_weights = [0.85, 0.12, 0.03]  # Mostly supports
             base_confidence = 0.85
-        # Docs mixed with other scopes
-        elif is_docs:
-            stance_weights = [0.80, 0.15, 0.05]  # Lenient
-            base_confidence = 0.82
+        # Specs without docs get moderate scrutiny
+        elif is_specs:
+            stance_weights = [0.65, 0.25, 0.10]  # Moderate scrutiny
+            base_confidence = 0.75
         else:
-            stance_weights = [0.75, 0.20, 0.05]  # More supports
+            stance_weights = [0.75, 0.20, 0.05]  # Default
             base_confidence = 0.80
         
         # Randomize with weights
