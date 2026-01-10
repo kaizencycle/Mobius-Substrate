@@ -1,6 +1,6 @@
 {
   "mobius_catalog_version": "1.0.0",
-  "generated_at": "2026-01-10T19:53:59.866Z",
+  "generated_at": "2026-01-10T20:00:46.207Z",
   "repo": {
     "name": "Mobius-Substrate",
     "url": "https://github.com/kaizencycle/Mobius-Substrate",
@@ -5933,7 +5933,7 @@
         "safe-stop",
         "ledger"
       ],
-      "content_hash": "sha256:17f7f2aa76da0c84f9f66ee9f494df810a086debf132b004347605e0f83b3613",
+      "content_hash": "sha256:cbbfc031e90505ededd00f05520466678fadcc498eac8e4c1302d7b62147afbe",
       "summary": "Defines the canonical DVA runtime loop for multi-agent cognitive processing with safe-stop guardrails"
     },
     {

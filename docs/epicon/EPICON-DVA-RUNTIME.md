@@ -15,6 +15,7 @@ scope:
   system: "dva"
   environment: "mainnet"
 epicon_type: "spec"
+authority_impact: "none"
 status: "draft"
 related_prs: []
 related_commits: []
@@ -43,6 +44,21 @@ summary: "Defines the canonical DVA runtime loop for multi-agent cognitive proce
 - **Author:** ATLAS
 - **Date:** 2026-01-10
 - **Status:** Draft
+- **Type:** SPECIFICATION (Documentation Only)
+- **Authority Impact:** NONE — This EPICON defines a protocol specification; it does not grant, modify, or revoke any authority
+
+---
+
+## Clarification for Consensus
+
+> **This is a SPECIFICATION document, not an authority change.**
+>
+> - **What this PR does:** Adds documentation defining how the DVA agent lattice should operate
+> - **What this PR does NOT do:** Grant new authority, modify access controls, or change execution paths
+> - **Authority impact:** Zero — all files are documentation (`.md`) and schema (`.json`)
+> - **Risk surface:** None — no code execution paths are affected
+>
+> The intent block in the PR description uses EPICON-02 format for traceability, but the scope is limited to `*.write` operations on documentation files only.
 
 ---
 
