@@ -57,7 +57,10 @@ jobs:
               - '.github/workflows/**'
             specs:
               - 'specs/**'
+            docs:
+              - 'docs/**'
               - 'schemas/**'
+              - '*.md'
 
       - name: Determine if consensus required
         id: check
@@ -78,6 +81,11 @@ jobs:
           if [ "${{ steps.changed.outputs.specs }}" == "true" ]; then
             REQUIRES=true
             SCOPE="${SCOPE:+$SCOPE,}specs"
+          fi
+          
+          if [ "${{ steps.changed.outputs.docs }}" == "true" ]; then
+            REQUIRES=true
+            SCOPE="${SCOPE:+$SCOPE,}docs"
           fi
           
           echo "requires_consensus=$REQUIRES" >> $GITHUB_OUTPUT
