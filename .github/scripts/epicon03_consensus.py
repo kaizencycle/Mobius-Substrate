@@ -283,22 +283,38 @@ class ConsensusEngine:
         })
         ej_hash = f"sha256:{hashlib.sha256(ej_content.encode()).hexdigest()}"
         
-        # Generate conditions/objections based on stance
+        # Generate conditions/objections based on stance and scope
         conditions = []
         objections = []
         questions = []
         
+        # Docs-only scope has simpler conditions (no authority change questions)
+        is_docs_scope = "docs" in self.request.scope and "governance" not in self.request.scope
+        
         if stance == Stance.CONDITIONAL:
-            conditions = [
-                "Ensure all required fields are present in intent publication",
-                "Verify scope alignment with changed files"
-            ]
-            questions = ["Please clarify the justification for this authority change."]
+            if is_docs_scope:
+                conditions = [
+                    "Verify documentation accuracy",
+                    "Confirm no unintended scope expansion"
+                ]
+                # No authority change questions for documentation
+            else:
+                conditions = [
+                    "Ensure all required fields are present in intent publication",
+                    "Verify scope alignment with changed files"
+                ]
+                questions = ["Please clarify the justification for this authority change."]
         elif stance == Stance.OPPOSE:
-            objections = [
-                "Intent publication missing critical fields",
-                "Scope exceeds declared authority"
-            ]
+            if is_docs_scope:
+                objections = [
+                    "Documentation may be inaccurate or misleading",
+                    "Scope unclear or potentially expanding"
+                ]
+            else:
+                objections = [
+                    "Intent publication missing critical fields",
+                    "Scope exceeds declared authority"
+                ]
         
         # Anchor types
         anchor_types = ["policy", "practice"]
