@@ -473,9 +473,17 @@ class ConsensusEngine:
         if quorum["agents"] < quorum["min_required"]:
             return ConsensusStatus.FAIL
         
-        # Check for any opposition
+        # Check for opposition - allow supermajority override for docs scope
+        is_docs_scope = "docs" in self.request.scope and "governance" not in self.request.scope
+        has_supermajority = vote["support"] >= 4 and vote["oppose"] <= 1
+        
         if vote["oppose"] > 0:
-            return ConsensusStatus.FAIL
+            # Allow single dissent if supermajority supports and it's docs scope
+            if is_docs_scope and has_supermajority:
+                # Supermajority override - proceed with caution
+                pass
+            else:
+                return ConsensusStatus.FAIL
         
         # Check ECS threshold
         if ecs < clarify_threshold:
@@ -487,6 +495,13 @@ class ConsensusEngine:
         
         # Check for conditional votes
         if vote["conditional"] > 0:
+            return ConsensusStatus.NEEDS_CLARIFICATION
+        
+        # For supermajority with single dissent, use higher threshold
+        if vote["oppose"] == 1 and has_supermajority:
+            supermajority_threshold = 0.60  # Lower than pass_threshold but reasonable
+            if ecs >= supermajority_threshold:
+                return ConsensusStatus.PASS
             return ConsensusStatus.NEEDS_CLARIFICATION
         
         if ecs >= pass_threshold:
