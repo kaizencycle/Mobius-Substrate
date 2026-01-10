@@ -7,7 +7,7 @@
     "build": "tsc -p tsconfig.json",
     "start": "node dist/index.js",
     "dev": "tsx watch src/index.ts",
-    "test": "node --experimental-vm-modules --import tsx --test 'src/**/*.test.ts'"
+    "test": "node --experimental-vm-modules --import tsx --test src/app.test.ts src/metrics.test.ts src/store.test.ts"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "1.25.1",
