@@ -239,9 +239,6 @@ class ConsensusEngine:
         is_ci_only = self.request.scope == ["ci"] or (
             len(self.request.scope) == 1 and "ci" in self.request.scope
         )
-        is_docs_only = self.request.scope == ["docs"] or (
-            len(self.request.scope) == 1 and "docs" in self.request.scope
-        )
         
         # Governance changes get most scrutiny (highest priority)
         if is_governance:
