@@ -1,6 +1,6 @@
 {
   "mobius_catalog_version": "1.0.0",
-  "generated_at": "2026-01-09T20:00:50.633Z",
+  "generated_at": "2026-01-10T20:31:30.663Z",
   "repo": {
     "name": "Mobius-Substrate",
     "url": "https://github.com/kaizencycle/Mobius-Substrate",
@@ -9,7 +9,7 @@
   },
   "stats": {
     "epiconCount": 3,
-    "docCount": 743
+    "docCount": 745
   },
   "epicons": [
     {
@@ -759,6 +759,14 @@
       "category": "04-TECHNICAL-ARCHITECTURE",
       "tags": [],
       "content_hash": "sha256:b2583f82fa4c31ded69357ea2242976194552bee083acbd9e87f96cc210176fd",
+      "summary": ""
+    },
+    {
+      "path": "docs/04-TECHNICAL-ARCHITECTURE/dva/DVA_RUNTIME_PROTOCOL.md",
+      "title": "DVA Runtime Protocol",
+      "category": "04-TECHNICAL-ARCHITECTURE",
+      "tags": [],
+      "content_hash": "sha256:17a084443334138d3997599766202e171edf643487764dcb8fb0e0266761bfd8",
       "summary": ""
     },
     {
@@ -5870,7 +5878,7 @@
       "title": "Divergence Dashboard",
       "category": "divergence",
       "tags": [],
-      "content_hash": "sha256:4ed665a94aabbab1ba48ce60b952843bedef10c1e17cf611ee75b64d1f0b5b4c",
+      "content_hash": "sha256:2c4f4f58aebed0aabfc988e30aea8cf8756edf778ab41b4a36b2dfa5f4c70204",
       "summary": ""
     },
     {
@@ -5912,6 +5920,21 @@
       "tags": [],
       "content_hash": "sha256:1d23347e1b44a843d2197c88a31e4192c506b0893c2c25a3ea816e508686fabe",
       "summary": ""
+    },
+    {
+      "path": "docs/epicon/EPICON-DVA-RUNTIME.md",
+      "title": "DVA Runtime Protocol - Multi-Agent Cognitive Pipeline",
+      "category": "epicon",
+      "tags": [
+        "dva",
+        "runtime",
+        "agents",
+        "integrity",
+        "safe-stop",
+        "ledger"
+      ],
+      "content_hash": "sha256:cbbfc031e90505ededd00f05520466678fadcc498eac8e4c1302d7b62147afbe",
+      "summary": "Defines the canonical DVA runtime loop for multi-agent cognitive processing with safe-stop guardrails"
     },
     {
       "path": "docs/epicon/EXPLAIN_FAILURE.md",

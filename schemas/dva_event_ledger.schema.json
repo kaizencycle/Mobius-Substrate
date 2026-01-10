@@ -1,0 +1,370 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://mobius.systems/schemas/dva_event_ledger.schema.json",
+  "title": "DVA Event Ledger Record",
+  "description": "Schema for DVA Runtime Protocol event records written to the Mobius Event Ledger",
+  "type": "object",
+  "required": [
+    "event_id",
+    "timestamp",
+    "cycle_id",
+    "agent_origin",
+    "summary",
+    "integrity_domains",
+    "actions"
+  ],
+  "properties": {
+    "event_id": {
+      "type": "string",
+      "description": "Unique identifier for this event",
+      "pattern": "^dva_[a-z0-9]{8,32}$"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO-8601 timestamp of event creation"
+    },
+    "cycle_id": {
+      "type": "string",
+      "description": "Mobius cycle identifier",
+      "pattern": "^C-[0-9]+$"
+    },
+    "agent_origin": {
+      "type": "string",
+      "description": "The agent that initiated this event",
+      "enum": ["ECHO", "ZEUS", "HERMES", "ATLAS", "JADE", "EVE"]
+    },
+    "dva_tier": {
+      "type": "string",
+      "description": "DVA tier at which this event was processed",
+      "enum": ["LITE", "ONE", "FULL", "HIVE"]
+    },
+    "summary": {
+      "type": "string",
+      "description": "1-3 sentence summary of the event",
+      "minLength": 10,
+      "maxLength": 500
+    },
+    "claims": {
+      "type": "array",
+      "description": "Claims made in this event with confidence and evidence",
+      "items": {
+        "type": "object",
+        "required": ["claim", "confidence"],
+        "properties": {
+          "claim": {
+            "type": "string",
+            "description": "The claim being made",
+            "minLength": 5
+          },
+          "confidence": {
+            "type": "string",
+            "description": "Confidence level in this claim",
+            "enum": ["low", "medium", "high"]
+          },
+          "evidence": {
+            "type": "array",
+            "description": "URLs or references supporting this claim",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "integrity_domains": {
+      "type": "object",
+      "description": "Scoring across the five Mobius Integrity Index domains",
+      "required": [
+        "incentive_drift",
+        "narrative_compensation",
+        "public_risk_socialization",
+        "institutional_memory_failure",
+        "coercive_stability"
+      ],
+      "properties": {
+        "incentive_drift": {
+          "$ref": "#/definitions/domain_score"
+        },
+        "narrative_compensation": {
+          "$ref": "#/definitions/domain_score"
+        },
+        "public_risk_socialization": {
+          "$ref": "#/definitions/domain_score"
+        },
+        "institutional_memory_failure": {
+          "$ref": "#/definitions/domain_score"
+        },
+        "coercive_stability": {
+          "$ref": "#/definitions/domain_score"
+        }
+      }
+    },
+    "handoffs": {
+      "type": "array",
+      "description": "Cross-agent handoffs during this event",
+      "items": {
+        "type": "object",
+        "required": ["from", "to", "reason"],
+        "properties": {
+          "from": {
+            "type": "string",
+            "description": "Agent handing off",
+            "enum": ["ECHO", "ZEUS", "HERMES", "ATLAS", "JADE", "EVE"]
+          },
+          "to": {
+            "type": "string",
+            "description": "Agent receiving handoff",
+            "enum": ["ECHO", "ZEUS", "HERMES", "ATLAS", "JADE", "EVE"]
+          },
+          "reason": {
+            "type": "string",
+            "description": "Reason for the handoff",
+            "minLength": 5
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "When the handoff occurred"
+          }
+        }
+      }
+    },
+    "actions": {
+      "type": "array",
+      "description": "Actions taken as a result of this event",
+      "items": {
+        "type": "string",
+        "enum": [
+          "publish",
+          "log",
+          "safe_stop",
+          "warn",
+          "defer",
+          "request_atlas",
+          "request_jade",
+          "request_eve",
+          "escalate_human"
+        ]
+      },
+      "minItems": 1
+    },
+    "safe_stop": {
+      "type": "object",
+      "description": "Safe-stop details if triggered",
+      "properties": {
+        "triggered": {
+          "type": "boolean",
+          "description": "Whether safe-stop was triggered"
+        },
+        "trigger_reason": {
+          "type": "string",
+          "description": "Why safe-stop was triggered",
+          "enum": [
+            "thin_evidence_high_stakes",
+            "unverifiable_sources",
+            "narrative_velocity",
+            "identity_pressure",
+            "engagement_loop"
+          ]
+        },
+        "action_taken": {
+          "type": "string",
+          "description": "What safe-stop action was taken",
+          "enum": [
+            "log_only",
+            "defer",
+            "request_atlas",
+            "request_jade",
+            "escalate_human"
+          ]
+        },
+        "resolution_notes": {
+          "type": "string",
+          "description": "Notes on how the safe-stop was resolved"
+        }
+      }
+    },
+    "sources": {
+      "type": "array",
+      "description": "Source URLs and references",
+      "items": {
+        "type": "string"
+      }
+    },
+    "notes": {
+      "type": "string",
+      "description": "What would change this assessment"
+    },
+    "gi_score": {
+      "type": "number",
+      "description": "Overall GI score for this event",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "consensus": {
+      "type": "object",
+      "description": "Consensus details for DVA.FULL and DVA.HIVE",
+      "properties": {
+        "required": {
+          "type": "boolean",
+          "description": "Whether consensus was required"
+        },
+        "achieved": {
+          "type": "boolean",
+          "description": "Whether consensus was achieved"
+        },
+        "agreement_rate": {
+          "type": "number",
+          "description": "Agreement rate among agents",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "participating_agents": {
+          "type": "array",
+          "description": "Agents that participated in consensus",
+          "items": {
+            "type": "string",
+            "enum": ["ECHO", "ZEUS", "HERMES", "ATLAS", "JADE", "EVE"]
+          }
+        },
+        "dissenting_agents": {
+          "type": "array",
+          "description": "Agents that dissented",
+          "items": {
+            "type": "object",
+            "properties": {
+              "agent": {
+                "type": "string",
+                "enum": ["ECHO", "ZEUS", "HERMES", "ATLAS", "JADE", "EVE"]
+              },
+              "reason": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "human_review": {
+      "type": "object",
+      "description": "Human review details if required",
+      "properties": {
+        "required": {
+          "type": "boolean",
+          "description": "Whether human review was required"
+        },
+        "completed": {
+          "type": "boolean",
+          "description": "Whether human review was completed"
+        },
+        "reviewer_id": {
+          "type": "string",
+          "description": "Identifier of the human reviewer"
+        },
+        "approved": {
+          "type": "boolean",
+          "description": "Whether the human approved the action"
+        },
+        "notes": {
+          "type": "string",
+          "description": "Reviewer notes"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When human review was completed"
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Additional metadata",
+      "properties": {
+        "version": {
+          "type": "string",
+          "description": "Schema version used"
+        },
+        "environment": {
+          "type": "string",
+          "description": "Environment (testnet/mainnet)",
+          "enum": ["testnet", "mainnet", "sim"]
+        },
+        "hash": {
+          "type": "string",
+          "description": "Content hash for verification"
+        }
+      }
+    }
+  },
+  "definitions": {
+    "domain_score": {
+      "type": "object",
+      "description": "Score for a single integrity domain",
+      "required": ["signal", "confidence"],
+      "properties": {
+        "signal": {
+          "type": "integer",
+          "description": "Signal strength (0-5)",
+          "minimum": 0,
+          "maximum": 5
+        },
+        "confidence": {
+          "type": "string",
+          "description": "Confidence in this score",
+          "enum": ["low", "medium", "high"]
+        },
+        "evidence": {
+          "type": "array",
+          "description": "Evidence supporting this score",
+          "items": {
+            "type": "string"
+          }
+        },
+        "open_questions": {
+          "type": "array",
+          "description": "Questions that could change this score",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "examples": [
+    {
+      "event_id": "dva_abc123def456",
+      "timestamp": "2026-01-10T12:00:00Z",
+      "cycle_id": "C-187",
+      "agent_origin": "ECHO",
+      "dva_tier": "ONE",
+      "summary": "Market anomaly detected in tech sector; routing to ZEUS for threshold analysis.",
+      "claims": [
+        {
+          "claim": "Unusual trading volume spike in major tech stocks",
+          "confidence": "medium",
+          "evidence": ["https://example.com/market-data"]
+        }
+      ],
+      "integrity_domains": {
+        "incentive_drift": { "signal": 2, "confidence": "medium" },
+        "narrative_compensation": { "signal": 1, "confidence": "low" },
+        "public_risk_socialization": { "signal": 3, "confidence": "medium" },
+        "institutional_memory_failure": { "signal": 0, "confidence": "high" },
+        "coercive_stability": { "signal": 0, "confidence": "high" }
+      },
+      "handoffs": [
+        {
+          "from": "ECHO",
+          "to": "ZEUS",
+          "reason": "Threshold proximity detected",
+          "timestamp": "2026-01-10T12:00:05Z"
+        }
+      ],
+      "actions": ["log", "warn"],
+      "sources": ["https://example.com/market-data"],
+      "notes": "Would change assessment if volume normalizes within 24h",
+      "gi_score": 0.94
+    }
+  ]
+}

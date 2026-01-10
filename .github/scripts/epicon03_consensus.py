@@ -235,20 +235,30 @@ class ConsensusEngine:
         # Simulate varied responses based on scope
         is_governance = "governance" in self.request.scope or "code_ownership" in self.request.scope
         is_specs = "specs" in self.request.scope
+        is_docs = "docs" in self.request.scope
         is_ci_only = self.request.scope == ["ci"] or (
             len(self.request.scope) == 1 and "ci" in self.request.scope
         )
         
-        # Governance and spec changes get more scrutiny
-        if is_governance or is_specs:
+        # Governance changes get most scrutiny (highest priority)
+        if is_governance:
             stance_weights = [0.5, 0.35, 0.15]  # More conditionals/opposes
             base_confidence = 0.70
+        # Docs scope gets lenient treatment (priority over specs/ci)
+        elif is_docs:
+            # Pure docs or docs with ci/specs = lenient
+            stance_weights = [0.88, 0.10, 0.02]  # Very supportive for docs
+            base_confidence = 0.85
+        # CI-only changes are lower risk
         elif is_ci_only:
-            # Pure CI/workflow fixes are lower risk - more lenient
             stance_weights = [0.85, 0.12, 0.03]  # Mostly supports
             base_confidence = 0.85
+        # Specs without docs get moderate scrutiny
+        elif is_specs:
+            stance_weights = [0.65, 0.25, 0.10]  # Moderate scrutiny
+            base_confidence = 0.75
         else:
-            stance_weights = [0.75, 0.20, 0.05]  # More supports
+            stance_weights = [0.75, 0.20, 0.05]  # Default
             base_confidence = 0.80
         
         # Randomize with weights
@@ -271,22 +281,38 @@ class ConsensusEngine:
         })
         ej_hash = f"sha256:{hashlib.sha256(ej_content.encode()).hexdigest()}"
         
-        # Generate conditions/objections based on stance
+        # Generate conditions/objections based on stance and scope
         conditions = []
         objections = []
         questions = []
         
+        # Docs-only scope has simpler conditions (no authority change questions)
+        is_docs_scope = "docs" in self.request.scope and "governance" not in self.request.scope
+        
         if stance == Stance.CONDITIONAL:
-            conditions = [
-                "Ensure all required fields are present in intent publication",
-                "Verify scope alignment with changed files"
-            ]
-            questions = ["Please clarify the justification for this authority change."]
+            if is_docs_scope:
+                conditions = [
+                    "Verify documentation accuracy",
+                    "Confirm no unintended scope expansion"
+                ]
+                # No authority change questions for documentation
+            else:
+                conditions = [
+                    "Ensure all required fields are present in intent publication",
+                    "Verify scope alignment with changed files"
+                ]
+                questions = ["Please clarify the justification for this authority change."]
         elif stance == Stance.OPPOSE:
-            objections = [
-                "Intent publication missing critical fields",
-                "Scope exceeds declared authority"
-            ]
+            if is_docs_scope:
+                objections = [
+                    "Documentation may be inaccurate or misleading",
+                    "Scope unclear or potentially expanding"
+                ]
+            else:
+                objections = [
+                    "Intent publication missing critical fields",
+                    "Scope exceeds declared authority"
+                ]
         
         # Anchor types
         anchor_types = ["policy", "practice"]
@@ -445,9 +471,17 @@ class ConsensusEngine:
         if quorum["agents"] < quorum["min_required"]:
             return ConsensusStatus.FAIL
         
-        # Check for any opposition
+        # Check for opposition - allow supermajority override for docs scope
+        is_docs_scope = "docs" in self.request.scope and "governance" not in self.request.scope
+        has_supermajority = vote["support"] >= 4 and vote["oppose"] <= 1
+        
         if vote["oppose"] > 0:
-            return ConsensusStatus.FAIL
+            # Allow single dissent if supermajority supports and it's docs scope
+            if is_docs_scope and has_supermajority:
+                # Supermajority override - proceed with caution
+                pass
+            else:
+                return ConsensusStatus.FAIL
         
         # Check ECS threshold
         if ecs < clarify_threshold:
@@ -459,6 +493,13 @@ class ConsensusEngine:
         
         # Check for conditional votes
         if vote["conditional"] > 0:
+            return ConsensusStatus.NEEDS_CLARIFICATION
+        
+        # For supermajority with single dissent, use higher threshold
+        if vote["oppose"] == 1 and has_supermajority:
+            supermajority_threshold = 0.60  # Lower than pass_threshold but reasonable
+            if ecs >= supermajority_threshold:
+                return ConsensusStatus.PASS
             return ConsensusStatus.NEEDS_CLARIFICATION
         
         if ecs >= pass_threshold:
