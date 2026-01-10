@@ -9,7 +9,7 @@
     "dev": "tsx watch src/index.ts"
   },
   "dependencies": {
-    "@civic/integrity-units": "workspace:*",
+    "@civic/integrity-units": "*",
     "@modelcontextprotocol/sdk": "1.25.1",
     "eslint-config-next": "16.1.1",
     "ethers": "6.16.0",
