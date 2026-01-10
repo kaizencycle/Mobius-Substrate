@@ -7,7 +7,8 @@
     "build": "tsc -p tsconfig.json",
     "start": "node dist/index.js",
     "dev": "tsx watch src/index.ts",
-    "test": "echo 'No tests yet' && exit 0"
+    "test": "node --experimental-vm-modules --test dist/**/*.test.js",
+    "test:build": "tsc -p tsconfig.json && node --experimental-vm-modules --test dist/**/*.test.js"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "1.25.1",
