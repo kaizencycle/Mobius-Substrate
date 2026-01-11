@@ -1,0 +1,102 @@
+# Gitleaks Configuration for Mobius Substrate
+# Cycle: C-187
+# Purpose: Define secret scanning rules and allowlists
+
+title = "Mobius Gitleaks Configuration"
+
+[extend]
+# Use the default gitleaks config as a base
+useDefault = true
+
+# Allowlist paths that commonly contain false positives
+[allowlist]
+description = "Mobius-specific allowlist"
+
+# Files that are allowed to contain secret-like patterns
+paths = [
+    # Test files and fixtures
+    '''.*\.test\.ts$''',
+    '''.*\.test\.js$''',
+    '''.*\.spec\.ts$''',
+    '''.*\.spec\.js$''',
+    '''__tests__/.*''',
+    '''__mocks__/.*''',
+    
+    # Example and template files
+    '''.*\.example$''',
+    '''.*\.example\..*$''',
+    '''.*\.template$''',
+    '''.*\.template\..*$''',
+    '''\.env\.example$''',
+    
+    # Documentation
+    '''docs/.*\.md$''',
+    '''.*README\.md$''',
+    '''.*CHANGELOG\.md$''',
+    
+    # Package lock files (contain hashes, not secrets)
+    '''package-lock\.json$''',
+    '''pnpm-lock\.yaml$''',
+    '''yarn\.lock$''',
+    
+    # Schema files
+    '''schemas/.*\.json$''',
+    
+    # Generated files
+    '''dist/.*''',
+    '''\.next/.*''',
+    '''\.turbo/.*''',
+    '''node_modules/.*''',
+]
+
+# Regex patterns to allow (false positives)
+regexes = [
+    # Placeholder secrets in examples
+    '''(?i)(example|placeholder|dummy|test|fake|mock|sample)''',
+    
+    # Hash references (SHA256, etc)
+    '''sha256:[a-f0-9]{64}''',
+    '''sha512:[a-f0-9]{128}''',
+    
+    # UUIDs
+    '''[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}''',
+    
+    # Common test values
+    '''password123''',
+    '''secret123''',
+    '''test-api-key''',
+]
+
+# Commits to allow (historical commits with known false positives)
+commits = [
+    # Add specific commit SHAs if needed
+]
+
+# Custom rules for Mobius-specific patterns
+[[rules]]
+id = "mobius-attestation-hash"
+description = "Mobius attestation hashes (not secrets)"
+regex = '''attestation_hash['":\s]+[a-f0-9]{64}'''
+allowlist = { regexTarget = "match" }
+
+[[rules]]
+id = "mobius-epicon-id"
+description = "EPICON IDs (not secrets)"
+regex = '''epicon_id['":\s]+EPICON_[A-Z0-9_-]+'''
+allowlist = { regexTarget = "match" }
+
+[[rules]]
+id = "mobius-gi-baseline"
+description = "GI baseline values (not secrets)"
+regex = '''GI_BASELINE['":\s=]+[0-9.]+'''
+allowlist = { regexTarget = "match" }
+
+[[rules]]
+id = "mobius-merkle-root"
+description = "Merkle roots (cryptographic, not secrets)"
+regex = '''merkle_root['":\s]+sha256:[a-f0-9]{64}'''
+allowlist = { regexTarget = "match" }
+
+# Entropy threshold for generic secrets
+[rules.generic-api-key]
+entropy = 4.5  # Higher threshold to reduce false positives
