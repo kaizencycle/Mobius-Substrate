@@ -15,7 +15,11 @@
     "build": "tsc -p tsconfig.json",
     "clean": "rm -rf dist",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "test:config": "tsx test-config.ts",
+    "test:providers": "tsx test-providers.ts",
+    "test:consensus": "tsx test-consensus.ts",
+    "test:all": "npm run build && npm run test:config && npm run test:providers && npm run test:consensus"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.27.0",
@@ -30,6 +34,7 @@
   },
   "devDependencies": {
     "@types/node": "22.19.5",
+    "tsx": "4.21.0",
     "typescript": "^5.5.4",
     "vitest": "^2.1.1"
   },
