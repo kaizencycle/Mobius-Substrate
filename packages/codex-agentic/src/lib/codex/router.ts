@@ -5,26 +5,16 @@
 
 import { getAnchor } from '../../agents/anchors';
 import type { CodexRequest, CodexVote, DelibProof, ProviderId } from '../../types';
-import { callOpenAI } from './providers/openai';
-import { callAnthropic } from './providers/anthropic';
-import { callGemini } from './providers/gemini';
-import { callDeepSeek } from './providers/deepseek';
-import { callLocal } from './providers/local';
+import { PROVIDER_DISPATCH } from './providers/unified';
 import { giScoreFor, calculateAgreement, groupByTextSimilarity } from '../gi/metrics';
 import { attestToLedger } from '../gi/ledger';
 import { oaaLearn, hasOAAConsent } from '../discourse/oaa';
 import { generateTraceId } from '../util/hash';
 
 /**
- * Provider dispatch table
+ * Provider dispatch table (imported from unified provider interface)
  */
-const DISPATCH: Record<ProviderId, (p: string, r?: CodexRequest) => Promise<CodexVote>> = {
-  openai: callOpenAI,
-  anthropic: callAnthropic,
-  gemini: callGemini,
-  deepseek: callDeepSeek,
-  local: callLocal,
-};
+const DISPATCH = PROVIDER_DISPATCH;
 
 /**
  * Main deliberation function
