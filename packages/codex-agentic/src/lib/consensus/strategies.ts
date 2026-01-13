@@ -386,7 +386,6 @@ function calculateSimpleAgreement(votes: CodexVote[]): number {
 
   // Count unique outputs (simple text comparison)
   const outputs = votes.map((v) => v.output.toLowerCase().trim());
-  const unique = new Set(outputs);
 
   // Agreement = most common output / total votes
   const counts = new Map<string, number>();

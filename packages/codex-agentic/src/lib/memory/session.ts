@@ -26,7 +26,9 @@ export async function createSession(
   const session = await storage.createSession(sessionId, agent, tags);
   activeSessions.set(sessionId, session);
 
-  console.log(`[Memory] Created session ${sessionId} for ${agent}`);
+  console.log(
+    `[Memory] Created session ${sessionId} for "${String(agent).replace(/[\r\n]/g, '')}"`
+  );
 
   return session;
 }
