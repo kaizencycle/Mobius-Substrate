@@ -164,10 +164,10 @@ nav:
   - Start Here: START_HERE.md
   - Mobius-Systems Handbook:
       - Handbook Index: handbook/index.md
-      - Part I: Foundations: handbook/part-i-foundations.md
-      - Part II: Technical Architecture: handbook/part-ii-technical-architecture.md
-      - Part III: Implementation: handbook/part-iii-implementation.md
-      - Part IV: Future Vision: handbook/part-iv-future-vision.md
+      - "Part I: Foundations": handbook/part-i-foundations.md
+      - "Part II: Technical Architecture": handbook/part-ii-technical-architecture.md
+      - "Part III: Implementation": handbook/part-iii-implementation.md
+      - "Part IV: Future Vision": handbook/part-iv-future-vision.md
       - Appendices: handbook/appendices.md
   - Handbook (Legacy):
       - Overview: INDEX.md
