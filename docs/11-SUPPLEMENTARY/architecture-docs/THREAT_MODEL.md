@@ -229,7 +229,7 @@ We use the STRIDE framework to categorize threats:
 - ✅ Sandboxing for untrusted code
 - ✅ Code review requirements
 - ✅ Static analysis (CodeQL, Semgrep)
-- ✅ No eval() or similar dangerous functions
+- ✅ No `eval()` or similar dangerous functions
 
 **T14: Supply Chain Attacks**
 - **Description:** Compromised dependencies or build tools
