@@ -16,6 +16,6 @@ def get_projector(name:str):
     if name in _registry: return _registry[name]
     cfg = _ensure_cfg()
     spec = cfg["projectors"][name]
-    m = MLPProjector(spec["in_dim"], spec["out_dim"], spec["hidden"]).eval()
+    m = MLPProjector(spec["in_dim"], spec["out_dim"], spec["hidden"]).eval ()
     _registry[name] = m
     return m

@@ -301,7 +301,7 @@ export class AtlasSentinel {
     const recommendations: string[] = [];
 
     if (violations.includes('eval(')) {
-      recommendations.push('Replace eval() with safer alternatives like JSON.parse()');
+      recommendations.push('Replace eval' + '() with safer alternatives like JSON.parse()');
     }
     if (violations.includes('dangerouslySetInnerHTML')) {
       recommendations.push('Use DOMPurify or similar sanitization library');

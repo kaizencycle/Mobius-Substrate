@@ -2,11 +2,48 @@
  * Tests for Codex Router
  */
 
-import { describe, it, expect, beforeAll } from 'vitest';
+import { describe, it, expect, vi, afterEach } from 'vitest';
 import { codexDeliberate } from '../src/lib/codex/router';
 import { getAnchor } from '../src/agents/anchors';
 
+// Mock the unified provider module
+vi.mock('../src/lib/codex/providers/unified', () => {
+  return {
+    PROVIDER_DISPATCH: {
+      anthropic: async (prompt: string) => ({
+        provider: 'anthropic',
+        output: 'Test response from Anthropic',
+        meta: { model: 'claude-test', tokens: 100 },
+      }),
+      openai: async (prompt: string) => ({
+        provider: 'openai',
+        output: 'Test response from OpenAI',
+        meta: { model: 'gpt-test', tokens: 100 },
+      }),
+      gemini: async (prompt: string) => ({
+        provider: 'gemini',
+        output: 'Test response from Gemini',
+        meta: { model: 'gemini-test', tokens: 100 },
+      }),
+      deepseek: async (prompt: string) => ({
+        provider: 'deepseek',
+        output: 'Test response from DeepSeek',
+        meta: { model: 'deepseek-test', tokens: 100 },
+      }),
+      local: async (prompt: string) => ({
+        provider: 'local',
+        output: 'Test response from Local',
+        meta: { model: 'local-test', tokens: 100 },
+      }),
+    },
+  };
+});
+
 describe('Codex Router', () => {
+  afterEach(() => {
+    vi.clearAllMocks();
+  });
+
   it('should get AUREA stability anchor', () => {
     const anchor = getAnchor('AUREA');
     expect(anchor).toBeDefined();
