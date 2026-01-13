@@ -236,3 +236,191 @@ export interface AgentAnalytics {
   totalSessions: number;
   avgDeliberationsPerSession: number;
 }
+
+// ============================================================================
+// Phase 3: Enhanced Deliberation & Consensus Modes
+// ============================================================================
+
+/**
+ * Consensus mode determines how agreement is calculated and winner selected
+ */
+export type ConsensusMode =
+  | 'simple'           // Default: Largest agreement group (simple majority)
+  | 'unanimous'        // All providers must agree (100%)
+  | 'supermajority'    // Configurable threshold (e.g., 66%, 75%)
+  | 'weighted'         // Weight by provider historical performance
+  | 'quorum'           // Minimum participation threshold
+  | 'ranked'           // Ranked-choice voting
+  | 'veto';            // Any provider can veto (require consensus)
+
+/**
+ * Deliberation strategy determines how providers are invoked
+ */
+export type DeliberationStrategy =
+  | 'parallel'         // Default: All providers simultaneously
+  | 'sequential'       // One at a time, building context
+  | 'debate'           // Providers critique each other
+  | 'multi-round'      // Multiple iterations for refinement
+  | 'cascade'          // Fallback chain with early exit
+  | 'tournament';      // Pairwise elimination
+
+/**
+ * Consensus configuration
+ */
+export interface ConsensusConfig {
+  mode: ConsensusMode;
+
+  // Supermajority threshold (0-1), e.g., 0.66 for 2/3 majority
+  threshold?: number;
+
+  // Minimum quorum (0-1), e.g., 0.5 for 50% participation
+  quorum?: number;
+
+  // Enable weighted voting based on historical performance
+  useWeights?: boolean;
+
+  // Weight factors for weighted mode
+  weights?: {
+    agreement: number;    // Weight by past agreement (default: 0.4)
+    giScore: number;      // Weight by past GI (default: 0.4)
+    errorRate: number;    // Weight by error rate (default: 0.2)
+  };
+
+  // Allow tie-breaking
+  allowTieBreak?: boolean;
+  tieBreakStrategy?: 'random' | 'highest-gi' | 'lowest-cost' | 'fastest';
+}
+
+/**
+ * Deliberation configuration
+ */
+export interface DeliberationConfig {
+  strategy: DeliberationStrategy;
+
+  // Max rounds for multi-round deliberation
+  maxRounds?: number;
+
+  // Early exit if agreement threshold met
+  earlyExitThreshold?: number;
+
+  // Include previous round outputs in next round
+  includePreviousRounds?: boolean;
+
+  // Debate configuration
+  debateConfig?: {
+    rounds: number;                    // Number of debate rounds
+    includeCounterArguments: boolean;  // Providers critique each other
+    requireSynthesis: boolean;         // Final synthesis round
+  };
+
+  // Cascade configuration
+  cascadeConfig?: {
+    providers: ProviderId[];           // Order of providers to try
+    stopOnSuccess?: boolean;           // Stop when first succeeds
+    combineBest?: number;              // Combine best N results
+  };
+}
+
+/**
+ * Decision quality metrics
+ */
+export interface DecisionQuality {
+  // Confidence in the decision (0-1)
+  confidence: number;
+
+  // Uncertainty metrics
+  uncertainty: {
+    spread: number;          // How diverse were the outputs?
+    ambiguity: number;       // How ambiguous is the winner?
+    volatility: number;      // How stable is the consensus?
+  };
+
+  // Minority report (dissenting views)
+  minorityReports?: {
+    provider: ProviderId;
+    output: string;
+    supportPercentage: number;
+    reasoning?: string;
+  }[];
+
+  // Reasoning transparency
+  reasoning: {
+    agreementCalculation: string;
+    winnerSelection: string;
+    keyFactors: string[];
+    warnings?: string[];
+  };
+}
+
+/**
+ * Provider performance weights for weighted voting
+ */
+export interface ProviderWeights {
+  provider: ProviderId;
+  weight: number;           // 0-1, higher = more trust
+  basedOn: {
+    agreement: number;
+    giScore: number;
+    errorRate: number;
+    sampleSize: number;     // Number of past deliberations
+  };
+}
+
+/**
+ * Extended CodexRequest with Phase 3 options
+ */
+export interface EnhancedCodexRequest extends CodexRequest {
+  // Consensus mode configuration
+  consensus?: ConsensusConfig;
+
+  // Deliberation strategy configuration
+  deliberation?: DeliberationConfig;
+
+  // Enable decision quality analysis
+  analyzeQuality?: boolean;
+
+  // Use adaptive routing (select providers based on memory)
+  adaptiveRouting?: boolean;
+
+  // Cost constraints
+  maxCost?: number;          // Maximum cost in USD
+
+  // Latency constraints
+  maxLatency?: number;       // Maximum latency in ms
+}
+
+/**
+ * Enhanced DelibProof with Phase 3 metadata
+ */
+export interface EnhancedDelibProof extends DelibProof {
+  // Decision quality metrics
+  quality?: DecisionQuality;
+
+  // Consensus mode used
+  consensusMode?: ConsensusMode;
+
+  // Deliberation strategy used
+  deliberationStrategy?: DeliberationStrategy;
+
+  // Provider weights (if weighted voting)
+  providerWeights?: ProviderWeights[];
+
+  // Cost and latency tracking
+  metrics?: {
+    totalCost: number;       // Total cost in USD
+    totalLatency: number;    // Total latency in ms
+    providerMetrics: {
+      provider: ProviderId;
+      cost: number;
+      latency: number;
+      success: boolean;
+    }[];
+  };
+
+  // Rounds (for multi-round deliberation)
+  rounds?: {
+    roundNumber: number;
+    votes: CodexVote[];
+    agreement: number;
+  }[];
+}

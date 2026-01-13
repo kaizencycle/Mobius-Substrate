@@ -73,7 +73,7 @@ function calculateTextSimilarity(text1: string, text2: string): number {
 /**
  * Simple domain inference from input text
  */
-function inferDomain(input: string): string {
+export function inferDomain(input: string): string {
   const domains = {
     security: [
       'security',

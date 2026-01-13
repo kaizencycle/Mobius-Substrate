@@ -18,6 +18,7 @@ export {
   formatContextForPrompt,
   calculateSuccessRate,
   getPerformanceTrend,
+  inferDomain,
 } from './retrieval';
 
 // Analytics
