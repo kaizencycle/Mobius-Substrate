@@ -1,6 +1,6 @@
 {
   "mobius_catalog_version": "1.0.0",
-  "generated_at": "2026-01-11T15:38:13.071Z",
+  "generated_at": "2026-01-13T03:29:49.991Z",
   "repo": {
     "name": "Mobius-Substrate",
     "url": "https://github.com/kaizencycle/Mobius-Substrate",
@@ -4886,7 +4886,7 @@
       "title": "Threat Model & Security Analysis",
       "category": "11-SUPPLEMENTARY",
       "tags": [],
-      "content_hash": "sha256:34985847ed7d27dabc17c0c01cd30188fdb5217e88f826cec19d0ab23b1c6f71",
+      "content_hash": "sha256:dcf5413f9a1744cc557dcd566ec4cc27f40b378773c09055151eada41787c0c3",
       "summary": ""
     },
     {
@@ -5886,7 +5886,7 @@
       "title": "Divergence Dashboard",
       "category": "divergence",
       "tags": [],
-      "content_hash": "sha256:35e770889990fbe103532861bf23b979ce00ba7e9ce549f418a17895dd0970ab",
+      "content_hash": "sha256:88cda3dbf952e03ea2e3795d151cbdb2e0bd8ab4fa1a90c321b6c80c6bb786f1",
       "summary": ""
     },
     {
