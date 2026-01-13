@@ -1,34 +1,33 @@
 /**
  * Codex Router - Multi-LLM Deliberation Engine
  * Orchestrates DelibProof consensus across multiple LLM providers
+ * Phase 2: Includes memory & learning persistence
  */
 
 import { getAnchor } from '../../agents/anchors';
-import type { CodexRequest, CodexVote, DelibProof, ProviderId } from '../../types';
-import { callOpenAI } from './providers/openai';
-import { callAnthropic } from './providers/anthropic';
-import { callGemini } from './providers/gemini';
-import { callDeepSeek } from './providers/deepseek';
-import { callLocal } from './providers/local';
+import type { CodexRequest, CodexVote, DelibProof, ProviderId, MemoryEntry } from '../../types';
+import { PROVIDER_DISPATCH } from './providers/unified';
 import { giScoreFor, calculateAgreement, groupByTextSimilarity } from '../gi/metrics';
 import { attestToLedger } from '../gi/ledger';
 import { oaaLearn, hasOAAConsent } from '../discourse/oaa';
 import { generateTraceId } from '../util/hash';
+import {
+  getMemoryStorage,
+  enrichMemoryEntry,
+  getRelevantContext,
+  formatContextForPrompt,
+  getOrCreateSession,
+} from '../memory';
 
 /**
- * Provider dispatch table
+ * Provider dispatch table (imported from unified provider interface)
  */
-const DISPATCH: Record<ProviderId, (p: string, r?: CodexRequest) => Promise<CodexVote>> = {
-  openai: callOpenAI,
-  anthropic: callAnthropic,
-  gemini: callGemini,
-  deepseek: callDeepSeek,
-  local: callLocal,
-};
+const DISPATCH = PROVIDER_DISPATCH;
 
 /**
  * Main deliberation function
  * Executes DelibProof consensus across multiple providers
+ * Phase 2: Includes memory retrieval and persistence
  */
 export async function codexDeliberate(req: CodexRequest): Promise<DelibProof> {
   const anchor = getAnchor(req.agent);
@@ -37,8 +36,39 @@ export async function codexDeliberate(req: CodexRequest): Promise<DelibProof> {
     throw new Error(`Anchor not available for agent ${req.agent}`);
   }
 
-  // 1) Build the prompt with constitutional context
-  const prompt = buildPrompt(req);
+  // Phase 2: Get or create session for memory tracking
+  const session = await getOrCreateSession(
+    req.agent,
+    req.context?.sessionId as string | undefined,
+    req.tags
+  ).catch(() => undefined); // Non-critical, continue if fails
+
+  // Phase 2: Retrieve relevant context from memory (if enabled)
+  let relevantContext: MemoryEntry[] = [];
+  const useMemory = process.env.CODEX_USE_MEMORY !== 'false'; // Default: enabled
+
+  if (useMemory) {
+    try {
+      const context = await getRelevantContext(req.input, req.agent, {
+        maxEntries: 5,
+        includeSimilar: true,
+        includeRecent: true,
+        includeDomain: true,
+      });
+      relevantContext = context.all;
+
+      if (relevantContext.length > 0) {
+        console.log(
+          `[Memory] Retrieved ${relevantContext.length} relevant past deliberations`
+        );
+      }
+    } catch (error) {
+      console.warn('[Memory] Context retrieval failed:', error);
+    }
+  }
+
+  // 1) Build the prompt with constitutional context and memory
+  const prompt = buildPrompt(req, relevantContext);
 
   // 2) Fan out to all providers in the anchor's default route
   console.log(
@@ -133,23 +163,67 @@ export async function codexDeliberate(req: CodexRequest): Promise<DelibProof> {
     `[Codex] Deliberation complete: agreement=${agreement.toFixed(2)}, gi=${giScore.toFixed(3)}`
   );
 
+  // Phase 2: Store deliberation in memory (if enabled)
+  if (useMemory) {
+    try {
+      const storage = await getMemoryStorage();
+
+      // Create memory entry
+      let memoryEntry: MemoryEntry = {
+        traceId,
+        agent: anchor.agent,
+        timestamp: proof.timestamp,
+        sessionId: session?.sessionId,
+        input: req.input,
+        inputContext: req.context,
+        tags: req.tags,
+        output: winner.output,
+        agreement,
+        giScore,
+        providers: validVotes.map((v) => v.provider),
+        votes,
+        winner,
+        success: agreement >= anchor.minAgreement && giScore >= anchor.giTarget,
+        belowThreshold: agreement < anchor.minAgreement,
+        errorCount: votes.length - validVotes.length,
+      };
+
+      // Enrich with keywords and domain
+      memoryEntry = enrichMemoryEntry(memoryEntry);
+
+      // Store in memory
+      await storage.storeEntry(memoryEntry);
+
+      console.log(`[Memory] Stored deliberation ${traceId}`);
+    } catch (error) {
+      console.error('[Memory] Storage failed:', error);
+    }
+  }
+
   return proof;
 }
 
 /**
- * Build a prompt with constitutional context
+ * Build a prompt with constitutional context and memory
+ * Phase 2: Includes relevant past deliberations for learning
  */
-function buildPrompt(req: CodexRequest): string {
+function buildPrompt(req: CodexRequest, relevantContext?: MemoryEntry[]): string {
   const systemPrompt =
     process.env.CODEX_SYSTEM ||
     'Follow Virtue Accords. Prioritize integrity, privacy, safety. Cite sources when non-trivial.';
+
+  // Format memory context if available
+  const memoryContext =
+    relevantContext && relevantContext.length > 0
+      ? `\n\nPast Deliberations (for context):\n${formatContextForPrompt(relevantContext)}`
+      : '';
 
   return `Agent: ${req.agent}
 Constitution: ${systemPrompt}
 Task: ${req.input}
 Constraints: GI >= 0.95, provide clear rationale.
 
-${req.context ? `Context: ${JSON.stringify(req.context)}` : ''}`.trim();
+${req.context ? `Context: ${JSON.stringify(req.context)}` : ''}${memoryContext}`.trim();
 }
 
 /**
