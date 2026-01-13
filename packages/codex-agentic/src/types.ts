@@ -82,3 +82,157 @@ export interface OAALearnPayload {
   giScore: number;
   timestamp?: string;
 }
+
+// ============================================================================
+// Phase 2: Agent Memory & Learning Persistence
+// ============================================================================
+
+/**
+ * Memory entry for a single deliberation
+ * Stores complete context for learning and retrieval
+ */
+export interface MemoryEntry {
+  // Core identification
+  traceId: string;
+  agent: FoundingAgent;
+  timestamp: string;
+  sessionId?: string;              // Link related deliberations
+
+  // Request context
+  input: string;
+  inputContext?: Record<string, unknown>;
+  tags?: string[];
+
+  // Response data
+  output: string;
+  agreement: number;
+  giScore: number;
+  providers: ProviderId[];
+
+  // Complete deliberation data
+  votes: CodexVote[];
+  winner: CodexVote;
+
+  // Learning metadata
+  success: boolean;                // Did it meet thresholds?
+  belowThreshold?: boolean;        // Agreement below minimum?
+  errorCount?: number;             // Number of provider failures
+
+  // Retrieval metadata
+  embedding?: number[];            // For semantic search (future)
+  keywords?: string[];             // Extracted keywords
+  domain?: string;                 // Inferred domain
+}
+
+/**
+ * Session tracking for related deliberations
+ */
+export interface MemorySession {
+  sessionId: string;
+  agent: FoundingAgent;
+  startTime: string;
+  endTime?: string;
+  deliberationCount: number;
+  averageAgreement: number;
+  averageGI: number;
+  tags?: string[];
+}
+
+/**
+ * Learning pattern extracted from memory
+ */
+export interface LearningPattern {
+  patternId: string;
+  agent: FoundingAgent;
+  type: 'success' | 'failure' | 'threshold_breach' | 'high_agreement' | 'low_agreement';
+
+  // Pattern criteria
+  inputPattern?: string;           // Regex or keywords
+  domainFocus?: string;
+  providerCombination?: ProviderId[];
+
+  // Performance metrics
+  occurrences: number;
+  avgAgreement: number;
+  avgGI: number;
+  successRate: number;
+
+  // Examples
+  exampleTraceIds: string[];
+
+  // Timestamps
+  firstSeen: string;
+  lastSeen: string;
+}
+
+/**
+ * Memory query filter options
+ */
+export interface MemoryQuery {
+  agent?: FoundingAgent;
+  sessionId?: string;
+  tags?: string[];
+  minAgreement?: number;
+  maxAgreement?: number;
+  minGI?: number;
+  maxGI?: number;
+  startTime?: string;
+  endTime?: string;
+  limit?: number;
+  offset?: number;
+  successOnly?: boolean;
+  sortBy?: 'timestamp' | 'agreement' | 'giScore';
+  sortOrder?: 'asc' | 'desc';
+}
+
+/**
+ * Memory retrieval result with context
+ */
+export interface MemoryRetrievalResult {
+  entries: MemoryEntry[];
+  total: number;
+  query: MemoryQuery;
+}
+
+/**
+ * Agent performance analytics
+ */
+export interface AgentAnalytics {
+  agent: FoundingAgent;
+  period: {
+    start: string;
+    end: string;
+  };
+
+  // Deliberation metrics
+  totalDeliberations: number;
+  successfulDeliberations: number;
+  successRate: number;
+
+  // Agreement metrics
+  avgAgreement: number;
+  minAgreement: number;
+  maxAgreement: number;
+  agreementTrend: number;          // Positive = improving
+
+  // GI metrics
+  avgGI: number;
+  minGI: number;
+  maxGI: number;
+  giTrend: number;                 // Positive = improving
+
+  // Provider performance
+  providerStats: Record<ProviderId, {
+    uses: number;
+    avgAgreement: number;
+    avgGI: number;
+    errorRate: number;
+  }>;
+
+  // Pattern insights
+  topPatterns: LearningPattern[];
+
+  // Sessions
+  totalSessions: number;
+  avgDeliberationsPerSession: number;
+}

@@ -50,6 +50,35 @@ console.log('Agreement:', result.agreement);
 console.log('GI Score:', result.giScore);
 ```
 
+## 🧠 Phase 2: Memory & Learning (NEW)
+
+The system now includes agent memory and learning persistence:
+
+- **Automatic context retrieval**: Past deliberations inform new ones
+- **Performance analytics**: Track agent and provider performance over time
+- **Session management**: Group related deliberations
+- **Pattern detection**: Identify success/failure patterns
+
+See [MEMORY.md](./MEMORY.md) for complete documentation.
+
+```typescript
+import { codexDeliberate, generateAgentAnalytics } from '@mobius/codex-agentic';
+
+// Memory is automatically enabled (set CODEX_USE_MEMORY=true in .env)
+const result = await codexDeliberate({
+  agent: 'ATLAS',
+  input: 'How should we handle security audits?',
+  tags: ['security', 'governance'],
+});
+
+// Agent learns from this deliberation and can reference it in future deliberations
+
+// Get analytics
+const analytics = await generateAgentAnalytics('ATLAS', 30);
+console.log('Success rate:', (analytics.successRate * 100).toFixed(1) + '%');
+console.log('Avg agreement:', (analytics.avgAgreement * 100).toFixed(1) + '%');
+```
+
 ## 📚 Provider Details
 
 ### Anthropic (Claude)

@@ -4,6 +4,7 @@ Multi-LLM routing and consensus system for Mobius Systems Founding Agents. This 
 
 ## Features
 
+### Phase 1: Multi-LLM Consensus ✅
 - **Multi-Provider Support**: Route requests to OpenAI, Anthropic, Google Gemini, DeepSeek, and local LLMs (Ollama)
 - **DelibProof Consensus**: Automatic agreement calculation and winner selection
 - **Governance Integrity (GI) Scoring**: Built-in metrics for constitutional compliance
@@ -11,6 +12,16 @@ Multi-LLM routing and consensus system for Mobius Systems Founding Agents. This 
 - **OAA Hub Learning**: Optional knowledge sharing via the OAA Hub
 - **Stability Anchors**: Each Founding Agent maps to specific API domains
 - **Fallback & Cascading**: Automatic failover between providers
+
+### Phase 2: Memory & Learning ✅ **NEW**
+- **Agent Memory**: Persistent storage of all deliberations with full context
+- **Context Retrieval**: Automatically inject relevant past deliberations into prompts
+- **Performance Analytics**: Track agent and provider performance over time
+- **Session Management**: Group related deliberations for conversational context
+- **Pattern Detection**: Identify success/failure patterns and optimize routing
+- **Learning from History**: Agents improve over time based on past outcomes
+
+See [MEMORY.md](./MEMORY.md) for complete documentation.
 
 ## Installation
 
