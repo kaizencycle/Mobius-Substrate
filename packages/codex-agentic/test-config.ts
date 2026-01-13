@@ -9,7 +9,6 @@
 
 import {
   getConfig,
-  validateProviderConfig,
   validateAllConfigs,
   getProviderConfig,
   getConfiguredProviders,
@@ -75,8 +74,9 @@ providers.forEach(provider => {
   if (isAvail) {
     console.log(`   ${colors.green}✓${colors.reset} ${provider.padEnd(12)} Available`);
     if (providerConfig.apiKey) {
-      const masked = providerConfig.apiKey.substring(0, 8) + '...' + providerConfig.apiKey.slice(-4);
-      console.log(`   ${' '.repeat(15)} API Key: ${masked}`);
+      console.log(`   ${' '.repeat(15)} API Key: [configured]`);
+    } else {
+      console.log(`   ${' '.repeat(15)} API Key: [not set]`);
     }
   } else {
     console.log(`   ${colors.yellow}⚠${colors.reset} ${provider.padEnd(12)} Not available`);

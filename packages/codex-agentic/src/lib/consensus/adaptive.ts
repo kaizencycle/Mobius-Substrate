@@ -5,7 +5,6 @@
  */
 
 import type { FoundingAgent, ProviderId } from '../../types';
-import { generateAgentAnalytics } from '../memory/analytics';
 import { getProviderRecommendations } from '../memory/analytics';
 import { inferDomain } from '../memory/retrieval';
 

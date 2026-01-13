@@ -25,7 +25,6 @@ import {
 } from '../session';
 import type { MemoryEntry, FoundingAgent } from '../../../types';
 import fs from 'fs/promises';
-import path from 'path';
 
 const TEST_DIR = './.codex-memory-test';
 

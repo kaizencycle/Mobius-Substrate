@@ -12,6 +12,13 @@ import { callProvider, getAvailableProviders, isProviderAvailable } from './src/
 import { validateProviderConfig, getProviderMetadata } from './src/lib/codex/config.js';
 import type { ProviderId } from './src/types.js';
 
+function safeGetProviderMetadata(providerId: ProviderId) {
+  if (typeof getProviderMetadata !== 'function') {
+    throw new Error('getProviderMetadata is not available or is not a function');
+  }
+  return getProviderMetadata(providerId);
+}
+
 // ANSI color codes for pretty output
 const colors = {
   reset: '\x1b[0m',
@@ -63,7 +70,7 @@ async function testProvider(providerId: ProviderId): Promise<boolean> {
   log.success(`Configuration valid`);
 
   // 3. Get metadata
-  const metadata = getProviderMetadata(providerId);
+  const metadata = safeGetProviderMetadata(providerId);
   log.dim(`  Model: ${metadata.defaultModel}`);
   log.dim(`  Context: ${metadata.contextWindow.toLocaleString()} tokens`);
   log.dim(`  Cost: ${metadata.costTier}`);
