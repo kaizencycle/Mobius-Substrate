@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import fs from "fs";
+import { promises as fsPromises } from "fs";
 import path from "path";
 import crypto from "crypto";
 
@@ -20,7 +21,7 @@ type MemoryData = {
   ethics: { accords: string; epoch: string };
 };
 
-function loadMemory(): MemoryData {
+async function loadMemory(): Promise<MemoryData> {
   if (!fs.existsSync(memPath)) {
     const defaultMem: MemoryData = {
       version: "v1",
@@ -31,15 +32,17 @@ function loadMemory(): MemoryData {
       queue: { name: "publishEvents" },
       ethics: { accords: "Virtue Accords", epoch: "Cycle 0" }
     };
-    fs.writeFileSync(memPath, JSON.stringify(defaultMem, null, 2));
+    // Avoid JSON roundtrip - write and return the object directly
+    await fsPromises.writeFile(memPath, JSON.stringify(defaultMem, null, 2));
     return defaultMem;
   }
-  return JSON.parse(fs.readFileSync(memPath, "utf8"));
+  const content = await fsPromises.readFile(memPath, "utf8");
+  return JSON.parse(content);
 }
 
-function saveMemory(memory: MemoryData): void {
+async function saveMemory(memory: MemoryData): Promise<void> {
   memory.updatedAt = new Date().toISOString();
-  fs.writeFileSync(memPath, JSON.stringify(memory, null, 2));
+  await fsPromises.writeFile(memPath, JSON.stringify(memory, null, 2));
 }
 
 function verifyHmac(req: NextApiRequest): boolean {
@@ -59,7 +62,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   try {
     if (req.method === "GET") {
       // GET: List memory notes
-      const memory = loadMemory();
+      const memory = await loadMemory();
       const { q, limit = "50" } = req.query;
       
       let notes = memory.notes || [];
@@ -93,16 +96,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(400).json({ error: "Note must be at least 3 characters" });
       }
       
-      const memory = loadMemory();
+      const memory = await loadMemory();
       memory.notes.unshift({
         ts: Date.now(),
         note: note.trim()
       });
-      
+
       // Keep only last 1000 notes
       memory.notes = memory.notes.slice(0, 1000);
-      
-      saveMemory(memory);
+
+      await saveMemory(memory);
       
       return res.status(200).json({
         ok: true,
@@ -117,9 +120,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(401).json({ error: "Invalid HMAC signature" });
       }
       
-      const memory = loadMemory();
+      const memory = await loadMemory();
       memory.notes = [];
-      saveMemory(memory);
+      await saveMemory(memory);
       
       return res.status(200).json({
         ok: true,

@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import fs from "fs";
+import { promises as fsPromises } from "fs";
 import path from "path";
 
 interface BeaconItem {
@@ -96,7 +97,8 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Search
   
   if (fs.existsSync(beaconIndexPath)) {
     try {
-      const beaconData = JSON.parse(fs.readFileSync(beaconIndexPath, "utf8"));
+      const content = await fsPromises.readFile(beaconIndexPath, "utf8");
+      const beaconData = JSON.parse(content);
       if (beaconData.dataFeedElement && Array.isArray(beaconData.dataFeedElement)) {
         beacons = beaconData.dataFeedElement;
       }
