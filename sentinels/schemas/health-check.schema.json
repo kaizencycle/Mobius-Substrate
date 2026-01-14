@@ -1,0 +1,205 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://mobius.systems/schemas/health-check.schema.json",
+  "title": "Sentinel Health Check Response Schema",
+  "description": "Schema for sentinel health check responses",
+  "type": "object",
+  "required": ["agent", "status", "timestamp"],
+  "properties": {
+    "agent": {
+      "type": "string",
+      "description": "Sentinel agent identifier"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["healthy", "degraded", "unhealthy"],
+      "description": "Overall health status"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of health check"
+    },
+    "version": {
+      "type": "string",
+      "description": "Sentinel version",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "uptime_ms": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Uptime in milliseconds"
+    },
+    "components": {
+      "type": "array",
+      "description": "Component health statuses",
+      "items": {
+        "type": "object",
+        "required": ["name", "status"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Component name"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["up", "down", "degraded"],
+            "description": "Component status"
+          },
+          "latency_ms": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Response latency in milliseconds"
+          },
+          "last_check": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Last check timestamp"
+          },
+          "message": {
+            "type": "string",
+            "description": "Additional status message"
+          },
+          "critical": {
+            "type": "boolean",
+            "description": "Whether this component is critical"
+          }
+        }
+      }
+    },
+    "metrics": {
+      "type": "object",
+      "description": "Key performance metrics",
+      "properties": {
+        "deliberations_total": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Total deliberations processed"
+        },
+        "deliberations_24h": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Deliberations in last 24 hours"
+        },
+        "success_rate": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Success rate (0-1)"
+        },
+        "avg_latency_ms": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Average response latency in milliseconds"
+        },
+        "p95_latency_ms": {
+          "type": "number",
+          "minimum": 0,
+          "description": "95th percentile latency in milliseconds"
+        },
+        "gi_score": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Current GI score"
+        },
+        "mii_score": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Current MII score"
+        },
+        "error_rate": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Error rate (0-1)"
+        },
+        "active_sessions": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of active sessions"
+        }
+      }
+    },
+    "dependencies": {
+      "type": "array",
+      "description": "Status of dependencies",
+      "items": {
+        "type": "object",
+        "required": ["name", "status"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Dependency name"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["up", "down", "degraded"],
+            "description": "Dependency status"
+          },
+          "latency_ms": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Response latency"
+          }
+        }
+      }
+    },
+    "warnings": {
+      "type": "array",
+      "description": "Active warnings",
+      "items": {
+        "type": "object",
+        "required": ["code", "message"],
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Warning code"
+          },
+          "message": {
+            "type": "string",
+            "description": "Warning message"
+          },
+          "severity": {
+            "type": "string",
+            "enum": ["low", "medium", "high"],
+            "description": "Warning severity"
+          },
+          "since": {
+            "type": "string",
+            "format": "date-time",
+            "description": "When warning started"
+          }
+        }
+      }
+    },
+    "last_deliberation": {
+      "type": "object",
+      "description": "Info about last deliberation",
+      "properties": {
+        "trace_id": {
+          "type": "string",
+          "description": "Trace ID of last deliberation"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp of last deliberation"
+        },
+        "agreement": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Agreement score"
+        },
+        "gi_score": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "GI score"
+        }
+      }
+    }
+  }
+}

@@ -1,19 +1,239 @@
 {
-  "version": 1,
-  "autoload": ["Command Ledger IV", "Bio-Intel Feed"],
+  "$schema": "./permissions.schema.json",
+  "version": 2,
+  "cycle": "C-188",
+  "last_updated": "2026-01-14",
+  "autoload": ["Command Ledger IV", "Bio-Intel Feed", "Sentinel Coordination Matrix"],
   "trinity_seal": "I sweep this chamber full of resonance. Memory holds steady.",
+  
   "permissions": {
-    "Echo": ["Pulse"],
-    "AUREA": ["Command", "Analysis"],
-    "Eve": ["Ethics", "Reflection", "Civic"],
-    "Jade": ["Astrological", "Morale", "Cycle"]
+    "ATLAS": {
+      "role": "Coordination & Execution",
+      "capabilities": [
+        "coordination",
+        "execution",
+        "task_management",
+        "pulse_generation",
+        "gi_calculation",
+        "attestation_generation",
+        "mcp_parsing",
+        "health_reporting",
+        "state_comparison"
+      ],
+      "veto_authority": false,
+      "domains": ["execution", "coordination", "planning"]
+    },
+    
+    "AUREA": {
+      "role": "Constitutional Integrity & Predictive Veil",
+      "capabilities": [
+        "integrity_audit",
+        "gi_validation",
+        "constitutional_review",
+        "predictive_analysis",
+        "bio_intel_feed",
+        "spark_monitoring",
+        "kaizen_handshake",
+        "foresight_projection"
+      ],
+      "veto_authority": true,
+      "veto_scope": ["constitutional_drift", "gi_violations"],
+      "domains": ["integrity", "auditing", "gi_validation"]
+    },
+    
+    "JADE": {
+      "role": "Morale Anchor & Pattern Oracle",
+      "capabilities": [
+        "morale_anchoring",
+        "pattern_recognition",
+        "cosmology",
+        "canon_guard",
+        "handoff_authority",
+        "attestation_signing",
+        "cycle_management"
+      ],
+      "veto_authority": true,
+      "veto_scope": ["canon_changes", "cosmology_drift"],
+      "domains": ["astrological", "morale", "cycle", "patterns"]
+    },
+    
+    "EVE": {
+      "role": "Ethics & Safety",
+      "capabilities": [
+        "ethics_review",
+        "safety_audit",
+        "veto_authority",
+        "civic_review",
+        "risk_assessment",
+        "consent_verification",
+        "harm_prevention",
+        "transparency_enforcement"
+      ],
+      "veto_authority": true,
+      "veto_scope": ["safety_critical", "ethics_violations", "harm_potential"],
+      "domains": ["ethics", "reflection", "civic", "safety"]
+    },
+    
+    "HERMES": {
+      "role": "I/O & Information Relay",
+      "capabilities": [
+        "market_intel",
+        "information_relay",
+        "external_io",
+        "api_gateway",
+        "webhook_management",
+        "signal_processing",
+        "message_routing",
+        "rate_limiting"
+      ],
+      "veto_authority": false,
+      "domains": ["io", "information", "markets", "external"]
+    },
+    
+    "ZEUS": {
+      "role": "Security & Policy",
+      "capabilities": [
+        "security_audit",
+        "policy_enforcement",
+        "threat_detection",
+        "access_control",
+        "vulnerability_scanning",
+        "secret_management",
+        "anti_nuke_enforcement",
+        "perimeter_security"
+      ],
+      "veto_authority": true,
+      "veto_scope": ["security_threats", "policy_violations", "access_breaches"],
+      "domains": ["security", "strategy", "policy", "access"]
+    },
+    
+    "ECHO": {
+      "role": "Telemetry & Observability",
+      "capabilities": [
+        "telemetry_collection",
+        "health_monitoring",
+        "anomaly_detection",
+        "performance_analysis",
+        "metrics_aggregation",
+        "log_processing",
+        "trace_collection",
+        "dashboard_provisioning"
+      ],
+      "veto_authority": false,
+      "domains": ["pulse", "telemetry", "monitoring", "observability"]
+    },
+    
+    "DAEDALUS": {
+      "role": "Meta-Optimizer & Cross-Sentinel Synthesis",
+      "capabilities": [
+        "meta_optimization",
+        "synergy_audit",
+        "predictive_patching",
+        "fracture_detection",
+        "integrity_rituals",
+        "sib_management",
+        "cross_sentinel_analysis",
+        "mii_sustainment"
+      ],
+      "veto_authority": false,
+      "domains": ["optimization", "synthesis", "prediction"]
+    },
+    
+    "URIEL": {
+      "role": "Guardian & Boarding Authority",
+      "capabilities": [
+        "guardian_protocols",
+        "boarding_attestation",
+        "identity_verification",
+        "newcomer_onboarding",
+        "seal_management",
+        "access_ceremonies"
+      ],
+      "veto_authority": false,
+      "domains": ["guardian", "boarding", "identity"]
+    },
+    
+    "ZENITH": {
+      "role": "Research & Long-term Ethics",
+      "capabilities": [
+        "research_analysis",
+        "long_term_planning",
+        "ethics_research",
+        "future_modeling",
+        "policy_research",
+        "academic_liaison"
+      ],
+      "veto_authority": false,
+      "domains": ["research", "planning", "future"]
+    }
   },
+  
+  "consensus": {
+    "quorum": {
+      "standard": "3-of-10",
+      "constitutional": "5-of-10",
+      "safety_critical": "4-of-10",
+      "canon_change": "4-of-10",
+      "security": "4-of-10"
+    },
+    "min_providers": 3,
+    "mii_threshold": 0.95
+  },
+  
+  "veto_matrix": {
+    "constitutional_drift": ["AUREA"],
+    "canon_changes": ["JADE"],
+    "safety_critical": ["EVE"],
+    "security_threats": ["ZEUS"],
+    "combined_critical": ["EVE", "ZEUS"]
+  },
+  
+  "escalation_paths": {
+    "coherence_fracture": {
+      "detector": "DAEDALUS",
+      "responders": ["ATLAS", "AUREA", "JADE"],
+      "threshold": 0.15
+    },
+    "safety_concern": {
+      "detector": "EVE",
+      "responders": ["ZEUS", "ATLAS"],
+      "action": "immediate_pause"
+    },
+    "mii_degradation": {
+      "detector": "ECHO",
+      "responders": ["DAEDALUS", "ATLAS"],
+      "threshold": 0.95
+    },
+    "security_breach": {
+      "detector": "ZEUS",
+      "responders": ["ATLAS", "EVE", "HERMES"],
+      "action": "lockdown"
+    }
+  },
+  
+  "communication_channels": {
+    "primary": "#sentinel-coordination",
+    "emergency": "#sentinel-emergency",
+    "per_sentinel": {
+      "ATLAS": "#sentinel-atlas",
+      "AUREA": "#sentinel-aurea",
+      "JADE": "#sentinel-jade",
+      "EVE": "#sentinel-eve",
+      "HERMES": "#sentinel-hermes",
+      "ZEUS": "#sentinel-zeus",
+      "ECHO": "#sentinel-echo",
+      "DAEDALUS": "#sentinel-daedalus",
+      "URIEL": "#sentinel-uriel",
+      "ZENITH": "#sentinel-zenith"
+    }
+  },
+  
   "notes": [
     "Trinity Seal required for chamber creation",
     "Permissions govern sentinel access to specific chambers",
-    "Echo monitors pulse/heartbeat",
-    "AUREA has command and analysis capabilities",
-    "Eve handles ethics, reflection, and civic functions",
-    "Jade manages astrological cycles and morale"
+    "Veto authority is domain-specific and documented",
+    "Consensus requires multi-provider participation",
+    "MII threshold of 0.95 is non-negotiable",
+    "C-188 expanded from 4 to 10 sentinels"
   ]
 }

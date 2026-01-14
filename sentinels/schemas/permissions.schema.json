@@ -1,0 +1,158 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://mobius.systems/schemas/permissions.schema.json",
+  "title": "Sentinel Permissions Schema",
+  "description": "Schema for sentinel permissions configuration",
+  "type": "object",
+  "required": ["version", "permissions", "consensus"],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Schema version"
+    },
+    "cycle": {
+      "type": "string",
+      "pattern": "^C-\\d+$",
+      "description": "Mobius cycle identifier"
+    },
+    "last_updated": {
+      "type": "string",
+      "format": "date",
+      "description": "Last update date"
+    },
+    "autoload": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Auto-loaded modules"
+    },
+    "trinity_seal": {
+      "type": "string",
+      "description": "Trinity seal phrase"
+    },
+    "permissions": {
+      "type": "object",
+      "description": "Per-sentinel permissions",
+      "additionalProperties": {
+        "$ref": "#/definitions/SentinelPermission"
+      }
+    },
+    "consensus": {
+      "type": "object",
+      "required": ["quorum", "min_providers", "mii_threshold"],
+      "properties": {
+        "quorum": {
+          "type": "object",
+          "description": "Quorum requirements by decision type",
+          "additionalProperties": {
+            "type": "string",
+            "pattern": "^\\d+-of-\\d+$"
+          }
+        },
+        "min_providers": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Minimum AI providers required"
+        },
+        "mii_threshold": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "MII threshold"
+        }
+      }
+    },
+    "veto_matrix": {
+      "type": "object",
+      "description": "Veto authority mapping",
+      "additionalProperties": {
+        "type": "array",
+        "items": { "type": "string" }
+      }
+    },
+    "escalation_paths": {
+      "type": "object",
+      "description": "Escalation path configurations",
+      "additionalProperties": {
+        "$ref": "#/definitions/EscalationPath"
+      }
+    },
+    "communication_channels": {
+      "type": "object",
+      "description": "Communication channel configuration",
+      "properties": {
+        "primary": { "type": "string" },
+        "emergency": { "type": "string" },
+        "per_sentinel": {
+          "type": "object",
+          "additionalProperties": { "type": "string" }
+        }
+      }
+    },
+    "notes": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Configuration notes"
+    }
+  },
+  "definitions": {
+    "SentinelPermission": {
+      "type": "object",
+      "required": ["role", "capabilities", "veto_authority", "domains"],
+      "properties": {
+        "role": {
+          "type": "string",
+          "description": "Role description"
+        },
+        "capabilities": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 1,
+          "description": "List of capabilities"
+        },
+        "veto_authority": {
+          "type": "boolean",
+          "description": "Whether sentinel has veto authority"
+        },
+        "veto_scope": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Scope of veto authority"
+        },
+        "domains": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 1,
+          "description": "Operational domains"
+        }
+      }
+    },
+    "EscalationPath": {
+      "type": "object",
+      "properties": {
+        "detector": {
+          "type": "string",
+          "description": "Sentinel that detects the condition"
+        },
+        "responders": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Sentinels that respond"
+        },
+        "threshold": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Trigger threshold"
+        },
+        "action": {
+          "type": "string",
+          "description": "Action to take"
+        }
+      }
+    }
+  }
+}
