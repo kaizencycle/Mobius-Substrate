@@ -2,11 +2,17 @@ import { VOICE_PROFILES, AgentId } from '../agents/voiceProfiles';
 
 function pickVoice(desired: string[]): SpeechSynthesisVoice | null {
   const voices = window.speechSynthesis.getVoices();
+
+  // Optimize: Pre-lowercase arrays to avoid repeated toLowerCase() calls
+  const desiredLower = desired.map(d => d.toLowerCase());
+  const voicesWithLowerNames = voices.map(v => ({ voice: v, nameLower: v.name.toLowerCase() }));
+
   // try partial name matches in order
-  for (const target of desired) {
-    const v = voices.find(x => x.name.toLowerCase().includes(target.toLowerCase()));
-    if (v) return v;
+  for (const targetLower of desiredLower) {
+    const match = voicesWithLowerNames.find(v => v.nameLower.includes(targetLower));
+    if (match) return match.voice;
   }
+
   return voices[0] || null;
 }
 

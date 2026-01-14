@@ -121,14 +121,21 @@ export function inferDomain(input: string): string {
     ],
   };
 
-  const inputLower = input.toLowerCase();
+  // Optimize: Split input into words once, use Set for O(1) lookup instead of O(n) includes
+  const inputWords = new Set(input.toLowerCase().split(/\s+/));
   const scores: Record<string, number> = {};
 
   for (const [domain, keywords] of Object.entries(domains)) {
-    scores[domain] = keywords.filter((kw) => inputLower.includes(kw)).length;
+    scores[domain] = keywords.filter((kw) => inputWords.has(kw)).length;
   }
 
-  const topDomain = Object.entries(scores).sort((a, b) => b[1] - a[1])[0];
+  // Optimize: Find max in O(n) instead of sorting O(n log n)
+  let topDomain: [string, number] | null = null;
+  for (const [domain, score] of Object.entries(scores)) {
+    if (!topDomain || score > topDomain[1]) {
+      topDomain = [domain, score];
+    }
+  }
 
   return topDomain && topDomain[1] > 0 ? topDomain[0] : 'general';
 }

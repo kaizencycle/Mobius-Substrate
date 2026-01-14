@@ -3,9 +3,10 @@
 
 type ChangeStatus = "added" | "modified" | "removed" | "renamed";
 
+// Pre-lowercase all needles once to avoid repeated toLowerCase() calls
 const BUCKET_RULES: [string, string[]][] = [
-  ["infra",  ["vercel.json", ".github/", "Dockerfile", "docker-compose", "render.yaml", "infra/", "k8s/", "terraform/"]],
-  ["docs",   ["README", "readme", "docs/", "/consensus-chamber", "/architecture", ".md", ".rst"]],
+  ["infra",  ["vercel.json", ".github/", "dockerfile", "docker-compose", "render.yaml", "infra/", "k8s/", "terraform/"]],
+  ["docs",   ["readme", "docs/", "/consensus-chamber", "/architecture", ".md", ".rst"]],
   ["tests",  ["tests/", "__tests__/", ".test.", ".spec."]],
   ["data",   ["data/", ".csv", ".jsonl", ".parquet", ".seed.", "seed_"]],
   ["app",    ["apps/", "packages/", "src/", "lib/", "api/", "routes/", "pages/"]],
@@ -19,8 +20,9 @@ const EXT_TO_BUCKET: Record<string, string> = {
 
 function bucketForPath(path: string): string {
   const p = path.toLowerCase();
+  // Optimize: needles are pre-lowercased, no need to call toLowerCase() again
   for (const [bucket, needles] of BUCKET_RULES) {
-    if (needles.some(n => p.includes(n.toLowerCase()))) {
+    if (needles.some(n => p.includes(n))) {
       return bucket;
     }
   }
