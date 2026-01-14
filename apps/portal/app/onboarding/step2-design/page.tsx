@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { Nav } from '@/components/Nav';
 import { Stepper } from '@/components/Stepper';
@@ -15,10 +15,10 @@ export default function Step2DesignPage() {
   });
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = useCallback(async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    
+
     try {
       // Store design data
       localStorage.setItem('kaizen_domain_design', JSON.stringify(formData));
@@ -28,17 +28,45 @@ export default function Step2DesignPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [formData, router]);
 
-  const handleTagAdd = (tag: string) => {
+  const handleDomainChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData(prev => ({ ...prev, domain: e.target.value }));
+  }, []);
+
+  const handlePurposeChange = useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
+    setFormData(prev => ({ ...prev, purpose: e.target.value }));
+  }, []);
+
+  const handleDescriptionChange = useCallback((e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setFormData(prev => ({ ...prev, description: e.target.value }));
+  }, []);
+
+  const handleGiImpactChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData(prev => ({ ...prev, expectedGiImpact: parseInt(e.target.value) }));
+  }, []);
+
+  const handleTagAdd = useCallback((tag: string) => {
     if (tag && !formData.tags.includes(tag)) {
       setFormData(prev => ({ ...prev, tags: [...prev.tags, tag] }));
     }
-  };
+  }, [formData.tags]);
 
-  const handleTagRemove = (tagToRemove: string) => {
+  const handleTagRemove = useCallback((tagToRemove: string) => {
     setFormData(prev => ({ ...prev, tags: prev.tags.filter(tag => tag !== tagToRemove) }));
-  };
+  }, []);
+
+  const handleTagKeyPress = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      handleTagAdd(e.currentTarget.value);
+      e.currentTarget.value = '';
+    }
+  }, [handleTagAdd]);
+
+  const handleBack = useCallback(() => {
+    router.back();
+  }, [router]);
 
   const steps = ['Civic Oath', 'Design', 'Seal to Ledger', 'First Reflection'];
 
@@ -61,7 +89,7 @@ export default function Step2DesignPage() {
                   type="text"
                   id="domain"
                   value={formData.domain}
-                  onChange={(e) => setFormData(prev => ({ ...prev, domain: e.target.value }))}
+                  onChange={handleDomainChange}
                   placeholder="my-awesome-project"
                   className="flex-1 px-3 py-2 border border-slate-300 rounded-l-lg focus:ring-indigo-500 focus:border-indigo-500"
                   required
@@ -82,7 +110,7 @@ export default function Step2DesignPage() {
               <select
                 id="purpose"
                 value={formData.purpose}
-                onChange={(e) => setFormData(prev => ({ ...prev, purpose: e.target.value }))}
+                onChange={handlePurposeChange}
                 className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500"
                 required
               >
@@ -103,7 +131,7 @@ export default function Step2DesignPage() {
               <textarea
                 id="description"
                 value={formData.description}
-                onChange={(e) => setFormData(prev => ({ ...prev, description: e.target.value }))}
+                onChange={handleDescriptionChange}
                 rows={4}
                 placeholder="Describe what your domain will do and how it contributes to the ecosystem..."
                 className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500"
@@ -121,7 +149,7 @@ export default function Step2DesignPage() {
                 min="1"
                 max="100"
                 value={formData.expectedGiImpact}
-                onChange={(e) => setFormData(prev => ({ ...prev, expectedGiImpact: parseInt(e.target.value) }))}
+                onChange={handleGiImpactChange}
                 className="w-full"
               />
               <div className="flex justify-between text-sm text-slate-500 mt-1">
@@ -154,13 +182,7 @@ export default function Step2DesignPage() {
               <input
                 type="text"
                 placeholder="Add a tag and press Enter"
-                onKeyPress={(e) => {
-                  if (e.key === 'Enter') {
-                    e.preventDefault();
-                    handleTagAdd(e.currentTarget.value);
-                    e.currentTarget.value = '';
-                  }
-                }}
+                onKeyPress={handleTagKeyPress}
                 className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500"
               />
             </div>
@@ -175,7 +197,7 @@ export default function Step2DesignPage() {
               </button>
               <button
                 type="button"
-                onClick={() => router.back()}
+                onClick={handleBack}
                 className="px-6 py-3 border border-slate-300 text-slate-700 rounded-lg hover:bg-slate-50 transition-colors font-medium"
               >
                 Back

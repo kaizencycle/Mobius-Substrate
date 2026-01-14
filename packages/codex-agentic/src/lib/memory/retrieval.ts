@@ -121,14 +121,21 @@ export function inferDomain(input: string): string {
     ],
   };
 
-  const inputLower = input.toLowerCase();
+  // Optimize: Split input into words once, use Set for O(1) lookup instead of O(n) includes
+  const inputWords = new Set(input.toLowerCase().split(/\s+/));
   const scores: Record<string, number> = {};
 
   for (const [domain, keywords] of Object.entries(domains)) {
-    scores[domain] = keywords.filter((kw) => inputLower.includes(kw)).length;
+    scores[domain] = keywords.filter((kw) => inputWords.has(kw)).length;
   }
 
-  const topDomain = Object.entries(scores).sort((a, b) => b[1] - a[1])[0];
+  // Optimize: Find max in O(n) instead of sorting O(n log n)
+  let topDomain: [string, number] | null = null;
+  for (const [domain, score] of Object.entries(scores)) {
+    if (!topDomain || score > topDomain[1]) {
+      topDomain = [domain, score];
+    }
+  }
 
   return topDomain && topDomain[1] > 0 ? topDomain[0] : 'general';
 }
@@ -212,37 +219,35 @@ export async function getRelevantContext(
     all: [] as MemoryEntry[],
   };
 
-  // Get similar deliberations
-  if (opts.includeSimilar) {
-    context.similar = await findSimilarDeliberations(
-      input,
-      agent,
-      Math.ceil(opts.maxEntries / 3)
-    );
-  }
+  // Parallelize all independent queries for better performance
+  const [similarEntries, recentResult, allEntriesResult] = await Promise.all([
+    opts.includeSimilar
+      ? findSimilarDeliberations(input, agent, Math.ceil(opts.maxEntries / 3))
+      : Promise.resolve([]),
+    opts.includeRecent
+      ? storage.query({
+          agent,
+          successOnly: true,
+          sortBy: 'timestamp',
+          sortOrder: 'desc',
+          limit: Math.ceil(opts.maxEntries / 3),
+        })
+      : Promise.resolve({ entries: [] }),
+    opts.includeDomain
+      ? storage.query({
+          agent,
+          successOnly: true,
+          limit: 100,
+        })
+      : Promise.resolve({ entries: [] }),
+  ]);
 
-  // Get recent successful deliberations
-  if (opts.includeRecent) {
-    const recentResult = await storage.query({
-      agent,
-      successOnly: true,
-      sortBy: 'timestamp',
-      sortOrder: 'desc',
-      limit: Math.ceil(opts.maxEntries / 3),
-    });
-    context.recent = recentResult.entries;
-  }
+  context.similar = similarEntries;
+  context.recent = recentResult.entries;
 
-  // Get domain-specific deliberations
   if (opts.includeDomain) {
     const domain = inferDomain(input);
-    const allEntries = await storage.query({
-      agent,
-      successOnly: true,
-      limit: 100,
-    });
-
-    context.domain = allEntries.entries
+    context.domain = allEntriesResult.entries
       .filter((e) => e.domain === domain)
       .slice(0, Math.ceil(opts.maxEntries / 3));
   }
@@ -328,25 +333,26 @@ export async function getPerformanceTrend(
 }> {
   const storage = await getMemoryStorage();
 
-  // Get recent deliberations (last 7 days)
+  // Parallelize time-range queries for better performance
   const recentStart = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();
-  const recentResult = await storage.query({
-    agent,
-    startTime: recentStart,
-    successOnly: true,
-  });
-
-  // Get historical deliberations (8-30 days ago)
   const historicalEnd = recentStart;
   const historicalStart = new Date(
     Date.now() - 30 * 24 * 60 * 60 * 1000
   ).toISOString();
-  const historicalResult = await storage.query({
-    agent,
-    startTime: historicalStart,
-    endTime: historicalEnd,
-    successOnly: true,
-  });
+
+  const [recentResult, historicalResult] = await Promise.all([
+    storage.query({
+      agent,
+      startTime: recentStart,
+      successOnly: true,
+    }),
+    storage.query({
+      agent,
+      startTime: historicalStart,
+      endTime: historicalEnd,
+      successOnly: true,
+    }),
+  ]);
 
   // Calculate averages
   const recentAvg =

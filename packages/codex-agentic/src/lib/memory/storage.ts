@@ -289,15 +289,15 @@ export class MemoryStorage {
         entriesByAgent.get(entry.agent)!.push(entry);
       }
 
-      // Write entries for each agent
-      for (const [agent, entries] of entriesByAgent) {
-        const filePath = path.join(
-          this.config.baseDir,
-          'entries',
-          `${agent}.json`
-        );
-        await fs.writeFile(filePath, JSON.stringify(entries, null, 2));
-      }
+      // Write entries for each agent (parallelized)
+      await Promise.all(
+        Array.from(entriesByAgent).map(([agent, entries]) =>
+          fs.writeFile(
+            path.join(this.config.baseDir, 'entries', `${agent}.json`),
+            JSON.stringify(entries, null, 2)
+          )
+        )
+      );
 
       // Write sessions
       const sessions = Array.from(this.cache.sessions.values());
@@ -325,13 +325,18 @@ export class MemoryStorage {
       const entriesDir = path.join(this.config.baseDir, 'entries');
       const entryFiles = await fs.readdir(entriesDir).catch(() => []);
 
-      for (const file of entryFiles) {
-        if (!file.endsWith('.json')) continue;
+      // Parallelize file reads for better performance
+      const allEntries = await Promise.all(
+        entryFiles
+          .filter((file: string) => file.endsWith('.json'))
+          .map((file: string) =>
+            fs.readFile(path.join(entriesDir, file), 'utf-8')
+              .then((content: string) => JSON.parse(content) as MemoryEntry[])
+          )
+      );
 
-        const filePath = path.join(entriesDir, file);
-        const content = await fs.readFile(filePath, 'utf-8');
-        const entries: MemoryEntry[] = JSON.parse(content);
-
+      // Populate cache with all loaded entries
+      for (const entries of allEntries) {
         for (const entry of entries) {
           this.cache.entries.set(entry.traceId, entry);
         }

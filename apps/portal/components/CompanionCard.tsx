@@ -1,32 +1,35 @@
+import { memo } from 'react';
 import { Companion } from '@/lib/types';
 
 interface CompanionCardProps {
   companion: Companion;
 }
 
-export function CompanionCard({ companion }: CompanionCardProps) {
-  const tierColors = {
-    founder: 'bg-purple-100 text-purple-800 border-purple-200',
-    guardian: 'bg-blue-100 text-blue-800 border-blue-200',
-    sentinel: 'bg-green-100 text-green-800 border-green-200',
-    citizen: 'bg-slate-100 text-slate-800 border-slate-200',
-  };
+// Extract to module level to prevent recreation on every render
+const TIER_COLORS = {
+  founder: 'bg-purple-100 text-purple-800 border-purple-200',
+  guardian: 'bg-blue-100 text-blue-800 border-blue-200',
+  sentinel: 'bg-green-100 text-green-800 border-green-200',
+  citizen: 'bg-slate-100 text-slate-800 border-slate-200',
+} as const;
 
-  const statusColors = {
-    active: 'bg-green-100 text-green-800',
-    inactive: 'bg-slate-100 text-slate-800',
-    maintenance: 'bg-yellow-100 text-yellow-800',
-  };
+const STATUS_COLORS = {
+  active: 'bg-green-100 text-green-800',
+  inactive: 'bg-slate-100 text-slate-800',
+  maintenance: 'bg-yellow-100 text-yellow-800',
+} as const;
+
+export const CompanionCard = memo(function CompanionCard({ companion }: CompanionCardProps) {
 
   return (
     <div className="bg-white rounded-lg border border-slate-200 p-6 hover:shadow-md transition-shadow">
       <div className="flex items-start justify-between mb-4">
         <h3 className="text-lg font-semibold text-slate-900">{companion.name}</h3>
         <div className="flex gap-2">
-          <span className={`px-2 py-1 rounded-full text-xs font-medium border ${tierColors[companion.tier]}`}>
+          <span className={`px-2 py-1 rounded-full text-xs font-medium border ${TIER_COLORS[companion.tier]}`}>
             {companion.tier}
           </span>
-          <span className={`px-2 py-1 rounded-full text-xs font-medium ${statusColors[companion.status]}`}>
+          <span className={`px-2 py-1 rounded-full text-xs font-medium ${STATUS_COLORS[companion.status]}`}>
             {companion.status}
           </span>
         </div>
@@ -56,4 +59,4 @@ export function CompanionCard({ companion }: CompanionCardProps) {
       </div>
     </div>
   );
-}
+});

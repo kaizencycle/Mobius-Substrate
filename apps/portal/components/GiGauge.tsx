@@ -1,22 +1,25 @@
 'use client';
+import { memo } from 'react';
 import { GIResponse } from '@/lib/types';
 
 interface GiGaugeProps {
   gi: GIResponse;
 }
 
-export function GiGauge({ gi }: GiGaugeProps) {
-  const getScoreColor = (score: number) => {
-    if (score >= 80) return 'text-green-600';
-    if (score >= 60) return 'text-yellow-600';
-    return 'text-red-600';
-  };
+// Extract helper functions to module level to prevent recreation
+function getScoreColor(score: number): string {
+  if (score >= 80) return 'text-green-600';
+  if (score >= 60) return 'text-yellow-600';
+  return 'text-red-600';
+}
 
-  const getScoreBg = (score: number) => {
-    if (score >= 80) return 'bg-green-100';
-    if (score >= 60) return 'bg-yellow-100';
-    return 'bg-red-100';
-  };
+function getScoreBg(score: number): string {
+  if (score >= 80) return 'bg-green-100';
+  if (score >= 60) return 'bg-yellow-100';
+  return 'bg-red-100';
+}
+
+export const GiGauge = memo(function GiGauge({ gi }: GiGaugeProps) {
 
   return (
     <div className="bg-white rounded-lg border border-slate-200 p-6">
@@ -51,4 +54,4 @@ export function GiGauge({ gi }: GiGaugeProps) {
       </div>
     </div>
   );
-}
+});

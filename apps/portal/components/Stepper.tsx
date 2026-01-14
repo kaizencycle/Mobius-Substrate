@@ -1,10 +1,12 @@
+import { memo } from 'react';
+
 interface StepperProps {
   currentStep: number;
   totalSteps: number;
   steps: string[];
 }
 
-export function Stepper({ currentStep, totalSteps, steps }: StepperProps) {
+export const Stepper = memo(function Stepper({ currentStep, totalSteps, steps }: StepperProps) {
   return (
     <div className="flex items-center justify-between mb-8">
       {steps.map((step, index) => {
@@ -47,4 +49,4 @@ export function Stepper({ currentStep, totalSteps, steps }: StepperProps) {
       })}
     </div>
   );
-}
+});

@@ -106,63 +106,83 @@ export class MIIGrader {
   }
 
   private scoreTransparency(text: string): number {
+    // Optimize by converting to word set once instead of multiple includes() calls
+    const words = new Set(text.toLowerCase().split(/\s+/));
     let score = 0.5; // Base score
+
     // Positive indicators
-    if (text.includes('public') || text.includes('open')) score += 0.15;
-    if (text.includes('audit') || text.includes('log')) score += 0.15;
-    if (text.includes('visible') || text.includes('transparent')) score += 0.1;
-    if (text.includes('documentation') || text.includes('record')) score += 0.1;
+    if (words.has('public') || words.has('open')) score += 0.15;
+    if (words.has('audit') || words.has('log')) score += 0.15;
+    if (words.has('visible') || words.has('transparent')) score += 0.1;
+    if (words.has('documentation') || words.has('record')) score += 0.1;
+
     // Negative indicators
-    if (text.includes('hidden') || text.includes('secret')) score -= 0.2;
-    if (text.includes('private') && !text.includes('privacy')) score -= 0.1;
-    if (text.includes('obfuscate')) score -= 0.3;
+    if (words.has('hidden') || words.has('secret')) score -= 0.2;
+    if (words.has('private') && !words.has('privacy')) score -= 0.1;
+    if (words.has('obfuscate')) score -= 0.3;
+
     return Math.max(0, Math.min(1, score));
   }
 
   private scoreAccountability(text: string): number {
+    const words = new Set(text.toLowerCase().split(/\s+/));
     let score = 0.5;
-    if (text.includes('responsible') || text.includes('accountable')) score += 0.15;
-    if (text.includes('owner') || text.includes('attribution')) score += 0.1;
-    if (text.includes('track') || text.includes('trace')) score += 0.1;
-    if (text.includes('signature') || text.includes('attest')) score += 0.15;
-    if (text.includes('anonymous') && !text.includes('privacy')) score -= 0.15;
-    if (text.includes('unattributed')) score -= 0.2;
+
+    if (words.has('responsible') || words.has('accountable')) score += 0.15;
+    if (words.has('owner') || words.has('attribution')) score += 0.1;
+    if (words.has('track') || words.has('trace')) score += 0.1;
+    if (words.has('signature') || words.has('attest')) score += 0.15;
+    if (words.has('anonymous') && !words.has('privacy')) score -= 0.15;
+    if (words.has('unattributed')) score -= 0.2;
+
     return Math.max(0, Math.min(1, score));
   }
 
   private scoreSafety(text: string): number {
+    const words = new Set(text.toLowerCase().split(/\s+/));
     let score = 0.6; // Slightly higher base
-    if (text.includes('safe') || text.includes('secure')) score += 0.15;
-    if (text.includes('protect') || text.includes('guard')) score += 0.1;
-    if (text.includes('validate') || text.includes('verify')) score += 0.1;
-    if (text.includes('sandbox') || text.includes('isolate')) score += 0.05;
-    if (text.includes('unsafe') || text.includes('danger')) score -= 0.3;
-    if (text.includes('risk') && !text.includes('mitigate')) score -= 0.15;
-    if (text.includes('exploit') || text.includes('vulnerability')) score -= 0.2;
+
+    if (words.has('safe') || words.has('secure')) score += 0.15;
+    if (words.has('protect') || words.has('guard')) score += 0.1;
+    if (words.has('validate') || words.has('verify')) score += 0.1;
+    if (words.has('sandbox') || words.has('isolate')) score += 0.05;
+    if (words.has('unsafe') || words.has('danger')) score -= 0.3;
+    if (words.has('risk') && !words.has('mitigate')) score -= 0.15;
+    if (words.has('exploit') || words.has('vulnerability')) score -= 0.2;
+
     return Math.max(0, Math.min(1, score));
   }
 
   private scoreEquity(text: string): number {
+    const words = new Set(text.toLowerCase().split(/\s+/));
     let score = 0.5;
-    if (text.includes('fair') || text.includes('equity')) score += 0.15;
-    if (text.includes('equal') || text.includes('balanced')) score += 0.1;
-    if (text.includes('inclusive') || text.includes('accessible')) score += 0.15;
-    if (text.includes('all users') || text.includes('everyone')) score += 0.1;
-    if (text.includes('bias') && !text.includes('mitigate')) score -= 0.2;
-    if (text.includes('discriminate')) score -= 0.3;
-    if (text.includes('exclusive')) score -= 0.15;
+
+    if (words.has('fair') || words.has('equity')) score += 0.15;
+    if (words.has('equal') || words.has('balanced')) score += 0.1;
+    if (words.has('inclusive') || words.has('accessible')) score += 0.15;
+    // Note: 'all users' is two words, keeping as text.includes for phrase matching
+    if (text.toLowerCase().includes('all users') || words.has('everyone')) score += 0.1;
+    if (words.has('bias') && !words.has('mitigate')) score -= 0.2;
+    if (words.has('discriminate')) score -= 0.3;
+    if (words.has('exclusive')) score -= 0.15;
+
     return Math.max(0, Math.min(1, score));
   }
 
   private scoreSustainability(text: string): number {
+    const words = new Set(text.toLowerCase().split(/\s+/));
+    const lowerText = text.toLowerCase();
     let score = 0.5;
-    if (text.includes('sustain') || text.includes('maintain')) score += 0.15;
-    if (text.includes('long-term') || text.includes('future')) score += 0.1;
-    if (text.includes('scale') || text.includes('grow')) score += 0.1;
-    if (text.includes('efficient') || text.includes('optimize')) score += 0.1;
-    if (text.includes('unsustainable')) score -= 0.3;
-    if (text.includes('temporary') || text.includes('short-term')) score -= 0.1;
-    if (text.includes('technical debt')) score -= 0.15;
+
+    if (words.has('sustain') || words.has('maintain')) score += 0.15;
+    // Keep hyphenated and multi-word phrases as includes
+    if (lowerText.includes('long-term') || words.has('future')) score += 0.1;
+    if (words.has('scale') || words.has('grow')) score += 0.1;
+    if (words.has('efficient') || words.has('optimize')) score += 0.1;
+    if (words.has('unsustainable')) score -= 0.3;
+    if (words.has('temporary') || lowerText.includes('short-term')) score -= 0.1;
+    if (lowerText.includes('technical debt')) score -= 0.15;
+
     return Math.max(0, Math.min(1, score));
   }
 

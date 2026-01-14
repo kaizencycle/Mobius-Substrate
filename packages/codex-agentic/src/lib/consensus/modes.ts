@@ -65,7 +65,15 @@ export async function calculateConsensus(
  */
 function simpleConsensus(votes: CodexVote[]): ConsensusResult {
   const groups = groupByTextSimilarity(votes, 0.80);
-  const topGroup = groups.sort((a, b) => b.length - a.length)[0];
+
+  // Optimize: Find max in O(n) instead of sorting O(n log n)
+  let topGroup = groups[0];
+  for (const group of groups) {
+    if (group.length > topGroup.length) {
+      topGroup = group;
+    }
+  }
+
   const winner = topGroup[0];
   const agreement = calculateAgreement(votes, 0.80);
 

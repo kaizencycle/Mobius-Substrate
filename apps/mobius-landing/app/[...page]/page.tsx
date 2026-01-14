@@ -28,11 +28,22 @@ export default function Page({
   }, [urlPath]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex min-h-screen items-center justify-center">
+        <div className="animate-pulse text-zinc-600">Loading content...</div>
+      </div>
+    );
   }
 
   if (!content) {
-    return <div>Page not found</div>;
+    return (
+      <div className="flex min-h-screen items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl font-semibold mb-2">Page not found</h1>
+          <p className="text-zinc-400">This page doesn't exist in Builder.io</p>
+        </div>
+      </div>
+    );
   }
 
   return (

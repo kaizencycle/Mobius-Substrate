@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import fs from "fs";
+import { promises as fsPromises } from "fs";
 import path from "path";
 
 interface BeaconItem {
@@ -96,7 +97,8 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Search
   
   if (fs.existsSync(beaconIndexPath)) {
     try {
-      const beaconData = JSON.parse(fs.readFileSync(beaconIndexPath, "utf8"));
+      const content = await fsPromises.readFile(beaconIndexPath, "utf8");
+      const beaconData = JSON.parse(content);
       if (beaconData.dataFeedElement && Array.isArray(beaconData.dataFeedElement)) {
         beacons = beaconData.dataFeedElement;
       }
@@ -120,13 +122,14 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Search
     });
   }
 
-  // Sort by relevance (exact matches first, then partial matches)
+  // Sort by relevance - optimize by pre-calculating scores (O(n) instead of O(n log n) calls)
   if (query) {
-    filteredBeacons.sort((a, b) => {
-      const aScore = getRelevanceScore(a, query);
-      const bScore = getRelevanceScore(b, query);
-      return bScore - aScore;
-    });
+    const scoredBeacons = filteredBeacons.map(beacon => ({
+      beacon,
+      score: getRelevanceScore(beacon, query)
+    }));
+    scoredBeacons.sort((a, b) => b.score - a.score);
+    filteredBeacons = scoredBeacons.map(item => item.beacon);
   }
 
   // Limit results
@@ -146,28 +149,36 @@ export default function handler(req: NextApiRequest, res: NextApiResponse<Search
 function getRelevanceScore(beacon: BeaconItem, query: string): number {
   let score = 0;
   const queryLower = query.toLowerCase();
-  
+
+  // Pre-lowercase beacon fields once instead of repeatedly
+  const nameLower = beacon.name.toLowerCase();
+  const descLower = beacon.description.toLowerCase();
+  const urlLower = beacon.url.toLowerCase();
+
   // Exact name match gets highest score
-  if (beacon.name.toLowerCase().includes(queryLower)) {
+  if (nameLower.includes(queryLower)) {
     score += 10;
   }
-  
+
   // Description match
-  if (beacon.description.toLowerCase().includes(queryLower)) {
+  if (descLower.includes(queryLower)) {
     score += 5;
   }
-  
-  // Keyword matches
-  const keywordMatches = beacon.keywords.filter(keyword => 
-    keyword.toLowerCase().includes(queryLower)
-  ).length;
+
+  // Keyword matches - optimize with single pass
+  let keywordMatches = 0;
+  for (const keyword of beacon.keywords) {
+    if (keyword.toLowerCase().includes(queryLower)) {
+      keywordMatches++;
+    }
+  }
   score += keywordMatches * 3;
-  
+
   // URL match
-  if (beacon.url.toLowerCase().includes(queryLower)) {
+  if (urlLower.includes(queryLower)) {
     score += 2;
   }
-  
+
   return score;
 }
 
