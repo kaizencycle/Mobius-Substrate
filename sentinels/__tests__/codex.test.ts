@@ -9,7 +9,6 @@ import {
   discoverCodexes,
   getCodexPath,
   getMissingCodexes,
-  KNOWN_SENTINELS,
 } from './utils/test-utils';
 
 describe('Sentinel CODEX Documentation', () => {
