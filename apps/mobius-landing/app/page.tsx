@@ -25,7 +25,11 @@ export default function Home() {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex min-h-screen items-center justify-center">
+        <div className="animate-pulse text-zinc-600">Loading content...</div>
+      </div>
+    );
   }
 
   if (!content) {
