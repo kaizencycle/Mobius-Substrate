@@ -1,0 +1,180 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://mobius.systems/schemas/sentinel-manifest.schema.json",
+  "title": "Mobius Sentinel Manifest Schema",
+  "description": "Schema for Mobius Sentinel agent manifest files",
+  "type": "object",
+  "required": ["agent", "role", "version", "status"],
+  "properties": {
+    "agent": {
+      "type": "string",
+      "description": "Unique identifier for the sentinel agent (e.g., ATLAS, AUREA)",
+      "pattern": "^[A-Z][A-Z0-9_]*$"
+    },
+    "role": {
+      "type": "string",
+      "description": "Primary role description of the sentinel"
+    },
+    "governance_domain": {
+      "type": "string",
+      "description": "Domain of governance responsibility"
+    },
+    "version": {
+      "type": "string",
+      "description": "Semantic version of the sentinel",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "cycle": {
+      "type": "string",
+      "description": "Mobius cycle when last updated",
+      "pattern": "^C-\\d+$"
+    },
+    "provider": {
+      "type": "string",
+      "description": "AI provider (e.g., Anthropic, OpenAI)",
+      "enum": ["Anthropic", "OpenAI", "DeepSeek", "Google", "XAI", "KIMI", "Multiple", "Python-based"]
+    },
+    "temperament": {
+      "type": "object",
+      "description": "Behavioral temperament configuration",
+      "properties": {
+        "rationality": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Rationality score (0-1)"
+        },
+        "empathy": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Empathy score (0-1)"
+        },
+        "morale_anchor": {
+          "type": "string",
+          "description": "Core guiding principle or motto"
+        }
+      },
+      "required": ["rationality", "empathy"]
+    },
+    "core_functions": {
+      "type": "array",
+      "description": "List of core capabilities",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "protocols": {
+      "type": "object",
+      "description": "Protocol implementations",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "version": { "type": "string" },
+          "script": { "type": "string" },
+          "commands": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "description": { "type": "string" }
+        }
+      }
+    },
+    "health_check": {
+      "type": "object",
+      "description": "Health check configuration",
+      "properties": {
+        "endpoint": {
+          "type": "string",
+          "description": "Health check endpoint path",
+          "pattern": "^/.*$"
+        },
+        "interval_ms": {
+          "type": "integer",
+          "minimum": 1000,
+          "maximum": 300000,
+          "description": "Health check interval in milliseconds"
+        },
+        "timeout_ms": {
+          "type": "integer",
+          "minimum": 100,
+          "maximum": 30000,
+          "description": "Health check timeout in milliseconds"
+        },
+        "components": {
+          "type": "array",
+          "description": "Components to check",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "critical": { "type": "boolean" }
+            },
+            "required": ["name"]
+          }
+        }
+      },
+      "required": ["endpoint"]
+    },
+    "metrics": {
+      "type": "object",
+      "description": "Metrics configuration",
+      "properties": {
+        "endpoint": {
+          "type": "string",
+          "description": "Prometheus metrics endpoint"
+        },
+        "prefix": {
+          "type": "string",
+          "description": "Metric name prefix"
+        },
+        "labels": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "veto_authority": {
+      "type": "boolean",
+      "description": "Whether this sentinel has veto authority"
+    },
+    "veto_scope": {
+      "type": "array",
+      "description": "Scope of veto authority",
+      "items": { "type": "string" }
+    },
+    "dependencies": {
+      "type": "array",
+      "description": "Other sentinels this one depends on",
+      "items": { "type": "string" }
+    },
+    "contact": {
+      "type": "object",
+      "description": "Contact information for escalation",
+      "properties": {
+        "channel": { "type": "string" },
+        "escalation": { "type": "string" }
+      }
+    },
+    "status": {
+      "type": "string",
+      "description": "Current operational status",
+      "enum": ["active", "inactive", "pending", "deprecated", "maintenance"]
+    },
+    "attestation": {
+      "type": "object",
+      "description": "Attestation configuration",
+      "properties": {
+        "signing": {
+          "type": "string",
+          "enum": ["ed25519", "secp256k1", "rsa"]
+        },
+        "ledger_endpoint": {
+          "type": "string",
+          "format": "uri"
+        }
+      }
+    }
+  }
+}
