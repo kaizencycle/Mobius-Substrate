@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 
 type MobiusPulseStats = {
   totalFiles: number;
@@ -97,23 +97,18 @@ export function MobiusPulseCard({ title = "Mobius Pulse" }: Props) {
     );
   }
 
-  const giPercent = (data.giScore * 100).toFixed(1);
-  const miiPercent = (data.miiScore * 100).toFixed(1);
-  const generated = new Date(data.generatedAt);
+  const { giPercent, miiPercent, generated, statusColor, statusLabel } = useMemo(() => {
+    const isPristine = data.giScore >= 0.98 && data.miiScore >= 0.98;
+    const isHealthy = data.giScore >= 0.95 && data.miiScore >= 0.95;
 
-  const statusColor =
-    data.giScore >= 0.98 && data.miiScore >= 0.98
-      ? "text-emerald-400"
-      : data.giScore >= 0.95 && data.miiScore >= 0.95
-      ? "text-amber-400"
-      : "text-red-400";
-
-  const statusLabel =
-    data.giScore >= 0.98 && data.miiScore >= 0.98
-      ? "Pristine"
-      : data.giScore >= 0.95 && data.miiScore >= 0.95
-      ? "Healthy"
-      : "Degraded";
+    return {
+      giPercent: (data.giScore * 100).toFixed(1),
+      miiPercent: (data.miiScore * 100).toFixed(1),
+      generated: new Date(data.generatedAt),
+      statusColor: isPristine ? "text-emerald-400" : isHealthy ? "text-amber-400" : "text-red-400",
+      statusLabel: isPristine ? "Pristine" : isHealthy ? "Healthy" : "Degraded"
+    };
+  }, [data.giScore, data.miiScore, data.generatedAt]);
 
   return (
     <div className="rounded-xl border border-neutral-800 bg-black/50 p-4 text-sm text-neutral-100">

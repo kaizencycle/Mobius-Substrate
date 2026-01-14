@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import Link from 'next/link';
 
 const API_BASE = process.env.NEXT_PUBLIC_HABITS_API_BASE || 'http://localhost:4005';
@@ -16,7 +16,7 @@ export default function ReflectionsPage() {
     mic_awarded?: number;
   } | null>(null);
 
-  async function submitReflection() {
+  const submitReflection = useCallback(async () => {
     setStatus('saving');
 
     try {
@@ -43,7 +43,23 @@ export default function ReflectionsPage() {
       console.error('Error:', error);
       setStatus('error');
     }
-  }
+  }, [worldview, moodLabel, moodIntensity, intent]);
+
+  const handleWorldviewChange = useCallback((e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setWorldview(e.target.value);
+  }, []);
+
+  const handleMoodLabelChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    setMoodLabel(e.target.value);
+  }, []);
+
+  const handleMoodIntensityChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    setMoodIntensity(parseFloat(e.target.value));
+  }, []);
+
+  const handleIntentChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    setIntent(e.target.value);
+  }, []);
 
   return (
     <main className="min-h-screen p-8">
@@ -63,7 +79,7 @@ export default function ReflectionsPage() {
             </p>
             <textarea
               value={worldview}
-              onChange={(e) => setWorldview(e.target.value)}
+              onChange={handleWorldviewChange}
               placeholder="Share your thoughts..."
               className="w-full p-3 border rounded-lg min-h-[120px]"
             />
@@ -77,7 +93,7 @@ export default function ReflectionsPage() {
             <input
               type="text"
               value={moodLabel}
-              onChange={(e) => setMoodLabel(e.target.value)}
+              onChange={handleMoodLabelChange}
               placeholder="One word (e.g., 'hopeful', 'calm')"
               className="w-full p-3 border rounded-lg mb-3"
             />
@@ -91,7 +107,7 @@ export default function ReflectionsPage() {
                 max={1}
                 step={0.01}
                 value={moodIntensity}
-                onChange={(e) => setMoodIntensity(parseFloat(e.target.value))}
+                onChange={handleMoodIntensityChange}
                 className="w-full"
               />
             </div>
@@ -105,7 +121,7 @@ export default function ReflectionsPage() {
             <input
               type="text"
               value={intent}
-              onChange={(e) => setIntent(e.target.value)}
+              onChange={handleIntentChange}
               placeholder="One thing to carry forward..."
               className="w-full p-3 border rounded-lg"
             />

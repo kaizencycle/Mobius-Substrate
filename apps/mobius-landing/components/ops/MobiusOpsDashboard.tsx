@@ -1,6 +1,88 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
+
+// Extract inline styles to module level to prevent recreation on every render
+const STYLES = {
+  errorContainer: {
+    padding: 16,
+    border: '1px solid #7f1d1d',
+    borderRadius: 12,
+    background: '#2f0a0a'
+  },
+  mainContainer: {
+    padding: 16
+  },
+  cardsContainer: {
+    display: 'flex',
+    gap: 24,
+    flexWrap: 'wrap' as const,
+    marginTop: 8,
+  },
+  card: {
+    flex: '0 0 260px',
+    padding: 16,
+    borderRadius: 12,
+    border: '1px solid #1f2933',
+    background: '#020617',
+  },
+  cardWide: {
+    flex: '1 1 300px',
+    padding: 16,
+    borderRadius: 12,
+    border: '1px solid #1f2933',
+    background: '#020617',
+  },
+  cardTitle: {
+    fontSize: 18,
+    marginBottom: 4
+  },
+  cardTitleLarge: {
+    fontSize: 18,
+    marginBottom: 8
+  },
+  score: {
+    fontSize: 40,
+    fontWeight: 700
+  },
+  subtext: {
+    fontSize: 13,
+    opacity: 0.8
+  },
+  warningSpan: {
+    color: '#f97316',
+    marginLeft: 8
+  },
+  list: {
+    listStyle: 'none' as const,
+    padding: 0,
+    margin: 0,
+    fontSize: 14
+  },
+  listItem: {
+    marginTop: 8
+  },
+  table: {
+    width: '100%',
+    fontSize: 13,
+    borderCollapse: 'collapse' as const
+  },
+  th: {
+    textAlign: 'left' as const,
+    paddingBottom: 4
+  },
+  thRight: {
+    textAlign: 'right' as const,
+    paddingBottom: 4
+  },
+  td: {
+    padding: '2px 0'
+  },
+  tdRight: {
+    padding: '2px 0',
+    textAlign: 'right' as const
+  }
+} as const;
 
 type OpsSummary = {
   miiCurrent: number;
@@ -92,7 +174,7 @@ export function MobiusOpsDashboard() {
 
   if (error) {
     return (
-      <div style={{ padding: 16, border: '1px solid #7f1d1d', borderRadius: 12, background: '#2f0a0a' }}>
+      <div style={STYLES.errorContainer}>
         Ops error: {error}
       </div>
     );
@@ -102,86 +184,56 @@ export function MobiusOpsDashboard() {
     return <div>Loading Mobius telemetry…</div>;
   }
 
-  const giColor =
-    data.miiCurrent >= 0.98 ? '#16a34a' :
-    data.miiCurrent >= 0.95 ? '#f59e0b' :
-    '#dc2626';
-
-  const latencyEntries = Object.entries(data.last24h.avgLatencyMs);
+  const { giColor, latencyEntries } = useMemo(() => ({
+    giColor:
+      data.miiCurrent >= 0.98 ? '#16a34a' :
+      data.miiCurrent >= 0.95 ? '#f59e0b' :
+      '#dc2626',
+    latencyEntries: Object.entries(data.last24h.avgLatencyMs)
+  }), [data.miiCurrent, data.last24h.avgLatencyMs]);
 
   return (
-    <div style={{ padding: 16 }}>
-      <div
-        style={{
-          display: 'flex',
-          gap: 24,
-          flexWrap: 'wrap',
-          marginTop: 8,
-        }}
-      >
-        <div
-          style={{
-            flex: '0 0 260px',
-            padding: 16,
-            borderRadius: 12,
-            border: '1px solid #1f2933',
-            background: '#020617',
-          }}
-        >
-          <h2 style={{ fontSize: 18, marginBottom: 4 }}>Global Integrity</h2>
-          <div style={{ fontSize: 40, fontWeight: 700, color: giColor }}>
+    <div style={STYLES.mainContainer}>
+      <div style={STYLES.cardsContainer}>
+        <div style={STYLES.card}>
+          <h2 style={STYLES.cardTitle}>Global Integrity</h2>
+          <div style={{ ...STYLES.score, color: giColor }}>
             {data.miiCurrent.toFixed(3)}
           </div>
-          <div style={{ fontSize: 13, opacity: 0.8 }}>
+          <div style={STYLES.subtext}>
             Threshold: {data.miiThreshold.toFixed(2)}{' '}
             {data.safeModeEnabled && (
-              <span style={{ color: '#f97316', marginLeft: 8 }}>
+              <span style={STYLES.warningSpan}>
                 SAFE MODE
               </span>
             )}
           </div>
         </div>
 
-        <div
-          style={{
-            flex: '0 0 260px',
-            padding: 16,
-            borderRadius: 12,
-            border: '1px solid #1f2933',
-            background: '#020617',
-          }}
-        >
-          <h2 style={{ fontSize: 18, marginBottom: 8 }}>Decisions (24h)</h2>
-          <ul style={{ listStyle: 'none', padding: 0, margin: 0, fontSize: 14 }}>
+        <div style={STYLES.card}>
+          <h2 style={STYLES.cardTitleLarge}>Decisions (24h)</h2>
+          <ul style={STYLES.list}>
             <li>✅ OK: {data.last24h.decisions.ok}</li>
             <li>🟡 Needs human: {data.last24h.decisions.needsHumanReview}</li>
             <li>⛔ Rejected: {data.last24h.decisions.reject}</li>
-            <li style={{ marginTop: 8 }}>🚨 Alerts: {data.last24h.alerts}</li>
+            <li style={STYLES.listItem}>🚨 Alerts: {data.last24h.alerts}</li>
           </ul>
         </div>
 
-        <div
-          style={{
-            flex: '1 1 300px',
-            padding: 16,
-            borderRadius: 12,
-            border: '1px solid #1f2933',
-            background: '#020617',
-          }}
-        >
-          <h2 style={{ fontSize: 18, marginBottom: 8 }}>Engine Latency (24h avg)</h2>
-          <table style={{ width: '100%', fontSize: 13, borderCollapse: 'collapse' }}>
+        <div style={STYLES.cardWide}>
+          <h2 style={STYLES.cardTitleLarge}>Engine Latency (24h avg)</h2>
+          <table style={STYLES.table}>
             <thead>
               <tr>
-                <th style={{ textAlign: 'left', paddingBottom: 4 }}>Engine</th>
-                <th style={{ textAlign: 'right', paddingBottom: 4 }}>Avg ms</th>
+                <th style={STYLES.th}>Engine</th>
+                <th style={STYLES.thRight}>Avg ms</th>
               </tr>
             </thead>
             <tbody>
               {latencyEntries.map(([engine, ms]) => (
                 <tr key={engine}>
-                  <td style={{ padding: '2px 0' }}>{engine}</td>
-                  <td style={{ padding: '2px 0', textAlign: 'right' }}>
+                  <td style={STYLES.td}>{engine}</td>
+                  <td style={STYLES.tdRight}>
                     {Math.round(ms)}
                   </td>
                 </tr>
