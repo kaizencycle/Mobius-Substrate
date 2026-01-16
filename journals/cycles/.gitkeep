@@ -1,0 +1,6 @@
+# Cycle Journal Entries
+# 
+# This directory contains cycle journal JSON files (C-XXX.json)
+# and their auto-rendered markdown previews (C-XXX.md).
+#
+# See docs/CYCLE_JOURNAL_RUNTIME.md for the full specification.

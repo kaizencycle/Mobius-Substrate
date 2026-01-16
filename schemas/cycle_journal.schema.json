@@ -1,0 +1,380 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://mobius.local/schemas/cycle_journal.schema.json",
+  "title": "Mobius Cycle Journal Entry",
+  "description": "Schema for validating Cycle Journal entries in the Mobius runtime",
+  "type": "object",
+  "required": ["meta", "signals", "integrity", "decisions", "actions", "seal"],
+  "properties": {
+    "meta": {
+      "type": "object",
+      "description": "Metadata about the cycle journal entry",
+      "required": ["cycle_id", "date", "timezone", "chamber"],
+      "properties": {
+        "cycle_id": {
+          "type": "string",
+          "pattern": "^C-[0-9]{1,5}$",
+          "description": "Cycle identifier (e.g., C-193)"
+        },
+        "date": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+          "description": "Date in YYYY-MM-DD format"
+        },
+        "timezone": {
+          "type": "string",
+          "description": "IANA timezone (e.g., America/New_York)"
+        },
+        "chamber": {
+          "type": "string",
+          "description": "Chamber or context name"
+        },
+        "tags": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Optional tags for categorization"
+        },
+        "mood_vector": {
+          "type": "string",
+          "enum": ["Calm", "Tense", "Creative", "Focused", "Foggy", "Clear"],
+          "description": "Optional mood state indicator"
+        },
+        "mii_baseline": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Optional MII baseline threshold"
+        },
+        "provenance": {
+          "type": "array",
+          "description": "Audit trail of command sources",
+          "items": {
+            "type": "object",
+            "required": ["source", "command", "compiled_at", "command_hash"],
+            "properties": {
+              "source": {
+                "type": "string",
+                "description": "Origin of the command (e.g., github_issue_comment)"
+              },
+              "issue_number": {
+                "type": "string",
+                "description": "GitHub issue number if applicable"
+              },
+              "issue_url": {
+                "type": "string",
+                "description": "URL to the GitHub issue"
+              },
+              "actor": {
+                "type": "string",
+                "description": "Who issued the command"
+              },
+              "command": {
+                "type": "string",
+                "description": "The full command text"
+              },
+              "compiled_at": {
+                "type": "string",
+                "description": "ISO 8601 timestamp"
+              },
+              "command_hash": {
+                "type": "string",
+                "description": "SHA256 hash of the command"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "sweep": {
+      "type": "object",
+      "description": "Opening resonance ritual",
+      "properties": {
+        "statement": {
+          "type": "string",
+          "description": "The sweep statement for the cycle"
+        },
+        "style": {
+          "type": "string",
+          "enum": ["minimal", "mobius", "poetic"],
+          "description": "Style of sweep statement"
+        }
+      },
+      "additionalProperties": false
+    },
+    "signals": {
+      "type": "array",
+      "description": "ECHO layer - what actually happened",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["timestamp", "domain", "statement"],
+        "properties": {
+          "timestamp": {
+            "type": "string",
+            "description": "ISO 8601 timestamp of the signal"
+          },
+          "domain": {
+            "type": "string",
+            "enum": ["markets", "geopolitics", "civic", "tech", "health", "culture", "security", "governance", "memory", "other"],
+            "description": "Domain category of the signal"
+          },
+          "statement": {
+            "type": "string",
+            "minLength": 3,
+            "description": "The actual signal content"
+          },
+          "sources": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Evidence URLs"
+          },
+          "confidence": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1,
+            "description": "Confidence score (0-1)"
+          },
+          "attribution": {
+            "type": "string",
+            "description": "Who provided this signal"
+          },
+          "unconfirmed": {
+            "type": "boolean",
+            "description": "Flag for unverified claims"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "integrity": {
+      "type": "object",
+      "description": "ZEUS layer - integrity and risk status",
+      "required": ["status", "domains_touched", "watch_items"],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["normal", "watch", "advisory", "critical"],
+          "description": "Current integrity status level"
+        },
+        "domains_touched": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Domains affected in this cycle"
+        },
+        "mii_current": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Current MII score"
+        },
+        "mii_trend": {
+          "type": "string",
+          "enum": ["up", "down", "flat"],
+          "description": "MII trend direction"
+        },
+        "primary_fracture": {
+          "type": "string",
+          "description": "Main integrity concern"
+        },
+        "primary_stabilizer": {
+          "type": "string",
+          "description": "Main stabilizing factor"
+        },
+        "watch_items": {
+          "type": "array",
+          "description": "Active watch indicators",
+          "items": {
+            "type": "object",
+            "required": ["indicator", "direction", "note"],
+            "properties": {
+              "indicator": {
+                "type": "string",
+                "description": "What is being watched"
+              },
+              "direction": {
+                "type": "string",
+                "enum": ["up", "down", "flat"],
+                "description": "Trend direction"
+              },
+              "note": {
+                "type": "string",
+                "description": "Context or explanation"
+              },
+              "evidence": {
+                "type": "array",
+                "items": { "type": "string" },
+                "description": "Supporting evidence URLs"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "agent_alignment": {
+      "type": "object",
+      "description": "Multi-agent lens check (JADE × ZEUS × HERMES)",
+      "properties": {
+        "jade": {
+          "type": "object",
+          "description": "JADE - Meaning & Memory",
+          "properties": {
+            "clarity_improvements": { "type": "string" },
+            "blind_spots_reduced": { "type": "string" }
+          },
+          "additionalProperties": false
+        },
+        "zeus": {
+          "type": "object",
+          "description": "ZEUS - Risk & Thresholds",
+          "properties": {
+            "risk_movement": { "type": "string" },
+            "warning_signs": { "type": "string" }
+          },
+          "additionalProperties": false
+        },
+        "hermes": {
+          "type": "object",
+          "description": "HERMES - Incentives & Power",
+          "properties": {
+            "beneficiaries": { "type": "string" },
+            "incentive_shifts": { "type": "string" }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "insight": {
+      "type": "string",
+      "description": "Insight of the Cycle - one-line compression"
+    },
+    "decisions": {
+      "type": "array",
+      "description": "Decisions made with rationale",
+      "items": {
+        "type": "object",
+        "required": ["decision", "rationale"],
+        "properties": {
+          "decision": {
+            "type": "string",
+            "description": "What was decided"
+          },
+          "rationale": {
+            "type": "string",
+            "description": "Why this decision was made"
+          },
+          "evidence": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Supporting evidence URLs"
+          },
+          "owner": {
+            "type": "string",
+            "description": "Who owns this decision"
+          },
+          "risk": {
+            "type": "string",
+            "enum": ["low", "medium", "high"],
+            "description": "Risk level assessment"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "actions": {
+      "type": "array",
+      "description": "Action queue for next 24-72 hours",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["task", "priority"],
+        "properties": {
+          "task": {
+            "type": "string",
+            "description": "Task description"
+          },
+          "priority": {
+            "type": "string",
+            "enum": ["P0", "P1", "P2", "P3"],
+            "description": "Priority level"
+          },
+          "owner": {
+            "type": "string",
+            "description": "Who owns this task"
+          },
+          "due": {
+            "type": "string",
+            "description": "Due date (YYYY-MM-DD)"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "topology": {
+      "type": "object",
+      "description": "ATLAS layer - system topology",
+      "properties": {
+        "nodes": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "System nodes/entities"
+        },
+        "edges": {
+          "type": "array",
+          "description": "Relationships between nodes",
+          "items": {
+            "type": "object",
+            "required": ["from", "to", "relationship"],
+            "properties": {
+              "from": { "type": "string" },
+              "to": { "type": "string" },
+              "relationship": { "type": "string" }
+            },
+            "additionalProperties": false
+          }
+        },
+        "failure_corridors": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Identified failure pathways"
+        },
+        "chokepoints": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Single points of failure"
+        }
+      },
+      "additionalProperties": false
+    },
+    "seal": {
+      "type": "object",
+      "description": "Closing seal and attribution",
+      "required": ["compiled_at", "contributors", "statement"],
+      "properties": {
+        "compiled_at": {
+          "type": "string",
+          "description": "ISO 8601 timestamp of compilation"
+        },
+        "contributors": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Who contributed to this entry"
+        },
+        "canon_hash": {
+          "type": "string",
+          "description": "Optional content hash for verification"
+        },
+        "statement": {
+          "type": "string",
+          "description": "Closing statement (e.g., 'Memory holds. Motion continues.')"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
