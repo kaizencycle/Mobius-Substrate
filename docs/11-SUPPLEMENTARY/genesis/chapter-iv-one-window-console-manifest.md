@@ -17,7 +17,7 @@ This is not a chat interface. This is an **operating system for intelligence**.
 
 ## 📐 System Ontology Diagram
 
-![Kaizen OS System Ontology — Cycle C-122 → C-123](../assets/kaizen-os-system-ontology-c122-c123.svg)
+*System Ontology Diagram — Cycle C-122 → C-123*
 
 ---
 
@@ -242,10 +242,10 @@ When the system reaches this threshold:
 
 ## 📚 Related Documents
 
-- [Kaizen Manifest](../kaizen_manifest.yaml)
-- [Architecture Overview](../03-architecture/overview.md)
-- [Triad of Healing](../manifesto/triad_of_healing.md)
-- [GI Formula](../ledger/gi-formula.md)
+- [Kaizen Manifest](https://github.com/kaizencycle/Mobius-Substrate/blob/main/kaizen_manifest.yaml)
+- [Architecture Overview](../04-TECHNICAL-ARCHITECTURE/overview/README.md)
+- [Triad of Healing](../02-THEORETICAL-FOUNDATIONS/manifesto/triad_of_healing.md)
+- [GI Formula](../04-TECHNICAL-ARCHITECTURE/ledger/gi-formula.md)
 
 ---
 

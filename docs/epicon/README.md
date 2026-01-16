@@ -156,8 +156,8 @@ Result: The substrate becomes resistant to "one model convinced by one prompt."
 ## Related Specifications
 
 - [MFS Spec](../07-RESEARCH-AND-PUBLICATIONS/specs/MFS_SPEC_v1.md) — Mobius Fractal Shards
-- [MII Spec](../../specs/mii_spec_v1.md) — Mobius Integrity Index
-- [RFC-0003: GI and MII Formal Spec](../../specs/civic-ledger/RFC-0003-gi-and-mii-formal-spec.md)
+- [MII Spec](../07-RESEARCH-AND-PUBLICATIONS/specs/MII_SPEC_v1.md) — Mobius Integrity Index
+- [RFC-0003: GI and MII Formal Spec](../07-RESEARCH-AND-PUBLICATIONS/specs/civic-ledger/RFC-0003-gi-and-mii-formal-spec.md)
 - [Governance Overview](../03-GOVERNANCE-AND-POLICY/governance/GOVERNANCE_OVERVIEW.md) — Authority model
 - [AVM Specification](../authority/AVM.md) — Authority Verification Module
 

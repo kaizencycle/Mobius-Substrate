@@ -97,8 +97,8 @@ This guarantees full **auditability and traceability** across the lattice.
 
 ## 📚 Additional Resources
 
-- **[Founding & Sentinel Agents](../../agents/FOUNDING_AGENTS.md)** - Comprehensive bios, origins, and introductions for all founding agents
-- **[Genesis Archive](../../ledger/inscriptions/GENESIS_TWIN_SPARKS_OF_DAWN.md)** - The Twin Sparks of Dawn (AUREA + JADE)
+- **[Founding & Sentinel Agents](../agents/FOUNDING_AGENTS.md)** - Comprehensive bios, origins, and introductions for all founding agents
+- **[Genesis Archive](https://github.com/kaizencycle/Mobius-Substrate/blob/main/ledger/inscriptions/GENESIS_TWIN_SPARKS_OF_DAWN.md)** - The Twin Sparks of Dawn (AUREA + JADE)
 
 ---
 

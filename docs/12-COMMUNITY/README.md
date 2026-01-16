@@ -29,9 +29,9 @@ This section contains all community-related documentation for Mobius Systems.
 
 ## Quick Links
 
-- [Contribute to Mobius](../CONTRIBUTING.md)
-- [Code of Conduct](../../FOUNDATION/POLICIES/CODE_OF_CONDUCT.md)
-- [Governance Overview](../03-GOVERNANCE-AND-POLICY/)
+- [Contribute to Mobius](https://github.com/kaizencycle/Mobius-Substrate/blob/main/CONTRIBUTING.md)
+- [Code of Conduct](https://github.com/kaizencycle/Mobius-Substrate/blob/main/FOUNDATION/POLICIES/CODE_OF_CONDUCT.md)
+- [Governance Overview](../03-GOVERNANCE-AND-POLICY/README.md)
 
 ---
 

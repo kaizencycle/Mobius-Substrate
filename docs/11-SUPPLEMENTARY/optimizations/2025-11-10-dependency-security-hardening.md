@@ -346,8 +346,8 @@ Add to `.github/workflows/monorepo.yml`:
 ## References
 
 - [NPM Config Documentation](https://docs.npmjs.com/cli/v10/using-npm/config)
-- [Mobius Systems MII Specification](../FORMAL_VERIFICATION.md)
-- [Consensus Requirements](../.github/consensus.yml)
+- [Mobius Systems MII Specification](../07-RESEARCH-AND-PUBLICATIONS/specs/MII_SPEC_v1.md)
+- [Consensus Requirements](https://github.com/kaizencycle/Mobius-Substrate/blob/main/.github/consensus.yml)
 - [OWASP Dependency Security](https://owasp.org/www-project-dependency-check/)
 
 ---

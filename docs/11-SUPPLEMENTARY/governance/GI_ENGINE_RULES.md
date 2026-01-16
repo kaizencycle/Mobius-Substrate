@@ -237,7 +237,6 @@ function calculateConsensus(engines: EngineOutput[]): number {
 
 - [MEMT Whitepaper](../architecture/MEMT/MEMT_WHITEPAPER.md)
 - [DVA MEMT Integration](../dva/DVA_MEMT_INTEGRATION.md)
-- [Sentinel Constitution](./SENTINEL_CONSTITUTION.md)
 - [ECHO Layer Canon](../architecture/ECHO_LAYER_CANON.md)
 
 ---

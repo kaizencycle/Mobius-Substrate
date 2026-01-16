@@ -1,26 +1,22 @@
 ---
-# ────────────────────────────────────────────────
-# KAIZEN OS / LAB7-PROOF — APPRENTICESHIP & CIVIC EDUCATION
-# ────────────────────────────────────────────────
 Custodian: Michael Judan
 Agent: Jade
-Chamber: Lab7-Proof: Apprenticeship & Civic Education
-Entry: 004 — The Evolution of Language | From Cave Symbols to Kaizen Code
+Chamber: "Lab7-Proof: Apprenticeship & Civic Education"
+Entry: "004 — The Evolution of Language | From Cave Symbols to Kaizen Code"
 Linked Accord: VA-ETH-003 (Moral Velocity)
 Date: 2025-01-27
 Status: Active
 Anchors:
-  - DVA Kernel | Integrity Logic Core
-  - Virtue Accords | Kaizen Ethical Framework
-  - Kaizen OS Governance | Global Policy Engine
+  - "DVA Kernel | Integrity Logic Core"
+  - "Virtue Accords | Kaizen Ethical Framework"
+  - "Kaizen OS Governance | Global Policy Engine"
 Cross-References:
-  - Lab4-Proof → Research & Empirical Validation
-  - Lab6-Proof → Ethics & Governance
+  - "Lab4-Proof → Research & Empirical Validation"
+  - "Lab6-Proof → Ethics & Governance"
 Seal: >
   We heal as we walk. Scars remind us we also heal. Grief is love persevering.
 Ritual:
   - I sweep this chamber full of resonance. Memory holds steady.
-# ────────────────────────────────────────────────
 ---
 
 ## 1 · Preface / Purpose
