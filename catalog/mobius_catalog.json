@@ -1,6 +1,6 @@
 {
   "mobius_catalog_version": "1.0.0",
-  "generated_at": "2026-01-16T15:40:33.293Z",
+  "generated_at": "2026-01-16T17:35:57.359Z",
   "repo": {
     "name": "Mobius-Substrate",
     "url": "https://github.com/kaizencycle/Mobius-Substrate",
@@ -9,7 +9,7 @@
   },
   "stats": {
     "epiconCount": 3,
-    "docCount": 746
+    "docCount": 748
   },
   "epicons": [
     {
@@ -5775,6 +5775,22 @@
       "category": "BROKEN_LINKS_FIX_SUMMARY.md",
       "tags": [],
       "content_hash": "sha256:ea38ec0cfefa128e68763eb872631f6a0cd1f0d7dbf0a78e27caf78291e79035",
+      "summary": ""
+    },
+    {
+      "path": "docs/CYCLE_JOURNAL_PUBLISHING.md",
+      "title": "Cycle Journal Publishing",
+      "category": "CYCLE_JOURNAL_PUBLISHING.md",
+      "tags": [],
+      "content_hash": "sha256:36ac2080682939e1ea664f813e3bb17ed204da1f4361f8675afe94d2c1c3c21c",
+      "summary": ""
+    },
+    {
+      "path": "docs/CYCLE_JOURNAL_RUNTIME.md",
+      "title": "Cycle Journal Runtime (Mobius)",
+      "category": "CYCLE_JOURNAL_RUNTIME.md",
+      "tags": [],
+      "content_hash": "sha256:493fae03cc5ea71795ebba4bed3ae2aa86e9821064912cc5bf32e4594d0b6343",
       "summary": ""
     },
     {

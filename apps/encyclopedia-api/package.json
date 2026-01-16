@@ -15,9 +15,9 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "1.25.1",
+    "@modelcontextprotocol/sdk": "1.25.2",
     "body-parser": "^1.20.2",
-    "eslint-config-next": "16.1.1",
+    "eslint-config-next": "14.2.35",
     "ethers": "6.16.0",
     "express": "^4.19.2",
     "next": "14.2.35"

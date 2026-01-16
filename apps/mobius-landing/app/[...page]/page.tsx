@@ -40,7 +40,7 @@ export default function Page({
       <div className="flex min-h-screen items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-semibold mb-2">Page not found</h1>
-          <p className="text-zinc-400">This page doesn't exist in Builder.io</p>
+          <p className="text-zinc-400">This page does not exist in Builder.io</p>
         </div>
       </div>
     );
