@@ -388,10 +388,10 @@ SELECT (join, 3+ tables)       25ms   60ms   100ms
 
 ## 10. References
 
-- [Architecture Documentation](./ARCHITECTURE.md)
-- [Testing Strategy](./TESTING.md)
-- [Threat Model](./THREAT_MODEL.md)
-- [MII Specification](./specs/mii_spec_v1.md)
+- [Architecture Documentation](../04-TECHNICAL-ARCHITECTURE/overview/README.md)
+- [Testing Strategy](../06-OPERATIONS/testing/README.md)
+- [Threat Model](../06-OPERATIONS/security/THREAT_MODEL.md)
+- [MII Specification](../07-RESEARCH-AND-PUBLICATIONS/specs/MII_SPEC_v1.md)
 
 ---
 

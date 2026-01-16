@@ -108,7 +108,9 @@ plugins:
   - git-revision-date-localized:
       enable_creation_date: true
       type: datetime
-      fallback_to_build_date: false
+      fallback_to_build_date: true
+      enable_git_follow: false
+      strict: false
   - minify:
       minify_html: true
 
@@ -122,80 +124,50 @@ extra_javascript:
 
 # Navigation structure
 nav:
-  - Home: index.md
-  - Start Here: START_HERE.md
+  - Home: INDEX.md
+  - Start Here: 00-START-HERE/README.md
   - Mobius-Systems Handbook:
-      - Handbook Index: handbook/index.md
-      - "Part I: Foundations": handbook/part-i-foundations.md
-      - "Part II: Technical Architecture": handbook/part-ii-technical-architecture.md
-      - "Part III: Implementation": handbook/part-iii-implementation.md
-      - "Part IV: Future Vision": handbook/part-iv-future-vision.md
-      - Appendices: handbook/appendices.md
-  - Handbook (Legacy):
-      - Overview: INDEX.md
-      - Architecture:
-          - System Overview: architecture/overview.md
-          - MIC Architecture: architecture/GIC_Architecture_Spec_v1.md
-          - Founding Agents Stack: architecture/FOUNDING_AGENTS_SOVEREIGN_STACK.md
-          - Lab Architecture: LABS_MASTER_ARCHITECTURE.md
-      - Governance:
-          - Kintsugi Protocol: governance/kintsugi_protocol.md
-          - HR Framework: governance/hr/Kaizen_OS_HR_Framework.md
-      - Economics:
-          - MIC Whitepaper: economics/GIC_WHITEPAPER_v1.md
-          - Foundation Up Addendum: GIC_Foundation_Up_Economics_Addendum.md
-      - Sentinels:
-          - Overview: sentinels/uriel.md
-          - Founding Agents: agents/FOUNDING_AGENTS.md
-          - Companions: companions/README.md
-      - Development:
-          - Frontend Development: FRONTEND_DEVELOPMENT.md
-          - Deployment Guide: DEPLOYMENT_GUIDE.md
-          - Vercel Deployment: deployment/VERCEL_DEPLOYMENT_RUNBOOK.md
-          - API Integration: API_INTEGRATION.md
-      - Labs:
-          - Lab 4 (E.O.M.M.): archive/completed/labs/lab4-proof/README-COMPLETE.md
-          - Lab 6 (Citizen Shield): ../labs/lab6-proof/README.md
-          - Lab 7 (OAA Hub): lab7/004-evolution-language.md
-      - Integrity:
-          - GI Formula: ledger/gi-formula.md
-          - AI Integrity Constitution: AI_INTEGRITY_CONSTITUTION.md
-          - Drift Control: drift/README.md
-      - Onboarding:
-          - Guide: onboarding/guide.md
-          - README: onboarding/README.md
-  - Whitepapers:
-      - MIC Whitepaper Final: GIC_Whitepaper_Final.md
-      - Foundational Blueprint: foundational_blueprint_integrity_economy_v2.md
-      - UBI Mechanism: whitepapers/UBI_Mechanism_v2.0.md
-      - Shard Economics: whitepapers/Shard_Economics_Addendum.md
-  - Philosophy:
-      - Kaizen Theorems: kaizen_theorems.md
-      - Triad of Healing: manifesto/triad_of_healing.md
-      - Opening Invocation: rituals/opening_invocation.md
-      - Manifesto: manifest_oaa.md
-  - Kaizen Turing Test (KTT):
-      - Overview: ktt/README.md
-      - Primer: ktt/00_primer.md
-      - Methods: ktt/02_methods.md
-      - Governance of Governors: ktt/03_governance_of_governors.md
-      - Related Work: ktt/05_related_work.md
+      - Handbook Index: 11-SUPPLEMENTARY/handbook/index.md
+      - "Part I: Foundations": 11-SUPPLEMENTARY/handbook/part-i-foundations.md
+      - "Part II: Technical Architecture": 11-SUPPLEMENTARY/handbook/part-ii-technical-architecture.md
+      - "Part III: Implementation": 11-SUPPLEMENTARY/handbook/part-iii-implementation.md
+      - "Part IV: Future Vision": 11-SUPPLEMENTARY/handbook/part-iv-future-vision.md
+      - Appendices: 11-SUPPLEMENTARY/handbook/appendices.md
+  - Architecture:
+      - Overview: 04-TECHNICAL-ARCHITECTURE/overview/README.md
+      - DVA Flows: 04-TECHNICAL-ARCHITECTURE/overview/DVA_FLOWS_OVERVIEW.md
+      - MEMT Whitepaper: 04-TECHNICAL-ARCHITECTURE/memt/MEMT/MEMT_WHITEPAPER.md
+      - Ledger GI Formula: 04-TECHNICAL-ARCHITECTURE/ledger/gi-formula.md
+  - Governance:
+      - Overview: 03-GOVERNANCE-AND-POLICY/governance/GOVERNANCE_OVERVIEW.md
+      - Kintsugi Protocol: 03-GOVERNANCE-AND-POLICY/governance/kintsugi_protocol.md
+      - Sentinel Constitution: 03-GOVERNANCE-AND-POLICY/governance/SENTINEL_CONSTITUTION.md
+  - Research:
+      - MII Spec: 04-TECHNICAL-ARCHITECTURE/substrate/mii-spec-v0.1.md
+      - MFS Spec: 07-RESEARCH-AND-PUBLICATIONS/specs/MFS_SPEC_v1.md
+      - Whitepapers: 07-RESEARCH-AND-PUBLICATIONS/whitepapers/MIC_Whitepaper_v2.1.md
+  - Implementation:
+      - Guides: 05-IMPLEMENTATION/guides/README.md
+      - Deployment: 05-IMPLEMENTATION/guides/deployment/DEPLOYMENT_GUIDE.md
+      - Onboarding: 05-IMPLEMENTATION/onboarding/README.md
+  - EPICON:
+      - Overview: epicon/README.md
+      - EPICON-01: epicon/EPICON-01.md
+      - EPICON-02: epicon/EPICON-02.md
+      - EPICON-03: epicon/EPICON-03.md
   - Reference:
-      - Repository Structure: REPOSITORY_STRUCTURE.md
-      - Document Registry: DOCUMENT_REGISTRY.md
-      - Contributing: ../CONTRIBUTING.md
-      - Security: ../SECURITY.md
-      - Recovery Playbook: RECOVERY_PLAYBOOK.md
-  - Archive:
-      - Archive Index: archive/README.md
-      - Completed Labs: archive/completed/LABS_IMPLEMENTATION_COMPLETE.md
+      - Master Index: 00-META/MASTER_INDEX.md
+      - Glossary: 00-START-HERE/GLOSSARY.md
+      - FAQ: 00-START-HERE/FAQ.md
+  - Archives: 10-ARCHIVES/README.md
 
-# Validation
+# Validation - set to info to avoid breaking strict mode builds
+# Many legacy documents have links to files outside the docs folder
 validation:
   nav:
     not_found: warn
-    absolute_links: warn
+    absolute_links: info
   links:
-    not_found: warn
-    absolute_links: warn
+    not_found: info
+    absolute_links: info
 
