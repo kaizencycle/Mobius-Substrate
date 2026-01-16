@@ -43,7 +43,11 @@
     "mcp:start": "cd mcp/mobius-repo-scanner && npm start",
     "cycle:validate": "node scripts/validate_cycle_journal.mjs",
     "cycle:render": "node scripts/render_cycle_markdown.mjs",
-    "cycle:check": "npm run cycle:validate && npm run cycle:render"
+    "cycle:check": "npm run cycle:validate && npm run cycle:render",
+    "benchmark": "vitest bench",
+    "benchmark:ci": "vitest bench --reporter=json --outputFile=benchmark-results.json",
+    "benchmark:baseline": "vitest bench --reporter=json --outputFile=tests/benchmarks/.baselines/current.json",
+    "test:coverage": "turbo run test -- --coverage"
   },
   "dependencies": {
     "gray-matter": "4.0.3"
@@ -51,11 +55,13 @@
   "devDependencies": {
     "@changesets/cli": "^2.27.1",
     "@types/node": "^20.0.0",
+    "@vitest/coverage-v8": "^3.0.0",
     "ajv": "8.17.1",
     "ajv-formats": "3.0.1",
     "tsx": "^4.7.0",
     "turbo": "^2.6.0",
-    "typescript": "^5.0.0"
+    "typescript": "^5.0.0",
+    "vitest": "^3.0.0"
   },
   "engines": {
     "node": ">=18.0.0",

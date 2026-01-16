@@ -1,0 +1,115 @@
+{
+  "name": "Mobius Substrate Development",
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:20-bookworm",
+  "features": {
+    "ghcr.io/devcontainers/features/python:1": {
+      "version": "3.12",
+      "installTools": true
+    },
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {},
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/devcontainers/features/git:1": {}
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "bradlc.vscode-tailwindcss",
+        "prisma.prisma",
+        "ms-azuretools.vscode-docker",
+        "GitHub.copilot",
+        "GitHub.vscode-pull-request-github",
+        "yzhang.markdown-all-in-one",
+        "redhat.vscode-yaml",
+        "ZixuanChen.vitest-explorer",
+        "firsttris.vscode-jest-runner",
+        "orta.vscode-jest",
+        "streetsidesoftware.code-spell-checker",
+        "usernamehw.errorlens"
+      ],
+      "settings": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.codeActionsOnSave": {
+          "source.fixAll.eslint": "explicit"
+        },
+        "typescript.preferences.importModuleSpecifier": "relative",
+        "typescript.updateImportsOnFileMove.enabled": "always",
+        "python.defaultInterpreterPath": "/usr/local/bin/python",
+        "python.formatting.provider": "black",
+        "python.linting.enabled": true,
+        "python.linting.pylintEnabled": true,
+        "files.watcherExclude": {
+          "**/node_modules/**": true,
+          "**/.turbo/**": true,
+          "**/dist/**": true,
+          "**/.next/**": true
+        },
+        "search.exclude": {
+          "**/node_modules": true,
+          "**/dist": true,
+          "**/.next": true,
+          "**/.turbo": true
+        },
+        "terminal.integrated.defaultProfile.linux": "bash"
+      }
+    }
+  },
+  "postCreateCommand": "npm ci && pip install pytest pytest-cov hypothesis",
+  "postStartCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}",
+  "forwardPorts": [
+    3000,
+    3001,
+    3002,
+    3003,
+    3004,
+    8080,
+    9090
+  ],
+  "portsAttributes": {
+    "3000": {
+      "label": "Portal",
+      "onAutoForward": "notify"
+    },
+    "3001": {
+      "label": "Broker API",
+      "onAutoForward": "notify"
+    },
+    "3002": {
+      "label": "Ledger API",
+      "onAutoForward": "notify"
+    },
+    "3003": {
+      "label": "DVA.LITE",
+      "onAutoForward": "notify"
+    },
+    "3004": {
+      "label": "OAA Hub",
+      "onAutoForward": "notify"
+    },
+    "8080": {
+      "label": "Gateway",
+      "onAutoForward": "notify"
+    },
+    "9090": {
+      "label": "Prometheus",
+      "onAutoForward": "silent"
+    }
+  },
+  "remoteUser": "node",
+  "containerEnv": {
+    "NODE_ENV": "development",
+    "TURBO_TELEMETRY_DISABLED": "1",
+    "npm_config_loglevel": "warn"
+  },
+  "mounts": [
+    "source=${localWorkspaceFolder}/.turbo,target=${containerWorkspaceFolder}/.turbo,type=bind,consistency=cached"
+  ],
+  "runArgs": [
+    "--memory=8g",
+    "--cpus=4"
+  ]
+}
