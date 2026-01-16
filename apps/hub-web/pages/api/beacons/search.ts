@@ -86,7 +86,7 @@ const sampleBeacons: BeaconItem[] = [
   }
 ];
 
-export default function handler(req: NextApiRequest, res: NextApiResponse<SearchResponse>) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse<SearchResponse>) {
   const { q, limit = "25" } = req.query;
   const query = String(q || "").toLowerCase().trim();
   const limitNum = Math.min(parseInt(String(limit)), 100);
