@@ -296,7 +296,7 @@ export class ZeusStore {
       return { success: false, status: 'closed' };
     }
 
-    const previousStatus = circuit.status;
+    // Update circuit status
     circuit.status = action;
     
     const historyEntry: CircuitHistoryEntry = {
