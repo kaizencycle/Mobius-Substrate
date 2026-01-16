@@ -1,6 +1,6 @@
 {
   "mobius_catalog_version": "1.0.0",
-  "generated_at": "2026-01-16T17:35:57.359Z",
+  "generated_at": "2026-01-16T18:32:45.642Z",
   "repo": {
     "name": "Mobius-Substrate",
     "url": "https://github.com/kaizencycle/Mobius-Substrate",
@@ -1771,18 +1771,18 @@
     },
     {
       "path": "docs/07-RESEARCH-AND-PUBLICATIONS/blueprints/temp_index_recovery.md",
-      "title": "temp_index_recovery",
+      "title": "Complete Documentation Index ΓÇö All Scales",
       "category": "07-RESEARCH-AND-PUBLICATIONS",
       "tags": [],
-      "content_hash": "sha256:0e27be8771d2abced71ef41e57a60c4b5b9dfafb667606b0a74f9a9197961622",
+      "content_hash": "sha256:8ebc275eeb667a712fe40ab3eb3c937c8237054cc8906fd8c139d8b5ed09ed3e",
       "summary": ""
     },
     {
       "path": "docs/07-RESEARCH-AND-PUBLICATIONS/blueprints/temp_nyc_recovery.md",
-      "title": "temp_nyc_recovery",
+      "title": "DVA Flows for New York City - Real-World Use Cases",
       "category": "07-RESEARCH-AND-PUBLICATIONS",
       "tags": [],
-      "content_hash": "sha256:6734b52df7d8b9286e508e32935a8ec8bf215c6e0752b767bec23b89d0cff753",
+      "content_hash": "sha256:c49bcbae233894660a4d9063f6f79b26798559dccb91737b76611b96bdc2bfc3",
       "summary": ""
     },
     {
@@ -4622,7 +4622,7 @@
       "title": "PR Bundle: CYCLE_INDEX + Docs Skeleton [C-147]",
       "category": "10-ARCHIVES",
       "tags": [],
-      "content_hash": "sha256:102fddf5387d4deb057e9b4118b18059a3749b7c4543b057a660569e58d27260",
+      "content_hash": "sha256:2bbcff448364c35d8949a27241a7c810941b912cbb0eb03e0ba24a6e6470bd96",
       "summary": ""
     },
     {
@@ -4971,18 +4971,18 @@
     },
     {
       "path": "docs/11-SUPPLEMENTARY/blueprints/temp_index_recovery.md",
-      "title": "temp_index_recovery",
+      "title": "Complete Documentation Index ΓÇö All Scales",
       "category": "11-SUPPLEMENTARY",
       "tags": [],
-      "content_hash": "sha256:0e27be8771d2abced71ef41e57a60c4b5b9dfafb667606b0a74f9a9197961622",
+      "content_hash": "sha256:8ebc275eeb667a712fe40ab3eb3c937c8237054cc8906fd8c139d8b5ed09ed3e",
       "summary": ""
     },
     {
       "path": "docs/11-SUPPLEMENTARY/blueprints/temp_nyc_recovery.md",
-      "title": "temp_nyc_recovery",
+      "title": "DVA Flows for New York City - Real-World Use Cases",
       "category": "11-SUPPLEMENTARY",
       "tags": [],
-      "content_hash": "sha256:6734b52df7d8b9286e508e32935a8ec8bf215c6e0752b767bec23b89d0cff753",
+      "content_hash": "sha256:c49bcbae233894660a4d9063f6f79b26798559dccb91737b76611b96bdc2bfc3",
       "summary": ""
     },
     {
