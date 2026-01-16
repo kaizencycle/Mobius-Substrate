@@ -40,7 +40,10 @@
     "oc:review": "opencode review --config opencode.config.yaml",
     "export:catalog": "tsx scripts/exportCatalog.ts",
     "mcp:build": "cd mcp/mobius-repo-scanner && npm run build",
-    "mcp:start": "cd mcp/mobius-repo-scanner && npm start"
+    "mcp:start": "cd mcp/mobius-repo-scanner && npm start",
+    "cycle:validate": "node scripts/validate_cycle_journal.mjs",
+    "cycle:render": "node scripts/render_cycle_markdown.mjs",
+    "cycle:check": "npm run cycle:validate && npm run cycle:render"
   },
   "dependencies": {
     "gray-matter": "4.0.3"
@@ -48,6 +51,8 @@
   "devDependencies": {
     "@changesets/cli": "^2.27.1",
     "@types/node": "^20.0.0",
+    "ajv": "8.17.1",
+    "ajv-formats": "3.0.1",
     "tsx": "^4.7.0",
     "turbo": "^2.6.0",
     "typescript": "^5.0.0"

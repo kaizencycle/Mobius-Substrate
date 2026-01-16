@@ -1,0 +1,95 @@
+name: Cycle Journal CI
+
+on:
+  pull_request:
+    paths:
+      - 'journals/cycles/**'
+      - 'schemas/cycle_journal.schema.json'
+      - 'scripts/validate_cycle_journal.mjs'
+      - 'scripts/render_cycle_markdown.mjs'
+  push:
+    branches: [main]
+    paths:
+      - 'journals/cycles/**'
+      - 'schemas/cycle_journal.schema.json'
+
+jobs:
+  cycle-journal-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: |
+          if [ -f package-lock.json ]; then
+            npm ci
+          else
+            npm install
+          fi
+
+      - name: Validate Cycle Journal entries
+        run: npm run cycle:validate
+
+      - name: Render Cycle Journal markdown
+        run: npm run cycle:render
+
+      - name: Check for schema validation errors
+        id: validate
+        run: |
+          npm run cycle:validate 2>&1 | tee validation.log
+          if grep -q "❌" validation.log; then
+            echo "validation_failed=true" >> $GITHUB_OUTPUT
+          else
+            echo "validation_failed=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Upload rendered markdown
+        uses: actions/upload-artifact@v4
+        with:
+          name: cycle-journal-markdown
+          path: journals/cycles/*.md
+          if-no-files-found: ignore
+
+      - name: Upload validation log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cycle-journal-validation-log
+          path: validation.log
+          if-no-files-found: ignore
+
+      - name: Comment on PR with validation results
+        if: github.event_name == 'pull_request'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if [ "${{ steps.validate.outputs.validation_failed }}" == "true" ]; then
+            gh pr comment ${{ github.event.pull_request.number }} --body "## ❌ Cycle Journal Validation Failed
+
+          Please review the validation log artifact for details.
+
+          Common issues:
+          - Missing required fields
+          - Invalid cycle_id format (must be C-XXX)
+          - Invalid domain enum values
+          - Missing evidence links for high-impact claims
+
+          ---
+          *Cycle Journal CI*"
+          else
+            gh pr comment ${{ github.event.pull_request.number }} --body "## ✅ Cycle Journal Validation Passed
+
+          All cycle journal entries are schema-valid.
+
+          Rendered markdown files are available in the artifacts.
+
+          ---
+          *Cycle Journal CI*"
+          fi

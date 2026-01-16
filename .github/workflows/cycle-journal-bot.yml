@@ -1,0 +1,180 @@
+name: Cycle Journal Bot (PR)
+
+on:
+  workflow_dispatch:
+    inputs:
+      cycle_id:
+        description: "Cycle ID (e.g., C-193)"
+        required: true
+      chamber:
+        description: "Chamber name (e.g., Command Ledger / J1 / M1 / Lab4)"
+        required: true
+        default: "Cycle Journal"
+      timezone:
+        description: "Timezone (e.g., America/New_York)"
+        required: true
+        default: "America/New_York"
+      mood_vector:
+        description: "Mood Vector (Calm/Tense/Creative/Focused/Foggy/Clear)"
+        required: false
+        default: "Clear"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  create-cycle-journal-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set variables
+        id: vars
+        run: |
+          echo "CYCLE_ID=${{ github.event.inputs.cycle_id }}" >> $GITHUB_ENV
+          echo "CHAMBER=${{ github.event.inputs.chamber }}" >> $GITHUB_ENV
+          echo "TZ=${{ github.event.inputs.timezone }}" >> $GITHUB_ENV
+          echo "MOOD=${{ github.event.inputs.mood_vector }}" >> $GITHUB_ENV
+          echo "DATE=$(date -u +%F)" >> $GITHUB_ENV
+          echo "NOW=$(date -u +%Y-%m-%dT%H:%M:%SZ)" >> $GITHUB_ENV
+
+      - name: Create branch
+        run: |
+          git checkout -b chore/${CYCLE_ID}-cycle-journal
+
+      - name: Create journals directory
+        run: mkdir -p journals/cycles
+
+      - name: Write stub JSON entry
+        run: |
+          cat > journals/cycles/${CYCLE_ID}.json <<'JSONEOF'
+          {
+            "meta": {
+              "cycle_id": "$CYCLE_ID",
+              "date": "$DATE",
+              "timezone": "$TZ",
+              "chamber": "$CHAMBER",
+              "tags": ["cycle_journal"],
+              "mood_vector": "$MOOD"
+            },
+            "sweep": {
+              "statement": "I sweep this chamber with clarity, continuity, and accountable memory.",
+              "style": "mobius"
+            },
+            "signals": [
+              {
+                "timestamp": "$NOW",
+                "domain": "governance",
+                "statement": "Cycle Journal stub created. Awaiting agent proposals (ATLAS/AUREA) and evidence links.",
+                "sources": [],
+                "confidence": 0.5,
+                "attribution": "MobiusBot"
+              }
+            ],
+            "integrity": {
+              "status": "watch",
+              "domains_touched": ["memory", "governance"],
+              "watch_items": [
+                {
+                  "indicator": "journal_runtime_boot",
+                  "direction": "up",
+                  "note": "Cycle journal runtime initialized. Awaiting structured updates.",
+                  "evidence": []
+                }
+              ]
+            },
+            "agent_alignment": {
+              "jade": {
+                "clarity_improvements": "Pending JADE assessment",
+                "blind_spots_reduced": "Pending JADE assessment"
+              },
+              "zeus": {
+                "risk_movement": "Pending ZEUS assessment",
+                "warning_signs": "Pending ZEUS assessment"
+              },
+              "hermes": {
+                "beneficiaries": "Pending HERMES assessment",
+                "incentive_shifts": "Pending HERMES assessment"
+              }
+            },
+            "insight": "Awaiting cycle compression from AUREA.",
+            "decisions": [
+              {
+                "decision": "Adopt Cycle Journal runtime (agents propose → Mobius Bot commits).",
+                "rationale": "Prevent drift and reduce chat/ledger heaviness while preserving canon.",
+                "evidence": [],
+                "owner": "Michael",
+                "risk": "low"
+              }
+            ],
+            "actions": [
+              { "task": "Collect ATLAS topology notes for this cycle", "priority": "P1", "owner": "ATLAS" },
+              { "task": "Collect AUREA framing + compression line for this cycle", "priority": "P1", "owner": "AUREA" },
+              { "task": "Review and seal cycle journal", "priority": "P2", "owner": "Michael" }
+            ],
+            "seal": {
+              "compiled_at": "$NOW",
+              "contributors": ["MobiusBot"],
+              "canon_hash": "",
+              "statement": "I sweep this chamber full of resonance. Memory holds steady."
+            }
+          }
+          JSONEOF
+          
+          # Replace environment variables in the JSON
+          sed -i "s|\$CYCLE_ID|${CYCLE_ID}|g" journals/cycles/${CYCLE_ID}.json
+          sed -i "s|\$DATE|${DATE}|g" journals/cycles/${CYCLE_ID}.json
+          sed -i "s|\$TZ|${TZ}|g" journals/cycles/${CYCLE_ID}.json
+          sed -i "s|\$CHAMBER|${CHAMBER}|g" journals/cycles/${CYCLE_ID}.json
+          sed -i "s|\$MOOD|${MOOD}|g" journals/cycles/${CYCLE_ID}.json
+          sed -i "s|\$NOW|${NOW}|g" journals/cycles/${CYCLE_ID}.json
+
+      - name: Validate JSON syntax
+        run: |
+          python3 -c "import json; json.load(open('journals/cycles/${CYCLE_ID}.json'))"
+
+      - name: Commit changes
+        run: |
+          git config user.name "MobiusBot"
+          git config user.email "mobiusbot@users.noreply.github.com"
+          git add journals/cycles/${CYCLE_ID}.json
+          git commit -m "${CYCLE_ID}: initialize cycle journal stub"
+
+      - name: Push branch
+        run: |
+          git push --set-upstream origin chore/${CYCLE_ID}-cycle-journal
+
+      - name: Create Pull Request
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh pr create \
+            --title "${{ github.event.inputs.cycle_id }}: Cycle Journal Update (MobiusBot)" \
+            --body "## Summary
+
+          Initializes a cycle journal stub for ${{ github.event.inputs.cycle_id }}.
+
+          **Chamber:** ${{ github.event.inputs.chamber }}
+          **Timezone:** ${{ github.event.inputs.timezone }}
+          **Mood Vector:** ${{ github.event.inputs.mood_vector }}
+
+          ## Next Steps
+
+          - [ ] ATLAS proposes topology + failure corridors (patch-style)
+          - [ ] AUREA proposes systems framing + compression line (patch-style)
+          - [ ] JADE reviews for meaning integrity
+          - [ ] ZEUS validates integrity status
+
+          ## Validation Checklist
+
+          - [ ] Schema conforms to \`schemas/cycle_journal.schema.json\`
+          - [ ] Claims include evidence links or marked unconfirmed
+          - [ ] No silent overwrites; diff is minimal and auditable
+
+          ---
+          *Generated by Cycle Journal Bot*
+          *\"Memory holds. Motion continues.\"*" \
+            --base main \
+            --head "chore/${{ github.event.inputs.cycle_id }}-cycle-journal"
