@@ -1,0 +1,174 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://mobius.systems/schemas/mii/state-record.json",
+  "title": "MII State Record",
+  "description": "Schema for Mobius Integrity Index state/entity records",
+  "type": "object",
+  "required": [
+    "entity_id",
+    "entity_name",
+    "entity_type",
+    "cycle",
+    "timestamp",
+    "mii_score",
+    "tier",
+    "domains"
+  ],
+  "properties": {
+    "entity_id": {
+      "type": "string",
+      "description": "Unique identifier for the entity (e.g., US-CA for California)",
+      "pattern": "^[A-Z]{2}(-[A-Z]{2,3})?$"
+    },
+    "entity_name": {
+      "type": "string",
+      "description": "Human-readable name of the entity",
+      "minLength": 1,
+      "maxLength": 100
+    },
+    "entity_type": {
+      "type": "string",
+      "enum": ["state", "territory", "federal", "nation-state", "region"],
+      "description": "Classification of the entity"
+    },
+    "parent_entity": {
+      "type": "string",
+      "description": "Parent entity ID (e.g., US for US states)",
+      "pattern": "^[A-Z]{2}(-[A-Z]{2,3})?$"
+    },
+    "cycle": {
+      "type": "string",
+      "description": "Mobius cycle identifier",
+      "pattern": "^C-[0-9]{1,4}$"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp of the record"
+    },
+    "mii_score": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Composite MII score (0-100)"
+    },
+    "tier": {
+      "type": "string",
+      "enum": ["A+", "A", "B+", "B", "C+", "C", "D+", "D", "E", "F"],
+      "description": "Letter grade tier"
+    },
+    "domains": {
+      "type": "object",
+      "description": "Domain-level scores",
+      "required": [
+        "accountability_rule_of_law",
+        "transparency_auditability",
+        "democratic_integrity",
+        "corruption_capture_risk",
+        "civil_rights_equal_protection",
+        "public_safety_legitimacy"
+      ],
+      "properties": {
+        "accountability_rule_of_law": {
+          "$ref": "#/definitions/domain_score"
+        },
+        "transparency_auditability": {
+          "$ref": "#/definitions/domain_score"
+        },
+        "democratic_integrity": {
+          "$ref": "#/definitions/domain_score"
+        },
+        "corruption_capture_risk": {
+          "$ref": "#/definitions/domain_score"
+        },
+        "civil_rights_equal_protection": {
+          "$ref": "#/definitions/domain_score"
+        },
+        "public_safety_legitimacy": {
+          "$ref": "#/definitions/domain_score"
+        }
+      },
+      "additionalProperties": false
+    },
+    "failure_markers": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["!", "?", "*", "↑", "↓", "+"]
+      },
+      "uniqueItems": true,
+      "description": "Categorical failure/status markers"
+    },
+    "trajectory": {
+      "type": "string",
+      "enum": ["improving", "stable", "worsening"],
+      "description": "Overall trajectory assessment"
+    },
+    "population": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Population for weighting purposes"
+    },
+    "notes": {
+      "type": "string",
+      "maxLength": 1000,
+      "description": "Optional notes or caveats"
+    },
+    "confidence": {
+      "type": "string",
+      "enum": ["high", "medium", "low", "provisional"],
+      "description": "Confidence level in the assessment"
+    },
+    "sources_version": {
+      "type": "string",
+      "description": "Version of source data used"
+    },
+    "methodology_version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+      "description": "Semantic version of methodology applied"
+    }
+  },
+  "definitions": {
+    "domain_score": {
+      "type": "object",
+      "required": ["score"],
+      "properties": {
+        "score": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Domain score (0-100)"
+        },
+        "weight": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Weight applied in composite"
+        },
+        "subscores": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "description": "Optional subdomain scores"
+        },
+        "data_quality": {
+          "type": "string",
+          "enum": ["complete", "partial", "estimated", "missing"],
+          "description": "Quality of underlying data"
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Source identifiers used for this domain"
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}
