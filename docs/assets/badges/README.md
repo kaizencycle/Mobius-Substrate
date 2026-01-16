@@ -75,9 +75,9 @@ These badges are part of the Mobius Systems Foundation documentation and are lic
 
 ## Related Files
 
-- [Integrity Basin Diagram](../diagrams/integrity_basin.svg)
-- [Agent Voice Profiles](../../../apps/integrity-pulse/src/agents/voiceProfiles.ts)
-- [Sentinel Configuration](../../../apps/integrity-pulse/src/components/SentinelSphere.tsx)
+- [Integrity Basin Diagram](../../09-APPENDICES/diagrams/README.md)
+- [Agent Voice Profiles](https://github.com/kaizencycle/Mobius-Substrate/blob/main/apps/integrity-pulse/src/agents/voiceProfiles.ts)
+- [Sentinel Configuration](https://github.com/kaizencycle/Mobius-Substrate/blob/main/apps/integrity-pulse/src/components/SentinelSphere.tsx)
 
 ---
 

@@ -491,8 +491,8 @@ Then run consensus engine.
 | EPICON-02 Specification | [`EPICON-02.md`](./EPICON-02.md) |
 | EPICON-02 Formal Invariants | [`EPICON-02-INVARIANTS.md`](./EPICON-02-INVARIANTS.md) |
 | Explain Failure Guide | [`EXPLAIN_FAILURE.md`](./EXPLAIN_FAILURE.md) |
-| Consensus Request Schema | [`../../schemas/epicon03/consensus_request.schema.json`](../../schemas/epicon03/consensus_request.schema.json) |
-| Consensus Attestation Schema | [`../../schemas/epicon03/consensus_attestation.schema.json`](../../schemas/epicon03/consensus_attestation.schema.json) |
+| Consensus Request Schema | [GitHub: consensus_request.schema.json](https://github.com/kaizencycle/Mobius-Substrate/blob/main/schemas/epicon03/consensus_request.schema.json) |
+| Consensus Attestation Schema | [GitHub: consensus_attestation.schema.json](https://github.com/kaizencycle/Mobius-Substrate/blob/main/schemas/epicon03/consensus_attestation.schema.json) |
 
 ---
 

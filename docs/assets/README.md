@@ -91,7 +91,7 @@ All branding assets are licensed under [CC-BY-SA 4.0](https://creativecommons.or
 
 ## References
 
-- [Kaizen Visual Design System](../design/theorem_visual_system.yaml)
-- [Kaizen Theorems](../kaizen_theorems.md)
-- [Kintsugi Protocol](../02-governance/kintsugi_protocol.md)
+- [Kaizen Visual Design System](./09-APPENDICES/design/theorem_visual_system.yaml)
+- [Kaizen Theorems](../02-THEORETICAL-FOUNDATIONS/kaizen_theorems.md)
+- [Kintsugi Protocol](../03-GOVERNANCE-AND-POLICY/governance/kintsugi_protocol.md)
 

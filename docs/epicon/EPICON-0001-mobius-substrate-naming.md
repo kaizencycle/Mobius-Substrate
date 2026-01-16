@@ -162,11 +162,11 @@ Out of scope (will be separate EPICONs / PRs):
 
 ## 9. Related Documents
 
-- [README.md](../../README.md) — Updated top section
+- [README.md](https://github.com/kaizencycle/Mobius-Substrate/blob/main/README.md) — Updated top section
 - [EPICON-01](./EPICON-01.md) — Epistemic constraint layer
 - [EPICON-02](./EPICON-02.md) — Intent publication & divergence protocol
 - [EPICON-03](./EPICON-03.md) — Multi-agent collective epistemic consensus
-- [MII Spec](../../specs/mii_spec_v1.md) — Mobius Integrity Index
+- [MII Spec](../07-RESEARCH-AND-PUBLICATIONS/specs/MII_SPEC_v1.md) — Mobius Integrity Index
 - [DVA Overview](../04-TECHNICAL-ARCHITECTURE/overview/DVA_FLOWS_OVERVIEW.md) — Distributed Verification Architecture
 
 ---

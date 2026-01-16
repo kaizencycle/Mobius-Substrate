@@ -1,6 +1,6 @@
 {
   "mobius_catalog_version": "1.0.0",
-  "generated_at": "2026-01-16T20:29:32.870Z",
+  "generated_at": "2026-01-16T22:24:14.783Z",
   "repo": {
     "name": "Mobius-Substrate",
     "url": "https://github.com/kaizencycle/Mobius-Substrate",
@@ -9,7 +9,7 @@
   },
   "stats": {
     "epiconCount": 3,
-    "docCount": 749
+    "docCount": 751
   },
   "epicons": [
     {
@@ -2422,7 +2422,7 @@
       "title": "Kaizen OS Companion Lattice Index",
       "category": "09-APPENDICES",
       "tags": [],
-      "content_hash": "sha256:24c3ad7c6192740d90077b7518cc333ce44afa3dc57e7f311686c8bb0a995b5a",
+      "content_hash": "sha256:458b3f2414e8f379dd5d8eb31b87b5870e89a37a7984b8e1e2573f6b54a5ba9a",
       "summary": ""
     },
     {
@@ -3682,6 +3682,14 @@
       "summary": ""
     },
     {
+      "path": "docs/10-ARCHIVES/labs/lab7/004-evolution-language.md",
+      "title": "004-evolution-language",
+      "category": "10-ARCHIVES",
+      "tags": [],
+      "content_hash": "sha256:89023a4188f1704e27b52db7b7501aaebcfbb573293b7fd42503a9c8c5a0b319",
+      "summary": ""
+    },
+    {
       "path": "docs/10-ARCHIVES/legacy/01-philosophy/README.md",
       "title": "Mobius Philosophy",
       "category": "10-ARCHIVES",
@@ -4175,6 +4183,14 @@
       "category": "10-ARCHIVES",
       "tags": [],
       "content_hash": "sha256:9b60bb6383de47378407d6e6c283c608c7f904bf5cfe28f9d42047739cc2dfa2",
+      "summary": ""
+    },
+    {
+      "path": "docs/10-ARCHIVES/legacy/05-research/foundations/foundational_blueprint_integrity_economy_v2.md",
+      "title": "Foundational Blueprint: The Integrity Economy (v2)",
+      "category": "10-ARCHIVES",
+      "tags": [],
+      "content_hash": "sha256:01c8b0a70bb7cdf664da1b4c2501b96366e2484b1577f32ca7e9d3bf45835f2a",
       "summary": ""
     },
     {
@@ -5006,7 +5022,7 @@
       "title": "Kaizen OS Companion Lattice Index",
       "category": "11-SUPPLEMENTARY",
       "tags": [],
-      "content_hash": "sha256:24c3ad7c6192740d90077b7518cc333ce44afa3dc57e7f311686c8bb0a995b5a",
+      "content_hash": "sha256:bd5999adad557057fea0874d1b155bfb2acdd4a78fa6abe917da49b4fc8868d6",
       "summary": ""
     },
     {
@@ -5334,7 +5350,7 @@
       "title": "Genesis Chapter IV: The One-Window Console Manifest",
       "category": "11-SUPPLEMENTARY",
       "tags": [],
-      "content_hash": "sha256:12dcee576fb5838f8c39e247d865177aecd4651de0ab7a007b293b3364192529",
+      "content_hash": "sha256:9defde85b420cfa715349ab43917d81e61a02c1bbdcf2073bb771e6725fb25e3",
       "summary": ""
     },
     {
@@ -5342,7 +5358,7 @@
       "title": "GI Engine Trust Rules",
       "category": "11-SUPPLEMENTARY",
       "tags": [],
-      "content_hash": "sha256:ccb1a70c7ed60d1b8860622bb9b64c0707c5065a87162904b75c75a594571607",
+      "content_hash": "sha256:ab5ced7f88344ab0de2a43eb7aecb39017cdf484e508ae2f9601077fe23df4cc",
       "summary": ""
     },
     {
@@ -5478,7 +5494,7 @@
       "title": "Sentinel Intelligence Layer Classification",
       "category": "11-SUPPLEMENTARY",
       "tags": [],
-      "content_hash": "sha256:64664963c18f50e8c42e351a4e7a0919f838eab0f30faf77a586f5c9314e0980",
+      "content_hash": "sha256:8b356ce1532bff8ab90f226e44ce5bc53067fc658e691a776ba55487fb6577ce",
       "summary": ""
     },
     {
@@ -5499,10 +5515,10 @@
     },
     {
       "path": "docs/11-SUPPLEMENTARY/lab7/004-evolution-language.md",
-      "title": "────────────────────────────────────────────────",
+      "title": "004-evolution-language",
       "category": "11-SUPPLEMENTARY",
       "tags": [],
-      "content_hash": "sha256:7ae983f74167aa9ad030c85cf93d4b2aee31bd32aa08a79a94c53aba79ca360e",
+      "content_hash": "sha256:89023a4188f1704e27b52db7b7501aaebcfbb573293b7fd42503a9c8c5a0b319",
       "summary": ""
     },
     {
@@ -5534,7 +5550,7 @@
       "title": "MIC Token — Mobius Integrity Credit",
       "category": "11-SUPPLEMENTARY",
       "tags": [],
-      "content_hash": "sha256:50bdb19690968d8456938685635095a427447ed272c9c94314f17c4bfee991e7",
+      "content_hash": "sha256:adfa7489c22b79e27ef0c31ae4a3c2e5e4f3428e37f8c4acf3cb2502218bfd92",
       "summary": ""
     },
     {
@@ -5566,7 +5582,7 @@
       "title": "Dependency Security Hardening Optimization",
       "category": "11-SUPPLEMENTARY",
       "tags": [],
-      "content_hash": "sha256:f3f09cd7921975ec54a7ef42ec4caf440a813159e329d3f830016a78a209e852",
+      "content_hash": "sha256:6299488d90094a96790b7885b45e11bf8bf1ece2bd94186361164787a41ef18e",
       "summary": ""
     },
     {
@@ -5686,7 +5702,7 @@
       "title": "Performance & Scalability",
       "category": "11-SUPPLEMENTARY",
       "tags": [],
-      "content_hash": "sha256:f32e0b85f38d686600e1461bc050458df4c4bc2149e5350ecce537b354569782",
+      "content_hash": "sha256:466c9d9241e53428ec3de476f9dc33238d13489e04bc538a62e93c977d22fb6b",
       "summary": ""
     },
     {
@@ -5766,7 +5782,7 @@
       "title": "Community Documentation",
       "category": "12-COMMUNITY",
       "tags": [],
-      "content_hash": "sha256:0051c281f5f9c31ef795582b2ba9774db4f50c42d28c52010238f1301fe43619",
+      "content_hash": "sha256:93f7fd2af2bc28f49852d446094e88d14d31056280e86e56463ce0da0eb3eccd",
       "summary": ""
     },
     {
@@ -5846,7 +5862,7 @@
       "title": "Kaizen-OS Branding Assets",
       "category": "assets",
       "tags": [],
-      "content_hash": "sha256:a5ddc0c1db250580dadc73a46a7181da91203320910987dabe4615e26ee7bfda",
+      "content_hash": "sha256:b3981e065c6c49b0919bc3da2a5d7ba4d23d5b8228615330f29a9d3214d6c8e6",
       "summary": ""
     },
     {
@@ -5854,7 +5870,7 @@
       "title": "Sentinel Agent Badges",
       "category": "assets",
       "tags": [],
-      "content_hash": "sha256:286b4be1ef4ec3d657e0eaa5ab74fca879c2b1e6232f129271698ebab629d5c6",
+      "content_hash": "sha256:a9058975131e6ca8fdff1f85723341d6320cece4a4e905274d87f9404015a938",
       "summary": ""
     },
     {
@@ -5890,7 +5906,7 @@
       "summary": ""
     },
     {
-      "path": "docs/divergence/README.md",
+      "path": "docs/divergence/OVERVIEW.md",
       "title": "Divergence Dashboard",
       "category": "divergence",
       "tags": [],
@@ -5918,7 +5934,7 @@
       "title": "EPICON-0001 — Mobius Substrate Naming Canon",
       "category": "epicon",
       "tags": [],
-      "content_hash": "sha256:2ad00c5f3354326043a36b344c2eed1372c5e70dd838d8ccd2e446c5cace78a9",
+      "content_hash": "sha256:e176bd31cfff9d9845ff9ae78277a2b96ee3a564e465d4227d6c962a97911fb0",
       "summary": ""
     },
     {
@@ -5950,7 +5966,7 @@
       "title": "EPICON-03: Multi-Agent Collective Epistemic Consensus",
       "category": "epicon",
       "tags": [],
-      "content_hash": "sha256:1d23347e1b44a843d2197c88a31e4192c506b0893c2c25a3ea816e508686fabe",
+      "content_hash": "sha256:d23b5de9afafbf339b0b8f46ea4bf2dbc957b7735f8d8077fbd0813132c8778a",
       "summary": ""
     },
     {
@@ -5965,7 +5981,7 @@
         "safe-stop",
         "ledger"
       ],
-      "content_hash": "sha256:cbbfc031e90505ededd00f05520466678fadcc498eac8e4c1302d7b62147afbe",
+      "content_hash": "sha256:b05eee6aba4569bbf0d9fee60970a1fc126645355794af56355cdb8fbdd5e736",
       "summary": "Defines the canonical DVA runtime loop for multi-agent cognitive processing with safe-stop guardrails"
     },
     {
@@ -5981,7 +5997,7 @@
       "title": "EPICON-01 — Epistemic Constraint Layer",
       "category": "epicon",
       "tags": [],
-      "content_hash": "sha256:e9826fcb3ca5f4a2f33b934f1bcc6a4ed68b6b97808a1e9bada14b7af1283efa",
+      "content_hash": "sha256:f6e65e3297e1fb1b93c68ae79a0774a40c8d5a47a9a204d3009be399071627d4",
       "summary": ""
     },
     {

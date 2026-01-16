@@ -1,10 +1,10 @@
 ---
-title: Foundational Blueprint: The Integrity Economy (v2)
+title: "Foundational Blueprint: The Integrity Economy (v2)"
 status: canonical
 version: 2.0
 last_updated: 2025-11-04
 authors: [Founding Thesis Working Group]
-scope: Neutral (name-agnostic); safe for future rebranding
+scope: "Neutral (name-agnostic); safe for future rebranding"
 ---
 
 # 🜂 Foundational Blueprint: The Integrity Economy (v2)

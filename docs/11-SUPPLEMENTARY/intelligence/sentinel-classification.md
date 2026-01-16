@@ -341,9 +341,9 @@ Any system claiming to be "AGI" must demonstrate all 9 AI requirements. Mobius p
 ## References
 
 - [Intelligence Taxonomy](./typology.md)
-- [Mobius Cosmology](../figures/mobius-cosmology.svg)
-- [Sentinel Network](../../sentinels/README.md)
-- [MII Specification](../../FORMAL_VERIFICATION.md)
+- [Mobius Cosmology](../09-APPENDICES/figures/mobius-cosmology.svg)
+- [Sentinel Network](https://github.com/kaizencycle/Mobius-Substrate/blob/main/sentinels/README.md)
+- [MII Specification](https://github.com/kaizencycle/Mobius-Substrate/blob/main/docs/07-RESEARCH-AND-PUBLICATIONS/specs/MII_SPEC_v1.md)
 
 ---
 
