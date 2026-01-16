@@ -28,9 +28,6 @@ export default defineConfig({
       include: ['tests/benchmarks/**/*.bench.ts'],
       exclude: ['**/node_modules/**'],
       reporters: ['default'],
-      outputFile: {
-        json: './benchmark-results.json',
-      },
     },
   },
 });
