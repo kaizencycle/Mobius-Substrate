@@ -44,8 +44,8 @@
     "cycle:validate": "node scripts/validate_cycle_journal.mjs",
     "cycle:render": "node scripts/render_cycle_markdown.mjs",
     "cycle:check": "npm run cycle:validate && npm run cycle:render",
-    "benchmark": "vitest bench",
-    "benchmark:ci": "vitest bench --reporter=json --outputFile=benchmark-results.json",
+    "benchmark": "vitest bench --run",
+    "benchmark:ci": "vitest bench --run --reporter=json --outputFile=benchmark-results.json",
     "benchmark:baseline": "vitest bench --reporter=json --outputFile=tests/benchmarks/.baselines/current.json",
     "test:coverage": "turbo run test -- --coverage"
   },
