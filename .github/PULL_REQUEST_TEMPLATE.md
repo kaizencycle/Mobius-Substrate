@@ -1,6 +1,6 @@
 # 🌀 Mobius PR — Cycle
 
-- **Cycle:** C-151
+- **Cycle:** C-XXX
 - **Type:** Feature / Fix / Docs / Infra / Sentinel
 - **Primary Area:** apps / packages / infra / docs / sentinels
 
@@ -128,4 +128,4 @@ Closes #
 
 ---
 
-*"We heal as we walk." — Kaizen OS*
+*"We heal as we walk." — Mobius Substrate*
