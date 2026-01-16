@@ -7,24 +7,24 @@ docs: add CYCLE_INDEX and Phase 1 docs skeleton [C-147]
 
 ## Summary
 
-**C-147 • 2025-11-27 • Mobius Systems • Phase 1 Documentation Infrastructure**
+**C-147  2025-11-27  Mobius Systems  Phase 1 Documentation Infrastructure**
 
-This PR establishes the canonical cycle index and creates the organizational skeleton for Mobius Systems documentation. This is Phase 1 of the documentation reorganization—scaffolding only, no file moves yet.
+This PR establishes the canonical cycle index and creates the organizational skeleton for Mobius Systems documentation. This is Phase 1 of the documentation reorganizationscaffolding only, no file moves yet.
 
 ### What This PR Does
 
-✅ **Adds canonical CYCLE_INDEX** — Anchors C-121 = 2025-11-01, establishes daily cycle rule
-✅ **Creates 00-START-HERE hub** — Navigation center with README, Glossary, FAQ  
-✅ **Establishes 9-layer structure** — Philosophy, Architecture, Specs, Guides, Security, Operations, Governance, Research, Communications
-✅ **Adds Archive foundation** — 99-archive for Kintsugi-style historical preservation
-✅ **Zero breaking changes** — Pure additive, no existing files moved or modified
+ **Adds canonical CYCLE_INDEX**  Anchors C-121 = 2025-11-01, establishes daily cycle rule
+ **Creates 00-START-HERE hub**  Navigation center with README, Glossary, FAQ  
+ **Establishes 9-layer structure**  Philosophy, Architecture, Specs, Guides, Security, Operations, Governance, Research, Communications
+ **Adds Archive foundation**  99-archive for Kintsugi-style historical preservation
+ **Zero breaking changes**  Pure additive, no existing files moved or modified
 
 ### What This PR Does NOT Do
 
-❌ Does not move existing docs (Phase 2)
-❌ Does not modify existing file paths
-❌ Does not change any code
-❌ Does not break any links
+ Does not move existing docs (Phase 2)
+ Does not modify existing file paths
+ Does not change any code
+ Does not break any links
 
 ### Why Now
 
@@ -87,9 +87,9 @@ None. This is pure additive.
 **Purpose:** Single entry point for all documentation
 
 **Contents:**
-- `README.md` — Master navigation with clear "I want to..." paths
-- `GLOSSARY.md` — All Mobius terms (MII, MIC, DVA, KTT, GI, ECHO, etc.)
-- `FAQ.md` — 15+ common questions with concise answers
+- `README.md`  Master navigation with clear "I want to..." paths
+- `GLOSSARY.md`  All Mobius terms (MII, MIC, DVA, KTT, GI, ECHO, etc.)
+- `FAQ.md`  15+ common questions with concise answers
 
 **Impact:**
 - Reduces time-to-orientation for new contributors
@@ -102,43 +102,43 @@ None. This is pure additive.
 
 **Layers:**
 
-**01-philosophy/** — The "why"
+**01-philosophy/**  The "why"
 - Three Covenants, manifesto, KTT, rituals
 - Answers: "What does Mobius stand for?"
 
-**02-architecture/** — The "what"  
+**02-architecture/**  The "what"  
 - System design, DVA flows, components, economics
 - Answers: "How is it built?"
 
-**03-specifications/** — The "how" (exact)
+**03-specifications/**  The "how" (exact)
 - Protocols, cryptography, consensus, APIs, schemas
 - Answers: "Exactly how does X work?"
 
-**04-guides/** — The "how-to" (practical)
+**04-guides/**  The "how-to" (practical)
 - Quickstart, developers, operators, citizens, researchers
 - Answers: "How do I do X?"
 
-**05-security/** — Security & resilience
+**05-security/**  Security & resilience
 - Threat model, guardrails, recovery, monitoring
 - Answers: "How is this safe?"
 
-**06-operations/** — Production operations
+**06-operations/**  Production operations
 - Deployment, monitoring, maintenance, runbooks
 - Answers: "How do I run this?"
 
-**07-governance/** — Democratic coordination
+**07-governance/**  Democratic coordination
 - Constitution, processes, participation, economics
 - Answers: "How are decisions made?"
 
-**08-research/** — Academic contributions
+**08-research/**  Academic contributions
 - Papers, benchmarks, comparisons, datasets
 - Answers: "What's the research basis?"
 
-**09-communications/** — External materials
+**09-communications/**  External materials
 - Press, blog, presentations, outreach, branding
 - Answers: "How do we talk about this?"
 
-**99-archive/** — Historical preservation
+**99-archive/**  Historical preservation
 - Superseded docs, legacy, proto-cycles
 - Answers: "How did we get here?"
 
@@ -154,12 +154,12 @@ None. This is pure additive.
 
 This structure embodies Mobius principles:
 
-✅ **Kaizen (改善)** — Continuous improvement through clear structure
-✅ **Summon (召唤)** — Invites contribution by making paths clear  
-✅ **Kintsugi (金繕い)** — Archives honor evolution, repairs visible
-✅ **Integrity** — Specifications explicit, no hidden assumptions
-✅ **Ecology** — Balanced information architecture
-✅ **Custodianship** — Docs outlive individual contributors (50-year vision)
+ **Kaizen ()**  Continuous improvement through clear structure
+ **Summon ()**  Invites contribution by making paths clear  
+ **Kintsugi ()**  Archives honor evolution, repairs visible
+ **Integrity**  Specifications explicit, no hidden assumptions
+ **Ecology**  Balanced information architecture
+ **Custodianship**  Docs outlive individual contributors (50-year vision)
 
 ---
 
@@ -167,12 +167,12 @@ This structure embodies Mobius principles:
 
 This PR is **Phase 1** of a 6-phase plan:
 
-- ✅ **Phase 1 (This PR):** Create structure + hub docs
-- 📋 **Phase 2:** Move existing docs to new locations
-- 📋 **Phase 3:** Create priority missing docs
-- 📋 **Phase 4:** Update all cross-references
-- 📋 **Phase 5:** Add CI validation (link checking)
-- 📋 **Phase 6:** Community review + refinement
+-  **Phase 1 (This PR):** Create structure + hub docs
+-  **Phase 2:** Move existing docs to new locations
+-  **Phase 3:** Create priority missing docs
+-  **Phase 4:** Update all cross-references
+-  **Phase 5:** Add CI validation (link checking)
+-  **Phase 6:** Community review + refinement
 
 **Timeline:** 6-week sprint (Cycles C-147 to C-189)
 
@@ -198,11 +198,11 @@ npm run lint:md
 
 ### Expected Behavior
 
-- ✅ All new files render correctly on GitHub
-- ✅ Internal links within new files work
-- ✅ No existing functionality broken
-- ✅ Main README still works
-- ✅ All existing doc links still valid
+-  All new files render correctly on GitHub
+-  Internal links within new files work
+-  No existing functionality broken
+-  Main README still works
+-  All existing doc links still valid
 
 ---
 
@@ -245,17 +245,17 @@ npm run lint:md
 
 **For Reviewers:**
 
-1. **Check CYCLE_INDEX.md** — Verify C-121 anchor and formula are clear
-2. **Navigate 00-START-HERE** — Does the hub make sense?
-3. **Scan layer READMEs** — Are purposes clear and distinct?
-4. **Consider audience** — Would a new developer/operator/citizen find their way?
-5. **Verify non-breaking** — Confirm no existing files touched
+1. **Check CYCLE_INDEX.md**  Verify C-121 anchor and formula are clear
+2. **Navigate 00-START-HERE**  Does the hub make sense?
+3. **Scan layer READMEs**  Are purposes clear and distinct?
+4. **Consider audience**  Would a new developer/operator/citizen find their way?
+5. **Verify non-breaking**  Confirm no existing files touched
 
 **Suggested Reviewers:**
-- @kaizencycle (Michael) — Philosophy alignment
-- ATLAS — Architecture review
-- HERMES — Communication clarity
-- JADE — Documentation standards
+- @kaizencycle (Michael)  Philosophy alignment
+- ATLAS  Architecture review
+- HERMES  Communication clarity
+- JADE  Documentation standards
 
 ---
 
@@ -296,11 +296,11 @@ npm run lint:md
 
 ## Quotes
 
-> "Intelligence moves. Integrity guides." — Mobius Principle
+> "Intelligence moves. Integrity guides."  Mobius Principle
 
-> "We honor the cracks; repair makes the story more beautiful." — 金繕い (Kintsugi)
+> "We honor the cracks; repair makes the story more beautiful."   (Kintsugi)
 
-> "We heal as we walk." — Founder's Seal
+> "We heal as we walk."  Founder's Seal
 
 ---
 
@@ -325,5 +325,5 @@ To apply this PR:
 
 ---
 
-*Cycle C-147 • 2025-11-27*  
+*Cycle C-147  2025-11-27*  
 *"We heal as we walk."*
