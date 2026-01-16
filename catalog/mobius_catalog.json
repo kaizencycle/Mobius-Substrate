@@ -1,6 +1,6 @@
 {
   "mobius_catalog_version": "1.0.0",
-  "generated_at": "2026-01-16T18:32:45.642Z",
+  "generated_at": "2026-01-16T18:36:14.517Z",
   "repo": {
     "name": "Mobius-Substrate",
     "url": "https://github.com/kaizencycle/Mobius-Substrate",
@@ -5902,7 +5902,7 @@
       "title": "Divergence Dashboard",
       "category": "divergence",
       "tags": [],
-      "content_hash": "sha256:5a0a06bac0e683e5b5e28f6e8c89c50126ca59a6e4f8148be765401a41438b2f",
+      "content_hash": "sha256:abbcf1acff0a46bac02609663e77e393297b88f506d4294abad5669c8ec9a258",
       "summary": ""
     },
     {

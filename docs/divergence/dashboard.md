@@ -1,8 +1,8 @@
 # Divergence Dashboard
 
 **Repo:** `kaizencycle/Mobius-Substrate`  
-**Generated:** `2026-01-16T12:33:53Z`  
-**Open PRs:** `0`
+**Generated:** `2026-01-16T18:25:19Z`  
+**Open PRs:** `1`
 
 ## Summary
 
@@ -11,12 +11,14 @@
 | 🔴 High | 0 |
 | 🟡 Medium | 0 |
 | 🟢 Low | 0 |
-| ⚪ Unknown | 0 |
+| ⚪ Unknown | 1 |
 | 🚨 Emergency | 0 |
 
 ## Open PRs
 
-*No open PRs*
+| Sev | PR | Title | Author | EPICON | Gate | Mode | Updated |
+|-----|---:|-------|--------|--------|------|------|---------|
+| ⚪ unknown | [#240](https://github.com/kaizencycle/Mobius-Substrate/pull/240) | Security audit workflow failures | @kaizencycle | ? | ? | — | 2026-01-16 |
 
 ---
 
