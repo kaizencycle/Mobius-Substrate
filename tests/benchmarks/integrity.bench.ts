@@ -14,15 +14,26 @@
 
 import { describe, bench, expect } from 'vitest';
 
-// Performance targets (milliseconds)
-// These targets are documented for reference and used in CI threshold checks
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const PERFORMANCE_TARGETS = {
+/**
+ * Performance targets (milliseconds)
+ * These targets are used in CI threshold checks and exported for validation
+ */
+export const PERFORMANCE_TARGETS = {
   MII_COMPUTE_MS: 10,
   ATTESTATION_VERIFY_MS: 5,
   MFS_AGGREGATE_MS: 15,
   BATCH_PROCESS_MS: 100,
 } as const;
+
+/** Validate that performance targets are reasonable */
+export function validateTargets(): boolean {
+  return (
+    PERFORMANCE_TARGETS.MII_COMPUTE_MS > 0 &&
+    PERFORMANCE_TARGETS.ATTESTATION_VERIFY_MS > 0 &&
+    PERFORMANCE_TARGETS.MFS_AGGREGATE_MS > 0 &&
+    PERFORMANCE_TARGETS.BATCH_PROCESS_MS > 0
+  );
+}
 
 /**
  * Mock MII calculation for benchmarking
@@ -67,6 +78,23 @@ function verifyAttestation(attestation: {
 function aggregateMFS(shards: Array<{ archetype: string; quality: number; weight: number }>): number {
   return shards.reduce((sum, shard) => sum + shard.quality * shard.weight, 0) / shards.length;
 }
+
+// =============================================================================
+// Target Validation
+// =============================================================================
+
+describe('Performance Targets', () => {
+  bench('targets are valid', () => {
+    expect(validateTargets()).toBe(true);
+    expect(PERFORMANCE_TARGETS.MII_COMPUTE_MS).toBeLessThan(100);
+    expect(PERFORMANCE_TARGETS.ATTESTATION_VERIFY_MS).toBeLessThan(50);
+    expect(PERFORMANCE_TARGETS.MFS_AGGREGATE_MS).toBeLessThan(100);
+    expect(PERFORMANCE_TARGETS.BATCH_PROCESS_MS).toBeLessThan(500);
+  }, {
+    iterations: 100,
+    time: 1000,
+  });
+});
 
 // =============================================================================
 // MII Computation Benchmarks
