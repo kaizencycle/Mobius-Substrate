@@ -1,0 +1,130 @@
+{
+  "$schema": "../schema.json",
+  "entity_id": "US",
+  "entity_name": "United States of America",
+  "entity_type": "nation-state",
+  "cycle": "C-193",
+  "timestamp": "2026-01-16T09:27:00Z",
+  "mii_score": 83.9,
+  "tier": "B",
+  "domains": {
+    "accountability_rule_of_law": {
+      "score": 72.0,
+      "weight": 0.20,
+      "data_quality": "estimated",
+      "subscores": {
+        "prosecutorial_independence": 70,
+        "misconduct_discipline": 68,
+        "liability_constraints": 75,
+        "ethics_enforcement": 72,
+        "judicial_independence": 75
+      }
+    },
+    "transparency_auditability": {
+      "score": 78.0,
+      "weight": 0.15,
+      "data_quality": "estimated",
+      "subscores": {
+        "public_records_laws": 80,
+        "foia_response_timeliness": 72,
+        "open_data_coverage": 82,
+        "budget_transparency": 78,
+        "procurement_transparency": 78
+      }
+    },
+    "democratic_integrity": {
+      "score": 80.0,
+      "weight": 0.15,
+      "data_quality": "estimated",
+      "subscores": {
+        "election_administration": 82,
+        "fair_representation": 75,
+        "voter_access": 78,
+        "voter_confidence": 80,
+        "redistricting_fairness": 85
+      }
+    },
+    "corruption_capture_risk": {
+      "score": 70.0,
+      "weight": 0.20,
+      "data_quality": "estimated",
+      "subscores": {
+        "corruption_perception": 68,
+        "conflict_of_interest_rules": 72,
+        "revolving_door_limits": 65,
+        "procurement_risk": 70,
+        "lobbying_transparency": 75
+      }
+    },
+    "civil_rights_equal_protection": {
+      "score": 75.0,
+      "weight": 0.15,
+      "data_quality": "estimated",
+      "subscores": {
+        "enforcement_environment": 72,
+        "discrimination_outcomes": 75,
+        "incarceration_disparities": 70,
+        "rights_protections": 78,
+        "access_to_justice": 80
+      }
+    },
+    "public_safety_legitimacy": {
+      "score": 68.0,
+      "weight": 0.15,
+      "data_quality": "estimated",
+      "subscores": {
+        "use_of_force_rates": 65,
+        "clearance_rates": 70,
+        "oversight_structures": 68,
+        "civilian_review_mechanisms": 70,
+        "accountability_timelines": 67
+      }
+    }
+  },
+  "failure_markers": ["?", "*"],
+  "trajectory": "stable",
+  "confidence": "provisional",
+  "methodology_version": "0.1.0",
+  "aggregation": {
+    "state_layer": {
+      "score": 86.0,
+      "weight": 0.85,
+      "method": "population_weighted_average",
+      "entity_count": 50
+    },
+    "federal_layer": {
+      "score": 72.0,
+      "weight": 0.15,
+      "method": "direct_assessment"
+    },
+    "formula": "(0.85 × 86.0) + (0.15 × 72.0) = 73.1 + 10.8 = 83.9"
+  },
+  "interpretation": {
+    "grade": "B",
+    "label": "Good — operational but with emerging strain",
+    "summary": "The United States demonstrates functional integrity infrastructure with meaningful accountability mechanisms, but shows emerging strain in several domains. The gap between power concentration and accountability capacity is widening, though not yet at crisis levels.",
+    "key_findings": [
+      "State-level variance is high — top performers (VT, MN, NH) significantly outperform struggling states (LA, MS, AL)",
+      "Federal layer drags down overall score due to FOIA backlogs, IG independence concerns, and prosecutorial interference risks",
+      "Corruption capture risk and public safety legitimacy are the weakest domains nationally",
+      "Gulf-Southeast corridor shows concerning convergence of multiple risk factors"
+    ],
+    "watch_areas": [
+      "Procedural chaos markers (*) in accountability domain",
+      "Opacity markers (?) in transparency domain",
+      "Capture risk elevation in high-growth states"
+    ]
+  },
+  "comparison_context": {
+    "note": "This score represents a national aggregate. For subnational detail, see pulses/C-193/us_states_mii_C-193.csv",
+    "peer_comparison_planned": "v0.2.0 will include cross-national benchmarking"
+  },
+  "metadata": {
+    "codeowner": "kaizencycle:michaeljudan",
+    "license": "CC0-1.0",
+    "pulse_document": "pulses/C-193/Integrity_Pulse_US_C-193.md",
+    "state_data": "pulses/C-193/us_states_mii_C-193.csv",
+    "agents": ["ATLAS", "ZEUS", "HERMES", "JADE", "ECHO"],
+    "status": "WATCH → ADVISORY"
+  }
+}

@@ -1,0 +1,151 @@
+{
+  "$schema": "./schema.json",
+  "version": "0.1.0",
+  "cycle": "C-193",
+  "timestamp": "2026-01-16T09:27:00Z",
+  "description": "Domain weights for Mobius Integrity Index calculation",
+  "weights": {
+    "accountability_rule_of_law": {
+      "weight": 0.20,
+      "label": "Accountability & Rule of Law",
+      "rationale": "Core accountability mechanisms are foundational to integrity. Without functioning rule of law, other domains cannot operate reliably.",
+      "subdomains": [
+        "prosecutorial_independence",
+        "misconduct_discipline",
+        "liability_constraints",
+        "ethics_enforcement",
+        "judicial_independence"
+      ]
+    },
+    "transparency_auditability": {
+      "weight": 0.15,
+      "label": "Transparency & Auditability",
+      "rationale": "Transparency enables oversight but is insufficient alone. Weight reflects its enabling role rather than causal primacy.",
+      "subdomains": [
+        "public_records_laws",
+        "foia_response_timeliness",
+        "open_data_coverage",
+        "budget_transparency",
+        "procurement_transparency"
+      ]
+    },
+    "democratic_integrity": {
+      "weight": 0.15,
+      "label": "Democratic Integrity",
+      "rationale": "Democratic processes provide legitimacy and correction mechanisms. Weight balanced against risk of conflating democracy with integrity.",
+      "subdomains": [
+        "election_administration",
+        "fair_representation",
+        "voter_access",
+        "voter_confidence",
+        "redistricting_fairness"
+      ]
+    },
+    "corruption_capture_risk": {
+      "weight": 0.20,
+      "label": "Corruption & Capture Risk",
+      "rationale": "Corruption and capture directly undermine integrity. High weight reflects direct impact on power-accountability correlation.",
+      "subdomains": [
+        "corruption_perception",
+        "conflict_of_interest_rules",
+        "revolving_door_limits",
+        "procurement_risk",
+        "lobbying_transparency"
+      ]
+    },
+    "civil_rights_equal_protection": {
+      "weight": 0.15,
+      "label": "Civil Rights & Equal Protection",
+      "rationale": "Differential enforcement reveals structural integrity failures. Weight reflects diagnostic value rather than policy preference.",
+      "subdomains": [
+        "enforcement_environment",
+        "discrimination_outcomes",
+        "incarceration_disparities",
+        "rights_protections",
+        "access_to_justice"
+      ]
+    },
+    "public_safety_legitimacy": {
+      "weight": 0.15,
+      "label": "Public Safety Legitimacy",
+      "rationale": "Public safety institutions are primary points of civilian-government contact. Legitimacy deficits surface early here.",
+      "subdomains": [
+        "use_of_force_rates",
+        "clearance_rates",
+        "oversight_structures",
+        "civilian_review_mechanisms",
+        "accountability_timelines"
+      ]
+    }
+  },
+  "aggregation": {
+    "state_mii": {
+      "formula": "Σ(domain_score × domain_weight)",
+      "description": "Weighted sum of domain scores"
+    },
+    "national_mii": {
+      "formula": "(0.85 × pop_weighted_state_avg) + (0.15 × federal_mii)",
+      "state_weight": 0.85,
+      "federal_weight": 0.15,
+      "description": "Population-weighted state average with federal overlay"
+    }
+  },
+  "thresholds": {
+    "tiers": {
+      "A+": { "min": 95, "max": 100 },
+      "A": { "min": 90, "max": 94.99 },
+      "B+": { "min": 85, "max": 89.99 },
+      "B": { "min": 80, "max": 84.99 },
+      "C+": { "min": 75, "max": 79.99 },
+      "C": { "min": 70, "max": 74.99 },
+      "D+": { "min": 65, "max": 69.99 },
+      "D": { "min": 60, "max": 64.99 },
+      "E": { "min": 50, "max": 59.99 },
+      "F": { "min": 0, "max": 49.99 }
+    },
+    "failure_markers": {
+      "!": {
+        "label": "Capture Risk",
+        "trigger": "corruption_capture_risk.score < 60 OR patronage_density > 0.7"
+      },
+      "?": {
+        "label": "Opacity",
+        "trigger": "transparency_auditability.score < 65 OR foia_backlog > 180_days"
+      },
+      "*": {
+        "label": "Procedural Chaos",
+        "trigger": "accountability_rule_of_law.score < 70 AND accountability_timelines > 24_months"
+      },
+      "↑": {
+        "label": "Improving",
+        "trigger": "score_delta > +3.0 over 4 cycles"
+      },
+      "↓": {
+        "label": "Worsening",
+        "trigger": "score_delta < -3.0 over 4 cycles"
+      },
+      "+": {
+        "label": "Stable",
+        "trigger": "abs(score_delta) <= 3.0 over 4 cycles"
+      }
+    }
+  },
+  "normalization": {
+    "method": "percentile_rank",
+    "winsorization": {
+      "lower": 0.05,
+      "upper": 0.95
+    },
+    "scaling": {
+      "min": 0,
+      "max": 100,
+      "type": "linear"
+    },
+    "polarity_alignment": true
+  },
+  "metadata": {
+    "codeowner": "kaizencycle:michaeljudan",
+    "license": "CC0-1.0",
+    "last_updated": "2026-01-16T09:27:00Z"
+  }
+}

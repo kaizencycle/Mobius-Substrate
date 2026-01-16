@@ -1,0 +1,51 @@
+entity_id,entity_name,mii_score,tier,accountability_rule_of_law,transparency_auditability,democratic_integrity,corruption_capture_risk,civil_rights_equal_protection,public_safety_legitimacy,failure_markers,trajectory,population,confidence
+US-AL,Alabama,58,E,55,60,58,52,55,60,"!,↓",worsening,5024279,provisional
+US-AK,Alaska,72,C,70,75,70,68,72,75,!,stable,733391,provisional
+US-AZ,Arizona,65,D+,62,68,65,60,65,68,"*,↓",worsening,7151502,provisional
+US-AR,Arkansas,55,E,52,58,55,50,52,58,"!,↓",worsening,3011524,provisional
+US-CA,California,73,C,72,78,80,68,75,65,?,stable,39538223,provisional
+US-CO,Colorado,85,B+,82,88,85,82,85,80,↑,improving,5773714,provisional
+US-CT,Connecticut,90,A,88,92,90,88,90,85,↑,improving,3605944,provisional
+US-DE,Delaware,82,B,80,85,82,78,82,80,↑,stable,989948,provisional
+US-FL,Florida,65,D+,62,68,62,60,65,68,"*,↓",worsening,21538187,provisional
+US-GA,Georgia,62,D,60,65,60,58,62,65,"*,↓",worsening,10711908,provisional
+US-HI,Hawaii,85,B+,82,88,85,80,85,82,↑,improving,1455271,provisional
+US-ID,Idaho,72,C,70,75,72,68,70,72,*,stable,1839106,provisional
+US-IL,Illinois,78,C+,75,80,78,72,78,75,?,stable,12812508,provisional
+US-IN,Indiana,70,C,68,72,70,65,68,70,*,stable,6785528,provisional
+US-IA,Iowa,90,A,88,92,90,88,90,85,↑,improving,3190369,provisional
+US-KS,Kansas,82,B,80,85,82,78,82,78,?,stable,2937880,provisional
+US-KY,Kentucky,62,D,60,65,62,58,60,62,"*,↓",worsening,4505836,provisional
+US-LA,Louisiana,52,E,50,55,52,48,50,55,"!,↓",worsening,4657757,provisional
+US-ME,Maine,85,B+,82,88,85,82,85,82,?,improving,1362359,provisional
+US-MD,Maryland,80,B,78,82,80,75,80,78,?,stable,6177224,provisional
+US-MA,Massachusetts,92,A,90,94,92,90,92,88,↑,improving,7029917,provisional
+US-MI,Michigan,78,C+,75,80,78,72,78,75,?,stable,10077331,provisional
+US-MN,Minnesota,92,A,90,94,92,90,92,88,↑,improving,5706494,provisional
+US-MS,Mississippi,50,E,48,52,50,45,48,52,"!,↓",worsening,2961279,provisional
+US-MO,Missouri,65,D+,62,68,65,60,62,65,"*,↓",worsening,6154913,provisional
+US-MT,Montana,80,B,78,82,80,75,80,78,?,stable,1084225,provisional
+US-NE,Nebraska,88,B+,85,90,88,85,88,85,↑,stable,1961504,provisional
+US-NV,Nevada,70,C,68,72,70,65,68,70,*,stable,3104614,provisional
+US-NH,New Hampshire,92,A,90,94,92,90,92,88,↑,improving,1377529,provisional
+US-NJ,New Jersey,80,B,78,82,80,75,80,78,?,stable,9288994,provisional
+US-NM,New Mexico,72,C,70,75,72,68,70,72,*,stable,2117522,provisional
+US-NY,New York,80,B,78,82,80,75,80,78,?,stable,20201249,provisional
+US-NC,North Carolina,65,D+,62,68,65,60,62,65,"*,↓",worsening,10439388,provisional
+US-ND,North Dakota,88,B+,85,90,88,85,88,85,↑,stable,779094,provisional
+US-OH,Ohio,72,C,70,75,72,68,70,72,*,stable,11799448,provisional
+US-OK,Oklahoma,62,D,60,65,62,58,60,62,"*,↓",worsening,3959353,provisional
+US-OR,Oregon,85,B+,82,88,85,80,85,80,↑,improving,4237256,provisional
+US-PA,Pennsylvania,78,C+,75,80,78,72,78,75,?,stable,13002700,provisional
+US-RI,Rhode Island,90,A,88,92,90,88,90,85,↑,improving,1097379,provisional
+US-SC,South Carolina,62,D,60,65,60,58,62,65,"*,↓",worsening,5118425,provisional
+US-SD,South Dakota,88,B+,85,90,88,85,88,85,↑,stable,886667,provisional
+US-TN,Tennessee,62,D,60,65,62,58,60,62,"*,↓",worsening,6910840,provisional
+US-TX,Texas,65,D+,62,68,62,60,65,68,"*,↓",worsening,29145505,provisional
+US-UT,Utah,85,B+,82,88,85,82,85,80,↑,improving,3271616,provisional
+US-VT,Vermont,94,A,92,96,94,92,94,90,↑,improving,643077,provisional
+US-VA,Virginia,72,C,70,75,72,68,70,72,*,stable,8631393,provisional
+US-WA,Washington,85,B+,82,88,85,80,85,80,↑,improving,7614893,provisional
+US-WV,West Virginia,60,D,58,62,60,55,58,60,"*,↓",worsening,1793716,provisional
+US-WI,Wisconsin,88,B+,85,90,88,85,88,85,↑,improving,5893718,provisional
+US-WY,Wyoming,82,B,80,85,82,78,82,78,?,stable,576851,provisional
