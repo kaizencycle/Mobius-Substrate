@@ -130,6 +130,10 @@ jobs:
         if: steps.check-portal.outputs.changed == 'true'
         run: npm ci
 
+      - name: Build dependencies
+        if: steps.check-portal.outputs.changed == 'true'
+        run: npx turbo run build --filter=@civic/integrity-core --filter=kaizen-portal^...
+
       - name: Run type check
         if: steps.check-portal.outputs.changed == 'true'
         working-directory: apps/portal

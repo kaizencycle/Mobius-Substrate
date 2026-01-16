@@ -69,6 +69,29 @@ export function MobiusPulseCard({ title = "Mobius Pulse" }: Props) {
     return () => controller.abort();
   }, []);
 
+  // useMemo must be called before any conditional returns (Rules of Hooks)
+  const { giPercent, miiPercent, generated, statusColor, statusLabel } = useMemo(() => {
+    if (!data) {
+      return {
+        giPercent: "0.0",
+        miiPercent: "0.0",
+        generated: new Date(),
+        statusColor: "text-neutral-400",
+        statusLabel: "Unknown"
+      };
+    }
+    const isPristine = data.giScore >= 0.98 && data.miiScore >= 0.98;
+    const isHealthy = data.giScore >= 0.95 && data.miiScore >= 0.95;
+
+    return {
+      giPercent: (data.giScore * 100).toFixed(1),
+      miiPercent: (data.miiScore * 100).toFixed(1),
+      generated: new Date(data.generatedAt),
+      statusColor: isPristine ? "text-emerald-400" : isHealthy ? "text-amber-400" : "text-red-400",
+      statusLabel: isPristine ? "Pristine" : isHealthy ? "Healthy" : "Degraded"
+    };
+  }, [data]);
+
   if (loading) {
     return (
       <div className="rounded-xl border border-neutral-800 bg-black/40 p-4 text-sm text-neutral-300">
@@ -96,19 +119,6 @@ export function MobiusPulseCard({ title = "Mobius Pulse" }: Props) {
       </div>
     );
   }
-
-  const { giPercent, miiPercent, generated, statusColor, statusLabel } = useMemo(() => {
-    const isPristine = data.giScore >= 0.98 && data.miiScore >= 0.98;
-    const isHealthy = data.giScore >= 0.95 && data.miiScore >= 0.95;
-
-    return {
-      giPercent: (data.giScore * 100).toFixed(1),
-      miiPercent: (data.miiScore * 100).toFixed(1),
-      generated: new Date(data.generatedAt),
-      statusColor: isPristine ? "text-emerald-400" : isHealthy ? "text-amber-400" : "text-red-400",
-      statusLabel: isPristine ? "Pristine" : isHealthy ? "Healthy" : "Degraded"
-    };
-  }, [data.giScore, data.miiScore, data.generatedAt]);
 
   return (
     <div className="rounded-xl border border-neutral-800 bg-black/50 p-4 text-sm text-neutral-100">

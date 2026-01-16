@@ -55,44 +55,6 @@ theme:
     repo: fontawesome/brands/github
     edit: material/pencil
     view: material/eye
-    download: material/download
-    home: material/home
-    menu: material/menu
-    previous: material/arrow-left
-    next: material/arrow-right
-    search: material/magnify
-    tag: material/tag
-    link: material/link
-    check: material/check
-    close: material/close
-    fork: fontawesome/brands/git-alt
-    star: material/star
-    bell: material/bell
-    bell-off: material/bell-off
-    heart: material/heart
-    filter: material/filter
-    tag: material/tag
-    lightbulb: material/lightbulb
-    warning: material/alert
-    info: material/information
-    note: material/note-text
-    tip: material/lightbulb-on
-    important: material/alert-circle
-    caution: material/alert-rhombus
-    danger: material/alert-octagon
-    quote: material/format-quote-close
-    bug: material/bug
-    example: material/book-open-variant
-    question: material/help-circle
-    success: material/check-circle
-    failure: material/close-circle
-    danger: material/alert
-    ban: material/cancel
-    flame: material/flame
-    thinking: material/lightbulb-on
-    arrow: material/arrow-right
-    plus: material/plus
-    minus: material/minus
 
 # Extensions
 markdown_extensions:
@@ -110,8 +72,8 @@ markdown_extensions:
   - pymdownx.critic
   - pymdownx.details
   - pymdownx.emoji:
-      emoji_index: !!python/name:materialx.emoji.twemoji
-      emoji_generator: !!python/name:materialx.emoji.to_svg
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - pymdownx.highlight:
       anchor_linenums: true
       line_spans: __span
@@ -232,11 +194,8 @@ nav:
 validation:
   nav:
     not_found: warn
-    omitted: warn
-    not_found_in_strict: warn
     absolute_links: warn
   links:
     not_found: warn
-    not_found_in_strict: warn
     absolute_links: warn
 

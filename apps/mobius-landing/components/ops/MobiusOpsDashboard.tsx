@@ -172,6 +172,15 @@ export function MobiusOpsDashboard() {
     };
   }, []);
 
+  // useMemo must be called before any conditional returns (Rules of Hooks)
+  const { giColor, latencyEntries } = useMemo(() => ({
+    giColor:
+      data?.miiCurrent !== undefined && data.miiCurrent >= 0.98 ? '#16a34a' :
+      data?.miiCurrent !== undefined && data.miiCurrent >= 0.95 ? '#f59e0b' :
+      '#dc2626',
+    latencyEntries: data?.last24h?.avgLatencyMs ? Object.entries(data.last24h.avgLatencyMs) : []
+  }), [data?.miiCurrent, data?.last24h?.avgLatencyMs]);
+
   if (error) {
     return (
       <div style={STYLES.errorContainer}>
@@ -183,14 +192,6 @@ export function MobiusOpsDashboard() {
   if (!data) {
     return <div>Loading Mobius telemetry…</div>;
   }
-
-  const { giColor, latencyEntries } = useMemo(() => ({
-    giColor:
-      data.miiCurrent >= 0.98 ? '#16a34a' :
-      data.miiCurrent >= 0.95 ? '#f59e0b' :
-      '#dc2626',
-    latencyEntries: Object.entries(data.last24h.avgLatencyMs)
-  }), [data.miiCurrent, data.last24h.avgLatencyMs]);
 
   return (
     <div style={STYLES.mainContainer}>

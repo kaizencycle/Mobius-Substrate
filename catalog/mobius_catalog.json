@@ -1,6 +1,6 @@
 {
   "mobius_catalog_version": "1.0.0",
-  "generated_at": "2026-01-16T15:40:33.293Z",
+  "generated_at": "2026-01-16T18:36:14.517Z",
   "repo": {
     "name": "Mobius-Substrate",
     "url": "https://github.com/kaizencycle/Mobius-Substrate",
@@ -9,7 +9,7 @@
   },
   "stats": {
     "epiconCount": 3,
-    "docCount": 746
+    "docCount": 748
   },
   "epicons": [
     {
@@ -1771,18 +1771,18 @@
     },
     {
       "path": "docs/07-RESEARCH-AND-PUBLICATIONS/blueprints/temp_index_recovery.md",
-      "title": "temp_index_recovery",
+      "title": "Complete Documentation Index ΓÇö All Scales",
       "category": "07-RESEARCH-AND-PUBLICATIONS",
       "tags": [],
-      "content_hash": "sha256:0e27be8771d2abced71ef41e57a60c4b5b9dfafb667606b0a74f9a9197961622",
+      "content_hash": "sha256:8ebc275eeb667a712fe40ab3eb3c937c8237054cc8906fd8c139d8b5ed09ed3e",
       "summary": ""
     },
     {
       "path": "docs/07-RESEARCH-AND-PUBLICATIONS/blueprints/temp_nyc_recovery.md",
-      "title": "temp_nyc_recovery",
+      "title": "DVA Flows for New York City - Real-World Use Cases",
       "category": "07-RESEARCH-AND-PUBLICATIONS",
       "tags": [],
-      "content_hash": "sha256:6734b52df7d8b9286e508e32935a8ec8bf215c6e0752b767bec23b89d0cff753",
+      "content_hash": "sha256:c49bcbae233894660a4d9063f6f79b26798559dccb91737b76611b96bdc2bfc3",
       "summary": ""
     },
     {
@@ -4622,7 +4622,7 @@
       "title": "PR Bundle: CYCLE_INDEX + Docs Skeleton [C-147]",
       "category": "10-ARCHIVES",
       "tags": [],
-      "content_hash": "sha256:102fddf5387d4deb057e9b4118b18059a3749b7c4543b057a660569e58d27260",
+      "content_hash": "sha256:2bbcff448364c35d8949a27241a7c810941b912cbb0eb03e0ba24a6e6470bd96",
       "summary": ""
     },
     {
@@ -4971,18 +4971,18 @@
     },
     {
       "path": "docs/11-SUPPLEMENTARY/blueprints/temp_index_recovery.md",
-      "title": "temp_index_recovery",
+      "title": "Complete Documentation Index ΓÇö All Scales",
       "category": "11-SUPPLEMENTARY",
       "tags": [],
-      "content_hash": "sha256:0e27be8771d2abced71ef41e57a60c4b5b9dfafb667606b0a74f9a9197961622",
+      "content_hash": "sha256:8ebc275eeb667a712fe40ab3eb3c937c8237054cc8906fd8c139d8b5ed09ed3e",
       "summary": ""
     },
     {
       "path": "docs/11-SUPPLEMENTARY/blueprints/temp_nyc_recovery.md",
-      "title": "temp_nyc_recovery",
+      "title": "DVA Flows for New York City - Real-World Use Cases",
       "category": "11-SUPPLEMENTARY",
       "tags": [],
-      "content_hash": "sha256:6734b52df7d8b9286e508e32935a8ec8bf215c6e0752b767bec23b89d0cff753",
+      "content_hash": "sha256:c49bcbae233894660a4d9063f6f79b26798559dccb91737b76611b96bdc2bfc3",
       "summary": ""
     },
     {
@@ -5778,6 +5778,22 @@
       "summary": ""
     },
     {
+      "path": "docs/CYCLE_JOURNAL_PUBLISHING.md",
+      "title": "Cycle Journal Publishing",
+      "category": "CYCLE_JOURNAL_PUBLISHING.md",
+      "tags": [],
+      "content_hash": "sha256:36ac2080682939e1ea664f813e3bb17ed204da1f4361f8675afe94d2c1c3c21c",
+      "summary": ""
+    },
+    {
+      "path": "docs/CYCLE_JOURNAL_RUNTIME.md",
+      "title": "Cycle Journal Runtime (Mobius)",
+      "category": "CYCLE_JOURNAL_RUNTIME.md",
+      "tags": [],
+      "content_hash": "sha256:493fae03cc5ea71795ebba4bed3ae2aa86e9821064912cc5bf32e4594d0b6343",
+      "summary": ""
+    },
+    {
       "path": "docs/INDEX.md",
       "title": "Mobius Systems Documentation Index",
       "category": "INDEX.md",
@@ -5886,7 +5902,7 @@
       "title": "Divergence Dashboard",
       "category": "divergence",
       "tags": [],
-      "content_hash": "sha256:5a0a06bac0e683e5b5e28f6e8c89c50126ca59a6e4f8148be765401a41438b2f",
+      "content_hash": "sha256:abbcf1acff0a46bac02609663e77e393297b88f506d4294abad5669c8ec9a258",
       "summary": ""
     },
     {
