@@ -1,0 +1,23 @@
+{
+  "$schema": "https://mobius.systems/schemas/branch-config.json",
+  "version": "1.0.0",
+  "cycle": "C-198",
+  "branch_strategy": {
+    "working_branch": "claude/atlas",
+    "target_branch": "main",
+    "sentinel": "ATLAS",
+    "governance": "EPICON"
+  },
+  "description": "Claude session development branch under ATLAS oversight",
+  "created": "2026-01-16T00:00:00Z",
+  "epicon_intent": {
+    "action": "establish_working_branch",
+    "scope": "claude/atlas",
+    "rationale": "Create canonical Claude session working branch with ATLAS governance",
+    "anchors": [
+      "Branch naming encodes governance (tool/sentinel pattern)",
+      "Separates AI-assisted work by provider context",
+      "Creates natural audit trails for commits"
+    ]
+  }
+}
