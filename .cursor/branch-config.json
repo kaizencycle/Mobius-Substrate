@@ -1,0 +1,23 @@
+{
+  "$schema": "https://mobius.systems/schemas/branch-config.json",
+  "version": "1.0.0",
+  "cycle": "C-198",
+  "branch_strategy": {
+    "working_branch": "cursor/aurea",
+    "target_branch": "main",
+    "sentinel": "AUREA",
+    "governance": "EPICON"
+  },
+  "description": "Cursor agent development branch under AUREA oversight",
+  "created": "2026-01-16T00:00:00Z",
+  "epicon_intent": {
+    "action": "establish_working_branch",
+    "scope": "cursor/aurea",
+    "rationale": "Create canonical Cursor agent working branch with AUREA governance",
+    "anchors": [
+      "Branch naming encodes governance (tool/sentinel pattern)",
+      "Separates AI-assisted work by provider context",
+      "Creates natural audit trails for commits"
+    ]
+  }
+}
