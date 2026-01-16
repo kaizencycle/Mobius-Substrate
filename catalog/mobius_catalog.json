@@ -1,6 +1,6 @@
 {
   "mobius_catalog_version": "1.0.0",
-  "generated_at": "2026-01-16T18:36:14.517Z",
+  "generated_at": "2026-01-16T20:29:32.870Z",
   "repo": {
     "name": "Mobius-Substrate",
     "url": "https://github.com/kaizencycle/Mobius-Substrate",
@@ -9,7 +9,7 @@
   },
   "stats": {
     "epiconCount": 3,
-    "docCount": 748
+    "docCount": 749
   },
   "epicons": [
     {
@@ -5807,6 +5807,14 @@
       "category": "MIGRATION_C155_DOCS.md",
       "tags": [],
       "content_hash": "sha256:f906071227c4afe7847e78f5a1f63b3de3cefc5ee128d06a5aac0459950af0e6",
+      "summary": ""
+    },
+    {
+      "path": "docs/MONOREPO_HEALTH_SCORECARD.md",
+      "title": "Mobius Monorepo Health Scorecard",
+      "category": "MONOREPO_HEALTH_SCORECARD.md",
+      "tags": [],
+      "content_hash": "sha256:55e305a715d844773440ccc8bea2c8c966d12d0d177db84c9c56b4e4a2de4f88",
       "summary": ""
     },
     {

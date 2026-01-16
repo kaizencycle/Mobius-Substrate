@@ -1,0 +1,40 @@
+{
+  "name": "@mobius/zeus-mcp-server",
+  "version": "1.0.0",
+  "description": "ZEUS MCP Server - Threshold monitoring and circuit-breaking for agent systems",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "ts-node src/index.ts",
+    "lint": "eslint src/**/*.ts",
+    "test": "vitest run --passWithNoTests",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "mcp",
+    "mobius",
+    "zeus",
+    "circuit-breaker",
+    "threshold",
+    "monitoring",
+    "integrity"
+  ],
+  "author": "Kaizen Cycle",
+  "license": "CC0-1.0",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "uuid": "^9.0.0",
+    "zod": "^3.22.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/uuid": "^9.0.0",
+    "typescript": "^5.0.0",
+    "vitest": "^3.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
