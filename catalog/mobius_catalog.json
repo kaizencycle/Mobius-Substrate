@@ -1,6 +1,6 @@
 {
   "mobius_catalog_version": "1.0.0",
-  "generated_at": "2026-01-16T22:24:14.783Z",
+  "generated_at": "2026-01-17T21:23:10.491Z",
   "repo": {
     "name": "Mobius-Substrate",
     "url": "https://github.com/kaizencycle/Mobius-Substrate",
@@ -9,7 +9,7 @@
   },
   "stats": {
     "epiconCount": 3,
-    "docCount": 751
+    "docCount": 753
   },
   "epicons": [
     {
@@ -1487,6 +1487,22 @@
       "category": "06-OPERATIONS",
       "tags": [],
       "content_hash": "sha256:cf13fd553779175adbad8abfe36963a89c7fff5e5476aad3104bd7fa9fe06dba",
+      "summary": ""
+    },
+    {
+      "path": "docs/06-OPERATIONS/branch-strategy/BRANCH_CLEANUP.md",
+      "title": "Mobius Branch Cleanup Tools",
+      "category": "06-OPERATIONS",
+      "tags": [],
+      "content_hash": "sha256:76a64d6f93b780f6cc2493c884c558ee74670fe32d77a409fc1743cdbf18742d",
+      "summary": ""
+    },
+    {
+      "path": "docs/06-OPERATIONS/branch-strategy/README.md",
+      "title": "Mobius Branch Strategy",
+      "category": "06-OPERATIONS",
+      "tags": [],
+      "content_hash": "sha256:6a915e79c82d5f30fcfef00dd7eb0399491be3edea5d908ed812bb6f130d8e98",
       "summary": ""
     },
     {
@@ -5926,7 +5942,7 @@
       "title": "Divergence Dashboard",
       "category": "divergence",
       "tags": [],
-      "content_hash": "sha256:abbcf1acff0a46bac02609663e77e393297b88f506d4294abad5669c8ec9a258",
+      "content_hash": "sha256:9f467fe28ef5eec113c7afaf8191c19d69dd3bb4902161deadccbc268f730c5f",
       "summary": ""
     },
     {
