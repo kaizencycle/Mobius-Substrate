@@ -15,13 +15,25 @@ export async function GET(req: Request) {
   const org_wide = searchParams.get('org_wide') === 'true';
 
   try {
+    // Get repo info first (needed for default branch)
     const repo = await fetch(`${GH}/repos/${OWNER}/${REPO}`, { headers: HDRS, cache: "no-store" }).then(r=>r.json());
     const branch = repo.default_branch ?? "main";
     const head = await fetch(`${GH}/repos/${OWNER}/${REPO}/commits/${branch}`, { headers: HDRS, cache:"no-store" }).then(r=>r.json());
     const latest_sha = head.sha;
 
-    // Count open PRs
-    const prsResp = await fetch(`${GH}/repos/${OWNER}/${REPO}/pulls?state=open&per_page=1`, { headers: HDRS, cache:"no-store" });
+    // Parallelize independent API calls for better performance
+    const [prsResp, issuesData, tags, rels] = await Promise.all([
+      // Count open PRs
+      fetch(`${GH}/repos/${OWNER}/${REPO}/pulls?state=open&per_page=1`, { headers: HDRS, cache:"no-store" }),
+      // Count open issues
+      fetch(`${GH}/search/issues?q=repo:${OWNER}/${REPO}+type:issue+state:open&per_page=1`, { headers: HDRS, cache:"no-store" }).then(r => r.json()),
+      // Get tags
+      fetch(`${GH}/repos/${OWNER}/${REPO}/tags?per_page=10`, { headers: HDRS, cache:"no-store" }).then(r => r.json()),
+      // Get releases
+      fetch(`${GH}/repos/${OWNER}/${REPO}/releases?per_page=5`, { headers: HDRS, cache:"no-store" }).then(r => r.json())
+    ]);
+
+    // Process PR count from headers
     const link = prsResp.headers.get("link");
     let open_prs = 0;
     if (link) {
@@ -31,19 +43,8 @@ export async function GET(req: Request) {
       open_prs = (await prsResp.json()).length;
     }
 
-    // Count open issues
-    const issuesResp = await fetch(`${GH}/search/issues?q=repo:${OWNER}/${REPO}+type:issue+state:open&per_page=1`, { headers: HDRS, cache:"no-store" });
-    const issuesData = await issuesResp.json();
     const open_issues = issuesData.total_count ?? 0;
-
-    // Get tags
-    const tagsResp = await fetch(`${GH}/repos/${OWNER}/${REPO}/tags?per_page=10`, { headers: HDRS, cache:"no-store" });
-    const tags = await tagsResp.json();
     const tagNames = tags.map((t: any) => t.name).slice(0, 10);
-
-    // Get releases
-    const relsResp = await fetch(`${GH}/repos/${OWNER}/${REPO}/releases?per_page=5`, { headers: HDRS, cache:"no-store" });
-    const rels = await relsResp.json();
     const relNames = rels.map((r: any) => r.tag_name).slice(0, 5);
 
     const digest = {

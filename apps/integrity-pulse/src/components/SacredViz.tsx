@@ -351,7 +351,12 @@ export default function SacredViz({ mockData = true }: SacredVizProps) {
 
     /*** telemetry polling ***/
     let telem: Record<string, Telemetry> = {};
+    let pollTimeoutId: NodeJS.Timeout | null = null;
+    let isMounted = true;
+
     async function pollTelemetry() {
+      if (!isMounted) return;
+
       try {
         const res = await fetch('/api/agents/telemetry');
         if (res.ok) {
@@ -372,7 +377,10 @@ export default function SacredViz({ mockData = true }: SacredVizProps) {
           });
         }
       }
-      setTimeout(pollTelemetry, 1000);
+
+      if (isMounted) {
+        pollTimeoutId = setTimeout(pollTelemetry, 1000);
+      }
     }
     pollTelemetry();
 
@@ -389,6 +397,7 @@ export default function SacredViz({ mockData = true }: SacredVizProps) {
       return (s / Math.max(c,1)) / 255;
     };
 
+    let rafId: number;
     function tick() {
       const t = clock.getElapsedTime();
       const currentAudio = audioContextRef.current;
@@ -424,7 +433,7 @@ export default function SacredViz({ mockData = true }: SacredVizProps) {
       });
 
       renderer.render(scene, camera);
-      requestAnimationFrame(tick);
+      rafId = requestAnimationFrame(tick);
     }
     tick();
 
@@ -435,18 +444,23 @@ export default function SacredViz({ mockData = true }: SacredVizProps) {
     /*** cleanup ***/
     // Capture ref value to avoid stale closure in cleanup
     const mountEl = mountRef.current;
-    
+
     return () => {
+      // Stop polling and animation
+      isMounted = false;
+      if (pollTimeoutId) clearTimeout(pollTimeoutId);
+      cancelAnimationFrame(rafId);
+
       window.removeEventListener('resize', onResize);
       delete (window as any).__sacredVizUpdatePreset;
       delete (window as any).__sacredVizUpdateBloom;
-      
+
       // Stop microphone stream
       if (mediaStreamRef.current) {
         mediaStreamRef.current.getTracks().forEach(track => track.stop());
         mediaStreamRef.current = null;
       }
-      
+
       // Stop audio file playback
       if (audioRef.current) {
         audioRef.current.pause();
@@ -455,13 +469,13 @@ export default function SacredViz({ mockData = true }: SacredVizProps) {
         }
         audioRef.current = null;
       }
-      
+
       // Close AudioContext
       if (audioContextRef.current) {
         audioContextRef.current.ctx.close().catch(() => {});
         audioContextRef.current = null;
       }
-      
+
       renderer.dispose();
       if (mountEl?.contains(renderer.domElement)) {
         mountEl.removeChild(renderer.domElement);

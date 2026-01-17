@@ -130,27 +130,49 @@ export async function collectVotes(
 ): Promise<VoteMap> {
   const votes: VoteMap = {};
 
-  // Mock vote collection - in production, call actual companions
-  for (const name of eligibleCompanions) {
+  // Parallelize companion calls for better performance
+  const votePromises = eligibleCompanions.map(async (name) => {
+    const startTime = Date.now();
     try {
       // Call companion provider
       const result = await callCompanion(name, prompt);
-      
+
       // Mock constitutional validation
       const constitutionalScore = await validateConstitutional(result, tier);
+      const latency_ms = Date.now() - startTime;
 
-      votes[name] = {
-        approved: constitutionalScore >= 70,
-        constitutional_score: constitutionalScore,
-        latency_ms: 1234, // Mock latency
+      return {
+        name,
+        vote: {
+          approved: constitutionalScore >= 70,
+          constitutional_score: constitutionalScore,
+          latency_ms,
+        },
       };
     } catch (error) {
-      votes[name] = {
-        approved: false,
-        constitutional_score: 0,
+      return {
+        name,
+        vote: {
+          approved: false,
+          constitutional_score: 0,
+          latency_ms: Date.now() - startTime,
+        },
       };
     }
-  }
+  });
+
+  // Wait for all companions to respond in parallel
+  const results = await Promise.allSettled(votePromises);
+
+  // Collect votes from results
+  results.forEach((result) => {
+    if (result.status === 'fulfilled') {
+      votes[result.value.name] = result.value.vote;
+    } else {
+      // Handle rejected promises (shouldn't happen due to try/catch, but defensive)
+      console.error('Unexpected vote collection failure:', result.reason);
+    }
+  });
 
   return votes;
 }
