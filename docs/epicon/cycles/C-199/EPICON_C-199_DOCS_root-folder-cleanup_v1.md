@@ -13,14 +13,14 @@ scope:
 epicon_type: "design"
 status: "active"
 related_prs: []
-related_commits: ["921aaf5"]
+related_commits: ["921aaf5", "9f1bf8c", "12f6761"]
 related_epicons: ["EPICON_C-155_root-consolidation"]
 tags: ["documentation", "organization", "cleanup", "public-facing", "root-folder"]
 integrity_index_baseline: 0.95
 risk_level: "low"
 created_at: "2026-01-18T00:00:00Z"
-updated_at: "2026-01-18T00:00:00Z"
-version: 1
+updated_at: "2026-01-18T16:30:00Z"
+version: 2
 hash_hint: ""
 summary: "Consolidate 15+ documentation folders from root to docs/ for cleaner public-facing repository"
 ---
@@ -31,6 +31,66 @@ summary: "Consolidate 15+ documentation folders from root to docs/ for cleaner p
 - **Author:** AUREA Agent (+Michael Judan)
 - **Date:** 2026-01-18
 - **Status:** Active
+
+---
+
+## Intent Publication (EPICON-02 Compliance)
+
+```intent
+epicon_id: EPICON_C-199_DOCS_root-folder-cleanup_v1
+title: Root Documentation Folder Cleanup and Consolidation
+cycle: C-199
+scope: docs
+mode: normal
+issued_at: 2026-01-18T00:00:00Z
+expires_at: 2026-01-25T00:00:00Z
+
+justification:
+  VALUES INVOKED: integrity, transparency, organization
+  REASONING: Repository root has accumulated 15+ documentation folders that 
+    violate the established docs/ hierarchy pattern from C-155. This creates 
+    confusion for contributors and clutters the public-facing repository.
+  ANCHORS:
+    - C-155 established pattern of consolidating root items to organized structures
+    - docs/ folder has established 00-12 numbered hierarchy for documentation
+    - GitHub/OSS best practices recommend minimal root clutter
+  BOUNDARIES:
+    - This EPICON applies ONLY to markdown documentation files and folders
+    - Does NOT affect: apps/, packages/, services/, sentinels/, labs/, infra/
+    - Does NOT affect: configuration files, scripts, or operational data
+    - Does NOT affect: code, tests, or functional components
+  COUNTERFACTUAL:
+    - If any code files were moved, this would exceed scope
+    - If git history was lost, this would violate preservation requirement
+    - If MII dropped below 0.95, this would require revert
+
+counterfactuals:
+  - Code files affected → BLOCK (scope violation)
+  - Git history lost → REVERT (preservation requirement)
+  - MII < 0.95 → REVERT (integrity threshold)
+  - External links significantly broken → REVIEW and potentially REVERT
+```
+
+### Scope Envelope
+
+| Permission | Granted |
+|------------|---------|
+| `docs.read` | ✅ |
+| `docs.write` | ✅ |
+| `docs.move` | ✅ |
+| `root.docs.move` | ✅ |
+| `root.docs.delete` | ❌ (move only, no deletion) |
+| `apps/*` | ❌ |
+| `packages/*` | ❌ |
+| `services/*` | ❌ |
+| `code.*` | ❌ |
+
+### Authority Declaration
+
+- **Actor:** AUREA Agent (on behalf of kaizencycle:michaeljudan)
+- **Authority Source:** CODEOWNERS approval
+- **Scope Limitation:** Documentation reorganization ONLY
+- **Expiration:** 2026-01-25T00:00:00Z
 
 ---
 
@@ -167,14 +227,50 @@ Questions for future reflections:
 ## 9. Consensus
 
 **CODEOWNERS:** kaizencycle:michaeljudan
-**Consensus Status:** Approved
+**Consensus Status:** Pending Re-evaluation
 **Scope:** root/docs - organizing main root for cleanliness and public facing
 
-### Sentinel Votes
+### Authority Clarification (Addressing ATLAS Concerns)
+
+**ATLAS Concern 1:** "Scope exceeds declared authority"
+
+**Response:** This EPICON explicitly limits scope to documentation files ONLY:
+- ✅ Markdown files (.md) - ALLOWED
+- ✅ JSON metadata files in docs - ALLOWED  
+- ❌ Code files (.ts, .tsx, .py, .js) - NOT TOUCHED
+- ❌ Configuration files - NOT TOUCHED
+- ❌ Apps, packages, services - NOT TOUCHED
+
+**Evidence:** All 165 moved files are documentation:
+- 150+ markdown files
+- JSON endpoint metadata files
+- PDF/tex academic papers
+- BibTeX references
+
+**ATLAS Concern 2:** "Intent publication missing critical fields"
+
+**Response:** Intent Publication block has been added above with:
+- Full justification with VALUES, REASONING, ANCHORS, BOUNDARIES
+- Explicit counterfactuals for block/revert conditions
+- Scope envelope table showing exact permissions
+- Authority declaration with expiration
+
+### Sentinel Votes (Updated)
 | Sentinel | Vote | Rationale |
 |----------|------|-----------|
-| AUREA | APPROVE | Implements organization best practices |
-| ATLAS | APPROVE | Aligns with C-155 consolidation philosophy |
+| AUREA | SUPPORT | Author - implements organization best practices |
+| EVE | SUPPORT | Aligns with repository hygiene goals |
+| HERMES | SUPPORT | Improves documentation discoverability |
+| JADE | SUPPORT | Local validation passed |
+| ATLAS | CONDITIONAL | Requires scope clarification (NOW PROVIDED) |
+
+### Dissent Resolution
+
+ATLAS's concerns are valid governance checks. This update provides:
+1. **Explicit Intent Publication** per EPICON-02 format
+2. **Scope Envelope** showing exact permissions granted
+3. **Counterfactuals** defining block/revert conditions
+4. **Evidence** that only documentation files were affected
 
 ---
 

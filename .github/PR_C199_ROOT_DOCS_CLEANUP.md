@@ -103,6 +103,24 @@ status: active
 risk_level: low
 ```
 
+### Intent Publication (EPICON-02 Compliance)
+
+**Scope Envelope:**
+| Permission | Granted |
+|------------|---------|
+| `docs.read` | ✅ |
+| `docs.write` | ✅ |
+| `docs.move` | ✅ |
+| `root.docs.move` | ✅ |
+| `apps/*` | ❌ |
+| `packages/*` | ❌ |
+| `code.*` | ❌ |
+
+**Counterfactuals:**
+- Code files affected → BLOCK
+- Git history lost → REVERT
+- MII < 0.95 → REVERT
+
 ---
 
 ## 6. Checklist
