@@ -223,11 +223,18 @@ export async function getMemoryStatistics(): Promise<{
     'KAIZEN',
   ];
 
+  // Parallelize agent queries for better performance
+  const agentResults = await Promise.all(
+    agents.map(async (agent) => {
+      const result = await storage.query({ agent, limit: 1 });
+      return { agent, total: result.total };
+    })
+  );
+
   const entriesByAgent: Record<string, number> = {};
-  for (const agent of agents) {
-    const result = await storage.query({ agent, limit: 1 });
-    entriesByAgent[agent] = result.total;
-  }
+  agentResults.forEach(({ agent, total }) => {
+    entriesByAgent[agent] = total;
+  });
 
   // Get oldest and newest entries
   const oldestResult = await storage.query({

@@ -11,11 +11,14 @@ export function useEventStream(url: string | undefined) {
   const [last, setLast] = useState<RelayEvt | null>(null);
   const [count, setCount] = useState(0);
   const esRef = useRef<EventSource | null>(null);
+  const reconnectTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     if (!url) return;
+
     const es = new EventSource(url);
     esRef.current = es;
+
     es.onmessage = (e) => {
       try {
         const evt: RelayEvt = JSON.parse(e.data);
@@ -23,16 +26,24 @@ export function useEventStream(url: string | undefined) {
         setCount((c) => c + 1);
       } catch { /* Parse error, skip malformed event */ }
     };
+
     es.onerror = () => {
       es.close();
-      setTimeout(() => { 
+      reconnectTimeoutRef.current = setTimeout(() => {
         if (esRef.current) {
           esRef.current.close();
         }
-        esRef.current = new EventSource(url); 
+        esRef.current = new EventSource(url);
       }, 1500);
     };
+
     return () => {
+      // Clear reconnection timeout
+      if (reconnectTimeoutRef.current) {
+        clearTimeout(reconnectTimeoutRef.current);
+      }
+
+      // Close EventSource
       es.close();
       if (esRef.current) {
         esRef.current.close();

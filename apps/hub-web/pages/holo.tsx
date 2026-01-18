@@ -139,16 +139,18 @@ export default function Holo() {
           bead.scale.setScalar(0.8 + 0.2 * Math.sin(t * 2 + i));
         }
       });
-      
+
       renderer.render(scene, cam);
-      requestAnimationFrame(loop);
+      rafId = requestAnimationFrame(loop);
     };
-    loop();
-    
-    return () => { 
-      window.removeEventListener("resize", resize); 
-      renderer.dispose(); 
-      mountRef.current?.removeChild(renderer.domElement); 
+
+    let rafId = requestAnimationFrame(loop);
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      window.removeEventListener("resize", resize);
+      renderer.dispose();
+      mountRef.current?.removeChild(renderer.domElement);
     };
   }, [items, integrityScore]);
 
