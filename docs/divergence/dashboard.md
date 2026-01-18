@@ -1,7 +1,7 @@
 # Divergence Dashboard
 
 **Repo:** `kaizencycle/Mobius-Substrate`  
-**Generated:** `2026-01-18T12:30:27Z`  
+**Generated:** `2026-01-18T18:21:15Z`  
 **Open PRs:** `1`
 
 ## Summary
@@ -18,7 +18,7 @@
 
 | Sev | PR | Title | Author | EPICON | Gate | Mode | Updated |
 |-----|---:|-------|--------|--------|------|------|---------|
-| ⚪ unknown | [#245](https://github.com/kaizencycle/Mobius-Substrate/pull/245) | Claude/find perf issues mkip0uqf7otxvsrb f xc5l | @kaizencycle | ? | ? | — | 2026-01-17 |
+| ⚪ unknown | [#246](https://github.com/kaizencycle/Mobius-Substrate/pull/246) | Root docs folder cleanup | @kaizencycle | ? | ? | — | 2026-01-18 |
 
 ---
 
