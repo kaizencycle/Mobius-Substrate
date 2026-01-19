@@ -33,12 +33,19 @@ The INDEX.md file provides comprehensive navigation for:
 
 ## 🚀 Start Here — Choose Your Path
 
+### 🎯 Choose Your Cathedral
+
+| 🎓 **Researcher** | 💰 **Economist** | 🧠 **Philosopher** | 🏛️ **Government** |
+|---|---|---|---|
+| Papers, data, frameworks | Models, policy tools, ROI | Ethics, safety, governance | Policy briefs, legislation |
+| [Enter →](./07-RESEARCH-AND-PUBLICATIONS/for-academics/) | [Enter →](./07-RESEARCH-AND-PUBLICATIONS/for-economists/) | [Enter →](./07-RESEARCH-AND-PUBLICATIONS/for-philosophers/) | [Enter →](./07-RESEARCH-AND-PUBLICATIONS/for-governments/) |
+
 ### 👥 I am a...
-**Newcomer** → [Quick Start Guide](#-quick-start)  
-**Developer** → [Development Center](#-development-guides)  
-**Researcher** → [Research Portal](#-research--academia)  
-**Operator** → [Operations Hub](#-operations--deployment)  
-**Governance** → [Governance Center](#-governance--policy)  
+**Newcomer** → [Quick Start Guide](./00-START-HERE/)  
+**Developer** → [Development Center](./05-IMPLEMENTATION/guides/development/)  
+**Researcher** → [Research Portal](./07-RESEARCH-AND-PUBLICATIONS/)  
+**Operator** → [Operations Hub](./06-OPERATIONS/)  
+**Governance** → [Governance Center](./03-GOVERNANCE-AND-POLICY/)  
 
 ### 🔍 I want to...
 **Understand the system** → [System Overview](#-system-overview)  
@@ -87,6 +94,8 @@ The INDEX.md file provides comprehensive navigation for:
 
 - **[Governance Overview](./03-GOVERNANCE-AND-POLICY/governance/overview.md)** ⭐ *Two-house model (Council + TSC)*
 - **[Sentinel Constitution](./03-GOVERNANCE-AND-POLICY/governance/SENTINEL_CONSTITUTION.md)** *Ratified framework*
+- **[Foundation](./03-GOVERNANCE-AND-POLICY/foundation/)** *Charter, bylaws, legal, policies*
+- **[Roles & Authority](./03-GOVERNANCE-AND-POLICY/governance/ROLES.md)** *Role definitions and authority*
 - Constitution, policies, and procedures
 
 ---
@@ -124,9 +133,19 @@ The INDEX.md file provides comprehensive navigation for:
 **Path:** `07-RESEARCH-AND-PUBLICATIONS/`  
 **For:** Researchers, academics, policy makers
 
+#### Audience-Specific Cathedrals
+- **[For Academics](./07-RESEARCH-AND-PUBLICATIONS/for-academics/)** 🎓 *Papers, data, research frameworks*
+- **[For Economists](./07-RESEARCH-AND-PUBLICATIONS/for-economists/)** 💰 *Economic models, ROI tools*
+- **[For Philosophers](./07-RESEARCH-AND-PUBLICATIONS/for-philosophers/)** 🧠 *Ethics, safety analysis, governance theory*
+- **[For Governments](./07-RESEARCH-AND-PUBLICATIONS/for-governments/)** 🏛️ *Policy briefs, legislative text*
+
+#### General Research
 - **[Whitepapers](./07-RESEARCH-AND-PUBLICATIONS/whitepapers/)** *Economic and technical papers*
 - **[Blueprints](./07-RESEARCH-AND-PUBLICATIONS/blueprints/)** *System blueprints*
 - **[Encyclopedia](./07-RESEARCH-AND-PUBLICATIONS/encyclopedia/)** *Knowledge encyclopedia*
+- **[Papers](./07-RESEARCH-AND-PUBLICATIONS/papers/)** *Academic papers and publications*
+- **[Book](./07-RESEARCH-AND-PUBLICATIONS/book/)** *Published materials*
+- **[Evaluations](./07-RESEARCH-AND-PUBLICATIONS/evaluations/)** *Evaluation frameworks*
 
 ---
 
@@ -166,7 +185,10 @@ The INDEX.md file provides comprehensive navigation for:
 - **[Handbook](./11-SUPPLEMENTARY/handbook/)** *User handbook*
 - **[Companions](./11-SUPPLEMENTARY/companions/)** *Companion profiles*
 - **[Drift Control](./11-SUPPLEMENTARY/drift/)** *Drift documentation*
-- 47 topic-specific folders organized here
+- **[Prompts](./11-SUPPLEMENTARY/prompts/)** *Cycle journals, deliberation prompts*
+- **[Templates](./11-SUPPLEMENTARY/templates/)** *City-state, chamber, PR templates*
+- **[RFCs](./11-SUPPLEMENTARY/rfcs/)** *Request for comments*
+- 47+ topic-specific folders organized here
 
 ---
 
@@ -233,11 +255,14 @@ The INDEX.md file provides comprehensive navigation for:
 - **Check the [Academic Index](./08-REFERENCE/ACADEMIC_INDEX.md)** for comprehensive taxonomy
 
 ### By Role
-- **New User:** Start with [00-START-HERE.md](./00-START-HERE.md) → [Handbook](./11-SUPPLEMENTARY/handbook/)
+- **New User:** Start with [00-START-HERE](./00-START-HERE/) → [Handbook](./11-SUPPLEMENTARY/handbook/)
 - **Developer:** [Development Guides](./05-IMPLEMENTATION/guides/development/) → [Architecture](./04-TECHNICAL-ARCHITECTURE/)
-- **Researcher:** [Whitepapers](./07-RESEARCH-AND-PUBLICATIONS/whitepapers/) → [Research](./07-RESEARCH-AND-PUBLICATIONS/)
+- **Researcher:** [For Academics](./07-RESEARCH-AND-PUBLICATIONS/for-academics/) → [Whitepapers](./07-RESEARCH-AND-PUBLICATIONS/whitepapers/)
+- **Economist:** [For Economists](./07-RESEARCH-AND-PUBLICATIONS/for-economists/) → [Economic Models](./07-RESEARCH-AND-PUBLICATIONS/for-economists/ECONOMIC-MODELS/)
+- **Philosopher:** [For Philosophers](./07-RESEARCH-AND-PUBLICATIONS/for-philosophers/) → [Ethical Foundations](./07-RESEARCH-AND-PUBLICATIONS/for-philosophers/ETHICAL-FOUNDATIONS/)
+- **Government:** [For Governments](./07-RESEARCH-AND-PUBLICATIONS/for-governments/) → [Policy Briefs](./07-RESEARCH-AND-PUBLICATIONS/for-governments/POLICY-BRIEFS/)
 - **Operator:** [Operations](./06-OPERATIONS/) → [Runbooks](./06-OPERATIONS/processes/runbooks/)
-- **Governance:** [Governance](./03-GOVERNANCE-AND-POLICY/) → [Foundation Docs](../FOUNDATION/)
+- **Governance:** [Governance](./03-GOVERNANCE-AND-POLICY/) → [Foundation Docs](./03-GOVERNANCE-AND-POLICY/foundation/)
 
 ---
 
@@ -258,17 +283,17 @@ The INDEX.md file provides comprehensive navigation for:
 ## 🤝 Contributing
 
 - **[Contribution Guide](../CONTRIBUTING.md)**
-- **[RFC Process](../FOUNDATION/PROCESS/RFC_PROCESS.md)**
-- **[Code of Conduct](../FOUNDATION/POLICIES/CODE_OF_CONDUCT.md)**
+- **[RFC Process](./03-GOVERNANCE-AND-POLICY/foundation/PROCESS/RFC_PROCESS.md)**
+- **[Code of Conduct](./03-GOVERNANCE-AND-POLICY/foundation/POLICIES/CODE_OF_CONDUCT.md)**
 
 ---
 
 ## 🔄 Documentation Status
 
-**Last Updated:** 2025-11-29  
-**Total Documents:** 500+ markdown files  
+**Last Updated:** 2026-01-18 (C-199)  
+**Total Documents:** 1100+ markdown files  
 **Active Categories:** 12 numbered classifications  
-**Reorganization:** v3.0.0 (2025-11-29)  
+**Reorganization:** v4.0.0 (C-199 Root Cleanup)  
 **Maintained By:** Mobius Systems Documentation Team
 
 ---
