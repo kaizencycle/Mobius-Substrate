@@ -1,6 +1,6 @@
 # 🌀 Mobius Substrate Monorepo
 
-**Current Cycle:** C-180 (Full Sweep Optimization Complete)
+**Current Cycle:** C-199 (Root Docs Cleanup Complete)
 **Package Manager:** npm (standardized from pnpm in C-180)
 **Build Tool:** Turborepo
 **Node Version:** 20
@@ -30,7 +30,16 @@ Mobius-Substrate/
 │   ├── zeus-coordinator/   # Coordinator
 │   └── ...                 # 5 sentinels
 ├── .github/workflows/      # 20 Active CI Workflows
-├── docs/                   # Documentation (743 docs)
+├── docs/                   # Documentation (1100+ docs)
+│   ├── 00-START-HERE/      # Navigation hub
+│   ├── 03-GOVERNANCE-AND-POLICY/
+│   │   └── foundation/     # Charter, bylaws, legal (moved from /FOUNDATION)
+│   ├── 07-RESEARCH-AND-PUBLICATIONS/
+│   │   ├── for-academics/  # Research cathedral (moved from /FOR-ACADEMICS)
+│   │   ├── for-economists/ # Market cathedral (moved from /FOR-ECONOMISTS)
+│   │   ├── for-philosophers/ # Ethics cathedral (moved from /FOR-PHILOSOPHERS)
+│   │   └── for-governments/ # Policy cathedral (moved from /FOR-GOVERNMENTS)
+│   └── ...
 └── catalog/                # Auto-generated catalog
 ```
 
@@ -56,7 +65,7 @@ Mobius-Substrate/
 
 ### Catalog Integrity
 - **File:** catalog/mobius_catalog.json
-- **Stats:** 743 docs, 3 EPICONs
+- **Stats:** 1100+ docs, 3 EPICONs
 - **Must regenerate after:** Adding/moving docs, EPICON changes
 - **Command:** `npm run export:catalog`
 - **Enforced by:** .github/workflows/catalog-check.yml
@@ -190,16 +199,21 @@ counterfactuals:
 ## 📚 Key Documentation Files
 
 ### EPICON & Governance
-- `EPICON/` - EPICON specifications
-- `GOVERNANCE/ROLES.md` - Role-based access
-- `GOVERNANCE/ROLE_MAP.json` - Role configurations
+- `docs/epicon/` - EPICON specifications
+- `docs/03-GOVERNANCE-AND-POLICY/governance/ROLES.md` - Role-based access
+- `docs/03-GOVERNANCE-AND-POLICY/governance/ROLE_MAP.json` - Role configurations
+- `docs/03-GOVERNANCE-AND-POLICY/foundation/` - Charter, bylaws, legal docs
 - `docs/03-GOVERNANCE-AND-POLICY/civic/` - Civic covenants
 
+### Audience-Specific Cathedrals (Research & Publications)
+- `docs/07-RESEARCH-AND-PUBLICATIONS/for-academics/` - Research documentation
+- `docs/07-RESEARCH-AND-PUBLICATIONS/for-economists/` - Economic model
+- `docs/07-RESEARCH-AND-PUBLICATIONS/for-philosophers/` - Ethics & governance theory
+- `docs/07-RESEARCH-AND-PUBLICATIONS/for-governments/` - Policy briefs, legislative text
+
 ### Architecture & Design
-- `FOR-ACADEMICS/` - Research documentation
-- `FOR-ECONOMISTS/` - Economic model
-- `FOR-GOVERNMENTS/DIPLOMACY/` - Diplomatic protocols
-- `docs/02-ARCHITECTURE/` - System architecture
+- `docs/04-TECHNICAL-ARCHITECTURE/` - System architecture
+- `docs/04-TECHNICAL-ARCHITECTURE/BUNDLE_OPTIMIZATION.md` - Bundle optimization guide
 
 ### Operations
 - `docs/06-OPERATIONS/drift-control/` - Drift test vectors
@@ -342,13 +356,36 @@ git commit --amend --no-edit
 ## 📞 Getting Help
 
 - **Issues:** Check `.github/WORKFLOW_ISSUES_REPORT.md`
-- **Architecture:** See `docs/02-ARCHITECTURE/`
-- **Governance:** See `GOVERNANCE/ROLES.md`
+- **Architecture:** See `docs/04-TECHNICAL-ARCHITECTURE/`
+- **Governance:** See `docs/03-GOVERNANCE-AND-POLICY/governance/ROLES.md`
 - **Recent changes:** See `.github/C180_OPTIMIZATION_SUMMARY.md`
+
+---
+
+## 🔄 C-199 Root Cleanup Summary
+
+The following folders were consolidated from root to `docs/`:
+- `FOR-ACADEMICS/` → `docs/07-RESEARCH-AND-PUBLICATIONS/for-academics/`
+- `FOR-ECONOMISTS/` → `docs/07-RESEARCH-AND-PUBLICATIONS/for-economists/`
+- `FOR-PHILOSOPHERS/` → `docs/07-RESEARCH-AND-PUBLICATIONS/for-philosophers/`
+- `FOR-GOVERNMENTS/` → `docs/07-RESEARCH-AND-PUBLICATIONS/for-governments/`
+- `FOUNDATION/` → `docs/03-GOVERNANCE-AND-POLICY/foundation/`
+- `GOVERNANCE/` → `docs/03-GOVERNANCE-AND-POLICY/governance/`
+- `00-START-HERE/` → `docs/00-START-HERE/`
+- `epicon/` → `docs/epicon/`
+- `papers/` → `docs/07-RESEARCH-AND-PUBLICATIONS/papers/`
+- `book/` → `docs/07-RESEARCH-AND-PUBLICATIONS/book/`
+- `prompts/` → `docs/11-SUPPLEMENTARY/prompts/`
+- `templates/` → `docs/11-SUPPLEMENTARY/templates/`
+- `rfcs/` → `docs/11-SUPPLEMENTARY/rfcs/`
+- `PUBLIC/` → `docs/public-assets/`
+- `evaluations/` → `docs/07-RESEARCH-AND-PUBLICATIONS/evaluations/`
+- `BUNDLE_OPTIMIZATION.md` → `docs/04-TECHNICAL-ARCHITECTURE/`
+- `MIGRATION_C155.md` → `docs/10-ARCHIVES/root-files/`
 
 ---
 
 *"We heal as we walk." — Mobius Substrate* 🌀
 
-**Last Updated:** C-180 (2026-01-06)
-**Maintained by:** ATLAS Agent
+**Last Updated:** C-199 (2026-01-18)
+**Maintained by:** AUREA Agent

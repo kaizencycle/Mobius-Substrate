@@ -63,27 +63,27 @@ Mobius Substrate (formerly Mobius Systems) is the civic-technical substrate for 
 - **Novelty:** First human-aligned recursive learning protocol
 - **Key Result:** 97% drift prevention in production
 - **Status:** Ready for submission
-- **Location:** [FOR-ACADEMICS/PAPERS/SML/](../FOR-ACADEMICS/PAPERS/SML/)
+- **Location:** [docs/07-RESEARCH-AND-PUBLICATIONS/for-academics/PAPERS/SML/](../07-RESEARCH-AND-PUBLICATIONS/for-academics/PAPERS/SML/)
 
 **2. Negentropic Economics**
 - **Target:** Nature Physics, Journal of Economic Theory
 - **Novelty:** First thermodynamics-economics unification
 - **Key Result:** $1.16T annual US savings projected
 - **Status:** Ready for submission
-- **Location:** [FOR-ACADEMICS/PAPERS/NEGENTROPIC-ECONOMICS/](../FOR-ACADEMICS/PAPERS/NEGENTROPIC-ECONOMICS/)
+- **Location:** [docs/07-RESEARCH-AND-PUBLICATIONS/for-academics/PAPERS/NEGENTROPIC-ECONOMICS/](../07-RESEARCH-AND-PUBLICATIONS/for-academics/PAPERS/NEGENTROPIC-ECONOMICS/)
 
 **3. Mobius Cycle Protocol (MCP)**
 - **Target:** IEEE TSE, Systems Research
 - **Novelty:** First operationally-enforced AI safety
 - **Key Result:** 99.7% compliance in production
 - **Status:** Ready for submission
-- **Location:** [FOR-ACADEMICS/PAPERS/MCP/](../FOR-ACADEMICS/PAPERS/MCP/)
+- **Location:** [docs/07-RESEARCH-AND-PUBLICATIONS/for-academics/PAPERS/MCP/](../07-RESEARCH-AND-PUBLICATIONS/for-academics/PAPERS/MCP/)
 
 **4. Macro-Scale Machine Learning (MSML)**
 - **Target:** NeurIPS 2026
 - **Novelty:** Society-as-trainable-substrate framework
 - **Status:** 80% complete, needs empirical validation
-- **Location:** [FOR-ACADEMICS/PAPERS/MSML/](../FOR-ACADEMICS/PAPERS/MSML/)
+- **Location:** [docs/07-RESEARCH-AND-PUBLICATIONS/for-academics/PAPERS/MSML/](../07-RESEARCH-AND-PUBLICATIONS/for-academics/PAPERS/MSML/)
 
 ### Research Data Available
 
@@ -91,7 +91,7 @@ Mobius Substrate (formerly Mobius Systems) is the civic-technical substrate for 
 - **MCP Compliance:** Cycle attestations, GI scores, workflow metrics
 - **Economic Validation:** 2008-2024 historical data, 94% correlation
 
-**Location:** [FOR-ACADEMICS/RESEARCH-DATA/](../FOR-ACADEMICS/RESEARCH-DATA/)
+**Location:** [docs/07-RESEARCH-AND-PUBLICATIONS/for-academics/RESEARCH-DATA/](../07-RESEARCH-AND-PUBLICATIONS/for-academics/RESEARCH-DATA/)
 
 ### Citation
 
@@ -105,7 +105,7 @@ Mobius Substrate (formerly Mobius Systems) is the civic-technical substrate for 
 }
 ```
 
-**Complete BibTeX:** [FOR-ACADEMICS/mobius-complete.bib](../FOR-ACADEMICS/mobius-complete.bib)
+**Complete BibTeX:** [for-academics/mobius-complete.bib](../07-RESEARCH-AND-PUBLICATIONS/for-academics/mobius-complete.bib)
 
 ---
 
@@ -146,7 +146,7 @@ where I = Mobius Integrity Index
 - ✅ Democratic (citizens earn via participation)
 - ✅ Sustainable (unlimited negentropy)
 
-**Location:** [FOR-ECONOMISTS/](../FOR-ECONOMISTS/)
+**Location:** [docs/07-RESEARCH-AND-PUBLICATIONS/for-economists/](../07-RESEARCH-AND-PUBLICATIONS/for-economists/)
 
 ---
 
@@ -183,7 +183,7 @@ where I = Mobius Integrity Index
 
 **Result:** AGI arrives to world already coordinated by integrity.
 
-**Location:** [FOR-PHILOSOPHERS/](../FOR-PHILOSOPHERS/)
+**Location:** [docs/07-RESEARCH-AND-PUBLICATIONS/for-philosophers/](../07-RESEARCH-AND-PUBLICATIONS/for-philosophers/)
 
 ---
 
@@ -195,25 +195,25 @@ where I = Mobius Integrity Index
 - Boulder, CO pilot: $275K, 6 months
 - 97% drift prevention proven
 - NSF Smart Cities grant eligible
-- **[Read Brief](../FOR-GOVERNMENTS/POLICY-BRIEFS/sml-implementation.md)**
+- **[Read Brief](../07-RESEARCH-AND-PUBLICATIONS/for-governments/POLICY-BRIEFS/sml-implementation.md)**
 
 **2. Negentropic Economics**
 - Federal Reserve integration plan
 - $1.16T annual US savings
 - MIC currency protocol
-- **[Read Brief](../FOR-GOVERNMENTS/POLICY-BRIEFS/negentropic-economics.md)**
+- **[Read Brief](../07-RESEARCH-AND-PUBLICATIONS/for-governments/POLICY-BRIEFS/negentropic-economics.md)**
 
 **3. Daedalus Protocol**
 - UN/WHO/IMF coordination
 - 8 global domains
 - 95% compliance target
-- **[Read Brief](../FOR-GOVERNMENTS/POLICY-BRIEFS/daedalus-protocol.md)**
+- **[Read Brief](../07-RESEARCH-AND-PUBLICATIONS/for-governments/POLICY-BRIEFS/daedalus-protocol.md)**
 
 **4. MCP Enforcement**
 - 99.7% production compliance
 - GitHub Actions integration
 - AI safety regulation model
-- **[Read Brief](../FOR-GOVERNMENTS/POLICY-BRIEFS/mcp-enforcement.md)**
+- **[Read Brief](../07-RESEARCH-AND-PUBLICATIONS/for-governments/POLICY-BRIEFS/mcp-enforcement.md)**
 
 ### Legislative Text Ready
 
@@ -221,9 +221,9 @@ where I = Mobius Integrity Index
 - $500M appropriation (5 years)
 - MII monitoring requirement
 - Public integrity dashboard
-- **[View Draft](../FOR-GOVERNMENTS/LEGISLATIVE-TEXT/US-CONGRESS/negentropy-act-2025.md)**
+- **[View Draft](../07-RESEARCH-AND-PUBLICATIONS/for-governments/LEGISLATIVE-TEXT/US-CONGRESS/negentropy-act-2025.md)**
 
-**Location:** [FOR-GOVERNMENTS/](../FOR-GOVERNMENTS/)
+**Location:** [docs/07-RESEARCH-AND-PUBLICATIONS/for-governments/](../07-RESEARCH-AND-PUBLICATIONS/for-governments/)
 
 ---
 
@@ -255,10 +255,11 @@ Mobius-Systems/
 │   └── hermes/              # Auditor
 ├── .github/workflows/       # 27 workflows (MCP-compliant)
 ├── ledger/                  # Immutable attestations
-├── FOR-ACADEMICS/           # 🎓 Research cathedral
-├── FOR-ECONOMISTS/          # 💰 Market cathedral
-├── FOR-PHILOSOPHERS/        # 🧠 Ethics cathedral
-└── FOR-GOVERNMENTS/         # 🏛️ Policy cathedral
+└── docs/07-RESEARCH-AND-PUBLICATIONS/
+    ├── for-academics/       # 🎓 Research cathedral
+    ├── for-economists/      # 💰 Market cathedral
+    ├── for-philosophers/    # 🧠 Ethics cathedral
+    └── for-governments/     # 🏛️ Policy cathedral
 ```
 
 ### Database Infrastructure
@@ -367,7 +368,7 @@ git clone https://github.com/kaizencycle/Mobius-Systems.git
 cd Mobius-Systems
 
 # Explore academic papers
-cd FOR-ACADEMICS/PAPERS/
+cd docs/07-RESEARCH-AND-PUBLICATIONS/for-academics/PAPERS/
 
 # Review research data
 cd ../RESEARCH-DATA/
@@ -380,7 +381,7 @@ cd ../LITERATURE-REVIEWS/
 
 ```bash
 # Explore economic models
-cd FOR-ECONOMISTS/ECONOMIC-MODELS/
+cd docs/07-RESEARCH-AND-PUBLICATIONS/for-economists/ECONOMIC-MODELS/
 
 # Try ROI calculators
 cd ../ROI-CALCULATORS/
@@ -393,7 +394,7 @@ cd ../GLOBAL-APPLICATIONS/
 
 ```bash
 # Read policy briefs
-cd FOR-GOVERNMENTS/POLICY-BRIEFS/
+cd docs/07-RESEARCH-AND-PUBLICATIONS/for-governments/POLICY-BRIEFS/
 
 # Review legislative text
 cd ../LEGISLATIVE-TEXT/
@@ -420,28 +421,28 @@ docker-compose -f infra/docker/compose.yml up
 ## 📚 Complete Documentation
 
 ### Academic Path 🎓
-- **Papers:** [FOR-ACADEMICS/PAPERS/](../FOR-ACADEMICS/PAPERS/)
-- **Research Data:** [FOR-ACADEMICS/RESEARCH-DATA/](../FOR-ACADEMICS/RESEARCH-DATA/)
-- **Literature Reviews:** [FOR-ACADEMICS/LITERATURE-REVIEWS/](../FOR-ACADEMICS/LITERATURE-REVIEWS/)
-- **Thesis Templates:** [FOR-ACADEMICS/THESIS-TEMPLATES/](../FOR-ACADEMICS/THESIS-TEMPLATES/)
+- **Papers:** [for-academics/PAPERS/](../07-RESEARCH-AND-PUBLICATIONS/for-academics/PAPERS/)
+- **Research Data:** [for-academics/RESEARCH-DATA/](../07-RESEARCH-AND-PUBLICATIONS/for-academics/RESEARCH-DATA/)
+- **Literature Reviews:** [for-academics/LITERATURE-REVIEWS/](../07-RESEARCH-AND-PUBLICATIONS/for-academics/LITERATURE-REVIEWS/)
+- **Thesis Templates:** [for-academics/THESIS-TEMPLATES/](../07-RESEARCH-AND-PUBLICATIONS/for-academics/THESIS-TEMPLATES/)
 
 ### Economic Path 💰
-- **Economic Models:** [FOR-ECONOMISTS/ECONOMIC-MODELS/](../FOR-ECONOMISTS/ECONOMIC-MODELS/)
-- **Global Applications:** [FOR-ECONOMISTS/GLOBAL-APPLICATIONS/](../FOR-ECONOMISTS/GLOBAL-APPLICATIONS/)
-- **ROI Calculators:** [FOR-ECONOMISTS/ROI-CALCULATORS/](../FOR-ECONOMISTS/ROI-CALCULATORS/)
-- **Market Data:** [FOR-ECONOMISTS/MARKET-DATA/](../FOR-ECONOMISTS/MARKET-DATA/)
+- **Economic Models:** [for-economists/ECONOMIC-MODELS/](../07-RESEARCH-AND-PUBLICATIONS/for-economists/ECONOMIC-MODELS/)
+- **Global Applications:** [for-economists/GLOBAL-APPLICATIONS/](../07-RESEARCH-AND-PUBLICATIONS/for-economists/GLOBAL-APPLICATIONS/)
+- **ROI Calculators:** [for-economists/ROI-CALCULATORS/](../07-RESEARCH-AND-PUBLICATIONS/for-economists/ROI-CALCULATORS/)
+- **Market Data:** [for-economists/MARKET-DATA/](../07-RESEARCH-AND-PUBLICATIONS/for-economists/MARKET-DATA/)
 
 ### Philosophical Path 🧠
-- **Ethical Foundations:** [FOR-PHILOSOPHERS/ETHICAL-FOUNDATIONS/](../FOR-PHILOSOPHERS/ETHICAL-FOUNDATIONS/)
-- **Governance Philosophy:** [FOR-PHILOSOPHERS/GOVERNANCE-PHILOSOPHY/](../FOR-PHILOSOPHERS/GOVERNANCE-PHILOSOPHY/)
-- **Existential Risk:** [FOR-PHILOSOPHERS/EXISTENTIAL-RISK/](../FOR-PHILOSOPHERS/EXISTENTIAL-RISK/)
-- **Manifestos:** [FOR-PHILOSOPHERS/MANIFESTOS/](../FOR-PHILOSOPHERS/MANIFESTOS/)
+- **Ethical Foundations:** [for-philosophers/ETHICAL-FOUNDATIONS/](../07-RESEARCH-AND-PUBLICATIONS/for-philosophers/ETHICAL-FOUNDATIONS/)
+- **Governance Philosophy:** [for-philosophers/GOVERNANCE-PHILOSOPHY/](../07-RESEARCH-AND-PUBLICATIONS/for-philosophers/GOVERNANCE-PHILOSOPHY/)
+- **Existential Risk:** [for-philosophers/EXISTENTIAL-RISK/](../07-RESEARCH-AND-PUBLICATIONS/for-philosophers/EXISTENTIAL-RISK/)
+- **Manifestos:** [for-philosophers/MANIFESTOS/](../07-RESEARCH-AND-PUBLICATIONS/for-philosophers/MANIFESTOS/)
 
 ### Government Path 🏛️
-- **Policy Briefs:** [FOR-GOVERNMENTS/POLICY-BRIEFS/](../FOR-GOVERNMENTS/POLICY-BRIEFS/)
-- **Legislative Text:** [FOR-GOVERNMENTS/LEGISLATIVE-TEXT/](../FOR-GOVERNMENTS/LEGISLATIVE-TEXT/)
-- **Impact Assessments:** [FOR-GOVERNMENTS/IMPACT-ASSESSMENTS/](../FOR-GOVERNMENTS/IMPACT-ASSESSMENTS/)
-- **Stakeholder Briefings:** [FOR-GOVERNMENTS/STAKEHOLDER-BRIEFINGS/](../FOR-GOVERNMENTS/STAKEHOLDER-BRIEFINGS/)
+- **Policy Briefs:** [for-governments/POLICY-BRIEFS/](../07-RESEARCH-AND-PUBLICATIONS/for-governments/POLICY-BRIEFS/)
+- **Legislative Text:** [for-governments/LEGISLATIVE-TEXT/](../07-RESEARCH-AND-PUBLICATIONS/for-governments/LEGISLATIVE-TEXT/)
+- **Impact Assessments:** [for-governments/IMPACT-ASSESSMENTS/](../07-RESEARCH-AND-PUBLICATIONS/for-governments/IMPACT-ASSESSMENTS/)
+- **Stakeholder Briefings:** [for-governments/STAKEHOLDER-BRIEFINGS/](../07-RESEARCH-AND-PUBLICATIONS/for-governments/STAKEHOLDER-BRIEFINGS/)
 
 ### Technical Path 🔧
 - **Architecture:** [docs/04-TECHNICAL-ARCHITECTURE/](../docs/04-TECHNICAL-ARCHITECTURE/)
