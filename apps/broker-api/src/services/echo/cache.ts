@@ -193,6 +193,14 @@ export async function writeToEchoCache(
   }
 }
 
+// Allowlist of valid column names for update operations (security: prevent SQL injection)
+const ALLOWED_UPDATE_COLUMNS = new Set([
+  'question_raw', 'question_norm', 'answer_text', 'gi_score', 
+  'ledger_tx_id', 'sources_json', 'sentinels_json', 'embedding',
+  'domain', 'locale', 'freshness_tag', 'valid_until', 'status',
+  'hit_count', 'last_hit_at', 'jurisdiction'
+]);
+
 /**
  * Updates an existing cache entry (for revalidation)
  */
@@ -201,20 +209,24 @@ export async function updateEchoCacheEntry(
   updates: Partial<EchoCacheEntry>
 ): Promise<void> {
   try {
-    const fields = Object.keys(updates)
+    // Filter to only allowed columns (security: prevent SQL injection via column names)
+    const validKeys = Object.keys(updates)
       .filter(key => key !== 'id' && key !== 'canonical_key')
+      .filter(key => ALLOWED_UPDATE_COLUMNS.has(key));
+    
+    if (validKeys.length === 0) {
+      return; // No valid updates to apply
+    }
+    
+    const fields = validKeys
       .map((key, i) => `${key} = $${i + 2}`)
       .join(", ");
-    
-    if (!fields) {
-      return; // No updates to apply
-    }
 
     await pool.query(
       `UPDATE echo_layer_entries
        SET ${fields}, updated_at = NOW()
        WHERE canonical_key = $1`,
-      [canonicalKey, ...Object.values(updates).filter(v => v !== undefined)]
+      [canonicalKey, ...validKeys.map(k => updates[k as keyof EchoCacheEntry])]
     );
   } catch (error) {
     console.error("[ECHO Cache] Error updating entry:", error);

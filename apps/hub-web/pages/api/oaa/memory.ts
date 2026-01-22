@@ -53,7 +53,12 @@ async function saveMemory(memory: MemoryData): Promise<void> {
 function verifyHmac(req: NextApiRequest): boolean {
   const signature = req.headers["x-hmac-signature"] as string;
   const body = JSON.stringify(req.body);
-  const secret = process.env.DEV_ADMIN_TOKEN || "dev-secret";
+  const secret = process.env.DEV_ADMIN_TOKEN;
+  
+  if (!secret) {
+    console.error("DEV_ADMIN_TOKEN environment variable is not set");
+    return false;
+  }
   
   const expectedSignature = crypto
     .createHmac("sha256", secret)

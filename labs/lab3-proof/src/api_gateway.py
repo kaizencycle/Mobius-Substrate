@@ -9,6 +9,7 @@ from pydantic import BaseModel
 from typing import Optional, Dict, List
 import jwt
 import time
+import os
 from datetime import datetime, timedelta
 
 
@@ -27,8 +28,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# JWT configuration
-JWT_SECRET = "kaizen_os_secret_key_change_in_production"
+# JWT configuration - load from environment variables
+JWT_SECRET = os.environ.get("JWT_SECRET")
+if not JWT_SECRET:
+    raise RuntimeError("JWT_SECRET environment variable is required")
 JWT_ALGORITHM = "HS256"
 
 
@@ -233,8 +236,12 @@ async def login(credentials: Dict):
     username = credentials.get("username")
     password = credentials.get("password")
 
-    # In production, verify against database
-    if username == "test_user" and password == "test_password":
+    # In production, verify against database with proper password hashing
+    # For development, use environment variables for test credentials
+    test_user = os.environ.get("TEST_USERNAME")
+    test_pass = os.environ.get("TEST_PASSWORD")
+    
+    if test_user and test_pass and username == test_user and password == test_pass:
         token = create_token(user_id=username, role="citizen")
         return {"token": token}
 

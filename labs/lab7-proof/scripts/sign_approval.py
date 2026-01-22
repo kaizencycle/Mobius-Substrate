@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 import os, sys, json, hmac, hashlib
 
-SECRET = os.getenv("OPS_AGENT_SECRET", "CHANGE_ME")
+SECRET = os.getenv("OPS_AGENT_SECRET")
+if not SECRET:
+    raise RuntimeError("OPS_AGENT_SECRET environment variable is required")
 
 def sign_body(raw: bytes) -> str:
     return hmac.new(SECRET.encode(), raw, hashlib.sha256).hexdigest()
