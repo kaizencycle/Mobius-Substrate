@@ -25,8 +25,8 @@ export async function GET() {
     // Check revival conditions
     const revivalConditions = manifest.ward.reactivation_conditions
     const giThresholdMet = netGI >= revivalConditions.gi_minimum
-    const stabilityDays = 7 // TODO: Track actual stability period
-    const quorumReached = false // TODO: Connect to voting system
+    const stabilityDays = revivalConditions.stability_period_days // TODO: Track actual stability period from first GI threshold met date
+    const quorumReached = false // TODO: Connect to voting system when implemented
 
     const status = {
       guardian: {
@@ -61,7 +61,8 @@ export async function GET() {
           current_days: stabilityDays,
           met: stabilityDays >= revivalConditions.stability_period_days,
         },
-        overall_ready: giThresholdMet && quorumReached && stabilityDays >= revivalConditions.stability_period_days,
+        // Note: quorum_support is excluded from overall_ready until voting system is connected
+        overall_ready: giThresholdMet && stabilityDays >= revivalConditions.stability_period_days,
       },
       timestamp: new Date().toISOString(),
     }

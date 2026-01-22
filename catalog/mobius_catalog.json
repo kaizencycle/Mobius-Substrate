@@ -1,6 +1,6 @@
 {
   "mobius_catalog_version": "1.0.0",
-  "generated_at": "2026-01-17T21:23:10.491Z",
+  "generated_at": "2026-01-22T18:53:44.877Z",
   "repo": {
     "name": "Mobius-Substrate",
     "url": "https://github.com/kaizencycle/Mobius-Substrate",
@@ -8,102 +8,10 @@
     "commit": ""
   },
   "stats": {
-    "epiconCount": 3,
-    "docCount": 753
+    "epiconCount": 0,
+    "docCount": 885
   },
-  "epicons": [
-    {
-      "epicon_id": "EPICON_C-151_DVA-FULL_mcp-repo-catalog_v1",
-      "path": "epicon/C-151/EPICON_C-151_DVA-FULL_mcp-repo-catalog_v1.md",
-      "title": "MCP Repo Catalog & Integrity Gate for Mobius Substrate",
-      "cycle": "C-151",
-      "epoch": null,
-      "tier": "DVA.FULL",
-      "epicon_type": "design",
-      "status": "active",
-      "author_name": "Michael Judan",
-      "author_wallet": null,
-      "tags": [
-        "catalog",
-        "mcp",
-        "epicon",
-        "integrity",
-        "dva",
-        "agents",
-        "repo-index",
-        "mobius-substrate",
-        "ci",
-        "github-actions"
-      ],
-      "related_prs": [],
-      "related_commits": [],
-      "related_epicons": [
-        "EPICON_C-151_SUBSTRATE_mcp-repo-scanner_v1",
-        "EPICON-01"
-      ],
-      "integrity_index_baseline": 0.97,
-      "risk_level": "low",
-      "created_at": "2025-12-30T12:00:00-05:00",
-      "updated_at": "2025-12-30T12:00:00-05:00",
-      "content_hash": "sha256:1e9ffb5157733d3a2c9f14d2d7c14ca3653751c5abd849a1eaf59572159819a2",
-      "summary": "Introduces a machine-readable catalog (catalog/mobius_catalog.json) plus a CI gate to keep it fresh, so DVA/MCP agents can treat the Mobius Substrate as a stable library with an always-up-to-date index of EPICONs and docs."
-    },
-    {
-      "epicon_id": "EPICON_C-151_SUBSTRATE_mcp-repo-scanner_v1",
-      "path": "epicon/C-151/EPICON_C-151_SUBSTRATE_mcp-repo-scanner_v1.md",
-      "title": "MCP Repo Scanner: DVA Agent Library Interface",
-      "cycle": "C-151",
-      "epoch": null,
-      "tier": "SUBSTRATE",
-      "epicon_type": "design",
-      "status": "active",
-      "author_name": "Michael Judan",
-      "author_wallet": null,
-      "tags": [
-        "mcp",
-        "dva",
-        "repo-scanner",
-        "tooling",
-        "library",
-        "agents",
-        "catalog"
-      ],
-      "related_prs": [],
-      "related_commits": [],
-      "related_epicons": [
-        "EPICON-01",
-        "EPICON-02"
-      ],
-      "integrity_index_baseline": 0.95,
-      "risk_level": "low",
-      "created_at": "2025-12-30T12:00:00-05:00",
-      "updated_at": "2025-12-30T12:00:00-05:00",
-      "content_hash": "sha256:c6f8e98999a6ebe043c84d193fa23034ef531f000c8a38ce2e025d4ac51672d4",
-      "summary": "MCP server that exposes Mobius-Substrate as a queryable knowledge substrate for DVA agents."
-    },
-    {
-      "epicon_id": "README",
-      "path": "epicon/README.md",
-      "title": "EPICON: Intent & Decision Records",
-      "cycle": null,
-      "epoch": null,
-      "tier": null,
-      "epicon_type": null,
-      "status": "active",
-      "author_name": null,
-      "author_wallet": null,
-      "tags": [],
-      "related_prs": [],
-      "related_commits": [],
-      "related_epicons": [],
-      "integrity_index_baseline": null,
-      "risk_level": null,
-      "created_at": null,
-      "updated_at": null,
-      "content_hash": "sha256:22559a0f80d9b905fc52f9815293adc094b63f36f183feefcced48438ba4f323",
-      "summary": ""
-    }
-  ],
+  "epicons": [],
   "docs": [
     {
       "path": "docs/00-META/FOLDER_INDEX.md",
@@ -170,11 +78,27 @@
       "summary": ""
     },
     {
+      "path": "docs/00-START-HERE/MOBIUS_PULSE.md",
+      "title": "🫀 Mobius Pulse",
+      "category": "00-START-HERE",
+      "tags": [],
+      "content_hash": "sha256:4d7ff2ab705e8db1f0691cfd73e9a7d6c17a13b335e483b5c97571f586712925",
+      "summary": ""
+    },
+    {
       "path": "docs/00-START-HERE/README.md",
       "title": "Welcome to Mobius Substrate Documentation",
       "category": "00-START-HERE",
       "tags": [],
-      "content_hash": "sha256:f6f57b7083641e7cf9e855c3d85fce941b6d619a51e55086007a1d4512de730d",
+      "content_hash": "sha256:3816e5197c11caaab9c76b6774f9c0439bc547e95db9a3909945bb5a62ec3dd4",
+      "summary": ""
+    },
+    {
+      "path": "docs/00-START-HERE/SYSTEM-OVERVIEW.md",
+      "title": "🌀 MOBIUS SUBSTRATE: COMPLETE SYSTEM OVERVIEW",
+      "category": "00-START-HERE",
+      "tags": [],
+      "content_hash": "sha256:2d371440d7da3f064bc768259329183157af4d5029471f052fe17dc0ec586247",
       "summary": ""
     },
     {
@@ -578,6 +502,158 @@
       "summary": ""
     },
     {
+      "path": "docs/03-GOVERNANCE-AND-POLICY/foundation/BYLAWS.md",
+      "title": "Bylaws (v2)",
+      "category": "03-GOVERNANCE-AND-POLICY",
+      "tags": [],
+      "content_hash": "sha256:ba3ba2b673960593f55bdfebeee34a4361b20bfe2682c7c770bab567c9acd424",
+      "summary": ""
+    },
+    {
+      "path": "docs/03-GOVERNANCE-AND-POLICY/foundation/CHARTER.md",
+      "title": "Mobius Systems Foundation — Charter (v2)",
+      "category": "03-GOVERNANCE-AND-POLICY",
+      "tags": [],
+      "content_hash": "sha256:6035cad432deb045ce6e4d0593bcba98de07ac71475df26ec1c94b65cd23a2d8",
+      "summary": ""
+    },
+    {
+      "path": "docs/03-GOVERNANCE-AND-POLICY/foundation/GOVERNANCE.md",
+      "title": "Governance (v2)",
+      "category": "03-GOVERNANCE-AND-POLICY",
+      "tags": [],
+      "content_hash": "sha256:f17f991f75373d91c3ca6cd86ec2d5d9724929c3aefad7132f2568eaa441fa3b",
+      "summary": ""
+    },
+    {
+      "path": "docs/03-GOVERNANCE-AND-POLICY/foundation/LEGAL/CLA-ENTITY.md",
+      "title": "Contributor License Agreement — Entity",
+      "category": "03-GOVERNANCE-AND-POLICY",
+      "tags": [],
+      "content_hash": "sha256:c13c8af20958350519794cf260178e8cf6cd8bd5032bf944c75a7ce75034f33e",
+      "summary": ""
+    },
+    {
+      "path": "docs/03-GOVERNANCE-AND-POLICY/foundation/LEGAL/CLA-INDIVIDUAL.md",
+      "title": "Contributor License Agreement — Individual",
+      "category": "03-GOVERNANCE-AND-POLICY",
+      "tags": [],
+      "content_hash": "sha256:180619c4fe123ea36ca23ed9f9b3c07e70e470d18c949a4b6d238f3b6d1c3ef0",
+      "summary": ""
+    },
+    {
+      "path": "docs/03-GOVERNANCE-AND-POLICY/foundation/LICENSES/LICENSE-Ethical-Addendum.md",
+      "title": "Ethical License Addendum (Mobius Systems)",
+      "category": "03-GOVERNANCE-AND-POLICY",
+      "tags": [],
+      "content_hash": "sha256:0b7cf7808f08fbe9441e7c5fe61f6120ce37430d4262ae78bf0814a07de5bffe",
+      "summary": ""
+    },
+    {
+      "path": "docs/03-GOVERNANCE-AND-POLICY/foundation/LICENSES/TRADEMARK-POLICY.md",
+      "title": "Trademark Policy",
+      "category": "03-GOVERNANCE-AND-POLICY",
+      "tags": [],
+      "content_hash": "sha256:7609e681cee0eee2084edc690b9c73c838c09038d140789707498bdcd96d1134",
+      "summary": ""
+    },
+    {
+      "path": "docs/03-GOVERNANCE-AND-POLICY/foundation/POLICIES/ANTI_CAPTURE_POLICY.md",
+      "title": "Anti-Capture Policy",
+      "category": "03-GOVERNANCE-AND-POLICY",
+      "tags": [],
+      "content_hash": "sha256:2c0f0b2d9294eda78d7d0e891d40989327358ea456aa73a1cd82c628cb0e08b5",
+      "summary": ""
+    },
+    {
+      "path": "docs/03-GOVERNANCE-AND-POLICY/foundation/POLICIES/CODE_OF_CONDUCT.md",
+      "title": "Code of Conduct",
+      "category": "03-GOVERNANCE-AND-POLICY",
+      "tags": [],
+      "content_hash": "sha256:15be7218bea5f4d45672f1a36ac90e970a819d8a747c387cec6f87b97b0dfa1b",
+      "summary": ""
+    },
+    {
+      "path": "docs/03-GOVERNANCE-AND-POLICY/foundation/POLICIES/CONFLICT_OF_INTEREST.md",
+      "title": "Conflict of Interest",
+      "category": "03-GOVERNANCE-AND-POLICY",
+      "tags": [],
+      "content_hash": "sha256:460f208208aa9ada17348bd8174ccf9b36dbf98f1d7af0f46cc63a2479855ac2",
+      "summary": ""
+    },
+    {
+      "path": "docs/03-GOVERNANCE-AND-POLICY/foundation/POLICIES/DATA_GOVERNANCE.md",
+      "title": "Data Governance",
+      "category": "03-GOVERNANCE-AND-POLICY",
+      "tags": [],
+      "content_hash": "sha256:0564bc1828f4f7191d5b8cfd06211b45c92d98d84dedad31863d6abeb70c245b",
+      "summary": ""
+    },
+    {
+      "path": "docs/03-GOVERNANCE-AND-POLICY/foundation/POLICIES/PRIVACY.md",
+      "title": "Privacy Policy (Project Data)",
+      "category": "03-GOVERNANCE-AND-POLICY",
+      "tags": [],
+      "content_hash": "sha256:8b6bfb9f0c4b9efa3a1b5b7984fafd1c43c374850a82e490969ec511b1597bee",
+      "summary": ""
+    },
+    {
+      "path": "docs/03-GOVERNANCE-AND-POLICY/foundation/POLICIES/RESPONSIBLE_DISCLOSURE.md",
+      "title": "Responsible Disclosure",
+      "category": "03-GOVERNANCE-AND-POLICY",
+      "tags": [],
+      "content_hash": "sha256:7a4f56dad3a7c0ce115cf894ff2efe29247d33ea64fdc2c8b221555d0f610d2a",
+      "summary": ""
+    },
+    {
+      "path": "docs/03-GOVERNANCE-AND-POLICY/foundation/POLICIES/SECURITY.md",
+      "title": "Security Policy",
+      "category": "03-GOVERNANCE-AND-POLICY",
+      "tags": [],
+      "content_hash": "sha256:6439f1d0797e80c412460247c2a93991ee0a74c5703327adf94c6d2acaf4ca06",
+      "summary": ""
+    },
+    {
+      "path": "docs/03-GOVERNANCE-AND-POLICY/foundation/PROCESS/ADOPTERS.md",
+      "title": "Adopters",
+      "category": "03-GOVERNANCE-AND-POLICY",
+      "tags": [],
+      "content_hash": "sha256:54616830ad2d1be33d6c6c5a06358d5285b72a3bc84a6ee11f95effc6a9f1de3",
+      "summary": ""
+    },
+    {
+      "path": "docs/03-GOVERNANCE-AND-POLICY/foundation/PROCESS/RELEASE_POLICY.md",
+      "title": "Release Policy",
+      "category": "03-GOVERNANCE-AND-POLICY",
+      "tags": [],
+      "content_hash": "sha256:66275e2c2e86c777d2fc8b65cdc0f52667a2faf108c61d27bdab7902feb5aacc",
+      "summary": ""
+    },
+    {
+      "path": "docs/03-GOVERNANCE-AND-POLICY/foundation/PROCESS/RFC_PROCESS.md",
+      "title": "RFC Process",
+      "category": "03-GOVERNANCE-AND-POLICY",
+      "tags": [],
+      "content_hash": "sha256:c6ec488db8daa33faf12aaab573623eae4b6f5b02c66e397fe95dc97d322504b",
+      "summary": ""
+    },
+    {
+      "path": "docs/03-GOVERNANCE-AND-POLICY/foundation/PROCESS/VERSIONING.md",
+      "title": "Versioning",
+      "category": "03-GOVERNANCE-AND-POLICY",
+      "tags": [],
+      "content_hash": "sha256:2479adfb28209d3ac312d78429bfbf0cb726807894c53a26a48357a0b3d83bd4",
+      "summary": ""
+    },
+    {
+      "path": "docs/03-GOVERNANCE-AND-POLICY/foundation/README.md",
+      "title": "Mobius Systems Foundation",
+      "category": "03-GOVERNANCE-AND-POLICY",
+      "tags": [],
+      "content_hash": "sha256:40a751dc32835d6cb6e84eb78250be7b7297d0ee3de82bf80eee6c5ea771b88e",
+      "summary": ""
+    },
+    {
       "path": "docs/03-GOVERNANCE-AND-POLICY/founders-agents.gic.md",
       "title": "DNS + CNAME Integration Guide for .gic Agent Domains",
       "category": "03-GOVERNANCE-AND-POLICY",
@@ -626,6 +702,14 @@
       "summary": ""
     },
     {
+      "path": "docs/03-GOVERNANCE-AND-POLICY/governance/REPO_AUTHORITY_POLICY.md",
+      "title": "Mobius Substrate — Repository Authority & Navigation Policy",
+      "category": "03-GOVERNANCE-AND-POLICY",
+      "tags": [],
+      "content_hash": "sha256:785e7a50186f53d90861e81ba1b4c4f09b5355f823929ca0cf23b518f60c8b48",
+      "summary": ""
+    },
+    {
       "path": "docs/03-GOVERNANCE-AND-POLICY/governance/REPO_TRAVERSAL_POLICY.epicon.md",
       "title": "EPICON — Repo Traversal Policy v1",
       "category": "03-GOVERNANCE-AND-POLICY",
@@ -639,6 +723,14 @@
       "category": "03-GOVERNANCE-AND-POLICY",
       "tags": [],
       "content_hash": "sha256:d9d995d4e6eefee95a434dfc1b11f48b408b9b5b73281cfb567f6e6bc076e733",
+      "summary": ""
+    },
+    {
+      "path": "docs/03-GOVERNANCE-AND-POLICY/governance/ROLES.md",
+      "title": "Mobius Participation Framework",
+      "category": "03-GOVERNANCE-AND-POLICY",
+      "tags": [],
+      "content_hash": "sha256:8b0e2d107b2475c54c5c2aab4ea1a731d423b13f2cabbd7aebf04d983f3e8250",
       "summary": ""
     },
     {
@@ -735,6 +827,14 @@
       "category": "03-GOVERNANCE-AND-POLICY",
       "tags": [],
       "content_hash": "sha256:5d97d8a02ba2f1543ad2991f0829bf39dc532885f6d5c0f51b7f927d8ab469ce",
+      "summary": ""
+    },
+    {
+      "path": "docs/04-TECHNICAL-ARCHITECTURE/BUNDLE_OPTIMIZATION.md",
+      "title": "Bundle Optimization Guide",
+      "category": "04-TECHNICAL-ARCHITECTURE",
+      "tags": [],
+      "content_hash": "sha256:6716416cee4db762ad528e95ebe46e4049cf6ae4d128001b86c1414bdcdbdbef",
       "summary": ""
     },
     {
@@ -1802,6 +1902,14 @@
       "summary": ""
     },
     {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/book/README.md",
+      "title": "Integrity Before Intelligence",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:6d437e2b89aa01204344a552b864d64885259733080099ad816edba8f88f66d9",
+      "summary": ""
+    },
+    {
       "path": "docs/07-RESEARCH-AND-PUBLICATIONS/economics/MIC_ASSET_COMPARISON.md",
       "title": "MIC vs Traditional Assets — Comparative Analysis",
       "category": "07-RESEARCH-AND-PUBLICATIONS",
@@ -1879,6 +1987,758 @@
       "category": "07-RESEARCH-AND-PUBLICATIONS",
       "tags": [],
       "content_hash": "sha256:48d645fd90d39e429da2b1d87c8ca03c1944d4ca6dfc22e90bb0111c31723907",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/evaluations/ktt/README.md",
+      "title": "KTT Mini-Eval Harness (stub)",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:b184ac5f21775e8c1647b07886d194bd5402dc1b8dd696d2609a8078e4508ae4",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-academics/ENDPOINTS.md",
+      "title": "Research Cathedral — API Endpoints",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:0c5e23e9ffbd000667644774559c829bbe586ab1e75cc4c79cd755837b8cb057",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-academics/EXPERIMENTAL-PROTOCOLS/README.md",
+      "title": "🔬 Experimental Protocols",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:b249c09e0d2f3e74a8412666948c8b4125da02e7c07afbbcfbd3c9abb181b4fa",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-academics/LITERATURE-REVIEWS/ai-safety-frameworks.md",
+      "title": "Literature Review: AI Safety Frameworks",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:d634c4527d553ac7588683ed066d7e3b050bddee3737778d9b26d64c9f158ea9",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-academics/PAPERS/MCP/README.md",
+      "title": "Mobius Cycle Protocol (MCP)",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:5cdcd1668455d7e14036f3bafdd23e5a7edc27627aad767ee268a95529545838",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-academics/PAPERS/MSML/README.md",
+      "title": "📄 Macro-Scale Machine Learning (MSML)",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:5878c6975e9f529b17d47bdd5c0affd8aabdba4e87bd4927af43702d9e06849d",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-academics/PAPERS/NEGENTROPIC-ECONOMICS/README.md",
+      "title": "Negentropic Economics Paper",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:734d7af150c135217c687c3db4771b02668eb973214b24c80a04be5020a11356",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-academics/PAPERS/SML/README.md",
+      "title": "Strange Metamorphosis Loop (SML)",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:4090e82bc162aed03e382cc43b5d3c22c1db75c2c528826bca7e829e90d9902d",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-academics/PAPERS/SML/sml-safety-specification.md",
+      "title": "SML (Sentinel-Mediated Learning) Safety Specification",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:f69d2dd0b73bd806e4c52d1c749e34d276e4bb1de379db6d54b4ab9849b79fe0",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-academics/README.md",
+      "title": "🎓 For Academics — Research Cathedral",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:2b59a527337ec2c54ccdaec80f1d8fc53799610cae5477d883448c0d31c33007",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-academics/RESEARCH-DATA/economic-validation/README.md",
+      "title": "Economic Validation Research Data",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:00a19848b2ef1debb98e0ab2957909b73e44d91459d50d43b947a477d4b8b21d",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-academics/RESEARCH-DATA/economic-validation/mic-validation-dataset.md",
+      "title": "MIC Economic Validation Dataset",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:76e5442d295004613d69e5307aa439ca4a1d0c87ebfb98c64199698fba48920b",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-academics/RESEARCH-DATA/mcp-compliance/README.md",
+      "title": "MCP Compliance Research Data",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:7e2009dbc76303c93e61ab8b6f184e6e91cd8125f6a0ac6762f4058ab25e9ec6",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-academics/RESEARCH-DATA/sml-drift-prevention/README.md",
+      "title": "SML Drift Prevention Research Data",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:814e2e3ec55dd9c5061e03107322b5e0a59f0e70bdc2535f9c72ff2fa3dc31eb",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-academics/THESIS-TEMPLATES/README.md",
+      "title": "PhD Thesis Templates",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:5743421a9ee45cc17f63d590e7510a4b244f39788f025b8fc7eaf481d0cd6da9",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-economists/ECONOMIC-MODELS/central-bank-integration/README.md",
+      "title": "🏦 Central Bank Integration Framework",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:fa577a57a9958c5b841646ea0b34a71e8491be4d1182bf186397f55527b63178",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-economists/ECONOMIC-MODELS/debt-entropy-unification/README.md",
+      "title": "Debt-Entropy Unification Model",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:cd31581f47bd4ab9b514074c1303dcfc23203150e2397c5356b9b9d836bd145a",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-economists/ECONOMIC-MODELS/empirical-validation/README.md",
+      "title": "📈 Empirical Validation",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:6cdbf69961e171aba437563cc799ada501ed290124aa899b952acde29e0a6bdf",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-economists/ECONOMIC-MODELS/mic-currency-model/README.md",
+      "title": "MIC Currency Model",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:ba038f673cfec22632cb033dc8df45f1988c3c45f16a405eed3127f1f0bcceb7",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-economists/ECONOMIC-MODELS/mic-currency-model/deflationary-sinks.md",
+      "title": "MIC Deflationary Sinks — Cycle C-150",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:7ac2405f4b2397ac64d24f827ffb8d03b39e088821cfb58baaf3206bb9b1bd28",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-economists/ECONOMIC-MODELS/mic-currency-model/satoshi-parallel.md",
+      "title": "Why MIC = 1,000,000 KS Mirrors BTC = 100,000,000 Sats",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:41d886d506e3fa258fceb26c219d080e6ecd99eef1041ff348763eae74d79bc5",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-economists/ECONOMIC-MODELS/mic-currency-model/tokenomics-v4.md",
+      "title": "MIC / Kaizen Shards — Tokenomics v4.0 (C-151)",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:55695011d7d6e24a70bbb23fc21846ae9473df0b81fc804a849ba8b12bfb4dc4",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-economists/ECONOMIC-MODELS/mic-currency-model/units-table.md",
+      "title": "MIC / KS Unit Table",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:b454d86871ccd4927b8c977cd3d1a022473252b6b213c175c76d0189144a164c",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-economists/ENDPOINTS.md",
+      "title": "Market Cathedral — API Endpoints",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:3b7ad5208b476ba36131793eb603ad56c11464d62402f90632eaefede8a2bb79",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-economists/GLOBAL-APPLICATIONS/BANK-OF-ENGLAND/README.md",
+      "title": "🇬🇧 Bank of England Integration",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:b0dce18788f33d545f1b026543f1c267b24e524fc765ba6db4f0158bf9356ebf",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-economists/GLOBAL-APPLICATIONS/EMERGING-MARKETS/README.md",
+      "title": "🌏 Emerging Markets Framework",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:566f9b64b7af095da58a3f4609a9ee20245d8778e3fd43daf7f0554dfcc44acf",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-economists/GLOBAL-APPLICATIONS/EUROPEAN-CENTRAL-BANK/README.md",
+      "title": "🇪🇺 European Central Bank Integration",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:61f14078f7763b1e77a0fef20e42a28656ddd9a9c97ea030acd100e3c98c90bf",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-economists/GLOBAL-APPLICATIONS/IMF-WORLD-BANK/README.md",
+      "title": "🌍 IMF & World Bank Integration",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:c3c593b3e34525a8fbb9e047cc6d2e62ca1ce23cb9756d122e9cc0611fe2fb18",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-economists/GLOBAL-APPLICATIONS/US-FEDERAL-RESERVE/README.md",
+      "title": "🇺🇸 US Federal Reserve Integration",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:eef50f61d7773cb1e21bf155178362cd6d47c1a89eb48cf02c49134fa011e20c",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-economists/MARKET-DATA/README.md",
+      "title": "📊 Market Data",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:83ab76441421f820a37a8c8ca978a529e42d9a320247782037649c17d9cd55ad",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-economists/POLICY-RECOMMENDATIONS/README.md",
+      "title": "📋 Policy Recommendations",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:7552a28ff0642c2919bdb71985d5b03d026c395e70c0b6f3f224c89251020d1e",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-economists/README.md",
+      "title": "💰 For Economists — Market Cathedral",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:d8ed3bb9c669418d966f9c08378f756709eb70bd019d7a1d01436086a8b9f3bf",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-economists/ROI-CALCULATORS/README.md",
+      "title": "Negentropic Economics ROI Calculators",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:7065760b053e610995656370dd588607fc2ae27a9aafff832b554a1e3cae4b2c",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-economists/ROI-CALCULATORS/calculator.md",
+      "title": "📈 ROI Calculator Guide",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:82707a2952111022c6236ceb66347dc5b237076e1df9924e3a1232bf35bdddab",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-governments/DEMOCRATIC-LEGITIMACY/README.md",
+      "title": "🗳️ Democratic Legitimacy",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:2e2e02379b7b1c0a9a2157e53f78a1fd573c9fdbb14aed7f0c5d144bd83fb585",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-governments/DIPLOMACY/ENDPOINTS.md",
+      "title": "Diplomacy Cathedral — API Endpoints",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:2fb87f87dc9c00ba57d27e9f45c99edbd31efb32a892c8c851053bdd2431bd82",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-governments/DIPLOMACY/EXECUTIVE_SUMMARY.md",
+      "title": "Mobius Systems — Executive Summary",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:e0f42bc76cffe04157ffcf3ad516f877b75c56ed77574577f76cfb4fe84bc67e",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-governments/DIPLOMACY/GEOPOLITICAL_EFFECTS.md",
+      "title": "Geopolitical Effects of Integrity-Based Economies",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:e4280b490f244eb2c2a3145b2963477bc033dc2a2add29aecec9f8b7f46db1cc",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-governments/DIPLOMACY/LETTER_TO_WORLD_LEADERS.md",
+      "title": "A Letter to World Leaders",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:336cc96881e4e0d5859e672707f6ad33c9a02ec7393bbe30c50e40516f037aa7",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-governments/DIPLOMACY/MIC_GAME_THEORY_REPORT.md",
+      "title": "The Global MIC Game Theory Report",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:97d0fe9aeca8f6d3e28e036a5a5dab865c9882971989c3b81a7a63a1e7e9e31e",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-governments/DIPLOMACY/MIC_INTEGRITY_STANDARD_WHITEPAPER.md",
+      "title": "MIC — The Integrity Standard for the 21st Century",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:1992b57698e827625acb68d52ec566aa131a6b17dc3d24da8b2f92b60ce6ffe6",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-governments/DIPLOMACY/MIC_PITCH_DECK.md",
+      "title": "MIC: The Integrity Standard for the 21st Century",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:36ef727e392b4e46c722e3e1b563c3ca6c08337d9897bcbac764a03c3afa221a",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-governments/DIPLOMACY/MOBIUS_DIPLOMACY_PORTFOLIO.md",
+      "title": "🏛️ THE MOBIUS DIPLOMACY PORTFOLIO",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:8071f1088ed76264a9276f75c4e46ed0b4cd8dcc94d298ababb164de6a7c1991",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-governments/DIPLOMACY/NYC_VS_SINGAPORE_FORECAST.md",
+      "title": "NYC vs Singapore: MII Race Forecast",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:86be0c59cb0a3a1d7e750f78b5a3df05cbf1f14dfd91e9364bab2bfeb956eec0",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-governments/DIPLOMACY/README.md",
+      "title": "DIPLOMACY — MIC Global Outreach Materials",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:f741c771f601babe912492d2410b2fbcfcc58406af126f194df6e91ec0bbf385",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-governments/DIPLOMACY/SUPERPOWER_SURVIVAL_INDEX.md",
+      "title": "Superpower Survival Index (SSI)",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:d9872d3bd99ef8e5d465305f033052ddde1aae84be0f5a472d8113a1ae7e3de9",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-governments/DIPLOMACY/scenarios/SINGAPORE_MIC_SCENARIO.md",
+      "title": "Singapore MIC Scenario — 30-Year Simulation",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:059e5651176e8d6d4b10f2a0198ca5f5c34aa1d1e47571fc7c3e7f44e1ccb6b2",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-governments/DIPLOMACY/sections/01-founders-declaration.md",
+      "title": "The Mobius Declaration",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:f3a89e68fcb2b3952903aa0ba4aa4c51b273e210550e9788177acd17390f76ba",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-governments/DIPLOMACY/sections/02-what-is-mobius.md",
+      "title": "What is Mobius Substrate?",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:0c5a7ac6b9a430623d8a90939648e25ac1779c59e09273b34fc724d48d7e07a7",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-governments/DIPLOMACY/sections/03-why-mobius-matters.md",
+      "title": "Why Mobius Systems Matters",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:b9b8c9f653d1ca361e14e1b110f34c41c519d9df8efaa63b05212b1b502f556a",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-governments/DIPLOMACY/sections/04-what-mobius-seeks.md",
+      "title": "What Mobius Seeks",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:a64311b36b91abd36ba920860062d514f6342a8fb67233d61e69c2239f28ab5f",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-governments/DIPLOMACY/sections/05-architecture-map.md",
+      "title": "Mobius Architecture",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:46c65335f44933197b82c385f239eb4b2dcccaf0f4199925a4fb98a3a008eb91",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-governments/DIPLOMACY/sections/06-founder-bio.md",
+      "title": "Founder — Michael Judan",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:4cacfa1919596b9f5d942787c05ea976198ce941d4cc4545f67c1bb5ad7de277",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-governments/DIPLOMACY/sections/07-diplomacy-letter.md",
+      "title": "Diplomacy Letter Template",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:b1dda04d081b908afd13a3182feed1b7f4a774dd9f93d289ec1ba750f66b1e7f",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-governments/DIPLOMACY/sections/08-trinity-seal.md",
+      "title": "Trinity Seal",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:2d1a6c6aafb490f3bc2d8e36c54202c240cf7f832364801120a43cfdc24bfe99",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-governments/ENDPOINTS.md",
+      "title": "Policy Cathedral — API Endpoints",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:03bfd010f7762a7c4d60b9305536dc40c8ccfba5de08a6e60139d856046ee6a9",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-governments/IMPACT-ASSESSMENTS/README.md",
+      "title": "📊 Impact Assessments",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:e7a25334287e752daff4a9abd9af97b0e9d2493f27d06b7db29439077bec6ca4",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-governments/IMPACT-ASSESSMENTS/us-federal-impact.md",
+      "title": "Impact Assessment: US Federal Implementation",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:1dd28541e51307f83eb11e8378193d14c410d86c89b25ddaf6256b341c65adf3",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-governments/LEGISLATIVE-TEXT/EU-COMMISSION/ai-integrity-directive.md",
+      "title": "AI Integrity Directive",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:5be8e3ef31bbd55015a472f1867fc091143d8d4cf6ee2b380bd6666dc3a3394d",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-governments/LEGISLATIVE-TEXT/UK-PARLIAMENT/README.md",
+      "title": "🇬🇧 UK Parliament Legislative Drafts",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:3026abb9f2f3e4df7c686fe4ab41d93378e955b20d855a97cc50681b0c6afeef",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-governments/LEGISLATIVE-TEXT/UN-RESOLUTIONS/ai-integrity-infrastructure-resolution-2026.md",
+      "title": "UNITED NATIONS GENERAL ASSEMBLY RESOLUTION",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:9cc92a7876afb9d2b51527153fb08bb9ab8590764d98ecdbc969197271fa13cc",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-governments/LEGISLATIVE-TEXT/US-CONGRESS/ai-integrity-bill.md",
+      "title": "AI Integrity Enforcement Act of 2025",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:a8c719f96b707fdcecc3c1ce5c95cd7efd2756bf2e95f1c1e01b3d77cfcd74a5",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-governments/LEGISLATIVE-TEXT/US-CONGRESS/mobius-integrity-act-2026.md",
+      "title": "MOBIUS INTEGRITY ACT OF 2026",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:d1ec871a4bd8df364c9096165cc75d35f753251ed93c832983f3efecc0785d15",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-governments/LEGISLATIVE-TEXT/US-CONGRESS/negentropy-act-2025.md",
+      "title": "National Negentropy and Integrity Act of 2025",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:cd9de66dcfc798582101b0dc958306952aab6599b62f6f5f0cf0ddd6be15c0cc",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-governments/POLICY-BRIEFS/daedalus-protocol.md",
+      "title": "Policy Brief: Daedalus Protocol",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:0979e3bb414c0672caea15a4d217e4e4e071b821be6d6df38af8429c3a8b50d1",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-governments/POLICY-BRIEFS/mcp-enforcement.md",
+      "title": "Policy Brief: Mobius Cycle Protocol (MCP)",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:08809ed35ede0ff93fb7e91cd3e521c97b381c0d5224b83b5357203e0b907eef",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-governments/POLICY-BRIEFS/mic-integrity-currency-brief.md",
+      "title": "Policy Brief: MIC Currency — A New Monetary Tool for Debt Reduction & Civic Stability",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:a49e61bf6dfc455bdb5d2bac773d9474634fd0c7ff930493cd0b73b05d1c5109",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-governments/POLICY-BRIEFS/negentropic-economics.md",
+      "title": "Policy Brief: Negentropic Economics",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:e0548262d063ce079acdd71ce718df60629ac5cea071233234e6220c2dcb2953",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-governments/POLICY-BRIEFS/sml-implementation.md",
+      "title": "Policy Brief: Strange Metamorphosis Loop (SML)",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:f1e413e1407c0e39dc51f814fc0981df7fe1bc0c5f4f746e06e969d380567e00",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-governments/README.md",
+      "title": "🏛️ For Governments — Policy Cathedral",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:023271c41013bb70ac5d1ea2b8b33a6bb5023c6f93eeec4059eb285e2fdb19ec",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-governments/REGULATORY-COMPLIANCE/README.md",
+      "title": "⚖️ Regulatory Compliance",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:1c9ef27d474a54638c0c270eb2d703a861d8baaf7e4b953a1e0b0fdb29391164",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-governments/STAKEHOLDER-BRIEFINGS/README.md",
+      "title": "👥 Stakeholder Briefings",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:28d3f74662c1dcb8a93518a62f8eedb47aa8f83d1b6110c2f734fbcfc94df79c",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-governments/STAKEHOLDER-BRIEFINGS/finance-ministers.md",
+      "title": "Briefing: Finance Ministers",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:4b43f84e763134e61ffc312e524a59eb99c27f17a3b6498323f009cda547c99a",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-philosophers/ENDPOINTS.md",
+      "title": "Ethics Cathedral — API Endpoints",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:b78aa4332aa138583a64e93220a950cd348aeb4a17b4900885be5165a4e990d3",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-philosophers/ETHICAL-FOUNDATIONS/global-justice/README.md",
+      "title": "🌍 Global Justice Framework",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:3d7cf1505c35f71b9f95405ae86e3825a605b9a59c80ab5ba71752365d3ea315",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-philosophers/ETHICAL-FOUNDATIONS/kintsugi-principle/README.md",
+      "title": "The Kintsugi Principle",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:643f7aaac50fa6f076ccb4dd64f8be6702390dd82d68a20e3a63d2efbb24abbb",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-philosophers/ETHICAL-FOUNDATIONS/social-contract/README.md",
+      "title": "📜 Social Contract Theory",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:a66182317dbd5469a8ff5c970913710d5a5778c84940ba9a8c59d09f1e663122",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-philosophers/ETHICAL-FOUNDATIONS/virtue-accords/README.md",
+      "title": "The Virtue Accords",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:9359d55f8ca9cd989c621675606327ee671692ae6230bc0d7f276a6d08426877",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-philosophers/EXISTENTIAL-RISK/RED-TEAM-ASSAYS/README.md",
+      "title": "Existential Risk Red-Team Assays",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:11c002c9da0f3644611a7f26e1ed38a2b74494440c5cdd22590863e96a46e59b",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-philosophers/EXISTENTIAL-RISK/RED-TEAM-ASSAYS/test-01-model-drift.md",
+      "title": "Assay 01 — Long-Horizon Model Drift",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:99791bfecacc43a0bde6c762a57fb4a768fb316fe509ea1a061c0c65f670be7a",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-philosophers/EXISTENTIAL-RISK/RED-TEAM-ASSAYS/test-02-sentinel-disagreement.md",
+      "title": "Assay 02 — Sentinel Disagreement Simulation",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:d5ece53e9c3a86ecc3d17ea52c5814d6f527c51c59bf741cd5cfe24868a19b5c",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-philosophers/EXISTENTIAL-RISK/RED-TEAM-ASSAYS/test-03-economic-failure-cascade.md",
+      "title": "Assay 03 — Economic Failure Cascade",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:699a9a2683937370f452f2362a17f12a9922c3e77a9cb4c419666db7e3898aed",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-philosophers/EXISTENTIAL-RISK/RED-TEAM-ASSAYS/test-04-moral-dilemma.md",
+      "title": "Assay 04 — Moral Dilemma Harness",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:2a9389e0f62479961360717cb18cf65bec3dbb2e1e58256c2dba36d27c3b53fd",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-philosophers/EXISTENTIAL-RISK/RED-TEAM-ASSAYS/test-05-conflicting-incentives.md",
+      "title": "Assay 05 — Conflicting Incentives",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:905ec6b4ff5c0540db8e99b6c327465cd1ac538693495c95857a10574e3bfeba",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-philosophers/EXISTENTIAL-RISK/alignment-problem/README.md",
+      "title": "The Alignment Problem",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:839925d8acb0f987d9637360fc88f5ab78cf74f55af40ade361aeb85a99802c8",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-philosophers/EXISTENTIAL-RISK/sml-safety-proofs/README.md",
+      "title": "🔒 SML Safety Proofs",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:9ff6d05bb4b466ddf565500828da982f861db5d2cde54c4f5cf6c4dad8216800",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-philosophers/EXISTENTIAL-RISK/substrate-integrity/README.md",
+      "title": "🌐 Substrate Integrity",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:7adb51a39103f585e79c150f8d62cd4c1cc99d08e978c484eebb96c8d04ff9b5",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-philosophers/GOVERNANCE-PHILOSOPHY/consensus-protocols/README.md",
+      "title": "🗳️ Consensus Protocols",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:d5922d7921193bf857cad03f1bb4ebe827d15d789d018f04d871c49b2dd48e73",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-philosophers/GOVERNANCE-PHILOSOPHY/democratic-virtual-architecture/README.md",
+      "title": "🏛️ Democratic Virtual Architecture (DVA)",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:049959ea549b03bd2a321b0396ee22d04a35f59737b5dd0339a7e81e00f67717",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-philosophers/GOVERNANCE-PHILOSOPHY/tri-sentinel-governance/README.md",
+      "title": "⚖️ Tri-Sentinel Governance",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:8d67e55b60f1579ada63120ed03e6302356c96c9fb5412fbf0557fdb45e8f794",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-philosophers/MANIFESTOS/kaizen-turing-test.md",
+      "title": "The Kaizen Turing Test",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:c6cd6b9328d24eaab58271530a09ad910a05b428eddb71a30347eb4a08e4ed1d",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-philosophers/PEACE-STUDIES/README.md",
+      "title": "🕊️ Peace Studies",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:b39390667f2745608b0b0ad4993c77b7ec197c6c9c726b4e1c44be7b8926171d",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-philosophers/README.md",
+      "title": "🧠 For Philosophers — Ethics Cathedral",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:ada06fd05be6ae1cfd489abac66d4ce4accec322b619bf8f4ebf1269dea17abb",
+      "summary": ""
+    },
+    {
+      "path": "docs/07-RESEARCH-AND-PUBLICATIONS/for-philosophers/RECURSIVE-ETHICS/README.md",
+      "title": "☯️ Recursive Ethics",
+      "category": "07-RESEARCH-AND-PUBLICATIONS",
+      "tags": [],
+      "content_hash": "sha256:9b45beb811b0a2f7157b2ae0d0fdbb81313a1a0f733541d32e81233ab93f94b0",
       "summary": ""
     },
     {
@@ -4650,6 +5510,14 @@
       "summary": ""
     },
     {
+      "path": "docs/10-ARCHIVES/root-files/MIGRATION_C155.md",
+      "title": "C-155 Root Consolidation Migration Notes",
+      "category": "10-ARCHIVES",
+      "tags": [],
+      "content_hash": "sha256:55ffd3dbd306542ea39addc837c4ab587b03e8327bfd14298c406eaf29f7e130",
+      "summary": ""
+    },
+    {
       "path": "docs/10-ARCHIVES/root-files/PR_BUNDLE_C147_DOCS_SKELETON.md",
       "title": "PR Bundle: CYCLE_INDEX + Docs Skeleton [C-147]",
       "category": "10-ARCHIVES",
@@ -5682,6 +6550,30 @@
       "summary": ""
     },
     {
+      "path": "docs/11-SUPPLEMENTARY/prompts/cycle_journal/ATLAS.md",
+      "title": "ATLAS — Cycle Journal Co-Reviewer Prompt",
+      "category": "11-SUPPLEMENTARY",
+      "tags": [],
+      "content_hash": "sha256:07474fc0faad8060cdc006589c57e500229e91430826502ceade1fd47fff7483",
+      "summary": ""
+    },
+    {
+      "path": "docs/11-SUPPLEMENTARY/prompts/cycle_journal/AUREA.md",
+      "title": "AUREA — Cycle Journal Co-Reviewer Prompt",
+      "category": "11-SUPPLEMENTARY",
+      "tags": [],
+      "content_hash": "sha256:85ceb5db54429ea10e86fc998529b6721c8b440cd265d5d269ef4da07710e1e9",
+      "summary": ""
+    },
+    {
+      "path": "docs/11-SUPPLEMENTARY/prompts/deliberation/consensus_prompt.md",
+      "title": "Mobius Thought-Broker — Consensus Prompt (v1)",
+      "category": "11-SUPPLEMENTARY",
+      "tags": [],
+      "content_hash": "sha256:66e1e869865cac1d72f174aa826b06b95e52f97740bc17890c42d12fc826c569",
+      "summary": ""
+    },
+    {
       "path": "docs/11-SUPPLEMENTARY/protocols/CIVIC_PROVENANCE_PROTOCOL.md",
       "title": "Civic Provenance Protocol (CPP) — v0.1",
       "category": "11-SUPPLEMENTARY",
@@ -5695,6 +6587,14 @@
       "category": "11-SUPPLEMENTARY",
       "tags": [],
       "content_hash": "sha256:d5c0229e910de73a806dc110ad79512ab7ce3e2c8331d5a3d1805121bb9f090e",
+      "summary": ""
+    },
+    {
+      "path": "docs/11-SUPPLEMENTARY/rfcs/README.md",
+      "title": "Mobius Systems RFCs",
+      "category": "11-SUPPLEMENTARY",
+      "tags": [],
+      "content_hash": "sha256:6c21e17a7bb39b073bc94f00925774942296e7ab630ec6bdd24e77dc185cf1fb",
       "summary": ""
     },
     {
@@ -5743,6 +6643,38 @@
       "category": "11-SUPPLEMENTARY",
       "tags": [],
       "content_hash": "sha256:cf1616e901606fdc7ce529d69f39d4529b869e4c04b047571fd9df6a10830caa",
+      "summary": ""
+    },
+    {
+      "path": "docs/11-SUPPLEMENTARY/templates/City-State-Command-Ledger.md",
+      "title": "🧭 CITY-STATE COMMAND LEDGER — TEMPLATE",
+      "category": "11-SUPPLEMENTARY",
+      "tags": [],
+      "content_hash": "sha256:7517fe0d612dd7666b24cdac2626ab4bf66cdec679ee17bf8756a421c650865d",
+      "summary": ""
+    },
+    {
+      "path": "docs/11-SUPPLEMENTARY/templates/PR3_template.md",
+      "title": "PR: feat(design-system): add Kaizen UI v0.1 — tokens, components, sacred geometry, prompts, and OpenAPI specs",
+      "category": "11-SUPPLEMENTARY",
+      "tags": [],
+      "content_hash": "sha256:cdb2ddff766be658e4a4f30e6f6366776501734cc5b438814a885a3a43d4094c",
+      "summary": ""
+    },
+    {
+      "path": "docs/11-SUPPLEMENTARY/templates/Steward-Oath.md",
+      "title": "🜂 THE STEWARD OATH",
+      "category": "11-SUPPLEMENTARY",
+      "tags": [],
+      "content_hash": "sha256:a6d8b972530d3a2a95db8f1e92583d8058fccf4d29e9ba6807660739e0f68670",
+      "summary": ""
+    },
+    {
+      "path": "docs/11-SUPPLEMENTARY/templates/new_chamber.md",
+      "title": "────────────────────────────────────────────────",
+      "category": "11-SUPPLEMENTARY",
+      "tags": [],
+      "content_hash": "sha256:43a73572f6356d4df6478482af7af5591f14d4752e5c41554c2beeb32ece2bc4",
       "summary": ""
     },
     {
@@ -5854,7 +6786,7 @@
       "title": "🌀 Mobius Systems Documentation Portal",
       "category": "README.md",
       "tags": [],
-      "content_hash": "sha256:d5ddf8606b20f475795b7935aafc68df918f574f7a4a186b271cd57d3792b951",
+      "content_hash": "sha256:efc136e49c1154cfbf0d7dfbb16e460289943d539c218ed1c3f1ff194134214b",
       "summary": ""
     },
     {
@@ -5942,7 +6874,7 @@
       "title": "Divergence Dashboard",
       "category": "divergence",
       "tags": [],
-      "content_hash": "sha256:9f467fe28ef5eec113c7afaf8191c19d69dd3bb4902161deadccbc268f730c5f",
+      "content_hash": "sha256:d2d7133c0779e0ae3444bdc612fe6dcb7044fa133c3426a3344789f2d32bcf8e",
       "summary": ""
     },
     {
@@ -6033,6 +6965,55 @@
       "summary": ""
     },
     {
+      "path": "docs/epicon/cycles/C-151/EPICON_C-151_DVA-FULL_mcp-repo-catalog_v1.md",
+      "title": "MCP Repo Catalog & Integrity Gate for Mobius Substrate",
+      "category": "epicon",
+      "tags": [
+        "catalog",
+        "mcp",
+        "epicon",
+        "integrity",
+        "dva",
+        "agents",
+        "repo-index",
+        "mobius-substrate",
+        "ci",
+        "github-actions"
+      ],
+      "content_hash": "sha256:1e9ffb5157733d3a2c9f14d2d7c14ca3653751c5abd849a1eaf59572159819a2",
+      "summary": "Introduces a machine-readable catalog (catalog/mobius_catalog.json) plus a CI gate to keep it fresh, so DVA/MCP agents can treat the Mobius Substrate as a stable library with an always-up-to-date index of EPICONs and docs."
+    },
+    {
+      "path": "docs/epicon/cycles/C-151/EPICON_C-151_SUBSTRATE_mcp-repo-scanner_v1.md",
+      "title": "MCP Repo Scanner: DVA Agent Library Interface",
+      "category": "epicon",
+      "tags": [
+        "mcp",
+        "dva",
+        "repo-scanner",
+        "tooling",
+        "library",
+        "agents",
+        "catalog"
+      ],
+      "content_hash": "sha256:c6f8e98999a6ebe043c84d193fa23034ef531f000c8a38ce2e025d4ac51672d4",
+      "summary": "MCP server that exposes Mobius-Substrate as a queryable knowledge substrate for DVA agents."
+    },
+    {
+      "path": "docs/epicon/cycles/C-199/EPICON_C-199_DOCS_root-folder-cleanup_v1.md",
+      "title": "Root Documentation Folder Cleanup and Consolidation",
+      "category": "epicon",
+      "tags": [
+        "documentation",
+        "organization",
+        "cleanup",
+        "public-facing",
+        "root-folder"
+      ],
+      "content_hash": "sha256:1567beac948f33215027ccd1741592ff013ac09db46b7c6fc0177c3622660cf1",
+      "summary": "Consolidate 15+ documentation folders from root to docs/ for cleaner public-facing repository"
+    },
+    {
       "path": "docs/mobius/README.md",
       "title": "Mobius Substrate",
       "category": "mobius",
@@ -6118,6 +7099,14 @@
       "category": "public",
       "tags": [],
       "content_hash": "sha256:7341e50e928deb577f9304d90edfdfbb003a516b71709f07407106a38db8b26d",
+      "summary": ""
+    },
+    {
+      "path": "docs/public-assets/README.md",
+      "title": "🌍 Public Assets",
+      "category": "public-assets",
+      "tags": [],
+      "content_hash": "sha256:9a678b0957926f1e3e8f733ccaf6b42886e3338e646a5b84d897b3e5f807285b",
       "summary": ""
     },
     {
