@@ -20,7 +20,6 @@ Version: 1.0.0
 """
 
 from dataclasses import dataclass
-from typing import Optional
 
 
 @dataclass
@@ -194,8 +193,6 @@ def example_solace() -> CityStateInputs:
 
 
 if __name__ == "__main__":
-    import sys
-    
     print("╔════════════════════════════════════════════════════════════╗")
     print("║  Mobius HIVE — City-State GDP Calculator                  ║")
     print("║  Version 1.0.0                                             ║")
