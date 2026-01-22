@@ -61,7 +61,7 @@ export async function GET() {
           current_days: stabilityDays,
           met: stabilityDays >= revivalConditions.stability_period_days,
         },
-        overall_ready: giThresholdMet && quorumReached && stabilityDays >= 7,
+        overall_ready: giThresholdMet && quorumReached && stabilityDays >= revivalConditions.stability_period_days,
       },
       timestamp: new Date().toISOString(),
     }
