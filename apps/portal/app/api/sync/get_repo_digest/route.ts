@@ -12,7 +12,8 @@ const HDRS: HeadersInit = {
 
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
-  const org_wide = searchParams.get('org_wide') === 'true';
+  // Note: org_wide parameter available for future multi-org support
+  const _orgWide = searchParams.get('org_wide') === 'true';
 
   try {
     // Get repo info first (needed for default branch)

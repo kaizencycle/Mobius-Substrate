@@ -478,7 +478,7 @@ def main():
             failures.append(
                 "Emergency mode requires: emergency_scope: <docs|ci|core|infra|sentinels|labs|specs>"
             )
-            ok_scope = False
+            # ok_scope is False implicitly via the missing scope
             out_of_scope = files[:]
         else:
             applied_scope_label = emergency_scope
@@ -518,7 +518,8 @@ def main():
                         previous_hash = m.group(1)
                     break
     except Exception:
-        pass
+        # Silently ignore comment fetch failures - previous_hash stays None
+        previous_hash = None
 
     # Enforce intent evolution rules
     evo_failures = enforce_intent_evolution(intent, new_hash, previous_hash)
@@ -687,7 +688,7 @@ def main():
     comment_parts += [
         "---",
         "",
-        "*[EPICON-02 Reference](../docs/epicon/EPICON-02.md) · "
+        "*[EPICON-02 Reference](../docs/epicon/EPICON-02.md) · " +
         "[Formal Invariants](../docs/epicon/EPICON-02-INVARIANTS.md)*",
     ]
 

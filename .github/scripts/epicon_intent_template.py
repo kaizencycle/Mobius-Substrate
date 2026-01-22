@@ -264,7 +264,7 @@ def generate_failure_comment(
         "",
         "---",
         "",
-        "*[EPICON-02 Reference](../docs/epicon/EPICON-02.md) · "
+        "*[EPICON-02 Reference](../docs/epicon/EPICON-02.md) · " +
         "[Formal Invariants](../docs/epicon/EPICON-02-INVARIANTS.md)*",
     ])
     

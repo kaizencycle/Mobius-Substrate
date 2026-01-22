@@ -460,7 +460,7 @@ async function loadEventsAndAnnotate(timelineData) {
     // Add markers to chart if we have chart data
     if (!chartData || !timeline.length) return;
 
-    const { timestamps, pad, plotW, plotH, maxV, highPts, medPts, lowPts } = chartData;
+    const { timestamps, pad, plotW, plotH, highPts, medPts, lowPts } = chartData;
 
     // Map timestamp to index
     function nearestIndex(ts) {

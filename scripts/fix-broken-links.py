@@ -5,7 +5,6 @@ Fix broken links in markdown files by finding correct file paths and updating li
 import json
 import os
 import re
-from pathlib import Path
 from collections import defaultdict
 
 def find_file_in_repo(filename, repo_root):
