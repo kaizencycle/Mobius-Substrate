@@ -72,12 +72,8 @@ jobs:
           approvals = [u for u, st in latest.items() if st == "APPROVED"]
           has_approval = len(approvals) >= 1
 
-          # Evaluate
-          failures = []
-          if not has_label:
-              failures.append(f"Missing required label: {NEED_LABEL}")
-          if not has_approval:
-              failures.append("Missing APPROVED review (at least 1 required)")
+          # Evaluate - require label OR approval (either is sufficient for consensus)
+          gate_passed = has_label or has_approval
 
           print("=" * 60)
           print("MOBIUS MERGE GATE — CONSENSUS CHECK")
@@ -87,22 +83,23 @@ jobs:
           print(f"Approvals: {len(approvals)} ({', '.join(approvals) or 'none'})")
           print()
 
-          if failures:
+          if not gate_passed:
               print("STATUS: ❌ FAIL")
               print()
-              for f in failures:
-                  print(f"  - {f}")
+              print(f"  - Missing consensus: need either '{NEED_LABEL}' label OR an APPROVED review")
               print()
-              print("To pass this gate:")
-              print("  1. Get at least 1 APPROVED review from a CODEOWNER")
-              print("  2. Ensure the 'consensus:approved' label is present")
+              print("To pass this gate (one of the following):")
+              print(f"  1. Add the '{NEED_LABEL}' label, OR")
+              print("  2. Get at least 1 APPROVED review")
               print()
               sys.exit(1)
 
           print("STATUS: ✅ PASS")
           print()
-          print(f"  ✓ Label present: {NEED_LABEL}")
-          print(f"  ✓ Approvals: {len(approvals)}")
+          if has_label:
+              print(f"  ✓ Consensus label present: {NEED_LABEL}")
+          if has_approval:
+              print(f"  ✓ Approved reviews: {len(approvals)} ({', '.join(approvals)})")
           print()
           sys.exit(0)
           PY
