@@ -9,9 +9,9 @@ No mocks, no simulation, no hallucinations.
 import httpx
 import hashlib
 import json
-from typing import Dict, Any, Optional
+from typing import Dict, Any
 from datetime import datetime
-from cryptography.hazmat.primitives import hashes, serialization
+from cryptography.hazmat.primitives import serialization
 from cryptography.hazmat.primitives.asymmetric import ed25519
 from cryptography.exceptions import InvalidSignature
 

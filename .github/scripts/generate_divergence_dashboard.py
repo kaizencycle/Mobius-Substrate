@@ -125,7 +125,7 @@ def diff_events(prev, curr):
     curr_prs = set(curr_sig.keys())
 
     # New PRs
-    for pr in sorted(curr_prs - prev_prs, key=lambda x: int(x)):
+    for pr in sorted(curr_prs - prev_prs, key=int):
         c = curr_sig[pr]
         events.append({
             "ts": curr["generated_at"],
@@ -137,7 +137,7 @@ def diff_events(prev, curr):
         })
 
     # Closed PRs
-    for pr in sorted(prev_prs - curr_prs, key=lambda x: int(x)):
+    for pr in sorted(prev_prs - curr_prs, key=int):
         p = prev_sig[pr]
         events.append({
             "ts": curr["generated_at"],
@@ -149,7 +149,7 @@ def diff_events(prev, curr):
         })
 
     # Changes
-    for pr in sorted(prev_prs & curr_prs, key=lambda x: int(x)):
+    for pr in sorted(prev_prs & curr_prs, key=int):
         p = prev_sig[pr]
         c = curr_sig[pr]
 

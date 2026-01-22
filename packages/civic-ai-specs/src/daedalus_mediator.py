@@ -338,8 +338,6 @@ class DeliberationTimeoutError(Exception):
 # ============================================================================
 
 if __name__ == "__main__":
-    import asyncio
-    
     async def test_consensus():
         mediator = DaedalusMediator()
         

@@ -223,7 +223,7 @@ def plot_citystates(
         print("   Install with: pip install matplotlib")
         return
 
-    fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(12, 10))
+    _, (ax1, ax2) = plt.subplots(2, 1, figsize=(12, 10))
     
     # Plot 1: GDP_state over time
     for name, results in city_results.items():

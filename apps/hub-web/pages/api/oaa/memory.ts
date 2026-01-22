@@ -1,5 +1,4 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import fs from "fs";
 import { promises as fsPromises } from "fs";
 import path from "path";
 import crypto from "crypto";
@@ -22,22 +21,28 @@ type MemoryData = {
 };
 
 async function loadMemory(): Promise<MemoryData> {
-  if (!fs.existsSync(memPath)) {
-    const defaultMem: MemoryData = {
-      version: "v1",
-      updatedAt: new Date().toISOString(),
-      notes: [],
-      companions: ["jade", "eve", "zeus", "hermes"],
-      repos: ["OAA-API-Library", "gic-gateway-service", "gic-registry-contracts"],
-      queue: { name: "publishEvents" },
-      ethics: { accords: "Virtue Accords", epoch: "Cycle 0" }
-    };
-    // Avoid JSON roundtrip - write and return the object directly
-    await fsPromises.writeFile(memPath, JSON.stringify(defaultMem, null, 2));
-    return defaultMem;
+  const defaultMem: MemoryData = {
+    version: "v1",
+    updatedAt: new Date().toISOString(),
+    notes: [],
+    companions: ["jade", "eve", "zeus", "hermes"],
+    repos: ["OAA-API-Library", "gic-gateway-service", "gic-registry-contracts"],
+    queue: { name: "publishEvents" },
+    ethics: { accords: "Virtue Accords", epoch: "Cycle 0" }
+  };
+  
+  // Use try-catch to avoid TOCTOU race condition (existsSync + readFile)
+  try {
+    const content = await fsPromises.readFile(memPath, "utf8");
+    return JSON.parse(content);
+  } catch (error: any) {
+    if (error.code === "ENOENT") {
+      // File doesn't exist - create with default data
+      await fsPromises.writeFile(memPath, JSON.stringify(defaultMem, null, 2));
+      return defaultMem;
+    }
+    throw error;
   }
-  const content = await fsPromises.readFile(memPath, "utf8");
-  return JSON.parse(content);
 }
 
 async function saveMemory(memory: MemoryData): Promise<void> {
@@ -48,7 +53,12 @@ async function saveMemory(memory: MemoryData): Promise<void> {
 function verifyHmac(req: NextApiRequest): boolean {
   const signature = req.headers["x-hmac-signature"] as string;
   const body = JSON.stringify(req.body);
-  const secret = process.env.DEV_ADMIN_TOKEN || "dev-secret";
+  const secret = process.env.DEV_ADMIN_TOKEN;
+  
+  if (!secret) {
+    console.error("DEV_ADMIN_TOKEN environment variable is not set");
+    return false;
+  }
   
   const expectedSignature = crypto
     .createHmac("sha256", secret)

@@ -286,11 +286,15 @@ function savePrivateKeySecurely(
 ): void {
     console.log('\n💾 Saving private key securely...');
     
-    // Get password from environment or use default (with warning)
-    const password = process.env.WALLET_PASSWORD || 'CHANGE_ME_IMMEDIATELY';
+    // Get password from environment - required for wallet encryption
+    const password = process.env.WALLET_PASSWORD;
     
-    if (password === 'CHANGE_ME_IMMEDIATELY') {
-        console.warn('⚠️  WARNING: Using default password! Set WALLET_PASSWORD env var.');
+    if (!password) {
+        throw new Error('WALLET_PASSWORD environment variable is required for secure wallet storage');
+    }
+    
+    if (password.length < 12) {
+        throw new Error('WALLET_PASSWORD must be at least 12 characters for secure encryption');
     }
     
     // Encrypt private key

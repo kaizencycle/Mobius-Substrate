@@ -26,7 +26,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const rawLabel = req.query?.companion;
       // Sanitize label to prevent format string injection and ensure it's a string
       const label = typeof rawLabel === 'string' ? rawLabel.toLowerCase().replace(/[^a-z0-9_-]/gi, '') : '';
-      if (label && integrityHex) {
+      if (label) {
         const enqueueRes = await fetch(`${req.headers.host?.startsWith('http') ? '' : 'http://localhost:3000'}/api/queue/enqueue`, {
           method: "POST",
           headers: { "content-type": "application/json" },

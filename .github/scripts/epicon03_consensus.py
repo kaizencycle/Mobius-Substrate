@@ -11,7 +11,6 @@ Reference: docs/epicon/EPICON-03.md
 import hashlib
 import json
 import os
-import sys
 import uuid
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
