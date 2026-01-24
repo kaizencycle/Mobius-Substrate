@@ -1,6 +1,6 @@
 {
   "mobius_catalog_version": "1.0.0",
-  "generated_at": "2026-01-24T16:00:31.959Z",
+  "generated_at": "2026-01-24T16:09:13.609Z",
   "repo": {
     "name": "Mobius-Substrate",
     "url": "https://github.com/kaizencycle/Mobius-Substrate",
@@ -9,7 +9,7 @@
   },
   "stats": {
     "epiconCount": 0,
-    "docCount": 895
+    "docCount": 896
   },
   "epicons": [],
   "docs": [
@@ -7074,7 +7074,7 @@
         "MII",
         "pilots"
       ],
-      "content_hash": "sha256:4c82d90a3c5ae4061f680272d7842fb97ae98a2541e5111b6918c724a91bb9b2",
+      "content_hash": "sha256:3ae2d578e30fb15700752c13b60c54d4005060c1fc50bad420c0d6a6321e0494",
       "summary": "Ship repo-ready documentation and evaluation scaffold for legitimacy-preservation substrate"
     },
     {
@@ -7211,6 +7211,14 @@
       "category": "simulations",
       "tags": [],
       "content_hash": "sha256:2f07b06d3d5f4406290794b7500c62924c4002d12ba96966811d6f17cca1a182",
+      "summary": ""
+    },
+    {
+      "path": "docs/templates/EPICON_FOUNDER_STANDING.md",
+      "title": "Founder Standing EPICON Template (v0.1)",
+      "category": "templates",
+      "tags": [],
+      "content_hash": "sha256:89e2ca08ec00c235ecfeb6eeb8f5ee1a30c86789136e865bccc65e1e2751834b",
       "summary": ""
     }
   ]
