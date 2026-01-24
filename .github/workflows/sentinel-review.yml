@@ -1,89 +1,374 @@
-name: Sentinel Review (Comment-Only)
+# .github/workflows/sentinel-review.yml
+name: Sentinel Review (AUREA + ATLAS)
 
 on:
   pull_request:
-    types: [opened, synchronize, labeled]
+    types: [opened, synchronize, reopened, labeled, edited]
 
 permissions:
-  pull-requests: write
   contents: read
+  pull-requests: write
+
+concurrency:
+  group: sentinel-review-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
 
 jobs:
-  sentinel-comment:
-    # Only run when labels request it (manual control)
-    if: |
-      contains(github.event.pull_request.labels.*.name, 'review:aurea') ||
-      contains(github.event.pull_request.labels.*.name, 'review:atlas')
+  sentinel:
     runs-on: ubuntu-latest
+    env:
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      # Defaults (override anytime)
+      OPENAI_MODEL: gpt-4o-mini
+      ANTHROPIC_MODEL: claude-3-5-sonnet-20241022
+
+      # Safety knobs
+      MAX_DIFF_CHARS: "120000"     # avoid blowing token budget
+      MAX_PROMPT_CHARS: "200000"   # hard cap (prompt+diff)
 
     steps:
-      - name: Post placeholder sentinel review comment
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Decide whether to run
+        id: gate
         uses: actions/github-script@v7
         with:
           script: |
-            const labels = context.payload.pull_request.labels.map(l => l.name);
-            const wantsAurea = labels.includes('review:aurea');
-            const wantsAtlas = labels.includes('review:atlas');
+            const labels = (context.payload.pull_request.labels || []).map(l => l.name);
+            const run =
+              labels.includes('review:aurea') ||
+              labels.includes('review:atlas') ||
+              labels.includes('consensus:requested') ||
+              labels.includes('consensus:approved'); // allow on approved too
+            core.setOutput('run', run ? 'true' : 'false');
+            core.setOutput('labels', labels.join(', '));
 
-            // Check if we already posted a sentinel review request
-            const comments = await github.rest.issues.listComments({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: context.issue.number
-            });
+      - name: Stop (no sentinel labels)
+        if: steps.gate.outputs.run != 'true'
+        run: |
+          echo "No sentinel labels found. Add one of: review:aurea, review:atlas, consensus:requested"
+          exit 0
 
-            const existingComment = comments.data.find(c => 
-              c.body.includes('## Sentinel Review (Comment-Only)')
-            );
+      - name: Build PR context + diff (truncated)
+        id: ctx
+        shell: bash
+        run: |
+          set -euo pipefail
 
-            if (existingComment) {
-              console.log('Sentinel review comment already exists, skipping');
+          BASE="${{ github.event.pull_request.base.sha }}"
+          HEAD="${{ github.event.pull_request.head.sha }}"
+
+          echo "Base: $BASE"
+          echo "Head: $HEAD"
+
+          # Make sure we have both SHAs locally
+          git fetch --no-tags --prune --depth=200 origin "${BASE}" "${HEAD}" || true
+
+          # Generate a unified diff
+          git diff --unified=3 "${BASE}" "${HEAD}" > /tmp/pr.diff || true
+
+          # Truncate diff to MAX_DIFF_CHARS
+          python3 - <<'PY'
+          import os
+          max_chars = int(os.environ.get("MAX_DIFF_CHARS","120000"))
+          path = "/tmp/pr.diff"
+          try:
+            with open(path,"r",encoding="utf-8",errors="ignore") as f:
+              s = f.read()
+          except FileNotFoundError:
+            s = ""
+          if len(s) > max_chars:
+            s = s[:max_chars] + "\n\n[DIFF TRUNCATED]\n"
+          with open(path,"w",encoding="utf-8") as f:
+            f.write(s)
+          print(f"diff_chars={len(s)}")
+          PY
+
+          # Read prompts (if present)
+          AUREA_PROMPT_PATH="docs/sentinel/AUREA_REVIEW_PROMPT.md"
+          ATLAS_PROMPT_PATH="docs/sentinel/ATLAS_REVIEW_PROMPT.md"
+
+          if [ -f "$AUREA_PROMPT_PATH" ]; then
+            cp "$AUREA_PROMPT_PATH" /tmp/aurea_prompt.md
+          else
+            echo "Missing $AUREA_PROMPT_PATH" > /tmp/aurea_prompt.md
+          fi
+
+          if [ -f "$ATLAS_PROMPT_PATH" ]; then
+            cp "$ATLAS_PROMPT_PATH" /tmp/atlas_prompt.md
+          else
+            echo "Missing $ATLAS_PROMPT_PATH" > /tmp/atlas_prompt.md
+          fi
+
+          # Export PR title/body to files (avoid escaping issues)
+          python3 - <<'PY'
+          import json, os
+          pr = {
+            "number": int(os.environ["PR_NUMBER"]),
+            "title": os.environ.get("PR_TITLE",""),
+            "body": os.environ.get("PR_BODY",""),
+            "url": os.environ.get("PR_URL",""),
+            "head": os.environ.get("PR_HEAD",""),
+            "base": os.environ.get("PR_BASE",""),
+            "labels": os.environ.get("PR_LABELS",""),
+            "author": os.environ.get("PR_AUTHOR",""),
+          }
+          with open("/tmp/pr.meta.json","w",encoding="utf-8") as f:
+            json.dump(pr,f,ensure_ascii=False,indent=2)
+          print("wrote /tmp/pr.meta.json")
+          PY
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          PR_BODY: ${{ github.event.pull_request.body }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          PR_HEAD: ${{ github.event.pull_request.head.ref }}
+          PR_BASE: ${{ github.event.pull_request.base.ref }}
+          PR_LABELS: ${{ steps.gate.outputs.labels }}
+          PR_AUTHOR: ${{ github.event.pull_request.user.login }}
+
+      - name: Run AUREA review (OpenAI)
+        id: aurea
+        if: contains(steps.gate.outputs.labels, 'review:aurea') || contains(steps.gate.outputs.labels, 'consensus:requested') || contains(steps.gate.outputs.labels, 'consensus:approved')
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+
+            function safeRead(path) {
+              try { return fs.readFileSync(path, 'utf8'); } catch { return ''; }
+            }
+
+            const apiKey = process.env.OPENAI_API_KEY;
+            if (!apiKey) {
+              core.setOutput('ok', 'false');
+              core.setOutput('text', 'OPENAI_API_KEY is not set. Skipping AUREA review.');
               return;
             }
 
-            // This is intentionally a placeholder until you wire OpenAI/API or local agents.
-            // It prevents false authority claims and keeps the workflow merge-safe.
-            const body = [
-              "## Sentinel Review (Comment-Only)",
-              "",
-              "**Requested Sentinels:**",
-              wantsAurea ? "- AUREA (legitimacy / governance)" : null,
-              wantsAtlas ? "- ATLAS (systems / failure modes)" : null,
-              "",
-              "**Status:** Sentinel review requested",
-              "",
-              "### Manual Review Process",
-              "",
-              "Run manual sentinel review using the prompts at:",
-              wantsAurea ? "- [`docs/sentinel/AUREA_REVIEW_PROMPT.md`](../blob/main/docs/sentinel/AUREA_REVIEW_PROMPT.md)" : null,
-              wantsAtlas ? "- [`docs/sentinel/ATLAS_REVIEW_PROMPT.md`](../blob/main/docs/sentinel/ATLAS_REVIEW_PROMPT.md)" : null,
-              "",
-              "### How to Complete Review",
-              "",
-              "1. Copy the relevant prompt into your LLM interface",
-              "2. Provide PR context (title, description, key changes)",
-              "3. Paste the sentinel output as a PR comment",
-              "4. Sign with `— [SENTINEL_NAME] (Mobius Sentinel)`",
-              "",
-              "### Automation Status",
-              "",
-              "To wire automated sentinel reviews:",
-              "- Add OpenAI/Anthropic API secrets",
-              "- Update this workflow to call the API",
-              "- Parse and post structured responses",
-              "",
-              "---",
-              "",
-              "*This is an advisory review system. Sentinels do not block merges.*",
-              "",
-              "*\"We heal as we walk.\" — Mobius Substrate*"
-            ].filter(Boolean).join("\n");
+            const meta = safeRead('/tmp/pr.meta.json');
+            const diff = safeRead('/tmp/pr.diff');
+            const prompt = safeRead('/tmp/aurea_prompt.md');
 
-            await github.rest.issues.createComment({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: context.issue.number,
-              body
+            const content =
+            `# AUREA Sentinel Review
+            ## PR Meta
+            ${meta}
+
+            ## Reviewer Instructions (AUREA)
+            ${prompt}
+
+            ## Diff (truncated)
+            ${diff}
+            `;
+
+            // Hard cap prompt size
+            const maxPrompt = parseInt(process.env.MAX_PROMPT_CHARS || '200000', 10);
+            const finalContent = content.length > maxPrompt ? (content.slice(0, maxPrompt) + '\n\n[CONTENT TRUNCATED]\n') : content;
+
+            const model = process.env.OPENAI_MODEL || 'gpt-4o-mini';
+
+            const res = await fetch('https://api.openai.com/v1/chat/completions', {
+              method: 'POST',
+              headers: {
+                'Authorization': `Bearer ${apiKey}`,
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                model,
+                temperature: 0.2,
+                messages: [
+                  { role: 'system', content: 'You are AUREA, a strict integrity reviewer. Be concrete, cite file paths, propose actionable fixes, and separate blocking vs non-blocking issues.' },
+                  { role: 'user', content: finalContent }
+                ]
+              })
             });
 
-            console.log('Posted sentinel review request comment');
+            if (!res.ok) {
+              const errText = await res.text();
+              core.setOutput('ok', 'false');
+              core.setOutput('text', `AUREA review failed (OpenAI HTTP ${res.status}).\n\n${errText}`);
+              return;
+            }
+
+            const data = await res.json();
+            const text = data?.choices?.[0]?.message?.content ?? '(no content)';
+            core.setOutput('ok', 'true');
+            core.setOutput('text', text);
+
+      - name: Run ATLAS review (Anthropic preferred, OpenAI fallback)
+        id: atlas
+        if: contains(steps.gate.outputs.labels, 'review:atlas') || contains(steps.gate.outputs.labels, 'consensus:requested') || contains(steps.gate.outputs.labels, 'consensus:approved')
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+
+            function safeRead(path) {
+              try { return fs.readFileSync(path, 'utf8'); } catch { return ''; }
+            }
+
+            const meta = safeRead('/tmp/pr.meta.json');
+            const diff = safeRead('/tmp/pr.diff');
+            const prompt = safeRead('/tmp/atlas_prompt.md');
+
+            const content =
+            `# ATLAS Sentinel Review
+            ## PR Meta
+            ${meta}
+
+            ## Reviewer Instructions (ATLAS)
+            ${prompt}
+
+            ## Diff (truncated)
+            ${diff}
+            `;
+
+            const maxPrompt = parseInt(process.env.MAX_PROMPT_CHARS || '200000', 10);
+            const finalContent = content.length > maxPrompt ? (content.slice(0, maxPrompt) + '\n\n[CONTENT TRUNCATED]\n') : content;
+
+            // Prefer Anthropic if key exists
+            const anthropicKey = process.env.ANTHROPIC_API_KEY;
+            if (anthropicKey) {
+              const model = process.env.ANTHROPIC_MODEL || 'claude-3-5-sonnet-20241022';
+
+              // Anthropic Messages API
+              const res = await fetch('https://api.anthropic.com/v1/messages', {
+                method: 'POST',
+                headers: {
+                  'x-api-key': anthropicKey,
+                  'anthropic-version': '2023-06-01',
+                  'content-type': 'application/json'
+                },
+                body: JSON.stringify({
+                  model,
+                  max_tokens: 1500,
+                  temperature: 0.2,
+                  system: 'You are ATLAS, a skeptical systems auditor. Be rigorous, look for category errors, missing falsifiability, and "compliance theater." Separate blocking vs non-blocking.',
+                  messages: [{ role: 'user', content: finalContent }]
+                })
+              });
+
+              if (!res.ok) {
+                const errText = await res.text();
+                core.setOutput('ok', 'false');
+                core.setOutput('text', `ATLAS review failed (Anthropic HTTP ${res.status}).\n\n${errText}`);
+                return;
+              }
+
+              const data = await res.json();
+              const parts = data?.content || [];
+              const text = parts.map(p => p.text || '').join('\n').trim() || '(no content)';
+              core.setOutput('ok', 'true');
+              core.setOutput('text', text);
+              return;
+            }
+
+            // Fallback to OpenAI if no Anthropic key
+            const openaiKey = process.env.OPENAI_API_KEY;
+            if (!openaiKey) {
+              core.setOutput('ok', 'false');
+              core.setOutput('text', 'Neither ANTHROPIC_API_KEY nor OPENAI_API_KEY is set. Skipping ATLAS review.');
+              return;
+            }
+
+            const model = process.env.OPENAI_MODEL || 'gpt-4o-mini';
+
+            const res = await fetch('https://api.openai.com/v1/chat/completions', {
+              method: 'POST',
+              headers: {
+                'Authorization': `Bearer ${openaiKey}`,
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                model,
+                temperature: 0.2,
+                messages: [
+                  { role: 'system', content: 'You are ATLAS, a skeptical systems auditor. Be rigorous, look for category errors, missing falsifiability, and "compliance theater." Separate blocking vs non-blocking.' },
+                  { role: 'user', content: finalContent }
+                ]
+              })
+            });
+
+            if (!res.ok) {
+              const errText = await res.text();
+              core.setOutput('ok', 'false');
+              core.setOutput('text', `ATLAS review failed (OpenAI HTTP ${res.status}).\n\n${errText}`);
+              return;
+            }
+
+            const data = await res.json();
+            const text = data?.choices?.[0]?.message?.content ?? '(no content)';
+            core.setOutput('ok', 'true');
+            core.setOutput('text', text);
+
+      - name: Post combined sentinel comment
+        if: always() && steps.gate.outputs.run == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const prNumber = context.payload.pull_request.number;
+
+            const aureaOk = `${{ steps.aurea.outputs.ok || 'false' }}`;
+            const atlasOk = `${{ steps.atlas.outputs.ok || 'false' }}`;
+
+            const aureaText = `${{ steps.aurea.outputs.text || '' }}`;
+            const atlasText = `${{ steps.atlas.outputs.text || '' }}`;
+
+            // Build a single comment to avoid spam
+            const bodyParts = [];
+
+            bodyParts.push(`## 🤖 Sentinel Reviews (auto)`);
+            bodyParts.push(`Labels: \`${{ steps.gate.outputs.labels }}\``);
+            bodyParts.push(`> Note: This is **comment-only** (Phase 1). It does not block merge yet.`);
+
+            if (aureaText && aureaText.trim().length) {
+              bodyParts.push(`---\n### AUREA (${aureaOk === 'true' ? '✅' : '⚠️'})\n${aureaText}`);
+            } else {
+              bodyParts.push(`---\n### AUREA (⚠️)\nNo output.`);
+            }
+
+            if (atlasText && atlasText.trim().length) {
+              bodyParts.push(`---\n### ATLAS (${atlasOk === 'true' ? '✅' : '⚠️'})\n${atlasText}`);
+            } else {
+              bodyParts.push(`---\n### ATLAS (⚠️)\nNo output.`);
+            }
+
+            const body = bodyParts.join('\n\n');
+
+            // Upsert behavior: find existing sentinel comment from bot and update it
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: prNumber,
+              per_page: 100
+            });
+
+            const marker = '## 🤖 Sentinel Reviews (auto)';
+            const existing = comments.find(c => (c.user && c.user.type === 'Bot') && (c.body || '').includes(marker));
+
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: existing.id,
+                body
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: prNumber,
+                body
+              });
+            }
+
+      - name: Always succeed (Phase 1)
+        if: always()
+        run: |
+          echo "Phase 1: comment-only sentinel review completed."
+          exit 0
