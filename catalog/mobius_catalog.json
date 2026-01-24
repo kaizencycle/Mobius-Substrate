@@ -1,6 +1,6 @@
 {
   "mobius_catalog_version": "1.0.0",
-  "generated_at": "2026-01-22T19:04:09.500Z",
+  "generated_at": "2026-01-24T13:52:53.026Z",
   "repo": {
     "name": "Mobius-Substrate",
     "url": "https://github.com/kaizencycle/Mobius-Substrate",
@@ -9,7 +9,7 @@
   },
   "stats": {
     "epiconCount": 0,
-    "docCount": 885
+    "docCount": 895
   },
   "epicons": [],
   "docs": [
@@ -6758,6 +6758,14 @@
       "summary": ""
     },
     {
+      "path": "docs/GOVERNANCE.md",
+      "title": "Mobius Governance (v0.1)",
+      "category": "GOVERNANCE.md",
+      "tags": [],
+      "content_hash": "sha256:119a72eaa41d501a5b98cf32bd679374a0a4e647e05f8c69811e11ffdcb40e88",
+      "summary": ""
+    },
+    {
       "path": "docs/INDEX.md",
       "title": "Mobius Systems Documentation Index",
       "category": "INDEX.md",
@@ -6766,11 +6774,27 @@
       "summary": ""
     },
     {
+      "path": "docs/MIC_SPEC.md",
+      "title": "Mobius Integrity Credits (MIC) — Specification v0.1",
+      "category": "MIC_SPEC.md",
+      "tags": [],
+      "content_hash": "sha256:730db8afda035574a118cca8253b19bba3169c6179b125cc42ffb5f92ca77bd5",
+      "summary": ""
+    },
+    {
       "path": "docs/MIGRATION_C155_DOCS.md",
       "title": "C-155 Documentation Reorganization — Migration Notes",
       "category": "MIGRATION_C155_DOCS.md",
       "tags": [],
       "content_hash": "sha256:f906071227c4afe7847e78f5a1f63b3de3cefc5ee128d06a5aac0459950af0e6",
+      "summary": ""
+    },
+    {
+      "path": "docs/MII_CALIBRATION.md",
+      "title": "Mobius Integrity Index (MII) — Calibration v0.1",
+      "category": "MII_CALIBRATION.md",
+      "tags": [],
+      "content_hash": "sha256:aa38996c54a2d68fb137b21bc81e39d52f0cf5fbcf2ab5235eef1f9716d1f714",
       "summary": ""
     },
     {
@@ -6790,11 +6814,35 @@
       "summary": ""
     },
     {
+      "path": "docs/RFC_PROCESS.md",
+      "title": "Mobius RFC Process (v0.1)",
+      "category": "RFC_PROCESS.md",
+      "tags": [],
+      "content_hash": "sha256:77158dc5b28088ab8347a02649e6e9d43abc92f213cf037f0f53291d3d9a9889",
+      "summary": ""
+    },
+    {
+      "path": "docs/SENTINEL_EVAL_PROTOCOL.md",
+      "title": "Sentinel Council Evaluation Protocol v0.1",
+      "category": "SENTINEL_EVAL_PROTOCOL.md",
+      "tags": [],
+      "content_hash": "sha256:18dcdc72297bc3c45f0c23c886ad3f1bd8ce79255397891d7e2c1cba55636542",
+      "summary": ""
+    },
+    {
       "path": "docs/TECHNICAL_DETAILS.md",
       "title": "Mobius Systems — Technical Details",
       "category": "TECHNICAL_DETAILS.md",
       "tags": [],
       "content_hash": "sha256:2f25cc4da0aaf7ebf3d3b54bfd5b55b6477ec27f2931346d6cf659a5987013f7",
+      "summary": ""
+    },
+    {
+      "path": "docs/WHAT_MOBIUS_IS_NOT.md",
+      "title": "What Mobius Is Not",
+      "category": "WHAT_MOBIUS_IS_NOT.md",
+      "tags": [],
+      "content_hash": "sha256:79efb886a5ed884c909b410808f0d7fd8e42eebd1a1543f46ab9817e204bcdd7",
       "summary": ""
     },
     {
@@ -6874,7 +6922,7 @@
       "title": "Divergence Dashboard",
       "category": "divergence",
       "tags": [],
-      "content_hash": "sha256:69409fa0e2ec7d898b74457e6f02186ec1aedfc9d012963415a352f89d9acd0a",
+      "content_hash": "sha256:6bf64384eb9951de508f49d788c21aa0786a0c994283abc378df167d2c9cd3d6",
       "summary": ""
     },
     {
@@ -7014,6 +7062,22 @@
       "summary": "Consolidate 15+ documentation folders from root to docs/ for cleaner public-facing repository"
     },
     {
+      "path": "docs/epicon/cycles/C-202/EPICON_C-202_DOCS_legitimacy-substrate-docset_v1.md",
+      "title": "Legitimacy Substrate Documentation Set + Sentinel Review Protocol v0.1",
+      "category": "epicon",
+      "tags": [
+        "documentation",
+        "governance",
+        "legitimacy",
+        "sentinel",
+        "MIC",
+        "MII",
+        "pilots"
+      ],
+      "content_hash": "sha256:6195ae43e3af471685bf7c05aeadbf7c8912bcd97dc6daf40f08a1038362dab6",
+      "summary": "Ship repo-ready documentation and evaluation scaffold for legitimacy-preservation substrate"
+    },
+    {
       "path": "docs/mobius/README.md",
       "title": "Mobius Substrate",
       "category": "mobius",
@@ -7107,6 +7171,30 @@
       "category": "public-assets",
       "tags": [],
       "content_hash": "sha256:9a678b0957926f1e3e8f733ccaf6b42886e3338e646a5b84d897b3e5f807285b",
+      "summary": ""
+    },
+    {
+      "path": "docs/sentinel/ATLAS_REVIEW_PROMPT.md",
+      "title": "ATLAS Review Prompt (Systems / Failure Modes)",
+      "category": "sentinel",
+      "tags": [],
+      "content_hash": "sha256:7d07712c8f93eb70be4c93d13a63822f869a34a08cbd122860a94a87f772dcae",
+      "summary": ""
+    },
+    {
+      "path": "docs/sentinel/AUREA_REVIEW_PROMPT.md",
+      "title": "AUREA Review Prompt (Legitimacy / Integrity)",
+      "category": "sentinel",
+      "tags": [],
+      "content_hash": "sha256:1bddb65a477d24d8bd191a08a6719fa70655d6e7b929bc81907eef0b1b51014f",
+      "summary": ""
+    },
+    {
+      "path": "docs/sentinel/README.md",
+      "title": "Sentinel Prompts",
+      "category": "sentinel",
+      "tags": [],
+      "content_hash": "sha256:52bde34f19364f50d120c2b58713a377751857b9aad8067f5ec682fdd7ecad7a",
       "summary": ""
     },
     {
