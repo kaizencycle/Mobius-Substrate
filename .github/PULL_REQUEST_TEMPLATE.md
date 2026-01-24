@@ -16,6 +16,18 @@
 
 ---
 
+## Sentinel Review Requested
+
+> Add labels `review:aurea` and/or `review:atlas` to request sentinel review.
+
+- [ ] AUREA (legitimacy, governance, MII/MIC impact, contestability)
+- [ ] ATLAS (systems risk, adversarial thinking, failure modes)
+
+**Notes for Sentinels:**
+<!-- What should AUREA/ATLAS focus on? Leave blank if no specific concerns. -->
+
+---
+
 ## EPICON-02 INTENT PUBLICATION
 
 ```intent

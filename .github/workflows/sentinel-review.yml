@@ -1,0 +1,89 @@
+name: Sentinel Review (Comment-Only)
+
+on:
+  pull_request:
+    types: [opened, synchronize, labeled]
+
+permissions:
+  pull-requests: write
+  contents: read
+
+jobs:
+  sentinel-comment:
+    # Only run when labels request it (manual control)
+    if: |
+      contains(github.event.pull_request.labels.*.name, 'review:aurea') ||
+      contains(github.event.pull_request.labels.*.name, 'review:atlas')
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Post placeholder sentinel review comment
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const labels = context.payload.pull_request.labels.map(l => l.name);
+            const wantsAurea = labels.includes('review:aurea');
+            const wantsAtlas = labels.includes('review:atlas');
+
+            // Check if we already posted a sentinel review request
+            const comments = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number
+            });
+
+            const existingComment = comments.data.find(c => 
+              c.body.includes('## Sentinel Review (Comment-Only)')
+            );
+
+            if (existingComment) {
+              console.log('Sentinel review comment already exists, skipping');
+              return;
+            }
+
+            // This is intentionally a placeholder until you wire OpenAI/API or local agents.
+            // It prevents false authority claims and keeps the workflow merge-safe.
+            const body = [
+              "## Sentinel Review (Comment-Only)",
+              "",
+              "**Requested Sentinels:**",
+              wantsAurea ? "- AUREA (legitimacy / governance)" : null,
+              wantsAtlas ? "- ATLAS (systems / failure modes)" : null,
+              "",
+              "**Status:** Sentinel review requested",
+              "",
+              "### Manual Review Process",
+              "",
+              "Run manual sentinel review using the prompts at:",
+              wantsAurea ? "- [`docs/sentinel/AUREA_REVIEW_PROMPT.md`](../blob/main/docs/sentinel/AUREA_REVIEW_PROMPT.md)" : null,
+              wantsAtlas ? "- [`docs/sentinel/ATLAS_REVIEW_PROMPT.md`](../blob/main/docs/sentinel/ATLAS_REVIEW_PROMPT.md)" : null,
+              "",
+              "### How to Complete Review",
+              "",
+              "1. Copy the relevant prompt into your LLM interface",
+              "2. Provide PR context (title, description, key changes)",
+              "3. Paste the sentinel output as a PR comment",
+              "4. Sign with `— [SENTINEL_NAME] (Mobius Sentinel)`",
+              "",
+              "### Automation Status",
+              "",
+              "To wire automated sentinel reviews:",
+              "- Add OpenAI/Anthropic API secrets",
+              "- Update this workflow to call the API",
+              "- Parse and post structured responses",
+              "",
+              "---",
+              "",
+              "*This is an advisory review system. Sentinels do not block merges.*",
+              "",
+              "*\"We heal as we walk.\" — Mobius Substrate*"
+            ].filter(Boolean).join("\n");
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body
+            });
+
+            console.log('Posted sentinel review request comment');
