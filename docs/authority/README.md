@@ -1,41 +1,164 @@
-# Authority Verification Documentation
+# Mobius Authority Documentation
 
-This directory contains specifications for the Mobius Authority Verification system.
-
-## Overview
-
-Authority in Mobius is **proven, scoped, time-bounded, and witnessed — never narrated**.
-
-The Authority Verification Module (AVM) ensures that all privileged operations require cryptographic proof of identity, economic stake, and epistemic verification through AI Companion attestation.
-
-## Contents
-
-| Document | Description |
-|----------|-------------|
-| [AVM.md](./AVM.md) | Authority Verification Module specification |
-| [companion_attestation.schema.json](./companion_attestation.schema.json) | JSON Schema for Companion attestations |
-
-## Core Principles
-
-1. **No Narrative Authority**: Language claims have zero authority weight
-2. **Cryptographic Proof**: All authority requires verifiable signatures
-3. **Economic Stake**: Authority requires locked stake with slashing risk
-4. **Epistemic Verification**: Companion attestation with EPICON-01 compliance
-5. **Temporal Limits**: Maximum 90-day authority grants
-6. **Automatic Expiration**: No permanent authority exists
-
-## Related Documentation
-
-- [Consensus Authority Flow](../03-GOVERNANCE-AND-POLICY/governance/CONSENSUS_AUTH_FLOW.md)
-- [Roleplay Sandbox Rule](../03-GOVERNANCE-AND-POLICY/governance/ROLEPLAY_SANDBOX_RULE.md)
-- [EPICON-01 Specification](../epicon/EPICON-01.md)
-- [Epistemic Threat Model](../06-OPERATIONS/security/THREAT_MODEL_EPISTEMIC_ATTACKS.md)
-
-## Security
-
-For security concerns related to authority verification, see:
-- [Threat Model: Epistemic Attacks](../06-OPERATIONS/security/THREAT_MODEL_EPISTEMIC_ATTACKS.md)
+This directory contains authority-related documentation for the Mobius substrate.
 
 ---
 
-*"Authority is cryptographic + scoped + time-bounded — never inferred from language."*
+## What Lives Here
+
+| Document | Purpose |
+|----------|---------|
+| Authority declarations | Who can approve what types of changes |
+| EPICON authority scopes | Scope envelopes for EPICON declarations |
+| Delegation records | How authority is delegated between roles |
+
+---
+
+## Authority Model
+
+Mobius uses a tiered authority model:
+
+### Tier 1: Core Protocol Authority
+
+Changes to EPICON schema, MII formula, MIC issuance rules.
+
+**Required:**
+- RFC in `docs/11-SUPPLEMENTARY/rfcs/`
+- 72-hour review window
+- ≥2 maintainer approvals
+- EPICON with full justification
+
+**Holders:**
+- `kaizencycle` (primary maintainer)
+- `michaeljudan` (primary maintainer)
+- `mobius:AUREA` (sentinel reviewer)
+
+### Tier 2: Operational Authority
+
+Changes to thresholds, sign-off requirements, workflow configs.
+
+**Required:**
+- EPICON with intent declaration
+- ≥2 maintainer approvals
+
+### Tier 3: Documentation Authority
+
+Clarifications, examples, formatting.
+
+**Required:**
+- ≥1 maintainer approval
+- EPICON optional (recommended for significant changes)
+
+---
+
+## EPICON Authority Declarations
+
+Every EPICON includes an authority declaration:
+
+```yaml
+authority:
+  actor: "<GitHub username or agent identity>"
+  source: "<CODEOWNERS | RFC | Emergency>"
+  scope: "<what this authority covers>"
+  expiration: "<ISO 8601 timestamp>"
+```
+
+### Scope Envelope
+
+EPICONs declare explicit permission boundaries:
+
+| Permission | Meaning |
+|------------|---------|
+| `docs.read` | Can read documentation |
+| `docs.write` | Can modify documentation |
+| `docs.create` | Can create new documentation |
+| `code.read` | Can read source code |
+| `code.write` | Can modify source code |
+| `infra.deploy` | Can deploy infrastructure |
+| `governance.modify` | Can change governance rules |
+
+### Example Scope Declaration
+
+```yaml
+scope_envelope:
+  docs.read: true
+  docs.write: true
+  docs.create: true
+  code.read: false
+  code.write: false
+  infra.deploy: false
+  governance.modify: false
+```
+
+---
+
+## Authority Verification
+
+### How to Verify Authority
+
+1. Check CODEOWNERS for path ownership
+2. Check EPICON for declared scope
+3. Verify approvals match requirements
+4. Confirm no scope violations
+
+### Authority Violations
+
+If a change exceeds declared authority:
+
+1. **Block:** PR should not merge
+2. **Flag:** Sentinel review should catch
+3. **Escalate:** Human review required
+4. **Record:** Document violation in EPICON
+
+---
+
+## Delegation
+
+Authority can be delegated via:
+
+1. **CODEOWNERS:** Explicit path ownership
+2. **Team membership:** GitHub team assignment
+3. **EPICON delegation:** Explicit authority grant in EPICON
+
+### Delegation Limits
+
+- Delegated authority cannot exceed delegator's authority
+- Delegation expires with the delegating EPICON
+- Emergency delegation requires post-hoc review
+
+---
+
+## Emergency Authority
+
+For urgent security or safety issues:
+
+1. Single maintainer may act with `mode: emergency`
+2. Post-merge review required within 72 hours
+3. Emergency EPICON must document:
+   - Why emergency was necessary
+   - What authority was exercised
+   - Post-mortem findings
+
+---
+
+## Related Documents
+
+- `docs/GOVERNANCE.md` - Overall governance structure
+- `docs/RFC_PROCESS.md` - RFC process for high-signal changes
+- `docs/epicon/EPICON-02.md` - EPICON intent publication spec
+- `.github/CODEOWNERS` - Code ownership declarations
+
+---
+
+## Authority Index
+
+| Authority Level | Scope | Holders |
+|-----------------|-------|---------|
+| Core Protocol | EPICON, MII, MIC | kaizencycle, michaeljudan |
+| Operational | Thresholds, configs | kaizencycle, michaeljudan |
+| Documentation | Docs, examples | All contributors (with review) |
+| Sentinel Review | Advisory review | AUREA, ATLAS |
+
+---
+
+*"We heal as we walk." — Mobius Substrate*

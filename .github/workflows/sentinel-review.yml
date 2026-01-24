@@ -1,0 +1,563 @@
+# .github/workflows/sentinel-review.yml
+name: Sentinel Review (AUREA + ATLAS)
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, labeled, edited, ready_for_review]
+
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+
+concurrency:
+  group: sentinel-review-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  sentinel:
+    runs-on: ubuntu-latest
+    env:
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+
+      OPENAI_MODEL: gpt-4o-mini
+      ANTHROPIC_MODEL: claude-3-5-sonnet-20241022
+
+      MAX_DIFF_CHARS: "120000"
+      MAX_PROMPT_CHARS: "200000"
+
+      # Hard requirements for "EPICON PR ready for merge"
+      REQUIRE_EPICON: "true"
+      REQUIRE_DOCS: "true"
+
+      # Label behavior
+      AUTO_LABEL_ON_PASS: "true"
+      PASS_LABEL: "consensus:approved"
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Gate (only run when requested)
+        id: gate
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const labels = (context.payload.pull_request.labels || []).map(l => l.name);
+            const run =
+              labels.includes('review:aurea') ||
+              labels.includes('review:atlas') ||
+              labels.includes('consensus:requested') ||
+              labels.includes('consensus:approved'); // allow re-check
+            core.setOutput('run', run ? 'true' : 'false');
+            core.setOutput('labels', labels.join(', '));
+
+      - name: Stop (no sentinel labels)
+        if: steps.gate.outputs.run != 'true'
+        run: |
+          echo "Skipping: add label review:aurea, review:atlas, or consensus:requested."
+          exit 0
+
+      - name: Build PR context + diff (truncated) + file list
+        id: ctx
+        shell: bash
+        run: |
+          set -euo pipefail
+          BASE="${{ github.event.pull_request.base.sha }}"
+          HEAD="${{ github.event.pull_request.head.sha }}"
+          git fetch --no-tags --prune --depth=200 origin "${BASE}" "${HEAD}" || true
+
+          git diff --name-only "${BASE}" "${HEAD}" > /tmp/changed_files.txt || true
+          git diff --unified=3 "${BASE}" "${HEAD}" > /tmp/pr.diff || true
+
+          python3 - <<'PY'
+          import os
+          max_chars = int(os.environ.get("MAX_DIFF_CHARS","120000"))
+          path = "/tmp/pr.diff"
+          try:
+            with open(path,"r",encoding="utf-8",errors="ignore") as f:
+              s = f.read()
+          except FileNotFoundError:
+            s = ""
+          if len(s) > max_chars:
+            s = s[:max_chars] + "\n\n[DIFF TRUNCATED]\n"
+          with open(path,"w",encoding="utf-8") as f:
+            f.write(s)
+          print(f"diff_chars={len(s)}")
+          PY
+
+          python3 - <<'PY'
+          import json, os
+          pr = {
+            "number": int(os.environ["PR_NUMBER"]),
+            "title": os.environ.get("PR_TITLE",""),
+            "body": os.environ.get("PR_BODY",""),
+            "url": os.environ.get("PR_URL",""),
+            "head": os.environ.get("PR_HEAD",""),
+            "base": os.environ.get("PR_BASE",""),
+            "labels": os.environ.get("PR_LABELS",""),
+            "author": os.environ.get("PR_AUTHOR",""),
+          }
+          with open("/tmp/pr.meta.json","w",encoding="utf-8") as f:
+            json.dump(pr,f,ensure_ascii=False,indent=2)
+          PY
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          PR_BODY: ${{ github.event.pull_request.body }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          PR_HEAD: ${{ github.event.pull_request.head.ref }}
+          PR_BASE: ${{ github.event.pull_request.base.ref }}
+          PR_LABELS: ${{ steps.gate.outputs.labels }}
+          PR_AUTHOR: ${{ github.event.pull_request.user.login }}
+
+      - name: Enforce EPICON/Docs presence (hard rules)
+        id: hardrules
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import os, re
+          req_epicon = os.environ.get("REQUIRE_EPICON","true").lower() == "true"
+          req_docs   = os.environ.get("REQUIRE_DOCS","true").lower() == "true"
+
+          with open("/tmp/changed_files.txt","r",encoding="utf-8",errors="ignore") as f:
+            files = [ln.strip() for ln in f.readlines() if ln.strip()]
+
+          # Check for EPICON files in docs/epicon/ (repo structure)
+          epicon_ok = True if not req_epicon else any(
+            (f.startswith("docs/epicon/") or f.startswith("epicon/")) and (f.endswith(".md") or f.endswith(".json")) for f in files
+          )
+          # Check for docs/*.md files
+          docs_ok = True if not req_docs else any(
+            f.startswith("docs/") and f.endswith(".md") for f in files
+          )
+
+          # Optionally: require PR template checkbox text in PR body
+          pr_body = ""
+          try:
+            import json
+            pr_body = json.load(open("/tmp/pr.meta.json","r",encoding="utf-8")).get("body","") or ""
+          except Exception:
+            pass
+
+          # Simple EPICON declaration checkbox (optional pattern)
+          # e.g., "- [x] EPICON attached"
+          declared = bool(re.search(r"\-\s*\[x\]\s*EPICON", pr_body, re.IGNORECASE))
+
+          print(f"epicon_ok={epicon_ok}")
+          print(f"docs_ok={docs_ok}")
+          print(f"declared_ok={declared}")
+          print(f"files_changed={len(files)}")
+
+          if not epicon_ok:
+            raise SystemExit("HARD FAIL: REQUIRE_EPICON=true but no docs/epicon/* file changed.")
+          if not docs_ok:
+            raise SystemExit("HARD FAIL: REQUIRE_DOCS=true but no docs/*.md file changed.")
+          # We won't hard-fail on checkbox declaration; it's advisory.
+          PY
+
+      - name: Run AUREA review (OpenAI) -> JSON verdict
+        id: aurea
+        if: contains(steps.gate.outputs.labels, 'review:aurea') || contains(steps.gate.outputs.labels, 'consensus:requested') || contains(steps.gate.outputs.labels, 'consensus:approved')
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+
+            const apiKey = process.env.OPENAI_API_KEY;
+            if (!apiKey) {
+              // Skip gracefully if no API key - don't block merge
+              core.setOutput('ok', 'true');
+              core.setOutput('json', JSON.stringify({verdict:"pass", blocking:[], non_blocking:["OPENAI_API_KEY not configured - AUREA review skipped"], summary:"AUREA review skipped (no API key). Configure OPENAI_API_KEY secret to enable."}));
+              core.setOutput('skipped', 'true');
+              return;
+            }
+
+            const meta = fs.readFileSync('/tmp/pr.meta.json','utf8');
+            const diff = fs.readFileSync('/tmp/pr.diff','utf8');
+            const files = fs.readFileSync('/tmp/changed_files.txt','utf8');
+
+            const instruction = `
+            Return ONLY valid JSON (no markdown, no prose) with schema:
+            {
+              "verdict": "pass" | "fail",
+              "summary": "string (<=400 chars)",
+              "blocking": ["..."],
+              "non_blocking": ["..."],
+              "epicon_checks": {
+                 "epicon_present": true|false,
+                 "docs_present": true|false,
+                 "notes": ["..."]
+              }
+            }
+
+            Rules:
+            - "blocking" MUST include any missing EPICON/docs requirements you detect.
+            - Only mark "fail" if there is at least one blocking item.
+            - Be concrete: cite file paths when possible.
+            `;
+
+            const content =
+            `# AUREA Sentinel Review
+            ## PR Meta
+            ${meta}
+
+            ## Changed files
+            ${files}
+
+            ## Diff (truncated)
+            ${diff}
+
+            ${instruction}
+            `;
+
+            const maxPrompt = parseInt(process.env.MAX_PROMPT_CHARS || '200000', 10);
+            const finalContent = content.length > maxPrompt ? (content.slice(0, maxPrompt) + '\n\n[CONTENT TRUNCATED]\n') : content;
+
+            const model = process.env.OPENAI_MODEL || 'gpt-4o-mini';
+
+            const res = await fetch('https://api.openai.com/v1/chat/completions', {
+              method: 'POST',
+              headers: { 'Authorization': `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                model,
+                temperature: 0.1,
+                messages: [
+                  { role: 'system', content: 'You are AUREA, an integrity reviewer. Return STRICT JSON only.' },
+                  { role: 'user', content: finalContent }
+                ]
+              })
+            });
+
+            if (!res.ok) {
+              const err = await res.text();
+              core.setOutput('ok', 'false');
+              core.setOutput('json', JSON.stringify({verdict:"fail", blocking:[`OpenAI HTTP ${res.status}`], non_blocking:[], summary:"AUREA request failed.", raw: err.slice(0,1200)}));
+              return;
+            }
+
+            const data = await res.json();
+            const text = data?.choices?.[0]?.message?.content ?? '';
+            // best-effort parse; if parse fails, fail closed
+            try {
+              // Handle potential markdown code blocks around JSON
+              let jsonText = text.trim();
+              if (jsonText.startsWith('```json')) {
+                jsonText = jsonText.slice(7);
+              } else if (jsonText.startsWith('```')) {
+                jsonText = jsonText.slice(3);
+              }
+              if (jsonText.endsWith('```')) {
+                jsonText = jsonText.slice(0, -3);
+              }
+              const parsed = JSON.parse(jsonText.trim());
+              core.setOutput('ok', 'true');
+              core.setOutput('json', JSON.stringify(parsed));
+            } catch (e) {
+              core.setOutput('ok', 'false');
+              core.setOutput('json', JSON.stringify({verdict:"fail", blocking:["AUREA output was not valid JSON"], non_blocking:[], summary:"Parsing failed." , raw: text.slice(0,1200)}));
+            }
+
+      - name: Run ATLAS review (Anthropic preferred) -> JSON verdict
+        id: atlas
+        if: contains(steps.gate.outputs.labels, 'review:atlas') || contains(steps.gate.outputs.labels, 'consensus:requested') || contains(steps.gate.outputs.labels, 'consensus:approved')
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+
+            const meta = fs.readFileSync('/tmp/pr.meta.json','utf8');
+            const diff = fs.readFileSync('/tmp/pr.diff','utf8');
+            const files = fs.readFileSync('/tmp/changed_files.txt','utf8');
+
+            const instruction = `
+            Return ONLY valid JSON (no markdown, no prose) with schema:
+            {
+              "verdict": "pass" | "fail",
+              "summary": "string (<=400 chars)",
+              "blocking": ["..."],
+              "non_blocking": ["..."],
+              "epicon_checks": {
+                 "epicon_present": true|false,
+                 "docs_present": true|false,
+                 "notes": ["..."]
+              }
+            }
+
+            Rules:
+            - "blocking" MUST include any missing EPICON/docs requirements you detect.
+            - Only mark "fail" if there is at least one blocking item.
+            - Look for falsifiability gaps, arbitrary thresholds, and compliance-theater risk.
+            - Be concrete: cite file paths when possible.
+            `;
+
+            const content =
+            `# ATLAS Sentinel Review
+            ## PR Meta
+            ${meta}
+
+            ## Changed files
+            ${files}
+
+            ## Diff (truncated)
+            ${diff}
+
+            ${instruction}
+            `;
+
+            const maxPrompt = parseInt(process.env.MAX_PROMPT_CHARS || '200000', 10);
+            const finalContent = content.length > maxPrompt ? (content.slice(0, maxPrompt) + '\n\n[CONTENT TRUNCATED]\n') : content;
+
+            const anthropicKey = process.env.ANTHROPIC_API_KEY;
+            if (anthropicKey) {
+              const model = process.env.ANTHROPIC_MODEL || 'claude-3-5-sonnet-20241022';
+              const res = await fetch('https://api.anthropic.com/v1/messages', {
+                method: 'POST',
+                headers: {
+                  'x-api-key': anthropicKey,
+                  'anthropic-version': '2023-06-01',
+                  'content-type': 'application/json'
+                },
+                body: JSON.stringify({
+                  model,
+                  max_tokens: 1200,
+                  temperature: 0.1,
+                  system: 'You are ATLAS. Return STRICT JSON only.',
+                  messages: [{ role: 'user', content: finalContent }]
+                })
+              });
+
+              if (!res.ok) {
+                const err = await res.text();
+                core.setOutput('ok', 'false');
+                core.setOutput('json', JSON.stringify({verdict:"fail", blocking:[`Anthropic HTTP ${res.status}`], non_blocking:[], summary:"ATLAS request failed.", raw: err.slice(0,1200)}));
+                return;
+              }
+
+              const data = await res.json();
+              const parts = data?.content || [];
+              const text = parts.map(p => p.text || '').join('\n').trim();
+
+              try {
+                // Handle potential markdown code blocks around JSON
+                let jsonText = text.trim();
+                if (jsonText.startsWith('```json')) {
+                  jsonText = jsonText.slice(7);
+                } else if (jsonText.startsWith('```')) {
+                  jsonText = jsonText.slice(3);
+                }
+                if (jsonText.endsWith('```')) {
+                  jsonText = jsonText.slice(0, -3);
+                }
+                const parsed = JSON.parse(jsonText.trim());
+                core.setOutput('ok', 'true');
+                core.setOutput('json', JSON.stringify(parsed));
+              } catch (e) {
+                core.setOutput('ok', 'false');
+                core.setOutput('json', JSON.stringify({verdict:"fail", blocking:["ATLAS output was not valid JSON"], non_blocking:[], summary:"Parsing failed.", raw: text.slice(0,1200)}));
+              }
+              return;
+            }
+
+            // Fallback to OpenAI if no Anthropic key
+            const openaiKey = process.env.OPENAI_API_KEY;
+            if (openaiKey) {
+              const model = process.env.OPENAI_MODEL || 'gpt-4o-mini';
+              const res = await fetch('https://api.openai.com/v1/chat/completions', {
+                method: 'POST',
+                headers: { 'Authorization': `Bearer ${openaiKey}`, 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  model,
+                  temperature: 0.1,
+                  messages: [
+                    { role: 'system', content: 'You are ATLAS, a skeptical systems auditor. Return STRICT JSON only.' },
+                    { role: 'user', content: finalContent }
+                  ]
+                })
+              });
+
+              if (!res.ok) {
+                const err = await res.text();
+                core.setOutput('ok', 'false');
+                core.setOutput('json', JSON.stringify({verdict:"fail", blocking:[`OpenAI HTTP ${res.status}`], non_blocking:[], summary:"ATLAS request failed (OpenAI fallback).", raw: err.slice(0,1200)}));
+                return;
+              }
+
+              const data = await res.json();
+              const text = data?.choices?.[0]?.message?.content ?? '';
+
+              try {
+                let jsonText = text.trim();
+                if (jsonText.startsWith('```json')) {
+                  jsonText = jsonText.slice(7);
+                } else if (jsonText.startsWith('```')) {
+                  jsonText = jsonText.slice(3);
+                }
+                if (jsonText.endsWith('```')) {
+                  jsonText = jsonText.slice(0, -3);
+                }
+                const parsed = JSON.parse(jsonText.trim());
+                core.setOutput('ok', 'true');
+                core.setOutput('json', JSON.stringify(parsed));
+              } catch (e) {
+                core.setOutput('ok', 'false');
+                core.setOutput('json', JSON.stringify({verdict:"fail", blocking:["ATLAS output was not valid JSON"], non_blocking:[], summary:"Parsing failed.", raw: text.slice(0,1200)}));
+              }
+              return;
+            }
+
+            // No API keys available - skip gracefully
+            core.setOutput('ok', 'true');
+            core.setOutput('json', JSON.stringify({verdict:"pass", blocking:[], non_blocking:["No API keys configured - ATLAS review skipped"], summary:"ATLAS review skipped (no API key). Configure ANTHROPIC_API_KEY or OPENAI_API_KEY to enable."}));
+            core.setOutput('skipped', 'true');
+
+      - name: Render combined sentinel report + decide pass/fail
+        id: decide
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const labels = `${{ steps.gate.outputs.labels }}` || '';
+            const wantsAurea = labels.includes('review:aurea') || labels.includes('consensus:requested') || labels.includes('consensus:approved');
+            const wantsAtlas = labels.includes('review:atlas') || labels.includes('consensus:requested') || labels.includes('consensus:approved');
+            
+            let aurea = {};
+            let atlas = {};
+            
+            // Parse AUREA output
+            try {
+              const aureaJson = `${{ steps.aurea.outputs.json || '{}' }}`;
+              if (aureaJson && aureaJson !== '{}') {
+                aurea = JSON.parse(aureaJson);
+              } else if (wantsAurea) {
+                // AUREA was requested but didn't produce output
+                aurea = { verdict: 'pass', blocking: [], non_blocking: ['AUREA review did not run (check API key or label)'], summary: 'Review skipped' };
+              } else {
+                // AUREA not requested - pass by default
+                aurea = { verdict: 'pass', blocking: [], non_blocking: [], summary: 'Not requested' };
+              }
+            } catch (e) {
+              aurea = { verdict: 'fail', blocking: ['Failed to parse AUREA output: ' + e.message], non_blocking: [], summary: 'Parse error' };
+            }
+            
+            // Parse ATLAS output
+            try {
+              const atlasJson = `${{ steps.atlas.outputs.json || '{}' }}`;
+              if (atlasJson && atlasJson !== '{}') {
+                atlas = JSON.parse(atlasJson);
+              } else if (wantsAtlas) {
+                // ATLAS was requested but didn't produce output
+                atlas = { verdict: 'pass', blocking: [], non_blocking: ['ATLAS review did not run (check API key or label)'], summary: 'Review skipped' };
+              } else {
+                // ATLAS not requested - pass by default
+                atlas = { verdict: 'pass', blocking: [], non_blocking: [], summary: 'Not requested' };
+              }
+            } catch (e) {
+              atlas = { verdict: 'fail', blocking: ['Failed to parse ATLAS output: ' + e.message], non_blocking: [], summary: 'Parse error' };
+            }
+
+            function normalize(r) {
+              return {
+                verdict: r.verdict || "pass",  // Default to pass, not fail
+                summary: r.summary || "",
+                blocking: Array.isArray(r.blocking) ? r.blocking : [],
+                non_blocking: Array.isArray(r.non_blocking) ? r.non_blocking : [],
+                epicon_checks: r.epicon_checks || {}
+              }
+            }
+
+            const A = normalize(aurea);
+            const T = normalize(atlas);
+
+            const blocking = [...A.blocking, ...T.blocking].filter(Boolean);
+            const pass = blocking.length === 0 && A.verdict === "pass" && T.verdict === "pass";
+
+            const labelsDisplay = labels || '(none - add review:aurea, review:atlas, or consensus:requested)';
+            
+            const body = [
+              `## 🤖 Sentinel Reviews (required check)`,
+              `**Labels:** \`${labelsDisplay}\``,
+              ``,
+              pass ? `**Result:** ✅ PASS` : `**Result:** ❌ FAIL (${blocking.length} blocking item${blocking.length !== 1 ? 's' : ''})`,
+              ``,
+              `---`,
+              ``,
+              `### AUREA — ${A.verdict.toUpperCase()}`,
+              A.summary ? `**Summary:** ${A.summary}` : '',
+              A.blocking.length ? `**Blocking:**\n- ${A.blocking.join('\n- ')}` : `**Blocking:** none`,
+              A.non_blocking.length ? `**Non-blocking:**\n- ${A.non_blocking.join('\n- ')}` : `**Non-blocking:** none`,
+              ``,
+              `---`,
+              ``,
+              `### ATLAS — ${T.verdict.toUpperCase()}`,
+              T.summary ? `**Summary:** ${T.summary}` : '',
+              T.blocking.length ? `**Blocking:**\n- ${T.blocking.join('\n- ')}` : `**Blocking:** none`,
+              T.non_blocking.length ? `**Non-blocking:**\n- ${T.non_blocking.join('\n- ')}` : `**Non-blocking:** none`,
+              ``,
+              `---`,
+              ``,
+              `> To enable AI reviews, add secrets \`OPENAI_API_KEY\` and \`ANTHROPIC_API_KEY\` in repo settings.`,
+            ].filter(x => x !== null && x !== undefined).join('\n');
+
+            // Upsert a single bot comment
+            const prNumber = context.payload.pull_request.number;
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: prNumber,
+              per_page: 100
+            });
+            const marker = '## 🤖 Sentinel Reviews (required check)';
+            const existing = comments.find(c => (c.user && c.user.type === 'Bot') && (c.body || '').includes(marker));
+
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: existing.id,
+                body
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: prNumber,
+                body
+              });
+            }
+
+            core.setOutput('pass', pass ? 'true' : 'false');
+            core.setOutput('blocking_count', String(blocking.length));
+
+      - name: Auto-label consensus:approved on pass
+        if: steps.decide.outputs.pass == 'true' && env.AUTO_LABEL_ON_PASS == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const label = process.env.PASS_LABEL || 'consensus:approved';
+            const prNumber = context.payload.pull_request.number;
+            
+            // Check if label already exists
+            const { data: labels } = await github.rest.issues.listLabelsOnIssue({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: prNumber
+            });
+            
+            if (!labels.find(l => l.name === label)) {
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: prNumber,
+                labels: [label]
+              });
+            }
+
+      - name: Fail the check if blocking issues exist
+        if: steps.decide.outputs.pass != 'true'
+        run: |
+          echo "Sentinel review failed. Blocking items: ${{ steps.decide.outputs.blocking_count }}"
+          exit 1

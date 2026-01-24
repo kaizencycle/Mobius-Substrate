@@ -12,6 +12,8 @@
 # - kaizencycle/eve (EVE - Safety Sentinel)
 # - kaizencycle/echo (ECHO - Pulse Monitor)
 # - kaizencycle/zenith (ZENITH - Integration Sentinel)
+#
+# Primary Maintainers: kaizencycle | michaeljudan | mobius:AUREA
 
 # =============================================================================
 # EPICON / Governance / Authority Documentation
@@ -19,6 +21,26 @@
 /docs/epicon/ @kaizencycle/aurea @kaizencycle/atlas
 /docs/authority/ @kaizencycle/aurea @kaizencycle/atlas
 /docs/03-GOVERNANCE-AND-POLICY/ @kaizencycle/aurea
+
+# =============================================================================
+# Core Legitimacy Substrate Documentation (C-202)
+# =============================================================================
+/docs/WHAT_MOBIUS_IS_NOT.md @kaizencycle/aurea @kaizencycle/atlas
+/docs/MIC_SPEC.md @kaizencycle/aurea @kaizencycle/atlas
+/docs/MII_CALIBRATION.md @kaizencycle/aurea @kaizencycle/atlas
+/docs/SENTINEL_EVAL_PROTOCOL.md @kaizencycle/aurea @kaizencycle/atlas
+/docs/GOVERNANCE.md @kaizencycle/aurea @kaizencycle/atlas
+/docs/RFC_PROCESS.md @kaizencycle/aurea @kaizencycle/atlas
+
+# =============================================================================
+# Sentinel Prompts and Review Infrastructure
+# =============================================================================
+/docs/sentinel/ @kaizencycle/aurea @kaizencycle/atlas
+
+# =============================================================================
+# Pilots Program
+# =============================================================================
+/pilots/ @kaizencycle/aurea @kaizencycle/atlas
 
 # Foundational documents require AUREA review
 /docs/foundational_*.md @kaizencycle/aurea
