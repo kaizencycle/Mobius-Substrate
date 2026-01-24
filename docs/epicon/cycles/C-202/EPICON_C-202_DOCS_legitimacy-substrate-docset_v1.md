@@ -232,6 +232,77 @@ If any agent opposes:
 - [x] Explicit scope boundary (see "Scope Envelope" table)
 - [x] "Who can approve" clearly defined: kaizencycle, michaeljudan (human CODEOWNERS)
 - [x] "Who cannot approve" clearly defined: Sentinels are advisory only, no merge authority
+- [x] Authority provenance declared (see below)
+
+---
+
+## Authority Provenance & Standing
+
+*Authority declared using `docs/templates/EPICON_FOUNDER_STANDING.md` v0.1*
+
+This EPICON invokes **founder–custodian standing** under Mobius governance norms at pre-charter phase (v0).
+
+**At the time of this action:**
+- Mobius has no elected governance council
+- No external stakeholders have delegated authority
+- No ratified charter supersedes founder custodianship
+
+As project originator and current custodian, the proposer is authorized to perform transitional governance actions necessary to:
+- Establish initial accountability infrastructure
+- Assign narrowly scoped review authority
+- Define consensus and audit mechanisms
+- Enable empirical validation of governance systems
+
+**This authority is not permanent** and is exercised under the following constraints.
+
+### Scope Constraints
+
+The authority exercised in this EPICON is:
+- **Narrowly scoped** to the change explicitly described (docs + workflows + CODEOWNERS for documentation paths)
+- **Non-transferable** (cannot be delegated further without new EPICON)
+- **Non-expansive** (does not create new implicit powers)
+- **Fully auditable** via EPICON records and ledger history
+
+No authority beyond what is written here is implied.
+
+### Temporality & Revocation
+
+This authority is **transitional**.
+
+It is expected to be:
+- Re-reviewed upon formation of a governance council
+- Ratified, modified, or revoked by successor processes
+- Superseded by a formal charter once adopted
+
+This EPICON explicitly records authority so that it may later be contested, amended, or invalidated with full historical context.
+
+### Legitimacy Rationale
+
+This authority action is justified because:
+- The absence of explicit authority creates implicit power
+- Implicit power is less accountable than declared power
+- Declared authority allows audit, dissent, and redesign
+
+This EPICON does not assert moral superiority, permanence, or exemption.
+It asserts **responsibility with traceability**.
+
+### Acknowledgement of Risk
+
+The proposer acknowledges that:
+- Founder authority is inherently asymmetric
+- Asymmetry must be constrained, not normalized
+- Future governance may judge this action incorrect
+
+This EPICON exists so that such judgment is possible.
+
+### Sunset Condition
+
+This authority expires automatically upon:
+- Formation of a ratified governance council
+- Adoption of a formal Mobius charter
+- Explicit revocation via successor EPICON
+
+Until then, the authority remains contestable at all times.
 
 ---
 

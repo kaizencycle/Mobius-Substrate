@@ -1,0 +1,124 @@
+name: Authority Provenance Guard
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, edited]
+    paths:
+      - "CODEOWNERS"
+      - ".github/CODEOWNERS"
+      - ".github/workflows/**"
+      - "docs/**"
+      - "docs/epicon/**"
+      - "pilots/**"
+      - "governance/**"
+      - "CONTRIBUTING.md"
+      - "SECURITY.md"
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  guard:
+    name: Check Authority Provenance
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout PR
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Determine changed files
+        id: changed
+        run: |
+          git fetch origin "${{ github.base_ref }}" --depth=1 || true
+          CHANGED=$(git diff --name-only "origin/${{ github.base_ref }}"...HEAD 2>/dev/null | tr '\n' ' ' || echo "")
+          echo "changed=$CHANGED" >> $GITHUB_OUTPUT
+          echo "Changed files: $CHANGED"
+
+      - name: Decide if this PR is an authority change
+        id: is_auth
+        run: |
+          AUTH=0
+          for f in ${{ steps.changed.outputs.changed }}; do
+            case "$f" in
+              CODEOWNERS|.github/CODEOWNERS)
+                AUTH=1
+                echo "Authority surface detected: $f (CODEOWNERS)"
+                ;;
+              .github/workflows/*)
+                AUTH=1
+                echo "Authority surface detected: $f (workflow)"
+                ;;
+              docs/epicon/*|docs/governance/*|docs/authority/*)
+                AUTH=1
+                echo "Authority surface detected: $f (governance docs)"
+                ;;
+              governance/*)
+                AUTH=1
+                echo "Authority surface detected: $f (governance)"
+                ;;
+              CONTRIBUTING.md|SECURITY.md)
+                AUTH=1
+                echo "Authority surface detected: $f (policy doc)"
+                ;;
+            esac
+          done
+          echo "is_authority=$AUTH" >> $GITHUB_OUTPUT
+
+      - name: Skip if not an authority change
+        if: steps.is_auth.outputs.is_authority != '1'
+        run: |
+          echo "✅ No authority surfaces touched. Skipping provenance check."
+
+      - name: Enforce authority provenance block
+        if: steps.is_auth.outputs.is_authority == '1'
+        run: |
+          set -e
+
+          echo "🔍 Checking for authority provenance in changed files..."
+
+          # Search only in files touched by the PR (fast + relevant)
+          FOUND=0
+
+          for f in ${{ steps.changed.outputs.changed }}; do
+            if [ -f "$f" ]; then
+              # Check for authority provenance patterns
+              if grep -Eq "## Authority Provenance|## Authority Provenance & Standing|Authority declared using EPICON_FOUNDER_STANDING\.md|## Authority Change Justification" "$f" 2>/dev/null; then
+                echo "✅ Authority provenance found in: $f"
+                FOUND=1
+              fi
+            fi
+          done
+
+          # Also check for EPICON files in docs/epicon/
+          for f in ${{ steps.changed.outputs.changed }}; do
+            if [[ "$f" == docs/epicon/*.md ]]; then
+              if [ -f "$f" ]; then
+                if grep -Eq "## Authority Provenance|## Authority Change Justification|Authority declared using" "$f" 2>/dev/null; then
+                  echo "✅ Authority provenance found in EPICON: $f"
+                  FOUND=1
+                fi
+              fi
+            fi
+          done
+
+          if [ "$FOUND" -ne 1 ]; then
+            echo ""
+            echo "❌ AUTHORITY PROVENANCE REQUIRED"
+            echo ""
+            echo "This PR touches authority surfaces:"
+            echo "  - CODEOWNERS, .github/workflows/, governance/, or policy docs"
+            echo ""
+            echo "To proceed, add one of the following to a changed file:"
+            echo ""
+            echo "  1. A section header: '## Authority Provenance' or '## Authority Change Justification'"
+            echo "  2. A template reference: 'Authority declared using EPICON_FOUNDER_STANDING.md'"
+            echo ""
+            echo "See: docs/templates/EPICON_FOUNDER_STANDING.md"
+            echo ""
+            exit 1
+          fi
+
+          echo ""
+          echo "✅ Authority provenance detected. Guard passed."
