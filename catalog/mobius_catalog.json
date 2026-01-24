@@ -1,6 +1,6 @@
 {
   "mobius_catalog_version": "1.0.0",
-  "generated_at": "2026-01-24T15:28:15.588Z",
+  "generated_at": "2026-01-24T15:52:23.480Z",
   "repo": {
     "name": "Mobius-Substrate",
     "url": "https://github.com/kaizencycle/Mobius-Substrate",
@@ -7074,7 +7074,7 @@
         "MII",
         "pilots"
       ],
-      "content_hash": "sha256:c3ae53794fe1fa203241684194a4cd2fcac8ff22883e3b20df488136af043b52",
+      "content_hash": "sha256:180fff4296ef79ac7f2d08bb9d0b8030b3249571a2b89d0bb504b61fa1bcb384",
       "summary": "Ship repo-ready documentation and evaluation scaffold for legitimacy-preservation substrate"
     },
     {
