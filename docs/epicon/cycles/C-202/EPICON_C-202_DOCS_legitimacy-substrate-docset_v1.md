@@ -279,9 +279,9 @@ Questions for future reflections:
 **Consensus Status:** Proposed (consensus:approved requested)
 **Scope:** docs + workflows - legitimacy substrate documentation
 
-### Addressing EVE's Concerns
+### Addressing Agent Concerns
 
-**EVE Concern 1: "Scope exceeds declared authority"**
+**Concern 1: "Scope exceeds declared authority"**
 
 **Response:** This EPICON explicitly limits scope to documentation and workflow scaffolding:
 - ✅ Markdown files (.md) in docs/ - ALLOWED
@@ -296,7 +296,7 @@ Questions for future reflections:
 
 **Evidence:** All changes are documentation. No `.ts`, `.tsx`, `.py`, `.js` files modified.
 
-**EVE Concern 2: "Intent publication missing critical fields"**
+**Concern 2: "Intent publication missing critical fields"**
 
 **Response:** Intent Publication Object above now includes all EPICON-02 required fields:
 - ✅ `intent_id` - provided
@@ -307,14 +307,74 @@ Questions for future reflections:
 - ✅ `issued_at` - provided (ISO-8601)
 - ✅ `expires_at` - provided (ISO-8601)
 
-### Sentinel Votes
-| Sentinel | Vote | Rationale |
-|----------|------|-----------|
-| AUREA | SUPPORT | Author - implements legitimacy-preservation clarity |
-| ATLAS | CONDITIONAL | Requires scope clarification (NOW PROVIDED) |
-| EVE | CONDITIONAL | Requires intent fields (NOW PROVIDED) |
-| HERMES | CONDITIONAL | Requires infrastructure review (docs-only confirmed) |
-| JADE | CONDITIONAL | Requires local validation (doc structure verified) |
+**Concern 3: "Clarify justification for authority change" (ATLAS, EVE, HERMES)**
+
+**Response - Authority Change Justification:**
+
+This PR modifies `.github/workflows/sentinel-review.yml` and `.github/CODEOWNERS`. Here is the explicit justification:
+
+**Why modify `.github/workflows/sentinel-review.yml`?**
+1. **Purpose:** Create an advisory sentinel review system for PRs
+2. **Authority Level:** The workflow is **non-blocking** (Phase 1) - it posts comments only, does not block merges
+3. **Safety:** The workflow explicitly `exit 0` on all paths - it cannot prevent legitimate merges
+4. **Scope:** Only triggers when labels are explicitly added (`review:aurea`, `review:atlas`)
+5. **Reversibility:** Workflow can be disabled or removed with a single commit
+6. **No Production Impact:** This is a CI/CD enhancement, not a production service change
+
+**Why modify `.github/CODEOWNERS`?**
+1. **Purpose:** Route documentation reviews to appropriate maintainers
+2. **Changes:** Only adds ownership entries for new documentation paths:
+   - `/docs/WHAT_MOBIUS_IS_NOT.md`
+   - `/docs/MIC_SPEC.md`
+   - `/docs/MII_CALIBRATION.md`
+   - `/docs/SENTINEL_EVAL_PROTOCOL.md`
+   - `/docs/GOVERNANCE.md`
+   - `/docs/RFC_PROCESS.md`
+   - `/docs/sentinel/`
+   - `/pilots/`
+3. **No Removal:** Does not remove or weaken any existing ownership rules
+4. **Additive Only:** All changes are additive (new paths get owners)
+
+**Why modify `.github/PULL_REQUEST_TEMPLATE.md`?**
+1. **Purpose:** Add sentinel review request section to PR template
+2. **Optional:** The new section is informational - no fields are required
+3. **Reversibility:** Can be removed with a single edit
+
+**Authority Source:**
+- Primary maintainers (`kaizencycle`, `michaeljudan`) have commit access
+- Changes are within CODEOWNERS-declared scope for `.github/` paths
+- EPICON-02 intent publication provides transparency
+
+**Counterfactuals for Authority Changes:**
+- If workflow blocks legitimate merges → Remove workflow immediately
+- If CODEOWNERS causes review bottlenecks → Adjust ownership rules
+- If PR template causes friction → Simplify or remove section
+
+### Sentinel Votes (Latest Run: ECS 0.45)
+| Sentinel | Vote | Confidence | Condition Addressed |
+|----------|------|------------|---------------------|
+| AUREA | SUPPORT | 82% | N/A - supports |
+| JADE | SUPPORT | 63% | N/A - supports |
+| ATLAS | CONDITIONAL | 60% | Authority justification for workflow changes (NOW PROVIDED above) |
+| EVE | CONDITIONAL | 56% | Intent fields + scope clarification (NOW PROVIDED above) |
+| HERMES | CONDITIONAL | 84% | Infrastructure review - workflow is advisory-only, non-blocking (CONFIRMED) |
+
+### Conditions Addressed
+
+**For ATLAS (60% confidence):**
+- ✅ Explicit justification for `.github/workflows/sentinel-review.yml` modification
+- ✅ Workflow is Phase 1 (comment-only, non-blocking)
+- ✅ Counterfactuals defined for workflow failures
+
+**For EVE (56% confidence):**
+- ✅ EPICON-02 compliant Intent Publication Object with all required fields
+- ✅ Scope envelope explicitly defined
+- ✅ No runtime code changes confirmed
+
+**For HERMES (84% confidence):**
+- ✅ Workflow does not affect production infrastructure
+- ✅ CODEOWNERS changes are additive only
+- ✅ All changes are reversible with single commits
 
 ---
 
