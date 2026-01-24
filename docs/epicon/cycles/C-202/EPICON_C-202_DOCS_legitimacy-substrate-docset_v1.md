@@ -133,6 +133,79 @@ counterfactuals:
 
 ---
 
+## Authority Change Justification
+
+**Change:** This EPICON modifies authority boundaries for:
+- `.github/workflows/sentinel-review.yml` - Adds new CI workflow for advisory PR reviews
+- `.github/CODEOWNERS` - Adds ownership entries for new documentation paths
+- `.github/PULL_REQUEST_TEMPLATE.md` - Adds optional sentinel review request section
+
+**Why now:** External evaluation identified that Mobius documentation conflated legitimacy-preservation with model alignment. This docset PR establishes explicit, falsifiable specifications. The workflow enables systematic (not ad-hoc) sentinel reviews to maintain documentation quality.
+
+**Why existing controls are insufficient:** Current process lacks:
+- Explicit "What Mobius Is Not" documentation (category errors persist)
+- Systematic sentinel review (reviews are ad-hoc and inconsistent)
+- Pilot program structure (no mechanism to generate falsifiable evidence)
+
+---
+
+## Scope Boundary (Non-Goals)
+
+This authority change does **not** grant:
+- Ability to block merges (workflow is advisory-only, Phase 1)
+- Access to production systems or deployments
+- Modification of runtime code in apps/, packages/, services/, sentinels/
+- Changes to MII/MIC scoring logic or thresholds
+- Creation of tradable tokens or external markets
+
+This authority change is limited to:
+- **Repo:** `kaizencycle/Mobius-Substrate`
+- **Branch scope:** Feature branch → main (standard PR flow)
+- **Environment scope:** Documentation and CI/CD workflows only
+- **No production deploy:** Zero runtime impact
+
+---
+
+## Guardrails and Reversibility
+
+**Rollback Plan:** 
+- Revert commit(s) that added workflow + CODEOWNERS changes
+- Single `git revert` command restores prior state
+- No data migration required
+
+**Circuit Breaker:**
+- If MII < 0.95: Changes must be reverted
+- If workflow blocks legitimate merges: Remove workflow immediately
+- If any dissent bundle persists unresolved: Merge blocked until addressed
+
+**Auditability:** All authority changes in this PR require:
+- EPICON entry (this document)
+- Docs update in `docs/` (6 new specification documents)
+- 2 human sign-offs via CODEOWNERS
+
+---
+
+## Contestation Mechanism
+
+If any agent opposes:
+1. Opposer's blocking claims enumerated in this EPICON (Section 11)
+2. Maintainer responds point-by-point (see "Addressing Agent Concerns")
+3. Re-run consensus after patch
+4. If opposition persists after 2 iterations, escalate to manual maintainer review
+
+---
+
+## Critical Fields Checklist (Completion)
+
+- [x] Justification written (see "Authority Change Justification")
+- [x] Non-goals listed (see "Scope Boundary")
+- [x] Rollback plan written (see "Guardrails and Reversibility")
+- [x] Explicit scope boundary (see "Scope Envelope" table)
+- [x] "Who can approve" clearly defined: kaizencycle, michaeljudan (CODEOWNERS)
+- [x] "Who cannot approve" clearly defined: Sentinels are advisory only, no merge authority
+
+---
+
 ## Summary
 
 > Ship a repo-ready documentation and evaluation scaffold that: (1) prevents category errors when evaluating Mobius, (2) defines MIC as reputation capital (not currency), (3) defines MII as calibratable and falsifiable, (4) establishes Sentinel Council evaluation protocol, (5) creates Pilot Program templates to generate real-world evidence, (6) establishes AUREA/ATLAS review prompts with optional automated PR commentary.
