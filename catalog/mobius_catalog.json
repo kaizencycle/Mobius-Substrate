@@ -1,6 +1,6 @@
 {
   "mobius_catalog_version": "1.0.0",
-  "generated_at": "2026-01-24T13:52:53.026Z",
+  "generated_at": "2026-01-24T14:30:24.715Z",
   "repo": {
     "name": "Mobius-Substrate",
     "url": "https://github.com/kaizencycle/Mobius-Substrate",
@@ -6895,10 +6895,10 @@
     },
     {
       "path": "docs/authority/README.md",
-      "title": "Authority Verification Documentation",
+      "title": "Mobius Authority Documentation",
       "category": "authority",
       "tags": [],
-      "content_hash": "sha256:f94b200207a95d533b58e5a528cf7c85b3e255537ee2f2ac97f212ecd5f67e7c",
+      "content_hash": "sha256:571c82cf2acfb97a3f17eeffcf4b8a00abbb79787d48be65347dd0607ab4b21c",
       "summary": ""
     },
     {
