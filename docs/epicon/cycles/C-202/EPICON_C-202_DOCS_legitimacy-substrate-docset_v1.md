@@ -133,30 +133,64 @@ counterfactuals:
 
 ---
 
-## Authority Change Justification
+## Authority Change Justification (Required)
 
-**Change:** This EPICON modifies authority boundaries for:
-- `.github/workflows/sentinel-review.yml` - Adds new CI workflow for advisory PR reviews
+### What is changing
+
+This EPICON changes authority for: **GitHub CODEOWNERS / merge authority** on the Mobius documentation + governance surface area.
+
+**Files modified:**
 - `.github/CODEOWNERS` - Adds ownership entries for new documentation paths
+- `.github/workflows/sentinel-review.yml` - Adds new CI workflow for advisory PR reviews
 - `.github/PULL_REQUEST_TEMPLATE.md` - Adds optional sentinel review request section
 
-**Why now:** External evaluation identified that Mobius documentation conflated legitimacy-preservation with model alignment. This docset PR establishes explicit, falsifiable specifications. The workflow enables systematic (not ad-hoc) sentinel reviews to maintain documentation quality.
+**New authority being granted:**
+- Adds/recognizes the following reviewers as CODEOWNERS for governance/docs:
+  - `kaizencycle` (human maintainer)
+  - `michaeljudan` (human maintainer)
+  - `mobius:AUREA` (bot reviewer identity - advisory only)
 
-**Why existing controls are insufficient:** Current process lacks:
-- Explicit "What Mobius Is Not" documentation (category errors persist)
-- Systematic sentinel review (reviews are ad-hoc and inconsistent)
-- Pilot program structure (no mechanism to generate falsifiable evidence)
+**Authority boundaries (what this does NOT grant):**
+- Does **not** grant production deploy authority
+- Does **not** grant permission to change secrets, billing, or infrastructure
+- Does **not** override human CODEOWNERS for merges
+- Does **not** allow an AI reviewer to merge code by itself
+- Does **not** modify runtime code in apps/, packages/, services/, sentinels/
+
+### Why we need this change now
+
+Mobius is entering an "evidence + execution" phase (post-philosophical grounding). That requires:
+- Faster iteration on governance/docs PRs
+- Consistent, reviewable intent records (EPICON discipline)
+- A predictable reviewer assignment system so accountability is not diffused
+
+Without this authority update:
+- Governance PRs stall (no clear ownership)
+- Review responsibility remains ambiguous
+- We regress into legitimacy drift ("no one owned the decision")
+
+### Risk and mitigation
+
+**Primary risk:** Authority creep (AI reviewer implicitly treated as a human approver).
+
+**Mitigation:**
+- Human sign-off remains mandatory (CODEOWNERS includes humans)
+- Sentinel reviewers are advisory unless explicitly requested
+- Any authority expansion beyond docs/governance requires a new EPICON with explicit scope boundaries
+- Workflow cannot block merges (Phase 1: comment-only)
+
+### Reversibility
+
+Rollback is a single revert:
+1. Revert CODEOWNERS changes
+2. Remove workflow file
+3. Re-run EPICON consensus check
+
+No data migration, no production impact, no external dependencies.
 
 ---
 
 ## Scope Boundary (Non-Goals)
-
-This authority change does **not** grant:
-- Ability to block merges (workflow is advisory-only, Phase 1)
-- Access to production systems or deployments
-- Modification of runtime code in apps/, packages/, services/, sentinels/
-- Changes to MII/MIC scoring logic or thresholds
-- Creation of tradable tokens or external markets
 
 This authority change is limited to:
 - **Repo:** `kaizencycle/Mobius-Substrate`
@@ -166,12 +200,7 @@ This authority change is limited to:
 
 ---
 
-## Guardrails and Reversibility
-
-**Rollback Plan:** 
-- Revert commit(s) that added workflow + CODEOWNERS changes
-- Single `git revert` command restores prior state
-- No data migration required
+## Guardrails
 
 **Circuit Breaker:**
 - If MII < 0.95: Changes must be reverted
@@ -199,9 +228,9 @@ If any agent opposes:
 
 - [x] Justification written (see "Authority Change Justification")
 - [x] Non-goals listed (see "Scope Boundary")
-- [x] Rollback plan written (see "Guardrails and Reversibility")
+- [x] Rollback plan written (see "Reversibility")
 - [x] Explicit scope boundary (see "Scope Envelope" table)
-- [x] "Who can approve" clearly defined: kaizencycle, michaeljudan (CODEOWNERS)
+- [x] "Who can approve" clearly defined: kaizencycle, michaeljudan (human CODEOWNERS)
 - [x] "Who cannot approve" clearly defined: Sentinels are advisory only, no merge authority
 
 ---
