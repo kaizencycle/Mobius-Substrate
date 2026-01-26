@@ -1,8 +1,8 @@
 # Divergence Dashboard
 
 **Repo:** `kaizencycle/Mobius-Substrate`  
-**Generated:** `2026-01-26T12:37:11Z`  
-**Open PRs:** `0`
+**Generated:** `2026-01-26T18:27:50Z`  
+**Open PRs:** `1`
 
 ## Summary
 
@@ -11,12 +11,14 @@
 | 🔴 High | 0 |
 | 🟡 Medium | 0 |
 | 🟢 Low | 0 |
-| ⚪ Unknown | 0 |
+| ⚪ Unknown | 1 |
 | 🚨 Emergency | 0 |
 
 ## Open PRs
 
-*No open PRs*
+| Sev | PR | Title | Author | EPICON | Gate | Mode | Updated |
+|-----|---:|-------|--------|--------|------|------|---------|
+| ⚪ unknown | [#250](https://github.com/kaizencycle/Mobius-Substrate/pull/250) | Claude/deep directory exploration q a nr f | @kaizencycle | ? | ? | — | 2026-01-26 |
 
 ---
 
