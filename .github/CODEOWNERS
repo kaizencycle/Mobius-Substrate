@@ -4,6 +4,9 @@
 # EPICON-02 Integration: This file works with the Mobius PR Bot
 # which enforces scope containment and auto-requests reviewers.
 #
+# EPICON-03 Integration: Sentinel review workflows (review-aurea.yml, review-atlas.yml)
+# post AI reviews when consensus:requested label is applied.
+#
 # Required teams:
 # - kaizencycle/aurea (AUREA - Economic Architect / Docs)
 # - kaizencycle/atlas (ATLAS - Monitoring Sentinel / CI)
@@ -16,8 +19,18 @@
 # =============================================================================
 # EPICON / Governance / Authority Documentation
 # =============================================================================
+/epicon/ @kaizencycle/aurea @kaizencycle/atlas
 /docs/epicon/ @kaizencycle/aurea @kaizencycle/atlas
 /docs/authority/ @kaizencycle/aurea @kaizencycle/atlas
+
+# Governance specification documents (MIC, MII, Sentinel Eval)
+/docs/MIC_SPEC.md @kaizencycle/aurea @kaizencycle/atlas
+/docs/MII_CALIBRATION.md @kaizencycle/aurea @kaizencycle/atlas
+/docs/SENTINEL_EVAL_PROTOCOL.md @kaizencycle/aurea @kaizencycle/atlas @kaizencycle/eve
+/docs/WHAT_MOBIUS_IS_NOT.md @kaizencycle/aurea
+
+# Pilot case studies
+/pilots/ @kaizencycle/aurea
 /docs/03-GOVERNANCE-AND-POLICY/ @kaizencycle/aurea
 
 # Foundational documents require AUREA review

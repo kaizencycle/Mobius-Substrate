@@ -1,0 +1,134 @@
+name: Mobius Sentinel Review - ATLAS
+
+on:
+  pull_request:
+    types: [opened, synchronize, labeled, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  atlas_review:
+    name: ATLAS Review
+    if: contains(join(github.event.pull_request.labels.*.name, ','), 'consensus:requested')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get PR details
+        id: pr
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          PR_NUMBER="${{ github.event.pull_request.number }}"
+
+          # Get changed files
+          gh pr view $PR_NUMBER --json files --jq '.files[].path' > /tmp/changed_files.txt
+
+          # Count infrastructure-related files
+          WORKFLOW_FILES=$(grep -E '^\.github/workflows/' /tmp/changed_files.txt | wc -l || echo "0")
+          CONFIG_FILES=$(grep -E '^(configs/|\.github/|package\.json|tsconfig)' /tmp/changed_files.txt | wc -l || echo "0")
+          SENTINEL_FILES=$(grep -E '^sentinels/' /tmp/changed_files.txt | wc -l || echo "0")
+          INFRA_FILES=$(grep -E '^(infra/|services/|apps/)' /tmp/changed_files.txt | wc -l || echo "0")
+
+          echo "workflow_files=$WORKFLOW_FILES" >> $GITHUB_OUTPUT
+          echo "config_files=$CONFIG_FILES" >> $GITHUB_OUTPUT
+          echo "sentinel_files=$SENTINEL_FILES" >> $GITHUB_OUTPUT
+          echo "infra_files=$INFRA_FILES" >> $GITHUB_OUTPUT
+
+      - name: Run ATLAS review logic
+        id: run
+        env:
+          WORKFLOW_FILES: ${{ steps.pr.outputs.workflow_files }}
+          CONFIG_FILES: ${{ steps.pr.outputs.config_files }}
+          SENTINEL_FILES: ${{ steps.pr.outputs.sentinel_files }}
+          INFRA_FILES: ${{ steps.pr.outputs.infra_files }}
+        run: |
+          # ATLAS focuses on: infrastructure, CI/CD, monitoring, process compliance
+          ISSUES=""
+          RESULT="PASS"
+
+          # Check workflow file syntax (basic YAML validation)
+          if [ "$WORKFLOW_FILES" -gt 0 ]; then
+            for file in $(grep -E '^\.github/workflows/' /tmp/changed_files.txt); do
+              if [ -f "$file" ]; then
+                # Basic YAML syntax check
+                if ! python3 -c "import yaml; yaml.safe_load(open('$file'))" 2>/dev/null; then
+                  ISSUES="${ISSUES}- YAML syntax error in \`$file\`\n"
+                fi
+
+                # Check for dangerous patterns
+                if grep -q "push --force" "$file" 2>/dev/null; then
+                  ISSUES="${ISSUES}- Dangerous \`push --force\` detected in \`$file\`\n"
+                fi
+                if grep -q "reset --hard" "$file" 2>/dev/null; then
+                  ISSUES="${ISSUES}- Dangerous \`reset --hard\` detected in \`$file\`\n"
+                fi
+              fi
+            done
+          fi
+
+          # Check for MII threshold references without calibration doc
+          if grep -riq "mii.*threshold\|MII.*0\.\|integrity.*index" $(cat /tmp/changed_files.txt) 2>/dev/null; then
+            if [ ! -f "docs/MII_CALIBRATION.md" ]; then
+              ISSUES="${ISSUES}- MII threshold references detected but \`docs/MII_CALIBRATION.md\` does not exist\n"
+            fi
+          fi
+
+          # Check sentinel changes have eval protocol
+          if [ "$SENTINEL_FILES" -gt 0 ]; then
+            if [ ! -f "docs/SENTINEL_EVAL_PROTOCOL.md" ]; then
+              ISSUES="${ISSUES}- Sentinel changes detected but \`docs/SENTINEL_EVAL_PROTOCOL.md\` does not exist\n"
+            fi
+          fi
+
+          # Check for CODEOWNERS if adding new paths
+          if grep -qE '^(apps|packages|sentinels|labs)/[^/]+/$' /tmp/changed_files.txt 2>/dev/null; then
+            if ! grep -q "$(grep -oE '^(apps|packages|sentinels|labs)/[^/]+' /tmp/changed_files.txt | head -1)" .github/CODEOWNERS 2>/dev/null; then
+              ISSUES="${ISSUES}- New directory added but not reflected in CODEOWNERS\n"
+            fi
+          fi
+
+          # Set result based on issues found
+          if [ -n "$ISSUES" ]; then
+            RESULT="NEEDS_CLARIFICATION"
+            SUMMARY="ATLAS identified infrastructure/process gaps:\n$ISSUES\nPlease address these before merging."
+          else
+            SUMMARY="ATLAS review complete. Infrastructure and process compliance verified."
+          fi
+
+          echo "result=$RESULT" >> $GITHUB_OUTPUT
+          echo "summary<<EOF" >> $GITHUB_OUTPUT
+          echo -e "$SUMMARY" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Post PR review (ATLAS)
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const result = "${{ steps.run.outputs.result }}";
+            const summary = `${{ steps.run.outputs.summary }}`;
+
+            const event = result === "PASS" ? "COMMENT" : "REQUEST_CHANGES";
+            const emoji = result === "PASS" ? "✅" : "⚠️";
+
+            await github.rest.pulls.createReview({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.payload.pull_request.number,
+              event: event,
+              body: `## ${emoji} ATLAS Review - ${result}\n\n${summary}\n\n---\n**Sentinel Role**: Infrastructure, CI/CD, monitoring, process compliance\n**Label gate**: requires \`consensus:requested\`\n**Authority**: Advisory only - humans retain decision authority`
+            });
+
+      - name: Set check status
+        run: |
+          if [ "${{ steps.run.outputs.result }}" != "PASS" ]; then
+            echo "::warning::ATLAS review flagged issues that need clarification"
+            # Don't fail the check - ATLAS is advisory
+            # exit 1
+          fi
+          echo "ATLAS review complete: ${{ steps.run.outputs.result }}"

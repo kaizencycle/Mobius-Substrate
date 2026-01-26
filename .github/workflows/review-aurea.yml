@@ -1,0 +1,119 @@
+name: Mobius Sentinel Review - AUREA
+
+on:
+  pull_request:
+    types: [opened, synchronize, labeled, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  aurea_review:
+    name: AUREA Review
+    if: contains(join(github.event.pull_request.labels.*.name, ','), 'consensus:requested')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get PR details
+        id: pr
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          PR_NUMBER="${{ github.event.pull_request.number }}"
+
+          # Get changed files
+          gh pr view $PR_NUMBER --json files --jq '.files[].path' > /tmp/changed_files.txt
+
+          # Count governance-related files
+          GOVERNANCE_FILES=$(grep -E '^(docs/|epicon/|pilots/|\.github/CODEOWNERS|GOVERNANCE|SECURITY)' /tmp/changed_files.txt | wc -l || echo "0")
+          WORKFLOW_FILES=$(grep -E '^\.github/workflows/' /tmp/changed_files.txt | wc -l || echo "0")
+          SPEC_FILES=$(grep -E '^(specs/|schemas/)' /tmp/changed_files.txt | wc -l || echo "0")
+
+          echo "governance_files=$GOVERNANCE_FILES" >> $GITHUB_OUTPUT
+          echo "workflow_files=$WORKFLOW_FILES" >> $GITHUB_OUTPUT
+          echo "spec_files=$SPEC_FILES" >> $GITHUB_OUTPUT
+
+      - name: Run AUREA review logic
+        id: run
+        env:
+          GOVERNANCE_FILES: ${{ steps.pr.outputs.governance_files }}
+          WORKFLOW_FILES: ${{ steps.pr.outputs.workflow_files }}
+          SPEC_FILES: ${{ steps.pr.outputs.spec_files }}
+        run: |
+          # AUREA focuses on: documentation, governance, economics, policy alignment
+          ISSUES=""
+          RESULT="PASS"
+
+          # Check for EPICON authority_change block if modifying governance paths
+          if [ "$GOVERNANCE_FILES" -gt 0 ] || [ "$WORKFLOW_FILES" -gt 0 ]; then
+            # Look for authority_change in any EPICON file in the PR
+            if ! grep -r "authority_change:" epicon/ 2>/dev/null | grep -q .; then
+              # Check if there's an EPICON file being added in this PR
+              if grep -q "^epicon/" /tmp/changed_files.txt; then
+                if ! grep -l "authority_change:" $(grep "^epicon/" /tmp/changed_files.txt) 2>/dev/null; then
+                  ISSUES="${ISSUES}- Missing \`authority_change:\` block in EPICON for governance changes\n"
+                fi
+              else
+                ISSUES="${ISSUES}- Governance changes detected but no EPICON with \`authority_change:\` block found\n"
+              fi
+            fi
+          fi
+
+          # Check for WHAT_MOBIUS_IS_NOT.md if claiming alignment/AGI scope
+          if grep -riq "alignment\|AGI\|superintelligence\|ASI" $(cat /tmp/changed_files.txt) 2>/dev/null; then
+            if [ ! -f "docs/WHAT_MOBIUS_IS_NOT.md" ]; then
+              ISSUES="${ISSUES}- Claims about alignment/AGI detected but \`docs/WHAT_MOBIUS_IS_NOT.md\` does not exist\n"
+            fi
+          fi
+
+          # Check for MIC_SPEC.md if modifying MIC-related code
+          if grep -riq "MIC\|integrity.credit" $(cat /tmp/changed_files.txt) 2>/dev/null; then
+            if [ ! -f "docs/MIC_SPEC.md" ]; then
+              ISSUES="${ISSUES}- MIC references detected but \`docs/MIC_SPEC.md\` does not exist\n"
+            fi
+          fi
+
+          # Set result based on issues found
+          if [ -n "$ISSUES" ]; then
+            RESULT="NEEDS_CLARIFICATION"
+            SUMMARY="AUREA identified documentation/governance gaps:\n$ISSUES\nPlease address these before merging."
+          else
+            SUMMARY="AUREA review complete. Documentation and governance alignment verified."
+          fi
+
+          echo "result=$RESULT" >> $GITHUB_OUTPUT
+          echo "summary<<EOF" >> $GITHUB_OUTPUT
+          echo -e "$SUMMARY" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Post PR review (AUREA)
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const result = "${{ steps.run.outputs.result }}";
+            const summary = `${{ steps.run.outputs.summary }}`;
+
+            const event = result === "PASS" ? "COMMENT" : "REQUEST_CHANGES";
+            const emoji = result === "PASS" ? "✅" : "⚠️";
+
+            await github.rest.pulls.createReview({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.payload.pull_request.number,
+              event: event,
+              body: `## ${emoji} AUREA Review - ${result}\n\n${summary}\n\n---\n**Sentinel Role**: Documentation, governance, economics, policy alignment\n**Label gate**: requires \`consensus:requested\`\n**Authority**: Advisory only - humans retain decision authority`
+            });
+
+      - name: Set check status
+        run: |
+          if [ "${{ steps.run.outputs.result }}" != "PASS" ]; then
+            echo "::warning::AUREA review flagged issues that need clarification"
+            # Don't fail the check - AUREA is advisory
+            # exit 1
+          fi
+          echo "AUREA review complete: ${{ steps.run.outputs.result }}"
