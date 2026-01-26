@@ -91,8 +91,21 @@ MIC is **non-transferable, non-convertible, non-tradable**. Violating this voids
 
 ---
 
+---
+
+## Connection to Philosophy
+
+From *When Consequences Stop Traveling Upward* (Substack, Jan 23, 2025):
+
+> "Incentive drift occurs not because people are bad, but because systems are designed to obscure responsibility."
+
+MIC makes **obscuring responsibility expensive**. It does not prevent drift; it makes drift **visible and costly**.
+
+---
+
 ## Related Documents
 
 - [What Mobius Is Not](./WHAT_MOBIUS_IS_NOT.md) - Category constraints
 - [MII Calibration](./MII_CALIBRATION.md) - How MIC interacts with integrity scoring
 - [Sentinel Evaluation Protocol](./SENTINEL_EVAL_PROTOCOL.md) - How sentinels award/flag MIC
+- [Philosophy and Practice](./PHILOSOPHY_AND_PRACTICE.md) - Essay-to-code bridge

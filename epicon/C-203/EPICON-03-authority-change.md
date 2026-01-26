@@ -78,6 +78,26 @@ scope_declaration:
     - "Automatic merge to main without human approval"
     - "Any production deployment automation"
     - "Changes to model training or inference"
+philosophical_foundation:
+  essays:
+    - title: "When Consequences Stop Traveling Upward"
+      date: "2025-01-23"
+      thesis: "Incentive drift occurs when systems obscure responsibility"
+      mobius_response: "EPICON + MIC makes override costly and visible"
+    - title: "The Right to Know"
+      date: "2025-01-21"
+      thesis: "Individuals need digital insurance against automated decisions"
+      mobius_response: "Provenance completeness + fork/exit mechanics"
+    - title: "When Chaos Is Procedural"
+      date: "2025-01-11"
+      thesis: "Bureaucratic delay is intentional friction preventing accountability"
+      mobius_response: "Circuit breaker + dual sign-off prevents drift into ambiguity"
+    - title: "How Good Wins Without Killing"
+      date: "2025-01-09"
+      thesis: "Extinction loops occur when defection is dominant; change payoff structures"
+      mobius_response: "MIC as reputation capital; sentinel council as mechanism design"
+  operational_principle: "We heal as we walk"
+  epistemic_status: "Philosophy guides; pilots validate; specs constrain"
 ---
 
 # Summary
@@ -186,7 +206,9 @@ This causes legitimate governance improvements to stall on "NEEDS_CLARIFICATION"
   - `docs/MIC_SPEC.md`
   - `docs/MII_CALIBRATION.md`
   - `docs/SENTINEL_EVAL_PROTOCOL.md`
+  - `docs/PHILOSOPHY_AND_PRACTICE.md`
   - `pilots/TEMPLATE_CASE_STUDY.md`
+- **External**: https://kaizencycle.substack.com/ (philosophical foundation)
 
 ## 8. Reflection Hook
 

@@ -151,8 +151,21 @@ Measures semantic similarity to historical decisions in same workflow:
 
 ---
 
+---
+
+## Connection to Philosophy
+
+From *When Chaos Is Procedural* (Substack, Jan 11, 2025):
+
+> "Bureaucratic delay is intentional friction that prevents accountability. 'No single order was given' = no one is responsible."
+
+MII **circuit breaker** prevents drift into procedural chaos. It forces explicit justification when completeness drops below threshold.
+
+---
+
 ## Related Documents
 
 - [What Mobius Is Not](./WHAT_MOBIUS_IS_NOT.md) - Category constraints
 - [MIC Specification](./MIC_SPEC.md) - Override costs in MIC
 - [Sentinel Evaluation Protocol](./SENTINEL_EVAL_PROTOCOL.md) - How sentinels generate SC component
+- [Philosophy and Practice](./PHILOSOPHY_AND_PRACTICE.md) - Essay-to-code bridge

@@ -209,8 +209,21 @@ tests:
 
 ---
 
+---
+
+## Connection to Philosophy
+
+From *How Good Wins Without Killing* (Substack, Jan 9, 2025):
+
+> "Extinction loops occur when defection is dominant strategy. Changing players is impossible; changing rules is hard; changing payoff structures (mechanism design) is tractable."
+
+Sentinel evaluation is **mechanism design for oversight**. It changes the **information available** to decision-makers, not the decision-makers themselves.
+
+---
+
 ## Related Documents
 
 - [What Mobius Is Not](./WHAT_MOBIUS_IS_NOT.md) - Sentinels are auditors, not governors
 - [MIC Specification](./MIC_SPEC.md) - How sentinel reviews affect MIC
 - [MII Calibration](./MII_CALIBRATION.md) - Sentinel Challenge Score component
+- [Philosophy and Practice](./PHILOSOPHY_AND_PRACTICE.md) - Essay-to-code bridge
