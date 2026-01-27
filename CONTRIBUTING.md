@@ -1,6 +1,95 @@
 # Contributing to Mobius Substrate
 
-Thank you for your interest in contributing to Mobius Substrate (formerly Mobius Systems)! This document provides guidelines and instructions for contributing to this monorepo.
+Thank you for your interest in contributing to Mobius Substrate! This document provides guidelines for contributing to this monorepo.
+
+**Mobius is civic infrastructure.** Contributions are welcome, but integrity is mandatory.
+
+---
+
+## Contributor Classes
+
+### Human Contributors (H0–H3)
+
+| Level | Role | Capabilities | Requirements |
+|-------|------|--------------|--------------|
+| **H0** | Observer | Read docs, open issues, ask questions | None |
+| **H1** | Contributor | Submit PRs, participate in discussions | Must pass CI + basic lint/tests |
+| **H2** | Maintainer | Review PRs, merge to develop, manage milestones | Demonstrated contribution history |
+| **H3** | Steward | Merge to main, approve high-risk changes | Must sign governance attestations |
+
+### AI Contributors / Sentinels (A0–A3)
+
+| Level | Role | Capabilities | Requirements |
+|-------|------|--------------|--------------|
+| **A0** | Assistant | Suggest patches, draft docs, write tests | No tool execution |
+| **A1** | Co-Reviewer | Static analysis, diff review, integrity notes | Read-only tool access |
+| **A2** | Implementer | Open PRs from tasks, write code | Must declare EPICON intent, pass ZEUS gates |
+| **A3** | Operator | Run approved deployment workflows | Requires human approval tokens |
+
+---
+
+## The Mobius Contribution Loop
+
+Every meaningful change follows this canonical workflow:
+
+```
+Issue/Proposal → EPICON Intent → Build + Test → ZEUS Gate → Review → Merge + Ledger
+```
+
+### Step 1: Issue or Proposal
+Every significant change starts as an Issue, EPICON note, or RFC with:
+- Problem statement
+- Scope definition
+- Risk assessment
+- Success criteria
+- Integrity impact ("What could go wrong?")
+
+### Step 2: EPICON Intent Declaration
+Before any code change, declare intent:
+- What you're changing and why
+- Who should review
+- Expected impact
+- Required approvals (if high risk)
+
+### Step 3: Build + Test + Bench
+CI validates:
+- Unit/integration tests
+- Lint/format checks
+- Security scanning
+- Benchmarks (if performance-sensitive)
+
+### Step 4: ZEUS Gate
+ZEUS enforces:
+- Risk tier classification
+- Integrity thresholds (MII ≥ 0.95)
+- Policy rules
+- Required approvals
+
+### Step 5: Review (Human + AI)
+- 1–2 human reviewers depending on risk tier
+- Co-reviewer agents attach diff digest + risk analysis
+- Sentinel sign-off where required
+
+### Step 6: Merge + Ledger Record
+On merge, an immutable ledger entry records:
+- Commit hashes
+- Approvals
+- Intent token
+- Test results summary
+- MII delta
+
+---
+
+## Risk Tiers (ZEUS Policy)
+
+| Tier | Scope | Requirements |
+|------|-------|--------------|
+| **0** | Docs, formatting, comments | 1 reviewer, fast merge |
+| **1** | App code (no security/auth) | 1 maintainer, tests required |
+| **2** | Auth, ledger, integrity math | 2 approvals (1 steward), benches, changelog |
+| **3** | MIC mint/burn, consensus, production | Steward + human token, threat model, rollback plan |
+
+---
 
 ## 🏗️ Repository Structure
 
@@ -17,7 +106,19 @@ Mobius-Systems/
 └── tests/         # Test suites
 ```
 
-## 🚀 Getting Started
+## Code of Integrity
+
+All contributors agree to:
+- No bypassing tests or CI checks
+- No silent behavior changes
+- No production actions without intent + approval
+- No ledger schema changes without steward sign-off
+- Document risks, constraints, and uncertainty bounds
+- Preserve dissent as a civic asset
+
+---
+
+## Getting Started
 
 ### Prerequisites
 

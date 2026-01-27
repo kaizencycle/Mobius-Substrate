@@ -23,6 +23,16 @@
 /docs/epicon/ @kaizencycle/aurea @kaizencycle/atlas
 /docs/authority/ @kaizencycle/aurea @kaizencycle/atlas
 
+# =============================================================================
+# Civic Oversight & Contributor Governance (Tier 2 - requires steward review)
+# =============================================================================
+/docs/civic-oversight/ @kaizencycle/aurea @kaizencycle/eve @kaizencycle/atlas
+/docs/GOVERNANCE.md @kaizencycle/aurea @kaizencycle/atlas
+/docs/ZEUS_POLICY.md @kaizencycle/aurea @kaizencycle/zeus @kaizencycle/atlas
+/docs/EPICON_INTENTS.md @kaizencycle/aurea @kaizencycle/atlas
+/CONTRIBUTING.md @kaizencycle/aurea @kaizencycle/atlas
+/GOVERNANCE/ @kaizencycle/aurea @kaizencycle/atlas
+
 # Governance specification documents (MIC, MII, Sentinel Eval)
 /docs/MIC_SPEC.md @kaizencycle/aurea @kaizencycle/atlas
 /docs/MII_CALIBRATION.md @kaizencycle/aurea @kaizencycle/atlas
