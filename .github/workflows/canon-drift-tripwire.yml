@@ -1,9 +1,18 @@
 # MOBIUS-CLASS: canon-state-watchdog
 # OWNER: @kaizencycle
 # INTRODUCED: C-338
-# LAST-REVIEWED: 2026-06-10
+# LAST-REVIEWED: 2026-09-07
 # STATUS: active
 # PURPOSE: Layer 2 — the watchdog that watches the writer.
+#
+# ## Authority Change Justification
+# This PR (C-427 JOB-25) modifies a .github/workflows/* file, an authority
+# surface under Authority Provenance Guard. The change is a narrow shell
+# control-flow bugfix: replacing `[ -n "$EXISTING" ] && gh issue close ...`
+# (which exits 1 on the healthy/no-open-issue path under GitHub Actions'
+# default `bash -e` run-step shell) with an explicit if/else. It does not
+# alter authority, permission, ledger, canon, or consensus logic — only the
+# tripwire's own false-failure behavior on the healed path.
 #
 # If cycle.json lags reality by more than MAX_LAG cycles, raise exactly ONE
 # issue — updating it on subsequent days rather than filing duplicates.
