@@ -71,4 +71,8 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           EXISTING=$(gh issue list --state open --label "${FINGERPRINT}" --json number --jq '.[0].number')
-          [ -n "$EXISTING" ] && gh issue close "$EXISTING" --comment "Drift healed: canon at ${{ steps.drift.outputs.actual }}, lag ${{ steps.drift.outputs.lag }} ≤ ${MAX_LAG}."
+          if [ -n "$EXISTING" ]; then
+            gh issue close "$EXISTING" --comment "Drift healed: canon at ${{ steps.drift.outputs.actual }}, lag ${{ steps.drift.outputs.lag }} ≤ ${MAX_LAG}."
+          else
+            echo "Canon is within the allowed lag; no open drift issue to close."
+          fi
