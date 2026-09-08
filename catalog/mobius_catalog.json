@@ -1,15 +1,15 @@
 {
   "mobius_catalog_version": "1.0.0",
-  "generated_at": "2026-09-07T07:09:27.877Z",
+  "generated_at": "2026-09-08T07:03:27.799Z",
   "repo": {
     "name": "Mobius-Substrate",
     "url": "https://github.com/kaizencycle/Mobius-Substrate",
     "default_branch": "main",
-    "commit": "4776506ba58d0acf27fa109e013c221c63f2f4d2"
+    "commit": "b34950174da354b62c40e81038a7bf2647c91976"
   },
   "stats": {
     "epiconCount": 0,
-    "docCount": 1114
+    "docCount": 1115
   },
   "epicons": [],
   "docs": [
@@ -8573,6 +8573,14 @@
       "category": "epicon",
       "tags": [],
       "content_hash": "sha256:ee6c68a979a1fcce2034804192951564f072154dc0a1e6176313068cb9939af2",
+      "summary": ""
+    },
+    {
+      "path": "docs/epicon/cycles/C-427/EPICON_C-427_CI_canon-drift-empty-close-fix_v1.md",
+      "title": "C-427: fix canon-drift-tripwire false failure on the healthy (no open drift issue) auto-close path",
+      "category": "epicon",
+      "tags": [],
+      "content_hash": "sha256:badb00f7684c7e4ba7cde515fcc0b7096fd2f204fe3bdff763d55be4e27abe2e",
       "summary": ""
     },
     {
