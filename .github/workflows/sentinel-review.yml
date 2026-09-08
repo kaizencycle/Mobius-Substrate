@@ -29,24 +29,63 @@
 #
 # To request review, label the PR: review:aurea, review:atlas, or
 # consensus:requested (runs both).
+#
+# ## Authority Change Justification
+# This PR modifies a .github/workflows/* file, an authority surface under
+# Authority Provenance Guard. The change is narrow CI trigger hygiene
+# (below) — no authority, permission, ledger, canon, or review-outcome
+# logic is touched; the C-339 fail-closed/skip-vs-fail distinctions and
+# the OAA broker/model config are all unchanged.
+#
+# C-428 COST HYGIENE — trigger hygiene, no model/vendor change:
+#   'labeled' fires on ANY label add/remove, not just review labels — once a
+#   review label is on a PR, every unrelated label change (e.g. the auto-applied
+#   scope:* labels) re-ran the full AUREA+ATLAS review. 'edited' fires on title/
+#   body edits too, which are not code and have nothing to re-review. The
+#   job-level `if:` below skips the whole job (reports as skipped, not failed)
+#   for a 'labeled' event whose label isn't one of the three review labels, and
+#   for an 'edited' event that didn't change the PR's base branch. Both kept
+#   in the trigger list (not dropped) because 'edited' also fires on a base-
+#   branch retarget, which DOES change the diff Sentinel must review even
+#   though head.sha stays the same (Codex review, PR #449) — that case is
+#   distinguished via `github.event.changes.base`, which GitHub only sets on
+#   a retarget, not a title/body edit. Safe for the rest: 'labeled'/non-retarget
+#   'edited' events never change pull_request.head.sha, so the SHA-scoped Merge
+#   Gate check still finds the prior real review's result unchanged.
+#   Concurrency is job-level (not workflow-level) for the same reason: a job
+#   skipped via `if:` never joins the concurrency group, so an ignored
+#   labeled/edited event can no longer cancel a real review that's actively
+#   running for this PR (Codex review, PR #449) — under workflow-level
+#   concurrency it would, since GitHub applies cancel-in-progress before a
+#   job's `if:` is evaluated.
+#   Directly observed 5 sentinel invocations on one PR (#448) within ~5
+#   minutes from routine iteration before this fix.
 name: Sentinel Review (AUREA + ATLAS)
 
 on:
   pull_request:
-    types: [opened, synchronize, reopened, labeled, edited, ready_for_review]
+    types: [opened, synchronize, reopened, labeled, ready_for_review, edited]
 
 permissions:
   contents: read
   pull-requests: write
   issues: write
 
-concurrency:
-  group: sentinel-review-${{ github.event.pull_request.number }}
-  cancel-in-progress: true
-
 jobs:
   sentinel:
+    # Skip (not fail) when:
+    #   - this is a 'labeled' event for a label that isn't a review-request
+    #     label, or
+    #   - this is an 'edited' event that isn't a base-branch retarget
+    #     (title/body edits set github.event.changes.title/body, never .base).
+    # In both skip cases nothing new needs review and head.sha is unchanged.
+    if: |
+      (github.event.action != 'labeled' || contains(fromJSON('["review:aurea","review:atlas","consensus:requested"]'), github.event.label.name)) &&
+      (github.event.action != 'edited' || github.event.changes.base != null)
     runs-on: ubuntu-latest
+    concurrency:
+      group: sentinel-review-${{ github.event.pull_request.number }}
+      cancel-in-progress: true
     env:
       OAA_BROKER_URL: ${{ vars.OAA_BROKER_URL != '' && vars.OAA_BROKER_URL || 'https://oaa-api-library.onrender.com/v1/sentinel/review' }}
       OAA_AGENT_ID: mobius-ci-sentinel
