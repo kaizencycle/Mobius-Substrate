@@ -29,11 +29,23 @@
 #
 # To request review, label the PR: review:aurea, review:atlas, or
 # consensus:requested (runs both).
+#
+# C-428 COST HYGIENE — trigger hygiene, no model/vendor change:
+#   Dropped 'edited' (title/body edits are not code; nothing to re-review).
+#   'labeled' fires on ANY label add/remove, not just review labels — once a
+#   review label is on a PR, every unrelated label change (e.g. the auto-applied
+#   scope:* labels) re-ran the full AUREA+ATLAS review. The job-level `if:` below
+#   skips the whole job (reports as skipped, not failed) when the triggering
+#   'labeled' event's added label isn't one of the three review labels. Safe:
+#   'labeled'/'edited' events never change pull_request.head.sha, so the
+#   SHA-scoped Merge Gate check still finds the prior real review's result
+#   unchanged. Directly observed 5 sentinel invocations on one PR (#448) within
+#   ~5 minutes from routine iteration before this fix.
 name: Sentinel Review (AUREA + ATLAS)
 
 on:
   pull_request:
-    types: [opened, synchronize, reopened, labeled, edited, ready_for_review]
+    types: [opened, synchronize, reopened, labeled, ready_for_review]
 
 permissions:
   contents: read
@@ -46,6 +58,9 @@ concurrency:
 
 jobs:
   sentinel:
+    # Skip (not fail) when this is a 'labeled' event for a label that isn't a
+    # review-request label — nothing new to review, and head.sha is unchanged.
+    if: github.event.action != 'labeled' || contains(fromJSON('["review:aurea","review:atlas","consensus:requested"]'), github.event.label.name)
     runs-on: ubuntu-latest
     env:
       OAA_BROKER_URL: ${{ vars.OAA_BROKER_URL != '' && vars.OAA_BROKER_URL || 'https://oaa-api-library.onrender.com/v1/sentinel/review' }}
