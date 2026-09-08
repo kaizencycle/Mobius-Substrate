@@ -30,6 +30,13 @@
 # To request review, label the PR: review:aurea, review:atlas, or
 # consensus:requested (runs both).
 #
+# ## Authority Change Justification
+# This PR modifies a .github/workflows/* file, an authority surface under
+# Authority Provenance Guard. The change is narrow CI trigger hygiene
+# (below) — no authority, permission, ledger, canon, or review-outcome
+# logic is touched; the C-339 fail-closed/skip-vs-fail distinctions and
+# the OAA broker/model config are all unchanged.
+#
 # C-428 COST HYGIENE — trigger hygiene, no model/vendor change:
 #   Dropped 'edited' (title/body edits are not code; nothing to re-review).
 #   'labeled' fires on ANY label add/remove, not just review labels — once a
