@@ -1,11 +1,11 @@
 {
   "mobius_catalog_version": "1.0.0",
-  "generated_at": "2026-09-08T14:58:09.930Z",
+  "generated_at": "2026-09-08T15:06:36.044Z",
   "repo": {
     "name": "Mobius-Substrate",
     "url": "https://github.com/kaizencycle/Mobius-Substrate",
     "default_branch": "main",
-    "commit": "ce6e43fe6c3036026ef1c78340fc571e2b4a4394"
+    "commit": "bcda4c4b204f87d0ef797ef78cfd75b26c8184e3"
   },
   "stats": {
     "epiconCount": 0,
@@ -8588,7 +8588,7 @@
       "title": "C-428: stop re-running sentinel-review.yml's AUREA+ATLAS review on every PR touch",
       "category": "epicon",
       "tags": [],
-      "content_hash": "sha256:3fd478286b2a38aec22fa38c36a00da0f7ece92ce7f857a5ee9175083f917b81",
+      "content_hash": "sha256:12a86998f35e2a1d3006797fccf3058befbd692f054346370f5e98a31e4a947d",
       "summary": ""
     },
     {
