@@ -1,15 +1,15 @@
 {
   "mobius_catalog_version": "1.0.0",
-  "generated_at": "2026-09-08T07:03:27.799Z",
+  "generated_at": "2026-09-08T14:58:09.930Z",
   "repo": {
     "name": "Mobius-Substrate",
     "url": "https://github.com/kaizencycle/Mobius-Substrate",
     "default_branch": "main",
-    "commit": "b34950174da354b62c40e81038a7bf2647c91976"
+    "commit": "ce6e43fe6c3036026ef1c78340fc571e2b4a4394"
   },
   "stats": {
     "epiconCount": 0,
-    "docCount": 1115
+    "docCount": 1116
   },
   "epicons": [],
   "docs": [
@@ -8581,6 +8581,14 @@
       "category": "epicon",
       "tags": [],
       "content_hash": "sha256:badb00f7684c7e4ba7cde515fcc0b7096fd2f204fe3bdff763d55be4e27abe2e",
+      "summary": ""
+    },
+    {
+      "path": "docs/epicon/cycles/C-428/EPICON_C-428_CI_sentinel-review-trigger-hygiene_v1.md",
+      "title": "C-428: stop re-running sentinel-review.yml's AUREA+ATLAS review on every PR touch",
+      "category": "epicon",
+      "tags": [],
+      "content_hash": "sha256:3fd478286b2a38aec22fa38c36a00da0f7ece92ce7f857a5ee9175083f917b81",
       "summary": ""
     },
     {
