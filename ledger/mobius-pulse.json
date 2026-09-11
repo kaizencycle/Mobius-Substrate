@@ -1,6 +1,6 @@
 {
   "schema": "MOBIUS_PULSE_V1",
-  "updated_at": "2026-09-10T22:04:41.996Z",
+  "updated_at": "2026-09-11T00:40:24.134Z",
   "cycle": "C-430",
   "cycle_date": "2026-09-10",
   "aggregate": {
@@ -11,7 +11,7 @@
   "network_mii": 0.85,
   "terminal_snapshot": {
     "ok": true,
-    "gi": 0.71,
+    "gi": 0.787,
     "mode": "yellow",
     "cycle": "C-430"
   },
