@@ -1,8 +1,7 @@
 import type { Metadata } from 'next';
 import { IBM_Plex_Mono, IBM_Plex_Sans, IBM_Plex_Serif } from 'next/font/google';
+import { SITE_URL as siteUrl } from '@/lib/site';
 import './globals.css';
-
-const siteUrl = 'https://www.mobius-substrate.com';
 
 const plexSans = IBM_Plex_Sans({
   subsets: ['latin'],
