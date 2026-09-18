@@ -1,15 +1,15 @@
 {
   "mobius_catalog_version": "1.0.0",
-  "generated_at": "2026-09-18T07:13:13.678Z",
+  "generated_at": "2026-09-18T07:27:31.872Z",
   "repo": {
     "name": "Mobius-Substrate",
     "url": "https://github.com/kaizencycle/Mobius-Substrate",
     "default_branch": "main",
-    "commit": "37e86734dea59fe527b2627c71d4766e3ab84062"
+    "commit": "35711ea67a46c603328e22d8abf19130a114ab4b"
   },
   "stats": {
     "epiconCount": 0,
-    "docCount": 1116
+    "docCount": 1117
   },
   "epicons": [],
   "docs": [
@@ -106,7 +106,7 @@
       "title": "Five Surfaces — Mobius Federation Topology",
       "category": "00-START-HERE",
       "tags": [],
-      "content_hash": "sha256:26d682e0cad4f457b4bdaae9c85e2c4380920350a7c8a9bfadab013ee5426b2a",
+      "content_hash": "sha256:256e53f74eb09ee5db937322e08ecd4766270f5c18b200db3305963c76f9ee75",
       "summary": ""
     },
     {
@@ -8589,6 +8589,14 @@
       "category": "epicon",
       "tags": [],
       "content_hash": "sha256:12a86998f35e2a1d3006797fccf3058befbd692f054346370f5e98a31e4a947d",
+      "summary": ""
+    },
+    {
+      "path": "docs/epicon/cycles/C-437/EPICON_C-437_CORE_root-discovery-bridge_v1.md",
+      "title": "C-437: Root Discovery Bridge — apex robots/sitemap/llms.txt + Cycle 0 proxy",
+      "category": "epicon",
+      "tags": [],
+      "content_hash": "sha256:a67f74afce49b765d3ef69e0d5dcf9d55a6817c4057d1236e83c6a28f2895922",
       "summary": ""
     },
     {
