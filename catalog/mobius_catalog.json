@@ -1,11 +1,11 @@
 {
   "mobius_catalog_version": "1.0.0",
-  "generated_at": "2026-09-18T07:27:31.872Z",
+  "generated_at": "2026-09-18T07:29:33.849Z",
   "repo": {
     "name": "Mobius-Substrate",
     "url": "https://github.com/kaizencycle/Mobius-Substrate",
     "default_branch": "main",
-    "commit": "35711ea67a46c603328e22d8abf19130a114ab4b"
+    "commit": "2e3bfb31d2b1501b5b13a14ee2e83c4f892704ed"
   },
   "stats": {
     "epiconCount": 0,
@@ -8596,7 +8596,7 @@
       "title": "C-437: Root Discovery Bridge — apex robots/sitemap/llms.txt + Cycle 0 proxy",
       "category": "epicon",
       "tags": [],
-      "content_hash": "sha256:a67f74afce49b765d3ef69e0d5dcf9d55a6817c4057d1236e83c6a28f2895922",
+      "content_hash": "sha256:5c2d060f128851acff7e49641a8ba1e6579f14629907df93f3bf261abb66c266",
       "summary": ""
     },
     {

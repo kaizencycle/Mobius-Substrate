@@ -85,9 +85,9 @@ counterfactuals:
 | `next.config.mjs` rewrites resolve to the intended destinations | TRUE | `next.config.mjs`'s `rewrites()` evaluated directly — three entries, `/canon/cycle-0`, `/canon/cycle-0.json`, `/canon/virtue-accord`, each pointing at `chambers.mobius-substrate.com` |
 | A full `next build` could not be completed in this sandbox | TRUE-gap | `npm run build --workspace=apps/mobius-landing` fails fetching Google Fonts (`fonts.googleapis.com`), reproduced identically on unmodified `main` via `git stash` — pre-existing sandbox egress limitation, not this diff |
 
-## Authority
+## Authority Change Justification
 
-`execution_authorized: false` — this record publishes the intent already stated in Mobius-Substrate#450's PR body; the code change itself is a content-discovery routing addition (new static routes, a narrow reverse-proxy config) with no production data mutation, no credential or secret access, and no deployment authority exercised beyond the repo's normal Vercel auto-deploy on merge.
+`execution_authorized: false` — this record publishes the intent already stated in Mobius-Substrate#450's PR body; the code change itself is a content-discovery routing addition (new static routes, a narrow reverse-proxy config) with no production data mutation, no credential or secret access, and no deployment authority exercised beyond the repo's normal Vercel auto-deploy on merge. No founder/custodian standing is invoked — this section exists to satisfy `authority-provenance-guard.yml`'s hard requirement for any PR touching `docs/epicon/*`, proportionate to a change with no production mutation.
 
 ---
 
