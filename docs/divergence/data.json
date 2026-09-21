@@ -1,11 +1,11 @@
 {
   "repo": "kaizencycle/Mobius-Substrate",
-  "generated_at": "2026-09-21T12:40:56Z",
+  "generated_at": "2026-09-21T21:56:02Z",
   "open_pr_count": 7,
   "by_severity": {
-    "high": 1,
+    "high": 2,
     "medium": 0,
-    "low": 2,
+    "low": 1,
     "unknown": 4
   },
   "emergency_count": 0,
@@ -31,11 +31,28 @@
       }
     },
     {
+      "pr": 451,
+      "title": "chore(deps): bump the npm-minor-patch group across 1 directory with 22 updates",
+      "url": "https://github.com/kaizencycle/Mobius-Substrate/pull/451",
+      "author": "dependabot[bot]",
+      "updated_at": "2026-09-21T15:53:40Z",
+      "created_at": "2026-09-21T15:51:43Z",
+      "labels": [],
+      "mode": "normal",
+      "has_debt": false,
+      "severity": "high",
+      "justification_hash": "",
+      "checks": {
+        "epicon": "unknown",
+        "merge_gate": "unknown"
+      }
+    },
+    {
       "pr": 408,
       "title": "chore(deps): bump the actions group across 1 directory with 3 updates",
       "url": "https://github.com/kaizencycle/Mobius-Substrate/pull/408",
       "author": "dependabot[bot]",
-      "updated_at": "2026-09-15T15:20:56Z",
+      "updated_at": "2026-09-21T15:45:11Z",
       "created_at": "2026-07-20T15:38:34Z",
       "labels": [
         "scope:ci"
@@ -44,27 +61,6 @@
       "has_debt": false,
       "severity": "low",
       "justification_hash": "5e8601b40871b715b9b896bab975eaa028280090aaa22c9acc52758683bf1dc1",
-      "checks": {
-        "epicon": "unknown",
-        "merge_gate": "unknown"
-      }
-    },
-    {
-      "pr": 447,
-      "title": "chore(deps): bump the npm-minor-patch group across 1 directory with 21 updates",
-      "url": "https://github.com/kaizencycle/Mobius-Substrate/pull/447",
-      "author": "dependabot[bot]",
-      "updated_at": "2026-09-15T15:20:29Z",
-      "created_at": "2026-09-07T16:07:48Z",
-      "labels": [
-        "scope:core",
-        "scope:labs",
-        "scope:sentinels"
-      ],
-      "mode": "normal",
-      "has_debt": false,
-      "severity": "low",
-      "justification_hash": "d0b2d1370be65763c1209aa9b65f514f741ded726afba45136a046d9ab21bfb6",
       "checks": {
         "epicon": "unknown",
         "merge_gate": "unknown"
