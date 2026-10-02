@@ -1,6 +1,6 @@
 {
   "schema": "MNS_AGGREGATE_V1",
-  "updated_at": "2026-10-01T20:40:47.709Z",
+  "updated_at": "2026-10-02T00:20:19.258Z",
   "node_count": 5,
   "live_nodes": 3,
   "total_entries": 50,
@@ -10,7 +10,7 @@
       "tier": "sentinel",
       "node_type": "substrate",
       "entry_count": 0,
-      "fetched_at": "2026-10-01T20:40:47.709Z",
+      "fetched_at": "2026-10-02T00:20:18.121Z",
       "error": null
     },
     {
@@ -18,7 +18,7 @@
       "tier": "contributor",
       "node_type": "app",
       "entry_count": 0,
-      "fetched_at": "2026-10-01T20:40:47.701Z",
+      "fetched_at": "2026-10-02T00:20:19.257Z",
       "error": null
     },
     {
@@ -26,7 +26,7 @@
       "tier": "contributor",
       "node_type": "service",
       "entry_count": 50,
-      "fetched_at": "2026-10-01T20:40:47.670Z",
+      "fetched_at": "2026-10-02T00:20:18.203Z",
       "error": null
     },
     {
@@ -47,6 +47,29 @@
     }
   ],
   "entries": [
+    {
+      "id": "EPICON-MCP-ac00c813",
+      "node_id": "civic-protocol-core",
+      "tier": "contributor",
+      "timestamp": "2026-10-01T22:57:21.702812+00:00",
+      "title": "MCP tool call: get_integrity_snapshot",
+      "sha": "",
+      "source": "mcp-bridge",
+      "agentOrigin": "HERMES",
+      "args": {},
+      "cycleId": "C-unknown",
+      "integrityDelta": 0,
+      "status": "committed",
+      "tags": [
+        "mcp",
+        "tool:get_integrity_snapshot",
+        "gi:unknown",
+        "result:ok"
+      ],
+      "type": "mcp-invocation",
+      "_mesh_node": "civic-protocol-core",
+      "_mesh_tier": "contributor"
+    },
     {
       "id": "EPICON-CPC-122267034c7a5c34651fa06135091b57c20a1b6b",
       "node_id": "civic-protocol-core",
@@ -827,22 +850,6 @@
       "idempotency_key": "civic-protocol-core:EPICON_ENTRY_V1:C-—:8d546ee9a8137a70:mesh-sync",
       "schema": "EPICON_ENTRY_V1",
       "source_hash": "8d546ee9a8137a70d6f8893a242b78852d4a8d8ec92fa271ae99f1eecb187f2f",
-      "type": "mesh-commit",
-      "_mesh_node": "civic-protocol-core",
-      "_mesh_tier": "contributor"
-    },
-    {
-      "id": "EPICON-CPC-c1996d381ddc38706b334d552caba2608754636e",
-      "node_id": "civic-protocol-core",
-      "tier": "contributor",
-      "timestamp": "2026-04-26T21:15:32-04:00",
-      "title": "Merge pull request #26 from kaizencycle/c293-phase8-canon-ledger-savepoint\n\nSave Phase 8 canon alignment to civic ledger",
-      "sha": "c1996d381ddc38706b334d552caba2608754636e",
-      "source": "mesh-node",
-      "author": "Michael Judan",
-      "idempotency_key": "civic-protocol-core:EPICON_ENTRY_V1:C-—:657e87e28df480c3:mesh-sync",
-      "schema": "EPICON_ENTRY_V1",
-      "source_hash": "657e87e28df480c35130a765e7add075774613e4d47fbccd96e2ef5545de9a24",
       "type": "mesh-commit",
       "_mesh_node": "civic-protocol-core",
       "_mesh_tier": "contributor"
