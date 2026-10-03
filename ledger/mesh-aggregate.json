@@ -1,6 +1,6 @@
 {
   "schema": "MNS_AGGREGATE_V1",
-  "updated_at": "2026-10-02T22:41:17.252Z",
+  "updated_at": "2026-10-03T01:33:47.247Z",
   "node_count": 5,
   "live_nodes": 3,
   "total_entries": 50,
@@ -10,7 +10,7 @@
       "tier": "sentinel",
       "node_type": "substrate",
       "entry_count": 0,
-      "fetched_at": "2026-10-02T22:41:16.194Z",
+      "fetched_at": "2026-10-03T01:33:45.322Z",
       "error": null
     },
     {
@@ -18,7 +18,7 @@
       "tier": "contributor",
       "node_type": "app",
       "entry_count": 0,
-      "fetched_at": "2026-10-02T22:41:17.251Z",
+      "fetched_at": "2026-10-03T01:33:47.247Z",
       "error": null
     },
     {
@@ -26,7 +26,7 @@
       "tier": "contributor",
       "node_type": "service",
       "entry_count": 50,
-      "fetched_at": "2026-10-02T22:41:16.196Z",
+      "fetched_at": "2026-10-03T01:33:45.325Z",
       "error": null
     },
     {
@@ -47,6 +47,29 @@
     }
   ],
   "entries": [
+    {
+      "id": "EPICON-MCP-072ec00e",
+      "node_id": "civic-protocol-core",
+      "tier": "contributor",
+      "timestamp": "2026-10-03T00:44:10.187186+00:00",
+      "title": "MCP tool call: get_integrity_snapshot",
+      "sha": "",
+      "source": "mcp-bridge",
+      "agentOrigin": "HERMES",
+      "args": {},
+      "cycleId": "C-unknown",
+      "integrityDelta": 0,
+      "status": "committed",
+      "tags": [
+        "mcp",
+        "tool:get_integrity_snapshot",
+        "gi:unknown",
+        "result:ok"
+      ],
+      "type": "mcp-invocation",
+      "_mesh_node": "civic-protocol-core",
+      "_mesh_tier": "contributor"
+    },
     {
       "id": "EPICON-MCP-ac00c813",
       "node_id": "civic-protocol-core",
@@ -834,22 +857,6 @@
       "idempotency_key": "civic-protocol-core:EPICON_ENTRY_V1:C-—:853de61ea828b61b:mesh-sync",
       "schema": "EPICON_ENTRY_V1",
       "source_hash": "853de61ea828b61bf5ede7e1e38dd74945a4e998ca4ef78146228f71debd938b",
-      "type": "mesh-commit",
-      "_mesh_node": "civic-protocol-core",
-      "_mesh_tier": "contributor"
-    },
-    {
-      "id": "EPICON-CPC-3374562b6af81c7f6abb949402e7bc7ea4e607c9",
-      "node_id": "civic-protocol-core",
-      "tier": "contributor",
-      "timestamp": "2026-05-07T10:38:24-04:00",
-      "title": "Merge pull request #27 from kaizencycle/codex/fix-cors-wildcard-in-mic-indexer\n\nfix(ci+security+deps): C-303 — Civic-Protocol-Core CI, pin deps, CORS fix",
-      "sha": "3374562b6af81c7f6abb949402e7bc7ea4e607c9",
-      "source": "mesh-node",
-      "author": "Michael Judan",
-      "idempotency_key": "civic-protocol-core:EPICON_ENTRY_V1:C-—:8d546ee9a8137a70:mesh-sync",
-      "schema": "EPICON_ENTRY_V1",
-      "source_hash": "8d546ee9a8137a70d6f8893a242b78852d4a8d8ec92fa271ae99f1eecb187f2f",
       "type": "mesh-commit",
       "_mesh_node": "civic-protocol-core",
       "_mesh_tier": "contributor"
