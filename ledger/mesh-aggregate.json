@@ -1,6 +1,6 @@
 {
   "schema": "MNS_AGGREGATE_V1",
-  "updated_at": "2026-10-07T01:07:57.254Z",
+  "updated_at": "2026-10-07T07:55:09.123Z",
   "node_count": 5,
   "live_nodes": 3,
   "total_entries": 50,
@@ -10,7 +10,7 @@
       "tier": "sentinel",
       "node_type": "substrate",
       "entry_count": 0,
-      "fetched_at": "2026-10-07T01:07:55.518Z",
+      "fetched_at": "2026-10-07T07:55:07.396Z",
       "error": null
     },
     {
@@ -18,7 +18,7 @@
       "tier": "contributor",
       "node_type": "app",
       "entry_count": 0,
-      "fetched_at": "2026-10-07T01:07:57.253Z",
+      "fetched_at": "2026-10-07T07:55:09.123Z",
       "error": null
     },
     {
@@ -26,7 +26,7 @@
       "tier": "contributor",
       "node_type": "service",
       "entry_count": 50,
-      "fetched_at": "2026-10-07T01:07:55.519Z",
+      "fetched_at": "2026-10-07T07:55:07.381Z",
       "error": null
     },
     {
@@ -47,6 +47,29 @@
     }
   ],
   "entries": [
+    {
+      "id": "EPICON-MCP-0ca05fc2",
+      "node_id": "civic-protocol-core",
+      "tier": "contributor",
+      "timestamp": "2026-10-07T05:18:18.176519+00:00",
+      "title": "MCP tool call: get_integrity_snapshot",
+      "sha": "",
+      "source": "mcp-bridge",
+      "agentOrigin": "HERMES",
+      "args": {},
+      "cycleId": "C-unknown",
+      "integrityDelta": 0,
+      "status": "committed",
+      "tags": [
+        "mcp",
+        "tool:get_integrity_snapshot",
+        "gi:unknown",
+        "result:ok"
+      ],
+      "type": "mcp-invocation",
+      "_mesh_node": "civic-protocol-core",
+      "_mesh_tier": "contributor"
+    },
     {
       "id": "EPICON-MCP-2976f2c4",
       "node_id": "civic-protocol-core",
@@ -862,22 +885,6 @@
       "idempotency_key": "civic-protocol-core:EPICON_ENTRY_V1:C-—:b9c4c1329776129e:mesh-sync",
       "schema": "EPICON_ENTRY_V1",
       "source_hash": "b9c4c1329776129e12eb7526f6e2686c280c60570aa91ae4638b20fcfbfe2a70",
-      "type": "mesh-commit",
-      "_mesh_node": "civic-protocol-core",
-      "_mesh_tier": "contributor"
-    },
-    {
-      "id": "EPICON-CPC-33f3202314e2c33290f9ecac71379649911a9c8a",
-      "node_id": "civic-protocol-core",
-      "tier": "contributor",
-      "timestamp": "2026-06-02T10:21:26-04:00",
-      "title": "Merge pull request #31 from kaizencycle/cursor/cpc-identity-api-base-hardening-b3f4\n\nfix: honest 400 message + startup warning when IDENTITY_API_BASE unset",
-      "sha": "33f3202314e2c33290f9ecac71379649911a9c8a",
-      "source": "mesh-node",
-      "author": "Michael Judan",
-      "idempotency_key": "civic-protocol-core:EPICON_ENTRY_V1:C-—:e381047740e13bf9:mesh-sync",
-      "schema": "EPICON_ENTRY_V1",
-      "source_hash": "e381047740e13bf9b8d8ee9bd8d2c70873b364e3d3ba5c12b7dce4f5edc90aff",
       "type": "mesh-commit",
       "_mesh_node": "civic-protocol-core",
       "_mesh_tier": "contributor"
