@@ -1,6 +1,6 @@
 {
   "schema": "MNS_AGGREGATE_V1",
-  "updated_at": "2026-10-08T00:34:27.686Z",
+  "updated_at": "2026-10-08T06:49:26.092Z",
   "node_count": 5,
   "live_nodes": 3,
   "total_entries": 50,
@@ -10,7 +10,7 @@
       "tier": "sentinel",
       "node_type": "substrate",
       "entry_count": 0,
-      "fetched_at": "2026-10-08T00:34:25.821Z",
+      "fetched_at": "2026-10-08T06:49:24.126Z",
       "error": null
     },
     {
@@ -18,7 +18,7 @@
       "tier": "contributor",
       "node_type": "app",
       "entry_count": 0,
-      "fetched_at": "2026-10-08T00:34:27.685Z",
+      "fetched_at": "2026-10-08T06:49:26.091Z",
       "error": null
     },
     {
@@ -26,7 +26,7 @@
       "tier": "contributor",
       "node_type": "service",
       "entry_count": 50,
-      "fetched_at": "2026-10-08T00:34:26.032Z",
+      "fetched_at": "2026-10-08T06:49:24.128Z",
       "error": null
     },
     {
@@ -47,6 +47,29 @@
     }
   ],
   "entries": [
+    {
+      "id": "EPICON-MCP-aeb3ae45",
+      "node_id": "civic-protocol-core",
+      "tier": "contributor",
+      "timestamp": "2026-10-08T06:09:41.749310+00:00",
+      "title": "MCP tool call: get_integrity_snapshot",
+      "sha": "",
+      "source": "mcp-bridge",
+      "agentOrigin": "HERMES",
+      "args": {},
+      "cycleId": "C-unknown",
+      "integrityDelta": 0,
+      "status": "committed",
+      "tags": [
+        "mcp",
+        "tool:get_integrity_snapshot",
+        "gi:unknown",
+        "result:ok"
+      ],
+      "type": "mcp-invocation",
+      "_mesh_node": "civic-protocol-core",
+      "_mesh_tier": "contributor"
+    },
     {
       "id": "EPICON-MCP-0ca05fc2",
       "node_id": "civic-protocol-core",
@@ -869,22 +892,6 @@
       "idempotency_key": "civic-protocol-core:EPICON_ENTRY_V1:C-—:4710ec38f1d48600:mesh-sync",
       "schema": "EPICON_ENTRY_V1",
       "source_hash": "4710ec38f1d48600adb14d3047defb11d96c567abd6bc0bd7ad3b9f475388d61",
-      "type": "mesh-commit",
-      "_mesh_node": "civic-protocol-core",
-      "_mesh_tier": "contributor"
-    },
-    {
-      "id": "EPICON-CPC-ec6fdadf201bf7c5ccc991256bce866e13018998",
-      "node_id": "civic-protocol-core",
-      "tier": "contributor",
-      "timestamp": "2026-06-02T10:34:14-04:00",
-      "title": "Merge pull request #32 from kaizencycle/cursor/c331-ledger-persistence-b3f4\n\nfix(ledger): C-331 persist core ledger on Render disk + fail-fast guard",
-      "sha": "ec6fdadf201bf7c5ccc991256bce866e13018998",
-      "source": "mesh-node",
-      "author": "Michael Judan",
-      "idempotency_key": "civic-protocol-core:EPICON_ENTRY_V1:C-—:b9c4c1329776129e:mesh-sync",
-      "schema": "EPICON_ENTRY_V1",
-      "source_hash": "b9c4c1329776129e12eb7526f6e2686c280c60570aa91ae4638b20fcfbfe2a70",
       "type": "mesh-commit",
       "_mesh_node": "civic-protocol-core",
       "_mesh_tier": "contributor"
