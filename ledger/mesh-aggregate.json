@@ -1,6 +1,6 @@
 {
   "schema": "MNS_AGGREGATE_V1",
-  "updated_at": "2026-10-11T04:05:24.515Z",
+  "updated_at": "2026-10-11T11:05:32.990Z",
   "node_count": 5,
   "live_nodes": 3,
   "total_entries": 50,
@@ -10,7 +10,7 @@
       "tier": "sentinel",
       "node_type": "substrate",
       "entry_count": 0,
-      "fetched_at": "2026-10-11T04:05:22.368Z",
+      "fetched_at": "2026-10-11T11:05:31.023Z",
       "error": null
     },
     {
@@ -18,7 +18,7 @@
       "tier": "contributor",
       "node_type": "app",
       "entry_count": 0,
-      "fetched_at": "2026-10-11T04:05:24.514Z",
+      "fetched_at": "2026-10-11T11:05:32.990Z",
       "error": null
     },
     {
@@ -26,7 +26,7 @@
       "tier": "contributor",
       "node_type": "service",
       "entry_count": 50,
-      "fetched_at": "2026-10-11T04:05:22.476Z",
+      "fetched_at": "2026-10-11T11:05:31.026Z",
       "error": null
     },
     {
@@ -47,6 +47,29 @@
     }
   ],
   "entries": [
+    {
+      "id": "EPICON-MCP-74090e7d",
+      "node_id": "civic-protocol-core",
+      "tier": "contributor",
+      "timestamp": "2026-10-11T10:04:18.251505+00:00",
+      "title": "MCP tool call: get_integrity_snapshot",
+      "sha": "",
+      "source": "mcp-bridge",
+      "agentOrigin": "HERMES",
+      "args": {},
+      "cycleId": "C-unknown",
+      "integrityDelta": 0,
+      "status": "committed",
+      "tags": [
+        "mcp",
+        "tool:get_integrity_snapshot",
+        "gi:unknown",
+        "result:ok"
+      ],
+      "type": "mcp-invocation",
+      "_mesh_node": "civic-protocol-core",
+      "_mesh_tier": "contributor"
+    },
     {
       "id": "EPICON-MCP-94887a4b",
       "node_id": "civic-protocol-core",
@@ -890,22 +913,6 @@
       "idempotency_key": "civic-protocol-core:EPICON_ENTRY_V1:C-—:c03558bd0a774807:mesh-sync",
       "schema": "EPICON_ENTRY_V1",
       "source_hash": "c03558bd0a7748074d9dfc34806b9d7278417eb8dad43ab2a82fc15bec010e8c",
-      "type": "mesh-commit",
-      "_mesh_node": "civic-protocol-core",
-      "_mesh_tier": "contributor"
-    },
-    {
-      "id": "EPICON-CPC-b27b780e6a899cbecc28238d6cf23ac0b3e2bafb",
-      "node_id": "civic-protocol-core",
-      "tier": "contributor",
-      "timestamp": "2026-06-04T19:42:09-04:00",
-      "title": "Merge pull request #35 from kaizencycle/cursor/c332-ecosystem-optimizations-b3f4\n\nC-332: CPC slice — shell=False dev launcher + devnode CORS allowlist",
-      "sha": "b27b780e6a899cbecc28238d6cf23ac0b3e2bafb",
-      "source": "mesh-node",
-      "author": "Michael Judan",
-      "idempotency_key": "civic-protocol-core:EPICON_ENTRY_V1:C-—:3cc229189e904c20:mesh-sync",
-      "schema": "EPICON_ENTRY_V1",
-      "source_hash": "3cc229189e904c200fc5c392d9d3cf1d7c31262d5b4bb4049369aa54c75dfb5b",
       "type": "mesh-commit",
       "_mesh_node": "civic-protocol-core",
       "_mesh_tier": "contributor"
