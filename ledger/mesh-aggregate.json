@@ -1,6 +1,6 @@
 {
   "schema": "MNS_AGGREGATE_V1",
-  "updated_at": "2026-10-13T04:33:33.192Z",
+  "updated_at": "2026-10-13T12:19:56.890Z",
   "node_count": 5,
   "live_nodes": 3,
   "total_entries": 50,
@@ -10,7 +10,7 @@
       "tier": "sentinel",
       "node_type": "substrate",
       "entry_count": 0,
-      "fetched_at": "2026-10-13T04:33:31.867Z",
+      "fetched_at": "2026-10-13T12:19:54.828Z",
       "error": null
     },
     {
@@ -18,7 +18,7 @@
       "tier": "contributor",
       "node_type": "app",
       "entry_count": 0,
-      "fetched_at": "2026-10-13T04:33:33.192Z",
+      "fetched_at": "2026-10-13T12:19:56.890Z",
       "error": null
     },
     {
@@ -26,7 +26,7 @@
       "tier": "contributor",
       "node_type": "service",
       "entry_count": 50,
-      "fetched_at": "2026-10-13T04:33:31.876Z",
+      "fetched_at": "2026-10-13T12:19:54.947Z",
       "error": null
     },
     {
@@ -47,6 +47,29 @@
     }
   ],
   "entries": [
+    {
+      "id": "EPICON-MCP-7c44de9e",
+      "node_id": "civic-protocol-core",
+      "tier": "contributor",
+      "timestamp": "2026-10-13T10:48:48.484551+00:00",
+      "title": "MCP tool call: get_integrity_snapshot",
+      "sha": "",
+      "source": "mcp-bridge",
+      "agentOrigin": "HERMES",
+      "args": {},
+      "cycleId": "C-unknown",
+      "integrityDelta": 0,
+      "status": "committed",
+      "tags": [
+        "mcp",
+        "tool:get_integrity_snapshot",
+        "gi:unknown",
+        "result:ok"
+      ],
+      "type": "mcp-invocation",
+      "_mesh_node": "civic-protocol-core",
+      "_mesh_tier": "contributor"
+    },
     {
       "id": "EPICON-MCP-bfe01b29",
       "node_id": "civic-protocol-core",
@@ -904,22 +927,6 @@
       "idempotency_key": "civic-protocol-core:EPICON_ENTRY_V1:C-—:2c7360cc90f4c4e9:mesh-sync",
       "schema": "EPICON_ENTRY_V1",
       "source_hash": "2c7360cc90f4c4e9f9e1c960c3030915f1a33ed57f2dc69319a4d61520976077",
-      "type": "mesh-commit",
-      "_mesh_node": "civic-protocol-core",
-      "_mesh_tier": "contributor"
-    },
-    {
-      "id": "EPICON-CPC-b613b05a7e947f6a3c49fbe68a4a9a5cefa88439",
-      "node_id": "civic-protocol-core",
-      "tier": "contributor",
-      "timestamp": "2026-06-04T21:03:23-04:00",
-      "title": "Merge pull request #37 from kaizencycle/cursor/c332-deploy-drift-alarm-b3f4\n\nCompare OpenAPI METHOD+path operations, not paths alone",
-      "sha": "b613b05a7e947f6a3c49fbe68a4a9a5cefa88439",
-      "source": "mesh-node",
-      "author": "Michael Judan",
-      "idempotency_key": "civic-protocol-core:EPICON_ENTRY_V1:C-—:668de55f4d380efd:mesh-sync",
-      "schema": "EPICON_ENTRY_V1",
-      "source_hash": "668de55f4d380efdec84c60a8fbfb417cffe8ccd495b1cb51be6f512b90a0c8d",
       "type": "mesh-commit",
       "_mesh_node": "civic-protocol-core",
       "_mesh_tier": "contributor"
