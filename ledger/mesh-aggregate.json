@@ -1,6 +1,6 @@
 {
   "schema": "MNS_AGGREGATE_V1",
-  "updated_at": "2026-10-15T12:17:16.595Z",
+  "updated_at": "2026-10-15T17:29:11.414Z",
   "node_count": 5,
   "live_nodes": 3,
   "total_entries": 50,
@@ -10,7 +10,7 @@
       "tier": "sentinel",
       "node_type": "substrate",
       "entry_count": 0,
-      "fetched_at": "2026-10-15T12:17:14.539Z",
+      "fetched_at": "2026-10-15T17:29:09.069Z",
       "error": null
     },
     {
@@ -18,7 +18,7 @@
       "tier": "contributor",
       "node_type": "app",
       "entry_count": 0,
-      "fetched_at": "2026-10-15T12:17:16.595Z",
+      "fetched_at": "2026-10-15T17:29:11.414Z",
       "error": null
     },
     {
@@ -26,7 +26,7 @@
       "tier": "contributor",
       "node_type": "service",
       "entry_count": 50,
-      "fetched_at": "2026-10-15T12:17:14.548Z",
+      "fetched_at": "2026-10-15T17:29:09.129Z",
       "error": null
     },
     {
@@ -47,6 +47,29 @@
     }
   ],
   "entries": [
+    {
+      "id": "EPICON-MCP-995f3ea1",
+      "node_id": "civic-protocol-core",
+      "tier": "contributor",
+      "timestamp": "2026-10-15T13:13:16.243055+00:00",
+      "title": "MCP tool call: get_integrity_snapshot",
+      "sha": "",
+      "source": "mcp-bridge",
+      "agentOrigin": "HERMES",
+      "args": {},
+      "cycleId": "C-unknown",
+      "integrityDelta": 0,
+      "status": "committed",
+      "tags": [
+        "mcp",
+        "tool:get_integrity_snapshot",
+        "gi:unknown",
+        "result:ok"
+      ],
+      "type": "mcp-invocation",
+      "_mesh_node": "civic-protocol-core",
+      "_mesh_tier": "contributor"
+    },
     {
       "id": "EPICON-MCP-c72d9fad",
       "node_id": "civic-protocol-core",
@@ -918,22 +941,6 @@
       "idempotency_key": "civic-protocol-core:EPICON_ENTRY_V1:C-—:45ed592a7ecae18c:mesh-sync",
       "schema": "EPICON_ENTRY_V1",
       "source_hash": "45ed592a7ecae18cf2a4937bfff45008bc73a72e9a6000cae2ddd0618bef646c",
-      "type": "mesh-commit",
-      "_mesh_node": "civic-protocol-core",
-      "_mesh_tier": "contributor"
-    },
-    {
-      "id": "EPICON-CPC-3e557cc1c40e6ed4c49557c6bbbef15428520fc9",
-      "node_id": "civic-protocol-core",
-      "tier": "contributor",
-      "timestamp": "2026-06-04T22:08:11-04:00",
-      "title": "Merge pull request #39 from kaizencycle/cursor/mobius-deploy-drift-routine-b3f4\n\ndocs(ops): Mobius deploy-drift Claude routine wiring",
-      "sha": "3e557cc1c40e6ed4c49557c6bbbef15428520fc9",
-      "source": "mesh-node",
-      "author": "Michael Judan",
-      "idempotency_key": "civic-protocol-core:EPICON_ENTRY_V1:C-—:755d39dcf0413f94:mesh-sync",
-      "schema": "EPICON_ENTRY_V1",
-      "source_hash": "755d39dcf0413f944485407ad2092d42c11c3da0058482c1d0683b5ed4593e79",
       "type": "mesh-commit",
       "_mesh_node": "civic-protocol-core",
       "_mesh_tier": "contributor"
