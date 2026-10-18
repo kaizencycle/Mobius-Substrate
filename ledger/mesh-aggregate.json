@@ -1,6 +1,6 @@
 {
   "schema": "MNS_AGGREGATE_V1",
-  "updated_at": "2026-10-18T16:13:18.222Z",
+  "updated_at": "2026-10-18T19:04:58.672Z",
   "node_count": 5,
   "live_nodes": 3,
   "total_entries": 50,
@@ -10,7 +10,7 @@
       "tier": "sentinel",
       "node_type": "substrate",
       "entry_count": 0,
-      "fetched_at": "2026-10-18T16:13:16.923Z",
+      "fetched_at": "2026-10-18T19:04:57.455Z",
       "error": null
     },
     {
@@ -18,7 +18,7 @@
       "tier": "contributor",
       "node_type": "app",
       "entry_count": 0,
-      "fetched_at": "2026-10-18T16:13:18.222Z",
+      "fetched_at": "2026-10-18T19:04:58.672Z",
       "error": null
     },
     {
@@ -26,7 +26,7 @@
       "tier": "contributor",
       "node_type": "service",
       "entry_count": 50,
-      "fetched_at": "2026-10-18T16:13:16.925Z",
+      "fetched_at": "2026-10-18T19:04:57.547Z",
       "error": null
     },
     {
@@ -47,6 +47,29 @@
     }
   ],
   "entries": [
+    {
+      "id": "EPICON-MCP-e94a010e",
+      "node_id": "civic-protocol-core",
+      "tier": "contributor",
+      "timestamp": "2026-10-18T16:55:23.407592+00:00",
+      "title": "MCP tool call: get_integrity_snapshot",
+      "sha": "",
+      "source": "mcp-bridge",
+      "agentOrigin": "HERMES",
+      "args": {},
+      "cycleId": "C-unknown",
+      "integrityDelta": 0,
+      "status": "committed",
+      "tags": [
+        "mcp",
+        "tool:get_integrity_snapshot",
+        "gi:unknown",
+        "result:ok"
+      ],
+      "type": "mcp-invocation",
+      "_mesh_node": "civic-protocol-core",
+      "_mesh_tier": "contributor"
+    },
     {
       "id": "EPICON-MCP-76c7901a",
       "node_id": "civic-protocol-core",
@@ -939,22 +962,6 @@
       "idempotency_key": "civic-protocol-core:EPICON_ENTRY_V1:C-—:e879f1f14722ccbf:mesh-sync",
       "schema": "EPICON_ENTRY_V1",
       "source_hash": "e879f1f14722ccbf86c90523eca24d0999e023a19a277a0ea71408e7119bbf99",
-      "type": "mesh-commit",
-      "_mesh_node": "civic-protocol-core",
-      "_mesh_tier": "contributor"
-    },
-    {
-      "id": "EPICON-CPC-807c6b679e844383a3396cd1fb696b90e6eb54af",
-      "node_id": "civic-protocol-core",
-      "tier": "contributor",
-      "timestamp": "2026-06-05T10:07:57-04:00",
-      "title": "Merge pull request #50 from kaizencycle/claude/stoic-maxwell-ILf7H\n\nfeat(sentinel): wire auto-fire trigger, shim deploy config, and HTTP tests",
-      "sha": "807c6b679e844383a3396cd1fb696b90e6eb54af",
-      "source": "mesh-node",
-      "author": "Michael Judan",
-      "idempotency_key": "civic-protocol-core:EPICON_ENTRY_V1:C-—:29f09f8ce3bc7555:mesh-sync",
-      "schema": "EPICON_ENTRY_V1",
-      "source_hash": "29f09f8ce3bc7555a368cb9e6d5817384a7e957a55b39c338e25189e63fa5a3e",
       "type": "mesh-commit",
       "_mesh_node": "civic-protocol-core",
       "_mesh_tier": "contributor"
