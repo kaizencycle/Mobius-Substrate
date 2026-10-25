@@ -1,6 +1,6 @@
 {
   "schema": "MNS_AGGREGATE_V1",
-  "updated_at": "2026-10-25T00:40:46.813Z",
+  "updated_at": "2026-10-25T05:30:15.869Z",
   "node_count": 5,
   "live_nodes": 3,
   "total_entries": 50,
@@ -10,7 +10,7 @@
       "tier": "sentinel",
       "node_type": "substrate",
       "entry_count": 0,
-      "fetched_at": "2026-10-25T00:40:44.641Z",
+      "fetched_at": "2026-10-25T05:30:13.449Z",
       "error": null
     },
     {
@@ -18,7 +18,7 @@
       "tier": "contributor",
       "node_type": "app",
       "entry_count": 0,
-      "fetched_at": "2026-10-25T00:40:46.813Z",
+      "fetched_at": "2026-10-25T05:30:15.869Z",
       "error": null
     },
     {
@@ -26,7 +26,7 @@
       "tier": "contributor",
       "node_type": "service",
       "entry_count": 50,
-      "fetched_at": "2026-10-25T00:40:44.753Z",
+      "fetched_at": "2026-10-25T05:30:14.323Z",
       "error": null
     },
     {
@@ -47,6 +47,75 @@
     }
   ],
   "entries": [
+    {
+      "id": "EPICON-MCP-b64ee164",
+      "node_id": "civic-protocol-core",
+      "tier": "contributor",
+      "timestamp": "2026-10-25T01:37:32.670250+00:00",
+      "title": "MCP tool call: get_reserve_block_index",
+      "sha": "",
+      "source": "mcp-bridge",
+      "agentOrigin": "HERMES",
+      "args": {},
+      "cycleId": "C-unknown",
+      "integrityDelta": 0,
+      "status": "committed",
+      "tags": [
+        "mcp",
+        "tool:get_reserve_block_index",
+        "gi:unknown",
+        "result:ok"
+      ],
+      "type": "mcp-invocation",
+      "_mesh_node": "civic-protocol-core",
+      "_mesh_tier": "contributor"
+    },
+    {
+      "id": "EPICON-MCP-0c61a279",
+      "node_id": "civic-protocol-core",
+      "tier": "contributor",
+      "timestamp": "2026-10-25T01:37:32.548947+00:00",
+      "title": "MCP tool call: get_mic_readiness",
+      "sha": "",
+      "source": "mcp-bridge",
+      "agentOrigin": "HERMES",
+      "args": {},
+      "cycleId": "C-unknown",
+      "integrityDelta": 0,
+      "status": "committed",
+      "tags": [
+        "mcp",
+        "tool:get_mic_readiness",
+        "gi:unknown",
+        "result:error"
+      ],
+      "type": "mcp-invocation",
+      "_mesh_node": "civic-protocol-core",
+      "_mesh_tier": "contributor"
+    },
+    {
+      "id": "EPICON-MCP-46d86ae3",
+      "node_id": "civic-protocol-core",
+      "tier": "contributor",
+      "timestamp": "2026-10-25T01:37:32.422859+00:00",
+      "title": "MCP tool call: get_integrity_snapshot",
+      "sha": "",
+      "source": "mcp-bridge",
+      "agentOrigin": "HERMES",
+      "args": {},
+      "cycleId": "C-unknown",
+      "integrityDelta": 0,
+      "status": "committed",
+      "tags": [
+        "mcp",
+        "tool:get_integrity_snapshot",
+        "gi:unknown",
+        "result:ok"
+      ],
+      "type": "mcp-invocation",
+      "_mesh_node": "civic-protocol-core",
+      "_mesh_tier": "contributor"
+    },
     {
       "id": "EPICON-MCP-c565e3e7",
       "node_id": "civic-protocol-core",
@@ -949,54 +1018,6 @@
       "idempotency_key": "civic-protocol-core:EPICON_ENTRY_V1:C-—:46fa37ec563f73f6:mesh-sync",
       "schema": "EPICON_ENTRY_V1",
       "source_hash": "46fa37ec563f73f667984a97a52b1cc460365325c02356845a769d392bcb881b",
-      "type": "mesh-commit",
-      "_mesh_node": "civic-protocol-core",
-      "_mesh_tier": "contributor"
-    },
-    {
-      "id": "EPICON-CPC-56da9416754c6188010e3597d813c0c0ed7c4df5",
-      "node_id": "civic-protocol-core",
-      "tier": "contributor",
-      "timestamp": "2026-06-09T20:35:41-04:00",
-      "title": "Merge pull request #78 from kaizencycle/claude/nifty-thompson-c86mjg\n\nfix(ci): deploy-drift-alarm startup failure — secrets context invalid in step if",
-      "sha": "56da9416754c6188010e3597d813c0c0ed7c4df5",
-      "source": "mesh-node",
-      "author": "Michael Judan",
-      "idempotency_key": "civic-protocol-core:EPICON_ENTRY_V1:C-—:5411c432b4dadd13:mesh-sync",
-      "schema": "EPICON_ENTRY_V1",
-      "source_hash": "5411c432b4dadd130c8c781b15dacba80c9c875690ba9a44b25b66426e1694f8",
-      "type": "mesh-commit",
-      "_mesh_node": "civic-protocol-core",
-      "_mesh_tier": "contributor"
-    },
-    {
-      "id": "EPICON-CPC-5f137c94e76026b34d5d2aeac2d6c35542f0db4f",
-      "node_id": "civic-protocol-core",
-      "tier": "contributor",
-      "timestamp": "2026-06-09T19:54:23-04:00",
-      "title": "Merge pull request #77 from kaizencycle/claude/nifty-thompson-c86mjg\n\ndocs(sentinel): harden routine prompt — BLOCKED never files, dedupe guard, fixed labels",
-      "sha": "5f137c94e76026b34d5d2aeac2d6c35542f0db4f",
-      "source": "mesh-node",
-      "author": "Michael Judan",
-      "idempotency_key": "civic-protocol-core:EPICON_ENTRY_V1:C-—:7eac26c56b7ca1c5:mesh-sync",
-      "schema": "EPICON_ENTRY_V1",
-      "source_hash": "7eac26c56b7ca1c54031c6be395f8f709f616380d91247c1f1e9837e999e7925",
-      "type": "mesh-commit",
-      "_mesh_node": "civic-protocol-core",
-      "_mesh_tier": "contributor"
-    },
-    {
-      "id": "EPICON-CPC-51c2b0ae2bf308902514137ec6527895025acc4c",
-      "node_id": "civic-protocol-core",
-      "tier": "contributor",
-      "timestamp": "2026-06-09T19:29:22-04:00",
-      "title": "Merge pull request #76 from kaizencycle/claude/stoic-maxwell-i7fo25\n\ndocs: update Mobius sentinel routine prompt to simplified 4-step format",
-      "sha": "51c2b0ae2bf308902514137ec6527895025acc4c",
-      "source": "mesh-node",
-      "author": "Michael Judan",
-      "idempotency_key": "civic-protocol-core:EPICON_ENTRY_V1:C-—:3c00b84e1771f802:mesh-sync",
-      "schema": "EPICON_ENTRY_V1",
-      "source_hash": "3c00b84e1771f8023e543e28602d64da534495281b1d4b07a911c3bc09e0a1cf",
       "type": "mesh-commit",
       "_mesh_node": "civic-protocol-core",
       "_mesh_tier": "contributor"
