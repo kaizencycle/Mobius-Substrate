@@ -1,6 +1,6 @@
 {
   "schema": "MNS_AGGREGATE_V1",
-  "updated_at": "2026-10-27T01:43:05.610Z",
+  "updated_at": "2026-10-27T07:02:13.323Z",
   "node_count": 5,
   "live_nodes": 3,
   "total_entries": 50,
@@ -10,7 +10,7 @@
       "tier": "sentinel",
       "node_type": "substrate",
       "entry_count": 0,
-      "fetched_at": "2026-10-27T01:43:03.209Z",
+      "fetched_at": "2026-10-27T07:02:11.138Z",
       "error": null
     },
     {
@@ -18,7 +18,7 @@
       "tier": "contributor",
       "node_type": "app",
       "entry_count": 0,
-      "fetched_at": "2026-10-27T01:43:05.609Z",
+      "fetched_at": "2026-10-27T07:02:13.322Z",
       "error": null
     },
     {
@@ -26,7 +26,7 @@
       "tier": "contributor",
       "node_type": "service",
       "entry_count": 50,
-      "fetched_at": "2026-10-27T01:43:03.292Z",
+      "fetched_at": "2026-10-27T07:02:11.149Z",
       "error": null
     },
     {
@@ -47,6 +47,77 @@
     }
   ],
   "entries": [
+    {
+      "id": "EPICON-MCP-8c171908",
+      "node_id": "civic-protocol-core",
+      "tier": "contributor",
+      "timestamp": "2026-10-27T04:01:05.882376+00:00",
+      "title": "MCP tool call: get_mic_readiness",
+      "sha": "",
+      "source": "mcp-bridge",
+      "agentOrigin": "HERMES",
+      "args": {},
+      "cycleId": "C-unknown",
+      "integrityDelta": 0,
+      "status": "committed",
+      "tags": [
+        "mcp",
+        "tool:get_mic_readiness",
+        "gi:unknown",
+        "result:error"
+      ],
+      "type": "mcp-invocation",
+      "_mesh_node": "civic-protocol-core",
+      "_mesh_tier": "contributor"
+    },
+    {
+      "id": "EPICON-MCP-ccbee14f",
+      "node_id": "civic-protocol-core",
+      "tier": "contributor",
+      "timestamp": "2026-10-27T04:01:05.761997+00:00",
+      "title": "MCP tool call: get_epicon_feed",
+      "sha": "",
+      "source": "mcp-bridge",
+      "agentOrigin": "HERMES",
+      "args": {
+        "limit": 10
+      },
+      "cycleId": "C-unknown",
+      "integrityDelta": 0,
+      "status": "committed",
+      "tags": [
+        "mcp",
+        "tool:get_epicon_feed",
+        "gi:unknown",
+        "result:ok"
+      ],
+      "type": "mcp-invocation",
+      "_mesh_node": "civic-protocol-core",
+      "_mesh_tier": "contributor"
+    },
+    {
+      "id": "EPICON-MCP-1ac97311",
+      "node_id": "civic-protocol-core",
+      "tier": "contributor",
+      "timestamp": "2026-10-27T04:01:05.603916+00:00",
+      "title": "MCP tool call: get_integrity_snapshot",
+      "sha": "",
+      "source": "mcp-bridge",
+      "agentOrigin": "HERMES",
+      "args": {},
+      "cycleId": "C-unknown",
+      "integrityDelta": 0,
+      "status": "committed",
+      "tags": [
+        "mcp",
+        "tool:get_integrity_snapshot",
+        "gi:unknown",
+        "result:ok"
+      ],
+      "type": "mcp-invocation",
+      "_mesh_node": "civic-protocol-core",
+      "_mesh_tier": "contributor"
+    },
     {
       "id": "EPICON-MCP-6e2e63c7",
       "node_id": "civic-protocol-core",
@@ -993,54 +1064,6 @@
       "idempotency_key": "civic-protocol-core:EPICON_ENTRY_V1:C-—:567d7413c5f8759f:mesh-sync",
       "schema": "EPICON_ENTRY_V1",
       "source_hash": "567d7413c5f8759fdc20e032be56630c59e3143d4f578babf952ae6d8436d19d",
-      "type": "mesh-commit",
-      "_mesh_node": "civic-protocol-core",
-      "_mesh_tier": "contributor"
-    },
-    {
-      "id": "EPICON-CPC-c1fc7b45474b74715eee58ab641dd9b338a393bd",
-      "node_id": "civic-protocol-core",
-      "tier": "contributor",
-      "timestamp": "2026-06-27T12:46:34-04:00",
-      "title": "Merge pull request #84 from kaizencycle/c355-aurea-epicon-reserve-blocks\n\nC-355 AUREA — EPICON Reserve Block Proof Index Entry",
-      "sha": "c1fc7b45474b74715eee58ab641dd9b338a393bd",
-      "source": "mesh-node",
-      "author": "Michael Judan",
-      "idempotency_key": "civic-protocol-core:EPICON_ENTRY_V1:C-—:fb37f4cfa734aeb9:mesh-sync",
-      "schema": "EPICON_ENTRY_V1",
-      "source_hash": "fb37f4cfa734aeb94d9f8846dc72fbef615e1f15cdc99207658b52e46aeed0cd",
-      "type": "mesh-commit",
-      "_mesh_node": "civic-protocol-core",
-      "_mesh_tier": "contributor"
-    },
-    {
-      "id": "EPICON-CPC-c7848b32f0e77c71a1f7c3b824de12df46c62e01",
-      "node_id": "civic-protocol-core",
-      "tier": "contributor",
-      "timestamp": "2026-06-27T12:46:04-04:00",
-      "title": "Merge pull request #83 from kaizencycle/c355-reserve-block-proof-index\n\nC-355 Reserve Block Proof Index Integration",
-      "sha": "c7848b32f0e77c71a1f7c3b824de12df46c62e01",
-      "source": "mesh-node",
-      "author": "Michael Judan",
-      "idempotency_key": "civic-protocol-core:EPICON_ENTRY_V1:C-—:35effa2e5be3a92e:mesh-sync",
-      "schema": "EPICON_ENTRY_V1",
-      "source_hash": "35effa2e5be3a92e45a3d8d8bf9d2f377688203fb42cefa0dadb756f16395f20",
-      "type": "mesh-commit",
-      "_mesh_node": "civic-protocol-core",
-      "_mesh_tier": "contributor"
-    },
-    {
-      "id": "EPICON-CPC-a36a8f58bbc4401c979cc02a0ce4fa987e17cb1f",
-      "node_id": "civic-protocol-core",
-      "tier": "contributor",
-      "timestamp": "2026-06-20T11:50:33-04:00",
-      "title": "Merge pull request #82 from kaizencycle/cursor/c347-cde-writeback-attest-redeem-b844\n\nC-347-E: MIC redemption stub (POST /mic/redeem, GET /mic/unlocks)",
-      "sha": "a36a8f58bbc4401c979cc02a0ce4fa987e17cb1f",
-      "source": "mesh-node",
-      "author": "Michael Judan",
-      "idempotency_key": "civic-protocol-core:EPICON_ENTRY_V1:C-—:26eadee3b95e7f92:mesh-sync",
-      "schema": "EPICON_ENTRY_V1",
-      "source_hash": "26eadee3b95e7f9282180f8c9a239ef00975aec904018381f0ef09ec3094da7a",
       "type": "mesh-commit",
       "_mesh_node": "civic-protocol-core",
       "_mesh_tier": "contributor"
