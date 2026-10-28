@@ -1,6 +1,6 @@
 {
   "schema": "MNS_AGGREGATE_V1",
-  "updated_at": "2026-10-28T03:03:18.012Z",
+  "updated_at": "2026-10-28T10:08:41.896Z",
   "node_count": 5,
   "live_nodes": 3,
   "total_entries": 50,
@@ -10,7 +10,7 @@
       "tier": "sentinel",
       "node_type": "substrate",
       "entry_count": 0,
-      "fetched_at": "2026-10-28T03:03:15.546Z",
+      "fetched_at": "2026-10-28T10:08:39.551Z",
       "error": null
     },
     {
@@ -18,7 +18,7 @@
       "tier": "contributor",
       "node_type": "app",
       "entry_count": 0,
-      "fetched_at": "2026-10-28T03:03:18.011Z",
+      "fetched_at": "2026-10-28T10:08:41.896Z",
       "error": null
     },
     {
@@ -26,7 +26,7 @@
       "tier": "contributor",
       "node_type": "service",
       "entry_count": 50,
-      "fetched_at": "2026-10-28T03:03:16.480Z",
+      "fetched_at": "2026-10-28T10:08:39.689Z",
       "error": null
     },
     {
@@ -47,6 +47,75 @@
     }
   ],
   "entries": [
+    {
+      "id": "EPICON-MCP-380184e6",
+      "node_id": "civic-protocol-core",
+      "tier": "contributor",
+      "timestamp": "2026-10-28T04:56:14.339608+00:00",
+      "title": "MCP tool call: get_vault_status",
+      "sha": "",
+      "source": "mcp-bridge",
+      "agentOrigin": "HERMES",
+      "args": {},
+      "cycleId": "C-unknown",
+      "integrityDelta": 0,
+      "status": "committed",
+      "tags": [
+        "mcp",
+        "tool:get_vault_status",
+        "gi:unknown",
+        "result:ok"
+      ],
+      "type": "mcp-invocation",
+      "_mesh_node": "civic-protocol-core",
+      "_mesh_tier": "contributor"
+    },
+    {
+      "id": "EPICON-MCP-a469e34e",
+      "node_id": "civic-protocol-core",
+      "tier": "contributor",
+      "timestamp": "2026-10-28T04:56:14.218021+00:00",
+      "title": "MCP tool call: get_reserve_block_index",
+      "sha": "",
+      "source": "mcp-bridge",
+      "agentOrigin": "HERMES",
+      "args": {},
+      "cycleId": "C-unknown",
+      "integrityDelta": 0,
+      "status": "committed",
+      "tags": [
+        "mcp",
+        "tool:get_reserve_block_index",
+        "gi:unknown",
+        "result:ok"
+      ],
+      "type": "mcp-invocation",
+      "_mesh_node": "civic-protocol-core",
+      "_mesh_tier": "contributor"
+    },
+    {
+      "id": "EPICON-MCP-341f1433",
+      "node_id": "civic-protocol-core",
+      "tier": "contributor",
+      "timestamp": "2026-10-28T04:56:14.076657+00:00",
+      "title": "MCP tool call: get_integrity_snapshot",
+      "sha": "",
+      "source": "mcp-bridge",
+      "agentOrigin": "HERMES",
+      "args": {},
+      "cycleId": "C-unknown",
+      "integrityDelta": 0,
+      "status": "committed",
+      "tags": [
+        "mcp",
+        "tool:get_integrity_snapshot",
+        "gi:unknown",
+        "result:ok"
+      ],
+      "type": "mcp-invocation",
+      "_mesh_node": "civic-protocol-core",
+      "_mesh_tier": "contributor"
+    },
     {
       "id": "EPICON-MCP-8c171908",
       "node_id": "civic-protocol-core",
@@ -1016,54 +1085,6 @@
       "idempotency_key": "civic-protocol-core:EPICON_ENTRY_V1:C-—:6f27d4d8208ce79a:mesh-sync",
       "schema": "EPICON_ENTRY_V1",
       "source_hash": "6f27d4d8208ce79a1cd4290523fc339a50cac17b672e9844a0b900952ebf1662",
-      "type": "mesh-commit",
-      "_mesh_node": "civic-protocol-core",
-      "_mesh_tier": "contributor"
-    },
-    {
-      "id": "EPICON-CPC-b799f94d09302fa90530bb050d2173d866c98079",
-      "node_id": "civic-protocol-core",
-      "tier": "contributor",
-      "timestamp": "2026-06-27T19:45:25-04:00",
-      "title": "Merge pull request #87 from kaizencycle/cursor/c356-kv-sovereignty-spec-7179\n\ndocs(C-356): KV sovereignty spec + Terminal resilience handoff",
-      "sha": "b799f94d09302fa90530bb050d2173d866c98079",
-      "source": "mesh-node",
-      "author": "Michael Judan",
-      "idempotency_key": "civic-protocol-core:EPICON_ENTRY_V1:C-—:25c0d296d068e55d:mesh-sync",
-      "schema": "EPICON_ENTRY_V1",
-      "source_hash": "25c0d296d068e55dc8cc13aff83c47c9d30a187daf7d11906333c01a8efe3748",
-      "type": "mesh-commit",
-      "_mesh_node": "civic-protocol-core",
-      "_mesh_tier": "contributor"
-    },
-    {
-      "id": "EPICON-CPC-85638561d2a703b6f72811d74d5d0b894ea05f2e",
-      "node_id": "civic-protocol-core",
-      "tier": "contributor",
-      "timestamp": "2026-06-27T19:22:14-04:00",
-      "title": "Merge pull request #86 from kaizencycle/cursor/c355-reserve-block-dat-7179\n\nfeat(C-355): Reserve Block .dat canon + hash anchor index",
-      "sha": "85638561d2a703b6f72811d74d5d0b894ea05f2e",
-      "source": "mesh-node",
-      "author": "Michael Judan",
-      "idempotency_key": "civic-protocol-core:EPICON_ENTRY_V1:C-—:df4a6890cbe336ca:mesh-sync",
-      "schema": "EPICON_ENTRY_V1",
-      "source_hash": "df4a6890cbe336ca03f5954537c33cbed9f132a816506e4ec4f965c2be4ec51a",
-      "type": "mesh-commit",
-      "_mesh_node": "civic-protocol-core",
-      "_mesh_tier": "contributor"
-    },
-    {
-      "id": "EPICON-CPC-bb0089d5bf1c48222a9dbd88813ad1d7d555ba7f",
-      "node_id": "civic-protocol-core",
-      "tier": "contributor",
-      "timestamp": "2026-06-27T12:57:09-04:00",
-      "title": "Merge pull request #85 from kaizencycle/cursor/fix-issue-75-sentinel-mode-a-7179\n\nfix(sentinel): restore MODE A pass-through and drift gate ordering (#75)",
-      "sha": "bb0089d5bf1c48222a9dbd88813ad1d7d555ba7f",
-      "source": "mesh-node",
-      "author": "Michael Judan",
-      "idempotency_key": "civic-protocol-core:EPICON_ENTRY_V1:C-—:567d7413c5f8759f:mesh-sync",
-      "schema": "EPICON_ENTRY_V1",
-      "source_hash": "567d7413c5f8759fdc20e032be56630c59e3143d4f578babf952ae6d8436d19d",
       "type": "mesh-commit",
       "_mesh_node": "civic-protocol-core",
       "_mesh_tier": "contributor"
