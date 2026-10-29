@@ -1,10 +1,11 @@
 {
   "writer": "mobius-bot-state-sync",
-  "last_run_at": "2026-10-28T10:30:19Z",
-  "last_cycle": "C-478",
+  "last_run_at": "2026-10-29T10:50:32Z",
+  "last_cycle": "C-479",
   "status": "ok",
-  "ledger_verified": true,
+  "ledger_verified": false,
   "ledger_witness_url": "https://civic-protocol-core-ledger.onrender.com/pulse/state",
   "gi_attested_this_cycle": false,
-  "gi_withheld_reason": "GI_NULL_IN_PULSE"
+  "ledger_withheld_reason": "LEDGER_PULSE_UNREACHABLE",
+  "gi_withheld_reason": "LEDGER_PULSE_UNREACHABLE"
 }
