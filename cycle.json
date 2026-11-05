@@ -1,6 +1,6 @@
 {
-  "current_cycle": "C-485",
-  "date": "2026-11-04",
+  "current_cycle": "C-486",
+  "date": "2026-11-05",
   "gi": 0.9,
   "mode": "yellow",
   "canonical_domain": "https://mobius-substrate.com",
@@ -10,8 +10,8 @@
   "snapshot": "https://terminal.mobius-substrate.com/api/terminal/snapshot",
   "vault_status": "https://terminal.mobius-substrate.com/api/vault/status",
   "vault_seals": "https://terminal.mobius-substrate.com/api/vault/seal",
-  "last_updated": "2026-11-04T12:01:01Z",
-  "previous_cycle": "C-484",
+  "last_updated": "2026-11-05T12:12:22Z",
+  "previous_cycle": "C-485",
   "updated_by": "mobius-bot-state-sync",
   "vault": {
     "authority_class": "editorial_stale_superseded",
@@ -60,8 +60,8 @@
     "mic-wallet-render-crash-loop"
   ],
   "doc_version": "2.3.0",
-  "last_state_snapshot": "C-485",
-  "notes": "Auto-sync by mobius-bot (deterministic, no LLM). Advanced C-484 -> C-485. Ledger pulse fetched; GI not updated (unreachable, absent, or null in pulse).",
+  "last_state_snapshot": "C-486",
+  "notes": "Auto-sync by mobius-bot (deterministic, no LLM). Advanced C-485 -> C-486. Ledger pulse fetched; GI not updated (unreachable, absent, or null in pulse).",
   "gi_attested_this_cycle": false,
   "gi_withheld_reason": "LEDGER_PULSE_UNREACHABLE"
 }
