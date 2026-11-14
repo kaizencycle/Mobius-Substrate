@@ -1,7 +1,7 @@
 {
   "writer": "mobius-bot-state-sync",
-  "last_run_at": "2026-11-13T12:05:32Z",
-  "last_cycle": "C-494",
+  "last_run_at": "2026-11-14T11:23:28Z",
+  "last_cycle": "C-495",
   "status": "ok",
   "ledger_verified": false,
   "ledger_witness_url": "https://civic-protocol-core-ledger.onrender.com/pulse/state",
