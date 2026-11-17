@@ -1,7 +1,7 @@
 {
   "schema": "MNS_MCP_DISCOVERY_V1",
   "description": "Mobius Neural Substrate — MCP server index. Nodes declare mesh.mcp in mobius.yaml; Terminal is listed by default until its repo YAML is extended.",
-  "updated_at": "2026-11-17T13:58:33.641Z",
+  "updated_at": "2026-11-17T22:01:39.613Z",
   "servers": [
     {
       "node_id": "mobius-civic-ai-terminal",
