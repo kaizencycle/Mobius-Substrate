@@ -1,11 +1,11 @@
 {
   "mobius_catalog_version": "1.0.0",
-  "generated_at": "2026-11-24T12:10:49.756Z",
+  "generated_at": "2026-11-25T11:00:31.714Z",
   "repo": {
     "name": "Mobius-Substrate",
     "url": "https://github.com/kaizencycle/Mobius-Substrate",
     "default_branch": "main",
-    "commit": "f995c5234925bd6739cd5388401276cae0dd6c8c"
+    "commit": "17b24b5bfc3c766911a85929e7815efcb3d7ed41"
   },
   "stats": {
     "epiconCount": 0,
